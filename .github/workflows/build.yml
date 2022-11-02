@@ -16,7 +16,6 @@ jobs:
   package:
     runs-on: ubuntu-20.04
     needs: build
-    if: contains(github.ref, 'refs/tags/v')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
