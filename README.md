@@ -8,7 +8,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 * **Integrante 1** - [Iván Azuaje Ayala](https://github.com/iazuaje)
 * **Integrante 2** - [Gabriel Zitelli](https://github.com/gabrielzitelli)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Integrante 3** - [Pedro Etchegoyen](https://github.com/PedroEtche)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 * **Integrante 5** - [integrante5](https://github.com/integrante5)
 
