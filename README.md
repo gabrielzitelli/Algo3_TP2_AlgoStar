@@ -10,7 +10,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 2** - [Gabriel Zitelli](https://github.com/gabrielzitelli)
 * **Integrante 3** - [Pedro Etchegoyen](https://github.com/PedroEtche)
 * **Integrante 4** - [Nahuel Tomas Benitez](https://github.com/ttomasbenitez)
-* **Integrante 5** - [integrante5](https://github.com/integrante5)
+* **Integrante 5** - [Joan Denis Casaverde Heraldez](https://github.com/JoanC12)
 
 Corrector: **{Corrector}**
 
