@@ -18,4 +18,12 @@ public class Criadero {
         cantidadLarvas--;
         return zangano;
     }
+
+    public void accionDeTurno() {
+        aumentarLarvas();
+    }
+
+    private void aumentarLarvas() {
+        if (cantidadLarvas < maxLarvas) cantidadLarvas++;
+    }
 }
