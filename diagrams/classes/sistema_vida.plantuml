@@ -1,0 +1,35 @@
+@startuml
+
+interface Vida {
+    + aplicarDanio(cantidad : int)
+    + accionDeTurno()
+}
+
+class VidaPlana {
+    - capacidad : int
+    - cantidad : int
+    + VidaPlana(capacidad : int)
+    + aplicarDanio(cantidad : int)
+}
+
+class VidaRegenerativa {
+    - regeneracion : int
+    + VidaRegenerativa(capacidad : int)
+    + aplicarDanio(cantidad : int)
+    + accionDeTurno()
+}
+
+class VidaConEscudo {
+    + VidaConEscudo(vida : int, escudo : int)
+    + aplicarDanio(cantidad : int)
+    + accionDeTurno()
+}
+
+Vida <|.. VidaRegenerativa
+Vida <|.. VidaConEscudo
+
+VidaRegenerativa --> VidaPlana
+VidaConEscudo --> VidaPlana
+VidaConEscudo -> VidaRegenerativa
+
+@enduml

@@ -1,0 +1,78 @@
+@startuml
+
+class Protoss {
+    + terminarTurno()
+    + construirNexoMineral() : NexoMineral
+    + construirPilon() : Pilon
+    + construirAsimilador() : Asimilador
+    + construirAcceso() : Acceso
+    + construirPuertoEstelar() : PuertoEstelar
+}
+
+class Recurso {
+    - cantidad
+    + pedir(cantidad : int) : int
+    + depositar(cantidad : int)
+}
+
+abstract class Edificio {
+    - posicion : Coordenadas
+    - requisitosDeNodo : NodoCompatible
+    - estado : EstadoEdificio
+    - vida : Vida
+    + accionDeTurno()
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+    + recibirDanio(cantidad : int)
+}
+
+interface Turno {
+    {abstract} + accionDeTurno()
+}
+
+interface Daniable {
+    {abstract} + recibirDanio(cantidad : int)
+}
+
+class NexoMineral {
+    - unidadesPorTurno : int
+    + NexoMineral(requisitos : NodoCompatible, minerales : Recurso)
+    + accionDeTurno()
+}
+
+class Pilon {
+    - radio : int
+    + Pilon(requisitos : NodoCompatible)
+    + accionDeTurno()
+    - actualizarEnergia()
+}
+
+class Asimilador {
+    - unidadesPorTurno : int
+    + Asimilador(requisitos : NodoCompatible, gasVespeno : Recurso)
+    + accionDeTurno()
+}
+
+class Acceso {
+    + Acceso(requisitos : NodoCompatible)
+    + accionDeTurno()
+}
+
+class PuertoEstelar {
+    + PuertoEstelar(requisitos : NodoCompatible)
+    + accionDeTurno()
+}
+
+
+Protoss -left> "2" Recurso
+Protoss --> "*" Edificio
+
+Turno <|.. Edificio
+Daniable <|.. Edificio
+
+Edificio <|-- NexoMineral
+Edificio <|-- Pilon
+Edificio <|-- Asimilador
+Edificio <|-- Acceso
+Edificio <|-- PuertoEstelar
+
+@enduml

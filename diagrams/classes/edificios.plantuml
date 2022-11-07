@@ -1,0 +1,61 @@
+@startuml
+
+abstract class Edificio {
+    - posicion : Coordenadas
+    + accionDeTurno()
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+    + recibirDanio(cantidad : int)
+}
+
+class NodoCompatible {
+    - terrenoCompatible : Terreno
+    - recursoCompatible : NodoRecurso
+    + NodoCompatible(terreno : Terreno, recurso : NodoRecurso)
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+}
+
+interface EstadoEdificio {
+    + accionDeTurno() : EstadoEdificio
+}
+class Operativo {
+    + accionDeTurno() : EstadoEdificio
+}
+class EnConstruccion {
+    - contador
+    + accionDeTurno() : EstadoEdificio
+}
+class Desactivado {
+    + accionDeTurno() : EstadoEdificio
+}
+
+interface Vida {
+    + aplicarDanio(cantidad : int)
+    + accionDeTurno()
+}
+class VidaRegenerativa {
+    - vida : VidaPlana
+    - regeneracion : int
+    + VidaRegenerativa(capacidad : int)
+    + aplicarDanio(cantidad : int)
+    + accionDeTurno()
+}
+class VidaConEscudo {
+    - vida : VidaPlana
+    - escudo : VidaRegenerativa
+    + VidaConEscudo(vida : int, escudo : int)
+    + aplicarDanio(cantidad : int)
+    + accionDeTurno()
+}
+
+EstadoEdificio <|.. Operativo
+EstadoEdificio <|.. EnConstruccion
+EstadoEdificio <|.. Desactivado
+
+Vida <|.. VidaRegenerativa
+Vida <|.. VidaConEscudo
+
+Edificio --> NodoCompatible
+Edificio --> EstadoEdificio
+Edificio -> Vida
+
+@enduml
