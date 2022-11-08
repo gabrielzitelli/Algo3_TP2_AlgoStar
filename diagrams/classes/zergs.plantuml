@@ -1,0 +1,88 @@
+@startuml
+
+class Zergs {
+    + terminarTurno()
+    + construirCriadero(unZangano : Zangano) : Criadero
+    + construirExtractor(unZangano : Zangano) : Extractor
+    + construirReservaDeReproduccion(unZangano : Zangano) : ReservaDeReproduccion
+    + construirGuarida(unZangano : Zangano) : Guarida
+    + construirEspiral(unZangano : Zangano) : Espiral
+}
+
+class Recurso {
+    - cantidad
+    + pedir(cantidad : int) : int
+    + depositar(cantidad : int)
+}
+
+abstract class Edificio {
+    - posicion : Coordenadas
+    - requisitosDeNodo : NodoCompatible
+    - estado : EstadoEdificio
+    - vida : Vida
+    + accionDeTurno()
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+    + recibirDanio(cantidad : int)
+}
+
+class Zangano {
+    - posicion : Coordenadas
+    - unidadesPorTurno : int
+    - minerales : Recurso
+    + moverA(destino : Coodernadas)
+    + extraerMineral()
+    + accionDeTurno()
+}
+
+interface Turno {
+    {abstract} + accionDeTurno()
+}
+
+interface Daniable {
+    {abstract} + recibirDanio(cantidad : int)
+}
+
+class Criadero {
+    - maxLarvas - int
+    - cantidadLarvas - int
+    + Criadero(requisitos : NodoCompatible, minerales : Recurso)
+    + accionDeTurno()
+    + criarZangano() : Zangano
+}
+
+class Extractor {
+    - maxZanganos : int
+    - trabajadores : Zangano
+    + Extractor(requisitos : NodoCompatible, gasVespeno : Recurso)
+    + accionDeTurno()
+    + recibirZangano(unZangano : Zangano)
+}
+
+class ReservaDeReproduccion {
+    + ReservaDeReproduccion(requisitos : NodoCompatible)
+}
+
+class Guarida {
+    + Guarida(requisitos : NodoCompatible)
+}
+
+class Espiral {
+    + Espiral(requisitos : NodoCompatible)
+}
+
+
+Zergs -left> "2" Recurso
+Zergs -right-> "*" Edificio
+Zergs -up-> "*" Zangano
+
+Turno <|.left. Zangano
+Turno <|.. Edificio
+Daniable <|.. Edificio
+
+Edificio <|-- Criadero
+Edificio <|-- Extractor
+Edificio <|-- ReservaDeReproduccion
+Edificio <|-- Guarida
+Edificio <|-- Espiral
+
+@enduml

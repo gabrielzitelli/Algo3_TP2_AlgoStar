@@ -1,0 +1,87 @@
+@startuml
+
+class Tablero {
+    + Tablero(tamanioHorizontal : int, tamanioVertical : int)
+    + construir(construccion : Edificio, coord : Coordenadas)
+    + actualizarTerreno(coord : Coordenadas, radio : int, terreno : Terreno)
+    + extraer(coord : Coordenadas, cantidad : int) : int
+}
+
+class Nodo {
+    + Nodo(terreno : Terreno, recurso : NodoRecurso)
+    + construir(construccion : Edificio)
+    + actualizarTerrenoCon(terreno : Terreno)
+    + extraer(cantidad : int) : int
+}
+
+interface NodoEstado {
+    + construir(construccion : Edificio) : NodoEstado
+    + actualizar(unTerreno : Terreno, otroTerreno : Terreno)
+}
+class NodoVacio {
+    + construir(construccion : Edificio) : NodoEstado
+    + actualizar(unTerreno : Terreno, otroTerreno : Terreno) : Terreno
+}
+class NodoOcupado {
+    - ocupa : Edificio
+    + construir(construccion : Edificio) : NodoEstado
+    + actualizar(unTerreno : Terreno, otroTerreno : Terreno) : Terreno
+}
+
+interface Terreno {
+    + igualA(otroTerreno : Terreno) : Bool
+    + actualizarTerreno(terreno : Terreno) : Terreno
+}
+class Energia {
+    cantidad : int
+    + igualA(otroTerreno : Terreno) : Bool
+    + actualizarTerreno(terreno : Terreno) : Terreno
+}
+class Moho {
+    + igualA(otroTerreno : Terreno) : Bool
+    + actualizarTerreno(terreno : Terreno) : Terreno
+}
+class Neutro {
+    + igualA(otroTerreno : Terreno) : Bool
+    + actualizarTerreno(terreno : Terreno) : Terreno
+}
+
+interface NodoRecurso {
+    + igualA(otroRecurso : Recurso) : Bool
+    + extraer(cantidad : int) : int
+}
+class SinRecurso {
+    + igualA(otroRecurso : Recurso) : Bool
+    + extraer(cantidad : int) : int
+}
+class NodoMineral {
+    - cantidad : int
+    + NodoMineral(cantidad : int)
+    + igualA(otroRecurso : Recurso) : Bool
+    + extraer(cantidad : int) : int
+}
+class VolcanGasVespeno {
+    - cantidad : int
+    + VolcanGasVespeno(cantidad : int)
+    + igualA(otroRecurso : Recurso) : Bool
+    + extraer(cantidad : int) : int
+}
+
+Tablero *-- "*" Nodo
+
+NodoEstado <|.. NodoVacio
+NodoEstado <|.. NodoOcupado
+
+Nodo --> NodoEstado
+Nodo -left> Terreno
+Nodo -right> NodoRecurso
+
+Terreno <|.left. Energia
+Terreno <|.. Moho
+Terreno <|.. Neutro
+
+NodoRecurso <|.. SinRecurso
+NodoRecurso <|.. NodoMineral
+NodoRecurso <|.right. VolcanGasVespeno
+
+@enduml

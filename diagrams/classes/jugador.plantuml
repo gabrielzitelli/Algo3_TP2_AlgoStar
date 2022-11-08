@@ -1,0 +1,51 @@
+@startuml
+
+class Jugador {
+    + terminarTurno()
+}
+
+class Tablero {
+    - nodos : Nodo
+    + Tablero(tamanioHorizontal : int, tamanioVertical : int)
+    + construir(construccion : Edificio, coord : Coordenadas)
+    + actualizarTerreno(coord : Coordenadas, radio : int, terreno : Terreno)
+    + extraer(coord : Coordenadas, cantidad : int) : int
+}
+
+interface Imperio {
+    {abstract} + terminarTurno()
+}
+
+class Zergs {
+    - mineral : Recurso
+    - gasVespeno : Recurso
+    - edificios : Edificio
+    - zanganos : Zangano
+    + terminarTurno()
+    + construirCriadero(unZangano : Zangano) : Criadero
+    + construirExtractor(unZangano : Zangano) : Extractor
+    + construirReservaDeReproduccion(unZangano : Zangano) : ReservaDeReproduccion
+    + construirGuarida(unZangano : Zangano) : Guarida
+    + construirEspiral(unZangano : Zangano) : Espiral
+}
+
+class Protoss {
+    - mineral : Recurso
+    - gasVespeno : Recurso
+    - edificios : Edificio
+    + terminarTurno()
+    + construirNexoMineral() : NexoMineral
+    + construirPilon() : Pilon
+    + construirAsimilador() : Asimilador
+    + construirAcceso() : Acceso
+    + construirPuertoEstelar() : PuertoEstelar
+}
+
+Jugador -> Tablero
+Jugador -> "1" Imperio
+Imperio -up-> Tablero
+
+Imperio <|.. Zergs
+Imperio <|.. Protoss
+
+@enduml
