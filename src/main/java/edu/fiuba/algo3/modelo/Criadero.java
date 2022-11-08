@@ -20,7 +20,7 @@ public class Criadero extends Edificio {
             throw new CriaderoSinLarvas();
 
         cantidadLarvas--;
-        return new Zangano();
+        return new Zangano(new Coordenadas(0,0));
     }
 
     public void accionDeTurno() {
