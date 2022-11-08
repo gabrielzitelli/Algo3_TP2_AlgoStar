@@ -1,18 +1,18 @@
 ![tp2](https://github.com/gabrielzitelli/Algo3_TP2_AlgoStar/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/gabrielzitelli/Algo3_TP2_AlgoStar/branch/master/graph/badge.svg)](https://codecov.io/gh/gabrielzitelli/Algo3_TP2_AlgoStar)
 
-# TP2 Algoritmos 3: {nombre} 
+# TP2 Algoritmos 3: AlgoStar
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 5
 
 * **Integrante 1** - [Iván Azuaje Ayala](https://github.com/iazuaje)
 * **Integrante 2** - [Gabriel Zitelli](https://github.com/gabrielzitelli)
 * **Integrante 3** - [Pedro Etchegoyen](https://github.com/PedroEtche)
-* **Integrante 4** - [Nahuel Tomas Benitez](https://github.com/ttomasbenitez)
-* **Integrante 5** - [Joan Denis Casaverde Heraldez](https://github.com/JoanC12)
+* **Integrante 4** - [Walter Gabriel Diem](https://github.com/walgab)
+* **Integrante 5** - [--](https://github.com/)
 
-Corrector: **{Corrector}**
+Corrector: **Pablo Rodríguez Massuh**
 
 ## Aplicación
 
