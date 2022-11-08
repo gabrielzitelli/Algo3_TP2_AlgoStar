@@ -14,7 +14,7 @@ public class Criadero {
         if (cantidadLarvas == 0) {
             throw new CriaderoSinLarvas();
         }
-        Zangano zangano = new Zangano();
+        Zangano zangano = new Zangano(new Coordenadas(0,0));
         cantidadLarvas--;
         return zangano;
     }
