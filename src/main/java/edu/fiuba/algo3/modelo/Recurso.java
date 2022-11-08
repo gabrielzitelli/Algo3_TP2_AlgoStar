@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.excepciones.CantidadDeUtilidadInsuficiente;
+import edu.fiuba.algo3.modelo.excepciones.CantidadDeRecursoInsuficiente;
 
 public class Recurso {
     private int cantidad;
@@ -15,7 +15,7 @@ public class Recurso {
 
     public void consumir(int cantidadAConsumir){
         if(cantidad < cantidadAConsumir)
-            throw new CantidadDeUtilidadInsuficiente();
+            throw new CantidadDeRecursoInsuficiente();
 
         cantidad -= cantidadAConsumir;
     }

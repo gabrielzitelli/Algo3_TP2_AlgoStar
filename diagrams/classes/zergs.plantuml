@@ -11,8 +11,11 @@ class Zergs {
 
 class Recurso {
     - cantidad
-    + pedir(cantidad : int) : int
+    + Recurso()
+    + Recurso(cantidadInicial : int)
+    + consumir(cantidad : int)
     + depositar(cantidad : int)
+
 }
 
 abstract class Edificio {
@@ -27,9 +30,8 @@ abstract class Edificio {
 
 class Zangano {
     - posicion : Coordenadas
-    - unidadesPorTurno : int
-    - minerales : Recurso
-    + moverA(destino : Coodernadas)
+    + Zangano()
+    + Zangano(posicion : Coordenadas)
     + extraerMineral()
     + accionDeTurno()
 }
@@ -43,11 +45,13 @@ interface Daniable {
 }
 
 class Criadero {
-    - maxLarvas - int
-    - cantidadLarvas - int
-    + Criadero(requisitos : NodoCompatible, minerales : Recurso)
+    - maxLarvas : int
+    - cantidadLarvas : int
+    - costoMineral : int
+    + Criadero(ubicacion : NodoCompatible, mineral : Recurso)
     + accionDeTurno()
     + criarZangano() : Zangano
+    - aumentarLarvas()
 }
 
 class Extractor {
@@ -70,19 +74,27 @@ class Espiral {
     + Espiral(requisitos : NodoCompatible)
 }
 
+class CantidadDeRecursoInsuficiente <<exception>> {
+}
 
-Zergs -left> "2" Recurso
+class CriaderoSinLarvas <<exception>> {
+}
+
+Zergs -left> "3" Recurso
 Zergs -right-> "*" Edificio
 Zergs -up-> "*" Zangano
 
+Daniable <|.down. Edificio
 Turno <|.left. Zangano
 Turno <|.. Edificio
-Daniable <|.. Edificio
 
 Edificio <|-- Criadero
 Edificio <|-- Extractor
 Edificio <|-- ReservaDeReproduccion
 Edificio <|-- Guarida
 Edificio <|-- Espiral
+
+CantidadDeRecursoInsuficiente <.. Recurso
+CriaderoSinLarvas <.up. Criadero
 
 @enduml
