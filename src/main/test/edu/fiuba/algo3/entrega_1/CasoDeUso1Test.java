@@ -53,6 +53,7 @@ public class CasoDeUso1Test {
             excepcionLanzada = true;
         }
         assertTrue(excepcionLanzada);
+
     }
 
     @Test

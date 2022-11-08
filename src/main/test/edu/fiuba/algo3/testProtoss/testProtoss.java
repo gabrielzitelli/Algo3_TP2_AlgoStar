@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class testProtoss {
 
     @Test
-    public void construirPilonNoDevuelveErro(){
+    public void construirPilonNoDevuelveError(){
 
         NodoCompatible nodo = new NodoCompatible(new Neutro(), new SinRecurso());
         Pilon pilon = new Pilon(nodo);
 
-        assertDoesNotThrow(Pilon pilon = new Pilon(nodo), );
+        //assertDoesNotThrow(Pilon pilon = new Pilon(nodo));
     }
 }

@@ -4,6 +4,7 @@ public class PuertoEstelar {
     NodoCompatible ubicacion;
 
     public PuertoEstelar(NodoCompatible ubicacion){
+
         this.ubicacion = ubicacion;
     }
 }
