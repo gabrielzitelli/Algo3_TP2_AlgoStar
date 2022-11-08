@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.List;
+import java.util.LinkedList;
 
 public class Zergs implements Imperio {
-    private List<Edificio> edificios;
+    private LinkedList<Edificio> edificios;
 
     public void construirCriadero(Zangano zangano) {
+    }
 
+    public void terminarTurno(){
     }
 }

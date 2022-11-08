@@ -1,22 +1,26 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.excepciones.CriaderoSinLarvas;
+import edu.fiuba.algo3.modelo.excepciones.*;
 
-public class Criadero {
+public class Criadero extends Edificio {
 
-    private int maxLarvas = 3;
+    private final int maxLarvas = 3;
+    private final int costoMineral = 50;
     private int cantidadLarvas;
-    public Criadero(NodoCompatible requisitos, Recurso minerales) {
+    private NodoCompatible ubicacion;
+
+    public Criadero(NodoCompatible ubicacion, Recurso mineral) {
+        mineral.consumir(costoMineral);
         cantidadLarvas = maxLarvas;
+        this.ubicacion = ubicacion;
     }
 
     public Zangano criarZangano() {
-        if (cantidadLarvas == 0) {
+        if (cantidadLarvas == 0)
             throw new CriaderoSinLarvas();
-        }
-        Zangano zangano = new Zangano();
+
         cantidadLarvas--;
-        return zangano;
+        return new Zangano();
     }
 
     public void accionDeTurno() {
@@ -24,6 +28,7 @@ public class Criadero {
     }
 
     private void aumentarLarvas() {
-        if (cantidadLarvas < maxLarvas) cantidadLarvas++;
+        if (cantidadLarvas < maxLarvas)
+            cantidadLarvas++;
     }
 }
