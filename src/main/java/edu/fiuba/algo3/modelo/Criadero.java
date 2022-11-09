@@ -12,10 +12,14 @@ public class Criadero extends Edificio {
     public Criadero(NodoCompatible ubicacion, Recurso mineral) {
         mineral.consumir(costoMineral);
         cantidadLarvas = maxLarvas;
+        this.turnosExistiendo = 0;
+        this.turnosDeConstruccion = 4;
         this.ubicacion = ubicacion;
     }
 
     public Zangano criarZangano() {
+        this.estaActiva();
+        //RUIDOSO ESTE IF ... HAY OTRA MANERA PARECIDA AL "estaActivo"
         if (cantidadLarvas == 0)
             throw new CriaderoSinLarvas();
 
@@ -24,6 +28,7 @@ public class Criadero extends Edificio {
     }
 
     public void accionDeTurno() {
+        turnosExistiendo ++;
         aumentarLarvas();
     }
 

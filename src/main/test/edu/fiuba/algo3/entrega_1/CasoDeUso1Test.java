@@ -16,7 +16,10 @@ public class CasoDeUso1Test {
     @Test
     public void test01CreoUnCriaderoYPuedoEgendrar3ZanganosPeroNoCuatroEnUnTurno(){
         Criadero criadero = new Criadero(nodo, new Recurso(50));
-
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
         //Tengo 3 larvas inicialmente
         criadero.criarZangano();
         criadero.criarZangano();
@@ -29,7 +32,10 @@ public class CasoDeUso1Test {
     @Test
     public void test02DespuesDeGastarTodasLasLarvasDeUnCriaderoEsperoUnTurnoYPuedoCriarOtroMas() {
         Criadero criadero = new Criadero(nodo, new Recurso(50));
-
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
         //Tengo 3 larvas inicialmente
         criadero.criarZangano();
         criadero.criarZangano();
@@ -48,7 +54,10 @@ public class CasoDeUso1Test {
     @Test
     public void test03DespuesDeGastar3LarvasDeUnCriaderoDeboEsperar3TurnosParaPoderGastar3Devuelta() {
         Criadero criadero = new Criadero(nodo, new Recurso(50));
-
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
         //Tengo 3 larvas inicialmente
         criadero.criarZangano();
         criadero.criarZangano();
@@ -71,7 +80,10 @@ public class CasoDeUso1Test {
     @Test
     public void test04CreoUnCriaderoYPuedoEgendrar1ZanganoYElTurnoSiguientePuedoEngendrar3(){
         Criadero criadero = new Criadero(nodo, new Recurso(50));
-
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
         //Tengo 3 larvas inicialmente y crio 1 zangano
         criadero.criarZangano();
 
@@ -85,3 +97,4 @@ public class CasoDeUso1Test {
         assertThrows(CriaderoSinLarvas.class, () -> criadero.criarZangano());
     }
 }
+
