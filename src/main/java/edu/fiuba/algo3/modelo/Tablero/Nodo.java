@@ -20,6 +20,12 @@ public class Nodo {
         nodoEstado = new NodoVacio();
     }
 
+    public Nodo(Terreno terreno, NodoRecurso recurso) {
+        this.terreno = terreno;
+        this.nodoRecurso = recurso;
+        this.nodoEstado = new NodoVacio();
+    }
+
     //Para pruebas, luego eliminar TODO
     public void establecerRecurso(NodoRecurso _nodoRecurso) {
         nodoRecurso = _nodoRecurso;

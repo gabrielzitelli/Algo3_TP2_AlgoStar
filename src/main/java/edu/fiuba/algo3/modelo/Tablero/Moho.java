@@ -6,5 +6,6 @@ public class Moho implements Terreno {
     public boolean igualA(Terreno terreno) {
         Moho moho = new Moho();
         return (moho.getClass().equals(terreno.getClass()));
+
     }
 }

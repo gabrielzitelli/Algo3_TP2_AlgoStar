@@ -7,6 +7,7 @@ class Zergs {
     + construirReservaDeReproduccion(unZangano : Zangano) : ReservaDeReproduccion
     + construirGuarida(unZangano : Zangano) : Guarida
     + construirEspiral(unZangano : Zangano) : Espiral
+    + agregarZangano(unZangano : Zangano)
 }
 
 class Recurso {
@@ -30,8 +31,8 @@ abstract class Edificio {
 
 class Zangano {
     - posicion : Coordenadas
-    + Zangano()
-    + Zangano(posicion : Coordenadas)
+    - minerales : Recurso
+    + Zangano(posicion : Coordenadas, minerales : Recurso)
     + extraerMineral()
     + accionDeTurno()
 }
@@ -45,10 +46,11 @@ interface Daniable {
 }
 
 class Criadero {
+    - minerales : Recurso
+    - imperioZerg : Zergs
     - maxLarvas : int
     - cantidadLarvas : int
-    - costoMineral : int
-    + Criadero(ubicacion : NodoCompatible, mineral : Recurso)
+    + Criadero(ubicacion : NodoCompatible, minerales : Recurso, imperio : Zergs)
     + accionDeTurno()
     + criarZangano() : Zangano
     - aumentarLarvas()
@@ -80,7 +82,7 @@ class CantidadDeRecursoInsuficiente <<exception>> {
 class CriaderoSinLarvas <<exception>> {
 }
 
-Zergs -left> "3" Recurso
+Zergs -left> "2" Recurso
 Zergs -right-> "*" Edificio
 Zergs -up-> "*" Zangano
 

@@ -5,5 +5,6 @@ public class NodoMineral implements NodoRecurso {
     public boolean igualA(NodoRecurso nodoRecurso) {
         NodoMineral nodoMineral = new NodoMineral();
         return nodoMineral.getClass().equals(nodoRecurso.getClass());
+
     }
 }
