@@ -20,7 +20,7 @@ public class Criadero extends Edificio {
 
     public Zangano criarZangano() {
         this.estaActiva();
-        //RUIDOSO ESTE IF ... HAY OTRA MANERA PARECIDA AL "estaActivo"
+        
         if (cantidadLarvas == 0)
             throw new CriaderoSinLarvas();
 
