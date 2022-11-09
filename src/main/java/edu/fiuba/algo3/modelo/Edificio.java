@@ -28,4 +28,5 @@ public abstract class Edificio implements Turno, Daniable {
     public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
         return nodoCompatible.esCompatible(terreno, nodoRecurso);
     }
+
 }

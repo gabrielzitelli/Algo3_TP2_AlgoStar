@@ -9,7 +9,7 @@ public class Criadero extends Edificio {
     private Imperio zergs;
     private final int maxLarvas = 3;
     private int cantidadLarvas;
-    private NodoCompatible ubicacion;
+    private NodoCompatible nodoCompatible;
     private VidaRegenerativa vida;
 
     public Criadero(NodoCompatible requisitos, Recurso _minerales, Imperio _zergs) {
@@ -17,16 +17,16 @@ public class Criadero extends Edificio {
         this.minerales = _minerales;
         this.zergs = _zergs;
         cantidadLarvas = maxLarvas;
-        this.ubicacion = ubicacion;
         // TODO usar inyeccion de dependencia con la vida
         this.vida = new VidaRegenerativa(500, 0.25);
+        nodoCompatible = requisitos;
         this.turnosExistiendo = 0;
         this.turnosDeConstruccion = 4;
     }
 
     public Zangano criarZangano() {
         this.estaActiva();
-        //RUIDOSO ESTE IF ... HAY OTRA MANERA PARECIDA AL "estaActivo"
+        
         if (cantidadLarvas == 0)
             throw new CriaderoSinLarvas();
 

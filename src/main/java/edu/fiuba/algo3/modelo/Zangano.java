@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
+
 public class Zangano implements Turno {
     private Coordenadas posicion;
     private Recurso minerales;
@@ -9,11 +11,16 @@ public class Zangano implements Turno {
         this.minerales = _minerales;
     }
 
+
     public void extraerMineral(){
+        //recursoQueExtrae.modificarRecurso(gasVespeno , 10);
         // TODO
     }
 
     public void accionDeTurno(){
+        this.extraerMineral();
         // TODO
     }
+
+
 }
