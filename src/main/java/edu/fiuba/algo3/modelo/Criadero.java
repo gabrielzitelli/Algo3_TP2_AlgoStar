@@ -38,3 +38,4 @@ public class Criadero extends Edificio {
             cantidadLarvas++;
     }
 }
+

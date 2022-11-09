@@ -12,43 +12,44 @@ public class CasoDeUso2Test {
     Imperio zergs = new Zergs(new Recurso(), new Recurso());
 
     @Test
-    public void Test1ConstruyoUnCriaderoEIntentoUsarloSinQuePasenTurnosParaConstruirse(){
+    public void Test1ConstruyoUnCriaderoEIntentoUsarloSinQuePasenTurnosParaConstruirse() {
         Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
 
         assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
     }
-    @Test
-    public void Test2ConstruyoUnCriaderoEIntentoUsarloLuegoDeUnTurno(){
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
-        criadero.accionDeTurno();
-        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
-
-    }
 
     @Test
-    public void Test3ConstruyoUnCriaderoEIntentoUsarloLuegoDeDosTurnos(){
+    public void Test2ConstruyoUnCriaderoEIntentoUsarloLuegoDeUnTurno() {
         Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
-
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
-
-    }
-
-
-    @Test
-    public void Test4ConstruyoUnCriaderoEIntentoUsarloLuegoDeTresTurnos(){
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
-
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
         criadero.accionDeTurno();
         assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
 
     }
 
     @Test
-    public void Test5ConstruyoUnCriaderoEIntentoUsarloLuegoDeCuatroTurnosCuandoYaSeConstruyo(){
+    public void Test3ConstruyoUnCriaderoEIntentoUsarloLuegoDeDosTurnos() {
+        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
+
+    }
+
+
+    @Test
+    public void Test4ConstruyoUnCriaderoEIntentoUsarloLuegoDeTresTurnos() {
+        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        criadero.accionDeTurno();
+        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
+
+    }
+
+    @Test
+    public void Test5ConstruyoUnCriaderoEIntentoUsarloLuegoDeCuatroTurnosCuandoYaSeConstruyo() {
         Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
 
         criadero.accionDeTurno();
@@ -56,9 +57,7 @@ public class CasoDeUso2Test {
         criadero.accionDeTurno();
         criadero.accionDeTurno();
 
-        assertDoesNotThrow( () -> criadero.criarZangano());
+        assertDoesNotThrow(() -> criadero.criarZangano());
 
     }
-
-
 }
