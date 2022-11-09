@@ -32,6 +32,6 @@ public class Asimilador extends Edificio {
     }
 
     public void extraer(){
-        //recursoSobreElQueEsta.modificarRecurso(gasVespeno);
+        //recursoSobreElQueEsta.modificarRecurso(gasVespeno, 20);
     }
 }
