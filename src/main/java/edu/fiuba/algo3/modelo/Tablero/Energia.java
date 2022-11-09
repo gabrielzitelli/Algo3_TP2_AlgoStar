@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo.Tablero;
 
-public class SinRecurso implements NodoRecurso{
+public class Energia implements Terreno {
+
     @Override
-    public boolean igualA(NodoRecurso otroRecurso) {
+    public boolean igualA(Terreno otroTerreno) {
         // TODO
         return false;
     }
