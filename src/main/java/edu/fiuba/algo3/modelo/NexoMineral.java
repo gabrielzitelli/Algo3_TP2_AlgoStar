@@ -15,7 +15,7 @@ public class NexoMineral extends Edificio {
     public NexoMineral(NodoCompatible requisitos, Recurso _minerales) {
         this.turnosExistiendo = 0;
         this.turnosDeConstruccion = 4;
-        this.nodoCompatible = requisitos;
+        nodoCompatible = requisitos;
         this.minerales = _minerales;
     }
 

@@ -4,7 +4,7 @@ public class Energia implements Terreno {
 
     @Override
     public boolean igualA(Terreno otroTerreno) {
-        // TODO
-        return false;
+        Energia energia = new Energia();
+        return (energia.getClass().equals(otroTerreno.getClass()));
     }
 }
