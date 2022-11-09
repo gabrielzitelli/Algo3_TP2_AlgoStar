@@ -7,8 +7,8 @@ public class Zangano implements Turno {
         posicion = null;
     }
 
-    public Zangano(Coordenadas coordenadas) {
-        posicion = coordenadas;
+    public Zangano(Coordenadas posicion) {
+        this.posicion = posicion;
     }
 
     public void extraerMineral(){
