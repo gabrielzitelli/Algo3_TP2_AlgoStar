@@ -14,8 +14,8 @@ public abstract class Edificio implements Turno, Daniable {
 
     public int turnosExistiendo;
 
-
     public void recibirDanio(int danio){
+
     }
 
 

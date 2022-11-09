@@ -18,6 +18,7 @@ public class Criadero extends Edificio {
         this.zergs = _zergs;
         cantidadLarvas = maxLarvas;
         this.ubicacion = ubicacion;
+        // TODO usar inyeccion de dependencia con la vida
         this.vida = new VidaRegenerativa(500, 0.25);
         this.turnosExistiendo = 0;
         this.turnosDeConstruccion = 4;
@@ -43,8 +44,8 @@ public class Criadero extends Edificio {
         if (cantidadLarvas < maxLarvas)
             cantidadLarvas++;
     }
-
-    public void recirDanio(int danio){
+    @Override
+    public void recibirDanio(int danio){
         this.vida.aplicarDanio(danio);
     }
 
