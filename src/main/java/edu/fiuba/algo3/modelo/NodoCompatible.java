@@ -8,9 +8,10 @@ public class NodoCompatible {
 
     private Terreno terrenoCompatible;
     private NodoRecurso recursoCompatible;
+
     public NodoCompatible(Terreno terreno, NodoRecurso recurso) {
-        terrenoCompatible = terreno;
-        recursoCompatible = recurso;
+        this.terrenoCompatible = terreno;
+        this.recursoCompatible = recurso;
     }
 
     public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {

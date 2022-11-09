@@ -5,5 +5,6 @@ public class Neutro implements Terreno {
     public boolean igualA(Terreno terreno) {
         Neutro neutro = new Neutro();
         return (neutro.getClass().equals(terreno.getClass()));
+
     }
 }
