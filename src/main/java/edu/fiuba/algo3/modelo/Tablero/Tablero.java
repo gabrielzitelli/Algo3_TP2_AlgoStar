@@ -43,27 +43,37 @@ public class Tablero {
         Nodo nodo = encontrarNodo(coordenadas);
         nodo.establecerRecurso(nodoRecurso);
     }
+    //Metodo para pruebas mientras tanto TODO
+    public void establecerTerreno(Terreno terreno, Coordenadas coordenadas){
+        Nodo nodo = encontrarNodo(coordenadas);
+        nodo.actualizarTerrenoCon(terreno);
+    }
     public void construir(Edificio construccion, Coordenadas coordenadas) {
         Nodo nodo = encontrarNodo(coordenadas);
         nodo.construir(construccion);
     }
     public void actualizarTerreno(Coordenadas coordenadas, int radio, Terreno terreno) {
-        Set<Coordenadas> visitados = new HashSet<Coordenadas>();
-        visitados.add(coordenadas);
-        int nivel = 0;
-        Deque<Coordenadas> cola = new ArrayDeque<Coordenadas>();
+        //Recorrido bfs de un grafo aplicado a un tablero de r2.
+        Set<Nodo> visitados = new HashSet<>();
+        visitados.add(encontrarNodo(coordenadas));
+        HashMap<Nodo, Integer> distancia = new HashMap<>();
+        distancia.put(encontrarNodo(coordenadas), 0);
+        Deque<Coordenadas> cola = new ArrayDeque<>();
         cola.addFirst(coordenadas);
-        while (!cola.isEmpty() && nivel < radio) {
+
+        while (!cola.isEmpty()) {
             Coordenadas c = cola.pop();
             for(Coordenadas adyacente: this.encontrarAdyacentes(c)){
-                if (!visitados.contains(adyacente)){
-                    visitados.add(adyacente);
-                    cola.addFirst(adyacente);
-                    Nodo nodo = encontrarNodo(adyacente);
-                    nodo.actualizarTerrenoCon(terreno);
+                Nodo nodo = encontrarNodo(adyacente);
+                if (!visitados.contains(nodo)){
+                    distancia.put(nodo, distancia.get(encontrarNodo(c)) + 1);
+                    if (distancia.get(nodo) <= radio) {
+                        visitados.add(nodo);
+                        cola.addFirst(adyacente);
+                        nodo.actualizarTerrenoCon(terreno);
+                    }
                 }
             }
-            nivel++;
         }
 
     }

@@ -4,12 +4,15 @@ import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Terreno;
 
 public class NodoCompatible {
+
+    private Terreno terreno;
+    private NodoRecurso nodoRecurso;
     public NodoCompatible(Terreno terreno, NodoRecurso recurso) {
-        //TODO
+        this.terreno = terreno;
+        this.nodoRecurso = recurso;
     }
 
     public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
-        //TODO
-        return true;
+        return this.terreno.getClass().equals(terreno.getClass());
     }
 }

@@ -7,23 +7,43 @@ import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import edu.fiuba.algo3.modelo.excepciones.CasillaNoExistente;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TableroTest {
     @Test
     public void test01CreoUnTableroYPuedoConstruirEnUnNodoDelMismo() {
-        boolean excepcionLanzada = false;
         Tablero tablero = new Tablero(20, 20);
-        Coordenadas coordenadas = new Coordenadas(5,5);
-        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(nodoCompatible,new Recurso(50));
+        Coordenadas coordenadas = new Coordenadas(5, 5);
+        tablero.establecerTerreno(new Moho(), coordenadas);
 
-        try {
-            tablero.construir(criadero, new Coordenadas(5,5));
-        } catch (CasillaNoExistente casilla) {
-            excepcionLanzada = true;
-        }
-        assertFalse(excepcionLanzada);
+        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
+        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50));
+
+        assertDoesNotThrow(() -> tablero.construir(criadero, coordenadas));
+
+    }
+
+    @Test
+    public void test02CreoUnTableroYNoPuedoConstruirEnUnNodoFueraDelMismo() {
+        Tablero tablero = new Tablero(20, 20);
+        Coordenadas coordenadas = new Coordenadas(40, 33);
+        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
+        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50));
+
+        assertThrows(CasillaNoExistente.class, () -> tablero.construir(criadero, coordenadas));
+    }
+
+    @Test
+    public void test03CreoUnTableroYActualizaElTerrenoDeFormaCoherente() {
+        Tablero tablero = new Tablero(20, 20);
+        Coordenadas coordenadas = new Coordenadas(5, 5);
+        tablero.establecerTerreno(new Moho(), coordenadas);
+        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
+        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50));
+
+        tablero.actualizarTerreno(coordenadas, 5, new Moho());
+
+        assertDoesNotThrow(() -> tablero.construir(criadero, new Coordenadas(10, 5)));
     }
 }
