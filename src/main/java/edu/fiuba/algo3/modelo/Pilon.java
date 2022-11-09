@@ -1,12 +1,16 @@
 package edu.fiuba.algo3.modelo;
 
-public class Pilon {
-    int radio;
-    NodoCompatible ubicacion;
+public class Pilon extends Edificio {
 
-    public Pilon(NodoCompatible nodo){
-        this.ubicacion = nodo;
-        this.radio = 3;
+    public Pilon(NodoCompatible requisitos) {
+        this.turnosExistiendo = 0;
+        this.turnosDeConstruccion = 5;
+        this.nodoCompatible = requisitos;
     }
 
+    @Override
+    public void accionDeTurno() {
+        turnosExistiendo ++;
+        // TODO
+    }
 }

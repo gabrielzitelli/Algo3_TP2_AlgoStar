@@ -5,28 +5,36 @@ import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
 public class Criadero extends Edificio {
 
+    private Recurso minerales;
+    private Imperio zergs;
     private final int maxLarvas = 3;
-    private final int costoMineral = 50;
     private int cantidadLarvas;
     private NodoCompatible ubicacion;
     private VidaRegenerativa vida;
 
-    public Criadero(NodoCompatible ubicacion, Recurso mineral) {
-        mineral.consumir(costoMineral);
+    public Criadero(NodoCompatible requisitos, Recurso _minerales, Imperio _zergs) {
+        this.nodoCompatible = requisitos;
+        this.minerales = _minerales;
+        this.zergs = _zergs;
         cantidadLarvas = maxLarvas;
         this.ubicacion = ubicacion;
         this.vida = new VidaRegenerativa(500, 0.25);
+        this.turnosExistiendo = 0;
+        this.turnosDeConstruccion = 4;
     }
 
     public Zangano criarZangano() {
+        this.estaActiva();
+        //RUIDOSO ESTE IF ... HAY OTRA MANERA PARECIDA AL "estaActivo"
         if (cantidadLarvas == 0)
             throw new CriaderoSinLarvas();
 
         cantidadLarvas--;
-        return new Zangano(new Coordenadas(0,0));
+        return new Zangano(new Coordenadas(0,0), minerales);
     }
 
     public void accionDeTurno() {
+        turnosExistiendo ++;
         aumentarLarvas();
         this.vida.accionDeTurno();
     }
@@ -44,3 +52,4 @@ public class Criadero extends Edificio {
         return vida.getVida();
     }
 }
+

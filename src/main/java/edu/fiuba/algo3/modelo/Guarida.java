@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-public class PuertoEstelar extends Edificio {
+public class Guarida extends Edificio {
 
-    public PuertoEstelar(NodoCompatible requisitos) {
+    public Guarida(NodoCompatible requisitos) {
         this.turnosExistiendo = 0;
-        this.turnosDeConstruccion = 10;
+        this.turnosDeConstruccion = 12;
         this.nodoCompatible = requisitos;
     }
 
