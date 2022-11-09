@@ -14,16 +14,31 @@ public class CasoDeUso10 {
     volver a tener el 100%.
      */
 
+
+    @Test
+    public void seConstruyeUnCriaderoSeLoDaniaYSuVidaEsLaEsperada(){
+        NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
+        Criadero criadero = new Criadero(nodoCompatibleCriadero, new Recurso(50));
+        criadero.recibirDanio(200);
+
+        int vidaEsperada = 300;
+
+        assertEquals(vidaEsperada, criadero.getVida());
+    }
     @Test
     public void seConstruyeUnCriaderoSeLoDaniaYRecuperaGradualmenteTodaSuVida(){
         NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(nodoCompatibleCriadero, new Recurso());
+        Criadero criadero = new Criadero(nodoCompatibleCriadero, new Recurso(50));
         criadero.recibirDanio(200);
 
         criadero.accionDeTurno();
         criadero.accionDeTurno();
 
-        //assertEquals(criadero.getVida(), 500);
+        int vidaEsperada = 500;
+
+        assertEquals(vidaEsperada, criadero.getVida());
 
     }
+
+
 }
