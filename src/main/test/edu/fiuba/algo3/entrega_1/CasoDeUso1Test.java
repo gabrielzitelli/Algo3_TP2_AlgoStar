@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Tablero.Moho;
 import edu.fiuba.algo3.modelo.Tablero.SinRecurso;
 
+import edu.fiuba.algo3.modelo.excepciones.CriaderoSinLarvas;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

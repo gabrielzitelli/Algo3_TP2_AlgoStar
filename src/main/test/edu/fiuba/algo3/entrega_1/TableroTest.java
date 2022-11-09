@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TableroTest {
+
+    Imperio zergs = new Zergs(new Recurso(), new Recurso());
     @Test
     public void test01CreoUnTableroYPuedoConstruirEnUnNodoDelMismo() {
         Tablero tablero = new Tablero(20, 20);
@@ -19,7 +21,7 @@ public class TableroTest {
         tablero.establecerTerreno(new Moho(), coordenadas);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50));
+        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50), zergs);
 
         assertDoesNotThrow(() -> tablero.construir(criadero, coordenadas));
 
@@ -30,7 +32,7 @@ public class TableroTest {
         Tablero tablero = new Tablero(20, 20);
         Coordenadas coordenadas = new Coordenadas(40, 33);
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50));
+        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50), zergs);
 
         assertThrows(CasillaNoExistente.class, () -> tablero.construir(criadero, coordenadas));
     }
@@ -41,7 +43,7 @@ public class TableroTest {
         Coordenadas coordenadas = new Coordenadas(5, 5);
         tablero.establecerTerreno(new Moho(), coordenadas);
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50));
+        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50), zergs);
 
         tablero.actualizarTerreno(coordenadas, 5, new Moho());
 
@@ -53,7 +55,7 @@ public class TableroTest {
         Coordenadas coordenadas = new Coordenadas(5, 5);
         tablero.establecerTerreno(new Moho(), coordenadas);
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50));
+        Criadero criadero = new Criadero(nodoCompatible, new Recurso(50), zergs);
 
         tablero.construir(criadero, coordenadas);
 

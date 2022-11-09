@@ -14,7 +14,7 @@ public class Criadero extends Edificio {
         this.minerales = _minerales;
         this.zergs = _zergs;
         cantidadLarvas = maxLarvas;
-        nodoCompatible = ubicacion;
+        nodoCompatible = requisitos;
         this.turnosExistiendo = 0;
         this.turnosDeConstruccion = 4;
     }
