@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Tablero.Terreno;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoCompatibleConEdificio;
 
 public class NodoCompatible {
+
     private Terreno terrenoCompatible;
     private NodoRecurso recursoCompatible;
 

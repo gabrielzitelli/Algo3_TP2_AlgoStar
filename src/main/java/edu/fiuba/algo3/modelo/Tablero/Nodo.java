@@ -37,4 +37,9 @@ public class Nodo {
         }
         nodoEstado = nodoEstado.construir(construccion);
     }
+
+    public void actualizarTerrenoCon(Terreno terreno) {
+        this.terreno = terreno;
+    }
+
 }
