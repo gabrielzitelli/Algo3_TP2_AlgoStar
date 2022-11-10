@@ -6,10 +6,11 @@ public class Acceso extends Edificio {
 
     private VidaConEscudo vida;
 
-    public Acceso(NodoCompatible requisitos) {
+    public Acceso(NodoCompatible requisitos, Coordenadas ubicacion) {
         this.turnosExistiendo = 0;
         this.turnosDeConstruccion = 8;
         this.nodoCompatible = requisitos;
+        this.posicion = ubicacion;
         this.vida = new VidaConEscudo(500, 0.25, 500);
     }
 

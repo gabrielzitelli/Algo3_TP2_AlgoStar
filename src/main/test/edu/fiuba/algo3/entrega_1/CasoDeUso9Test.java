@@ -30,9 +30,7 @@ public class CasoDeUso9Test {
         unPilon.accionDeTurno();
         otroPilon.accionDeTurno();
 
-        Edificio unAcceso = protoss.construirAcceso();
-        tablero.construir(unAcceso, coordenadaEnergizadaPorAmbos); //Tira Excepcion de TerrenoNoCompatible, debería poder construirse
-                                                                    //porque en teoria el pilon energizo el area con radio 3
+        Edificio unAcceso = protoss.construirAcceso(coordenadaEnergizadaPorAmbos);
 
         tablero.descargarTerreno(unaCoordenada); //El Nodo que tiene esa coordenada deja de estar energerziado
 
@@ -60,8 +58,7 @@ public class CasoDeUso9Test {
         unPilon.accionDeTurno();
         otroPilon.accionDeTurno();
 
-        Edificio unAcceso = protoss.construirAcceso();
-        tablero.construir(unAcceso, coordenadaEnergizadaPorAmbos);
+        Edificio unAcceso = protoss.construirAcceso(coordenadaEnergizadaPorAmbos);
 
         tablero.descargarTerreno(unaCoordenada); //El Nodo que tiene esa coordenada deja de estar energerziado
         tablero.descargarTerreno(otraCoordenada); //El Nodo que tiene esa coordenada deja de estar energerziado

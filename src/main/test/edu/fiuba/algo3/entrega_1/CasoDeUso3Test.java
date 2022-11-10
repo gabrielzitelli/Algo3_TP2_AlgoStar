@@ -104,7 +104,7 @@ public class CasoDeUso3Test {
         tablero.establecerTerreno(new Energia(), coordenadas);
         tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
 
-        Edificio acceso = new Acceso(nodo);
+        Edificio acceso = new Acceso(nodo, coordenadas);
 
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(acceso, coordenadas));
     }
@@ -118,7 +118,7 @@ public class CasoDeUso3Test {
         tablero.establecerTerreno(new Energia(), coordenadas);
         tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
 
-        Edificio puertoEstelar = new PuertoEstelar(nodo);
+        Edificio puertoEstelar = new PuertoEstelar(nodo, coordenadas);
 
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(puertoEstelar, coordenadas));
     }

@@ -23,7 +23,7 @@ public class CasoDeUso14Test {
         pilon.accionDeTurno();
 
         NodoCompatible requisitoAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso acceso = new Acceso(requisitoAcceso);
+        Acceso acceso = new Acceso(requisitoAcceso, new Coordenadas(0,0));
 
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> {
             tablero.construir(acceso, new Coordenadas(0, 0));

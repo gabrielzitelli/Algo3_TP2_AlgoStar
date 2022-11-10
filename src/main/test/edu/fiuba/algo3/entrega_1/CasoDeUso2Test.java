@@ -363,8 +363,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio acceso = protoss.construirAcceso();
-        tablero.construir(acceso, origen);
+        Edificio acceso = protoss.construirAcceso(origen);
 
         assertThrows(EdificioEnConstruccion.class, () -> acceso.estaActiva());
     }
@@ -375,8 +374,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio acceso = protoss.construirAcceso();
-        tablero.construir(acceso, origen);
+        Edificio acceso = protoss.construirAcceso(origen);
 
         for(int i = 0; i < 7; i++)
             acceso.accionDeTurno();
@@ -390,8 +388,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio acceso = protoss.construirAcceso();
-        tablero.construir(acceso, origen);
+        Edificio acceso = protoss.construirAcceso(origen);
 
         for(int i = 0; i < 8; i++)
             acceso.accionDeTurno();
@@ -405,8 +402,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio puertoEstelar = protoss.construirPuertoEstelar();
-        tablero.construir(puertoEstelar, origen);
+        Edificio puertoEstelar = protoss.construirPuertoEstelar(origen);
 
         assertThrows(EdificioEnConstruccion.class, () -> puertoEstelar.estaActiva());
     }
@@ -417,8 +413,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio puertoEstelar = protoss.construirPuertoEstelar();
-        tablero.construir(puertoEstelar, origen);
+        Edificio puertoEstelar = protoss.construirPuertoEstelar(origen);
 
         for(int i = 0; i < 9; i++)
             puertoEstelar.accionDeTurno();
@@ -432,8 +427,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio puertoEstelar = protoss.construirPuertoEstelar();
-        tablero.construir(puertoEstelar, origen);
+        Edificio puertoEstelar = protoss.construirPuertoEstelar(origen);
 
         for(int i = 0; i < 10; i++)
             puertoEstelar.accionDeTurno();
