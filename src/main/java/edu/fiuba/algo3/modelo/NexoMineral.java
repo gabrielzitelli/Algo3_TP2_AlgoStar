@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Terreno;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEnConstruccion;
 
 import java.util.LinkedList;
 
@@ -22,9 +23,15 @@ public class NexoMineral extends Edificio {
 
     @Override
     public void accionDeTurno() {
+
+        try {
+            this.estaActiva();
+            minerales.depositar(nodoMinerales.extraer(unidadesPorTurno));
+        }
+        catch(EdificioEnConstruccion e){
+        }
         turnosExistiendo ++;
 
-        minerales.depositar(nodoMinerales.extraer(unidadesPorTurno));
     }
 
     @Override

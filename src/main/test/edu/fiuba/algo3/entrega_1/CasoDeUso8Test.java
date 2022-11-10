@@ -70,8 +70,7 @@ public class CasoDeUso8Test {
     @Test
     public void IntentarConstruirAsimiladorSinLosRecursosNecesariosLanzaExcepcion() {
         Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
-
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirAsimilador());
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirAsimilador(new Coordenadas(0,0)));
     }
 
     @Test

@@ -4,12 +4,13 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Terreno;
 import edu.fiuba.algo3.modelo.Tablero.VolcanGasVespeno;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEnConstruccion;
 
 public class Asimilador extends Edificio {
 
     private Recurso gasVespeno;
     private NodoRecurso nodoGasVespeno;
-    private int unidadesPorTurno = 10;
+    private int unidadesPorTurno = 20;
 
     public Asimilador(NodoCompatible requisitos, Recurso _gasVespeno) {
         this.turnosExistiendo = 0;
@@ -20,9 +21,14 @@ public class Asimilador extends Edificio {
 
     @Override
     public void accionDeTurno() {
+        try {
+            this.estaActiva();
+            gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
+        }
+        catch(EdificioEnConstruccion e){
+        }
         turnosExistiendo ++;
 
-        gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
     }
 
     @Override

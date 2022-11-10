@@ -34,9 +34,14 @@ public class Extractor extends Edificio {
 
     @Override
     public void accionDeTurno() {
+        try {
+            this.estaActiva();
+            extraer();
+        }
+        catch(EdificioEnConstruccion e){
+        }
         turnosExistiendo ++;
 
-        gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
     }
 
     public int getVida(){
@@ -64,4 +69,12 @@ public class Extractor extends Edificio {
         super.esCompatible(terreno, nodoRecurso);
         nodoGasVespeno = nodoRecurso;
     }
+
+    public void extraer() {
+        for (int i = 0; i < cantidadEmpleados; i++) {
+            gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
+
+        }
+    }
+
 }

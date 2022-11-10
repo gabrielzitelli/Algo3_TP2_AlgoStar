@@ -41,11 +41,12 @@ public class Protoss implements Imperio {
         return pilon;
     }
 
-    public Edificio construirAsimilador() {
+    public Edificio construirAsimilador( Coordenadas ubicacion) {
         minerales.consumir(100);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
         Edificio asimilador = new Asimilador(nodoCompatible, gasVespeno);
+        tablero.construir(asimilador, ubicacion);
         edificios.add(asimilador);
 
         return asimilador;

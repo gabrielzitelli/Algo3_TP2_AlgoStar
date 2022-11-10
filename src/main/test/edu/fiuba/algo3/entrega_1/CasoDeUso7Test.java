@@ -26,6 +26,11 @@ public class CasoDeUso7Test {
         nexoMineral.accionDeTurno();
         nexoMineral.accionDeTurno();
         nexoMineral.accionDeTurno();
+
+        nexoMineral.accionDeTurno();
+        nexoMineral.accionDeTurno();
+        nexoMineral.accionDeTurno();
+        nexoMineral.accionDeTurno();
         nexoMineral.accionDeTurno();
 
         assertDoesNotThrow(() -> protoss.construirNexoMineral(new Coordenadas(1, 1)));
