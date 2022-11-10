@@ -34,6 +34,18 @@ public class Zergs implements Imperio {
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new VolcanGasVespeno());
         Edificio extractor = new Extractor(nodoCompatible, gasVespeno);
+        tablero.construir(extractor,ubicacion);
+        edificios.add(extractor);
+
+        return extractor;
+    }
+
+    public Extractor construirExtractor(Zangano zangano, Coordenadas ubicacion, int p) {
+        minerales.consumir(100);
+
+        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new VolcanGasVespeno());
+        Extractor extractor = new Extractor(nodoCompatible, gasVespeno);
+        tablero.construir(extractor,ubicacion);
         edificios.add(extractor);
 
         return extractor;

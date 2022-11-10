@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.excepciones.MaximoZanganosAlcanzados;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Terreno;
@@ -55,10 +56,11 @@ public class Extractor extends Edificio {
     }
 
     public void contratarZangano(Zangano nuevoZangano){
+        this.estaActiva();
         //Probar la condicion
         IntStream rangoDeExistencia = IntStream.range(0, cantidadEmpleados + 1);
-        if( rangoDeExistencia.noneMatch(each -> maxEmpleados == each))
-            throw new EdificioEnConstruccion();
+        if( rangoDeExistencia.anyMatch(each -> maxEmpleados == each))
+            throw new MaximoZanganosAlcanzados();
         zanganoEmpleado.add(nuevoZangano);
         cantidadEmpleados ++;
 
@@ -73,7 +75,6 @@ public class Extractor extends Edificio {
     public void extraer() {
         for (int i = 0; i < cantidadEmpleados; i++) {
             gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
-
         }
     }
 

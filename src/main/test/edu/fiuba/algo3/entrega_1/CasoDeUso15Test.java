@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Tablero.*;
 import edu.fiuba.algo3.modelo.excepciones.CriaderoSinLarvas;
+import edu.fiuba.algo3.modelo.excepciones.MaximoZanganosAlcanzados;
 import edu.fiuba.algo3.modelo.excepciones.RecursosAgotados;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,7 @@ public class CasoDeUso15Test {
 
         Protoss protoss = new Protoss(tablero ,new Recurso(50), new Recurso(0));
         Edificio nexoMineral = protoss.construirNexoMineral(new Coordenadas(0, 0));
+
         nexoMineral.accionDeTurno();
         nexoMineral.accionDeTurno();
         nexoMineral.accionDeTurno();
@@ -55,27 +57,34 @@ public class CasoDeUso15Test {
     }
     @Test
     public void Test3SeConstruyeUnExtractorSobreVolcanGastoElGeiserEIntentoRecolectarDespuesDeGastarlo(){
-        Tablero tablero = new Tablero(2, 2);
+        Tablero tablero = new Tablero(1, 1);
         tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(1,1));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(1,1));
 
+
+
+        Zangano zangano1 = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano2 = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano3 = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano4 = new Zangano(new Coordenadas(0,0), new Recurso());
         Zergs zergs = new Zergs(tablero ,new Recurso(100), new Recurso(0));
-       /* Edificio asimilador = protoss.construirAsimilador(new Coordenadas(0,0));
+        Extractor extractor = zergs.construirExtractor(zangano1, new Coordenadas(0,0), 10);
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.contratarZangano(zangano2);
+        extractor.contratarZangano(zangano3);
+        extractor.contratarZangano(zangano4);
 
-        asimilador.accionDeTurno();
-        asimilador.accionDeTurno();
-        asimilador.accionDeTurno();
-        asimilador.accionDeTurno();
-        asimilador.accionDeTurno();
-        asimilador.accionDeTurno();
-        for ( int i = 1; i <= 250 ; i++){
-            asimilador.accionDeTurno();
+        for ( int i = 1; i <= 166 ; i++){
+            extractor.accionDeTurno();
         }
 
-        assertThrows(RecursosAgotados.class, () -> asimilador.accionDeTurno());
-    */
+        assertThrows(RecursosAgotados.class, () -> extractor.accionDeTurno());
+
     }
 
 }
