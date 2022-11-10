@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Tablero.Nodo;
 import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import edu.fiuba.algo3.modelo.Tablero.VolcanGasVespeno;
 import edu.fiuba.algo3.modelo.excepciones.CantidadDeRecursoInsuficiente;
+import edu.fiuba.algo3.modelo.excepciones.MaximoZanganosAlcanzados;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -195,5 +196,32 @@ public class CasoDeUso4Test {
         extractor.accionDeTurno();
 
         assertDoesNotThrow(() -> gasJuntado.consumir(29));
+    }
+
+    @Test
+    public void ExtractorSeContratan3ZanganosYAlCuartoSeLanzaUnError() {
+        Nodo nodo = new Nodo(new Neutro(), new VolcanGasVespeno());
+        NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
+        Recurso gasJuntado = new Recurso();
+        Extractor extractor = new Extractor(nodoCompatible, gasJuntado);
+        nodo.construir(extractor);
+
+        // Tiempo de construccion
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+        extractor.accionDeTurno();
+
+        Zangano trabajador1 = new Zangano(tablero, new Coordenadas(0, 0), new Recurso());
+        Zangano trabajador2 = new Zangano(tablero, new Coordenadas(0, 0), new Recurso());
+        Zangano trabajador3 = new Zangano(tablero, new Coordenadas(0, 0), new Recurso());
+        Zangano trabajador4 = new Zangano(tablero, new Coordenadas(0, 0), new Recurso());
+        extractor.contratarZangano(trabajador1);
+        extractor.contratarZangano(trabajador2);
+        extractor.contratarZangano(trabajador3);
+
+        assertThrows(MaximoZanganosAlcanzados.class, () -> extractor.contratarZangano(trabajador4));
     }
 }
