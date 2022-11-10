@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Tablero.Energia;
+import edu.fiuba.algo3.modelo.Tablero.Neutro;
 import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
@@ -23,11 +25,15 @@ public class Pilon extends Edificio {
     public void accionDeTurno() {
         turnosExistiendo ++;
         this.vida.accionDeTurno();
+        tablero.actualizarTerreno(posicion, this.rangoPilon, new Energia());
         actualizarEnergia();
     }
 
     public void recibirDanio(int danio){
         this.vida.aplicarDanio(danio);
+        if (this.vida.getVida() <= 0) {
+            destruir();
+        }
     }
 
     public int getVida(){
@@ -40,6 +46,7 @@ public class Pilon extends Edificio {
 
     public void destruir() {
         tablero.descargarTerreno(posicion);
+        tablero.actualizarTerreno(posicion, this.rangoPilon, new Neutro());
         tablero.desocuparNodo(posicion);
     }
 }

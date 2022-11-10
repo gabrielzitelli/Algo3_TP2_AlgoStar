@@ -53,7 +53,8 @@ public class Protoss extends Imperio {
         minerales.consumir(150);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
-        Edificio acceso = new Acceso(nodoCompatible, ubicacion);
+        Acceso acceso = new Acceso(nodoCompatible, ubicacion);
+        acceso.asignarTablero(tablero);
         tablero.construir(acceso, ubicacion);
         edificios.add(acceso);
 

@@ -2,6 +2,8 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Tablero.*;
+import edu.fiuba.algo3.modelo.excepciones.CriaderoSinLarvas;
+import edu.fiuba.algo3.modelo.excepciones.EdificioNoEnergizado;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoCompatibleConEdificio;
 import org.junit.jupiter.api.Test;
 
@@ -32,10 +34,10 @@ public class CasoDeUso9Test {
 
         Edificio unAcceso = protoss.construirAcceso(coordenadaEnergizadaPorAmbos);
 
-        tablero.descargarTerreno(unaCoordenada); //El Nodo que tiene esa coordenada deja de estar energerziado
+        unPilon.recibirDanio(1000);
+        otroPilon.accionDeTurno();
 
-        /*assertDoesNotThrow( () -> unAcceso.);*/ //ACA HAY QUE REALIZAR ALGO PARA QUE SALTE, TIPO: unAcceso.estaEnergizado()
-                                                //y que chequee la posicion
+        assertDoesNotThrow(() -> unAcceso.accionDeTurno());
     }
 
     @Test
@@ -44,11 +46,6 @@ public class CasoDeUso9Test {
         Coordenadas unaCoordenada = new Coordenadas(0, 0);
         Coordenadas otraCoordenada = new Coordenadas(5, 0);
         Coordenadas coordenadaEnergizadaPorAmbos = new Coordenadas(2, 0);
-
-        tablero.establecerRecurso(new SinRecurso(), unaCoordenada);
-        tablero.establecerTerreno(new Neutro(), unaCoordenada);
-        tablero.establecerRecurso(new SinRecurso(), otraCoordenada);
-        tablero.establecerTerreno(new Neutro(), otraCoordenada);
 
         Protoss protoss = new Protoss(tablero, new Recurso(1000), new Recurso(0));
 
@@ -60,10 +57,9 @@ public class CasoDeUso9Test {
 
         Edificio unAcceso = protoss.construirAcceso(coordenadaEnergizadaPorAmbos);
 
-        tablero.descargarTerreno(unaCoordenada); //El Nodo que tiene esa coordenada deja de estar energerziado
-        tablero.descargarTerreno(otraCoordenada); //El Nodo que tiene esa coordenada deja de estar energerziado
+        unPilon.recibirDanio(1000);
+        otroPilon.recibirDanio(1000);
 
-        /*assertDoesNotThrow( () -> unAcceso.);*/ //ACA HAY QUE REALIZAR ALGO PARA QUE SALTE, TIPO: unAcceso.estaEnergizado()
-        //y que chequee la posicion
+        assertThrows(EdificioNoEnergizado.class, () -> unAcceso.accionDeTurno());
     }
 }

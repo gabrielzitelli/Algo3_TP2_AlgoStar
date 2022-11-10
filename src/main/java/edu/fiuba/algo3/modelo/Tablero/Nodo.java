@@ -43,6 +43,12 @@ public class Nodo {
     }
 
     public void actualizarTerrenoCon(Terreno nuevoTerreno) {
+        if (nuevoTerreno.getClass().equals(new Neutro().getClass())){
+            terreno = nuevoTerreno;
+        }
+        else if (terreno.igualA(new Neutro())){
+            terreno = nuevoTerreno;
+        }
         this.terreno = nodoEstado.actualizar(terreno, nuevoTerreno);
     }
 
@@ -56,5 +62,9 @@ public class Nodo {
 
     public void desocuparNodo() {
         nodoEstado = nodoEstado.desocuparNodo();
+    }
+
+    public boolean estaEnergizado() {
+        return terreno.igualA(new Energia());
     }
 }

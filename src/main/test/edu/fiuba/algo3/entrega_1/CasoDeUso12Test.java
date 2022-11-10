@@ -198,8 +198,12 @@ public class CasoDeUso12Test {
 
     @Test
     public void test10ConstruyoUnAccesoHagoDanioMayorAlEscudoYSeRegeneraDeManeraEsperadaYVidaNoSeRegenera(){
-        NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0, 0));
+        Tablero tablero = new Tablero(10,10);
+        Protoss protoss = new Protoss(tablero, new Recurso(1000), new Recurso(1000));
+        Coordenadas coordenadasAcceso = new Coordenadas(5,5);
+        tablero.establecerTerreno(new Energia(), coordenadasAcceso);
+
+        Edificio unAcceso = protoss.construirAcceso(coordenadasAcceso);
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirDanio(999); // Queda con 1 de vida
@@ -212,8 +216,12 @@ public class CasoDeUso12Test {
 
     @Test
     public void test11ConstruyoUnAccesoMayorHagoDanioMayorAlEscudoYSeRegeneraTotalmenteAlPasarLosTurnosAdecuadosYVidaNoSeRegenera(){
-        NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0, 0));
+        Tablero tablero = new Tablero(10,10);
+        Protoss protoss = new Protoss(tablero, new Recurso(1000), new Recurso(1000));
+        Coordenadas coordenadasAcceso = new Coordenadas(5,5);
+        tablero.establecerTerreno(new Energia(), coordenadasAcceso);
+
+        Edificio unAcceso = protoss.construirAcceso(coordenadasAcceso);
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirDanio(998); // Queda con 2 de vida
@@ -230,8 +238,12 @@ public class CasoDeUso12Test {
 
     @Test
     public void test12ConstruyoUnAccesoHagoDanioMayorAlEscudoYSeRegeneraTotalmenteYNoSeExcedeDelMaximoYVidaNoSeRegenera(){
-        NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0, 0));
+        Tablero tablero = new Tablero(10,10);
+        Protoss protoss = new Protoss(tablero, new Recurso(1000), new Recurso(1000));
+        Coordenadas coordenadasAcceso = new Coordenadas(5,5);
+        tablero.establecerTerreno(new Energia(), coordenadasAcceso);
+
+        Edificio unAcceso = protoss.construirAcceso(coordenadasAcceso);
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirDanio(999); // Queda con 1 de vida

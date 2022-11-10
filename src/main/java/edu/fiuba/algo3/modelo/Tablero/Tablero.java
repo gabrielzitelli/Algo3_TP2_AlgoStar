@@ -100,4 +100,9 @@ public class Tablero {
         Nodo nodo = encontrarNodo(coordenadas);
         nodo.desocuparNodo();
     }
+
+    public boolean estaEnergizado(Coordenadas posicion) {
+        Nodo nodo = encontrarNodo(posicion);
+        return nodo.estaEnergizado();
+    }
 }

@@ -76,6 +76,7 @@ public class CasoDeUso14Test {
 
         Coordenadas coordenadasCriadero = new Coordenadas(1, 1);
         Criadero criadero = new Criadero(tablero, nodoCompatible, coordenadasCriadero, zergs);
+        tablero.establecerTerreno(new Neutro(), coordenadasCriadero);
         tablero.construir(criadero, coordenadasCriadero);
 
         // Tiempos de construccion
