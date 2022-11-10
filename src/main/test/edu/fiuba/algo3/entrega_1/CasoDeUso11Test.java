@@ -34,8 +34,9 @@ public class CasoDeUso11Test {
     @Test
     public void test02ConstruyoUnNexoMineralYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteAlPasarLosTurnosAdecuados(){
         NodoCompatible nodoCompatibleNexoMineral = new NodoCompatible(new Neutro(), new NodoMineral());
-        Recurso mineral = new Recurso(50);
+        Recurso mineral = new Recurso(100);
         NexoMineral unNexoMineral = new NexoMineral(nodoCompatibleNexoMineral, mineral);
+        unNexoMineral.esCompatible(new Neutro(), new NodoMineral());
 
         // NexoMineral tiene 250E / 250 V
         unNexoMineral.recibirDanio(249);
@@ -55,6 +56,7 @@ public class CasoDeUso11Test {
         NodoCompatible nodoCompatibleNexoMineral = new NodoCompatible(new Neutro(), new NodoMineral());
         Recurso mineral = new Recurso(0);
         NexoMineral unNexoMineral = new NexoMineral(nodoCompatibleNexoMineral, mineral);
+        unNexoMineral.esCompatible(new Neutro(), new NodoMineral());
 
         // NexoMineral tiene 250E / 250V
         unNexoMineral.recibirDanio(249);
@@ -159,6 +161,7 @@ public class CasoDeUso11Test {
         NodoCompatible nodoCompatibleAsimilador = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
         Recurso gasVespeno = new Recurso(0);
         Asimilador unAsimilador = new Asimilador(nodoCompatibleAsimilador, gasVespeno);
+        unAsimilador.esCompatible(new Neutro(), new VolcanGasVespeno());
 
         // Asimilador tiene 450E / 450V
         unAsimilador.recibirDanio(449);
