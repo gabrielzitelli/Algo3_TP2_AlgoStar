@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Tablero.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CasoDeUso10 {
+public class CasoDeUso10Test {
     /*
     Verificar que al dañar una construcción zerg, la misma recupera la vida por turnos hasta
     volver a tener el 100%.
