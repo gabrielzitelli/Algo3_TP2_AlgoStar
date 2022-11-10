@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.Moho;
-import edu.fiuba.algo3.modelo.Tablero.Neutro;
-import edu.fiuba.algo3.modelo.Tablero.SinRecurso;
-import edu.fiuba.algo3.modelo.Tablero.VolcanGasVespeno;
+import edu.fiuba.algo3.modelo.Tablero.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,7 +14,10 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnCriaderoSeLoDaniaYSuVidaEsLaEsperada(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
         Criadero criadero = new Criadero(nodoCompatibleCriadero, new Recurso(50), zergs);
 
@@ -35,7 +35,10 @@ public class CasoDeUso10 {
     }
     @Test
     public void seConstruyeUnCriaderoSeLoDaniaYRecuperaGradualmenteTodaSuVida(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
         Criadero criadero = new Criadero(nodoCompatibleCriadero, new Recurso(50), zergs);
         criadero.recibirDanio(200);
@@ -51,7 +54,10 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnaReservaDeReproduccionSeLoDaniaYSuVidaEsLaEsperada(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new SinRecurso());
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(nodoCompatibleReserva);
 
@@ -69,7 +75,10 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnaReservaDeReproduccionSeLoDaniaYSePasanSuficientesTurnosParaQueSeCure(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new SinRecurso());
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(nodoCompatibleReserva);
 
@@ -90,8 +99,11 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnExtractorSeLoDaniaYSuVidaEsLaEsperada(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
+        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new VolcanGasVespeno());
         Extractor extractor = new Extractor(nodoCompatibleReserva, new Recurso(100));
 
         // Paso 12 turnos para que se construya la reservaDeReproduccion
@@ -107,8 +119,11 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnExtractorSeLoDaniaYPasaTurnosHastaQueEsteCurado(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
+        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new VolcanGasVespeno());
         Extractor extractor = new Extractor(nodoCompatibleReserva, new Recurso(100));
 
         // Paso 6 turnos para que se construya la reservaDeReproduccion
@@ -129,7 +144,10 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnaGuaridaSeLoDaniaYSuVidaEsLaEsperada(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
         Guarida guarida = new Guarida(nodoCompatibleGuarida);
 
@@ -146,7 +164,10 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnaGuaridaSeLoDaniaYDespuesDeUnosTurnosSeRecuperaTodaLaVida(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
         Guarida guarida = new Guarida(nodoCompatibleGuarida);
 
@@ -164,7 +185,10 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnaEspiralSeLoDaniaYSuVidaEsLaEsperada(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
         Espiral espiral = new Espiral(nodoCompatibleGuarida);
 
@@ -181,7 +205,10 @@ public class CasoDeUso10 {
 
     @Test
     public void seConstruyeUnaEspiralSeLoDaniaYSePasanVariosTurnosYSeRecuperaTodaLaVida(){
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
         Espiral espiral = new Espiral(nodoCompatibleGuarida);
 

@@ -1,13 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Coordenadas;
-import edu.fiuba.algo3.modelo.Edificio;
-import edu.fiuba.algo3.modelo.Protoss;
-import edu.fiuba.algo3.modelo.Recurso;
-import edu.fiuba.algo3.modelo.Tablero.Neutro;
-import edu.fiuba.algo3.modelo.Tablero.NodoMineral;
-import edu.fiuba.algo3.modelo.Tablero.Tablero;
-import edu.fiuba.algo3.modelo.Tablero.VolcanGasVespeno;
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Tablero.*;
 import edu.fiuba.algo3.modelo.excepciones.CriaderoSinLarvas;
 import edu.fiuba.algo3.modelo.excepciones.RecursosAgotados;
 import org.junit.jupiter.api.Test;
@@ -59,4 +53,29 @@ public class CasoDeUso15Test {
         assertThrows(RecursosAgotados.class, () -> asimilador.accionDeTurno());
 
     }
+    @Test
+    public void Test3SeConstruyeUnExtractorSobreVolcanGastoElGeiserEIntentoRecolectarDespuesDeGastarlo(){
+        Tablero tablero = new Tablero(2, 2);
+        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(1,1));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(1,1));
+
+        Zergs zergs = new Zergs(tablero ,new Recurso(100), new Recurso(0));
+       /* Edificio asimilador = protoss.construirAsimilador(new Coordenadas(0,0));
+
+        asimilador.accionDeTurno();
+        asimilador.accionDeTurno();
+        asimilador.accionDeTurno();
+        asimilador.accionDeTurno();
+        asimilador.accionDeTurno();
+        asimilador.accionDeTurno();
+        for ( int i = 1; i <= 250 ; i++){
+            asimilador.accionDeTurno();
+        }
+
+        assertThrows(RecursosAgotados.class, () -> asimilador.accionDeTurno());
+    */
+    }
+
 }

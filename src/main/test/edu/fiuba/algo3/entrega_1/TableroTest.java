@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TableroTest {
-
-    Imperio zergs = new Zergs(new Recurso(), new Recurso());
+    Tablero tablero = new Tablero(1, 1);
+    Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
     @Test
     public void test01CreoUnTableroYPuedoConstruirEnUnNodoDelMismo() {
         Tablero tablero = new Tablero(20, 20);

@@ -12,8 +12,10 @@ public class CasoDeUso3Test {
 
     @Test
     public void test01IntentoConstruirUnEdificioDistintoDeAsimiladorEnUnVolcanYLanzaExcepcion() {
+        Tablero tablero1 = new Tablero(1, 1);
+
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Imperio zergs = new Zergs(tablero1,new Recurso(), new Recurso());
 
         Tablero tablero = new Tablero(10, 10);
         Coordenadas coordenadas = new Coordenadas(5, 5);
@@ -59,8 +61,9 @@ public class CasoDeUso3Test {
     }
     @Test
     public void test04PuedoConstruirUnExtractorEnUnVolcan() {
+        Tablero tablero1 = new Tablero(1, 1);
         NodoCompatible nodo = new NodoCompatible(new Moho(), new VolcanGasVespeno());
-        Imperio zergs = new Zergs(new Recurso(), new Recurso());
+        Imperio zergs = new Zergs(tablero1, new Recurso(), new Recurso());
 
         Tablero tablero = new Tablero(10, 10);
         Coordenadas coordenadas = new Coordenadas(5, 5);

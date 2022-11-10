@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.Tablero;
+import edu.fiuba.algo3.modelo.Tablero.*;
 import edu.fiuba.algo3.modelo.excepciones.CantidadDeRecursoInsuficiente;
 import org.junit.jupiter.api.Test;
 
@@ -13,42 +13,57 @@ public class CasoDeUso8Test {
 
     @Test
     public void IntentarConstruirCriaderoSinLosRecursosNecesariosLanzaExcepcion() {
-        Zergs zergs = new Zergs(new Recurso(0), new Recurso(0));
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Zergs zergs = new Zergs( tablero, new Recurso(0), new Recurso(0));
         Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirCriadero(zangano));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirCriadero(zangano,new Coordenadas(0,0)));
     }
 
     @Test
     public void IntentarConstruirExtractorSinLosRecursosNecesariosLanzaExcepcion() {
-        Zergs zergs = new Zergs(new Recurso(0), new Recurso(0));
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
         Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirExtractor(zangano));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirExtractor(zangano, new Coordenadas(0,0)));
     }
 
     @Test
     public void IntentarConstruirReservaDeReproduccionSinLosRecursosNecesariosLanzaExcepcion() {
-        Zergs zergs = new Zergs(new Recurso(0), new Recurso(0));
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
         Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirReservaDeReproduccion(zangano));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirReservaDeReproduccion(zangano, new Coordenadas(0,0)));
     }
 
     @Test
     public void IntentarConstruirGuaridaSinLosRecursosNecesariosLanzaExcepcion() {
-        Zergs zergs = new Zergs(new Recurso(0), new Recurso(0));
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
         Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirGuarida(zangano));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirGuarida(zangano,new Coordenadas(0,0)));
     }
 
     @Test
     public void IntentarConstruirEspiralSinLosRecursosNecesariosLanzaExcepcion() {
-        Zergs zergs = new Zergs(new Recurso(0), new Recurso(0));
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+        Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
         Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirEspiral(zangano));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirEspiral(zangano, new Coordenadas(0,0)));
     }
 
     @Test

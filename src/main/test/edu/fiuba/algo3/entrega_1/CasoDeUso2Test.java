@@ -3,13 +3,16 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Tablero.Moho;
 import edu.fiuba.algo3.modelo.Tablero.SinRecurso;
+import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso2Test {
+
+    Tablero tablero = new Tablero(1, 1);
     NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-    Imperio zergs = new Zergs(new Recurso(), new Recurso());
+    Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
 
     @Test
     public void Test1ConstruyoUnCriaderoEIntentoUsarloSinQuePasenTurnosParaConstruirse() {

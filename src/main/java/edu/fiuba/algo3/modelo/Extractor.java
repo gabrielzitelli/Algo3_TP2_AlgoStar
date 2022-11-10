@@ -36,12 +36,12 @@ public class Extractor extends Edificio {
     public void accionDeTurno() {
         try {
             this.estaActiva();
-            extraer();
+            this.extraer();
         }
         catch(EdificioEnConstruccion e){
         }
         turnosExistiendo ++;
-
+        this.vida.accionDeTurno();
     }
 
     public int getVida(){
