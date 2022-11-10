@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso3Test {
+
     @Test
     public void test01IntentoConstruirUnEdificioDistintoDeAsimiladorEnUnVolcanYLanzaExcepcion() {
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
@@ -28,7 +29,7 @@ public class CasoDeUso3Test {
     @Test
     public void test02IntentoConstruirUnEdificioDistintoDeExtractorEnUnVolcanYLanzaExcepcion() {
         NodoCompatible nodo = new NodoCompatible(new Energia(), new SinRecurso());
-        Imperio protoss = new Protoss(new Recurso(), new Recurso());
+        // Imperio protoss = new Protoss(new Recurso(), new Recurso());
 
         Tablero tablero = new Tablero(10, 10);
         Coordenadas coordenadas = new Coordenadas(5, 5);
@@ -44,7 +45,7 @@ public class CasoDeUso3Test {
     @Test
     public void test03PuedoConstruirUnAsimiladorEnUnVolcan() {
         NodoCompatible nodo = new NodoCompatible(new Energia(), new VolcanGasVespeno());
-        Imperio protoss = new Protoss(new Recurso(), new Recurso());
+        // Imperio protoss = new Protoss(new Recurso(), new Recurso());
 
         Tablero tablero = new Tablero(10, 10);
         Coordenadas coordenadas = new Coordenadas(5, 5);

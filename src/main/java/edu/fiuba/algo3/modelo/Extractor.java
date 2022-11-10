@@ -13,7 +13,8 @@ public class Extractor extends Edificio {
     private int cantidadEmpleados;
     private Recurso gasVespeno;
 
-    private NodoRecurso recursoSobreElQueEsta;
+    private NodoRecurso nodoGasVespeno;
+    private int unidadesPorTurno = 10;
 
     private LinkedList<Zangano> zanganoEmpleado;
 
@@ -30,8 +31,8 @@ public class Extractor extends Edificio {
     @Override
     public void accionDeTurno() {
         turnosExistiendo ++;
-        this.extraer();
-        // TODO
+
+        gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
     }
 
     public void contratarZangano(Zangano nuevoZangano){
@@ -41,18 +42,11 @@ public class Extractor extends Edificio {
             throw new EdificioEnConstruccion();
         zanganoEmpleado.add(nuevoZangano);
         cantidadEmpleados ++;
-
     }
 
     @Override
-    public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
-        this.recursoSobreElQueEsta = nodoRecurso;
-        return nodoCompatible.esCompatible(terreno, nodoRecurso);
-    }
-
-    public void extraer(){
-        for ( int i = 0; i < cantidadEmpleados ; i++) {
-            recursoSobreElQueEsta.modificarRecurso( gasVespeno , 10);
-        }
+    public void esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
+        super.esCompatible(terreno, nodoRecurso);
+        nodoGasVespeno = nodoRecurso;
     }
 }

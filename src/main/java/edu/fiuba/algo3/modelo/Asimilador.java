@@ -7,9 +7,9 @@ import edu.fiuba.algo3.modelo.Tablero.VolcanGasVespeno;
 
 public class Asimilador extends Edificio {
 
-
     private Recurso gasVespeno;
-    private NodoRecurso recursoSobreElQueEsta;
+    private NodoRecurso nodoGasVespeno;
+    private int unidadesPorTurno = 10;
 
     public Asimilador(NodoCompatible requisitos, Recurso _gasVespeno) {
         this.turnosExistiendo = 0;
@@ -21,17 +21,13 @@ public class Asimilador extends Edificio {
     @Override
     public void accionDeTurno() {
         turnosExistiendo ++;
-        this.extraer();
-        // TODO
+
+        gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
     }
 
     @Override
-    public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
-        this.recursoSobreElQueEsta = nodoRecurso;
-        return nodoCompatible.esCompatible(terreno, nodoRecurso);
-    }
-
-    public void extraer(){
-        recursoSobreElQueEsta.modificarRecurso(gasVespeno, 20);
+    public void esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
+        super.esCompatible(terreno, nodoRecurso);
+        nodoGasVespeno = nodoRecurso;
     }
 }
