@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Terreno;
 import edu.fiuba.algo3.modelo.excepciones.EdificioEnConstruccion;
@@ -12,6 +13,7 @@ public class Extractor extends Edificio {
     private int maxEmpleados ;
     private int cantidadEmpleados;
     private Recurso gasVespeno;
+    private VidaRegenerativa vida;
 
     private NodoRecurso nodoGasVespeno;
     private int unidadesPorTurno = 10;
@@ -25,6 +27,8 @@ public class Extractor extends Edificio {
         this.cantidadEmpleados = 0;
         this.nodoCompatible = requisitos;
         this.gasVespeno = _gasVespeno;
+        // TODO usar inyeccion de dependencia con la vida
+        this.vida = new VidaRegenerativa(750, 0.25);
         this.zanganoEmpleado = new LinkedList<>();
     }
 
@@ -35,6 +39,16 @@ public class Extractor extends Edificio {
         gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
     }
 
+    public int getVida(){
+        return this.vida.getVida();
+    }
+
+    @Override
+    public void recibirDanio(int danio){
+        this.vida.aplicarDanio(danio);
+        // TODO
+    }
+
     public void contratarZangano(Zangano nuevoZangano){
         //Probar la condicion
         IntStream rangoDeExistencia = IntStream.range(0, cantidadEmpleados + 1);
@@ -42,6 +56,7 @@ public class Extractor extends Edificio {
             throw new EdificioEnConstruccion();
         zanganoEmpleado.add(nuevoZangano);
         cantidadEmpleados ++;
+
     }
 
     @Override
