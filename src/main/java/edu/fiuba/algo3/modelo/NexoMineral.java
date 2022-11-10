@@ -3,14 +3,11 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Terreno;
 
-import java.util.LinkedList;
-
 public class NexoMineral extends Edificio {
 
     private Recurso minerales;
-    private NodoRecurso recursoSobreElQueEsta;
-
-    private LinkedList<Zangano> zanganosEmpleados;
+    private NodoRecurso nodoMinerales;
+    private int unidadesPorTurno = 10;
 
     public NexoMineral(NodoCompatible requisitos, Recurso _minerales) {
         this.turnosExistiendo = 0;
@@ -22,17 +19,13 @@ public class NexoMineral extends Edificio {
     @Override
     public void accionDeTurno() {
         turnosExistiendo ++;
-        this.extraer();
-        // TODO
+
+        minerales.depositar(nodoMinerales.extraer(unidadesPorTurno));
     }
 
     @Override
-    public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
-        this.recursoSobreElQueEsta = nodoRecurso;
-        return nodoCompatible.esCompatible(terreno, nodoRecurso);
-    }
-
-    public void extraer(){
-        //recursoSobreElQueEsta.modificarRecurso(gasVespeno, ... );
+    public void esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
+        super.esCompatible(terreno, nodoRecurso);
+        nodoMinerales = nodoRecurso;
     }
 }

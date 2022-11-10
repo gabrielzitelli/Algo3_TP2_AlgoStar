@@ -1,12 +1,15 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import edu.fiuba.algo3.modelo.excepciones.CantidadDeRecursoInsuficiente;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso8Test {
+
+    Tablero tablero = new Tablero(1,1);
 
     @Test
     public void IntentarConstruirCriaderoSinLosRecursosNecesariosLanzaExcepcion() {
@@ -50,35 +53,37 @@ public class CasoDeUso8Test {
 
     @Test
     public void IntentarConstruirNexoMineralSinLosRecursosNecesariosLanzaExcepcion() {
-        Protoss protoss = new Protoss(new Recurso(0), new Recurso(0));
+        Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirNexoMineral());
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> {
+            protoss.construirNexoMineral(new Coordenadas(0, 0));
+        });
     }
 
     @Test
     public void IntentarConstruirPilonSinLosRecursosNecesariosLanzaExcepcion() {
-        Protoss protoss = new Protoss(new Recurso(0), new Recurso(0));
+        Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
         assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirPilon());
     }
 
     @Test
     public void IntentarConstruirAsimiladorSinLosRecursosNecesariosLanzaExcepcion() {
-        Protoss protoss = new Protoss(new Recurso(0), new Recurso(0));
+        Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
         assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirAsimilador());
     }
 
     @Test
     public void IntentarConstruirAccesoSinLosRecursosNecesariosLanzaExcepcion() {
-        Protoss protoss = new Protoss(new Recurso(0), new Recurso(0));
+        Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
         assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirAcceso());
     }
 
     @Test
     public void IntentarConstruirPuertoEstelarSinLosRecursosNecesariosLanzaExcepcion() {
-        Protoss protoss = new Protoss(new Recurso(0), new Recurso(0));
+        Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
         assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirPuertoEstelar());
     }

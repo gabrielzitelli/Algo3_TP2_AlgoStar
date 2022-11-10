@@ -32,9 +32,7 @@ public class Nodo {
     }
 
     public void construir(Edificio construccion) {
-        if (!construccion.esCompatible(terreno, nodoRecurso)) {
-            throw new TerrenoNoCompatibleConEdificio();
-        }
+        construccion.esCompatible(terreno, nodoRecurso);
         nodoEstado = nodoEstado.construir(construccion);
     }
 

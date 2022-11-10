@@ -3,7 +3,7 @@
 abstract class Edificio {
     - posicion : Coordenadas
     + accionDeTurno()
-    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso)
     + recibirDanio(cantidad : int)
 }
 
@@ -11,7 +11,7 @@ class NodoCompatible {
     - terrenoCompatible : Terreno
     - recursoCompatible : NodoRecurso
     + NodoCompatible(terreno : Terreno, recurso : NodoRecurso)
-    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso)
 }
 
 interface EstadoEdificio {
