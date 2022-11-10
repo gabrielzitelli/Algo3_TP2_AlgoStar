@@ -25,4 +25,14 @@ public class NodoOcupado implements NodoEstado {
     public NodoEstado asignarUnidad(Zangano zangano) {
         throw new CasillaOcupada();
     }
+
+    @Override
+    public Terreno actualizar(Terreno unTerreno, Terreno conTerreno) {
+        return unTerreno;
+    }
+
+    @Override
+    public NodoEstado desocuparNodo() {
+        return new NodoVacio();
+    }
 }

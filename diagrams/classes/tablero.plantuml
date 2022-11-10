@@ -7,6 +7,7 @@ class Tablero {
     + actualizarTerreno(coord : Coordenadas, radio : int, terreno : Terreno)
     + cargarTerreno(coord : Coordenadas)
     + descargarTerreno(coord : Coordenadas)
+    + desocuparNodo(coord : Coordenadas)
 }
 
 class Nodo {
@@ -16,20 +17,24 @@ class Nodo {
     + actualizarTerrenoCon(terreno : Terreno)
     + cargarTerreno()
     + descargarTerreno()
+    + desocuparNodo()
 }
 
 interface NodoEstado {
     + construir(construccion : Edificio) : NodoEstado
     + actualizar(unTerreno : Terreno, otroTerreno : Terreno)
+    + desocuparNodo() : NodoEstado
 }
 class NodoVacio {
     + construir(construccion : Edificio) : NodoEstado
     + actualizar(unTerreno : Terreno, otroTerreno : Terreno) : Terreno
+    + desocuparNodo() : NodoEstado
 }
 class NodoOcupado {
     - ocupa : Edificio
     + construir(construccion : Edificio) : NodoEstado
     + actualizar(unTerreno : Terreno, otroTerreno : Terreno) : Terreno
+    + desocuparNodo() : NodoEstado
 }
 
 interface Terreno {

@@ -93,4 +93,9 @@ public class Tablero {
         Nodo nodo = encontrarNodo(coordenadas);
         nodo.descargarTerreno();
     }
+
+    public void desocuparNodo(Coordenadas coordenadas) {
+        Nodo nodo = encontrarNodo(coordenadas);
+        nodo.desocuparNodo();
+    }
 }

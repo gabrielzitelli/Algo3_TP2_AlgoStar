@@ -43,7 +43,7 @@ public class Nodo {
     }
 
     public void actualizarTerrenoCon(Terreno nuevoTerreno) {
-        this.terreno = terreno.actualizarTerreno(nuevoTerreno);
+        this.terreno = nodoEstado.actualizar(terreno, nuevoTerreno);
     }
 
     public void cargarTerreno() {
@@ -52,5 +52,9 @@ public class Nodo {
 
     public void descargarTerreno() {
         terreno = terreno.descargarTerreno();
+    }
+
+    public void desocuparNodo() {
+        nodoEstado = nodoEstado.desocuparNodo();
     }
 }
