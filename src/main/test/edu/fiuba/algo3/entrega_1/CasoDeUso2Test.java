@@ -12,7 +12,7 @@ public class CasoDeUso2Test {
 
     Tablero tablero = new Tablero(1, 1);
     NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-    Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
+    Zergs zergs = new Zergs(tablero, new Recurso(), new Recurso());
 
     @Test
     public void Test1ConstruyoUnCriaderoEIntentoUsarloSinQuePasenTurnosParaConstruirse() {

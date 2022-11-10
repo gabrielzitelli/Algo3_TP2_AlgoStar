@@ -17,7 +17,7 @@ public class CasoDeUso10 {
         Tablero tablero = new Tablero(1, 1);
         tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
+        Zergs zergs = new Zergs(tablero, new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
         Criadero criadero = new Criadero(nodoCompatibleCriadero, new Recurso(50), zergs);
 
@@ -38,7 +38,7 @@ public class CasoDeUso10 {
         Tablero tablero = new Tablero(1, 1);
         tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
+        Zergs zergs = new Zergs(tablero,new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
         Criadero criadero = new Criadero(nodoCompatibleCriadero, new Recurso(50), zergs);
         criadero.recibirDanio(200);
