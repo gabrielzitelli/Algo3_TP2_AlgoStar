@@ -198,8 +198,12 @@ public class CasoDeUso11Test {
 
     @Test
     public void test10ConstruyoUnAccesoYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraDeManeraEsperada(){
-        NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0,0));
+        Tablero tablero = new Tablero(10,10);
+        Protoss protoss = new Protoss(tablero, new Recurso(1000), new Recurso(1000));
+        Coordenadas coordenadasAcceso = new Coordenadas(5,5);
+        tablero.establecerTerreno(new Energia(), coordenadasAcceso);
+
+        Edificio unAcceso = protoss.construirAcceso(coordenadasAcceso);
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirDanio(499);
@@ -212,36 +216,43 @@ public class CasoDeUso11Test {
 
     @Test
     public void test11ConstruyoUnAccesoYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteAlPasarLosTurnosAdecuados(){
-        NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0,0));
+        Tablero tablero = new Tablero(10,10);
+        Protoss protoss = new Protoss(tablero, new Recurso(1000), new Recurso(1000));
+        Coordenadas coordenadasAcceso = new Coordenadas(5,5);
+        tablero.establecerTerreno(new Energia(), coordenadasAcceso);
+
+        Edificio acceso = protoss.construirAcceso(coordenadasAcceso);
 
         // Acceso tiene 500E / 500V
-        unAcceso.recibirDanio(499);
+        acceso.recibirDanio(499);
 
-        unAcceso.accionDeTurno();
-        unAcceso.accionDeTurno();
-        unAcceso.accionDeTurno();
-        unAcceso.accionDeTurno();
+        acceso.accionDeTurno();
+        acceso.accionDeTurno();
+        acceso.accionDeTurno();
+        acceso.accionDeTurno();
 
         int vidaEsperada = 1000;
 
-        assertEquals(vidaEsperada, unAcceso.getVida());
+        assertEquals(vidaEsperada, acceso.getVida());
     }
 
     @Test
     public void test12ConstruyoUnAccesoYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteYNoSeExcedeDelMaximo(){
-        NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0,0));
+        Tablero tablero = new Tablero(10,10);
+        Protoss protoss = new Protoss(tablero, new Recurso(1000), new Recurso(1000));
+        Coordenadas coordenadasAcceso = new Coordenadas(5,5);
+        tablero.establecerTerreno(new Energia(), coordenadasAcceso);
+
+        Edificio acceso = protoss.construirAcceso(coordenadasAcceso);
 
         // Acceso tiene 500E / 500V
-        unAcceso.recibirDanio(499);
+        acceso.recibirDanio(499);
 
         for(int i = 0; i < 10; i++)
-            unAcceso.accionDeTurno();
+            acceso.accionDeTurno();
 
         int vidaEsperada = 1000;
-
-        assertEquals(vidaEsperada, unAcceso.getVida());
+        assertEquals(vidaEsperada, acceso.getVida());
     }
 
     // Testeo Puerto Estelar
