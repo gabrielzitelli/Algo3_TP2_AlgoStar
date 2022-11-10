@@ -11,8 +11,8 @@ public class VolcanGasVespeno implements NodoRecurso {
     }
     @Override
     public boolean igualA(NodoRecurso otroRecurso) {
-        // TODO
-        return false;
+        VolcanGasVespeno volcan = new VolcanGasVespeno();
+        return volcan.getClass().equals(otroRecurso.getClass());
     }
 
     public void modificarRecurso(Recurso _gasVespeno , int cantidadExtraccion){
