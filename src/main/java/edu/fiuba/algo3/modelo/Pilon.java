@@ -37,4 +37,9 @@ public class Pilon extends Edificio {
     public void actualizarEnergia() {
         tablero.cargarTerreno(posicion);
     }
+
+    public void destruir() {
+        tablero.descargarTerreno(posicion);
+        tablero.desocuparNodo(posicion);
+    }
 }

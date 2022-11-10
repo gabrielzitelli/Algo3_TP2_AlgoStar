@@ -7,4 +7,8 @@ public interface NodoEstado {
     NodoEstado construir(Edificio construccion);
 
     NodoEstado asignarUnidad(Zangano zangano);
+
+    Terreno actualizar(Terreno unTerreno, Terreno conTerreno);
+
+    NodoEstado desocuparNodo();
 }
