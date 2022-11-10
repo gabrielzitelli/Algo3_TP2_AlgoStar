@@ -8,8 +8,6 @@ public class SinRecurso implements NodoRecurso{
         SinRecurso sinRecurso = new SinRecurso();
         return sinRecurso.getClass().equals(nodoRecurso.getClass());
     }
-
-    public void modificarRecurso(Recurso recurso , int cantidadExtraccion){
-
+    public void modificarRecurso(Recurso _minerales , int cantidadExtraccion){
     }
 }
