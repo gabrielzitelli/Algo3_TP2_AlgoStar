@@ -20,11 +20,11 @@ public class Zergs implements Imperio {
         this.zanganos = new LinkedList<>();
     }
 
-    public Edificio construirCriadero(Zangano zangano) {
+    public Edificio construirCriadero(Zangano zangano, Coordenadas posicion) {
         minerales.consumir(50);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new SinRecurso());
-        Edificio criadero = new Criadero(tablero, nodoCompatible, minerales, this);
+        Edificio criadero = new Criadero(tablero, nodoCompatible, posicion, this);
         tablero.construir(criadero, zangano.getPosicion());
         edificios.add(criadero);
 

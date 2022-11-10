@@ -21,7 +21,7 @@ public class TableroTest {
         tablero.establecerTerreno(new Moho(), coordenadas);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatible, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodoCompatible, coordenadas, zergs);
 
         assertDoesNotThrow(() -> tablero.construir(criadero, coordenadas));
 
@@ -32,7 +32,7 @@ public class TableroTest {
         Tablero tablero = new Tablero(20, 20);
         Coordenadas coordenadas = new Coordenadas(40, 33);
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatible, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodoCompatible, coordenadas, zergs);
 
         assertThrows(CasillaNoExistente.class, () -> tablero.construir(criadero, coordenadas));
     }
@@ -43,7 +43,7 @@ public class TableroTest {
         Coordenadas coordenadas = new Coordenadas(5, 5);
         tablero.establecerTerreno(new Moho(), coordenadas);
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatible, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodoCompatible, coordenadas, zergs);
 
         tablero.actualizarTerreno(coordenadas, 5, new Moho());
 
@@ -55,7 +55,7 @@ public class TableroTest {
         Coordenadas coordenadas = new Coordenadas(5, 5);
         tablero.establecerTerreno(new Moho(), coordenadas);
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatible, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodoCompatible, coordenadas, zergs);
 
         tablero.construir(criadero, coordenadas);
 

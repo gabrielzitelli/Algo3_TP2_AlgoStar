@@ -8,8 +8,8 @@ import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 public class Criadero extends Edificio {
 
     private Tablero tablero;
-    private Recurso minerales;
     private Zergs zergs;
+    private Coordenadas posicion;
     private final int maxLarvas = 3;
     private int cantidadLarvas;
     private VidaRegenerativa vida;
@@ -17,10 +17,10 @@ public class Criadero extends Edificio {
     private int turnosDeAumento = 2;
     private int radioDeExpancion = 5;
 
-    public Criadero(Tablero _tablero, NodoCompatible requisitos, Recurso _minerales, Zergs _zergs) {
+    public Criadero(Tablero _tablero, NodoCompatible requisitos, Coordenadas _posicion, Zergs _zergs) {
         this.tablero = _tablero;
-        this.minerales = _minerales;
         this.zergs = _zergs;
+        this.posicion = _posicion;
         cantidadLarvas = maxLarvas;
         // TODO usar inyeccion de dependencia con la vida
         this.vida = new VidaRegenerativa(500, 0.25);

@@ -10,7 +10,7 @@ public class CasoDeUso10 {
     Verificar que al dañar una construcción zerg, la misma recupera la vida por turnos hasta
     volver a tener el 100%.
      */
-
+    Coordenadas origen = new Coordenadas(0,0);
 
     @Test
     public void seConstruyeUnCriaderoSeLoDaniaYSuVidaEsLaEsperada(){
@@ -19,7 +19,7 @@ public class CasoDeUso10 {
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
         Zergs zergs = new Zergs(tablero, new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatibleCriadero, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodoCompatibleCriadero, origen, zergs);
 
         // Paso 4 turnos para que se construya el criadero
         criadero.accionDeTurno();
@@ -40,7 +40,7 @@ public class CasoDeUso10 {
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
         Zergs zergs = new Zergs(tablero,new Recurso(), new Recurso());
         NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatibleCriadero, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodoCompatibleCriadero, origen, zergs);
         criadero.recibirDanio(200);
 
         criadero.accionDeTurno();

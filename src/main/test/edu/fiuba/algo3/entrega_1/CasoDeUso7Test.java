@@ -28,7 +28,7 @@ public class CasoDeUso7Test {
         zangano.accionDeTurno();
         zangano.accionDeTurno();
 
-        assertDoesNotThrow(() -> zergs.construirCriadero(zanganoParaCriadero));
+        assertDoesNotThrow(() -> zergs.construirCriadero(zanganoParaCriadero, new Coordenadas(0,0)));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class CasoDeUso7Test {
         zangano.accionDeTurno();
         zangano.accionDeTurno();
 
-        assertThrows(CantidadDeRecursoInsuficiente.class ,() -> zergs.construirCriadero(zanganoParaCriadero));
+        assertThrows(CantidadDeRecursoInsuficiente.class ,() -> zergs.construirCriadero(zanganoParaCriadero, new Coordenadas(1,1)));
     }
 
     @Test

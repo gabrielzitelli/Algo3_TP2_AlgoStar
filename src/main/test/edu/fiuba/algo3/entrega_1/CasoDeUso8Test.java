@@ -19,7 +19,7 @@ public class CasoDeUso8Test {
         Zergs zergs = new Zergs( tablero, new Recurso(0), new Recurso(0));
         Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirCriadero(zangano));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirCriadero(zangano, new Coordenadas(0,0)));
     }
 
     @Test

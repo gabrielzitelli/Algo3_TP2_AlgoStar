@@ -18,7 +18,7 @@ public class CasoDeUso2Test {
     @Test
     public void Test1ConstruyoUnCriaderoEIntentoUsarloSinQuePasenTurnosParaConstruirse() {
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
 
         assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
     }
@@ -26,7 +26,7 @@ public class CasoDeUso2Test {
     @Test
     public void Test2ConstruyoUnCriaderoEIntentoUsarloLuegoDeUnTurno() {
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
         criadero.accionDeTurno();
         assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
 
@@ -35,7 +35,7 @@ public class CasoDeUso2Test {
     @Test
     public void Test3ConstruyoUnCriaderoEIntentoUsarloLuegoDeDosTurnos() {
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
 
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -47,7 +47,7 @@ public class CasoDeUso2Test {
     @Test
     public void Test4ConstruyoUnCriaderoEIntentoUsarloLuegoDeTresTurnos() {
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
 
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -59,7 +59,7 @@ public class CasoDeUso2Test {
     @Test
     public void Test5ConstruyoUnCriaderoEIntentoUsarloLuegoDeCuatroTurnosCuandoYaSeConstruyo() {
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
 
         criadero.accionDeTurno();
         criadero.accionDeTurno();

@@ -13,12 +13,15 @@ public class CasoDeUso1Test {
     Tablero tablero = new Tablero(1, 1);
     NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
     Zergs zergs = new Zergs(tablero,new Recurso(), new Recurso());
+    Coordenadas origen = new Coordenadas(0,0);
 
     @Test
     public void test01CreoUnCriaderoYPuedoEgendrar3ZanganosPeroNoCuatroEnUnTurno(){
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
+
         criadero.accionDeTurno();
         criadero.accionDeTurno();
 
@@ -33,7 +36,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test02DespuesDeGastarTodasLasLarvasDeUnCriaderoEsperoUnTurnoYPuedoCriarOtroMas() {
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -56,7 +59,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test03DespuesDeGastar3LarvasDeUnCriaderoDeboEsperar3TurnosParaPoderGastar3Devuelta() {
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -83,7 +86,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test04CreoUnCriaderoYPuedoEgendrar1ZanganoYElTurnoSiguientePuedoEngendrar3(){
-        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
         criadero.accionDeTurno();

@@ -17,7 +17,7 @@ public class CasoDeUso6Test {
         Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatible, new Recurso(), zergs);
+        Criadero criadero = new Criadero(tablero, nodoCompatible, new Coordenadas(0,0), zergs);
         tablero.construir(criadero, zangano.getPosicion());
 
         Zangano zanganoParaCriadero = new Zangano(tablero, new Coordenadas(5,0), new Recurso());
@@ -25,6 +25,7 @@ public class CasoDeUso6Test {
         criadero.accionDeTurno();
         criadero.accionDeTurno();
 
-        assertDoesNotThrow(() -> zergs.construirCriadero(zanganoParaCriadero));
+
+        assertDoesNotThrow(() -> zergs.construirCriadero(zanganoParaCriadero, new Coordenadas(0,0)));
     }
 }
