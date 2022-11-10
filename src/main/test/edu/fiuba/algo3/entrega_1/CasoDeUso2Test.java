@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoDeUso2Test {
 
     Tablero tablero = new Tablero(1, 1);
-    Zergs zergs = new Zergs(tablero, new Recurso(200), new Recurso(200));
-    Protoss protoss = new Protoss(tablero, new Recurso(200), new Recurso(200));
+    Zergs zergs = new Zergs(tablero, new Recurso(3000), new Recurso(3000));
+    Protoss protoss = new Protoss(tablero, new Recurso(3000), new Recurso(3000));
     Coordenadas origen = new Coordenadas(0,0);
 
     // Testeo Construcciones Zerg
@@ -72,24 +72,24 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test6ConstruyoUnExtractorYNoPuedoUsarlo(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new VolcanGasVespeno());
         tablero.establecerRecurso(new VolcanGasVespeno(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio extractor = zergs.construirExtractor(zangano, origen);
+        Edificio extractor = zergs.construirExtractor(zangano);
 
         assertThrows(EdificioEnConstruccion.class, () -> extractor.estaActiva());
     }
 
     @Test
     public void Test7ConstruyoUnExtractorYNoPuedoUsarloFaltaUnTurno(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new VolcanGasVespeno());
         tablero.establecerRecurso(new VolcanGasVespeno(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio extractor = zergs.construirExtractor(zangano, origen);
+        Edificio extractor = zergs.construirExtractor(zangano);
 
         for(int i = 0; i < 5; i++)
             extractor.accionDeTurno();
@@ -99,12 +99,12 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test8ConstruyoUnExtractorYPuedoUsarloEnElTurnoCorrecto(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new VolcanGasVespeno());
         tablero.establecerRecurso(new VolcanGasVespeno(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio extractor = zergs.construirExtractor(zangano, origen);
+        Edificio extractor = zergs.construirExtractor(zangano);
 
         for(int i = 0; i < 6; i++)
             extractor.accionDeTurno();
@@ -114,24 +114,24 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test9ConstruyoUnaReservaDeProduccionYNoPuedoUsarlo(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio reserva = zergs.construirReservaDeReproduccion(zangano, origen);
+        Edificio reserva = zergs.construirReservaDeReproduccion(zangano);
 
         assertThrows(EdificioEnConstruccion.class, () -> reserva.estaActiva());
     }
 
     @Test
     public void Test10ConstruyoUnaReservaDeProduccionYNoPuedoUsarloFaltaUnTurno(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio reserva = zergs.construirReservaDeReproduccion(zangano, origen);
+        Edificio reserva = zergs.construirReservaDeReproduccion(zangano);
 
         for(int i = 0; i < 11; i++)
             reserva.accionDeTurno();
@@ -141,12 +141,12 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test11ConstruyoUnExtractorYPuedoUsarloEnElTurnoCorrecto(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio reserva = zergs.construirReservaDeReproduccion(zangano, origen);
+        Edificio reserva = zergs.construirReservaDeReproduccion(zangano);
 
         for(int i = 0; i < 12; i++)
             reserva.accionDeTurno();
@@ -156,24 +156,24 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test12ConstruyoUnaGuaridaYNoPuedoUsarlo(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio guarida = zergs.construirGuarida(zangano, origen);
+        Edificio guarida = zergs.construirGuarida(zangano);
 
         assertThrows(EdificioEnConstruccion.class, () -> guarida.estaActiva());
     }
 
     @Test
     public void Test13ConstruyoUnaGuaridaYNoPuedoUsarloFaltaUnTurno(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio guarida = zergs.construirGuarida(zangano, origen);
+        Edificio guarida = zergs.construirGuarida(zangano);
 
         for(int i = 0; i < 11; i++)
             guarida.accionDeTurno();
@@ -183,12 +183,12 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test14ConstruyoUnaGuaridaEnElTurnoCorrecto(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio guarida = zergs.construirGuarida(zangano, origen);
+        Edificio guarida = zergs.construirGuarida(zangano);
 
         for(int i = 0; i < 12; i++)
             guarida.accionDeTurno();
@@ -198,24 +198,24 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test15ConstruyoUnaGuaridaYNoPuedoUsarlo(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio espiral = zergs.construirEspiral(zangano, origen);
+        Edificio espiral = zergs.construirEspiral(zangano);
 
         assertThrows(EdificioEnConstruccion.class, () -> espiral.estaActiva());
     }
 
     @Test
     public void Test16ConstruyoUnaGuaridaYNoPuedoUsarloFaltaUnTurno(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio espiral = zergs.construirEspiral(zangano, origen);
+        Edificio espiral = zergs.construirEspiral(zangano);
 
         for(int i = 0; i < 9; i++)
             espiral.accionDeTurno();
@@ -225,12 +225,12 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test17ConstruyoUnaGuaridaEnElTurnoCorrecto(){
-        Zangano zangano = new Zangano(origen, new Recurso());
+        Zangano zangano = new Zangano(tablero, origen, new Recurso());
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Moho(), origen);
 
-        Edificio espiral = zergs.construirEspiral(zangano, origen);
+        Edificio espiral = zergs.construirEspiral(zangano);
 
         for(int i = 0; i < 10; i++)
             espiral.accionDeTurno();
