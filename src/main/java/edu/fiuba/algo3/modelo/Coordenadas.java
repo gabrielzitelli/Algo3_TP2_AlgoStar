@@ -31,7 +31,7 @@ public class Coordenadas {
         if (x + 1 < ancho) { coordenadas.add(new Coordenadas(x + 1, y)); }
         if (x - 1 >= 0) { coordenadas.add(new Coordenadas(x - 1, y)); }
         if (y + 1 < alto) { coordenadas.add(new Coordenadas(x, y + 1)); }
-        if (y - 1 >= 0) { coordenadas.add(new Coordenadas(x, y + 1)); }
+        if (y - 1 >= 0) { coordenadas.add(new Coordenadas(x, y - 1)); }
         return coordenadas;
     }
 }
