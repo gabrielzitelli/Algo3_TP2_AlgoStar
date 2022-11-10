@@ -31,17 +31,19 @@ public class Protoss implements Imperio {
         return nexoMineral;
     }
 
-    public Edificio construirPilon() {
+    public Edificio construirPilon(Coordenadas ubicacion) {
         minerales.consumir(100);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new SinRecurso());
-        Edificio pilon = new Pilon(nodoCompatible);
+        Edificio pilon = new Pilon(tablero, nodoCompatible, ubicacion);
+        tablero.construir(pilon, ubicacion);
+
         edificios.add(pilon);
 
         return pilon;
     }
 
-    public Edificio construirAsimilador( Coordenadas ubicacion) {
+    public Edificio construirAsimilador(Coordenadas ubicacion) {
         minerales.consumir(100);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new VolcanGasVespeno());

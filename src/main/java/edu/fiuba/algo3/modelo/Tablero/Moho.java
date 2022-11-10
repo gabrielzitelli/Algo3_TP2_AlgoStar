@@ -8,4 +8,19 @@ public class Moho implements Terreno {
         return (moho.getClass().equals(terreno.getClass()));
 
     }
+
+    @Override
+    public Terreno actualizarTerreno(Terreno nuevoTerreno) {
+        return new Moho();
+    }
+
+    @Override
+    public Terreno cargarTerreno() {
+        return this;
+    }
+
+    @Override
+    public Terreno descargarTerreno() {
+        return this;
+    }
 }

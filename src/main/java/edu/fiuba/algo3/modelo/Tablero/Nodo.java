@@ -42,8 +42,15 @@ public class Nodo {
         nodoEstado = nodoEstado.asignarUnidad(zangano);
     }
 
-    public void actualizarTerrenoCon(Terreno terreno) {
-        this.terreno = terreno;
+    public void actualizarTerrenoCon(Terreno nuevoTerreno) {
+        this.terreno = terreno.actualizarTerreno(nuevoTerreno);
     }
 
+    public void cargarTerreno() {
+        terreno = terreno.cargarTerreno();
+    }
+
+    public void descargarTerreno() {
+        terreno = terreno.descargarTerreno();
+    }
 }

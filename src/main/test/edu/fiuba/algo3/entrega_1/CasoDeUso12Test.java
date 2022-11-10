@@ -81,9 +81,9 @@ public class CasoDeUso12Test {
 
     @Test
     public void test04ConstruyoUnPilonhagoDanioMayorAlEscudoYSeRegeneraDeManeraEsperadaYVidaNoSeRegenera(){
-
+        Tablero tablero = new Tablero(1, 1);
         NodoCompatible nodoCompatiblePilon = new NodoCompatible(new Neutro(), new SinRecurso());
-        Pilon unPilon = new Pilon(nodoCompatiblePilon);
+        Pilon unPilon = new Pilon(tablero, nodoCompatiblePilon, new Coordenadas(0,0));
 
         // Pilon tiene 300E / 300V
         unPilon.recibirDanio(599); // Queda con 1 de vida
@@ -96,8 +96,9 @@ public class CasoDeUso12Test {
 
     @Test
     public void test05ConstruyoUnPilonHagoDanioMayorAlEscudoYSeRegeneraTotalmenteAlPasarLosTurnosAdecuadosYVidaNoSeRegenera(){
+        Tablero tablero = new Tablero(1, 1);
         NodoCompatible nodoCompatiblePilon = new NodoCompatible(new Neutro(), new SinRecurso());
-        Pilon unPilon = new Pilon(nodoCompatiblePilon);
+        Pilon unPilon = new Pilon(tablero, nodoCompatiblePilon, new Coordenadas(0,0));
 
         // Pilon tiene 300E / 300V
         unPilon.recibirDanio(598); // Queda con 2 de vida
@@ -114,8 +115,9 @@ public class CasoDeUso12Test {
 
     @Test
     public void test06ConstruyoUnPilonHagoDanioMayorAlEscudoYSeRegeneraTotalmenteYNoSeExcedeDelMaximoYVidaNoSeRegenera(){
+        Tablero tablero = new Tablero(1, 1);
         NodoCompatible nodoCompatiblePilon = new NodoCompatible(new Neutro(), new SinRecurso());
-        Pilon unPilon = new Pilon(nodoCompatiblePilon);
+        Pilon unPilon = new Pilon(tablero, nodoCompatiblePilon, new Coordenadas(0,0));
 
         // Pilon tiene 300E / 300V
         unPilon.recibirDanio(599); // Queda con 1 de vida
