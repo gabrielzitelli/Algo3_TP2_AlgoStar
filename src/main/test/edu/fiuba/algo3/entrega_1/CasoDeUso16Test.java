@@ -33,8 +33,8 @@ public class CasoDeUso16Test {
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
 
         Zergs zergs = new Zergs(tablero, new Recurso(6000), new Recurso(0));
-        Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
-        Edificio extractor = zergs.construirExtractor(zangano, new Coordenadas(0, 0));
+        Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
+        Edificio extractor = zergs.construirExtractor(zangano);
 
         Protoss protoss = new Protoss(tablero ,new Recurso(5000), new Recurso(0));
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> protoss.construirAsimilador(new Coordenadas(0, 0)));
