@@ -33,6 +33,6 @@ public class NexoMineral extends Edificio {
     }
 
     public void extraer(){
-        //recursoSobreElQueEsta.modificarRecurso(gasVespeno, ... );
+        // recursoSobreElQueEsta.modificarRecurso(gasVespeno, ... );
     }
 }
