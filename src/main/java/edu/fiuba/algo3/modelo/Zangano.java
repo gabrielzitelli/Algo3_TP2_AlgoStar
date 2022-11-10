@@ -13,7 +13,7 @@ public class Zangano implements Turno {
 
 
     public void extraerMineral(){
-        //recursoQueExtrae.modificarRecurso(gasVespeno , 10);
+        //recursoQueExtrae.modificarRecurso(minerales , 10);
         // TODO
     }
 

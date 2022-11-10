@@ -52,7 +52,7 @@ public class Extractor extends Edificio {
 
     public void extraer(){
         for ( int i = 0; i < cantidadEmpleados ; i++) {
-            //recursoSobreElQueEsta.modificarRecurso( gasVespeno , 10);
+            recursoSobreElQueEsta.modificarRecurso( gasVespeno , 10);
         }
     }
 }
