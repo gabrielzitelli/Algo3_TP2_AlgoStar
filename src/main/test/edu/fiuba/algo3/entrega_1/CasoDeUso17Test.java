@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Tablero.Energia;
 import edu.fiuba.algo3.modelo.Tablero.Moho;
 import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import edu.fiuba.algo3.modelo.excepciones.NoSeCumplenLosPreRequisitosDelEdificio;
@@ -99,7 +100,7 @@ public class CasoDeUso17Test {
         Recurso gasVespeno = new Recurso(5000);
         Protoss protoss = new Protoss(tablero, minerales, gasVespeno);
 
-        assertThrows(NoSeCumplenLosPreRequisitosDelEdificio.class, () -> protoss.construirPuertoEstelar());
+        assertThrows(NoSeCumplenLosPreRequisitosDelEdificio.class, () -> protoss.construirPuertoEstelar(new Coordenadas(0,0)));
     }
     @Test
     public void test06IntentoConstruirUnPuertoEstelarTeniendoAntesUnaAccesoYNoLanzaExcepcion() {
@@ -110,10 +111,11 @@ public class CasoDeUso17Test {
 
         //Creo al imperio y genero las coordenadas donde van a estar los edificios
         Protoss protoss = new Protoss(tablero, minerales, gasVespeno);
+        tablero.actualizarTerreno(new Coordenadas(0,0), 3, new Energia());
 
         //Construyo un edificio
-        protoss.construirAcceso();
+        protoss.construirAcceso(new Coordenadas(0,0));
 
-        assertDoesNotThrow(() -> protoss.construirPuertoEstelar());
+        assertDoesNotThrow(() -> protoss.construirPuertoEstelar(new Coordenadas(0,1)));
     }
 }

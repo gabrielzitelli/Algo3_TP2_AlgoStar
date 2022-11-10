@@ -430,16 +430,23 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test30ConstruyoUnPuertoEstelarYNoPuedoUsarlo(){
-        protoss.construirAcceso();
-        Edificio puertoEstelar = protoss.construirPuertoEstelar();
+        tablero.establecerTerreno(new Energia(),new Coordenadas(1,1));
+        tablero.establecerTerreno(new Energia(),origen);
+
+        protoss.construirAcceso(origen);
+
+        Edificio puertoEstelar = protoss.construirPuertoEstelar(new Coordenadas(1,1));
 
         assertThrows(EdificioEnConstruccion.class, () -> puertoEstelar.estaActiva());
     }
 
     @Test
     public void Test31ConstruyoUnPuertoEstelarYNoPuedoUsarloFaltaUnTurno(){
-        protoss.construirAcceso();
-        Edificio puertoEstelar = protoss.construirPuertoEstelar();
+        tablero.establecerTerreno(new Energia(),new Coordenadas(1,1));
+        tablero.establecerTerreno(new Energia(),origen);
+
+        protoss.construirAcceso(origen);
+        Edificio puertoEstelar = protoss.construirPuertoEstelar(new Coordenadas(1,1));
 
         for(int i = 0; i < 9; i++)
             puertoEstelar.accionDeTurno();
@@ -449,8 +456,11 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test32ConstruyoUnPuertoEstelarEnElTurnoCorrecto(){
-        protoss.construirAcceso();
-        Edificio puertoEstelar = protoss.construirPuertoEstelar();
+        tablero.establecerTerreno(new Energia(),new Coordenadas(1,1));
+        tablero.establecerTerreno(new Energia(),origen);
+
+        protoss.construirAcceso(origen);
+        Edificio puertoEstelar = protoss.construirPuertoEstelar(new Coordenadas(1,1));
 
         for(int i = 0; i < 10; i++)
             puertoEstelar.accionDeTurno();

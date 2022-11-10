@@ -18,7 +18,7 @@ public class PuertoEstelar extends Edificio {
 
     public static ArrayList<Edificio> requisitos() {
         ArrayList<Edificio> requisitos = new ArrayList<>();
-        requisitos.add(new Acceso(new NodoCompatible()));
+        requisitos.add(new Acceso(new NodoCompatible(), new Coordenadas(0,0)));
         return requisitos;
     }
 
