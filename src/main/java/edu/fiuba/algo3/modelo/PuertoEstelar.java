@@ -8,10 +8,11 @@ public class PuertoEstelar extends Edificio {
 
     private VidaConEscudo vida;
 
-    public PuertoEstelar(NodoCompatible requisitos) {
+    public PuertoEstelar(NodoCompatible requisitos, Coordenadas ubicacion) {
         this.turnosExistiendo = 0;
         this.turnosDeConstruccion = 10;
         this.nodoCompatible = requisitos;
+        this.posicion = ubicacion;
         this.vida = new VidaConEscudo(600, 0.25, 600);
     }
 

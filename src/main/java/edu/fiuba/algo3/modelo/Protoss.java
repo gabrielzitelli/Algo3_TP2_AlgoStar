@@ -49,23 +49,25 @@ public class Protoss extends Imperio {
         return asimilador;
     }
 
-    public Edificio construirAcceso() {
+    public Edificio construirAcceso(Coordenadas ubicacion) {
         minerales.consumir(150);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
-        Edificio acceso = new Acceso(nodoCompatible);
+        Edificio acceso = new Acceso(nodoCompatible, ubicacion);
+        tablero.construir(acceso, ubicacion);
         edificios.add(acceso);
 
         return acceso;
     }
 
-    public Edificio construirPuertoEstelar() {
+    public Edificio construirPuertoEstelar(Coordenadas ubicacion) {
         minerales.consumir(150);
         gasVespeno.consumir(150);
         coomprobarRequisitos(PuertoEstelar.requisitos());
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
-        Edificio puertoEstelar = new PuertoEstelar(nodoCompatible);
+        Edificio puertoEstelar = new PuertoEstelar(nodoCompatible, ubicacion);
+        tablero.construir(puertoEstelar, ubicacion);
         edificios.add(puertoEstelar);
 
         return puertoEstelar;

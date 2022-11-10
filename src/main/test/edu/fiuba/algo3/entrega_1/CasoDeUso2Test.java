@@ -397,8 +397,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio acceso = protoss.construirAcceso();
-        tablero.construir(acceso, origen);
+        Edificio acceso = protoss.construirAcceso(origen);
 
         assertThrows(EdificioEnConstruccion.class, () -> acceso.estaActiva());
     }
@@ -408,8 +407,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio acceso = protoss.construirAcceso();
-        tablero.construir(acceso, origen);
+        Edificio acceso = protoss.construirAcceso(origen);
 
         for(int i = 0; i < 7; i++)
             acceso.accionDeTurno();
@@ -422,8 +420,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Energia(), origen);
 
-        Edificio acceso = protoss.construirAcceso();
-        tablero.construir(acceso, origen);
+        Edificio acceso = protoss.construirAcceso(origen);
 
         for(int i = 0; i < 8; i++)
             acceso.accionDeTurno();

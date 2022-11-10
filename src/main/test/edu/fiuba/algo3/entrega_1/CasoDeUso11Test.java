@@ -199,7 +199,7 @@ public class CasoDeUso11Test {
     @Test
     public void test10ConstruyoUnAccesoYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraDeManeraEsperada(){
         NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso);
+        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0,0));
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirDanio(499);
@@ -213,7 +213,7 @@ public class CasoDeUso11Test {
     @Test
     public void test11ConstruyoUnAccesoYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteAlPasarLosTurnosAdecuados(){
         NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso);
+        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0,0));
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirDanio(499);
@@ -231,7 +231,7 @@ public class CasoDeUso11Test {
     @Test
     public void test12ConstruyoUnAccesoYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteYNoSeExcedeDelMaximo(){
         NodoCompatible nodoCompatibleAcceso = new NodoCompatible(new Energia(), new SinRecurso());
-        Acceso unAcceso = new Acceso(nodoCompatibleAcceso);
+        Acceso unAcceso = new Acceso(nodoCompatibleAcceso, new Coordenadas(0,0));
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirDanio(499);
@@ -249,7 +249,7 @@ public class CasoDeUso11Test {
     @Test
     public void test13ConstruyoUnPuertoEstelarYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraDeManeraEsperada(){
         NodoCompatible nodoCompatiblePuertoEstelar = new NodoCompatible(new Energia(), new SinRecurso());
-        PuertoEstelar unPuertoEstelar = new PuertoEstelar(nodoCompatiblePuertoEstelar);
+        PuertoEstelar unPuertoEstelar = new PuertoEstelar(nodoCompatiblePuertoEstelar, new Coordenadas(0,0));
 
         // PuertoEstelar tiene 600E / 600V
         unPuertoEstelar.recibirDanio(599);
@@ -263,7 +263,7 @@ public class CasoDeUso11Test {
     @Test
     public void test14ConstruyoUnPuertoEstelarYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteAlPasarLosTurnosAdecuados(){
         NodoCompatible nodoCompatiblePuertoEstelar = new NodoCompatible(new Energia(), new SinRecurso());
-        PuertoEstelar unPuertoEstelar = new PuertoEstelar(nodoCompatiblePuertoEstelar);
+        PuertoEstelar unPuertoEstelar = new PuertoEstelar(nodoCompatiblePuertoEstelar, new Coordenadas(0,0));
 
         // PuertoEstelar tiene 600E / 600V
         unPuertoEstelar.recibirDanio(599);
@@ -281,7 +281,7 @@ public class CasoDeUso11Test {
     @Test
     public void test15ConstruyoUnPuertoEstelarYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteYNoSeExcedeDelMaximo(){
         NodoCompatible nodoCompatiblePuertoEstelar = new NodoCompatible(new Energia(), new SinRecurso());
-        PuertoEstelar unPuertoEstelar = new PuertoEstelar(nodoCompatiblePuertoEstelar);
+        PuertoEstelar unPuertoEstelar = new PuertoEstelar(nodoCompatiblePuertoEstelar, new Coordenadas(0,0));
 
         // PuertoEstelar tiene 600E / 600V
         unPuertoEstelar.recibirDanio(599);

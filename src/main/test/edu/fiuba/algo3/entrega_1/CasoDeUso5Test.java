@@ -48,7 +48,7 @@ public class CasoDeUso5Test {
     @Test
     public void IntentarConstruirAccesoFueraDelRangoDeUnPilonLanzaExcepcion() {
         NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
-        Edificio acceso = new Acceso(nodoCompatible);
+        Edificio acceso = new Acceso(nodoCompatible, new Coordenadas(0,0));
         Nodo nodo = new Nodo();
 
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(acceso));
@@ -57,7 +57,7 @@ public class CasoDeUso5Test {
     @Test
     public void IntentarConstruirPuertoEstelarFueraDelRangoDeUnPilonLanzaExcepcion() {
         NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
-        Edificio acceso = new Acceso(nodoCompatible);
+        Edificio acceso = new Acceso(nodoCompatible, new Coordenadas(0,0));
         Nodo nodo = new Nodo();
 
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(acceso));

@@ -92,13 +92,15 @@ public class CasoDeUso8Test {
     public void IntentarConstruirAccesoSinLosRecursosNecesariosLanzaExcepcion() {
         Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirAcceso());
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirAcceso(new Coordenadas(0,0)));
     }
 
     @Test
     public void IntentarConstruirPuertoEstelarSinLosRecursosNecesariosLanzaExcepcion() {
         Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirPuertoEstelar());
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> {
+            protoss.construirPuertoEstelar(new Coordenadas(0,0));
+        });
     }
 }
