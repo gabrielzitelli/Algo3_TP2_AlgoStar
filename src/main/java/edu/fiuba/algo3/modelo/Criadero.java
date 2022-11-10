@@ -1,17 +1,24 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Tablero.Moho;
+import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
 public class Criadero extends Edificio {
 
+    private Tablero tablero;
     private Recurso minerales;
     private Zergs zergs;
     private final int maxLarvas = 3;
     private int cantidadLarvas;
     private VidaRegenerativa vida;
+    private int contadorTurnosMoho = 0;
+    private int turnosDeAumento = 2;
+    private int radioDeExpancion = 5;
 
-    public Criadero(NodoCompatible requisitos, Recurso _minerales, Zergs _zergs) {
+    public Criadero(Tablero _tablero, NodoCompatible requisitos, Recurso _minerales, Zergs _zergs) {
+        this.tablero = _tablero;
         this.minerales = _minerales;
         this.zergs = _zergs;
         cantidadLarvas = maxLarvas;
@@ -36,6 +43,7 @@ public class Criadero extends Edificio {
         turnosExistiendo ++;
         aumentarLarvas();
         this.vida.accionDeTurno();
+        aumentarMoho();
     }
 
     private void aumentarLarvas() {
@@ -50,5 +58,13 @@ public class Criadero extends Edificio {
     public int getVida(){
         return vida.getVida();
     }
-}
 
+    private void aumentarMoho() {
+        contadorTurnosMoho ++;
+        if (contadorTurnosMoho >= turnosDeAumento) {
+            tablero.actualizarTerreno(this.posicion, radioDeExpancion, new Moho());
+            radioDeExpancion ++;
+            contadorTurnosMoho = 0;
+        }
+    }
+}

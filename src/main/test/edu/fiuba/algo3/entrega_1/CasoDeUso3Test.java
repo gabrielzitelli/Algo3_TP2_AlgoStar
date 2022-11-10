@@ -23,7 +23,7 @@ public class CasoDeUso3Test {
         tablero.establecerTerreno(new Moho(), coordenadas);
         tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
 
-        Edificio criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Edificio criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
 
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(criadero, coordenadas));
     }

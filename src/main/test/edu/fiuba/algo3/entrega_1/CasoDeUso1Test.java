@@ -16,7 +16,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test01CreoUnCriaderoYPuedoEgendrar3ZanganosPeroNoCuatroEnUnTurno(){
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -33,7 +33,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test02DespuesDeGastarTodasLasLarvasDeUnCriaderoEsperoUnTurnoYPuedoCriarOtroMas() {
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -56,7 +56,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test03DespuesDeGastar3LarvasDeUnCriaderoDeboEsperar3TurnosParaPoderGastar3Devuelta() {
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -83,7 +83,7 @@ public class CasoDeUso1Test {
 
     @Test
     public void test04CreoUnCriaderoYPuedoEgendrar1ZanganoYElTurnoSiguientePuedoEngendrar3(){
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
         criadero.accionDeTurno();
         criadero.accionDeTurno();
         criadero.accionDeTurno();

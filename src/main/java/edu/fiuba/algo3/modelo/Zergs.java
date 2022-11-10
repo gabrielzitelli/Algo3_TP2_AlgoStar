@@ -24,7 +24,7 @@ public class Zergs implements Imperio {
         minerales.consumir(50);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new SinRecurso());
-        Edificio criadero = new Criadero(nodoCompatible, minerales, this);
+        Edificio criadero = new Criadero(tablero, nodoCompatible, minerales, this);
         tablero.construir(criadero, zangano.getPosicion());
         edificios.add(criadero);
 

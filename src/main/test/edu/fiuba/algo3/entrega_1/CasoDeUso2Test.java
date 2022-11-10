@@ -16,14 +16,14 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test1ConstruyoUnCriaderoEIntentoUsarloSinQuePasenTurnosParaConstruirse() {
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
 
         assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
     }
 
     @Test
     public void Test2ConstruyoUnCriaderoEIntentoUsarloLuegoDeUnTurno() {
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
         criadero.accionDeTurno();
         assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
 
@@ -31,7 +31,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test3ConstruyoUnCriaderoEIntentoUsarloLuegoDeDosTurnos() {
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
 
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -42,7 +42,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test4ConstruyoUnCriaderoEIntentoUsarloLuegoDeTresTurnos() {
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
 
         criadero.accionDeTurno();
         criadero.accionDeTurno();
@@ -53,7 +53,7 @@ public class CasoDeUso2Test {
 
     @Test
     public void Test5ConstruyoUnCriaderoEIntentoUsarloLuegoDeCuatroTurnosCuandoYaSeConstruyo() {
-        Criadero criadero = new Criadero(nodo, new Recurso(50), zergs);
+        Criadero criadero = new Criadero(tablero, nodo, new Recurso(50), zergs);
 
         criadero.accionDeTurno();
         criadero.accionDeTurno();
