@@ -15,7 +15,7 @@ public class CasoDeUso3Test {
         Tablero tablero1 = new Tablero(1, 1);
 
         NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Imperio zergs = new Zergs(tablero1,new Recurso(), new Recurso());
+        Zergs zergs = new Zergs(tablero1,new Recurso(), new Recurso());
 
         Tablero tablero = new Tablero(10, 10);
         Coordenadas coordenadas = new Coordenadas(5, 5);

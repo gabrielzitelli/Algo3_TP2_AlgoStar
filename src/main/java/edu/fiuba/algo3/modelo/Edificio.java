@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 public abstract class Edificio implements Turno, Daniable {
 
+    protected Coordenadas posicion;
     protected NodoCompatible nodoCompatible;
 
     protected int turnosDeConstruccion;

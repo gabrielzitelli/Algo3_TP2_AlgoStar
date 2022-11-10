@@ -12,6 +12,45 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso7Test {
 
     @Test
+    public void UnZanganoExtraeMineralPor5TurnosYAlcanzaParaConsturirOtroNexoMineral() {
+        Tablero tablero = new Tablero(2,2);
+        tablero.establecerRecurso(new NodoMineral(), new Coordenadas(0,0));
+
+        Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
+        Zangano zangano = zergs.reclutarZangano(new Coordenadas(0,0));
+        Zangano zanganoParaCriadero = zergs.reclutarZangano(new Coordenadas(1,1));
+
+        zangano.extraerMineral();
+
+        zangano.accionDeTurno();
+        zangano.accionDeTurno();
+        zangano.accionDeTurno();
+        zangano.accionDeTurno();
+        zangano.accionDeTurno();
+
+        assertDoesNotThrow(() -> zergs.construirCriadero(zanganoParaCriadero));
+    }
+
+    @Test
+    public void UnZanganoExtraeMineralPor4TurnosYNoAlcanzaParaConstruirOtroNexoMineral() {
+        Tablero tablero = new Tablero(2,2);
+        tablero.establecerRecurso(new NodoMineral(), new Coordenadas(0,0));
+
+        Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
+        Zangano zangano = zergs.reclutarZangano(new Coordenadas(0,0));
+        Zangano zanganoParaCriadero = zergs.reclutarZangano(new Coordenadas(1,1));
+
+        zangano.extraerMineral();
+
+        zangano.accionDeTurno();
+        zangano.accionDeTurno();
+        zangano.accionDeTurno();
+        zangano.accionDeTurno();
+
+        assertThrows(CantidadDeRecursoInsuficiente.class ,() -> zergs.construirCriadero(zanganoParaCriadero));
+    }
+
+    @Test
     public void UnNexoMineralExtraeMineralPor5TurnosYAlcanzaParaConstruirOtroNexoMineral() {
         Tablero tablero = new Tablero(2, 2);
         tablero.establecerRecurso(new NodoMineral(), new Coordenadas(0,0));
@@ -37,7 +76,7 @@ public class CasoDeUso7Test {
     }
 
     @Test
-    public void UnNexoMineralExtraMineralPor4TurnosYNoAlcanzaParaConstruirOtroNexoMineral() {
+    public void UnNexoMineralExtraeMineralPor4TurnosYNoAlcanzaParaConstruirOtroNexoMineral() {
         Tablero tablero = new Tablero(2, 2);
         tablero.establecerRecurso(new NodoMineral(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));

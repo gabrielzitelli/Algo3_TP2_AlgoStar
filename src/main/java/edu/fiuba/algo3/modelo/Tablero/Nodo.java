@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Tablero;
 
 import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.Zangano;
 import edu.fiuba.algo3.modelo.excepciones.TerrenoNoCompatibleConEdificio;
 
 public class Nodo {
@@ -34,6 +35,11 @@ public class Nodo {
     public void construir(Edificio construccion) {
         construccion.esCompatible(terreno, nodoRecurso);
         nodoEstado = nodoEstado.construir(construccion);
+    }
+
+    public void asignarUnidad(Zangano zangano) {
+        zangano.esCompatible(nodoRecurso);
+        nodoEstado = nodoEstado.asignarUnidad(zangano);
     }
 
     public void actualizarTerrenoCon(Terreno terreno) {

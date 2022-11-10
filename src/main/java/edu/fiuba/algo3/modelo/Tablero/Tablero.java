@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Tablero;
 
 import edu.fiuba.algo3.modelo.Coordenadas;
 import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.Zangano;
 import edu.fiuba.algo3.modelo.excepciones.CasillaNoExistente;
 
 import java.util.*;
@@ -52,6 +53,12 @@ public class Tablero {
         Nodo nodo = encontrarNodo(coordenadas);
         nodo.construir(construccion);
     }
+
+    public void asignarUnidad(Zangano zangano, Coordenadas coordenadas) {
+        Nodo nodo = encontrarNodo(coordenadas);
+        nodo.asignarUnidad(zangano);
+    }
+
     public void actualizarTerreno(Coordenadas coordenadas, int radio, Terreno terreno) {
         //Recorrido bfs de un grafo aplicado a un tablero de r2.
         Set<Nodo> visitados = new HashSet<>();
@@ -76,10 +83,5 @@ public class Tablero {
             }
         }
 
-    }
-
-    public int extraer(Coordenadas coordenadas, int cantidad) {
-        //TODO
-        return 0;
     }
 }
