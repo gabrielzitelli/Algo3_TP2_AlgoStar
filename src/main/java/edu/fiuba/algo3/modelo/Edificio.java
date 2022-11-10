@@ -8,11 +8,11 @@ import java.util.stream.IntStream;
 
 public abstract class Edificio implements Turno, Daniable {
 
-    NodoCompatible nodoCompatible;
+    protected NodoCompatible nodoCompatible;
 
-    public int turnosDeConstruccion;
+    protected int turnosDeConstruccion;
 
-    public int turnosExistiendo;
+    protected int turnosExistiendo;
 
 
     public void recibirDanio(int danio){
