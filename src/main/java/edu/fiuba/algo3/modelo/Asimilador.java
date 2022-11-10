@@ -30,6 +30,8 @@ public class Asimilador extends Edificio {
         }
         catch(EdificioEnConstruccion e){
         }
+        catch(NullPointerException e){
+        }
         turnosExistiendo ++;
         this.vida.accionDeTurno();
         // TODO

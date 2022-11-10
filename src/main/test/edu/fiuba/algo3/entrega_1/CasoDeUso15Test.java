@@ -61,14 +61,16 @@ public class CasoDeUso15Test {
         tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
 
-
-
-        Zangano zangano1 = new Zangano(new Coordenadas(0,0), new Recurso());
-        Zangano zangano2 = new Zangano(new Coordenadas(0,0), new Recurso());
-        Zangano zangano3 = new Zangano(new Coordenadas(0,0), new Recurso());
-        Zangano zangano4 = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano1 = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
+        Zangano zangano2 = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
+        Zangano zangano3 = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
+        Zangano zangano4 = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
         Zergs zergs = new Zergs(tablero ,new Recurso(100), new Recurso(0));
-        Extractor extractor = zergs.construirExtractor(zangano1, new Coordenadas(0,0), 10);
+
+        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new VolcanGasVespeno());
+        Extractor extractor = new Extractor(nodoCompatible, new Recurso());
+        tablero.construir(extractor,zangano1.getPosicion());
+
         extractor.accionDeTurno();
         extractor.accionDeTurno();
         extractor.accionDeTurno();

@@ -17,9 +17,9 @@ public class CasoDeUso8Test {
         tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
         Zergs zergs = new Zergs( tablero, new Recurso(0), new Recurso(0));
-        Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirCriadero(zangano,new Coordenadas(0,0)));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirCriadero(zangano));
     }
 
     @Test
@@ -28,9 +28,9 @@ public class CasoDeUso8Test {
         tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
         Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
-        Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirExtractor(zangano, new Coordenadas(0,0)));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirExtractor(zangano));
     }
 
     @Test
@@ -39,9 +39,9 @@ public class CasoDeUso8Test {
         tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
         Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
-        Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirReservaDeReproduccion(zangano, new Coordenadas(0,0)));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirReservaDeReproduccion(zangano));
     }
 
     @Test
@@ -50,9 +50,9 @@ public class CasoDeUso8Test {
         tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
         Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
-        Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirGuarida(zangano,new Coordenadas(0,0)));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirGuarida(zangano));
     }
 
     @Test
@@ -61,9 +61,9 @@ public class CasoDeUso8Test {
         tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
         tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
         Zergs zergs = new Zergs(tablero, new Recurso(0), new Recurso(0));
-        Zangano zangano = new Zangano(new Coordenadas(0,0), new Recurso());
+        Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirEspiral(zangano, new Coordenadas(0,0)));
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> zergs.construirEspiral(zangano));
     }
 
     @Test
