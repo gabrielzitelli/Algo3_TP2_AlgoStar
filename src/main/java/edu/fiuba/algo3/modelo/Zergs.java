@@ -1,15 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Tablero.*;
-
 import java.util.LinkedList;
 
-public class Zergs implements Imperio {
+public class Zergs extends Imperio {
 
-    private Tablero tablero;
-    private Recurso minerales;
-    private Recurso gasVespeno;
-    private LinkedList<Edificio> edificios;
     private LinkedList<Zangano> zanganos;
 
     public Zergs(Tablero _tablero, Recurso _minerales, Recurso _gasVespeno) {
@@ -56,6 +51,7 @@ public class Zergs implements Imperio {
     public Edificio construirGuarida(Zangano zangano) {
         minerales.consumir(200);
         gasVespeno.consumir(100);
+        coomprobarRequisitos(Guarida.requisitos());
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
         Edificio guarida = new Guarida(nodoCompatible);
@@ -68,6 +64,7 @@ public class Zergs implements Imperio {
     public Edificio construirEspiral(Zangano zangano) {
         minerales.consumir(150);
         gasVespeno.consumir(100);
+        coomprobarRequisitos(Espiral.requisitos());
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
         Edificio espiral = new Espiral(nodoCompatible);

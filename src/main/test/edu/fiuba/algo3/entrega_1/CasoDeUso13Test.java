@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Coordenadas;
-import edu.fiuba.algo3.modelo.Criadero;
 import edu.fiuba.algo3.modelo.Guarida;
 import edu.fiuba.algo3.modelo.NodoCompatible;
 import edu.fiuba.algo3.modelo.Tablero.Moho;
-import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.SinRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Tablero;
 import org.junit.jupiter.api.Test;

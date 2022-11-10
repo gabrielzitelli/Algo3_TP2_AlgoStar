@@ -4,12 +4,7 @@ import edu.fiuba.algo3.modelo.Tablero.*;
 
 import java.util.LinkedList;
 
-public class Protoss implements Imperio {
-
-    private Tablero tablero;
-    private Recurso minerales;
-    private Recurso gasVespeno;
-    private LinkedList<Edificio> edificios;
+public class Protoss extends Imperio {
 
     public Protoss(Tablero _tablero,Recurso _minerales, Recurso _gasVespeno) {
         this.tablero = _tablero;
@@ -67,6 +62,7 @@ public class Protoss implements Imperio {
     public Edificio construirPuertoEstelar() {
         minerales.consumir(150);
         gasVespeno.consumir(150);
+        coomprobarRequisitos(PuertoEstelar.requisitos());
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
         Edificio puertoEstelar = new PuertoEstelar(nodoCompatible);

@@ -67,6 +67,8 @@ public class Tablero {
         distancia.put(encontrarNodo(coordenadas), 0);
         Deque<Coordenadas> cola = new ArrayDeque<>();
         cola.addFirst(coordenadas);
+        //actualizo la posicion inicial
+        encontrarNodo(coordenadas).actualizarTerrenoCon(terreno);
 
         while (!cola.isEmpty()) {
             Coordenadas c = cola.pop();
