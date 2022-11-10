@@ -9,7 +9,6 @@ public class Criadero extends Edificio {
     private Imperio zergs;
     private final int maxLarvas = 3;
     private int cantidadLarvas;
-    private NodoCompatible nodoCompatible;
     private VidaRegenerativa vida;
 
     public Criadero(NodoCompatible requisitos, Recurso _minerales, Imperio _zergs) {
