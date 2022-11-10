@@ -5,7 +5,8 @@ class Tablero {
     + construir(construccion : Edificio, coord : Coordenadas)
     + asignarUnidad(zangano : Zangano, coord : Coordenadas)
     + actualizarTerreno(coord : Coordenadas, radio : int, terreno : Terreno)
-    + extraer(coord : Coordenadas, cantidad : int) : int
+    + cargarTerreno(coord : Coordenadas)
+    + descargarTerreno(coord : Coordenadas)
 }
 
 class Nodo {
@@ -13,7 +14,8 @@ class Nodo {
     + construir(construccion : Edificio)
     + asignarUnidad(zangano : Zangano)
     + actualizarTerrenoCon(terreno : Terreno)
-    + extraer(cantidad : int) : int
+    + cargarTerreno()
+    + descargarTerreno()
 }
 
 interface NodoEstado {
@@ -33,19 +35,27 @@ class NodoOcupado {
 interface Terreno {
     + igualA(otroTerreno : Terreno) : Bool
     + actualizarTerreno(terreno : Terreno) : Terreno
+    + cargarTerreno() : Terreno
+    + descargarTerreno() : Terreno
 }
 class Energia {
     cantidad : int
     + igualA(otroTerreno : Terreno) : Bool
     + actualizarTerreno(terreno : Terreno) : Terreno
+    + cargarTerreno() : Terreno
+    + descargarTerreno() : Terreno
 }
 class Moho {
     + igualA(otroTerreno : Terreno) : Bool
     + actualizarTerreno(terreno : Terreno) : Terreno
+    + cargarTerreno() : Terreno
+    + descargarTerreno() : Terreno
 }
 class Neutro {
     + igualA(otroTerreno : Terreno) : Bool
     + actualizarTerreno(terreno : Terreno) : Terreno
+    + cargarTerreno() : Terreno
+    + descargarTerreno() : Terreno
 }
 
 interface NodoRecurso {

@@ -285,8 +285,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Neutro(), origen);
 
-        Edificio pilon = protoss.construirPilon();
-        tablero.construir(pilon, origen);
+        Edificio pilon = protoss.construirPilon(origen);
 
         assertThrows(EdificioEnConstruccion.class, () -> pilon.estaActiva());
     }
@@ -297,8 +296,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Neutro(), origen);
 
-        Edificio pilon = protoss.construirPilon();
-        tablero.construir(pilon, origen);
+        Edificio pilon = protoss.construirPilon(origen);
 
         for(int i = 0; i < 4; i++)
             pilon.accionDeTurno();
@@ -312,8 +310,7 @@ public class CasoDeUso2Test {
         tablero.establecerRecurso(new SinRecurso(), origen);
         tablero.establecerTerreno(new Neutro(), origen);
 
-        Edificio pilon = protoss.construirPilon();
-        tablero.construir(pilon, origen);
+        Edificio pilon = protoss.construirPilon(origen);
 
         for(int i = 0; i < 5; i++)
             pilon.accionDeTurno();

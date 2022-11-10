@@ -82,6 +82,15 @@ public class Tablero {
                 }
             }
         }
+    }
 
+    public void cargarTerreno(Coordenadas coordenadas) {
+        Nodo nodo = encontrarNodo(coordenadas);
+        nodo.cargarTerreno();
+    }
+
+    public void descargarTerreno(Coordenadas coordenadas) {
+        Nodo nodo = encontrarNodo(coordenadas);
+        nodo.descargarTerreno();
     }
 }

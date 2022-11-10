@@ -79,7 +79,7 @@ public class CasoDeUso8Test {
     public void IntentarConstruirPilonSinLosRecursosNecesariosLanzaExcepcion() {
         Protoss protoss = new Protoss(tablero, new Recurso(0), new Recurso(0));
 
-        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirPilon());
+        assertThrows(CantidadDeRecursoInsuficiente.class, () -> protoss.construirPilon(new Coordenadas(0, 0)));
     }
 
     @Test

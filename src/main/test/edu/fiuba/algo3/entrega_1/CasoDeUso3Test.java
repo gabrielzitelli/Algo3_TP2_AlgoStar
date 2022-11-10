@@ -90,7 +90,7 @@ public class CasoDeUso3Test {
         tablero.establecerTerreno(new Energia(), coordenadas);
         tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
 
-        Edificio pilon = new Pilon(nodo);
+        Edificio pilon = new Pilon(tablero, nodo, coordenadas);
 
         assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(pilon, coordenadas));
     }
