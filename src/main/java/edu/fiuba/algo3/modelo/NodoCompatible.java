@@ -14,10 +14,9 @@ public class NodoCompatible {
         this.recursoCompatible = recurso;
     }
 
-    public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
+    public void esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
         if (!(terrenoCompatible.igualA(terreno) && recursoCompatible.igualA(nodoRecurso))) {
             throw new TerrenoNoCompatibleConEdificio();
         }
-        return true;
     }
 }

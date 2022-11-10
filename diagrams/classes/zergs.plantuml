@@ -2,12 +2,12 @@
 
 class Zergs {
     + terminarTurno()
-    + construirCriadero(unZangano : Zangano) : Criadero
-    + construirExtractor(unZangano : Zangano) : Extractor
-    + construirReservaDeReproduccion(unZangano : Zangano) : ReservaDeReproduccion
-    + construirGuarida(unZangano : Zangano) : Guarida
-    + construirEspiral(unZangano : Zangano) : Espiral
-    + agregarZangano(unZangano : Zangano)
+    + construirCriadero(unZangano : Zangano, coord : Coordenadas) : Criadero
+    + construirExtractor(unZangano : Zangano, coord : Coordenadas) : Extractor
+    + construirReservaDeReproduccion(unZangano : Zangano, coord : Coordenadas) : ReservaDeReproduccion
+    + construirGuarida(unZangano : Zangano, coord : Coordenadas) : Guarida
+    + construirEspiral(unZangano : Zangano, coord : Coordenadas) : Espiral
+    + reclutarZangano(enPosicion : Coordenadas, coord : Coordenadas) : Zangano
 }
 
 class Recurso {
@@ -16,7 +16,6 @@ class Recurso {
     + Recurso(cantidadInicial : int)
     + consumir(cantidad : int)
     + depositar(cantidad : int)
-
 }
 
 abstract class Edificio {
@@ -25,7 +24,7 @@ abstract class Edificio {
     - estado : EstadoEdificio
     - vida : Vida
     + accionDeTurno()
-    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso)
     + recibirDanio(cantidad : int)
 }
 
@@ -33,6 +32,7 @@ class Zangano {
     - posicion : Coordenadas
     - minerales : Recurso
     + Zangano(posicion : Coordenadas, minerales : Recurso)
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso)
     + extraerMineral()
     + accionDeTurno()
 }
@@ -46,13 +46,12 @@ interface Daniable {
 }
 
 class Criadero {
-    - minerales : Recurso
     - imperioZerg : Zergs
     - maxLarvas : int
     - cantidadLarvas : int
-    + Criadero(ubicacion : NodoCompatible, minerales : Recurso, imperio : Zergs)
+    + Criadero(requisitos : NodoCompatible, imperio : Zergs)
     + accionDeTurno()
-    + criarZangano() : Zangano
+    + criarZangano()
     - aumentarLarvas()
 }
 
