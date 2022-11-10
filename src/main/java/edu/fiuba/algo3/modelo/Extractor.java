@@ -15,7 +15,8 @@ public class Extractor extends Edificio {
     private Recurso gasVespeno;
     private VidaRegenerativa vida;
 
-    private NodoRecurso recursoSobreElQueEsta;
+    private NodoRecurso nodoGasVespeno;
+    private int unidadesPorTurno = 10;
 
     private LinkedList<Zangano> zanganoEmpleado;
 
@@ -33,9 +34,14 @@ public class Extractor extends Edificio {
 
     @Override
     public void accionDeTurno() {
+        try {
+            this.estaActiva();
+            extraer();
+        }
+        catch(EdificioEnConstruccion e){
+        }
         turnosExistiendo ++;
-        this.vida.accionDeTurno();
-        // TODO
+
     }
 
     public int getVida(){
@@ -45,7 +51,6 @@ public class Extractor extends Edificio {
     @Override
     public void recibirDanio(int danio){
         this.vida.aplicarDanio(danio);
-        this.extraer();
         // TODO
     }
 
@@ -60,14 +65,16 @@ public class Extractor extends Edificio {
     }
 
     @Override
-    public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
-        this.recursoSobreElQueEsta = nodoRecurso;
-        return nodoCompatible.esCompatible(terreno, nodoRecurso);
+    public void esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
+        super.esCompatible(terreno, nodoRecurso);
+        nodoGasVespeno = nodoRecurso;
     }
 
-    public void extraer(){
-        for ( int i = 0; i < cantidadEmpleados ; i++) {
-            recursoSobreElQueEsta.modificarRecurso( gasVespeno , 10);
+    public void extraer() {
+        for (int i = 0; i < cantidadEmpleados; i++) {
+            gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
+
         }
     }
+
 }

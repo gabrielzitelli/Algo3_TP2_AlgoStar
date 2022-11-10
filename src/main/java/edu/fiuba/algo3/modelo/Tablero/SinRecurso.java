@@ -1,13 +1,16 @@
 package edu.fiuba.algo3.modelo.Tablero;
 
-import edu.fiuba.algo3.modelo.Recurso;
+import edu.fiuba.algo3.modelo.excepciones.RecursosAgotados;
 
 public class SinRecurso implements NodoRecurso{
+
     @Override
-    public boolean igualA(NodoRecurso nodoRecurso) {
-        SinRecurso sinRecurso = new SinRecurso();
-        return sinRecurso.getClass().equals(nodoRecurso.getClass());
+    public boolean igualA(NodoRecurso otroRecurso) {
+        return this.getClass().equals(otroRecurso.getClass());
     }
-    public void modificarRecurso(Recurso _minerales , int cantidadExtraccion){
+
+    @Override
+    public int extraer(int cantidad) {
+        throw new RecursosAgotados();
     }
 }

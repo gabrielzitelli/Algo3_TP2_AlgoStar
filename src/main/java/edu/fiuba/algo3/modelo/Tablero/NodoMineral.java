@@ -1,24 +1,30 @@
 package edu.fiuba.algo3.modelo.Tablero;
 
-import edu.fiuba.algo3.modelo.Recurso;
+import edu.fiuba.algo3.modelo.excepciones.RecursosAgotados;
 
 public class NodoMineral implements NodoRecurso {
 
-    public int cantidadMinerales;
+    private final int cantidadMineralDefault = 2000;
+    private int cantidadDeMineral;
 
-    public NodoMineral (){
-        this.cantidadMinerales = 2000;
+    public NodoMineral() {
+        cantidadDeMineral = cantidadMineralDefault;
+    }
+
+    public NodoMineral(int mineralInicial) {
+        cantidadDeMineral = mineralInicial;
     }
 
     @Override
-    public boolean igualA(NodoRecurso nodoRecurso) {
-        NodoMineral nodoMineral = new NodoMineral();
-        return nodoMineral.getClass().equals(nodoRecurso.getClass());
-
+    public boolean igualA(NodoRecurso otroRecurso) {
+        return this.getClass().equals(otroRecurso.getClass());
     }
 
-    public void modificarRecurso(Recurso _minerales , int cantidadExtraccion){
-        cantidadMinerales = (cantidadMinerales - cantidadExtraccion);
-        _minerales.depositar(cantidadExtraccion);
+    @Override
+    public int extraer(int cantidad) {
+        if ((cantidadDeMineral - cantidad) < 0) throw new RecursosAgotados();
+
+        cantidadDeMineral -= cantidad;
+        return cantidad;
     }
 }

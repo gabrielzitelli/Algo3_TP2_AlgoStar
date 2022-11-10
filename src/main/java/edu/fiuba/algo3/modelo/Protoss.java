@@ -6,21 +6,26 @@ import java.util.LinkedList;
 
 public class Protoss implements Imperio {
 
+    private Tablero tablero;
     private Recurso minerales;
     private Recurso gasVespeno;
     private LinkedList<Edificio> edificios;
 
-    public Protoss(Recurso _minerales, Recurso _gasVespeno) {
+    public Protoss(Tablero _tablero,Recurso _minerales, Recurso _gasVespeno) {
+        this.tablero = _tablero;
         this.minerales = _minerales;
         this.gasVespeno = _gasVespeno;
         this.edificios = new LinkedList<>();
     }
 
-    public Edificio construirNexoMineral() {
+    public Edificio construirNexoMineral(Coordenadas ubicacion) {
         minerales.consumir(50);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new NodoMineral());
         Edificio nexoMineral = new NexoMineral(nodoCompatible, minerales);
+
+        tablero.construir(nexoMineral, ubicacion);
+
         edificios.add(nexoMineral);
 
         return nexoMineral;
@@ -36,11 +41,12 @@ public class Protoss implements Imperio {
         return pilon;
     }
 
-    public Edificio construirAsimilador() {
+    public Edificio construirAsimilador( Coordenadas ubicacion) {
         minerales.consumir(100);
 
         NodoCompatible nodoCompatible = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
         Edificio asimilador = new Asimilador(nodoCompatible, gasVespeno);
+        tablero.construir(asimilador, ubicacion);
         edificios.add(asimilador);
 
         return asimilador;

@@ -2,11 +2,11 @@
 
 class Protoss {
     + terminarTurno()
-    + construirNexoMineral() : NexoMineral
-    + construirPilon() : Pilon
-    + construirAsimilador() : Asimilador
-    + construirAcceso() : Acceso
-    + construirPuertoEstelar() : PuertoEstelar
+    + construirNexoMineral(coord : Coordenadas) : NexoMineral
+    + construirPilon(coord : Coordenadas) : Pilon
+    + construirAsimilador(coord : Coordenadas) : Asimilador
+    + construirAcceso(coord : Coordenadas) : Acceso
+    + construirPuertoEstelar(coord : Coordenadas) : PuertoEstelar
 }
 
 class Recurso {
@@ -21,7 +21,7 @@ abstract class Edificio {
     - estado : EstadoEdificio
     - vida : Vida
     + accionDeTurno()
-    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso) : Bool
+    + esCompatible(unTerreno : Terreno, unRecurso : NodoRecurso)
     + recibirDanio(cantidad : int)
 }
 

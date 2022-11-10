@@ -4,13 +4,14 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Tablero.NodoRecurso;
 import edu.fiuba.algo3.modelo.Tablero.Terreno;
 import edu.fiuba.algo3.modelo.Tablero.VolcanGasVespeno;
+import edu.fiuba.algo3.modelo.excepciones.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
 public class Asimilador extends Edificio {
 
-
     private Recurso gasVespeno;
-    private NodoRecurso recursoSobreElQueEsta;
+    private NodoRecurso nodoGasVespeno;
+    private int unidadesPorTurno = 20;
     private VidaConEscudo vida;
 
     public Asimilador(NodoCompatible requisitos, Recurso _gasVespeno) {
@@ -23,15 +24,21 @@ public class Asimilador extends Edificio {
 
     @Override
     public void accionDeTurno() {
+        try {
+            this.estaActiva();
+            gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
+        }
+        catch(EdificioEnConstruccion e){
+        }
         turnosExistiendo ++;
         this.vida.accionDeTurno();
         // TODO
     }
 
     @Override
-    public boolean esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
-        this.recursoSobreElQueEsta = nodoRecurso;
-        return nodoCompatible.esCompatible(terreno, nodoRecurso);
+    public void esCompatible(Terreno terreno, NodoRecurso nodoRecurso) {
+        super.esCompatible(terreno, nodoRecurso);
+        nodoGasVespeno = nodoRecurso;
     }
 
     public void recibirDanio(int danio){
@@ -40,5 +47,6 @@ public class Asimilador extends Edificio {
 
     public int getVida(){
         return vida.getVida();
+
     }
 }
