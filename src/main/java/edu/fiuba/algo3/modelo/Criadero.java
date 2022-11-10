@@ -12,7 +12,6 @@ public class Criadero extends Edificio {
     private VidaRegenerativa vida;
 
     public Criadero(NodoCompatible requisitos, Recurso _minerales, Imperio _zergs) {
-        this.nodoCompatible = requisitos;
         this.minerales = _minerales;
         this.zergs = _zergs;
         cantidadLarvas = maxLarvas;

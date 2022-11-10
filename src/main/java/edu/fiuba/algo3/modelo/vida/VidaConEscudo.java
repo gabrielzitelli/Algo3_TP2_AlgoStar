@@ -12,26 +12,30 @@ public class VidaConEscudo implements Vida{
         this.porcentajeDeRegeneracion = porcentajeDeRegeneracion;
         this.cantidadEscudo = escudo;
         this.capacidadEscudo = escudo;
+
     }
 
-    @Override
     public int getVida(){
         return (this.vidaPlana + this.cantidadEscudo);
     }
 
-    @Override
     public void aplicarDanio(int danioHecho){
-        this.cantidadEscudo -= danioHecho;
+        int escudoDaniado = cantidadEscudo - danioHecho;
+        if( escudoDaniado < 0 ){
+            this.vidaPlana += escudoDaniado;
+            this.cantidadEscudo = 0;
+            return;
+        }
+        this.cantidadEscudo = escudoDaniado;
     }
 
-    @Override
     public void accionDeTurno(){
         int escudoRegenerado = (int)(this.capacidadEscudo * this.porcentajeDeRegeneracion);
         if ((this.cantidadEscudo + escudoRegenerado) >= this.capacidadEscudo){
             this.cantidadEscudo = this.capacidadEscudo;
-        }else {
-            this.cantidadEscudo += escudoRegenerado;
+            return;
         }
+        this.cantidadEscudo += escudoRegenerado;
     }
 
 }
