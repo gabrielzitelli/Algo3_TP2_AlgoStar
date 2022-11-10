@@ -18,9 +18,13 @@ public class CasoDeUso11Test {
 
     @Test
     public void test01ConstruyoUnNexoMineralYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraDeManeraEsperada(){
-        NodoCompatible nodoCompatibleNexoMineral = new NodoCompatible(new Neutro(), new NodoMineral());
-        Recurso mineral = new Recurso(50);
-        NexoMineral unNexoMineral = new NexoMineral(nodoCompatibleNexoMineral, mineral);
+
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new NodoMineral(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));
+
+        Protoss protoss = new Protoss(tablero ,new Recurso(50), new Recurso(0));
+        Edificio unNexoMineral = protoss.construirNexoMineral(new Coordenadas(0, 0));
 
         // NexoMineral tiene 250E / 250 V
         unNexoMineral.recibirDanio(249);
@@ -33,10 +37,12 @@ public class CasoDeUso11Test {
 
     @Test
     public void test02ConstruyoUnNexoMineralYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteAlPasarLosTurnosAdecuados(){
-        NodoCompatible nodoCompatibleNexoMineral = new NodoCompatible(new Neutro(), new NodoMineral());
-        Recurso mineral = new Recurso(100);
-        NexoMineral unNexoMineral = new NexoMineral(nodoCompatibleNexoMineral, mineral);
-        unNexoMineral.esCompatible(new Neutro(), new NodoMineral());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new NodoMineral(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));
+
+        Protoss protoss = new Protoss(tablero ,new Recurso(50), new Recurso(0));
+        Edificio unNexoMineral = protoss.construirNexoMineral(new Coordenadas(0, 0));
 
         // NexoMineral tiene 250E / 250 V
         unNexoMineral.recibirDanio(249);
@@ -53,10 +59,12 @@ public class CasoDeUso11Test {
 
     @Test
     public void test03ConstruyoUnNexoMineralYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteYNoSeExcedeDelMaximo(){
-        NodoCompatible nodoCompatibleNexoMineral = new NodoCompatible(new Neutro(), new NodoMineral());
-        Recurso mineral = new Recurso(0);
-        NexoMineral unNexoMineral = new NexoMineral(nodoCompatibleNexoMineral, mineral);
-        unNexoMineral.esCompatible(new Neutro(), new NodoMineral());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new NodoMineral(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));
+
+        Protoss protoss = new Protoss(tablero ,new Recurso(50), new Recurso(0));
+        Edificio unNexoMineral = protoss.construirNexoMineral(new Coordenadas(0, 0));
 
         // NexoMineral tiene 250E / 250V
         unNexoMineral.recibirDanio(249);
@@ -73,6 +81,7 @@ public class CasoDeUso11Test {
 
     @Test
     public void test04ConstruyoUnPilonYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraDeManeraEsperada(){
+
         NodoCompatible nodoCompatiblePilon = new NodoCompatible(new Neutro(), new SinRecurso());
         Pilon unPilon = new Pilon(nodoCompatiblePilon);
 
@@ -123,9 +132,13 @@ public class CasoDeUso11Test {
 
     @Test
     public void test07ConstruyoUnAsimiladorYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraDeManeraEsperada(){
-        NodoCompatible nodoCompatibleAsimilador = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
-        Recurso gasVespeno = new Recurso(0);
-        Asimilador unAsimilador = new Asimilador(nodoCompatibleAsimilador, gasVespeno);
+
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));
+
+        Protoss protoss = new Protoss(tablero ,new Recurso(100), new Recurso(0));
+        Edificio unAsimilador = protoss.construirAsimilador(new Coordenadas(0,0));
 
         // Asimilador tiene 450E / 450V
         unAsimilador.recibirDanio(449);
@@ -138,9 +151,12 @@ public class CasoDeUso11Test {
 
     @Test
     public void test08ConstruyoUnAsimiladorYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteAlPasarLosTurnosAdecuados(){
-        NodoCompatible nodoCompatibleAsimilador = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
-        Recurso gasVespeno = new Recurso(0);
-        Asimilador unAsimilador= new Asimilador(nodoCompatibleAsimilador, gasVespeno);
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));
+
+        Protoss protoss = new Protoss(tablero ,new Recurso(100), new Recurso(0));
+        Edificio unAsimilador = protoss.construirAsimilador(new Coordenadas(0,0));
 
         // Asimilador tiene 450E / 450V
         unAsimilador.recibirDanio(449);
@@ -158,10 +174,12 @@ public class CasoDeUso11Test {
 
     @Test
     public void test09ConstruyoUnAsimiladorYAlHacerDanioMenorAlEscudoElEscudoSeRegeneraTotalmenteYNoSeExcedeDelMaximo(){
-        NodoCompatible nodoCompatibleAsimilador = new NodoCompatible(new Neutro(), new VolcanGasVespeno());
-        Recurso gasVespeno = new Recurso(0);
-        Asimilador unAsimilador = new Asimilador(nodoCompatibleAsimilador, gasVespeno);
-        unAsimilador.esCompatible(new Neutro(), new VolcanGasVespeno());
+        Tablero tablero = new Tablero(1, 1);
+        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
+        tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));
+
+        Protoss protoss = new Protoss(tablero ,new Recurso(100), new Recurso(0));
+        Edificio unAsimilador = protoss.construirAsimilador(new Coordenadas(0,0));
 
         // Asimilador tiene 450E / 450V
         unAsimilador.recibirDanio(449);

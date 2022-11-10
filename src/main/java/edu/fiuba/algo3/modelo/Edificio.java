@@ -14,10 +14,8 @@ public abstract class Edificio implements Turno, Daniable {
 
     protected int turnosExistiendo;
 
-    public void recibirDanio(int danio){
-
-    }
-
+    public abstract void recibirDanio(int danio);
+    public abstract int getVida();
 
     public void estaActiva(){
         IntStream rangoDeExistencia = IntStream.range(0, turnosExistiendo + 1); // crea array {0 ... turnosExistiendo}
