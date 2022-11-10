@@ -27,7 +27,7 @@ public class Tablero {
     private Nodo encontrarNodo(Coordenadas coordenadas) {
         int posicion = coordenadas.obtenerPosicionRelativaEnR1(columnas);
         posicionValida(posicion);
-        return nodos[coordenadas.obtenerPosicionRelativaEnR1(columnas)];
+        return nodos[posicion];
     }
     private ArrayList<Coordenadas> encontrarAdyacentes(Coordenadas c) {
         return c.coordenadasAdyacentes(columnas, filas);
