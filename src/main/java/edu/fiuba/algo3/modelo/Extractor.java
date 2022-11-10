@@ -12,25 +12,23 @@ import java.util.stream.IntStream;
 public class Extractor extends Edificio {
 
     private int maxEmpleados ;
-    private int cantidadEmpleados;
     private Recurso gasVespeno;
     private VidaRegenerativa vida;
 
     private NodoRecurso nodoGasVespeno;
     private int unidadesPorTurno = 10;
 
-    private LinkedList<Zangano> zanganoEmpleado;
+    private LinkedList<Zangano> zanganosEmpleados;
 
     public Extractor(NodoCompatible requisitos, Recurso _gasVespeno) {
         this.turnosExistiendo = 0;
         this.turnosDeConstruccion = 6;
         this.maxEmpleados = 3;
-        this.cantidadEmpleados = 0;
         this.nodoCompatible = requisitos;
         this.gasVespeno = _gasVespeno;
         // TODO usar inyeccion de dependencia con la vida
         this.vida = new VidaRegenerativa(750, 0.25);
-        this.zanganoEmpleado = new LinkedList<>();
+        this.zanganosEmpleados = new LinkedList<>();
     }
 
     @Override
@@ -57,13 +55,11 @@ public class Extractor extends Edificio {
 
     public void contratarZangano(Zangano nuevoZangano){
         this.estaActiva();
-        //Probar la condicion
-        IntStream rangoDeExistencia = IntStream.range(0, cantidadEmpleados + 1);
-        if( rangoDeExistencia.anyMatch(each -> maxEmpleados == each))
-            throw new MaximoZanganosAlcanzados();
-        zanganoEmpleado.add(nuevoZangano);
-        cantidadEmpleados ++;
 
+        if (zanganosEmpleados.size() == maxEmpleados) {
+            throw new MaximoZanganosAlcanzados();
+        }
+        zanganosEmpleados.add(nuevoZangano);
     }
 
     @Override
@@ -73,7 +69,7 @@ public class Extractor extends Edificio {
     }
 
     public void extraer() {
-        for (int i = 0; i < cantidadEmpleados; i++) {
+        for (int i = 0; i < zanganosEmpleados.size(); i++) {
             gasVespeno.depositar(nodoGasVespeno.extraer(unidadesPorTurno));
         }
     }
