@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Edificio_Zerg;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.States.EstadoExtractor;
 import edu.fiuba.algo3.modelo.States.EstadoExtractorEnConstruccion;
@@ -13,10 +14,10 @@ public class Extractor {
     private EstadoExtractor estado;
     private int turnoParaEstarConstruido = 6;
     private Recurso gasDelImperio;
-    private MaterialBruto volcanDeGas;
+    private GasBruto volcanDeGas;
     private LinkedList<Zangano> zanganosEmpleados = new LinkedList<>();
 
-    public Extractor(Recurso gasDelImperio, MaterialBruto volcanDeGas){
+    public Extractor(Recurso gasDelImperio, GasBruto volcanDeGas){
         this.gasDelImperio = gasDelImperio;
         this.volcanDeGas = volcanDeGas;
         this.estado = new EstadoExtractorEnConstruccion(turnoParaEstarConstruido);

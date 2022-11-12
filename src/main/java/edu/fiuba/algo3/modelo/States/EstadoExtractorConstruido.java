@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.States;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeExtraerSinZanganoAsignado;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 
@@ -16,7 +17,7 @@ public class EstadoExtractorConstruido implements EstadoExtractor{
         return this;
     }
 
-    public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas, int vecesAExtraer){
+    public void extraer(Recurso gasDelImperio, GasBruto volcanDeGas, int vecesAExtraer){
         if(vecesAExtraer == 0)
             throw new ErrorNoSePuedeExtraerSinZanganoAsignado();
 
