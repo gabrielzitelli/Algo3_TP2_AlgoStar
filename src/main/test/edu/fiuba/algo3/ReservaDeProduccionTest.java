@@ -15,22 +15,20 @@ public class ReservaDeProduccionTest {
     public void test01UnaReservaDeProduccionNoSeConstruyeEn11Turnos(){
         ReservaDeProduccion unaReserva = new ReservaDeProduccion();
 
-        unaReserva.pasarTurno();
-        unaReserva.pasarTurno();
-        unaReserva.pasarTurno();
+        for(int i = 0; i < 11; i++)
+            unaReserva.pasarTurno();
+
 
         assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unaReserva.crearFabricaZerling());
     }
 
-    /*@Test
-    public void test03UnCriaderoSeConstruyeEn4Turnos(){
-        Criadero unCriadero = new Criadero();
+    @Test
+    public void test02UnaReservaDeProduccionSePuedeConstruirEn12Turnos(){
+        ReservaDeProduccion unaReserva = new ReservaDeProduccion();
 
-        unCriadero.pasarTurno();
-        unCriadero.pasarTurno();
-        unCriadero.pasarTurno();
-        unCriadero.pasarTurno();
-
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZangano()));
-    }*/
+        for(int i = 0; i < 12; i++)
+            unaReserva.pasarTurno();
+        
+        assertDoesNotThrow(() -> unaReserva.crearFabricaZerling());
+    }
 }

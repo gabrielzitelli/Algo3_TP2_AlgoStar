@@ -26,7 +26,7 @@ public class Criadero {
         throw new ErrorCriaderoNoTieneMasLarvas();
     }
 
-    public void regenerarUnaLarva(){
+    private void regenerarUnaLarva(){
         if (cantidadLarvas < maxLarvas)
             cantidadLarvas++;
     }
