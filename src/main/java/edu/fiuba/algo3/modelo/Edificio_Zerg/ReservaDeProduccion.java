@@ -12,9 +12,7 @@ public class ReservaDeProduccion {
         estado = new EstadoReservaEnConstruccion(turnoParaEstarConstruido);
     }
 
-    public void pasarTurno(){
-        estado = estado.actualizar();
-    }
+    public void pasarTurno(){estado = estado.actualizar();}
 
     public FabricaZerling crearFabricaZerling(){
         return estado.crearFabricaZerling();
