@@ -26,7 +26,13 @@ public class Criadero {
         throw new ErrorCriaderoNoTieneMasLarvas();
     }
 
+    public void regenerarUnaLarva(){
+        if (cantidadLarvas < maxLarvas)
+            cantidadLarvas++;
+    }
+
     public void pasarTurno(){
         estado = estado.actualizar();
+        this.regenerarUnaLarva();
     }
 }

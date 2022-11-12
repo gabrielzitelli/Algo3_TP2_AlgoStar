@@ -68,9 +68,27 @@ public class CriaderoTest {
         for(int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
+        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
+
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+    }
+
+    @Test
+    public void test06UnCriaderoPuedeCrearUnaUnidadDespuesDeGastar3LarvasYQuePaseUnTurno() {
+        //No se pueden crear 4 unidades porque se consumirian 4 larvas, y el criadero empieza solo con 3
+        Criadero unCriadero = new Criadero();
+
+        //Construyo el edificio
+        for (int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
 
         unCriadero.crearUnidad(new FabricaZangano());
         unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
+
+        //Regenero una larva
+        unCriadero.pasarTurno();
 
         assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
     }
