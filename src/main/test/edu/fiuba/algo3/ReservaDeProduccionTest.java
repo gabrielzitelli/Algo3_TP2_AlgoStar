@@ -28,7 +28,7 @@ public class ReservaDeProduccionTest {
 
         for(int i = 0; i < 12; i++)
             unaReserva.pasarTurno();
-        
+
         assertDoesNotThrow(() -> unaReserva.crearFabricaZerling());
     }
 }
