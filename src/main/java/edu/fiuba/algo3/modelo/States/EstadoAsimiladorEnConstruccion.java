@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.States;
 
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.GasBruto;
+import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 
 public class EstadoAsimiladorEnConstruccion implements EstadoAsimilador{
 
@@ -20,7 +20,7 @@ public class EstadoAsimiladorEnConstruccion implements EstadoAsimilador{
         return this;
     }
 
-    public void extraer(Recurso gasDelImperio, GasBruto volcanDeGas){
+    public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas){
         throw new ErrorEdificioNoEstaConstruido();
     }
 }
