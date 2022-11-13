@@ -13,9 +13,8 @@ public class NexoMineralTest {
     @Test
     public void test01PuedoCrearUnNexoMineral(){
         Recurso mineralesDelImperio = new Recurso(0);
-        MineralBruto nodoMineral = new MineralBruto();
 
-        NexoMineral unNexo = new NexoMineral(mineralesDelImperio, nodoMineral);
+        NexoMineral unNexo = new NexoMineral(mineralesDelImperio);
 
         assertNotNull(unNexo);
     }
@@ -23,9 +22,8 @@ public class NexoMineralTest {
     @Test
     public void test02NoPuedoExtraerElMineralDeUnNexoMineralQueNoEstaConstruidoEn3Turnos(){
         Recurso mineralesDelImperio = new Recurso(0);
-        MineralBruto nodoMineral = new MineralBruto();
 
-        NexoMineral unNexo = new NexoMineral(mineralesDelImperio, nodoMineral);
+        NexoMineral unNexo = new NexoMineral(mineralesDelImperio);
 
         for(int i = 0; i < 3; i++)
             unNexo.pasarTurno();
@@ -36,9 +34,8 @@ public class NexoMineralTest {
     @Test
     public void test03PuedoExtraerElMineralDeUnNexoMineralQueEstaConstruidoEn4Turnos(){
         Recurso mineralesDelImperio = new Recurso(0);
-        MineralBruto nodoMineral = new MineralBruto();
 
-        NexoMineral unNexo = new NexoMineral(mineralesDelImperio, nodoMineral);
+        NexoMineral unNexo = new NexoMineral(mineralesDelImperio);
 
         for(int i = 0; i < 4; i++)
             unNexo.pasarTurno();
