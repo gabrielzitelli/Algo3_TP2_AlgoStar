@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.MapaTest;
 
 import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
+import edu.fiuba.algo3.modelo.EdificioZerg.Espiral;
 import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
+import edu.fiuba.algo3.modelo.EdificioZerg.Guarida;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
@@ -74,4 +76,27 @@ public class MapaTest {
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
                 () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
     }
+
+    @Test
+    public void testZZNoPuedoConstruirUnEspiralSinMoho(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso gasDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Espiral(), coordenada));
+    }
+
+    @Test
+    public void testZZNoPuedoConstruirUnaGuaridaSinMoho(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso gasDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Guarida(), coordenada));
+    }
+
 }
