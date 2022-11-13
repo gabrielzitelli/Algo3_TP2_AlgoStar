@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.Edificio_Protoss.FabricaScout;
+import edu.fiuba.algo3.modelo.EdificioProtoss.FabricaScout;
 
 public class EstadoPuertoEstelarConstruida implements EstadoPuertoEstelar {
     @Override

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.Edificio_Zerg.FabricaHidralisco;
-import edu.fiuba.algo3.modelo.Edificio_Zerg.FabricaZerling;
+import edu.fiuba.algo3.modelo.EdificioZerg.FabricaHidralisco;
 
 public interface EstadoGuarida {
 

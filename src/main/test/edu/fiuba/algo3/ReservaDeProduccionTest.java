@@ -1,8 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Edificio_Zerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificio_Zerg.FabricaZangano;
-import edu.fiuba.algo3.modelo.Edificio_Zerg.ReservaDeProduccion;
+import edu.fiuba.algo3.modelo.EdificioZerg.ReservaDeProduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import org.junit.jupiter.api.Test;
 

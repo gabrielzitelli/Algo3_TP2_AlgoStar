@@ -1,10 +1,8 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Edificio_Protoss.Asimilador;
-import edu.fiuba.algo3.modelo.Edificio_Protoss.NexoMineral;
+import edu.fiuba.algo3.modelo.EdificioProtoss.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.MineralBruto;
 import org.junit.jupiter.api.Test;
 

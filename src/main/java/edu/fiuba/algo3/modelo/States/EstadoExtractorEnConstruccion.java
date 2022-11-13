@@ -23,7 +23,7 @@ public class EstadoExtractorEnConstruccion implements EstadoExtractor{
             return this;
     }
 
-    public void extraer(Recurso gasDelImperio, GasBruto volcanDeGas, int vecesAExtraer){
+    public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas, int vecesAExtraer){
         throw new ErrorEdificioNoEstaConstruido();
     }
 

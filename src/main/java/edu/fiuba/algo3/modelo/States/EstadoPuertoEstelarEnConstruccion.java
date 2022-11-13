@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.Edificio_Protoss.FabricaScout;
+import edu.fiuba.algo3.modelo.EdificioProtoss.FabricaScout;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 
 public class EstadoPuertoEstelarEnConstruccion implements EstadoPuertoEstelar {

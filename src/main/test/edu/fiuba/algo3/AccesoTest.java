@@ -1,6 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Edificio_Protoss.Acceso;
+import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ public class AccesoTest {
     }
 
     @Test
-    public void test02UnAccesoNoSeConstruyeEn7Turnos(){
+    public void test02UnAccesoNoSeConstruyeEn7TurnosIntentandoCrearFabricaDragon(){
         Acceso unAcceso = new Acceso();
 
         for (int i = 0; i < 7; i++){
@@ -27,7 +27,7 @@ public class AccesoTest {
     }
 
     @Test
-    public void test03UnAccesoNoSeConstruyeEn7Turnos(){
+    public void test03UnAccesoNoSeConstruyeEn7TurnosIntentandoCrearFabricaZealot(){
         Acceso unAcceso = new Acceso();
 
         for (int i = 0; i < 7; i++){
@@ -38,7 +38,7 @@ public class AccesoTest {
     }
 
     @Test
-    public void test04UnAccesoSeConstruyeEn8Turnos(){
+    public void test04UnAccesoSeConstruyeEn8TurnosIntentandoCrearFabricaDragon(){
         Acceso unAcceso = new Acceso();
 
         for (int i = 0; i < 8; i++){
@@ -49,7 +49,7 @@ public class AccesoTest {
     }
 
     @Test
-    public void test05UnAccesoSeConstruyeEn8Turnos(){
+    public void test05UnAccesoSeConstruyeEn8TurnosIntentandoCrearFabricaZealot(){
         Acceso unAcceso = new Acceso();
 
         for (int i = 0; i < 8; i++){

@@ -1,8 +1,8 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Edificio_Zerg.Extractor;
-import edu.fiuba.algo3.modelo.Edificio_Zerg.FabricaZangano;
+import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeExtraerSinZanganoAsignado;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.GasBruto;
@@ -23,7 +23,7 @@ public class ExtractorTest {
         Recurso gasDelImperio = new Recurso(0);
         GasBruto volcanDeGas = new GasBruto();
 
-        Extractor unExtractor = new Extractor(gasDelImperio, volcanDeGas);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
         assertNotNull(unExtractor);
     }
@@ -33,7 +33,7 @@ public class ExtractorTest {
         Recurso gasDelImperio = new Recurso(0);
         GasBruto volcanDeGas = new GasBruto();
 
-        Extractor unExtractor = new Extractor(gasDelImperio, volcanDeGas);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
         for(int i = 0; i < 5; i++)
             unExtractor.pasarTurno();
@@ -46,7 +46,7 @@ public class ExtractorTest {
         Recurso gasDelImperio = new Recurso(0);
         GasBruto volcanDeGas = new GasBruto();
 
-        Extractor unExtractor = new Extractor(gasDelImperio, volcanDeGas);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
         for(int i = 0; i < 5; i++)
             unExtractor.pasarTurno();
@@ -59,7 +59,7 @@ public class ExtractorTest {
         Recurso gasDelImperio = new Recurso(0);
         GasBruto volcanDeGas = new GasBruto();
 
-        Extractor unExtractor = new Extractor(gasDelImperio, volcanDeGas);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
         //Construyo el Extractor
         for(int i = 0; i < 6; i++)
@@ -73,7 +73,7 @@ public class ExtractorTest {
         Recurso gasDelImperio = new Recurso(0);
         GasBruto volcanDeGas = new GasBruto();
 
-        Extractor unExtractor = new Extractor(gasDelImperio, volcanDeGas);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
        //Construyo el Extractor
        for(int i = 0; i < 6; i++)
@@ -85,15 +85,15 @@ public class ExtractorTest {
     @Test
     public void test06PuedoExtraerElGasDeUnExtractorQueEstaConstruidoEn6TurnosConUnZanganoAsignado(){
         Recurso gasDelImperio = new Recurso(0);
-        GasBruto volcanDeGas = new GasBruto();
+        MaterialBruto volcanDeGas = new GasBruto();
 
-        Extractor unExtractor = new Extractor(gasDelImperio, volcanDeGas);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
         //Construyo el Extractor
         for(int i = 0; i < 6; i++)
             unExtractor.pasarTurno();
         unExtractor.contratarZangano(new Zangano());
 
-        assertDoesNotThrow(() -> unExtractor.extraer());
+        assertThrows(ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla.class, () -> unExtractor.extraer());
     }
 }

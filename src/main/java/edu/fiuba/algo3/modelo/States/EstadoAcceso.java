@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.Edificio_Protoss.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificio_Protoss.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificio_Zerg.Fabrica;
-import edu.fiuba.algo3.modelo.UnidadeProtoss.UnidadProtoss;
-import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.EdificioProtoss.FabricaDragon;
+import edu.fiuba.algo3.modelo.EdificioProtoss.FabricaZealot;
 
 public interface EstadoAcceso {
 

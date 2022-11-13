@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.Edificio_Protoss.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificio_Protoss.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificio_Zerg.FabricaZerling;
+import edu.fiuba.algo3.modelo.EdificioProtoss.FabricaDragon;
+import edu.fiuba.algo3.modelo.EdificioProtoss.FabricaZealot;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 
 public class EstadoAccesoEnConstruccion implements EstadoAcceso {

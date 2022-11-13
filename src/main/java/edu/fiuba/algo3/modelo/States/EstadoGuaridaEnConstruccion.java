@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.Edificio_Zerg.FabricaHidralisco;
+import edu.fiuba.algo3.modelo.EdificioZerg.FabricaHidralisco;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 
 public class EstadoGuaridaEnConstruccion implements EstadoGuarida {

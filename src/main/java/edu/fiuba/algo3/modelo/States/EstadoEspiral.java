@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.Edificio_Zerg.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.EdificioZerg.FabricaMutalisco;
 
 public interface EstadoEspiral {
 
