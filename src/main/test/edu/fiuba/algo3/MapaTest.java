@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.MapaTest;
+package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
 import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
