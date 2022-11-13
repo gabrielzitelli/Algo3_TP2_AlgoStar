@@ -13,7 +13,7 @@ public class NexoMineral implements Edificio {
     private EstadoNexoMineral estado;
     private int turnoParaEstarConstruido = 4;
     private Recurso mineralesDelImperio;
-    private MaterialBruto nodoMineral;
+    private MaterialBruto nodoMineral = null;
 
     private Recolectable estadoRecolectable = new MineralRecolectable();
     private EstadoMoho estadoMoho = new SinMoho();

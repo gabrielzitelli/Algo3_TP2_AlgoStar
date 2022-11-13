@@ -2,6 +2,7 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.EdificioProtoss.NexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.MineralBruto;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,6 @@ public class NexoMineralTest {
         for(int i = 0; i < 4; i++)
             unNexo.pasarTurno();
 
-        assertDoesNotThrow(() -> unNexo.extraer());
+        assertThrows(ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla.class, () -> unNexo.extraer());
     }
 }
