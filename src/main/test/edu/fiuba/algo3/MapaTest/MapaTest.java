@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.MapaTest;
 
-import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
-import edu.fiuba.algo3.modelo.EdificioZerg.Espiral;
-import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
-import edu.fiuba.algo3.modelo.EdificioZerg.Guarida;
+import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
+import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
+import edu.fiuba.algo3.modelo.EdificioProtoss.NexoMineral;
+import edu.fiuba.algo3.modelo.EdificioProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
@@ -13,8 +14,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MapaTest {
 
@@ -78,7 +78,56 @@ public class MapaTest {
     }
 
     @Test
-    public void testZZNoPuedoConstruirUnEspiralSinMoho(){
+    public void test06NoPuedoConstruirUnExtractorDondeHayNodoMineral(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso gasDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
+    }
+
+    @Test
+    public void test07NoPuedoConstruirUnNexoMineralDondeHayUnVolcanDeGas(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso mineralesDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new NexoMineral(mineralesDelImperio), coordenada));
+    }
+
+    @Test
+    public void test08NoPuedoConstruirUnNexoMineralDondeHayUnaCasillaVacia(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso mineralesDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new NexoMineral(mineralesDelImperio), coordenada));
+    }
+
+    @Test
+    public void test09PuedoConstruirUnNexoMineralDondeHayUnNodoMineral(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso mineralesDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
+
+        assertDoesNotThrow(() -> elMapa.construirEdificio(new NexoMineral(mineralesDelImperio), coordenada));
+    }
+
+    @Test
+    public void test10NoPuedoConstruirUnEspiralSinMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Recurso gasDelImperio = new Recurso(0);
         Mapa elMapa = Mapa.obtener();
@@ -89,7 +138,7 @@ public class MapaTest {
     }
 
     @Test
-    public void testZZNoPuedoConstruirUnaGuaridaSinMoho(){
+    public void test11NoPuedoConstruirUnaGuaridaSinMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Recurso gasDelImperio = new Recurso(0);
         Mapa elMapa = Mapa.obtener();
@@ -99,4 +148,67 @@ public class MapaTest {
                 () -> elMapa.construirEdificio(new Guarida(), coordenada));
     }
 
+    @Test
+    public void test12NoPuedoConstruirUnPuertoEstelarEnUnaCasillaQueNoEstaEnergizada() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenada));
+    }
+    @Test
+    public void test13NoPuedoConstruirUnAccesoEnUnaCasillaQueNoEstaEnergizada() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Acceso(), coordenada));
+    }
+    @Test
+    public void test14NoPuedoConstruirUnAsimiladoerEnUnaCasillaQueNoEstaEnergizada() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso gasDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Asimilador(gasDelImperio), coordenada));
+    }
+
+    @Test
+    public void test15NoPuedoConstuirUnaReservaDeReproduccionDondeHayUnNodoMineral() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+    }
+
+    @Test
+    public void test16NoPuedoConstruirUnaReservaDeReproduccionDondeHayUnVolcanDeGas() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarMaterial(new GasRecolectable(), coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+    }
+
+    @Test
+    public void test17NoPuedoConstruirUnaReservaDeReproduccionEnUnaCasillaSinMoho() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+    }
+    
 }
