@@ -6,6 +6,10 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
 
+import java.util.LinkedList;
+
+import static java.lang.Math.abs;
+
 public class Mapa {
     static private Mapa mapaInstanciaUnica = new Mapa();
 
@@ -21,7 +25,7 @@ public class Mapa {
         matriz = new Casilla[tamanio][tamanio];
         for (int i = 0; i < tamanio; i++) {
             for (int j = 0; j < tamanio; j++) {
-                matriz[i][j] = new CasillaVacia();
+                matriz[i][j] = new CasillaVacia(new Coordenada(i, j));
             }
         }
     }
@@ -55,5 +59,32 @@ public class Mapa {
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarMaterial(materialAColocar);
+    }
+
+    public int distanciaEntreDosCoordenadas(Coordenada coordenada1, Coordenada coordenada2){
+        int distanciaEnX = abs( coordenada1.getCoordenadaX() - coordenada2.getCoordenadaX() );
+        int distanciaEnY = abs( coordenada1.getCoordenadaY() - coordenada2.getCoordenadaY() );
+
+        return distanciaEnX + distanciaEnY;
+    }
+
+    public void expandirMoho(Coordenada origenDeExpansion, int radio){
+        /*Tenemos una funcion para calcular la distancia (medida en casillas) desde una
+           casilla a otra.
+           Ciclamos por todas las casillas y nos quedamos con las que tengan distancia <= radio
+           y las agregamos a una lista
+           Despues a las casillas de esa lista les actualizamos el estado Moho
+         */
+        LinkedList<Casilla> casillasDentroDelRadio = new LinkedList<>();
+
+        for(int i = 0; i < tamanio; i++){
+            for(int j = 0; j < tamanio; j++) {
+                if( distanciaEntreDosCoordenadas(origenDeExpansion, matriz[i][j].obtenerCoordenada()) <= radio )
+                    casillasDentroDelRadio.add(matriz[i][j]);
+            }
+        }
+
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.llenarDeMoho();
     }
 }
