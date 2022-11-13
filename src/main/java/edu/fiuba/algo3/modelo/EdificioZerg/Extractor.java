@@ -18,9 +18,9 @@ public class Extractor implements Edificio {
     private MaterialBruto volcanDeGas = null;
     private LinkedList<Zangano> zanganosEmpleados = new LinkedList<>();
 
-    protected Recolectable estadoRecolectable = new GasRecolectable();
-    protected Cargable estadoCarga = new SinCarga();
-    protected EstadoMoho estadoMoho = new ConMoho();
+    private Recolectable estadoRecolectable = new GasRecolectable();
+    private Cargable estadoCarga = new SinCarga();
+    private EstadoMoho estadoMoho = new ConMoho();
 
     public Extractor(Recurso gasDelImperio){
         this.gasDelImperio = gasDelImperio;

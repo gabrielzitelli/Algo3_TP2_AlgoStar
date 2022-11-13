@@ -21,7 +21,6 @@ public class ExtractorTest {
     public void test01PuedoCrearUnExtractor(){
 
         Recurso gasDelImperio = new Recurso(0);
-        GasBruto volcanDeGas = new GasBruto();
 
         Extractor unExtractor = new Extractor(gasDelImperio);
 
@@ -31,7 +30,6 @@ public class ExtractorTest {
     @Test
     public void test02NoPuedoExtraerElGasDeUnExtractorQueNoEstaConstruidoEn5Turnos(){
         Recurso gasDelImperio = new Recurso(0);
-        GasBruto volcanDeGas = new GasBruto();
 
         Extractor unExtractor = new Extractor(gasDelImperio);
 
@@ -44,7 +42,6 @@ public class ExtractorTest {
     @Test
     public void test03NoPuedoContratarUnZanganoEnUnExtractorQueNoEstaConstruidoEn5Turnos(){
         Recurso gasDelImperio = new Recurso(0);
-        GasBruto volcanDeGas = new GasBruto();
 
         Extractor unExtractor = new Extractor(gasDelImperio);
 
@@ -57,7 +54,6 @@ public class ExtractorTest {
     @Test
     public void test04PuedoContratarUnZanganoEnUnExtractorQueEstaConstruidoEn6Turnos(){
         Recurso gasDelImperio = new Recurso(0);
-        GasBruto volcanDeGas = new GasBruto();
 
         Extractor unExtractor = new Extractor(gasDelImperio);
 
@@ -71,7 +67,6 @@ public class ExtractorTest {
    @Test
     public void test05NoPuedoExtraerElGasDeUnExtractorQueEstaConstruidoEn6TurnosSinAsignarUnZangano(){
         Recurso gasDelImperio = new Recurso(0);
-        GasBruto volcanDeGas = new GasBruto();
 
         Extractor unExtractor = new Extractor(gasDelImperio);
 
@@ -85,7 +80,6 @@ public class ExtractorTest {
     @Test
     public void test06PuedoExtraerElGasDeUnExtractorQueEstaConstruidoEn6TurnosConUnZanganoAsignado(){
         Recurso gasDelImperio = new Recurso(0);
-        MaterialBruto volcanDeGas = new GasBruto();
 
         Extractor unExtractor = new Extractor(gasDelImperio);
 
