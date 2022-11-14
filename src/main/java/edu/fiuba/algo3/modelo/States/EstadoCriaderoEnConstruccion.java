@@ -21,7 +21,7 @@ public class EstadoCriaderoEnConstruccion implements EstadoCriadero{
     public EstadoCriadero actualizar(Coordenada coordenada) {
         turnoParaEstarConstruido--;
         if(turnoParaEstarConstruido == 0)
-            return new EstadoCriaderoConstruido();
+            return new EstadoCriaderoConstruido(coordenada);
 
         return this;
     }

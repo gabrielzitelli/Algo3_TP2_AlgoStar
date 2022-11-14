@@ -7,6 +7,11 @@ import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 
 public class EstadoCriaderoConstruido implements EstadoCriadero{
     Moho moho = new Moho();
+
+    public EstadoCriaderoConstruido(Coordenada coordenada) {
+        moho.expandir(coordenada);
+    }
+
     public UnidadZerg crearUnidad(Fabrica unaFabrica){
         return unaFabrica.crearUnidad();
     }
