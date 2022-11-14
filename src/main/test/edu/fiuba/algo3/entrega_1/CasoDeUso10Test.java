@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CasoDeUso10 {
+public class CasoDeUso10Test {
 
     @Test
     public void test01PuedoDaniarUnCriaderoYLaVidaSeRegeneraTotalmente(){

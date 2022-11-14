@@ -9,7 +9,6 @@ import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 public class ReservaDeReproduccion extends Edificio {
 
     private Recolectable estadoRecolectable = new NoRecolectable();
-    private Cargable estadoCarga = new SinCarga();
     private EstadoMoho estadoMoho = new ConMoho();
     private EstadoReserva estado;
     private int turnoParaEstarConstruido = 12;
@@ -33,7 +32,6 @@ public class ReservaDeReproduccion extends Edificio {
     @Override
     public void verificarConstruccion(Casilla unaCasilla) {
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
         unaCasilla.tieneEsteMoho(estadoMoho);
     }
 }
