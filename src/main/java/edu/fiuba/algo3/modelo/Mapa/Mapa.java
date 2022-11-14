@@ -67,14 +67,7 @@ public class Mapa {
 
         return distanciaEnX + distanciaEnY;
     }
-
-    public void expandirMoho(Coordenada origenDeExpansion, int radio){
-        /*Tenemos una funcion para calcular la distancia (medida en casillas) desde una
-           casilla a otra.
-           Ciclamos por todas las casillas y nos quedamos con las que tengan distancia <= radio
-           y las agregamos a una lista
-           Despues a las casillas de esa lista les actualizamos el estado Moho
-         */
+    private LinkedList<Casilla> obtenerCasillasDentroDelRadio(Coordenada origenDeExpansion, int radio){
         LinkedList<Casilla> casillasDentroDelRadio = new LinkedList<>();
 
         for(int i = 0; i < tamanio; i++){
@@ -83,8 +76,24 @@ public class Mapa {
                     casillasDentroDelRadio.add(matriz[i][j]);
             }
         }
+        return casillasDentroDelRadio;
+    }
 
+    public void expandirMoho(Coordenada origenDeExpansion, int radio){
+        /*Tenemos una funcion para calcular la distancia (medida en casillas) desde una
+           casilla a otra.
+           Ciclamos por todas las casillas y nos quedamos con las que tengan distancia <= radio
+           y las agregamos a una lista
+           Despues a las casillas de esa lista les actualizamos el estado Moho
+         */
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.llenarDeMoho();
+    }
+
+    public void abastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.cargarDeEnergia();
     }
 }
