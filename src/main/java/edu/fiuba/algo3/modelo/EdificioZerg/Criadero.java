@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.EdificioZerg;
 import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.States.EstadoCriadero;
 import edu.fiuba.algo3.modelo.States.EstadoCriaderoEnConstruccion;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
@@ -41,6 +42,12 @@ public class Criadero extends Edificio {
             cantidadLarvas++;
     }
 
+    protected void destruirEdificio() {
+        Mapa elMapa = Mapa.obtener();
+        elMapa.destruirEdificio(coordenada);
+        elMapa.expandirMoho(coordenada, 0);
+    }
+
     public void pasarTurno(){
         estado = estado.actualizar(coordenada);
         this.regenerarUnaLarva();
@@ -51,6 +58,5 @@ public class Criadero extends Edificio {
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
         unaCasilla.tieneEstaCarga(estadoCarga);
         coordenada = unaCasilla.obtenerCoordenada();
-        unaCasilla.llenarDeMoho();
     }
 }
