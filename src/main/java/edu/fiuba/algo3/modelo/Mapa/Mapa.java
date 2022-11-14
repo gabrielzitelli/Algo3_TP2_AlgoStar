@@ -69,12 +69,6 @@ public class Mapa {
     }
 
     public void expandirMoho(Coordenada origenDeExpansion, int radio){
-        /*Tenemos una funcion para calcular la distancia (medida en casillas) desde una
-           casilla a otra.
-           Ciclamos por todas las casillas y nos quedamos con las que tengan distancia <= radio
-           y las agregamos a una lista
-           Despues a las casillas de esa lista les actualizamos el estado Moho
-         */
         LinkedList<Casilla> casillasDentroDelRadio = new LinkedList<>();
 
         for(int i = 0; i < tamanio; i++){
