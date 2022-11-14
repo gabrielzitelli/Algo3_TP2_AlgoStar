@@ -27,6 +27,7 @@ public class Acceso extends Edificio {
     }
 
     public FabricaDragon crearFabricaDragon() {
+
         return estado.crearFabricaDragon();
     }
 
