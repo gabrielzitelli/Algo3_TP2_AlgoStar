@@ -46,7 +46,7 @@ public class CasoDeUso10 {
         ReservaDeReproduccion unaReservaDeReproduccion = new ReservaDeReproduccion();
         Ataque unAtaque = new Ataque( new DanioBasico(999) );
 
-        // Reser de produccion 1000V
+        // Reserva de produccion 1000V
         unaReservaDeReproduccion.aplicarAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
@@ -61,7 +61,7 @@ public class CasoDeUso10 {
         Extractor unExtractor = new Extractor(gasDelImperio);
         Ataque unAtaque = new Ataque( new DanioBasico(749) );
 
-        // Reser de produccion 1000V
+        // Extractor 750V
         unExtractor.aplicarAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
@@ -75,7 +75,7 @@ public class CasoDeUso10 {
         Guarida unaGuarida = new Guarida();
         Ataque unAtaque = new Ataque( new DanioBasico(1249) );
 
-        // Reser de produccion 1000V
+        // Guardia 1250V
         unaGuarida.aplicarAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
@@ -89,7 +89,7 @@ public class CasoDeUso10 {
         Espiral unaEspiral = new Espiral();
         Ataque unAtaque = new Ataque( new DanioBasico(1299) );
 
-        // Reser de produccion 1000V
+        // Espiral 1300V
         unaEspiral.aplicarAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
