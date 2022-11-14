@@ -9,9 +9,8 @@ import edu.fiuba.algo3.modelo.States.EstadoAsimiladorEnConstruccion;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
 public class Asimilador extends Edificio {
-    protected Recolectable estadoRecolectable = new GasRecolectable();
-    //protected Cargable estadoCarga = new SinCarga();
-    protected EstadoMoho estadoMoho = new SinMoho();
+    private Recolectable estadoRecolectable = new GasRecolectable();
+    private EstadoMoho estadoMoho = new SinMoho();
 
     private EstadoAsimilador estado;
     private int turnoParaEstarConstruido = 6;
@@ -37,7 +36,6 @@ public class Asimilador extends Edificio {
     @Override
     public void verificarConstruccion(Casilla unaCasilla) {
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        //unaCasilla.tieneEstaCarga(estadoCarga);
         unaCasilla.tieneEsteMoho(estadoMoho);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }

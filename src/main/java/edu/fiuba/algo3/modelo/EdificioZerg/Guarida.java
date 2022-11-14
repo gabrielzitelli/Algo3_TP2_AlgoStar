@@ -13,9 +13,9 @@ public class Guarida extends Edificio {
     private int turnoParaEstarConstruido = 12;
 
 
-    protected Recolectable estadoRecolectable = new NoRecolectable();
-    protected Cargable estadoCarga = new SinCarga();
-    protected EstadoMoho estadoMoho = new ConMoho();
+    private Recolectable estadoRecolectable = new NoRecolectable();
+    private Cargable estadoCarga = new SinCarga();
+    private EstadoMoho estadoMoho = new ConMoho();
     private int valorVital = 1250;
 
 
