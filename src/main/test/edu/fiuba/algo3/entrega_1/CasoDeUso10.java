@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
+import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class CasoDeUso10 {
     }
 
     @Test
-    public void test01PuedoDaniarUnCriaderoSeRegeneraYSeDestruye(){
+    public void test02PuedoDaniarUnCriaderoSeRegeneraYSeDestruye(){
         Criadero unCriadero = new Criadero();
         Ataque unAtaque = new Ataque( new DanioBasico(499) );
         Ataque ataqueLetal = new Ataque( new DanioBasico(500) );
@@ -38,5 +39,62 @@ public class CasoDeUso10 {
             unCriadero.pasarTurno();
 
         assertThrows(ErrorVidaLlegoACero.class, () -> unCriadero.aplicarAtaque(ataqueLetal) );
+    }
+
+    @Test
+    public void test03PuedoDaniarUnaReservaDeProduccionYLaVidaSeRegeneraTotalmente(){
+        ReservaDeReproduccion unaReservaDeReproduccion = new ReservaDeReproduccion();
+        Ataque unAtaque = new Ataque( new DanioBasico(999) );
+
+        // Reser de produccion 1000V
+        unaReservaDeReproduccion.aplicarAtaque(unAtaque);
+
+        for (int i = 0; i < 7; i++)
+            unaReservaDeReproduccion.pasarTurno();
+
+        assertDoesNotThrow( () -> unaReservaDeReproduccion.aplicarAtaque(unAtaque) );
+    }
+
+    @Test
+    public void test04PuedoDaniarUnExtractorYLaVidaSeRegeneraTotalmente(){
+        Recurso gasDelImperio = new Recurso(0);
+        Extractor unExtractor = new Extractor(gasDelImperio);
+        Ataque unAtaque = new Ataque( new DanioBasico(749) );
+
+        // Reser de produccion 1000V
+        unExtractor.aplicarAtaque(unAtaque);
+
+        for (int i = 0; i < 7; i++)
+            unExtractor.pasarTurno();
+
+        assertDoesNotThrow( () -> unExtractor.aplicarAtaque(unAtaque) );
+    }
+
+    @Test
+    public void test05PuedoDaniarUnGuaridaYLaVidaSeRegeneraTotalmente(){
+        Guarida unaGuarida = new Guarida();
+        Ataque unAtaque = new Ataque( new DanioBasico(1249) );
+
+        // Reser de produccion 1000V
+        unaGuarida.aplicarAtaque(unAtaque);
+
+        for (int i = 0; i < 7; i++)
+            unaGuarida.pasarTurno();
+
+        assertDoesNotThrow( () -> unaGuarida.aplicarAtaque(unAtaque) );
+    }
+
+    @Test
+    public void test06PuedoDaniarUnaEspiralYLaVidaSeRegeneraTotalmente(){
+        Espiral unaEspiral = new Espiral();
+        Ataque unAtaque = new Ataque( new DanioBasico(1299) );
+
+        // Reser de produccion 1000V
+        unaEspiral.aplicarAtaque(unAtaque);
+
+        for (int i = 0; i < 7; i++)
+            unaEspiral.pasarTurno();
+
+        assertDoesNotThrow( () -> unaEspiral.aplicarAtaque(unAtaque) );
     }
 }
