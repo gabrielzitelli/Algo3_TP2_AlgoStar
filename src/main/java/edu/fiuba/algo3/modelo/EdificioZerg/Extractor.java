@@ -7,10 +7,11 @@ import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.States.EstadoExtractor;
 import edu.fiuba.algo3.modelo.States.EstadoExtractorEnConstruccion;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
+import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
 import java.util.LinkedList;
 
-public class Extractor implements Edificio {
+public class Extractor extends Edificio {
 
     private EstadoExtractor estado;
     private int turnoParaEstarConstruido = 6;
@@ -21,14 +22,18 @@ public class Extractor implements Edificio {
     private Recolectable estadoRecolectable = new GasRecolectable();
     private Cargable estadoCarga = new SinCarga();
     private EstadoMoho estadoMoho = new ConMoho();
+    private int valorVital = 750;
+
 
     public Extractor(Recurso gasDelImperio){
+        this.vida = new VidaRegenerativa(valorVital);
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoExtractorEnConstruccion(turnoParaEstarConstruido);
     }
 
     public void pasarTurno(){
         estado = estado.actualizar();
+        vida.pasarTurno();
     }
 
     public void extraer(){

@@ -6,6 +6,10 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
 
+import java.util.LinkedList;
+
+import static java.lang.Math.abs;
+
 public class Mapa {
     static private Mapa mapaInstanciaUnica = new Mapa();
 
@@ -21,7 +25,7 @@ public class Mapa {
         matriz = new Casilla[tamanio][tamanio];
         for (int i = 0; i < tamanio; i++) {
             for (int j = 0; j < tamanio; j++) {
-                matriz[i][j] = new CasillaVacia();
+                matriz[i][j] = new CasillaVacia(new Coordenada(i, j));
             }
         }
     }
@@ -55,5 +59,37 @@ public class Mapa {
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarMaterial(materialAColocar);
+    }
+
+    public int distanciaEntreDosCoordenadas(Coordenada coordenada1, Coordenada coordenada2){
+        int distanciaEnX = abs( coordenada1.getCoordenadaX() - coordenada2.getCoordenadaX() );
+        int distanciaEnY = abs( coordenada1.getCoordenadaY() - coordenada2.getCoordenadaY() );
+
+        return distanciaEnX + distanciaEnY;
+    }
+
+    private LinkedList<Casilla> obtenerCasillasDentroDelRadio(Coordenada origenDeExpansion, int radio){
+
+        LinkedList<Casilla> casillasDentroDelRadio = new LinkedList<>();
+
+        for(int i = 0; i < tamanio; i++){
+            for(int j = 0; j < tamanio; j++) {
+                if( distanciaEntreDosCoordenadas(origenDeExpansion, matriz[i][j].obtenerCoordenada()) <= radio )
+                    casillasDentroDelRadio.add(matriz[i][j]);
+            }
+        }
+        return casillasDentroDelRadio;
+    }
+
+    public void expandirMoho(Coordenada origenDeExpansion, int radio){
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.llenarDeMoho();
+    }
+
+    public void abastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.cargarDeEnergia();
     }
 }
