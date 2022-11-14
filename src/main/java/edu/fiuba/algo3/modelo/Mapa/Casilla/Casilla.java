@@ -55,6 +55,5 @@ public abstract class Casilla {
     }
 
     public abstract Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg);
-
-    public abstract Edificio obtenerEdificio();
+    public abstract Casilla desconstruirEdificio(Coordenada coordenada);
 }

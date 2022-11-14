@@ -12,6 +12,13 @@ public class CasillaOcupada extends Casilla{
         this.coordenada = coordenada;
     }
 
+    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable){
+        this.estadoRecolectable = estadoRecolectable;
+        this.estadoMoho = estadoMoho;
+        this.estadoCarga = estadoCarga;
+        this.coordenada = coordenada;
+    }
+
     public Casilla construirEdificio(Edificio unEdificio){
         throw new ErrorNoSePuedeConstruirEdificioSobreOtroEdificio();
     }
@@ -19,9 +26,9 @@ public class CasillaOcupada extends Casilla{
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
         throw new ErrorPosicionOcupada();
     }
-
-    @Override
-    public Edificio obtenerEdificio() {
-        return null;
+     
+    public Casilla desconstruirEdificio(Coordenada coordenada){
+        Casilla nuevaCasillaSinEdificio = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable);
+        return  nuevaCasillaSinEdificio;
     }
 }
