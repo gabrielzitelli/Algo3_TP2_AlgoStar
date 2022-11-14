@@ -20,7 +20,6 @@ public class Extractor extends Edificio {
     private LinkedList<Zangano> zanganosEmpleados = new LinkedList<>();
 
     private Recolectable estadoRecolectable = new GasRecolectable();
-    private Cargable estadoCarga = new SinCarga();
     private EstadoMoho estadoMoho = new ConMoho();
     private int valorVital = 750;
 
@@ -46,7 +45,6 @@ public class Extractor extends Edificio {
 
     public void verificarConstruccion(Casilla unaCasilla){
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
         unaCasilla.tieneEsteMoho(estadoMoho);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }
