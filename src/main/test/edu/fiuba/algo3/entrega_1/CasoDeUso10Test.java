@@ -27,22 +27,7 @@ public class CasoDeUso10Test {
     }
 
     @Test
-    public void test02PuedoDaniarUnCriaderoSeRegeneraYSeDestruye(){
-        Criadero unCriadero = new Criadero();
-        Ataque unAtaque = new Ataque( new DanioBasico(499) );
-        Ataque ataqueLetal = new Ataque( new DanioBasico(500) );
-
-        // Criadero 500V
-        unCriadero.aplicarAtaque(unAtaque);
-
-        for (int i = 0; i < 7; i++)
-            unCriadero.pasarTurno();
-
-        assertThrows(ErrorVidaLlegoACero.class, () -> unCriadero.aplicarAtaque(ataqueLetal) );
-    }
-
-    @Test
-    public void test03PuedoDaniarUnaReservaDeProduccionYLaVidaSeRegeneraTotalmente(){
+    public void test02PuedoDaniarUnaReservaDeProduccionYLaVidaSeRegeneraTotalmente(){
         ReservaDeReproduccion unaReservaDeReproduccion = new ReservaDeReproduccion();
         Ataque unAtaque = new Ataque( new DanioBasico(999) );
 
@@ -56,7 +41,7 @@ public class CasoDeUso10Test {
     }
 
     @Test
-    public void test04PuedoDaniarUnExtractorYLaVidaSeRegeneraTotalmente(){
+    public void test03PuedoDaniarUnExtractorYLaVidaSeRegeneraTotalmente(){
         Recurso gasDelImperio = new Recurso(0);
         Extractor unExtractor = new Extractor(gasDelImperio);
         Ataque unAtaque = new Ataque( new DanioBasico(749) );
@@ -71,7 +56,7 @@ public class CasoDeUso10Test {
     }
 
     @Test
-    public void test05PuedoDaniarUnGuaridaYLaVidaSeRegeneraTotalmente(){
+    public void test04PuedoDaniarUnGuaridaYLaVidaSeRegeneraTotalmente(){
         Guarida unaGuarida = new Guarida();
         Ataque unAtaque = new Ataque( new DanioBasico(1249) );
 
@@ -85,7 +70,7 @@ public class CasoDeUso10Test {
     }
 
     @Test
-    public void test06PuedoDaniarUnaEspiralYLaVidaSeRegeneraTotalmente(){
+    public void test05PuedoDaniarUnaEspiralYLaVidaSeRegeneraTotalmente(){
         Espiral unaEspiral = new Espiral();
         Ataque unAtaque = new Ataque( new DanioBasico(1299) );
 

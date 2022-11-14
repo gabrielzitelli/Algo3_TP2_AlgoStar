@@ -43,5 +43,6 @@ public class Guarida extends Edificio {
     public void verificarConstruccion(Casilla unaCasilla){
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
         unaCasilla.tieneEsteMoho(estadoMoho);
+
     }
 }
