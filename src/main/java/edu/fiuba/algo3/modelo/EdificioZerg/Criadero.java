@@ -51,5 +51,6 @@ public class Criadero extends Edificio {
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
         unaCasilla.tieneEstaCarga(estadoCarga);
         coordenada = unaCasilla.obtenerCoordenada();
+        unaCasilla.llenarDeMoho();
     }
 }
