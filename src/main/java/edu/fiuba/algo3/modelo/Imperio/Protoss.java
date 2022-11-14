@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
-import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
-import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
-import edu.fiuba.algo3.modelo.EdificioProtoss.Pilon;
-import edu.fiuba.algo3.modelo.EdificioProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.EdificioProtoss.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 
 import java.util.LinkedList;
@@ -33,5 +30,9 @@ public class Protoss extends Imperio{
     public void construirAsimilador(Coordenada coordenada) {
         Asimilador asimilador = new Asimilador(gasDelImperio);
         this.construirEdificio(asimilador, coordenada);
+    }
+    public void construirNexoMineral(Coordenada coordenada) {
+        NexoMineral nexoMineral = new NexoMineral(mineralesDelImperio);
+        this.construirEdificio(nexoMineral, coordenada);
     }
 }

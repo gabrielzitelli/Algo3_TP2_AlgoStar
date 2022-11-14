@@ -22,6 +22,5 @@ public class EstadoNexoMineralEnConstruccion implements EstadoNexoMineral{
     }
 
     public void extraer(Recurso mineralesDelImperio, MaterialBruto nodoMineral){
-        throw new ErrorEdificioNoEstaConstruido();
     }
 }

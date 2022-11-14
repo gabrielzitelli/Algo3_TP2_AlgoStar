@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.EdificioProtoss.*;
 import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
@@ -7,10 +8,12 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaC
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.Test;
 
@@ -59,14 +62,27 @@ public class CasoDeUso2Test {
 
     @Test
     public void test04UnExtractorEstaConstruidoEn6Turnos() {
-        Recurso gasDelImperio = new Recurso(0);
+        Zerg zerg = new Zerg();
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0,0);
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
 
-        Extractor unExtractor = new Extractor(gasDelImperio);
+        zerg.construirCriadero(new Coordenada(1,1));
+        for (int i = 0; i < 5; i++){
+            zerg.terminarTurno();
+        }
 
-        //Construyo el Extractor
-        for(int i = 0; i < 6; i++)
-            unExtractor.pasarTurno();
-        assertThrows(ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla.class, () -> unExtractor.pasarTurno() );
+        zerg.construirExtractor(coordenadasGas);
+        Edificio criadero = zerg.conseguirEdificio(new Coordenada(1,1));
+        UnidadZerg zangano = criadero.crearUnidad(new FabricaZangano());
+
+        //Construimos el extractor
+        for (int i = 0; i < 6; i++){
+            zerg.terminarTurno();
+        }
+        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
+        assertDoesNotThrow( () -> extractor.contratarUnidad(zangano));
     }
 
     @Test
@@ -143,35 +159,32 @@ public class CasoDeUso2Test {
 
     @Test
     public void test11UnNexoMineralNoEstaConstruidoEn3Turnos() {
-        Recurso mineralesDelImperio = new Recurso(0);
-        NexoMineral unNexoMineral = new NexoMineral(mineralesDelImperio);
-        int turnosAPasar = 3;
+        Protoss protoss = new Protoss();
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasMIneral = new Coordenada(0,0);
 
-        for (int i = 0; i < turnosAPasar; i++) {
-            unNexoMineral.pasarTurno();
+        mapa.colocarMaterial(new MineralRecolectable(), coordenadasMIneral);
+        protoss.construirNexoMineral(coordenadasMIneral);
+        for (int i = 0; i < 3; i++){
+            protoss.terminarTurno();
         }
-
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unNexoMineral.extraer());
+        assert(protoss.tienesEstaCantidadDeMineral(0));
     }
 
     @Test
     public void test12UnNexoMineralEstaConstruidoEn4Turnos() {
-        Coordenada coordenada = new Coordenada(0,0);
+        Protoss protoss = new Protoss();
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadaMineral = new Coordenada(0,0);
 
-        Recurso mineralesDelImperio = new Recurso(0);
-        NexoMineral unNexoMineral = new NexoMineral(mineralesDelImperio);
-        int turnosAPasar = 4;
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
-        elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
-        elMapa.construirEdificio(unNexoMineral, coordenada);
-
-        for (int i = 0; i < turnosAPasar; i++) {
-            unNexoMineral.pasarTurno();
+        mapa.colocarMaterial(new MineralRecolectable(), coordenadaMineral);
+        protoss.construirNexoMineral(coordenadaMineral);
+        for (int i = 0; i < 4; i++){
+            protoss.terminarTurno();
         }
-
-        assertDoesNotThrow(() -> unNexoMineral.extraer());
+        assert(protoss.tienesEstaCantidadDeMineral(10));
     }
 
     @Test

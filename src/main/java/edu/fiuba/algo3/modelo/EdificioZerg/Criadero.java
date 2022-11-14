@@ -2,11 +2,11 @@ package edu.fiuba.algo3.modelo.EdificioZerg;
 
 import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.States.EstadoCriadero;
 import edu.fiuba.algo3.modelo.States.EstadoCriaderoEnConstruccion;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
 public class Criadero extends Edificio {
@@ -28,7 +28,7 @@ public class Criadero extends Edificio {
         cantidadLarvas = maxLarvas;
     }
 
-    public UnidadZerg crearUnidad(Fabrica unaFabrica) {
+    public UnidadZerg crearUnidadZerg(Fabrica unaFabrica) {
         if (cantidadLarvas > 0) {
             cantidadLarvas--;
             return estado.crearUnidad(unaFabrica);
@@ -51,5 +51,9 @@ public class Criadero extends Edificio {
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
         unaCasilla.tieneEstaCarga(estadoCarga);
         coordenada = unaCasilla.obtenerCoordenada();
+    }
+    @Override
+    public UnidadZerg crearUnidad(Fabrica unaFabrica) {
+        return this.crearUnidadZerg(unaFabrica);
     }
 }

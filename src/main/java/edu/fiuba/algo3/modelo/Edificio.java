@@ -1,9 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidadades;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.vida.Vida;
 
@@ -30,4 +34,10 @@ public abstract class Edificio {
     }
 
     public abstract void pasarTurno();
+    public UnidadZerg crearUnidad(Fabrica unaFabrica) {
+        throw new ErrorElEdificioNoPuedeCrearUnidadades();
+    }
+    public void contratarUnidad(UnidadZerg unidad) {
+        throw new ErrorElEdificioNoPuedeContratarUnidadades();
+    }
 }
