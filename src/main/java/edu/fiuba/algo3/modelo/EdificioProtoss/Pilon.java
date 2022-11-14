@@ -13,7 +13,6 @@ public class Pilon extends Edificio {
     private EstadoMoho estadoMoho = new SinMoho();
     private EstadoPilon estado;
     private int turnoParaEstarConstruido = 5;
-    private Coordenada coordenada;
     private int valorVital = 300;
 
 

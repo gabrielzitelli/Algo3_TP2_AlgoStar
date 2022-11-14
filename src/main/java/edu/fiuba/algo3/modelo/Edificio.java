@@ -23,7 +23,7 @@ public abstract class Edificio {
         }
     }
 
-    private void destruirEdificio() {
+    protected void destruirEdificio() {
         // Capaz estoy acoplando mucho edificio y mapa con esto
         Mapa elMapa = Mapa.obtener();
         // TODO solo criadero sabe sus coordenadas

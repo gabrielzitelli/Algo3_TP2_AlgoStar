@@ -23,6 +23,11 @@ public class CasillaOcupada extends Casilla{
         throw new ErrorNoSePuedeConstruirEdificioSobreOtroEdificio();
     }
 
+    @Override
+    public void llenarDeMoho() {
+        estadoMoho = new SinMoho();
+    }
+
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
         throw new ErrorPosicionOcupada();
     }
