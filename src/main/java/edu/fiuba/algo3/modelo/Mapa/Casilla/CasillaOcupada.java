@@ -8,6 +8,10 @@ import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 
 public class CasillaOcupada extends Casilla{
 
+    public CasillaOcupada(Coordenada coordenada){
+        this.coordenada = coordenada;
+    }
+
     public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable){
         this.estadoRecolectable = estadoRecolectable;
         this.estadoMoho = estadoMoho;
