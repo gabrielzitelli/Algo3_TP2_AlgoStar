@@ -1,121 +1,131 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.Energia;
-import edu.fiuba.algo3.modelo.Tablero.Moho;
-import edu.fiuba.algo3.modelo.Tablero.Tablero;
-import edu.fiuba.algo3.modelo.excepciones.NoSeCumplenLosPreRequisitosDelEdificio;
+import edu.fiuba.algo3.modelo.EdificioProtoss.Pilon;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
+import edu.fiuba.algo3.modelo.Imperio.Protoss;
+import edu.fiuba.algo3.modelo.Imperio.Zerg;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso17Test {
-
     @Test
-    public void test01IntentoConstruirUnaGuaridaSinTenerAntesUnaReservaDeReproduccionYLanzaExcepcion() {
-        Tablero tablero = new Tablero(20,20);
-        Recurso minerales = new Recurso(200);
-        Recurso gasVespeno = new Recurso(100);
-        Zergs zergs = new Zergs(tablero, minerales, gasVespeno);
-        Coordenadas coordenadasZangano = new Coordenadas(5,5);
-        Zangano zangano = new Zangano(tablero,coordenadasZangano, minerales);
+    public void test01NoPuedoConstruirUnaGuaridaSinTenerAntesUnaReservaDeReproduccion() {
+        Zerg zerg = new Zerg();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertThrows(NoSeCumplenLosPreRequisitosDelEdificio.class, () -> zergs.construirGuarida(zangano));
+        zerg.construirCriadero(new Coordenada(1,1));
+
+        //Esperamos Cuatro Turnos Para La Construccion Del Criadero
+        for (int i = 0; i < 4; i++){
+            zerg.terminarTurno();
+        }
+        //Esperamos un turno para la expansión del criadero
+        zerg.terminarTurno();
+
+        //IntentamosConstruirGuarida
+        assertThrows(ErrorNoSeCumplenLosPreRequisitosDelEdificio.class, () ->
+                zerg.construirGuarida(new Coordenada(2,2)));
+
     }
     @Test
-    public void test02IntentoConstruirUnaGuaridaTeniendoAntesUnaReservaDeReproduccionYNoLanzaExcepcion() {
-        Tablero tablero = new Tablero(20,20);
-        //Establezco los minerales iniciales
-        Recurso minerales = new Recurso(1000);
-        Recurso gasVespeno = new Recurso(1000);
+    public void test02PuedoConstruirUnaGuaridaTeniendoAntesUnaReservaDeReproduccion() {
+        Zerg zerg = new Zerg();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        //Creo al imperio y genero las coordenadas donde van a estar los edificios
-        Zergs zergs = new Zergs(tablero, minerales, gasVespeno);
-        Coordenadas coordenadasGuarida = new Coordenadas(5,5);
-        Coordenadas coordenadasReserva = new Coordenadas(6,6);
+        zerg.construirCriadero(new Coordenada(1,1));
 
-        //Me aseguro de que el terreno sea el adecuado para los edificios
-        tablero.actualizarTerreno(coordenadasGuarida, 5, new Moho());
+        //Esperamos Cuatro Turnos Para La Construccion Del Criadero
+        for (int i = 0; i < 4; i++){
+            zerg.terminarTurno();
+        }
+        //Esperamos un turno para la expansión del criadero
+        zerg.terminarTurno();
+        //Construimos una reserva
+        zerg.construirReservaDeReproduccion(new Coordenada(1,2));
 
-        //genero dos zanganos, uno para cada edificio
-        Zangano zangano1 = new Zangano(tablero,coordenadasGuarida, minerales);
-        Zangano zangano2 = new Zangano(tablero,coordenadasReserva, minerales);
+        //IntentamosConstruirGuarida
+        assertDoesNotThrow( () -> zerg.construirGuarida(new Coordenada(2,2)));
+    }
 
-        //Construyo un edificio
-        zergs.construirReservaDeReproduccion(zangano2);
+    @Test
+    public void test03NoPuedoConstruirUnEspiralSinTenerAntesUnaGuarida() {
+        Zerg zerg = new Zerg();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertDoesNotThrow(() -> zergs.construirGuarida(zangano1));
+        zerg.construirCriadero(new Coordenada(1,1));
+
+        //Esperamos Cuatro Turnos Para La Construccion Del Criadero
+        for (int i = 0; i < 4; i++){
+            zerg.terminarTurno();
+        }
+        //Esperamos un turno para la expansión del criadero
+        zerg.terminarTurno();
+
+        //IntentamosConstruirGuarida
+        assertThrows(ErrorNoSeCumplenLosPreRequisitosDelEdificio.class, () ->
+                zerg.construirEspiral(new Coordenada(2,2)));
+
     }
     @Test
-    public void test03IntentoConstruirUnEspiralSinTenerAntesUnaGuaridaYLanzaExcepcion() {
-        Tablero tablero = new Tablero(20,20);
-        //Establezco los minerales iniciales
-        Recurso minerales = new Recurso(1000);
-        Recurso gasVespeno = new Recurso(1000);
+    public void test04PuedoConstruirUnEspiralTeniendoAntesUnaGuarida() {
+        Zerg zerg = new Zerg();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        //Creo al imperio y genero las coordenadas donde van a estar los edificios
-        Zergs zergs = new Zergs(tablero, minerales, gasVespeno);
-        Coordenadas coordenadasEspiral = new Coordenadas(5, 6);
+        zerg.construirCriadero(new Coordenada(1,1));
 
-        //Me aseguro de que el terreno sea el adecuado para los edificios
-        tablero.actualizarTerreno(coordenadasEspiral, 5, new Moho());
+        //Esperamos Cuatro Turnos Para La Construccion Del Criadero
+        for (int i = 0; i < 4; i++){
+            zerg.terminarTurno();
+        }
+        //Esperamos un turno para la expansión del criadero
+        zerg.terminarTurno();
+        //Construimos una reserva y una guarida
+        zerg.construirReservaDeReproduccion(new Coordenada(1,2));
+        zerg.construirGuarida(new Coordenada(2,1));
 
-        //genero dos zanganos, uno para cada edificio
-        Zangano zangano = new Zangano(tablero,coordenadasEspiral, minerales);
-
-        assertThrows(NoSeCumplenLosPreRequisitosDelEdificio.class, () -> zergs.construirEspiral(zangano));
+        //IntentamosConstruirGuarida
+        assertDoesNotThrow( () -> zerg.construirEspiral(new Coordenada(2,2)));
     }
     @Test
-    public void test04IntentoConstruirUnEspiralSiTeniendoAntesUnaGuaridaYNoLanzaExcepcion() {
-        Tablero tablero = new Tablero(20,20);
-        //Establezco los minerales iniciales
-        Recurso minerales = new Recurso(1000);
-        Recurso gasVespeno = new Recurso(1000);
+    public void test05NoPuedoConstruirUnPuertoEstelarSinTenerAntesUnAcceso() {
+        Protoss protoss = new Protoss();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        //Creo al imperio y genero las coordenadas donde van a estar los edificios
-        Zergs zergs = new Zergs(tablero, minerales, gasVespeno);
-        Coordenadas coordenadasEspiral = new Coordenadas(5, 6);
-        Coordenadas coordenadasGuarida = new Coordenadas(5,5);
-        Coordenadas coordenadasReserva = new Coordenadas(6,6);
+        protoss.construirPilon(new Coordenada(0,0));
+        //Esperamos Cuatro Turnos Para La Construccion Del pilon
+        for (int i = 0; i < 5; i++){
+            protoss.terminarTurno();
+        }
 
-        //Me aseguro de que el terreno sea el adecuado para los edificios
-        tablero.actualizarTerreno(coordenadasEspiral, 5, new Moho());
+        //IntentamosConstruirPuertoEstelar
+        assertThrows(ErrorNoSeCumplenLosPreRequisitosDelEdificio.class, () ->
+                protoss.construirPuertoEstelar(new Coordenada(1,1)));
 
-        //genero dos zanganos, uno para cada edificio
-        Zangano zangano = new Zangano(tablero,coordenadasEspiral, minerales);
-        Zangano zangano2 = new Zangano(tablero,coordenadasReserva, minerales);
-        Zangano zangano3 = new Zangano(tablero,coordenadasGuarida, minerales);
-
-        //Construyo los edificios
-        zergs.construirReservaDeReproduccion(zangano2);
-        zergs.construirGuarida(zangano3);
-
-        assertDoesNotThrow(() -> zergs.construirEspiral(zangano));
     }
     @Test
-    public void test05IntentoConstruirUnPuestoEstelarSinTenerAntesUnAccesoYLanzaExcepcion() {
-        Tablero tablero = new Tablero(20,20);
-        Recurso minerales = new Recurso(5000);
-        Recurso gasVespeno = new Recurso(5000);
-        Protoss protoss = new Protoss(tablero, minerales, gasVespeno);
+    public void test06PuedoConstruirUnPuertoEstelarTeniendoAntesUnAcceso() {
+        Protoss protoss = new Protoss();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertThrows(NoSeCumplenLosPreRequisitosDelEdificio.class, () -> protoss.construirPuertoEstelar(new Coordenadas(0,0)));
-    }
-    @Test
-    public void test06IntentoConstruirUnPuertoEstelarTeniendoAntesUnaAccesoYNoLanzaExcepcion() {
-        Tablero tablero = new Tablero(20,20);
-        //Establezco los minerales iniciales
-        Recurso minerales = new Recurso(5000);
-        Recurso gasVespeno = new Recurso(5000);
+        protoss.construirPilon(new Coordenada(0,0));
+        //Esperamos Cuatro Turnos Para La Construccion Del pilon
+        for (int i = 0; i < 5; i++){
+            protoss.terminarTurno();
+        }
+        protoss.construirAcceso(new Coordenada(1,0));
 
-        //Creo al imperio y genero las coordenadas donde van a estar los edificios
-        Protoss protoss = new Protoss(tablero, minerales, gasVespeno);
-        tablero.actualizarTerreno(new Coordenadas(0,0), 3, new Energia());
+        //IntentamosConstruirPuertoEstelar
+        assertDoesNotThrow( () -> protoss.construirPuertoEstelar(new Coordenada( 1, 1)));
 
-        //Construyo un edificio
-        protoss.construirAcceso(new Coordenadas(0,0));
-
-        assertDoesNotThrow(() -> protoss.construirPuertoEstelar(new Coordenadas(0,1)));
     }
 }

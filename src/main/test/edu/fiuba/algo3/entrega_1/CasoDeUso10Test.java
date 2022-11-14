@@ -1,227 +1,100 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.*;
+import edu.fiuba.algo3.modelo.EdificioZerg.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
+import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso10Test {
-    /*
-    Verificar que al dañar una construcción zerg, la misma recupera la vida por turnos hasta
-    volver a tener el 100%.
-     */
-    Coordenadas origen = new Coordenadas(0,0);
 
     @Test
-    public void seConstruyeUnCriaderoSeLoDaniaYSuVidaEsLaEsperada(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Zergs zergs = new Zergs(tablero, new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatibleCriadero, origen, zergs);
+    public void test01PuedoDaniarUnCriaderoYLaVidaSeRegeneraTotalmente(){
+        Criadero unCriadero = new Criadero();
+        Ataque unAtaque = new Ataque( new DanioBasico(499) );
 
-        // Paso 4 turnos para que se construya el criadero
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+        // Criadero 500V
+        unCriadero.aplicarAtaque(unAtaque);
 
-        criadero.recibirDanio(200);
+        for (int i = 0; i < 7; i++)
+            unCriadero.pasarTurno();
 
-        int vidaEsperada = 300;
-
-        assertEquals(vidaEsperada, criadero.getVida());
-    }
-    @Test
-    public void seConstruyeUnCriaderoSeLoDaniaYRecuperaGradualmenteTodaSuVida(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Zergs zergs = new Zergs(tablero,new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleCriadero = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodoCompatibleCriadero, origen, zergs);
-        criadero.recibirDanio(200);
-
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-
-        int vidaEsperada = 500;
-
-        assertEquals(vidaEsperada, criadero.getVida());
-
+        assertDoesNotThrow( () -> unCriadero.aplicarAtaque(unAtaque) );
     }
 
     @Test
-    public void seConstruyeUnaReservaDeReproduccionSeLoDaniaYSuVidaEsLaEsperada(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new SinRecurso());
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(nodoCompatibleReserva);
+    public void test02PuedoDaniarUnCriaderoSeRegeneraYSeDestruye(){
+        Criadero unCriadero = new Criadero();
+        Ataque unAtaque = new Ataque( new DanioBasico(499) );
+        Ataque ataqueLetal = new Ataque( new DanioBasico(500) );
 
-        // Paso 12 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 12; i++){
-            reservaDeReproduccion.accionDeTurno();
-        }
+        // Criadero 500V
+        unCriadero.aplicarAtaque(unAtaque);
 
-        reservaDeReproduccion.recibirDanio(500);
+        for (int i = 0; i < 7; i++)
+            unCriadero.pasarTurno();
 
-        int vidaEsperada = 500;
-
-        assertEquals(vidaEsperada, reservaDeReproduccion.getVida());
+        assertThrows(ErrorVidaLlegoACero.class, () -> unCriadero.aplicarAtaque(ataqueLetal) );
     }
 
     @Test
-    public void seConstruyeUnaReservaDeReproduccionSeLoDaniaYSePasanSuficientesTurnosParaQueSeCure(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero, new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new SinRecurso());
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(nodoCompatibleReserva);
+    public void test03PuedoDaniarUnaReservaDeProduccionYLaVidaSeRegeneraTotalmente(){
+        ReservaDeReproduccion unaReservaDeReproduccion = new ReservaDeReproduccion();
+        Ataque unAtaque = new Ataque( new DanioBasico(999) );
 
-        // Paso 12 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 12; i++){
-            reservaDeReproduccion.accionDeTurno();
-        }
+        // Reserva de produccion 1000V
+        unaReservaDeReproduccion.aplicarAtaque(unAtaque);
 
-        reservaDeReproduccion.recibirDanio(500);
+        for (int i = 0; i < 7; i++)
+            unaReservaDeReproduccion.pasarTurno();
 
-        reservaDeReproduccion.accionDeTurno();
-        reservaDeReproduccion.accionDeTurno();
-
-        int vidaEsperada = 1000;
-
-        assertEquals(vidaEsperada, reservaDeReproduccion.getVida());
+        assertDoesNotThrow( () -> unaReservaDeReproduccion.aplicarAtaque(unAtaque) );
     }
 
     @Test
-    public void seConstruyeUnExtractorSeLoDaniaYSuVidaEsLaEsperada(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new VolcanGasVespeno());
-        Extractor extractor = new Extractor(nodoCompatibleReserva, new Recurso(100));
+    public void test04PuedoDaniarUnExtractorYLaVidaSeRegeneraTotalmente(){
+        Recurso gasDelImperio = new Recurso(0);
+        Extractor unExtractor = new Extractor(gasDelImperio);
+        Ataque unAtaque = new Ataque( new DanioBasico(749) );
 
-        // Paso 12 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 6; i++){
-            extractor.accionDeTurno();
-        }
+        // Extractor 750V
+        unExtractor.aplicarAtaque(unAtaque);
 
-        extractor.recibirDanio(500);
-        int vidaEsperada = 250;
+        for (int i = 0; i < 7; i++)
+            unExtractor.pasarTurno();
 
-        assertEquals(vidaEsperada, extractor.getVida());
+        assertDoesNotThrow( () -> unExtractor.aplicarAtaque(unAtaque) );
     }
 
     @Test
-    public void seConstruyeUnExtractorSeLoDaniaYPasaTurnosHastaQueEsteCurado(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleReserva = new NodoCompatible(new Moho(), new VolcanGasVespeno());
-        Extractor extractor = new Extractor(nodoCompatibleReserva, new Recurso(100));
+    public void test05PuedoDaniarUnGuaridaYLaVidaSeRegeneraTotalmente(){
+        Guarida unaGuarida = new Guarida();
+        Ataque unAtaque = new Ataque( new DanioBasico(1249) );
 
-        // Paso 6 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 6; i++){
-            extractor.accionDeTurno();
-        }
+        // Guardia 1250V
+        unaGuarida.aplicarAtaque(unAtaque);
 
-        extractor.recibirDanio(500);
+        for (int i = 0; i < 7; i++)
+            unaGuarida.pasarTurno();
 
-        extractor.accionDeTurno();
-        extractor.accionDeTurno();
-        extractor.accionDeTurno();
-
-        int vidaEsperada = 750;
-
-        assertEquals(vidaEsperada, extractor.getVida());
+        assertDoesNotThrow( () -> unaGuarida.aplicarAtaque(unAtaque) );
     }
 
     @Test
-    public void seConstruyeUnaGuaridaSeLoDaniaYSuVidaEsLaEsperada(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
-        Guarida guarida = new Guarida(nodoCompatibleGuarida);
+    public void test06PuedoDaniarUnaEspiralYLaVidaSeRegeneraTotalmente(){
+        Espiral unaEspiral = new Espiral();
+        Ataque unAtaque = new Ataque( new DanioBasico(1299) );
 
-        // Paso 12 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 12; i++){
-            guarida.accionDeTurno();
-        }
+        // Espiral 1300V
+        unaEspiral.aplicarAtaque(unAtaque);
 
-        guarida.recibirDanio(250);
-        int vidaEsperada = 1000;
+        for (int i = 0; i < 7; i++)
+            unaEspiral.pasarTurno();
 
-        assertEquals(vidaEsperada, guarida.getVida());
-    }
-
-    @Test
-    public void seConstruyeUnaGuaridaSeLoDaniaYDespuesDeUnosTurnosSeRecuperaTodaLaVida(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
-        Guarida guarida = new Guarida(nodoCompatibleGuarida);
-
-        // Paso 12 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 12; i++){
-            guarida.accionDeTurno();
-        }
-
-        guarida.recibirDanio(250);
-        guarida.accionDeTurno();
-        int vidaEsperada = 1250;
-
-        assertEquals(vidaEsperada, guarida.getVida());
-    }
-
-    @Test
-    public void seConstruyeUnaEspiralSeLoDaniaYSuVidaEsLaEsperada(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
-        Espiral espiral = new Espiral(nodoCompatibleGuarida);
-
-        // Paso 10 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 10; i++){
-            espiral.accionDeTurno();
-        }
-
-        espiral.recibirDanio(350);
-        int vidaEsperada = 1000;
-
-        assertEquals(vidaEsperada, espiral.getVida());
-    }
-
-    @Test
-    public void seConstruyeUnaEspiralSeLoDaniaYSePasanVariosTurnosYSeRecuperaTodaLaVida(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new SinRecurso(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
-        Imperio zergs = new Zergs(tablero,new Recurso(), new Recurso());
-        NodoCompatible nodoCompatibleGuarida= new NodoCompatible(new Moho(), new SinRecurso());
-        Espiral espiral = new Espiral(nodoCompatibleGuarida);
-
-        // Paso 10 turnos para que se construya la reservaDeReproduccion
-        for (int i = 0; i < 10; i++){
-            espiral.accionDeTurno();
-        }
-
-        espiral.recibirDanio(350);
-        espiral.accionDeTurno();
-        espiral.accionDeTurno();
-        int vidaEsperada = 1350;
-
-        assertEquals(vidaEsperada, espiral.getVida());
+        assertDoesNotThrow( () -> unaEspiral.aplicarAtaque(unAtaque) );
     }
 }

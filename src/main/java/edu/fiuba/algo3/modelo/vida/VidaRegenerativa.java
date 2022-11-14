@@ -1,31 +1,38 @@
 package edu.fiuba.algo3.modelo.vida;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
+
 public class VidaRegenerativa implements Vida{
     private int cantidad;
     private int capacidad;
-    private double porcentajeDeRegeneracion;
+    private double porcentajeDeRegeneracion = 0.15; //supuesto
 
-    public VidaRegenerativa(int cantidad, double porcentajeDeRegeneracion){
+
+    public VidaRegenerativa(int cantidad){
         this.cantidad = cantidad;
         this.capacidad = cantidad;
-        this.porcentajeDeRegeneracion = porcentajeDeRegeneracion;
-    }
-    @Override
-    public int getVida(){
-        return this.cantidad;
-    }
-    @Override
-    public void aplicarDanio(int danioHecho){
-        this.cantidad -= danioHecho;
     }
 
-    @Override
-    public void accionDeTurno(){
-        int vidaRegenerada = (int)(this.capacidad * this.porcentajeDeRegeneracion);
-        if ((this.cantidad + vidaRegenerada) >= this.capacidad){
+    public void aplicarAtaque(Ataque unAtaque){
+        this.cantidad = unAtaque.aplicarAtaque(this.cantidad);
+        this.validarVidaLlegoACero();
+    }
+
+    public void pasarTurno(){
+        this.validarVidaLlegoACero();
+
+        int cantidadARegenerar = (int)(this.capacidad * this.porcentajeDeRegeneracion);
+        if((cantidad + cantidadARegenerar) >= this.capacidad){
             this.cantidad = this.capacidad;
-        }else {
-            this.cantidad += vidaRegenerada;
+        }else{
+            this.cantidad += cantidadARegenerar;
+        }
+    }
+
+    private void validarVidaLlegoACero(){
+        if(this.cantidad <= 0){
+            throw new ErrorVidaLlegoACero();
         }
     }
 }

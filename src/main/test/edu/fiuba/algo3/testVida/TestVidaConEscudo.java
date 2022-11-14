@@ -1,105 +1,64 @@
 package edu.fiuba.algo3.testVida;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
+import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
+import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
-import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestVidaConEscudo {
 
     @Test
-    public void SeCreaUnaVidaConEscudoYTieneLaCantidadDeVidaEsperada(){
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(15, 0.33, 5);
-        int vidaEsperada = 20;
+    public void test01PuedoCrearUnaVidaRegenerativa(){
+        Vida unaVida = new VidaConEscudo(100, 100);
 
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
+        assertNotNull(unaVida);
     }
 
     @Test
-    public void seCreaUnaVidaConEscudoSeLaDaniaYLaCantidadDeVidaEsLaEsperada(){
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(15, 0.33, 10);
-        vidaConEscudo.aplicarDanio(5);
-        int vidaEsperada = 20;
+    public void test02CreoUnaVidaConEscudoYLePuedoAplicarDanio(){
+        Ataque unAtaque = new Ataque(new DanioBasico(100));
 
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
+        Vida unaVida = new VidaConEscudo(100, 100);
+
+        assertDoesNotThrow(() -> unaVida.aplicarAtaque(unAtaque));
     }
 
     @Test
-    public void seCreaUnaVidaConEscudoSeLaDaniaYSePasanLaCantidadDeTurnosSuficientesParaQueSeLlene(){
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(20, 0.10, 20);
-        vidaConEscudo.aplicarDanio(4);
-        vidaConEscudo.accionDeTurno();
-        vidaConEscudo.accionDeTurno();
-        int vidaEsperada = 40;
+    public void test03CreoUnaVidaConEscudoYLeAplicoUnAtaqueMayorIgualALaVidaMasElEscudo(){
+        Ataque unAtaque = new Ataque(new DanioBasico(200));
 
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
+        Vida unaVida = new VidaConEscudo(100, 100);
 
+        assertThrows(ErrorVidaLlegoACero.class, () -> unaVida.aplicarAtaque(unAtaque));
     }
 
     @Test
-    public void seRegeneraUnaVidaConEscudoMuchasMasVecesDeLaNecesariaYSuVidaNoSuperaLaMaxima(){
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(20, 0.50, 100);
-        vidaConEscudo.aplicarDanio(4);
-        vidaConEscudo.accionDeTurno();
-        vidaConEscudo.accionDeTurno();
-        vidaConEscudo.accionDeTurno();
-        int vidaEsperada = 120;
+    public void test04CreoUnaVidaConEscudoYLeAplicoUnAtaqueMenorALaVidaMasElEscudo(){
+        Ataque unAtaque = new Ataque(new DanioBasico(100));
+        Ataque unAtaqueDebil = new Ataque(new DanioBasico(20));
 
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
+        Vida unaVida = new VidaConEscudo(100, 20);
 
-    }
+        unaVida.aplicarAtaque(unAtaque);
+        unaVida.pasarTurno();
 
-    @Test
-    public void seRegeneraUnPocoElEscudoYElResultadoEsElEsperado(){
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(5, 0.10, 10);
-        vidaConEscudo.aplicarDanio(7);
-        vidaConEscudo.accionDeTurno();
-        vidaConEscudo.accionDeTurno();
-        int vidaEsperada = 10;
-
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
+        assertDoesNotThrow(() -> unaVida.aplicarAtaque(unAtaqueDebil));
 
     }
 
     @Test
-    public void seRegeneraLaVidaConNumerosImparesEIgualSeLlegaALoEsperado(){
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(15, 0.33, 7);
-        vidaConEscudo.aplicarDanio(4);
-        vidaConEscudo.accionDeTurno();
-        int vidaEsperada = 20;
+    public void test05UnEscudoNoSePuedeRegenerarMasDeSuMaximoImpuesto(){
+        // Paso un turno con la vida con escudo entera y no supera ese maximo, porque se acaba cuando la ataco
+        Ataque unAtaque = new Ataque(new DanioBasico(120));
 
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
+        Vida unaVida = new VidaConEscudo(100, 20);
 
-    }
+        unaVida.pasarTurno();
 
-    @Test
-    public void seDaniaTodoElEscudoYUnPocoDeLaVidaYElResultadoEsElEsperado(){
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(5, 0.10, 10);
-        vidaConEscudo.aplicarDanio(11);
-        int vidaEsperada = 4;
-
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
-    }
-
-    @Test
-    public void seDaniaTodoElEscudoYUnPocoDeLaVidaYSeRegeneraTodoElEscudoYlaVidaEsLaEsperada() {
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(20, 0.50, 60);
-        vidaConEscudo.aplicarDanio(70);
-        vidaConEscudo.accionDeTurno();
-        vidaConEscudo.accionDeTurno();
-        int vidaEsperada = 70;
-
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
-    }
-
-    @Test
-    public void seDaniaTodoElEscudoYUnPocoDeLaVidaYSeRegeneraUnPocoElEscudoYlaVidaEsLaEsperada() {
-        VidaConEscudo vidaConEscudo = new VidaConEscudo(20, 0.20, 60);
-        vidaConEscudo.aplicarDanio(70);
-        vidaConEscudo.accionDeTurno();
-        vidaConEscudo.accionDeTurno();
-        int vidaEsperada = 34;
-
-        assertEquals(vidaEsperada, vidaConEscudo.getVida());
+        assertThrows(ErrorVidaLlegoACero.class, () -> unaVida.aplicarAtaque(unAtaque));
     }
 }

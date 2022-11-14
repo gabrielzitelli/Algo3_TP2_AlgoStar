@@ -1,42 +1,42 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.Moho;
-import edu.fiuba.algo3.modelo.Tablero.Neutro;
-import edu.fiuba.algo3.modelo.Tablero.Tablero;
-import edu.fiuba.algo3.modelo.Tablero.VolcanGasVespeno;
-import edu.fiuba.algo3.modelo.excepciones.CasillaOcupada;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoCompatibleConEdificio;
+import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
+import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
+import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso16Test {
-
-
     @Test
-    public void Test1noSePuedeConstruirSobreUnVolcanConUnaEdificioEncima(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Neutro(), new Coordenadas(0,0));
+    public void test01NoPuedoConstruirSobreUnVolcanConUnaEdificacionPropiaYaExistente(){
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+        Coordenada coordenadasAsimilador = new Coordenada(2,0);
+        elMapa.colocarMaterial(new GasRecolectable(), coordenadasAsimilador);
 
-        Protoss protoss = new Protoss(tablero ,new Recurso(5000), new Recurso(0));
-        Edificio asimilador = protoss.construirAsimilador(new Coordenadas(0, 0));
+        Asimilador asimilador = new Asimilador(new Recurso(0));
+        elMapa.construirEdificio(asimilador, coordenadasAsimilador);
 
-        assertThrows(CasillaOcupada.class, () -> protoss.construirAsimilador(new Coordenadas(0, 0)));
+        Asimilador otroAsimilador = new Asimilador(new Recurso(0));
+        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class, () -> elMapa.construirEdificio(otroAsimilador, coordenadasAsimilador));
     }
-
     @Test
-    public void Test2noSePuedeConstruirSobreUnVolcanConUnaEdificioEncimaEnemigo(){
-        Tablero tablero = new Tablero(1, 1);
-        tablero.establecerRecurso(new VolcanGasVespeno(), new Coordenadas(0,0));
-        tablero.establecerTerreno(new Moho(), new Coordenadas(0,0));
+    public void test02NoPuedoConstruirSobreUnVolcanConUnaEdificacionEnemigaYaExistente(){
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+        Coordenada coordenadasAsimilador = new Coordenada(2,0);
+        elMapa.colocarMaterial(new GasRecolectable(), coordenadasAsimilador);
 
-        Zergs zergs = new Zergs(tablero, new Recurso(6000), new Recurso(0));
-        Zangano zangano = new Zangano(tablero, new Coordenadas(0,0), new Recurso());
-        Edificio extractor = zergs.construirExtractor(zangano);
+        Asimilador asimilador = new Asimilador(new Recurso(0));
+        elMapa.construirEdificio(asimilador, coordenadasAsimilador);
 
-        Protoss protoss = new Protoss(tablero ,new Recurso(5000), new Recurso(0));
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> protoss.construirAsimilador(new Coordenadas(0, 0)));
+        Extractor unExtractor = new Extractor(new Recurso(0));
+        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class, () -> elMapa.construirEdificio(unExtractor, coordenadasAsimilador));
     }
+    //TODO hacer los casos con el zangano y el nexoMineral
 }

@@ -1,35 +1,33 @@
 package edu.fiuba.algo3.modelo.vida;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
+
 public class VidaConEscudo implements Vida{
 
-    private int vidaPlana;
-    private double porcentajeDeRegeneracion;
+    private int cantidadVida;
+    private double porcentajeDeRegeneracion = 0.15; //supuesto
     private int cantidadEscudo;
     private int capacidadEscudo;
 
-    public VidaConEscudo(int vida, double porcentajeDeRegeneracion, int escudo){
-        this.vidaPlana = vida;
-        this.porcentajeDeRegeneracion = porcentajeDeRegeneracion;
-        this.cantidadEscudo = escudo;
-        this.capacidadEscudo = escudo;
-
+    public VidaConEscudo(int cantidadVida, int cantidadEscudo){
+        this.cantidadVida = cantidadVida;
+        this.cantidadEscudo = cantidadEscudo;
+        this.capacidadEscudo = cantidadEscudo;
     }
 
-    public int getVida(){
-        return (this.vidaPlana + this.cantidadEscudo);
-    }
-
-    public void aplicarDanio(int danioHecho){
-        int escudoDaniado = cantidadEscudo - danioHecho;
-        if( escudoDaniado < 0 ){
-            this.vidaPlana += escudoDaniado;
+    public void aplicarAtaque(Ataque unAtaque){
+        int cantidadEscudoRestante = unAtaque.aplicarAtaque(this.cantidadEscudo);
+        if(cantidadEscudoRestante <= 0){
+            this.cantidadVida += cantidadEscudoRestante;
             this.cantidadEscudo = 0;
-            return;
+        }else {
+            this.cantidadEscudo -= cantidadEscudoRestante;
         }
-        this.cantidadEscudo = escudoDaniado;
+        this.validarVidaLlegoACero();
     }
 
-    public void accionDeTurno(){
+    public void pasarTurno(){
         int escudoRegenerado = (int)(this.capacidadEscudo * this.porcentajeDeRegeneracion);
         if ((this.cantidadEscudo + escudoRegenerado) >= this.capacidadEscudo){
             this.cantidadEscudo = this.capacidadEscudo;
@@ -38,5 +36,9 @@ public class VidaConEscudo implements Vida{
         this.cantidadEscudo += escudoRegenerado;
     }
 
+    private void validarVidaLlegoACero(){
+        if(this.cantidadVida <= 0){
+            throw new ErrorVidaLlegoACero();
+        }
+    }
 }
-

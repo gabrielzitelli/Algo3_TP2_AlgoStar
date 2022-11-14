@@ -1,92 +1,68 @@
 package edu.fiuba.algo3.testVida;
 
+
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
+import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
+import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestVidaRegenerativa {
 
-    /*
     @Test
-    public void seCreaUnaVidaYTieneLaCantidadDeVidaEsperada(){
-        Vida vida = new Vida(10);
-        int vidaEsperada = 10;
+    public void test01PuedoCrearUnaVidaRegenerativa(){
+        Vida unaVida = new VidaRegenerativa(100);
 
-        assertEquals(vida.getVida(), vidaEsperada);
+        assertNotNull(unaVida);
     }
 
     @Test
-    public void seCreaUnaVidaSeLaDaniaYLaCantidadDeVidaEsLaEsperada(){
-        Vida vida = new Vida(10);
-        vida.aplicarDanio(5);
-        int vidaEsperada = 5;
+    public void test02CreoUnaVidaRegenerativaYLePuedoAplicarDanio(){
+        Ataque unAtaque = new Ataque(new DanioBasico(100));
 
-        assertEquals(vida.getVida(), vidaEsperada);
-    }
-    */
+        Vida unaVida = new VidaRegenerativa(200);
 
-    @Test
-    public void SeCreaUnaVidaRegenerativaYTieneLaCantidadDeVidaEsperada(){
-        VidaRegenerativa vidaRegenerativa = new VidaRegenerativa(15, 0.33);
-        int vidaEsperada = 15;
-
-        assertEquals(vidaEsperada, vidaRegenerativa.getVida());
+        assertDoesNotThrow(() -> unaVida.aplicarAtaque(unAtaque));
     }
 
     @Test
-    public void seCreaUnaVidaRegenerativaSeLaDaniaYLaCantidadDeVidaEsLaEsperada(){
-        VidaRegenerativa vidaRegenerativa = new VidaRegenerativa(15, 0.33);
-        vidaRegenerativa.aplicarDanio(5);
-        int vidaEsperada = 10;
+    public void test03CreoUnaVidaRegenerativaYLeAplicoUnAtaqueMayorIgualALaVida(){
+        // La vida se queda menor o igual que cero con un ataque igual a la vida
+        Ataque unAtaque = new Ataque(new DanioBasico(100));
 
-        assertEquals(vidaEsperada, vidaRegenerativa.getVida());
+        Vida unaVida = new VidaRegenerativa(100);
+
+        assertThrows(ErrorVidaLlegoACero.class, () -> unaVida.aplicarAtaque(unAtaque));
     }
 
     @Test
-    public void seCreaUnaVidaRegenerativaSeLaDaniaYSePasanLaCantidadDeTurnosSuficientesParaQueSeLlene(){
-        VidaRegenerativa vidaRegenerativa = new VidaRegenerativa(20, 0.10);
-        vidaRegenerativa.aplicarDanio(4);
-        vidaRegenerativa.accionDeTurno();
-        vidaRegenerativa.accionDeTurno();
-        int vidaEsperada = 20;
+    public void test04CreoUnaVidaRegenerativaYComprueboQueEstaSeRegenera(){
+        // Primero le hago 100 de daño y deberia quedarle 20 de vida, pero como paso de turno se regenera y le queda mas que eso
+        Ataque unAtaque = new Ataque(new DanioBasico(100));
+        Ataque unAtaqueDebil = new Ataque(new DanioBasico(20));
 
-        assertEquals(vidaEsperada, vidaRegenerativa.getVida());
+        Vida unaVida = new VidaRegenerativa(120);
+
+        unaVida.aplicarAtaque(unAtaque);
+        unaVida.pasarTurno();
+
+        assertDoesNotThrow(() -> unaVida.aplicarAtaque(unAtaqueDebil));
 
     }
 
     @Test
-    public void seRegeneraUnaVidaRegenerativaMuchasMasVecesDeLaNecesariaYSuVidaNoSuperaLaMaxima(){
-        VidaRegenerativa vidaRegenerativa = new VidaRegenerativa(20, 0.50);
-        vidaRegenerativa.aplicarDanio(4);
-        vidaRegenerativa.accionDeTurno();
-        vidaRegenerativa.accionDeTurno();
-        int vidaEsperada = 20;
+    public void test05UnaVidaNoSePuedeRegenerarMasDeSuMaximoImpuesto(){
+        // Paso un turno con la vida regenerativa entera y no supera ese maximo, porque se acaba cuando la ataco
+        Ataque unAtaque = new Ataque(new DanioBasico(100));
 
-        assertEquals(vidaEsperada, vidaRegenerativa.getVida());
+        Vida unaVida = new VidaRegenerativa(100);
 
-    }
+        unaVida.pasarTurno();
 
-    @Test
-    public void seRegeneraUnPocoLaVidaYElResultadoEsElEsperado(){
-        VidaRegenerativa vidaRegenerativa = new VidaRegenerativa(10, 0.10);
-        vidaRegenerativa.aplicarDanio(7);
-        vidaRegenerativa.accionDeTurno();
-        vidaRegenerativa.accionDeTurno();
-        int vidaEsperada = 5;
-
-        assertEquals(vidaEsperada, vidaRegenerativa.getVida());
-
-    }
-
-    @Test
-    public void seRegeneraLaVidaConNumerosImparesEIgualSeLlegaALoEsperado(){
-        VidaRegenerativa vidaRegenerativa = new VidaRegenerativa(15, 0.10);
-        vidaRegenerativa.aplicarDanio(4);
-        vidaRegenerativa.accionDeTurno();
-        int vidaEsperada = 12;
-
-        assertEquals(vidaEsperada, vidaRegenerativa.getVida());
-
+        assertThrows(ErrorVidaLlegoACero.class, () -> unaVida.aplicarAtaque(unAtaque));
     }
 
 }

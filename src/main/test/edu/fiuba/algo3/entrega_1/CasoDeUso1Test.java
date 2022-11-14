@@ -1,109 +1,82 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.Moho;
-import edu.fiuba.algo3.modelo.Tablero.SinRecurso;
-
-import edu.fiuba.algo3.modelo.Tablero.Tablero;
-import edu.fiuba.algo3.modelo.excepciones.CriaderoSinLarvas;
+import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
+import edu.fiuba.algo3.modelo.EdificioZerg.FabricaZangano;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeUso1Test {
-    Tablero tablero = new Tablero(1, 1);
-    NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-    Zergs zergs = new Zergs(tablero,new Recurso(), new Recurso());
-    Coordenadas origen = new Coordenadas(0,0);
 
     @Test
-    public void test01CreoUnCriaderoYPuedoEgendrar3ZanganosPeroNoCuatroEnUnTurno(){
+    public void test01ConsumoUnaLarvaYLuegoVuelvoATenerLasTres(){
+        Criadero unCriadero = new Criadero();
 
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+        //Construyo el edificio
+        for(int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
 
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+        // Consumo una larva
+        unCriadero.crearUnidad(new FabricaZangano());
 
-        //Tengo 3 larvas inicialmente, gasto las 3
-        criadero.criarZangano();
-        criadero.criarZangano();
-        criadero.criarZangano();
+        // Paso un turno para tener 3 larvas de nuevo
+        unCriadero.pasarTurno();
 
-        //Lanza una excepción cuando intento criar otra larva
-        assertThrows(CriaderoSinLarvas.class, () -> criadero.criarZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
+
+        // Al consumir la tercera larva no me tira error
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+
     }
 
     @Test
-    public void test02DespuesDeGastarTodasLasLarvasDeUnCriaderoEsperoUnTurnoYPuedoCriarOtroMas() {
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+    public void test02ConsumoDosLarvasYLuegoVuelvoATenerLasTres(){
+        Criadero unCriadero = new Criadero();
 
-        //Tengo 3 larvas inicialmente, gasto las 3
-        criadero.criarZangano();
-        criadero.criarZangano();
-        criadero.criarZangano();
+        //Construyo el edificio
+        for(int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
 
-        //Pasa un turno, se regenera una larva
-        criadero.accionDeTurno();
+        // Consumo dos larvas
+        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
 
-        //puedo obtener un zangano nuevamente
-        criadero.criarZangano();
+        // Paso dos turnos para tener 3 larvas de nuevo
+        unCriadero.pasarTurno();
+        unCriadero.pasarTurno();
 
-        //Lanza una excepción cuando intento criar otro Zangano
-        assertThrows(CriaderoSinLarvas.class, () -> criadero.criarZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
+
+        // Al consumir la tercera larva no me tira error
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+
     }
 
     @Test
-    public void test03DespuesDeGastar3LarvasDeUnCriaderoDeboEsperar3TurnosParaPoderGastar3Devuelta() {
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+    public void test03ConsumoTresLarvasYLuegoVuelvoATenerLasTres(){
+        Criadero unCriadero = new Criadero();
 
-        //Tengo 3 larvas inicialmente, gasto las 3
-        criadero.criarZangano();
-        criadero.criarZangano();
-        criadero.criarZangano();
+        //Construyo el edificio
+        for(int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
 
-        //Pasan 3 turnos
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+        // Consumo tres larvas
+        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
 
-        //Puedo obtener 3 zanganos nuevamente, me gasto nuevamente 3 larvas
-        criadero.criarZangano();
-        criadero.criarZangano();
-        criadero.criarZangano();
+        // Paso tres turnos para tener 3 larvas de nuevo
+        unCriadero.pasarTurno();
+        unCriadero.pasarTurno();
+        unCriadero.pasarTurno();
 
-        //Lanza una excepción cuando intento criar otro Zangano
-        assertThrows(CriaderoSinLarvas.class, () -> criadero.criarZangano());
-    }
+        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricaZangano());
 
-    @Test
-    public void test04CreoUnCriaderoYPuedoEgendrar1ZanganoYElTurnoSiguientePuedoEngendrar3(){
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+        // Al consumir la tercera larva no me tira error
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
 
-        //Tengo 3 larvas inicialmente y crio 1 zangano
-        criadero.criarZangano();
-
-        //Pasa un turno y ahora puedo crear 3 Zanganos
-        criadero.accionDeTurno();
-
-        criadero.criarZangano();
-        criadero.criarZangano();
-        criadero.criarZangano();
-
-        //Lanza una excepción cuando intento criar otro zangano
-        assertThrows(CriaderoSinLarvas.class, () -> criadero.criarZangano());
     }
 }
-

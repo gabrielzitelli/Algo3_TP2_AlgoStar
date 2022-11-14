@@ -1,470 +1,301 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.*;
-import edu.fiuba.algo3.modelo.excepciones.*;
+import edu.fiuba.algo3.modelo.EdificioProtoss.*;
+import edu.fiuba.algo3.modelo.EdificioZerg.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class CasoDeUso2Test {
 
-    Tablero tablero = new Tablero(5, 5);
-    Zergs zergs = new Zergs(tablero, new Recurso(3000), new Recurso(3000));
-    Protoss protoss = new Protoss(tablero, new Recurso(3000), new Recurso(3000));
-    Coordenadas origen = new Coordenadas(0,0);
-
-    // Testeo Construcciones Zerg
-
     @Test
-    public void Test1ConstruyoUnCriaderoEIntentoUsarloSinQuePasenTurnosParaConstruirse() {
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
+    public void test01UnCriaderoNoEstaConstruidoEn3Turnos() {
+        Criadero unCriadero = new Criadero();
+        int turnosAPasar = 3;
 
-        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
+        for (int i = 0; i < turnosAPasar; i++) {
+            unCriadero.pasarTurno();
+        }
+
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unCriadero.crearUnidad(new FabricaZangano()));
     }
 
     @Test
-    public void Test2ConstruyoUnCriaderoEIntentoUsarloLuegoDeUnTurno() {
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
-        criadero.accionDeTurno();
-        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
+    public void test02UnCriaderoEstaConstruidoEn4Turnos() {
+        Criadero unCriadero = new Criadero();
+        int turnosAPasar = 4;
 
+        for (int i = 0; i < turnosAPasar; i++) {
+            unCriadero.pasarTurno();
+        }
+
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZangano()));
     }
 
     @Test
-    public void Test3ConstruyoUnCriaderoEIntentoUsarloLuegoDeDosTurnos() {
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
+    public void test03UnExtractorNoEstaConstruidoEn5Turnos() {
+        Recurso gasDelImperio = new Recurso(0);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
+        int turnosAPasar = 5;
 
-    }
+        for (int i = 0; i < turnosAPasar; i++) {
+            unExtractor.pasarTurno();
+        }
 
-
-    @Test
-    public void Test4ConstruyoUnCriaderoEIntentoUsarloLuegoDeTresTurnos() {
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
-
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        assertThrows(EdificioEnConstruccion.class, () -> criadero.criarZangano());
-
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unExtractor.extraer());
     }
 
     @Test
-    public void Test5ConstruyoUnCriaderoEIntentoUsarloLuegoDeCuatroTurnosCuandoYaSeConstruyo() {
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Criadero criadero = new Criadero(tablero, nodo, origen, zergs);
+    public void test04UnExtractorEstaConstruidoEn6Turnos() {
+        Recurso gasDelImperio = new Recurso(0);
+        Extractor unExtractor = new Extractor(gasDelImperio);
 
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
-        criadero.accionDeTurno();
+        int turnosAPasar = 6;
 
-        assertDoesNotThrow(() -> criadero.criarZangano());
+        for (int i = 0; i < turnosAPasar; i++) {
+            unExtractor.pasarTurno();
+        }
 
+        assertDoesNotThrow(() -> unExtractor.contratarZangano(new Zangano()));
     }
 
     @Test
-    public void Test6ConstruyoUnExtractorYNoPuedoUsarlo(){
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        tablero.establecerRecurso(new VolcanGasVespeno(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
+    public void test05UnaReservaDeReproduccionNoEstaConstruidaEn11Turnos(){
+        ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+        int turnosAPasar = 11;
 
-        Edificio extractor = zergs.construirExtractor(zangano);
+        for(int i = 0; i < turnosAPasar; i++) {
+            unaReserva.pasarTurno();
+        }
 
-        assertThrows(EdificioEnConstruccion.class, () -> extractor.estaActiva());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unaReserva.crearFabricaZerling());
+    }
+
+     @Test
+     public void test06UnaReservaDeReproduccionEstaConstruidaEn12Turnos() {
+        ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+        int turnosAPasar = 12;
+
+        for (int i = 0; i < turnosAPasar; i++) {
+            unaReserva.pasarTurno();
+        }
+
+        assertDoesNotThrow(() -> unaReserva.crearFabricaZerling());
+     }
+
+    @Test
+    public void test07UnaGuaridaNoEstaConstruidaEn11Turnos(){
+        Guarida unaGuarida = new Guarida();
+        int turnosAPasar = 11;
+
+        for(int i = 0; i < turnosAPasar; i++) {
+            unaGuarida.pasarTurno();
+        }
+
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unaGuarida.crearFabricaHidralisco());
     }
 
     @Test
-    public void Test7ConstruyoUnExtractorYNoPuedoUsarloFaltaUnTurno(){
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        tablero.establecerRecurso(new VolcanGasVespeno(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
+    public void test08UnaGuaridaEstaConstruidaEn12Turnos() {
+        Guarida unaGuarida = new Guarida();
+        int turnosAPasar = 12;
 
-        Edificio extractor = zergs.construirExtractor(zangano);
+        for (int i = 0; i < turnosAPasar; i++) {
+            unaGuarida.pasarTurno();
+        }
 
-        for(int i = 0; i < 5; i++)
-            extractor.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> extractor.estaActiva());
+        assertDoesNotThrow(() -> unaGuarida.crearFabricaHidralisco());
     }
 
     @Test
-    public void Test8ConstruyoUnExtractorYPuedoUsarloEnElTurnoCorrecto(){
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        tablero.establecerRecurso(new VolcanGasVespeno(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
+    public void test09UnEspiralNoEstaConstruidoEn9Turnos() {
+        Espiral unEspiral = new Espiral();
+        int turnosAPasar = 9;
 
-        Edificio extractor = zergs.construirExtractor(zangano);
+        for (int i = 0; i < turnosAPasar; i++) {
+            unEspiral.pasarTurno();
+        }
 
-        for(int i = 0; i < 6; i++)
-            extractor.accionDeTurno();
-
-        assertDoesNotThrow(() -> extractor.estaActiva());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unEspiral.crearFabricaMutalisco());
     }
 
     @Test
-    public void Test9ConstruyoUnaReservaDeProduccionYNoPuedoUsarlo(){
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
+    public void test10UnEspiralEstaConstruidoEn10Turnos() {
+        Espiral unEspiral = new Espiral();
+        int turnosAPasar = 10;
 
-        Edificio reserva = zergs.construirReservaDeReproduccion(zangano);
+        for (int i = 0; i < turnosAPasar; i++) {
+            unEspiral.pasarTurno();
+        }
 
-        assertThrows(EdificioEnConstruccion.class, () -> reserva.estaActiva());
+        assertDoesNotThrow(() -> unEspiral.crearFabricaMutalisco());
     }
 
     @Test
-    public void Test10ConstruyoUnaReservaDeProduccionYNoPuedoUsarloFaltaUnTurno(){
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
+    public void test11UnNexoMineralNoEstaConstruidoEn3Turnos() {
+        Recurso mineralesDelImperio = new Recurso(0);
+        NexoMineral unNexoMineral = new NexoMineral(mineralesDelImperio);
+        int turnosAPasar = 3;
 
-        Edificio reserva = zergs.construirReservaDeReproduccion(zangano);
+        for (int i = 0; i < turnosAPasar; i++) {
+            unNexoMineral.pasarTurno();
+        }
 
-        for(int i = 0; i < 11; i++)
-            reserva.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> reserva.estaActiva());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unNexoMineral.extraer());
     }
 
     @Test
-    public void Test11ConstruyoUnExtractorYPuedoUsarloEnElTurnoCorrecto(){
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
+    public void test12UnNexoMineralEstaConstruidoEn4Turnos() {
+        Coordenada coordenada = new Coordenada(0,0);
 
-        Edificio reserva = zergs.construirReservaDeReproduccion(zangano);
+        Recurso mineralesDelImperio = new Recurso(0);
+        NexoMineral unNexoMineral = new NexoMineral(mineralesDelImperio);
+        int turnosAPasar = 4;
 
-        for(int i = 0; i < 12; i++)
-            reserva.accionDeTurno();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+        elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
+        elMapa.construirEdificio(unNexoMineral, coordenada);
 
-        assertDoesNotThrow(() -> reserva.estaActiva());
+        for (int i = 0; i < turnosAPasar; i++) {
+            unNexoMineral.pasarTurno();
+        }
+
+        assertDoesNotThrow(() -> unNexoMineral.extraer());
     }
 
     @Test
-    public void Test12ConstruyoUnaGuaridaYNoPuedoUsarlo(){
-        Coordenadas coordenadasReserva = new Coordenadas(2,2);
+    public void test13UnPilonNoEstaConstruidoEn4TUrnos() {
+        Mapa elmapa = Mapa.obtener();
+        elmapa.reiniciarMapa();
 
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        Zangano zanganoReserva = new Zangano(tablero, coordenadasReserva, new Recurso());
+        Coordenada coordenadasPilon = new Coordenada(2,2);
+        Pilon unpilon = new Pilon();
+        elmapa.construirEdificio(unpilon, coordenadasPilon);
 
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasReserva);
-        tablero.establecerTerreno(new Moho(), coordenadasReserva);
+        Acceso unAcceso = new Acceso();
+        Coordenada coordenadaAcceso = new Coordenada(2,3);
 
-        zergs.construirReservaDeReproduccion(zanganoReserva);
-        Edificio guarida = zergs.construirGuarida(zangano);
+        int turnosAPasar = 4;
 
-        assertThrows(EdificioEnConstruccion.class, () -> guarida.estaActiva());
+        for (int i = 0; i < turnosAPasar; i++) {
+            unpilon.pasarTurno();
+        }
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elmapa.construirEdificio(unAcceso, coordenadaAcceso));
     }
 
     @Test
-    public void Test13ConstruyoUnaGuaridaYNoPuedoUsarloFaltaUnTurno(){
-        Coordenadas coordenadasReserva = new Coordenadas(2,2);
+    public void test14UnPilonEstaConstruidoEn5TUrnos() {
+        Mapa elmapa = Mapa.obtener();
+        elmapa.reiniciarMapa();
 
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        Zangano zanganoReserva = new Zangano(tablero, coordenadasReserva, new Recurso());
+        Coordenada coordenadasPilon = new Coordenada(2,2);
+        Pilon unpilon = new Pilon();
+        elmapa.construirEdificio(unpilon, coordenadasPilon);
 
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasReserva);
-        tablero.establecerTerreno(new Moho(), coordenadasReserva);
+        Acceso unAcceso = new Acceso();
+        Coordenada coordenadaAcceso = new Coordenada(2,3);
 
-        zergs.construirReservaDeReproduccion(zanganoReserva);
-        Edificio guarida = zergs.construirGuarida(zangano);
+        int turnosAPasar = 5;
 
-        for(int i = 0; i < 11; i++)
-            guarida.accionDeTurno();
+        for (int i = 0; i < turnosAPasar; i++) {
+            unpilon.pasarTurno();
+        }
 
-        assertThrows(EdificioEnConstruccion.class, () -> guarida.estaActiva());
+        assertDoesNotThrow(() -> elmapa.construirEdificio(unAcceso, coordenadaAcceso));
     }
 
     @Test
-    public void Test14ConstruyoUnaGuaridaEnElTurnoCorrecto(){
-        Coordenadas coordenadasReserva = new Coordenadas(2,2);
+    public void test15UnAsimiladorNoEstaConstruidoEn5Turnos() {
+        Recurso gasDelImperio = new Recurso(0);
+        Asimilador unAsimilador = new Asimilador(gasDelImperio);
 
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        Zangano zanganoReserva = new Zangano(tablero, coordenadasReserva, new Recurso());
+        int turnosAPasar = 5;
 
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasReserva);
-        tablero.establecerTerreno(new Moho(), coordenadasReserva);
+        for (int i = 0; i < turnosAPasar; i++) {
+            unAsimilador.pasarTurno();
+        }
 
-        zergs.construirReservaDeReproduccion(zanganoReserva);
-        Edificio guarida = zergs.construirGuarida(zangano);
-
-        for(int i = 0; i < 12; i++)
-            guarida.accionDeTurno();
-
-        assertDoesNotThrow(() -> guarida.estaActiva());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAsimilador.extraer());
     }
 
     @Test
-    public void Test15ConstruyoUnaGuaridaYNoPuedoUsarlo(){
-        Coordenadas coordenadasGuarida = new Coordenadas(1,1);
-        Coordenadas coordenadasReserva = new Coordenadas(2,2);
+    public void test16UnAsimiladorEstaConstruidoEn6Turnos() {
+        Coordenada coordenada = new Coordenada(0,0);
 
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        Zangano zanganoGuarida = new Zangano(tablero, coordenadasGuarida, new Recurso());
-        Zangano zanganoReserva = new Zangano(tablero, coordenadasReserva, new Recurso());
+        Recurso gasDelImperio = new Recurso(0);
+        Asimilador unAsimilador = new Asimilador(gasDelImperio);
+        int turnosAPasar = 6;
 
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasGuarida);
-        tablero.establecerTerreno(new Moho(), coordenadasGuarida);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasReserva);
-        tablero.establecerTerreno(new Moho(), coordenadasReserva);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+        elMapa.construirEdificio(unAsimilador, coordenada);
 
-        zergs.construirReservaDeReproduccion(zanganoReserva);
-        zergs.construirGuarida(zanganoGuarida);
-        Edificio espiral = zergs.construirEspiral(zangano);
-        assertThrows(EdificioEnConstruccion.class, () -> espiral.estaActiva());
+        for (int i = 0; i < turnosAPasar; i++) {
+            unAsimilador.pasarTurno();
+        }
+
+        assertDoesNotThrow(() -> unAsimilador.extraer());
     }
 
     @Test
-    public void Test16ConstruyoUnaGuaridaYNoPuedoUsarloFaltaUnTurno(){
-        Coordenadas coordenadasGuarida = new Coordenadas(1,1);
-        Coordenadas coordenadasReserva = new Coordenadas(2,2);
+    public void test17UnAccesoNoEstaConstruidoEn7Turnos() {
+        Acceso unAcceso = new Acceso();
+        int turnosAPasar = 7;
 
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        Zangano zanganoGuarida = new Zangano(tablero, coordenadasGuarida, new Recurso());
-        Zangano zanganoReserva = new Zangano(tablero, coordenadasReserva, new Recurso());
+        for (int i = 0; i < turnosAPasar; i++) {
+            unAcceso.pasarTurno();
+        }
 
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasGuarida);
-        tablero.establecerTerreno(new Moho(), coordenadasGuarida);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasReserva);
-        tablero.establecerTerreno(new Moho(), coordenadasReserva);
-
-        zergs.construirReservaDeReproduccion(zanganoReserva);
-        zergs.construirGuarida(zanganoGuarida);
-        Edificio espiral = zergs.construirEspiral(zangano);
-
-        for(int i = 0; i < 9; i++)
-            espiral.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> espiral.estaActiva());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearFabricaDragon());
     }
 
     @Test
-    public void Test17ConstruyoUnaGuaridaEnElTurnoCorrecto(){
-        Coordenadas coordenadasGuarida = new Coordenadas(1,1);
-        Coordenadas coordenadasReserva = new Coordenadas(2,2);
+    public void test18UnAccesoEstaConstruidoEn8Turnos() {
+        Acceso unAcceso = new Acceso();
+        int turnosAPasar = 8;
 
-        Zangano zangano = new Zangano(tablero, origen, new Recurso());
-        Zangano zanganoGuarida = new Zangano(tablero, coordenadasGuarida, new Recurso());
-        Zangano zanganoReserva = new Zangano(tablero, coordenadasReserva, new Recurso());
+        for (int i = 0; i < turnosAPasar; i++) {
+            unAcceso.pasarTurno();
+        }
 
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Moho(), origen);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasGuarida);
-        tablero.establecerTerreno(new Moho(), coordenadasGuarida);
-        tablero.establecerRecurso(new SinRecurso(), coordenadasReserva);
-        tablero.establecerTerreno(new Moho(), coordenadasReserva);
-
-        zergs.construirReservaDeReproduccion(zanganoReserva);
-        zergs.construirGuarida(zanganoGuarida);
-        Edificio espiral = zergs.construirEspiral(zangano);
-
-        for(int i = 0; i < 10; i++)
-            espiral.accionDeTurno();
-
-        assertDoesNotThrow(() -> espiral.estaActiva());
-    }
-
-    // Testeo Construcciones Protoss
-
-    @Test
-    public void Test18ConstruyoUnNexoMineralYNoPuedoUsarlo(){
-        tablero.establecerRecurso(new NodoMineral(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
-
-        Edificio nexoMineral = protoss.construirNexoMineral(origen);
-
-        assertThrows(EdificioEnConstruccion.class, () -> nexoMineral.estaActiva());
+        assertDoesNotThrow(() -> unAcceso.crearFabricaDragon());
     }
 
     @Test
-    public void Test19ConstruyoUnNexoMineralYNoPuedoUsarloFaltaUnTurno(){
-        tablero.establecerRecurso(new NodoMineral(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
+    public void test19UnPuertoEstelarNoEstaConstruidoEn9Turnos() {
+        PuertoEstelar unPuertoEstelar = new PuertoEstelar();
+        int turnosAPasar = 9;
 
-        Edificio nexoMineral = protoss.construirNexoMineral(origen);
+        for (int i = 0; i < turnosAPasar; i++) {
+            unPuertoEstelar.pasarTurno();
+        }
 
-        for(int i = 0; i < 3; i++)
-            nexoMineral.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> nexoMineral.estaActiva());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unPuertoEstelar.crearFabricaScout());
     }
 
     @Test
-    public void Test20ConstruyoUnNexoMineralEnElTurnoCorrecto(){
-        tablero.establecerRecurso(new NodoMineral(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
+    public void test20UnPuertoEstelarEstaConstruidoEn10Turnos() {
+        PuertoEstelar unPuertoEstelar = new PuertoEstelar();
+        int turnosAPasar = 10;
 
-        Edificio nexoMineral = protoss.construirNexoMineral(origen);
+        for (int i = 0; i < turnosAPasar; i++) {
+            unPuertoEstelar.pasarTurno();
+        }
 
-        for(int i = 0; i < 4; i++)
-            nexoMineral.accionDeTurno();
-
-        assertDoesNotThrow(() -> nexoMineral.estaActiva());
-    }
-
-    @Test
-    public void Test21ConstruyoUnPilonYNoPuedoUsarlo(){
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
-
-        Edificio pilon = protoss.construirPilon(origen);
-
-        assertThrows(EdificioEnConstruccion.class, () -> pilon.estaActiva());
-    }
-
-    @Test
-    public void Test22ConstruyoUnPilonYNoPuedoUsarloFaltaUnTurno(){
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
-
-        Edificio pilon = protoss.construirPilon(origen);
-
-        for(int i = 0; i < 4; i++)
-            pilon.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> pilon.estaActiva());
-    }
-
-    @Test
-    public void Test23ConstruyoUnPilonEnElTurnoCorrecto(){
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
-
-        Edificio pilon = protoss.construirPilon(origen);
-
-        for(int i = 0; i < 5; i++)
-            pilon.accionDeTurno();
-
-        assertDoesNotThrow(() -> pilon.estaActiva());
-    }
-
-    @Test
-    public void Test24ConstruyoUnAsimiladorYNoPuedoUsarlo(){
-        tablero.establecerRecurso(new VolcanGasVespeno(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
-
-        Edificio asimilador = protoss.construirAsimilador(origen);
-
-        assertThrows(EdificioEnConstruccion.class, () -> asimilador.estaActiva());
-    }
-
-    @Test
-    public void Test25ConstruyoUnAsimiladorYNoPuedoUsarloFaltaUnTurno(){
-        tablero.establecerRecurso(new VolcanGasVespeno(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
-
-        Edificio asimilador = protoss.construirAsimilador(origen);
-
-        for(int i = 0; i < 5; i++)
-            asimilador.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> asimilador.estaActiva());
-    }
-
-    @Test
-    public void Test26ConstruyoUnAsimiladorEnElTurnoCorrecto(){
-        tablero.establecerRecurso(new VolcanGasVespeno(), origen);
-        tablero.establecerTerreno(new Neutro(), origen);
-
-        Edificio asimilador = protoss.construirAsimilador(origen);
-
-        for(int i = 0; i < 6; i++)
-            asimilador.accionDeTurno();
-
-        assertDoesNotThrow(() -> asimilador.estaActiva());
-    }
-
-    @Test
-    public void Test27ConstruyoUnAccesoYNoPuedoUsarlo(){
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Energia(), origen);
-
-        Edificio acceso = protoss.construirAcceso(origen);
-
-        assertThrows(EdificioEnConstruccion.class, () -> acceso.estaActiva());
-    }
-
-    @Test
-    public void Test28ConstruyoUnAccesoYNoPuedoUsarloFaltaUnTurno(){
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Energia(), origen);
-
-        Edificio acceso = protoss.construirAcceso(origen);
-
-        for(int i = 0; i < 7; i++)
-            acceso.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> acceso.estaActiva());
-    }
-
-    @Test
-    public void Test29ConstruyoUnAccesoEnElTurnoCorrecto(){
-        tablero.establecerRecurso(new SinRecurso(), origen);
-        tablero.establecerTerreno(new Energia(), origen);
-
-        Edificio acceso = protoss.construirAcceso(origen);
-
-        for(int i = 0; i < 8; i++)
-            acceso.accionDeTurno();
-
-        assertDoesNotThrow(() -> acceso.estaActiva());
-    }
-
-    @Test
-    public void Test30ConstruyoUnPuertoEstelarYNoPuedoUsarlo(){
-        tablero.establecerTerreno(new Energia(),new Coordenadas(1,1));
-        tablero.establecerTerreno(new Energia(),origen);
-
-        protoss.construirAcceso(origen);
-
-        Edificio puertoEstelar = protoss.construirPuertoEstelar(new Coordenadas(1,1));
-
-        assertThrows(EdificioEnConstruccion.class, () -> puertoEstelar.estaActiva());
-    }
-
-    @Test
-    public void Test31ConstruyoUnPuertoEstelarYNoPuedoUsarloFaltaUnTurno(){
-        tablero.establecerTerreno(new Energia(),new Coordenadas(1,1));
-        tablero.establecerTerreno(new Energia(),origen);
-
-        protoss.construirAcceso(origen);
-        Edificio puertoEstelar = protoss.construirPuertoEstelar(new Coordenadas(1,1));
-
-        for(int i = 0; i < 9; i++)
-            puertoEstelar.accionDeTurno();
-
-        assertThrows(EdificioEnConstruccion.class, () -> puertoEstelar.estaActiva());
-    }
-
-    @Test
-    public void Test32ConstruyoUnPuertoEstelarEnElTurnoCorrecto(){
-        tablero.establecerTerreno(new Energia(),new Coordenadas(1,1));
-        tablero.establecerTerreno(new Energia(),origen);
-
-        protoss.construirAcceso(origen);
-        Edificio puertoEstelar = protoss.construirPuertoEstelar(new Coordenadas(1,1));
-
-        for(int i = 0; i < 10; i++)
-            puertoEstelar.accionDeTurno();
-
-        assertDoesNotThrow(() -> puertoEstelar.estaActiva());
+        assertDoesNotThrow(() -> unPuertoEstelar.crearFabricaScout());
     }
 }

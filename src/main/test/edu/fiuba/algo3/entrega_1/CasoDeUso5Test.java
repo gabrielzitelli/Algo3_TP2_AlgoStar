@@ -1,65 +1,79 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.*;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoCompatibleConEdificio;
+import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
+import edu.fiuba.algo3.modelo.EdificioProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.EdificioZerg.Espiral;
+import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
+import edu.fiuba.algo3.modelo.EdificioZerg.Guarida;
+import edu.fiuba.algo3.modelo.EdificioZerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
 public class CasoDeUso5Test {
-    @Test
-    public void IntentarConstruirExtractorEnLugarSinMohoLanzaExcepcion() {
-        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new VolcanGasVespeno());
-        Edificio extractor = new Extractor(nodoCompatible, new Recurso());
-        Nodo nodo = new Nodo(new Neutro(), new VolcanGasVespeno());
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(extractor) );
+    @Test
+    public void test01IntentarConstruirExtractorEnLugarSinMohoLanzaExcepcion() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso gasDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
     }
 
     @Test
-    public void IntentarConstruirReservaDeReproduccionEnLugarSinMohoLanzaExcepcion() {
-        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Edificio reserva = new ReservaDeReproduccion(nodoCompatible);
-        Nodo nodo = new Nodo(new Neutro(), new SinRecurso());
+    public void test02IntentarConstruirReservaDeReproduccionEnLugarSinMohoLanzaExcepcion() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(reserva) );
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
     }
 
     @Test
-    public void IntentarConstruirGuaridaEnLugarSinMohoLanzaExcepcion() {
-        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Edificio guarida = new Guarida(nodoCompatible);
-        Nodo nodo = new Nodo(new Neutro(), new SinRecurso());
+    public void test03IntentarConstruirGuaridaEnLugarSinMohoLanzaExcepcion() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(guarida) );
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Guarida(), coordenada));
     }
 
     @Test
-    public void IntentarConstruirEspiralEnLugarSinMohoLanzaExcepcion() {
-        NodoCompatible nodoCompatible = new NodoCompatible(new Moho(), new SinRecurso());
-        Edificio espiral = new Espiral(nodoCompatible);
-        Nodo nodo = new Nodo(new Neutro(), new SinRecurso());
+    public void test04IntentarConstruirEspiralEnLugarSinMohoLanzaExcepcion() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(espiral) );
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Espiral(), coordenada));
     }
 
     @Test
-    public void IntentarConstruirAccesoFueraDelRangoDeUnPilonLanzaExcepcion() {
-        NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
-        Edificio acceso = new Acceso(nodoCompatible, new Coordenadas(0,0));
-        Nodo nodo = new Nodo();
+    public void test05IntentarConstruirAccesoFueraDelRangoDeUnPilonLanzaExcepcion() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(acceso));
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Acceso(), coordenada));
     }
 
     @Test
-    public void IntentarConstruirPuertoEstelarFueraDelRangoDeUnPilonLanzaExcepcion() {
-        NodoCompatible nodoCompatible = new NodoCompatible(new Energia(), new SinRecurso());
-        Edificio acceso = new Acceso(nodoCompatible, new Coordenadas(0,0));
-        Nodo nodo = new Nodo();
+    public void test06IntentarConstruirPuertoEstelarFueraDelRangoDeUnPilonLanzaExcepcion() {
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> nodo.construir(acceso));
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenada));
     }
 }

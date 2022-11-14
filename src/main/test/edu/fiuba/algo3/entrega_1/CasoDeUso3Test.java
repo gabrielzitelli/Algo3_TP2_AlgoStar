@@ -1,8 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tablero.*;
-import edu.fiuba.algo3.modelo.excepciones.TerrenoNoCompatibleConEdificio;
+import edu.fiuba.algo3.modelo.EdificioProtoss.*;
+import edu.fiuba.algo3.modelo.EdificioZerg.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -11,146 +16,183 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CasoDeUso3Test {
 
     @Test
-    public void test01IntentoConstruirUnCriaderoEnUnVolcanYLanzaExcepcion() {
-        Tablero tablero = new Tablero(10, 10);
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
-        Zergs zergs = new Zergs(tablero,new Recurso(), new Recurso());
+    public void test01PuedoConstruirUnExtractorDondeHayVolcanDeGas(){
+        // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
+        // construir el extractor
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso gasDelImperio = new Recurso(0);
+        Coordenada coordenadaCriadero = new Coordenada(0,1);
+        Criadero criadero = new Criadero();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Moho(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Edificio criadero = new Criadero(tablero, nodo, new Coordenadas(0,0), zergs);
+        elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(criadero, coordenadas));
+        for (int i = 0; i < 5; i++)
+            criadero.pasarTurno();
+
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+
+        assertDoesNotThrow(() -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
     }
 
     @Test
-    public void test02IntentoConstruirUnaReservaDeProducccionEnUnVolcanYLanzaExcepcion() {
-        Tablero tablero = new Tablero(10, 10);
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
+    public void test02PuedoConstruirUnAsimiladorDondeHayVolcanDeGas(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso gasDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Moho(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
-        Edificio reserva = new ReservaDeReproduccion(nodo);
-
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(reserva, coordenadas));
+        assertDoesNotThrow(() -> elMapa.construirEdificio(new Asimilador(gasDelImperio), coordenada));
     }
 
     @Test
-    public void test03IntentoConstruirUnaGuaridaEnUnVolcanYLanzaExcepcion() {
-        Tablero tablero = new Tablero(10, 10);
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
+    public void test03NoPuedoConstruirUnCriaderoDondeHayVolcanDeGas(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Moho(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
-        Edificio guarida = new Guarida(nodo);
-
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(guarida, coordenadas));
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Criadero(), coordenada));
     }
 
     @Test
-    public void test04IntentoConstruirUnEspiralEnUnVolcanYLanzaExcepcion() {
-        Tablero tablero = new Tablero(10, 10);
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new SinRecurso());
+    public void test04NoPuedoConstruirPilonDondeHayUnVolcanDeGas(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Moho(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
-        Edificio espiral = new Espiral(nodo);
-
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(espiral, coordenadas));
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Pilon(), coordenada));
     }
 
     @Test
-    public void test05IntentoConstruirUnNexoMineralEnUnVolcanYLanzaExcepcion() {
-        NodoCompatible nodo = new NodoCompatible(new Energia(), new SinRecurso());
-        Tablero tablero = new Tablero(10, 10);
+    public void test05NoPuedoConstruirReservaDeProduccionDondeHayUnVolcanDeGas(){
+        // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
+        // construir el reserva de produccion
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenadaCriadero = new Coordenada(0,1);
+        Criadero criadero = new Criadero();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Energia(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Edificio nexoMineral = new NexoMineral(nodo, new Recurso());
+        elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(nexoMineral, coordenadas));
+        for (int i = 0; i < 5; i++)
+            criadero.pasarTurno();
+
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
     }
 
     @Test
-    public void test06IntentoConstruirUnPilonEnUnVolcanYLanzaExcepcion() {
-        NodoCompatible nodo = new NodoCompatible(new Energia(), new SinRecurso());
-        Tablero tablero = new Tablero(10, 10);
+    public void test06NoPuedoConstruirGuaridaDondeHayUnVolcanDeGas(){
+        // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
+        // construir el guarida
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenadaCriadero = new Coordenada(0,1);
+        Criadero criadero = new Criadero();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Energia(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Edificio pilon = new Pilon(tablero, nodo, coordenadas);
+        elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(pilon, coordenadas));
+        for (int i = 0; i < 5; i++)
+            criadero.pasarTurno();
+
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Guarida(), coordenada));
     }
 
     @Test
-    public void test07IntentoConstruirUnAccesoEnUnVolcanYLanzaExcepcion() {
-        NodoCompatible nodo = new NodoCompatible(new Energia(), new SinRecurso());
-        Tablero tablero = new Tablero(10, 10);
+    public void test07NoPuedoConstruirEspiralDondeHayUnVolcanDeGas(){
+        // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
+        // construir la espiral
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenadaCriadero = new Coordenada(0,1);
+        Criadero criadero = new Criadero();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Energia(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Edificio acceso = new Acceso(nodo, coordenadas);
+        elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(acceso, coordenadas));
+        for (int i = 0; i < 5; i++)
+            criadero.pasarTurno();
+
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Espiral(), coordenada));
     }
 
     @Test
-    public void test08IntentoConstruirUnPuertoEstelarEnUnVolcanYLanzaExcepcion() {
-        NodoCompatible nodo = new NodoCompatible(new Energia(), new SinRecurso());
-        Tablero tablero = new Tablero(10, 10);
+    public void test08NoPuedoConstruirUnNexoMineralDondeHayVolcanDeGas(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Recurso mineralDelImperio = new Recurso(0);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        Coordenadas coordenadas = new Coordenadas(5, 5);
-        tablero.establecerTerreno(new Energia(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
-        Edificio puertoEstelar = new PuertoEstelar(nodo, coordenadas);
-
-        assertThrows(TerrenoNoCompatibleConEdificio.class, () -> tablero.construir(puertoEstelar, coordenadas));
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new NexoMineral(mineralDelImperio), coordenada));
     }
 
     @Test
-    public void test09PuedoConstruirUnAsimiladorEnUnVolcan() {
-        NodoCompatible nodo = new NodoCompatible(new Energia(), new VolcanGasVespeno());
+    public void test09NoPuedoConstruirAccesoDondeHayUnVolcanDeGas(){
+        // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
+        // construir el acceso
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenadaPilon = new Coordenada(0,1);
+        Pilon pilon = new Pilon();
 
-        Tablero tablero = new Tablero(10, 10);
-        Coordenadas coordenadas = new Coordenadas(5, 5);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        tablero.establecerTerreno(new Energia(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        elMapa.construirEdificio(pilon, coordenadaPilon);
 
-        Edificio asimilador = new Asimilador(nodo, new Recurso());
+        for (int i = 0; i < 5; i++)
+            pilon.pasarTurno();
 
-        assertDoesNotThrow(() -> tablero.construir(asimilador, coordenadas));
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new Acceso(), coordenada));
     }
+
     @Test
-    public void test10PuedoConstruirUnExtractorEnUnVolcan() {
-        Tablero tablero1 = new Tablero(1, 1);
-        NodoCompatible nodo = new NodoCompatible(new Moho(), new VolcanGasVespeno());
-        Imperio zergs = new Zergs(tablero1, new Recurso(), new Recurso());
+    public void test10NoPuedoConstruirPuertoEstelarDondeHayUnVolcanDeGas(){
+        // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
+        // construir la puerta estelar
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenadaPilon = new Coordenada(0,1);
+        Pilon pilon = new Pilon();
 
-        Tablero tablero = new Tablero(10, 10);
-        Coordenadas coordenadas = new Coordenadas(5, 5);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
 
-        tablero.establecerTerreno(new Moho(), coordenadas);
-        tablero.establecerRecurso(new VolcanGasVespeno(), coordenadas);
+        elMapa.construirEdificio(pilon, coordenadaPilon);
 
-        Edificio extractor = new Asimilador(nodo, new Recurso());
+        for (int i = 0; i < 5; i++)
+            pilon.pasarTurno();
 
-        assertDoesNotThrow(() -> tablero.construir(extractor, coordenadas));
+        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenada));
     }
 }
