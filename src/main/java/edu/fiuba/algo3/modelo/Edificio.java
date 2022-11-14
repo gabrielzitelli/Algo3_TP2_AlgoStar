@@ -14,4 +14,5 @@ public abstract class Edificio {
         this.vida.aplicarAtaque(unAtaque);
     }
 
+    public abstract void pasarTurno();
 }

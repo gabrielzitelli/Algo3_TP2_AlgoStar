@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.States.EstadoGuarida;
 import edu.fiuba.algo3.modelo.States.EstadoGuaridaEnConstruccion;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
+import java.util.ArrayList;
+
 public class Guarida extends Edificio {
 
     private EstadoGuarida estado;
@@ -21,6 +23,12 @@ public class Guarida extends Edificio {
         //Aplicacion de patron State
         estado = new EstadoGuaridaEnConstruccion(turnoParaEstarConstruido);
         this.vida = new VidaRegenerativa(valorVital);
+    }
+
+    public static ArrayList<Edificio> requisitos() {
+        ArrayList<Edificio> requisitos = new ArrayList<>();
+        requisitos.add(new ReservaDeReproduccion());
+        return requisitos;
     }
 
     public void pasarTurno() {

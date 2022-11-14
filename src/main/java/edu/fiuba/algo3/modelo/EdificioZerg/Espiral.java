@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.States.EstadoEspiral;
 import edu.fiuba.algo3.modelo.States.EstadoEspiralEnConstruccion;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
+import java.util.ArrayList;
+
 public class Espiral extends Edificio {
 
     private EstadoEspiral estado;
@@ -20,6 +22,12 @@ public class Espiral extends Edificio {
     public Espiral() {
         this.vida = new VidaRegenerativa(valorVital);
         estado = new EstadoEspiralEnConstruccion(turnoParaEstarConstruido);
+    }
+
+    public static ArrayList<Edificio> requisitos() {
+        ArrayList<Edificio> requisitos = new ArrayList<>();
+        requisitos.add(new Guarida());
+        return requisitos;
     }
 
     public void pasarTurno() {
