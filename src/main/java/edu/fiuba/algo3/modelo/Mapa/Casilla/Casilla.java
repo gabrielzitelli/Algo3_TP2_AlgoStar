@@ -52,4 +52,6 @@ public abstract class Casilla {
         }
         estadoCarga = estadoCarga.cargar();
     }
+
+    public abstract Casilla desonstruirEdificio(Coordenada coordenada);
 }

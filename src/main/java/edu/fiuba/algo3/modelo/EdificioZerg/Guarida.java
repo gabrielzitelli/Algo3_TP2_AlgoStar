@@ -38,5 +38,6 @@ public class Guarida extends Edificio {
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
         unaCasilla.tieneEstaCarga(estadoCarga);
         unaCasilla.tieneEsteMoho(estadoMoho);
+
     }
 }

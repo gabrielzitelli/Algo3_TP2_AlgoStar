@@ -40,6 +40,13 @@ public class Mapa {
         this.actualizarCasillaPorCoordenada(coordenada, casillaDondeConstruir);
     }
 
+    public void destruirEdificio(Coordenada coordenada){
+        // Capaz estoy acoplando mucho edificio y mapa con esto
+        Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestruir = new CasillaVacia(coordenada);
+        this.actualizarCasillaPorCoordenada(coordenada, casillaDestruir);
+    }
+
     private Casilla encontrarCasillaPorCoordenada(Coordenada coordenada){
         int fila = coordenada.getCoordenadaX();
         int columna = coordenada.getCoordenadaY();

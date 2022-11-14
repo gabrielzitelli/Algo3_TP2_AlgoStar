@@ -19,7 +19,6 @@ public class Criadero extends Edificio {
     private int turnoParaEstarConstruido = 4;
     private int maxLarvas = 3;
     private int cantidadLarvas;
-    private Coordenada coordenada;
     private int valorVital = 500;
 
     public Criadero(){
