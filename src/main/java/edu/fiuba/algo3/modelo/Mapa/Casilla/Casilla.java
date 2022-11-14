@@ -45,4 +45,11 @@ public abstract class Casilla {
     public void llenarDeMoho(){
         estadoMoho = new ConMoho();
     }
+
+    public void cargarDeEnergia() {
+        if (estadoCarga == null){
+            estadoCarga = new ConCarga();
+        }
+        estadoCarga = estadoCarga.cargar();
+    }
 }

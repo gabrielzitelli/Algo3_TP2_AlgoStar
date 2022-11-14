@@ -18,7 +18,6 @@ public class Criadero implements Edificio {
     private int turnoParaEstarConstruido = 4;
     private int maxLarvas = 3;
     private int cantidadLarvas;
-    private Moho moho = new Moho();
     private Coordenada coordenada;
 
     public Criadero(){
@@ -41,9 +40,8 @@ public class Criadero implements Edificio {
     }
 
     public void pasarTurno(){
-        estado = estado.actualizar();
+        estado = estado.actualizar(coordenada);
         this.regenerarUnaLarva();
-        moho.expandir(coordenada);
     }
 
     public void verificarConstruccion(Casilla unaCasilla){
