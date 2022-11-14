@@ -13,7 +13,6 @@ public class Espiral extends Edificio {
     private int turnoParaEstarConstruido = 10;
 
     private Recolectable estadoRecolectable = new NoRecolectable();
-    private Cargable estadoCarga = new SinCarga();
     private EstadoMoho estadoMoho = new ConMoho();
     private int valorVital = 1300;
 
@@ -34,7 +33,6 @@ public class Espiral extends Edificio {
 
     public void verificarConstruccion(Casilla unaCasilla){
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
         unaCasilla.tieneEsteMoho(estadoMoho);
     }
 }
