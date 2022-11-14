@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
 public class Asimilador extends Edificio {
     protected Recolectable estadoRecolectable = new GasRecolectable();
-    protected Cargable estadoCarga = new ConCarga();
+    //protected Cargable estadoCarga = new SinCarga();
     protected EstadoMoho estadoMoho = new SinMoho();
 
     private EstadoAsimilador estado;
@@ -37,7 +37,7 @@ public class Asimilador extends Edificio {
     @Override
     public void verificarConstruccion(Casilla unaCasilla) {
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
+        //unaCasilla.tieneEstaCarga(estadoCarga);
         unaCasilla.tieneEsteMoho(estadoMoho);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }
