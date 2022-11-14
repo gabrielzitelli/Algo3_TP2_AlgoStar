@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.States.EstadoPuertoEstelar;
 import edu.fiuba.algo3.modelo.States.EstadoPuertoEstelarEnConstruccion;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
+import java.util.ArrayList;
+
 public class PuertoEstelar extends Edificio {
 
     private Recolectable estadoRecolectable = new NoRecolectable();
@@ -18,6 +20,12 @@ public class PuertoEstelar extends Edificio {
     public PuertoEstelar() {
         estado = new EstadoPuertoEstelarEnConstruccion(turnoParaEstarConstruido);
         this.vida = new VidaConEscudo(valorVital, valorVital);
+    }
+
+    public static ArrayList<Edificio> requisitos() {
+        ArrayList<Edificio> requisitos = new ArrayList<>();
+        requisitos.add(new Acceso());
+        return requisitos;
     }
 
     public void pasarTurno() {
