@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.EdificioProtoss.*;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CasoDeUso11 {
+public class CasoDeUso11Test {
 
     @Test
     public void test01PuedoDaniarElEscudoDeUnAccesoSeRegeneraYPuedoDaniarloDeVuelta(){

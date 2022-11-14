@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class CasoDeUso12 {
+public class CasoDeUso12Test {
     @Test
     public void test01PuedoDaniarElEscudoDeUnAccesoPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Acceso unAcceso = new Acceso();
