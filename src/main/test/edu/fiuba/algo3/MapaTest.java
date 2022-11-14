@@ -1,9 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
-import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
-import edu.fiuba.algo3.modelo.EdificioProtoss.NexoMineral;
-import edu.fiuba.algo3.modelo.EdificioProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.EdificioProtoss.*;
 import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
@@ -30,7 +27,7 @@ public class MapaTest {
     }
 
     @Test
-    public void test02NoPuedoConstruirUnCriaderoEnUnaCasillaQueTieneUnEdificioEncima(){
+    public void test02NoPuedoConstruirpilonEnUnaCasillaQueTieneUnEdificioEncima(){
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
@@ -45,7 +42,7 @@ public class MapaTest {
      * Si quiero crear un edificio, lo voy a crear sobre una coordenada => Me comunico con el mapa
      * */
     @Test
-    public void test03NoPuedoConstruirUnCriaderoDondeHayUnVolcanDeGas(){
+    public void test03NoPuedoConstruirpilonDondeHayUnVolcanDeGas(){
         Coordenada coordenada = new Coordenada(0,0);
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
@@ -57,7 +54,7 @@ public class MapaTest {
     }
 
     @Test
-    public void test04NoPuedoConstruirUnCriaderoDondeHayUnNodoMineral(){
+    public void test04NoPuedoConstruirpilonDondeHayUnNodoMineral(){
         Coordenada coordenada = new Coordenada(0,0);
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
@@ -214,111 +211,171 @@ public class MapaTest {
     }
 
     @Test
-    public void test18CreoUnCriaderoSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
+    public void test18CreopilonSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenada2 = new Coordenada(0,1);
-        Criadero unCriadero = new Criadero();
+        Criadero pilon = new Criadero();
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
-        unCriadero.pasarTurno();
+        elMapa.construirEdificio(pilon, coordenada);
+        //El criadero se termina de construir
+        for (int i = 0; i < 4; i++){
+            pilon.pasarTurno();
+        }
+        pilon.pasarTurno();
 
         assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada2));
     }
 
     @Test
-    public void test19CreoUnCriaderoSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
+    public void test19CreopilonSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenada2 = new Coordenada(0,99);
-        Criadero unCriadero = new Criadero();
+        Criadero pilon = new Criadero();
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
-        unCriadero.pasarTurno();
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 4; i++){
+            pilon.pasarTurno();
+        }
+        pilon.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada2));
     }
 
     @Test
-    public void test20CreoUnCriaderoSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
+    public void test20CreopilonSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenada2 = new Coordenada(0,6);
-        Criadero unCriadero = new Criadero();
+        Criadero pilon = new Criadero();
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
-        unCriadero.pasarTurno();
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 4; i++){
+            pilon.pasarTurno();
+        }
+        pilon.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada2));
     }
 
     @Test
-    public void test21CreoUnCriaderoSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
+    public void test21CreopilonSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenada2 = new Coordenada(3,1);
-        Criadero unCriadero = new Criadero();
+        Criadero pilon = new Criadero();
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
-        unCriadero.pasarTurno();
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 4; i++){
+            pilon.pasarTurno();
+        }
+        pilon.pasarTurno();
 
         assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada2));
     }
 
     @Test
-    public void test22CreoUnCriaderoSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
+    public void test22CreopilonSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenada2 = new Coordenada(3,3);
-        Criadero unCriadero = new Criadero();
+        Criadero pilon = new Criadero();
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
-        unCriadero.pasarTurno();
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 4; i++){
+            pilon.pasarTurno();
+        }
+        pilon.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada2));
     }
 
     @Test
-    public void test23CreoUnCriaderoSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
+    public void test23CreopilonSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenada2 = new Coordenada(0,6);
-        Criadero unCriadero = new Criadero();
+        Criadero pilon = new Criadero();
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
-        unCriadero.pasarTurno();
-        unCriadero.pasarTurno();
-        unCriadero.pasarTurno();
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 4; i++){
+            pilon.pasarTurno();
+        }
+        pilon.pasarTurno();
+        pilon.pasarTurno();
+        pilon.pasarTurno();
 
         assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada2));
     }
 
     @Test
-    public void test24CreoUnCriaderoSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
+    public void test24CreopilonSeExpandeDespuesDeUnTurnoElMohoYPuedoCrearUnaReservaEnElNuevoMoho(){
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenada2 = new Coordenada(0,7);
-        Criadero unCriadero = new Criadero();
+        Criadero pilon = new Criadero();
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
-        unCriadero.pasarTurno();
-        unCriadero.pasarTurno();
-        unCriadero.pasarTurno();
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 4; i++){
+            pilon.pasarTurno();
+        }
+        pilon.pasarTurno();
+        pilon.pasarTurno();
+        pilon.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada2));
+    }
+    @Test
+    public void test25CreoUnPilonYPuedoColocarUnEdificioProtossEnElRangoEnergizado(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenada2 = new Coordenada(0,3);
+        Pilon pilon = new Pilon();
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 5; i++){
+            pilon.pasarTurno();
+        }
+        assertDoesNotThrow(() -> elMapa.construirEdificio(new Acceso(), coordenada2));
+    }
+    @Test
+    public void test25CreoUnPilonYNoPuedoColocarUnEdificioProtossEnElRangoExteriorAlEnergizado(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenada2 = new Coordenada(0,4);
+        Pilon pilon = new Pilon();
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.construirEdificio(pilon, coordenada);
+        //construyo el criadero
+        for (int i = 0; i < 5; i++){
+            pilon.pasarTurno();
+        }
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elMapa.construirEdificio(new Acceso(), coordenada2));
     }
 }

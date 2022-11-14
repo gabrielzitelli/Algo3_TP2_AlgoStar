@@ -68,7 +68,8 @@ public class Mapa {
         return distanciaEnX + distanciaEnY;
     }
 
-    public void expandirMoho(Coordenada origenDeExpansion, int radio){
+    private LinkedList<Casilla> obtenerCasillasDentroDelRadio(Coordenada origenDeExpansion, int radio){
+
         LinkedList<Casilla> casillasDentroDelRadio = new LinkedList<>();
 
         for(int i = 0; i < tamanio; i++){
@@ -77,8 +78,18 @@ public class Mapa {
                     casillasDentroDelRadio.add(matriz[i][j]);
             }
         }
+        return casillasDentroDelRadio;
+    }
 
+    public void expandirMoho(Coordenada origenDeExpansion, int radio){
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.llenarDeMoho();
+    }
+
+    public void abastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.cargarDeEnergia();
     }
 }
