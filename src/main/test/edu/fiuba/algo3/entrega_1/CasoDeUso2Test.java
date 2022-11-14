@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.EdificioProtoss.*;
 import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
+import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
@@ -52,21 +54,19 @@ public class CasoDeUso2Test {
             unExtractor.pasarTurno();
         }
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unExtractor.extraer());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unExtractor.contratarZangano(new Zangano()));
     }
 
     @Test
     public void test04UnExtractorEstaConstruidoEn6Turnos() {
         Recurso gasDelImperio = new Recurso(0);
+
         Extractor unExtractor = new Extractor(gasDelImperio);
 
-        int turnosAPasar = 6;
-
-        for (int i = 0; i < turnosAPasar; i++) {
+        //Construyo el Extractor
+        for(int i = 0; i < 6; i++)
             unExtractor.pasarTurno();
-        }
-
-        assertDoesNotThrow(() -> unExtractor.contratarZangano(new Zangano()));
+        assertThrows(ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla.class, () -> unExtractor.pasarTurno() );
     }
 
     @Test
@@ -219,36 +219,32 @@ public class CasoDeUso2Test {
 
     @Test
     public void test15UnAsimiladorNoEstaConstruidoEn5Turnos() {
-        Recurso gasDelImperio = new Recurso(0);
-        Asimilador unAsimilador = new Asimilador(gasDelImperio);
+        Protoss protoss = new Protoss();
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0,0);
 
-        int turnosAPasar = 5;
-
-        for (int i = 0; i < turnosAPasar; i++) {
-            unAsimilador.pasarTurno();
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
+        protoss.construirAsimilador(coordenadasGas);
+        for (int i = 0; i < 5; i++){
+            protoss.terminarTurno();
         }
-
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAsimilador.extraer());
+        assert(protoss.tienesEstaCantidadDeMineral(0));
     }
 
     @Test
     public void test16UnAsimiladorEstaConstruidoEn6Turnos() {
-        Coordenada coordenada = new Coordenada(0,0);
+        Protoss protoss = new Protoss();
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0,0);
 
-        Recurso gasDelImperio = new Recurso(0);
-        Asimilador unAsimilador = new Asimilador(gasDelImperio);
-        int turnosAPasar = 6;
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
-        elMapa.colocarMaterial(new GasRecolectable(),coordenada);
-        elMapa.construirEdificio(unAsimilador, coordenada);
-
-        for (int i = 0; i < turnosAPasar; i++) {
-            unAsimilador.pasarTurno();
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
+        protoss.construirAsimilador(coordenadasGas);
+        for (int i = 0; i < 6; i++){
+            protoss.terminarTurno();
         }
-
-        assertDoesNotThrow(() -> unAsimilador.extraer());
+        assert(protoss.tienesEstaCantidadDeGas(20));
     }
 
     @Test

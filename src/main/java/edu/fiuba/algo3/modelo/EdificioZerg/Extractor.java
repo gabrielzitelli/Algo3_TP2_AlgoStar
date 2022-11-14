@@ -32,10 +32,11 @@ public class Extractor extends Edificio {
 
     public void pasarTurno(){
         estado = estado.actualizar();
+        this.extraer();
         vida.pasarTurno();
     }
 
-    public void extraer(){
+    private void extraer(){
         estado.extraer(gasDelImperio, volcanDeGas, zanganosEmpleados.size());
     }
 

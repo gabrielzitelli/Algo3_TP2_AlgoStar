@@ -14,9 +14,7 @@ public class CasillaVacia extends Casilla{
     }
 
     public Casilla construirEdificio(Edificio unEdificio){
-
         unEdificio.verificarConstruccion(this);
-
         return new CasillaOcupada(coordenada);
     }
 
@@ -27,5 +25,10 @@ public class CasillaVacia extends Casilla{
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
         unaUnidadZerg.interaccionar(this);
         return new CasillaOcupada(coordenada);
+    }
+
+    @Override
+    public Edificio obtenerEdificio() {
+        return null;
     }
 }

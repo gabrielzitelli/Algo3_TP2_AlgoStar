@@ -21,6 +21,5 @@ public class EstadoAsimiladorEnConstruccion implements EstadoAsimilador{
     }
 
     public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas){
-        throw new ErrorEdificioNoEstaConstruido();
     }
 }

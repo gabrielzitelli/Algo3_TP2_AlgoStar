@@ -19,4 +19,9 @@ public class CasillaOcupada extends Casilla{
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
         throw new ErrorPosicionOcupada();
     }
+
+    @Override
+    public Edificio obtenerEdificio() {
+        return null;
+    }
 }

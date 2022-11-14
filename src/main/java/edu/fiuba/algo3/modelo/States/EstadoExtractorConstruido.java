@@ -19,14 +19,10 @@ public class EstadoExtractorConstruido implements EstadoExtractor{
     }
 
     public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas, int vecesAExtraer){
-        if(vecesAExtraer == 0)
-            throw new ErrorNoSePuedeExtraerSinZanganoAsignado();
-
-        if(volcanDeGas == null)
-            throw new ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla();
-
-        for(int i = 0; i < vecesAExtraer; i++)
-            gasDelImperio.depositar(volcanDeGas.extraer(cantidadDeExtraccionUnitaria));
+        if (volcanDeGas != null) {
+            for (int i = 0; i < vecesAExtraer; i++)
+                gasDelImperio.depositar(volcanDeGas.extraer(cantidadDeExtraccionUnitaria));
+        }
     }
 
     public void contratarZangano(Zangano zanganoAContratar, LinkedList<Zangano> zanganosEmpleados){

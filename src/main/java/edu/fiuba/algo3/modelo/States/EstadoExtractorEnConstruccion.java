@@ -24,7 +24,6 @@ public class EstadoExtractorEnConstruccion implements EstadoExtractor{
     }
 
     public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas, int vecesAExtraer){
-        throw new ErrorEdificioNoEstaConstruido();
     }
 
     public void contratarZangano(Zangano zanganoAContratar, LinkedList<Zangano> zanganosEmpleados){

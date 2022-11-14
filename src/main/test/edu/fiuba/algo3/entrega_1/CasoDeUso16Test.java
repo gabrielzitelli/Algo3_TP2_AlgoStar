@@ -39,4 +39,8 @@ public class CasoDeUso16Test {
         assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class, () -> elMapa.construirEdificio(unExtractor, coordenadasAsimilador));
     }
     //TODO hacer los casos con el zangano y el nexoMineral
+    @Test
+    public void test03NoSePuedeConstruirUnNexoMineralSiHayUnZanganoTrabajandoEnElMineral() {
+
+    }
 }

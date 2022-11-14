@@ -13,9 +13,8 @@ public class EstadoAsimiladorConstruido implements EstadoAsimilador{
     }
 
     public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas){
-        if(volcanDeGas == null)
-            throw new ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla();
-
-        gasDelImperio.depositar(volcanDeGas.extraer(cantidadDeExtraccionUnitaria));
+        if (volcanDeGas != null) {
+            gasDelImperio.depositar(volcanDeGas.extraer(cantidadDeExtraccionUnitaria));
+        }
     }
 }

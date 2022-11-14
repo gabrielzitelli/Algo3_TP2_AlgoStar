@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 
@@ -100,5 +99,9 @@ public class Mapa {
         casillaDondeColocar = casillaDondeColocar.colocarUnidadZerg(unaUnidadZerg);
 
         this.actualizarCasillaPorCoordenada(unaCoordenada, casillaDondeColocar);
+    }
+    public Edificio obtenerEdificio(Coordenada coordenada) {
+        Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
+        return casillaConEdificio.obtenerEdificio();
     }
 }

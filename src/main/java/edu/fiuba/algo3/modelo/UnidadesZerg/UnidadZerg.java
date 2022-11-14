@@ -7,17 +7,11 @@ import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 public abstract class UnidadZerg {
     protected MaterialBruto recursoARecolectar;
     protected Recurso mineralDelImperio;
-
     //private int valorVital = x;
-
     public void interaccionar(Casilla unaCasilla){
-
     }
-
     public void setDepositoRecurso( Recurso recursoImperio ){
     }
-
-
     public void extraer(){
     }
 }

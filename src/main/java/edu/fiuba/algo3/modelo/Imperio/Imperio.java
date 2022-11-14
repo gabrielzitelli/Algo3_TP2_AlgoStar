@@ -39,4 +39,15 @@ public abstract class Imperio {
             throw new ErrorNoSeCumplenLosPreRequisitosDelEdificio();
         }
     }
+    public boolean tienesEstaCantidadDeMineral(int recurso) {
+        return mineralesDelImperio.tenesCantidadDeRecurso(recurso);
+    }
+
+    public boolean tienesEstaCantidadDeGas(int recurso) {
+        return gasDelImperio.tenesCantidadDeRecurso(recurso);
+    }
+    public Edificio conseguirEdificio(Coordenada coordenada){
+        Mapa mapa = Mapa.obtener();
+        return mapa.obtenerEdificio(coordenada);
+    }
 }

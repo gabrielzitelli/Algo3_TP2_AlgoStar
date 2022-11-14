@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
+import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
 import edu.fiuba.algo3.modelo.EdificioProtoss.Pilon;
 import edu.fiuba.algo3.modelo.EdificioProtoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -28,5 +29,9 @@ public class Protoss extends Imperio{
     public void construirAcceso(Coordenada coordenada) {
         Acceso acceso = new Acceso();
         this.construirEdificio(acceso, coordenada);
+    }
+    public void construirAsimilador(Coordenada coordenada) {
+        Asimilador asimilador = new Asimilador(gasDelImperio);
+        this.construirEdificio(asimilador, coordenada);
     }
 }
