@@ -10,9 +10,8 @@ public class Pilon implements Edificio {
 
     private Recolectable estadoRecolectable = new NoRecolectable();
     private EstadoMoho estadoMoho = new SinMoho();
-    //SUPUESTO: CRIADERO NO SE PUEDE PONER EN TERRENO CARGADO
     private EstadoPilon estado;
-    private int turnoParaEstarConstruido = 4;
+    private int turnoParaEstarConstruido = 5;
     private Coordenada coordenada;
 
     public Pilon(){

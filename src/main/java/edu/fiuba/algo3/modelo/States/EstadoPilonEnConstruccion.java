@@ -11,7 +11,7 @@ public class EstadoPilonEnConstruccion implements EstadoPilon {
     public EstadoPilon actualizar(Coordenada coordenada) {
         turnoParaEstarConstruido--;
         if(turnoParaEstarConstruido == 0)
-            return new EstadoPilonConstruido();
+            return new EstadoPilonConstruido(coordenada);
         return this;
     }
 }

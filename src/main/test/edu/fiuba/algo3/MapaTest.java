@@ -378,4 +378,10 @@ public class MapaTest {
         }
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elMapa.construirEdificio(new Acceso(), coordenada2));
     }
+
+    @Test
+    public void test26(){
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        Coordenada coordenadaPilon = new Coordenada(0,4);
+    }
 }
