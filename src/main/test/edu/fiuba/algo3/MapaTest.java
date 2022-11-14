@@ -50,7 +50,7 @@ public class MapaTest {
         elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Criadero(), coordenada));
+                () -> elMapa.construirEdificio(new Pilon(), coordenada));
     }
 
     @Test
