@@ -33,6 +33,11 @@ public class CasillaVacia extends Casilla{
         return this.coordenada;
     }
 
+    @Override
+    public void llenarDeMoho() {
+        estadoMoho = new ConMoho();
+    }
+
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
         unaUnidadZerg.interaccionar(this);
         return new CasillaOcupada(coordenada);

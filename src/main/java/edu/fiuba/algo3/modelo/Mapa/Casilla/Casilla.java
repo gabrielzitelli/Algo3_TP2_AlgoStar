@@ -43,9 +43,7 @@ public abstract class Casilla {
         return this.coordenada;
     }
 
-    public void llenarDeMoho(){
-        estadoMoho = new ConMoho();
-    }
+    public abstract void llenarDeMoho();
 
     public void cargarDeEnergia() {
         if (estadoCarga == null){
