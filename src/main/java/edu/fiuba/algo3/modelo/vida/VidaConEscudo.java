@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 public class VidaConEscudo implements Vida{
 
     private int cantidadVida;
-    private double porcentajeDeRegeneracion = 0.15;
+    private double porcentajeDeRegeneracion = 0.15; //supuesto
     private int cantidadEscudo;
     private int capacidadEscudo;
 
@@ -27,7 +27,7 @@ public class VidaConEscudo implements Vida{
         this.validarVidaLlegoACero();
     }
 
-    public void accionDeTurno(){
+    public void pasarTurno(){
         int escudoRegenerado = (int)(this.capacidadEscudo * this.porcentajeDeRegeneracion);
         if ((this.cantidadEscudo + escudoRegenerado) >= this.capacidadEscudo){
             this.cantidadEscudo = this.capacidadEscudo;

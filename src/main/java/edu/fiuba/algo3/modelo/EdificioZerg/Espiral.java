@@ -4,23 +4,27 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.States.EstadoEspiral;
 import edu.fiuba.algo3.modelo.States.EstadoEspiralEnConstruccion;
+import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
-public class Espiral implements Edificio {
+public class Espiral extends Edificio {
 
     private EstadoEspiral estado;
 
     private int turnoParaEstarConstruido = 10;
 
     protected Recolectable estadoRecolectable = new NoRecolectable();
-    protected Cargable estadoCarga = new SinCarga();
     protected EstadoMoho estadoMoho = new ConMoho();
+    private int valorVital = 1300;
+
 
     public Espiral() {
+        this.vida = new VidaRegenerativa(valorVital);
         estado = new EstadoEspiralEnConstruccion(turnoParaEstarConstruido);
     }
 
     public void pasarTurno() {
         estado = estado.actualizar();
+        vida.pasarTurno();
     }
 
     public FabricaMutalisco crearFabricaMutalisco() {
@@ -29,7 +33,6 @@ public class Espiral implements Edificio {
 
     public void verificarConstruccion(Casilla unaCasilla){
         unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
         unaCasilla.tieneEsteMoho(estadoMoho);
     }
 }

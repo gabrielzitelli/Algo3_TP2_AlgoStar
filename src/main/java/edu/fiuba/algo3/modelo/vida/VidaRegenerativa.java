@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 public class VidaRegenerativa implements Vida{
     private int cantidad;
     private int capacidad;
-    private double porcentajeDeRegeneracion = 0.15;
+    private double porcentajeDeRegeneracion = 0.15; //supuesto
 
 
     public VidaRegenerativa(int cantidad){
@@ -19,7 +19,7 @@ public class VidaRegenerativa implements Vida{
         this.validarVidaLlegoACero();
     }
 
-    public void accionDeTurno(){
+    public void pasarTurno(){
         this.validarVidaLlegoACero();
 
         int cantidadARegenerar = (int)(this.capacidad * this.porcentajeDeRegeneracion);

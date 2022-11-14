@@ -6,5 +6,5 @@ import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 public interface Vida {
 
     public abstract void aplicarAtaque(Ataque unAtaque);
-    public abstract void accionDeTurno();
+    public abstract void pasarTurno();
 }

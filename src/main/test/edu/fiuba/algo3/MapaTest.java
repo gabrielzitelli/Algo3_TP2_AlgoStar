@@ -382,6 +382,49 @@ public class MapaTest {
     @Test
     public void test26(){
         Coordenada coordenadaCriadero = new Coordenada(0,0);
-        Coordenada coordenadaPilon = new Coordenada(0,4);
+        Coordenada coordenadaPilon = new Coordenada(0,6);
+        Coordenada coordenadaEnergizadaYConMoho = new Coordenada(0,4);
+        Pilon pilon = new Pilon();
+        Criadero criadero = new Criadero();
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.construirEdificio(pilon, coordenadaPilon);
+
+        for (int i = 0; i < 5; i++)
+            pilon.pasarTurno();
+
+        elMapa.construirEdificio(criadero, coordenadaCriadero);
+
+        for (int i = 0; i < 5; i++)
+            criadero.pasarTurno();
+
+        assertDoesNotThrow(() -> elMapa.construirEdificio(new Espiral(), coordenadaEnergizadaYConMoho));
+    }
+
+    @Test
+    public void test27(){
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        Coordenada coordenadaPilon = new Coordenada(0,6);
+        Coordenada coordenadaEnergizadaYConMoho = new Coordenada(0,4);
+        Pilon pilon = new Pilon();
+        Criadero criadero = new Criadero();
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.construirEdificio(pilon, coordenadaPilon);
+
+        for (int i = 0; i < 5; i++)
+            pilon.pasarTurno();
+
+        elMapa.construirEdificio(criadero, coordenadaCriadero);
+
+        for (int i = 0; i < 5; i++)
+            criadero.pasarTurno();
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class ,
+                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenadaEnergizadaYConMoho));
     }
 }

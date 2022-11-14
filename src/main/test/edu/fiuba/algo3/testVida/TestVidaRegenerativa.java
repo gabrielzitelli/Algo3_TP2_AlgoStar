@@ -47,7 +47,7 @@ public class TestVidaRegenerativa {
         Vida unaVida = new VidaRegenerativa(120);
 
         unaVida.aplicarAtaque(unAtaque);
-        unaVida.accionDeTurno();
+        unaVida.pasarTurno();
 
         assertDoesNotThrow(() -> unaVida.aplicarAtaque(unAtaqueDebil));
 
@@ -60,7 +60,7 @@ public class TestVidaRegenerativa {
 
         Vida unaVida = new VidaRegenerativa(100);
 
-        unaVida.accionDeTurno();
+        unaVida.pasarTurno();
 
         assertThrows(ErrorVidaLlegoACero.class, () -> unaVida.aplicarAtaque(unAtaque));
     }

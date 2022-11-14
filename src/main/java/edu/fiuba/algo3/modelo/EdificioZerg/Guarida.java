@@ -4,8 +4,9 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.States.EstadoGuarida;
 import edu.fiuba.algo3.modelo.States.EstadoGuaridaEnConstruccion;
+import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
-public class Guarida implements Edificio {
+public class Guarida extends Edificio {
 
     private EstadoGuarida estado;
 
@@ -15,14 +16,18 @@ public class Guarida implements Edificio {
     protected Recolectable estadoRecolectable = new NoRecolectable();
     protected Cargable estadoCarga = new SinCarga();
     protected EstadoMoho estadoMoho = new ConMoho();
+    private int valorVital = 1250;
+
 
     public Guarida(){
         //Aplicacion de patron State
         estado = new EstadoGuaridaEnConstruccion(turnoParaEstarConstruido);
+        this.vida = new VidaRegenerativa(valorVital);
     }
 
     public void pasarTurno() {
         estado = estado.actualizar();
+        vida.pasarTurno();
     }
 
     public FabricaHidralisco crearFabricaHidralisco() {

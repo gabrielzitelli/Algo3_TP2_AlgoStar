@@ -6,8 +6,9 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.States.EstadoAsimilador;
 import edu.fiuba.algo3.modelo.States.EstadoAsimiladorEnConstruccion;
+import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
-public class Asimilador implements Edificio {
+public class Asimilador extends Edificio {
     protected Recolectable estadoRecolectable = new GasRecolectable();
     protected Cargable estadoCarga = new ConCarga();
     protected EstadoMoho estadoMoho = new SinMoho();
@@ -16,14 +17,17 @@ public class Asimilador implements Edificio {
     private int turnoParaEstarConstruido = 6;
     private Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
+    private int valorVital = 450;
 
     public Asimilador(Recurso gasDelImperio){
+        this.vida = new VidaConEscudo(valorVital, valorVital);
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoAsimiladorEnConstruccion(turnoParaEstarConstruido);
     }
 
     public void pasarTurno(){
         estado = estado.actualizar();
+        vida.pasarTurno();
     }
 
     public void extraer(){

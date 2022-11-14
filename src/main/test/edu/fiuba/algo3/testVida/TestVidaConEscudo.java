@@ -44,7 +44,7 @@ public class TestVidaConEscudo {
         Vida unaVida = new VidaConEscudo(100, 20);
 
         unaVida.aplicarAtaque(unAtaque);
-        unaVida.accionDeTurno();
+        unaVida.pasarTurno();
 
         assertDoesNotThrow(() -> unaVida.aplicarAtaque(unAtaqueDebil));
 
@@ -57,7 +57,7 @@ public class TestVidaConEscudo {
 
         Vida unaVida = new VidaConEscudo(100, 20);
 
-        unaVida.accionDeTurno();
+        unaVida.pasarTurno();
 
         assertThrows(ErrorVidaLlegoACero.class, () -> unaVida.aplicarAtaque(unAtaque));
     }
