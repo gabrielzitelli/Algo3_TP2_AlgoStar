@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
+import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 
 import java.util.LinkedList;
 
@@ -91,5 +92,13 @@ public class Mapa {
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.cargarDeEnergia();
+    }
+
+    public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
+        Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
+
+        casillaDondeColocar = casillaDondeColocar.colocarUnidadZerg(unaUnidadZerg);
+
+        this.actualizarCasillaPorCoordenada(unaCoordenada, casillaDondeColocar);
     }
 }

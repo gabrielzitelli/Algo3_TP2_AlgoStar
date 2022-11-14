@@ -13,6 +13,7 @@ public abstract class MaterialBruto {
             throw new ErrorFuenteDeMaterialBrutoVacia();
         }
         cantidad = nuevaCantidadMaterial;
-        return cantidad;
+        return cantidadAExtraer;
+
     }
 }

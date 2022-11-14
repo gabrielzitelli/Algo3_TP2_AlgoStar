@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
+import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 
 public abstract class Casilla {
 
@@ -52,4 +53,6 @@ public abstract class Casilla {
         }
         estadoCarga = estadoCarga.cargar();
     }
+
+    public abstract Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg);
 }

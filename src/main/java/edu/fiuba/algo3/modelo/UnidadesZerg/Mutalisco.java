@@ -1,4 +1,4 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
-public class Mutalisco implements UnidadZerg {
+public class Mutalisco extends UnidadZerg {
 }

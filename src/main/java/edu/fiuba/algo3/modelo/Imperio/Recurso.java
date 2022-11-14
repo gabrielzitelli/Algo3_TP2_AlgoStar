@@ -20,4 +20,8 @@ public class Recurso {
     public void depositar(int cantidadADepositar){
         cantidad += cantidadADepositar;
     }
+
+    public boolean tenesCantidadDeRecurso(int cantidadRecurso) {
+        return this.cantidad == cantidadRecurso;
+    }
 }
