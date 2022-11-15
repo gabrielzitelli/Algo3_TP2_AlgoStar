@@ -10,6 +10,8 @@ import edu.fiuba.algo3.modelo.danioYAtaque.DanioZerling;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
+import java.util.ArrayList;
+
 public class Zangano extends UnidadZerg {
 
     private Recolectable recolecta = new MineralRecolectable();
@@ -48,4 +50,9 @@ public class Zangano extends UnidadZerg {
         this.vida.aplicarAtaque(unAtaque);
     }
 
+
+    public ArrayList<Recurso> requisitosMateriales() {
+        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
+        return requisitosMateriales;
+    }
 }

@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.UnidadesZerg.Guardian;
+import edu.fiuba.algo3.modelo.UnidadesZerg.Mutalisco;
 
 import java.util.LinkedList;
 
@@ -34,5 +36,11 @@ public class Zerg extends Imperio{
         this.comprobarRequisitos(Espiral.requisitos());
         Espiral espiral = new Espiral();
         this.construirEdificio(espiral, coordenada);
+    }
+
+    public void evolucionarMutaliscoAGuardian(Coordenada coordenada){
+        // TODO Esta bastante rari pasarle el mutalisco aca, pero estoy re duro y no quiero cambiarlo
+        Mutalisco mutalisco = new Mutalisco();
+        this.construirUnidad(mutalisco, coordenada);
     }
 }

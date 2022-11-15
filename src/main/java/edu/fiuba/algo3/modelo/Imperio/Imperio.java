@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidad;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -26,8 +27,23 @@ public abstract class Imperio {
         edificios.add(edificio);
     }
 
+    protected void construirUnidad(Unidad unaUnidad, Coordenada coordenada){
+        Mapa mapa = Mapa.obtener();
+        comprobarRequisitosMaterialesUnidada(unaUnidad);
+        mapa.colocarUnaUnidad(unaUnidad, coordenada);
+        // TODO Agregar la unidad a una coleccion de unidades del imperio
+    }
+
     private void comprobarRequisitosMateriales(Edificio edificio){
         ArrayList<Recurso> listaDeRequisitos = edificio.requisitosMateriales();
+        Recurso mineralAConsumir = listaDeRequisitos.get(0);
+        mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
+        Recurso gasAconsumir = listaDeRequisitos.get(1);
+        gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
+    }
+
+    private void comprobarRequisitosMaterialesUnidada(Unidad unaUnidad){
+        ArrayList<Recurso> listaDeRequisitos = unaUnidad.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
         mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
         Recurso gasAconsumir = listaDeRequisitos.get(1);
