@@ -7,6 +7,7 @@ public class DanioBasico {
         this.danio = danio;
     }
     public int aplicarDanio(int cantidadVida){
+        // Devuelve la cantidad de vida luego de aplicarle el daño
         return cantidadVida - danio;
     }
 }
