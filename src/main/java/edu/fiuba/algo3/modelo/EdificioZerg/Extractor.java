@@ -20,13 +20,14 @@ public class Extractor extends Edificio {
     private Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
     private LinkedList<UnidadZerg> zanganosEmpleados = new LinkedList<>();
-
-    private Recolectable estadoRecolectable = new GasRecolectable();
-    private EstadoMoho estadoMoho = new ConMoho();
     private int valorVital = 750;
 
 
     public Extractor(Recurso gasDelImperio){
+        this.costoGas = 0;
+        this.costoMineral = 100;
+        this.estadoRecolectable = new GasRecolectable();
+        this.estadoMoho = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoExtractorEnConstruccion(turnoParaEstarConstruido);
@@ -50,8 +51,7 @@ public class Extractor extends Edificio {
     }
 
     public void verificarConstruccion(Casilla unaCasilla){
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEsteMoho(estadoMoho);
+        super.verificarConstruccion(unaCasilla);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }
 

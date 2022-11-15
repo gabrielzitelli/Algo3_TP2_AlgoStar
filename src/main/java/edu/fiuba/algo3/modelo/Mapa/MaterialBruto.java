@@ -9,8 +9,7 @@ public abstract class MaterialBruto {
 
         int nuevaCantidadMaterial = cantidad - cantidadAExtraer;
         if(nuevaCantidadMaterial < 0){
-            cantidad += nuevaCantidadMaterial;
-            throw new ErrorFuenteDeMaterialBrutoVacia();
+            return 0;
         }
         cantidad = nuevaCantidadMaterial;
         return cantidadAExtraer;

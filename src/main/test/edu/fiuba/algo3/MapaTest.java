@@ -11,8 +11,6 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
-import javax.crypto.CipherInputStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MapaTest {

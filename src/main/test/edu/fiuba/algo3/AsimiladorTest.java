@@ -1,8 +1,6 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
@@ -13,8 +11,6 @@ import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class AsimiladorTest {
     @Test
@@ -30,6 +26,7 @@ public class AsimiladorTest {
     @Test
     public void test02NoPuedoExtraerElGasDeUnAsimiladorQueNoEstaConstruidoEn5Turnos(){
         Protoss protoss = new Protoss();
+        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0,0);
@@ -45,6 +42,7 @@ public class AsimiladorTest {
     @Test
     public void test03PuedoExtraerElGasDeUnAsimiladorQueEstaConstruidoEn6Turnos(){
         Protoss protoss = new Protoss();
+        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0,0);

@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.EdificioProtoss.*;
 import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -63,6 +62,7 @@ public class CasoDeUso2Test {
     @Test
     public void test04UnExtractorEstaConstruidoEn6Turnos() {
         Zerg zerg = new Zerg();
+        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0,0);
@@ -160,6 +160,7 @@ public class CasoDeUso2Test {
     @Test
     public void test11UnNexoMineralNoEstaConstruidoEn3Turnos() {
         Protoss protoss = new Protoss();
+        protoss.abastecerDeRecursos(new Recurso(50), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasMIneral = new Coordenada(0,0);
@@ -175,6 +176,7 @@ public class CasoDeUso2Test {
     @Test
     public void test12UnNexoMineralEstaConstruidoEn4Turnos() {
         Protoss protoss = new Protoss();
+        protoss.abastecerDeRecursos(new Recurso(50), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadaMineral = new Coordenada(0,0);
@@ -233,6 +235,7 @@ public class CasoDeUso2Test {
     @Test
     public void test15UnAsimiladorNoEstaConstruidoEn5Turnos() {
         Protoss protoss = new Protoss();
+        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0,0);
@@ -248,6 +251,7 @@ public class CasoDeUso2Test {
     @Test
     public void test16UnAsimiladorEstaConstruidoEn6Turnos() {
         Protoss protoss = new Protoss();
+        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0,0);

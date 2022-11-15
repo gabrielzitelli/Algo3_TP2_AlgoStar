@@ -10,14 +10,16 @@ import java.util.ArrayList;
 
 public class PuertoEstelar extends Edificio {
 
-    private Recolectable estadoRecolectable = new NoRecolectable();
-    private Cargable estadoCarga = new ConCarga();
-    private EstadoMoho estadoMoho = new SinMoho();
     private EstadoPuertoEstelar estado;
     private int turnoParaEstarConstruido = 10;
     private int valorVital = 600;
 
     public PuertoEstelar() {
+        this.costoGas = 150;
+        this.costoMineral = 150;
+        this.estadoRecolectable = new NoRecolectable();
+        this.estadoCarga = new ConCarga();
+        this.estadoMoho = new SinMoho();
         estado = new EstadoPuertoEstelarEnConstruccion(turnoParaEstarConstruido);
         this.vida = new VidaConEscudo(valorVital, valorVital);
     }
@@ -34,11 +36,4 @@ public class PuertoEstelar extends Edificio {
     }
 
     public FabricaScout crearFabricaScout() {return estado.crearFabricaScout();}
-
-    @Override
-    public void verificarConstruccion(Casilla unaCasilla) {
-        unaCasilla.tieneEsteMoho(estadoMoho);
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
-    }
 }

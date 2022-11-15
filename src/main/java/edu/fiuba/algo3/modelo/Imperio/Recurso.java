@@ -24,4 +24,8 @@ public class Recurso {
     public boolean tenesCantidadDeRecurso(int cantidadRecurso) {
         return this.cantidad == cantidadRecurso;
     }
+
+    public int obtenerCantidad() {
+        return this.cantidad;
+    }
 }

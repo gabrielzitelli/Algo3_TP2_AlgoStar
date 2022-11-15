@@ -15,7 +15,7 @@ public class Mapa {
 
     //Hardcodeado, ver a futuro para crear en funcion de la cantidad de bases
     private int tamanio = 100;
-    private Casilla matriz[][];
+    private Casilla[][] matriz;
 
     private Mapa(){
         this.inicializarMapaConCasillasVacias();

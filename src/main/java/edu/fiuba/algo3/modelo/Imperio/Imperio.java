@@ -21,8 +21,17 @@ public abstract class Imperio {
 
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
+        comprobarRequisitosMateriales(edificio);
         mapa.construirEdificio(edificio, coordenada);
         edificios.add(edificio);
+    }
+
+    private void comprobarRequisitosMateriales(Edificio edificio){
+        ArrayList<Recurso> listaDeRequisitos = edificio.requisitosMateriales();
+        Recurso mineralAConsumir = listaDeRequisitos.get(0);
+        mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
+        Recurso gasAconsumir = listaDeRequisitos.get(1);
+        gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
     }
 
     protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
@@ -49,5 +58,17 @@ public abstract class Imperio {
     public Edificio conseguirEdificio(Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
         return mapa.obtenerEdificio(coordenada);
+    }
+
+    public void abastecerDeRecursos() {
+        //Metodo De inicializacion Utilitario
+        mineralesDelImperio = new Recurso(5000);
+        gasDelImperio = new Recurso(5000);
+    }
+
+    public void abastecerDeRecursos(Recurso mineral, Recurso gas) {
+        //Metodo de inicializacion utilitario
+        mineralesDelImperio = mineral;
+        gasDelImperio = gas;
     }
 }

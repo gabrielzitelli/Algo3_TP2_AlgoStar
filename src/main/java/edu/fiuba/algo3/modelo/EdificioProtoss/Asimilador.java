@@ -9,9 +9,6 @@ import edu.fiuba.algo3.modelo.States.EstadoAsimiladorEnConstruccion;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
 public class Asimilador extends Edificio {
-    private Recolectable estadoRecolectable = new GasRecolectable();
-    private EstadoMoho estadoMoho = new SinMoho();
-
     private EstadoAsimilador estado;
     private int turnoParaEstarConstruido = 6;
     private Recurso gasDelImperio;
@@ -19,6 +16,10 @@ public class Asimilador extends Edificio {
     private int valorVital = 450;
 
     public Asimilador(Recurso gasDelImperio){
+        this.costoGas = 0;
+        this.costoMineral = 100;
+        this.estadoRecolectable = new GasRecolectable();
+        this.estadoMoho = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoAsimiladorEnConstruccion(turnoParaEstarConstruido);
@@ -36,8 +37,7 @@ public class Asimilador extends Edificio {
 
     @Override
     public void verificarConstruccion(Casilla unaCasilla) {
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEsteMoho(estadoMoho);
+        super.verificarConstruccion(unaCasilla);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }
     public void establecerSobreGas(MaterialBruto volcanDeGas){

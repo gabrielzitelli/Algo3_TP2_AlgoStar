@@ -8,15 +8,17 @@ import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
 
 public class Acceso extends Edificio {
 
-    private Recolectable estadoRecolectable = new NoRecolectable();
-    private Cargable estadoCarga = new ConCarga();
-    private EstadoMoho estadoMoho = new SinMoho();
     private int turnoParaEstarConstruido = 8;
     private int valorVital = 500;
 
     private EstadoAcceso estado;
 
     public Acceso(){
+        this.costoGas = 0;
+        this.costoMineral = 150;
+        this.estadoCarga = new ConCarga();
+        this.estadoMoho = new SinMoho();
+        this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         estado = new EstadoAccesoEnConstruccion(turnoParaEstarConstruido);
     }
@@ -33,12 +35,5 @@ public class Acceso extends Edificio {
 
     public FabricaZealot crearFabricaZealot(){
         return estado.crearFabricaZealot();
-    }
-
-    @Override
-    public void verificarConstruccion(Casilla unaCasilla) {
-        unaCasilla.tieneEsteMoho(estadoMoho);
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
     }
 }

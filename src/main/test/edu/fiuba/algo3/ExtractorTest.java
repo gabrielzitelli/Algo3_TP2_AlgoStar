@@ -4,15 +4,11 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
 import edu.fiuba.algo3.modelo.EdificioZerg.FabricaZangano;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeExtraerSinZanganoAsignado;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.Test;
@@ -60,6 +56,7 @@ public class ExtractorTest {
     @Test
     public void test04PuedoContratarUnZanganoEnUnExtractorQueEstaConstruidoEn6Turnos(){
         Zerg zerg = new Zerg();
+        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0,0);
@@ -84,6 +81,7 @@ public class ExtractorTest {
     @Test
     public void test05PuedoContratarUnZanganoEnUnExtractorYMextraeCadaTurno(){
         Zerg zerg = new Zerg();
+        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0,0);
@@ -111,6 +109,7 @@ public class ExtractorTest {
     @Test
     public void test06PuedoContratarTresZanganosEnUnExtractorYMextraeCadaTurno() {
         Zerg zerg = new Zerg();
+        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
         Mapa mapa = Mapa.obtener();
         mapa.reiniciarMapa();
         Coordenada coordenadasGas = new Coordenada(0, 0);

@@ -13,13 +13,14 @@ public class Espiral extends Edificio {
     private EstadoEspiral estado;
 
     private int turnoParaEstarConstruido = 10;
-
-    private Recolectable estadoRecolectable = new NoRecolectable();
-    private EstadoMoho estadoMoho = new ConMoho();
     private int valorVital = 1300;
 
 
     public Espiral() {
+        this.costoGas = 100;
+        this.costoMineral = 150;
+        this.estadoRecolectable = new NoRecolectable();
+        this.estadoMoho = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
         estado = new EstadoEspiralEnConstruccion(turnoParaEstarConstruido);
     }
@@ -37,10 +38,5 @@ public class Espiral extends Edificio {
 
     public FabricaMutalisco crearFabricaMutalisco() {
         return estado.crearFabricaMutalisco();
-    }
-
-    public void verificarConstruccion(Casilla unaCasilla){
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEsteMoho(estadoMoho);
     }
 }

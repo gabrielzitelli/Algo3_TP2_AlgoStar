@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
 import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoExisteNingunEdificioEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeDesconstruirUnEdificioNoCreado;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;

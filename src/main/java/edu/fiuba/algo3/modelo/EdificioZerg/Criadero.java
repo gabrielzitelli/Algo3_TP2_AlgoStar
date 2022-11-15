@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.EdificioZerg;
 
 import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.States.EstadoCriadero;
 import edu.fiuba.algo3.modelo.States.EstadoCriaderoEnConstruccion;
@@ -12,8 +11,6 @@ import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
 public class Criadero extends Edificio {
 
-    private Recolectable estadoRecolectable = new NoRecolectable();
-    private Cargable estadoCarga = new SinCarga();
     //SUPUESTO: CRIADERO NO SE PUEDE PONER EN TERRENO CARGADO
 
     private EstadoCriadero estado;
@@ -23,6 +20,10 @@ public class Criadero extends Edificio {
     private int valorVital = 500;
 
     public Criadero(){
+        this.costoGas = 0;
+        this.costoMineral = 50;
+        this.estadoRecolectable = new NoRecolectable();
+        this.estadoCarga = new SinCarga();
         this.vida = new VidaRegenerativa(valorVital);
         //Aplicacion de patron State
         estado = new EstadoCriaderoEnConstruccion(turnoParaEstarConstruido);
@@ -52,11 +53,5 @@ public class Criadero extends Edificio {
         estado = estado.actualizar(coordenada);
         this.regenerarUnaLarva();
         vida.pasarTurno();
-    }
-
-    public void verificarConstruccion(Casilla unaCasilla){
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEstaCarga(estadoCarga);
-        coordenada = unaCasilla.obtenerCoordenada();
     }
 }

@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.States;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
-import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 
 import java.util.LinkedList;
 
@@ -23,6 +23,9 @@ public class EstadoExtractorConstruido implements EstadoExtractor{
     }
 
     public void contratarZangano(UnidadZerg zanganoAContratar, LinkedList<UnidadZerg> zanganosEmpleados){
+        if (zanganosEmpleados.size() >= 3) {
+            throw new ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo();
+        }
         zanganosEmpleados.add(zanganoAContratar);
     }
 }
