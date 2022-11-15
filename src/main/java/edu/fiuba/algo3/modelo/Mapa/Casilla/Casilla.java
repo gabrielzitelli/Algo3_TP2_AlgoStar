@@ -4,6 +4,9 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
+import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 
 public abstract class Casilla {
 
@@ -11,12 +14,19 @@ public abstract class Casilla {
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
 
+    protected Superficie superficie;
+
+    protected Unidad unidad;
+
     protected Coordenada coordenada;
 
     public abstract Casilla construirEdificio(Edificio unEdificio);
 
     public void colocarMaterial(SiRecolectable materialAColocar){
         estadoRecolectable = materialAColocar;
+    }
+    public void colocarSuperficie(Superficie superficieAColocar) {
+        superficie = superficieAColocar;
     }
 
     public MaterialBruto obtenerMaterial(){
@@ -42,9 +52,7 @@ public abstract class Casilla {
         return this.coordenada;
     }
 
-    public void llenarDeMoho(){
-        estadoMoho = new ConMoho();
-    }
+    public abstract void llenarDeMoho();
 
     public void cargarDeEnergia() {
         if (estadoCarga == null){
@@ -52,4 +60,17 @@ public abstract class Casilla {
         }
         estadoCarga = estadoCarga.cargar();
     }
+
+    public abstract Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg);
+    public abstract Casilla desconstruirEdificio(Coordenada coordenada);
+    public abstract Edificio obtenerEdificio();
+
+    public abstract Casilla colocarUnidad(Unidad unaUnidad);
+
+    public abstract void atacar(Casilla casillaAtacada);
+
+    protected abstract void recibirAtaque(Ataque unAtaque);
+
+    public abstract Casilla moverUnidadHacia(Casilla destino);
+    public abstract Casilla quitarUnidad();
 }

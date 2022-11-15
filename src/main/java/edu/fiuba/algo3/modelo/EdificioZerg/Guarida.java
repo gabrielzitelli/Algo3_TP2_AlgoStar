@@ -13,13 +13,15 @@ public class Guarida extends Edificio {
     private EstadoGuarida estado;
 
     private int turnoParaEstarConstruido = 12;
-
-    private Recolectable estadoRecolectable = new NoRecolectable();
-    private EstadoMoho estadoMoho = new ConMoho();
     private int valorVital = 1250;
+    private ArrayList<Fabrica> listaDeFabricasDisponibles;
 
 
     public Guarida(){
+        this.costoMineral = 200;
+        this.costoGas = 100;
+        this.estadoMoho = new ConMoho();
+        this.estadoRecolectable = new NoRecolectable();
         //Aplicacion de patron State
         estado = new EstadoGuaridaEnConstruccion(turnoParaEstarConstruido);
         this.vida = new VidaRegenerativa(valorVital);
@@ -32,16 +34,14 @@ public class Guarida extends Edificio {
     }
 
     public void pasarTurno() {
-        estado = estado.actualizar();
+        estado = estado.actualizar(listaDeFabricasDisponibles);
         vida.pasarTurno();
     }
 
     public FabricaHidralisco crearFabricaHidralisco() {
         return estado.crearFabricaHidralisco();
     }
-
-    public void verificarConstruccion(Casilla unaCasilla){
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEsteMoho(estadoMoho);
+    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
+        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
     }
 }

@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.modelo.States;
 
+import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
 import edu.fiuba.algo3.modelo.EdificioZerg.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+
+import java.util.ArrayList;
 
 public class EstadoEspiralEnConstruccion implements EstadoEspiral {
 
@@ -12,9 +15,11 @@ public class EstadoEspiralEnConstruccion implements EstadoEspiral {
     }
 
     @Override
-    public EstadoEspiral actualizar() {
+    public EstadoEspiral actualizar(ArrayList<Fabrica> listaDeFabricasDisponibles) {
         turnoParaEstarConstruido--;
         if (turnoParaEstarConstruido == 0) {
+            if (listaDeFabricasDisponibles != null)
+                listaDeFabricasDisponibles.add(new FabricaMutalisco());
             return new EstadoEspiralConstruida();
         }
         return this;

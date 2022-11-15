@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.modelo.States;
 
+import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
 import edu.fiuba.algo3.modelo.EdificioZerg.FabricaZerling;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+
+import java.util.ArrayList;
 
 public class EstadoReservaEnConstruccion implements EstadoReserva{
 
@@ -15,11 +18,13 @@ public class EstadoReservaEnConstruccion implements EstadoReserva{
         throw new ErrorEdificioNoEstaConstruido();
     }
 
-    public EstadoReserva actualizar(){
+    public EstadoReserva actualizar(ArrayList<Fabrica> listaDeFabricasDisponibles){
         turnoParaEstarConstruido--;
-        if(turnoParaEstarConstruido == 0)
+        if(turnoParaEstarConstruido == 0) {
+            if (listaDeFabricasDisponibles != null)
+                listaDeFabricasDisponibles.add(new FabricaZerling());
             return new EstadoReservaConstruida();
-
+        }
         return this;
     }
 }

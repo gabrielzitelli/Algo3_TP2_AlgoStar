@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;

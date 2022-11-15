@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.modelo.EdificioZerg;
 
 import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.States.EstadoExtractor;
 import edu.fiuba.algo3.modelo.States.EstadoExtractorEnConstruccion;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
@@ -17,14 +19,15 @@ public class Extractor extends Edificio {
     private int turnoParaEstarConstruido = 6;
     private Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
-    private LinkedList<Zangano> zanganosEmpleados = new LinkedList<>();
-
-    private Recolectable estadoRecolectable = new GasRecolectable();
-    private EstadoMoho estadoMoho = new ConMoho();
+    private LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
     private int valorVital = 750;
 
 
     public Extractor(Recurso gasDelImperio){
+        this.costoGas = 0;
+        this.costoMineral = 100;
+        this.estadoRecolectable = new GasRecolectable();
+        this.estadoMoho = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoExtractorEnConstruccion(turnoParaEstarConstruido);
@@ -32,24 +35,31 @@ public class Extractor extends Edificio {
 
     public void pasarTurno(){
         estado = estado.actualizar();
+        this.extraer();
         vida.pasarTurno();
     }
 
-    public void extraer(){
+    private void extraer(){
         estado.extraer(gasDelImperio, volcanDeGas, zanganosEmpleados.size());
     }
 
-    public void contratarZangano(Zangano zanganoAContratar){
+    public void contratarZangano(Unidad zanganoAContratar){
+        if (!zanganoAContratar.esIgualA(new Zangano())){
+            throw new ErrorEstaUnidadNosePuedeContratar();
+        }
         estado.contratarZangano(zanganoAContratar, zanganosEmpleados);
     }
 
     public void verificarConstruccion(Casilla unaCasilla){
-        unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        unaCasilla.tieneEsteMoho(estadoMoho);
+        super.verificarConstruccion(unaCasilla);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }
 
     public void establecerSobreGas(MaterialBruto volcanDeGas){
         this.volcanDeGas = volcanDeGas;
+    }
+    @Override
+    public void contratarUnidad(Unidad unidad){
+        contratarZangano(unidad);
     }
 }

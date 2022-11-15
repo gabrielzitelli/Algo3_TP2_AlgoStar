@@ -2,9 +2,8 @@ package edu.fiuba.algo3.modelo.States;
 
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
-import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
+import edu.fiuba.algo3.modelo.Unidad;
 
 import java.util.LinkedList;
 
@@ -24,10 +23,9 @@ public class EstadoExtractorEnConstruccion implements EstadoExtractor{
     }
 
     public void extraer(Recurso gasDelImperio, MaterialBruto volcanDeGas, int vecesAExtraer){
-        throw new ErrorEdificioNoEstaConstruido();
     }
 
-    public void contratarZangano(Zangano zanganoAContratar, LinkedList<Zangano> zanganosEmpleados){
+    public void contratarZangano(Unidad zanganoAContratar, LinkedList<Unidad> zanganosEmpleados){
         throw new ErrorEdificioNoEstaConstruido();
     }
 }

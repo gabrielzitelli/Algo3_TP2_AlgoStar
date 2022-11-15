@@ -3,7 +3,9 @@ package edu.fiuba.algo3.modelo.States;
 import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.Unidad;
+
+import java.util.ArrayList;
 
 public class EstadoCriaderoEnConstruccion implements EstadoCriadero{
 
@@ -13,7 +15,7 @@ public class EstadoCriaderoEnConstruccion implements EstadoCriadero{
         this.turnoParaEstarConstruido = turnoParaEstarConstruido;
     }
 
-    public UnidadZerg crearUnidad(Fabrica unaFabrica){
+    public void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades){
         throw new ErrorEdificioNoEstaConstruido();
     }
 
@@ -21,8 +23,9 @@ public class EstadoCriaderoEnConstruccion implements EstadoCriadero{
     public EstadoCriadero actualizar(Coordenada coordenada) {
         turnoParaEstarConstruido--;
         if(turnoParaEstarConstruido == 0)
-            return new EstadoCriaderoConstruido();
+            return new EstadoCriaderoConstruido(coordenada);
 
         return this;
     }
+
 }

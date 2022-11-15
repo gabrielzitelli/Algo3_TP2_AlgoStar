@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.modelo.Edificio;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 
 import java.util.LinkedList;
 
@@ -15,10 +14,11 @@ public class Mapa {
 
     //Hardcodeado, ver a futuro para crear en funcion de la cantidad de bases
     private int tamanio = 100;
-    private Casilla matriz[][];
+    private Casilla[][] matriz;
 
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
+        this.inicializarBases();
     }
 
     private void inicializarMapaConCasillasVacias(){
@@ -30,6 +30,28 @@ public class Mapa {
         }
     }
 
+    private void inicializarBases(){
+        int mitadLadoMapa = tamanio/2;
+        int cuartoLadoMapa = tamanio/4;
+
+        this.colocarUnaBase(new Coordenada(mitadLadoMapa, cuartoLadoMapa));
+        this.colocarUnaBase(new Coordenada(tamanio - mitadLadoMapa, cuartoLadoMapa));
+    }
+
+    private void colocarUnaBase(Coordenada centroBase){
+
+        Coordenada[] coordMineralesBase = {
+                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()-1),
+                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()),
+                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()+1),
+        };
+
+        colocarMaterial(new GasRecolectable(), centroBase);
+        colocarMaterial(new MineralRecolectable(), coordMineralesBase[0]);
+        colocarMaterial(new MineralRecolectable(), coordMineralesBase[1]);
+        colocarMaterial(new MineralRecolectable(), coordMineralesBase[2]);
+    }
+
     static public Mapa obtener(){
         return mapaInstanciaUnica;
     }
@@ -38,6 +60,13 @@ public class Mapa {
         Casilla casillaDondeConstruir = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDondeConstruir = casillaDondeConstruir.construirEdificio(unEdificio);
         this.actualizarCasillaPorCoordenada(coordenada, casillaDondeConstruir);
+    }
+
+    public void destruirEdificio(Coordenada coordenada){
+        // Capaz estoy acoplando mucho edificio y mapa con esto
+        Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestruir = casillaDestruir.desconstruirEdificio(coordenada);
+        this.actualizarCasillaPorCoordenada(coordenada, casillaDestruir);
     }
 
     private Casilla encontrarCasillaPorCoordenada(Coordenada coordenada){
@@ -56,9 +85,19 @@ public class Mapa {
         this.inicializarMapaConCasillasVacias();
     }
 
+    public void recolocarBasesIniciales(){
+        this.reiniciarMapa();
+        this.inicializarBases();
+    }
+
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarMaterial(materialAColocar);
+    }
+
+    public void colocarSuperficie(Superficie superficieAColocar, Coordenada coordenada) {
+        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestino.colocarSuperficie(superficieAColocar);
     }
 
     public int distanciaEntreDosCoordenadas(Coordenada coordenada1, Coordenada coordenada2){
@@ -91,5 +130,47 @@ public class Mapa {
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.cargarDeEnergia();
+    }
+
+    public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
+        Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
+
+        casillaDondeColocar = casillaDondeColocar.colocarUnidadZerg(unaUnidadZerg);
+
+        this.actualizarCasillaPorCoordenada(unaCoordenada, casillaDondeColocar);
+    }
+    public Edificio obtenerEdificio(Coordenada coordenada) {
+        Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
+        return casillaConEdificio.obtenerEdificio();
+    }
+
+
+    public void colocarUnaUnidad(Unidad unaUnidad, Coordenada coordenada){
+        // Busco la casilla de la coordenada y creo una nueva casilla ocupada por la unidad
+        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestino = casillaDestino.colocarUnidad(unaUnidad);
+        this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
+    }
+
+    public void atacar(Coordenada atacante, Coordenada atacado){
+        // Busco la casilla de atacante y atacado y hago que el atacante la ataque
+        Casilla casillaAtacante = this.encontrarCasillaPorCoordenada(atacante);
+        Casilla casillaAtacado = this.encontrarCasillaPorCoordenada(atacado);
+
+        casillaAtacante.atacar(casillaAtacado);
+    }
+
+    public void moverUnidad(Coordenada coordenadaInicial, Coordenada coordenadaFinal){
+        Casilla casillaInicial = this.encontrarCasillaPorCoordenada(coordenadaInicial);
+        Casilla casillaFinal = this.encontrarCasillaPorCoordenada(coordenadaFinal);
+
+        //Actualizo la casillaFinal con una casilla que ahora tiene la Unidad de casillaInicial
+        casillaFinal = casillaInicial.moverUnidadHacia(casillaFinal);
+        this.actualizarCasillaPorCoordenada(coordenadaFinal, casillaFinal);
+
+        //Actualizo la casillaInicial con una casilla con los mismo atributos que tenia casillaInicial pero ahora
+        //sin la unidad que contenia
+        casillaInicial = casillaInicial.quitarUnidad();
+        this.actualizarCasillaPorCoordenada(coordenadaInicial, casillaInicial);
     }
 }

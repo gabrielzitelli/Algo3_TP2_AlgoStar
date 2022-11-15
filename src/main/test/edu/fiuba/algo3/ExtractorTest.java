@@ -1,17 +1,17 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeExtraerSinZanganoAsignado;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.GasBruto;
-import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
+import edu.fiuba.algo3.modelo.Imperio.Zerg;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ExtractorTest {
 
@@ -36,7 +36,7 @@ public class ExtractorTest {
         for(int i = 0; i < 5; i++)
             unExtractor.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unExtractor.extraer());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unExtractor.contratarZangano(new Zangano()));
     }
 
     @Test
@@ -53,41 +53,80 @@ public class ExtractorTest {
 
     @Test
     public void test04PuedoContratarUnZanganoEnUnExtractorQueEstaConstruidoEn6Turnos(){
-        Recurso gasDelImperio = new Recurso(0);
+        Zerg zerg = new Zerg();
+        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0,0);
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
 
-        Extractor unExtractor = new Extractor(gasDelImperio);
+        zerg.construirCriadero(new Coordenada(1,1));
+        for (int i = 0; i < 5; i++){
+            zerg.terminarTurno();
+        }
 
-        //Construyo el Extractor
-        for(int i = 0; i < 6; i++)
-            unExtractor.pasarTurno();
+        zerg.construirExtractor(coordenadasGas);
 
-        assertDoesNotThrow(() -> unExtractor.contratarZangano(new Zangano()));
+        //Construimos el extractor
+        for (int i = 0; i < 6; i++){
+            zerg.terminarTurno();
+        }
+        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
+        assertDoesNotThrow( () -> extractor.contratarUnidad(new Zangano()));
     }
-
-   @Test
-    public void test05NoPuedoExtraerElGasDeUnExtractorQueEstaConstruidoEn6TurnosSinAsignarUnZangano(){
-        Recurso gasDelImperio = new Recurso(0);
-
-        Extractor unExtractor = new Extractor(gasDelImperio);
-
-       //Construyo el Extractor
-       for(int i = 0; i < 6; i++)
-            unExtractor.pasarTurno();
-
-        assertThrows(ErrorNoSePuedeExtraerSinZanganoAsignado.class ,() -> unExtractor.extraer());
-    }
-
     @Test
-    public void test06PuedoExtraerElGasDeUnExtractorQueEstaConstruidoEn6TurnosConUnZanganoAsignado(){
-        Recurso gasDelImperio = new Recurso(0);
+    public void test05PuedoContratarUnZanganoEnUnExtractorYMextraeCadaTurno(){
+        Zerg zerg = new Zerg();
+        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0,0);
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
 
-        Extractor unExtractor = new Extractor(gasDelImperio);
+        zerg.construirCriadero(new Coordenada(1,1));
+        for (int i = 0; i < 5; i++){
+            zerg.terminarTurno();
+        }
 
-        //Construyo el Extractor
-        for(int i = 0; i < 6; i++)
-            unExtractor.pasarTurno();
-        unExtractor.contratarZangano(new Zangano());
+        zerg.construirExtractor(coordenadasGas);
 
-        assertThrows(ErrorNoSeHaConstruidoElExtractorSobreUnaCasilla.class, () -> unExtractor.extraer());
+        //Construimos el extractor
+        for (int i = 0; i < 6; i++){
+            zerg.terminarTurno();
+        }
+        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
+        extractor.contratarUnidad(new Zangano());
+        zerg.terminarTurno();
+
+        assert(zerg.tienesEstaCantidadDeGas(10));
+    }
+    @Test
+    public void test06PuedoContratarTresZanganosEnUnExtractorYMextraeCadaTurno() {
+        Zerg zerg = new Zerg();
+        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0, 0);
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
+
+        zerg.construirCriadero(new Coordenada(1, 1));
+        for (int i = 0; i < 5; i++) {
+            zerg.terminarTurno();
+        }
+
+        zerg.construirExtractor(coordenadasGas);
+
+        //Construimos el extractor
+        for (int i = 0; i < 6; i++) {
+            zerg.terminarTurno();
+        }
+        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
+        extractor.contratarUnidad(new Zangano());
+        extractor.contratarUnidad(new Zangano());
+        extractor.contratarUnidad(new Zangano());
+
+        zerg.terminarTurno();
+
+        assert (zerg.tienesEstaCantidadDeGas(30));
     }
 }
