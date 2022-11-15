@@ -1,24 +1,19 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioZerling;
+import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
 public class Zerling extends UnidadZerg {
 
-    private int danioBasico = 4;
-    private Danio danio = new DanioZerling(danioBasico);
+    private int danioTerrestre = 4;
+
+    private DanioUnidad danio = new DanioZerling(danioTerrestre);
 
     private Vida vida = new VidaSimple(35);
 
     public Ataque atacar(){
-        Ataque unAtaque = new Ataque(danio);
-        return unAtaque;
+        return new Ataque(danio);
     }
 
     public void recibirAtaque(Ataque unAtaque){

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
@@ -68,6 +69,11 @@ public class Mapa {
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarMaterial(materialAColocar);
+    }
+
+    public void colocarSuperficie(Superficie superficieAColocar, Coordenada coordenada) {
+        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestino.colocarSuperficie(superficieAColocar);
     }
 
     public int distanciaEntreDosCoordenadas(Coordenada coordenada1, Coordenada coordenada2){

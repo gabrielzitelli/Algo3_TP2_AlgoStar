@@ -14,11 +14,12 @@ public class CasillaOcupada extends Casilla{
         this.coordenada = coordenada;
     }
 
-    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable){
+    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie){
         this.estadoRecolectable = estadoRecolectable;
         this.estadoMoho = estadoMoho;
         this.estadoCarga = estadoCarga;
         this.coordenada = coordenada;
+        this.superficie = superficie;
     }
 
     public Casilla construirEdificio(Edificio unEdificio){
@@ -55,12 +56,11 @@ public class CasillaOcupada extends Casilla{
         throw new Error();
     }
 
-    public void atacar(Casilla casillaAtacada){
-        Ataque unAtaque = unidad.atacar();
-        casillaAtacada.recibirAtaque(unAtaque);
+    public void atacar(Casilla casillaAtacada) {
+        casillaAtacada.recibirAtaque(unidad.atacar());
     }
 
      protected void recibirAtaque(Ataque unAtaque){
-         unidad.recibirAtaque(unAtaque);
+        unidad.recibirAtaque(superficie.conseguirTipoDeAtaque(unAtaque));
     }
 }

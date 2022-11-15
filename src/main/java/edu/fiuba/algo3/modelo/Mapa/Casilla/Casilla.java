@@ -15,6 +15,8 @@ public abstract class Casilla {
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
 
+    protected Superficie superficie;
+
     protected Unidad unidad;
 
     protected Coordenada coordenada;
@@ -23,6 +25,9 @@ public abstract class Casilla {
 
     public void colocarMaterial(SiRecolectable materialAColocar){
         estadoRecolectable = materialAColocar;
+    }
+    public void colocarSuperficie(Superficie superficieAColocar) {
+        superficie = superficieAColocar;
     }
 
     public MaterialBruto obtenerMaterial(){

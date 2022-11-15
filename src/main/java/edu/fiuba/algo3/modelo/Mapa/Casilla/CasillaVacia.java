@@ -20,7 +20,7 @@ public class CasillaVacia extends Casilla{
 
     public Casilla construirEdificio(Edificio unEdificio){
         unEdificio.verificarConstruccion(this);
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable);
+        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
         casillaOcupada.establecerEdificio(unEdificio);
         return casillaOcupada;
     }
@@ -56,7 +56,7 @@ public class CasillaVacia extends Casilla{
     }
 
     public Casilla colocarUnidad(Unidad unaUnidad){
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable);
+        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
         casillaOcupada.settearUnidad(unaUnidad);
         return casillaOcupada;
     }

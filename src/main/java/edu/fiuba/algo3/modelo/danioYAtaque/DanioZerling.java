@@ -1,13 +1,22 @@
 package edu.fiuba.algo3.modelo.danioYAtaque;
 
-public class DanioZerling implements Danio {
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 
-    int danio;
-    public DanioZerling(int danio){
-        this.danio = danio;
+public class DanioZerling implements DanioUnidad {
+
+    private Danio danioTerrestre;
+
+    public DanioZerling(int danioTerrestre){
+        this.danioTerrestre = new Danio(danioTerrestre);
     }
-    public int aplicarDanio(int cantidadVida){
-        // Devuelve la cantidad de vida luego de aplicarle el daño
-        return cantidadVida - danio;
+
+    @Override
+    public Danio danioTerrestre() {
+        return danioTerrestre;
+    }
+
+    @Override
+    public Danio danioAereo() {
+        throw new ErrorNoPuedeAtacarUnidadVoladora();
     }
 }
