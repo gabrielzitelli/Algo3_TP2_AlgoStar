@@ -29,10 +29,11 @@ public class NexoMineral extends Edificio {
 
     public void pasarTurno() {
         estado = estado.actualizar();
+        this.extraer();
         vida.pasarTurno();
     }
 
-    public void extraer() {
+    private void extraer() {
         estado.extraer(mineralesDelImperio, nodoMineral);
     }
 

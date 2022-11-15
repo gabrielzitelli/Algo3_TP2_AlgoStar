@@ -14,4 +14,8 @@ public abstract class UnidadZerg {
     }
     public void extraer(){
     }
+
+    public boolean esIgualA(UnidadZerg unidad) {
+        return this.getClass().equals(unidad.getClass());
+    }
 }

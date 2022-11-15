@@ -13,6 +13,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
+import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.Test;
 
@@ -71,5 +72,70 @@ public class ExtractorTest {
 
         zerg.construirExtractor(coordenadasGas);
         Edificio criadero = zerg.conseguirEdificio(new Coordenada(1,1));
+        UnidadZerg zangano = criadero.crearUnidad(new FabricaZangano());
+
+        //Construimos el extractor
+        for (int i = 0; i < 6; i++){
+            zerg.terminarTurno();
+        }
+        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
+        assertDoesNotThrow( () -> extractor.contratarUnidad(zangano));
+    }
+    @Test
+    public void test05PuedoContratarUnZanganoEnUnExtractorYMextraeCadaTurno(){
+        Zerg zerg = new Zerg();
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0,0);
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
+
+        zerg.construirCriadero(new Coordenada(1,1));
+        for (int i = 0; i < 5; i++){
+            zerg.terminarTurno();
+        }
+
+        zerg.construirExtractor(coordenadasGas);
+        Edificio criadero = zerg.conseguirEdificio(new Coordenada(1,1));
+        UnidadZerg zangano = criadero.crearUnidad(new FabricaZangano());
+
+        //Construimos el extractor
+        for (int i = 0; i < 6; i++){
+            zerg.terminarTurno();
+        }
+        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
+        extractor.contratarUnidad(zangano);
+        zerg.terminarTurno();
+
+        assert(zerg.tienesEstaCantidadDeGas(10));
+    }
+    @Test
+    public void test06PuedoContratarTresZanganosEnUnExtractorYMextraeCadaTurno() {
+        Zerg zerg = new Zerg();
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenadasGas = new Coordenada(0, 0);
+        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
+
+        zerg.construirCriadero(new Coordenada(1, 1));
+        for (int i = 0; i < 5; i++) {
+            zerg.terminarTurno();
+        }
+
+        zerg.construirExtractor(coordenadasGas);
+        Edificio criadero = zerg.conseguirEdificio(new Coordenada(1, 1));
+        UnidadZerg zangano = criadero.crearUnidad(new FabricaZangano());
+
+        //Construimos el extractor
+        for (int i = 0; i < 6; i++) {
+            zerg.terminarTurno();
+        }
+        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
+        extractor.contratarUnidad(zangano);
+        extractor.contratarUnidad(zangano);
+        extractor.contratarUnidad(zangano);
+
+        zerg.terminarTurno();
+
+        assert (zerg.tienesEstaCantidadDeGas(30));
     }
 }
