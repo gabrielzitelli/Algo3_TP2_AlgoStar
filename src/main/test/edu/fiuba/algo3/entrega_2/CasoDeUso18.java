@@ -3,6 +3,9 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.UnidadesProtoss.Dragon;
+import edu.fiuba.algo3.modelo.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Hidralisco;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Mutalisco;
@@ -96,6 +99,71 @@ public class CasoDeUso18 {
 
         // Dejo al zerling a un ataque mas del guardian
         elMapa.atacar(unaCoordenada, otraCoordenada);
+
+        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(unaCoordenada, otraCoordenada));
+    }
+
+    @Test
+    public void test05VerificoQueSiAtacoUnZerlingConUnZealotCincoVecesEsteMuere(){
+        Zerling unZerling = new Zerling();
+        Zealot unZealot = new Zealot();
+
+        Coordenada unaCoordenada = new Coordenada(0,0);
+        Coordenada otraCoordenada = new Coordenada(0,1);
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
+        elMapa.colocarUnaUnidad(unZealot, unaCoordenada);
+
+        // Dejo al zerling a un ataque mas del Zealot
+        for (int i = 0; i < 4; i++) {
+            elMapa.atacar(unaCoordenada, otraCoordenada);
+        }
+
+        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(unaCoordenada, otraCoordenada));
+    }
+
+    @Test
+    public void test06VerificoQueSiAtacoUnZerlingConUnDragonDosVecesEsteMuere(){
+        Zerling unZerling = new Zerling();
+        Dragon unDragon = new Dragon();
+
+        Coordenada unaCoordenada = new Coordenada(0,0);
+        Coordenada otraCoordenada = new Coordenada(0,1);
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
+        elMapa.colocarUnaUnidad(unDragon, unaCoordenada);
+
+        // Dejo al zerling a un ataque mas del Dragon
+        elMapa.atacar(unaCoordenada, otraCoordenada);
+
+
+        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(unaCoordenada, otraCoordenada));
+    }
+
+    @Test
+    public void test07VerificoQueSiAtacoUnZerlingConUnScoutCincoVecesEsteMuere(){
+        Zerling unZerling = new Zerling();
+        Scout unScout = new Scout();
+
+        Coordenada unaCoordenada = new Coordenada(0,0);
+        Coordenada otraCoordenada = new Coordenada(0,1);
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
+        elMapa.colocarUnaUnidad(unScout, unaCoordenada);
+
+        // Dejo al zerling a un ataque mas del Scout
+        for (int i = 0; i < 4; i++) {
+            elMapa.atacar(unaCoordenada, otraCoordenada);
+        }
 
         assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(unaCoordenada, otraCoordenada));
     }
