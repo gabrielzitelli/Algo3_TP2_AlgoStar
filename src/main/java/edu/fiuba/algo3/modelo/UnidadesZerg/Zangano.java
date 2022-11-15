@@ -28,7 +28,6 @@ public class Zangano extends UnidadZerg {
         unaCasilla.tieneEsteRecoletable(recolecta);
         //CAMBIAR EL NOMBRE DEL ERROR
         this.recursoARecolectar = unaCasilla.obtenerMaterial();
-
     }
 
     @Override

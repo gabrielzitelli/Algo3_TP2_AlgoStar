@@ -1,5 +1,6 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.modelo.EdificioProtoss.Pilon;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zerling;
@@ -39,4 +40,21 @@ public class TestZerling {
 
         assertDoesNotThrow(() -> elMapa.atacar(unaCoordenada, otraCoordenada));
     }
+
+    /*@Test
+    public void test03UnZerlingPuedeDaniarAUnPilon(){
+        Zerling unZerling = new Zerling();
+        Pilon pilon = new Pilon();
+
+        Coordenada unaCoordenada = new Coordenada(0,0);
+        Coordenada otraCoordenada = new Coordenada(0,1);
+
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+
+        elMapa.colocarUnaUnidad(unZerling, unaCoordenada);
+        elMapa.construirEdificio(pilon, otraCoordenada);
+
+        assertDoesNotThrow(() -> elMapa.atacar(unaCoordenada, otraCoordenada));
+    }*/
 }
