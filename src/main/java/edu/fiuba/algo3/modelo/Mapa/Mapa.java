@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.modelo.Edificio;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 
@@ -21,6 +18,7 @@ public class Mapa {
 
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
+        this.inicializarBases();
     }
 
     private void inicializarMapaConCasillasVacias(){
@@ -30,6 +28,28 @@ public class Mapa {
                 matriz[i][j] = new CasillaVacia(new Coordenada(i, j));
             }
         }
+    }
+
+    private void inicializarBases(){
+        int mitadLadoMapa = tamanio/2;
+        int cuartoLadoMapa = tamanio/4;
+
+        this.colocarUnaBase(new Coordenada(mitadLadoMapa, cuartoLadoMapa));
+        this.colocarUnaBase(new Coordenada(tamanio - mitadLadoMapa, cuartoLadoMapa));
+    }
+
+    private void colocarUnaBase(Coordenada centroBase){
+
+        Coordenada[] coordMineralesBase = {
+                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()-1),
+                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()),
+                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()+1),
+        };
+
+        colocarMaterial(new GasRecolectable(), centroBase);
+        colocarMaterial(new MineralRecolectable(), coordMineralesBase[0]);
+        colocarMaterial(new MineralRecolectable(), coordMineralesBase[1]);
+        colocarMaterial(new MineralRecolectable(), coordMineralesBase[2]);
     }
 
     static public Mapa obtener(){
@@ -63,6 +83,11 @@ public class Mapa {
 
     public void reiniciarMapa(){
         this.inicializarMapaConCasillasVacias();
+    }
+
+    public void recolocarBasesIniciales(){
+        this.reiniciarMapa();
+        this.inicializarBases();
     }
 
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
