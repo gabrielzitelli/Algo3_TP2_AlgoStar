@@ -14,6 +14,7 @@ public class Guarida extends Edificio {
 
     private int turnoParaEstarConstruido = 12;
     private int valorVital = 1250;
+    private ArrayList<Fabrica> listaDeFabricasDisponibles;
 
 
     public Guarida(){
@@ -33,11 +34,14 @@ public class Guarida extends Edificio {
     }
 
     public void pasarTurno() {
-        estado = estado.actualizar();
+        estado = estado.actualizar(listaDeFabricasDisponibles);
         vida.pasarTurno();
     }
 
     public FabricaHidralisco crearFabricaHidralisco() {
         return estado.crearFabricaHidralisco();
+    }
+    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
+        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
     }
 }

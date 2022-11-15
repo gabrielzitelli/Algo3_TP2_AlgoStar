@@ -18,8 +18,8 @@ public class Hidralisco extends UnidadZerg {
 
     public Hidralisco(){
         superficieDondeSeMueve.add(new SuperficieTerrestre());
+        this.turnosDeConstruccion = 4;
     }
-
     public Ataque atacar(){
         Ataque unAtaque = new Ataque(danio);
         return unAtaque;

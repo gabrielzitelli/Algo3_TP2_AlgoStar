@@ -20,8 +20,8 @@ public class Guardian extends UnidadZerg {
     public Guardian(){
         superficieDondeSeMueve.add(new SuperficieTerrestre());
         superficieDondeSeMueve.add(new SuperficieAerea());
+        this.turnosDeConstruccion = 4;
     }
-
     public Ataque atacar(){
         Ataque unAtaque = new Ataque(danio);
         return unAtaque;

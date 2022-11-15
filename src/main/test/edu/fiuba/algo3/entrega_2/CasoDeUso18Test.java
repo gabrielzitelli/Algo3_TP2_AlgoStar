@@ -14,7 +14,6 @@ import edu.fiuba.algo3.modelo.UnidadesZerg.Mutalisco;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso18Test {

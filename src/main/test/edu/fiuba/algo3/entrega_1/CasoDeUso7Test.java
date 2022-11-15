@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.EdificioProtoss.Asimilador;
 import edu.fiuba.algo3.modelo.EdificioProtoss.NexoMineral;
 import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
 import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
-import edu.fiuba.algo3.modelo.EdificioZerg.FabricaZangano;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
@@ -86,9 +85,9 @@ public class CasoDeUso7Test {
         elMapa.construirEdificio(extractor, coordenadaExtractor);
         for (int i = 0; i < 6; i++)
             extractor.pasarTurno();
-        extractor.contratarUnidad(criadero.crearUnidad(new FabricaZangano()));
-        extractor.contratarUnidad(criadero.crearUnidad(new FabricaZangano()));
-        extractor.contratarUnidad(criadero.crearUnidad(new FabricaZangano()));
+        extractor.contratarUnidad(new Zangano());
+        extractor.contratarUnidad(new Zangano());
+        extractor.contratarUnidad(new Zangano());
 
 
         extractor.pasarTurno();

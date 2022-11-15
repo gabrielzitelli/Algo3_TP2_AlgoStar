@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Recolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioZerling;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
@@ -22,6 +21,8 @@ public class Zangano extends UnidadZerg {
     private Vida vida = new VidaSimple(35);
 
     public Zangano(){
+        //FALTA CREAR UNA VIDA
+        this.turnosDeConstruccion = 0;
         superficieDondeSeMueve.add(new SuperficieTerrestre());
         this.mineralDelImperio = null;
     }

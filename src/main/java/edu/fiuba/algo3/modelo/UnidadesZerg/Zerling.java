@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
@@ -20,8 +18,8 @@ public class Zerling extends UnidadZerg {
 
     public Zerling(){
         superficieDondeSeMueve.add(new SuperficieTerrestre());
+        this.turnosDeConstruccion = 2;
     }
-
     public Ataque atacar(){
         Ataque unAtaque = new Ataque(danio);
         return unAtaque;

@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.vida.Vida;
 
@@ -57,10 +56,10 @@ public abstract class Edificio {
     }
 
     public abstract void pasarTurno();
-    public UnidadZerg crearUnidad(Fabrica unaFabrica) {
+    public void crearUnidad(Fabrica unaFabrica) {
         throw new ErrorElEdificioNoPuedeCrearUnidadades();
     }
-    public void contratarUnidad(UnidadZerg unidad) {
+    public void contratarUnidad(Unidad unidad) {
         throw new ErrorElEdificioNoPuedeContratarUnidadades();
     }
 }

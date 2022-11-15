@@ -13,6 +13,15 @@ public abstract class UnidadZerg implements Unidad {
     protected MaterialBruto recursoARecolectar;
     protected Recurso mineralDelImperio;
     protected ArrayList<Superficie> superficieDondeSeMueve = new ArrayList<>();
+    int turnosDeConstruccion;
+    public boolean estaConstruida() {
+        return (turnosDeConstruccion == 0);
+    }
+    public void pasarTurno() {
+        if (turnosDeConstruccion > 0) {
+            turnosDeConstruccion--;
+        }
+    }
     //private int valorVital = x;
     public void interaccionar(Casilla unaCasilla){
     }
@@ -21,7 +30,7 @@ public abstract class UnidadZerg implements Unidad {
     public void extraer(){
     }
 
-    public boolean esIgualA(UnidadZerg unidad) {
+    public boolean esIgualA(Unidad unidad) {
         return this.getClass().equals(unidad.getClass());
     }
 

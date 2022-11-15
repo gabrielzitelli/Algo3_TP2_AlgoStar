@@ -6,12 +6,14 @@ import edu.fiuba.algo3.modelo.States.EstadoReserva;
 import edu.fiuba.algo3.modelo.States.EstadoReservaEnConstruccion;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
+import java.util.ArrayList;
+
 public class ReservaDeReproduccion extends Edificio {
 
     private EstadoReserva estado;
     private int turnoParaEstarConstruido = 12;
     private int valorVital = 1000;
-
+    private ArrayList<Fabrica> listaDeFabricasDisponibles;
 
     public ReservaDeReproduccion(){
         this.costoMineral = 150;
@@ -23,11 +25,15 @@ public class ReservaDeReproduccion extends Edificio {
     }
 
     public void pasarTurno(){
-        estado = estado.actualizar();
+        estado = estado.actualizar(listaDeFabricasDisponibles);
         vida.pasarTurno();
     }
 
     public FabricaZerling crearFabricaZerling(){
         return estado.crearFabricaZerling();
+    }
+
+    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
+        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
     }
 }

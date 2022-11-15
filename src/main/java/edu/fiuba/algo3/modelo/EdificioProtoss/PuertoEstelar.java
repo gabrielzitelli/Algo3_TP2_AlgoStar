@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.EdificioProtoss;
 
 import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.States.EstadoPuertoEstelar;
 import edu.fiuba.algo3.modelo.States.EstadoPuertoEstelarEnConstruccion;
@@ -13,6 +14,7 @@ public class PuertoEstelar extends Edificio {
     private EstadoPuertoEstelar estado;
     private int turnoParaEstarConstruido = 10;
     private int valorVital = 600;
+    private ArrayList<Fabrica> listaDeFabricasDisponibles;
 
     public PuertoEstelar() {
         this.costoGas = 150;
@@ -31,9 +33,13 @@ public class PuertoEstelar extends Edificio {
     }
 
     public void pasarTurno() {
-        estado = estado.actualizar();
+        estado = estado.actualizar(listaDeFabricasDisponibles);
         vida.pasarTurno();
     }
 
     public FabricaScout crearFabricaScout() {return estado.crearFabricaScout();}
+
+    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
+        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
+    }
 }

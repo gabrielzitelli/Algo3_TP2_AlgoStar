@@ -3,13 +3,8 @@ package edu.fiuba.algo3.modelo.UnidadesProtoss;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioDragon;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioZerling;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
-import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
 import java.util.ArrayList;
 
@@ -22,10 +17,10 @@ public class Dragon extends UnidadProtoss {
 
     private Vida vida = new VidaConEscudo(100, 80);
 
-    public Dragon(){
+    public Dragon() {
+        this.turnosDeConstruccion = 6;
         superficieDondeSeMueve.add(new SuperficieTerrestre());
     }
-
     public Ataque atacar(){
         Ataque unAtaque = new Ataque(danio);
         return unAtaque;

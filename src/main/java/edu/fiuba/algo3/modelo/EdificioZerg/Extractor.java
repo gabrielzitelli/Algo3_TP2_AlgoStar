@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.States.EstadoExtractor;
 import edu.fiuba.algo3.modelo.States.EstadoExtractorEnConstruccion;
-import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
 
@@ -19,7 +19,7 @@ public class Extractor extends Edificio {
     private int turnoParaEstarConstruido = 6;
     private Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
-    private LinkedList<UnidadZerg> zanganosEmpleados = new LinkedList<>();
+    private LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
     private int valorVital = 750;
 
 
@@ -43,7 +43,7 @@ public class Extractor extends Edificio {
         estado.extraer(gasDelImperio, volcanDeGas, zanganosEmpleados.size());
     }
 
-    public void contratarZangano(UnidadZerg zanganoAContratar){
+    public void contratarZangano(Unidad zanganoAContratar){
         if (!zanganoAContratar.esIgualA(new Zangano())){
             throw new ErrorEstaUnidadNosePuedeContratar();
         }
@@ -59,7 +59,7 @@ public class Extractor extends Edificio {
         this.volcanDeGas = volcanDeGas;
     }
     @Override
-    public void contratarUnidad(UnidadZerg unidad){
+    public void contratarUnidad(Unidad unidad){
         contratarZangano(unidad);
     }
 }

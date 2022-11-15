@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.danioYAtaque;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
-
 public class Ataque {
     // La clase ataque es la encargada aplicar el daño que se le pasa
     private Danio danio;

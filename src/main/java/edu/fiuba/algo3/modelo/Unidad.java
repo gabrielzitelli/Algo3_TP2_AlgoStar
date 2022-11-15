@@ -12,5 +12,9 @@ public interface Unidad {
     public void recibirAtaque(Ataque unAtaque);
 
     ArrayList<Recurso> requisitosMateriales();
+
+    boolean esIgualA(Unidad unidad);
+    boolean estaConstruida();
+    void pasarTurno();
     public void verificarSuperficie(Superficie superficie);
 }

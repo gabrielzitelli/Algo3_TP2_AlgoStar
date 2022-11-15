@@ -14,6 +14,7 @@ public class Espiral extends Edificio {
 
     private int turnoParaEstarConstruido = 10;
     private int valorVital = 1300;
+    private ArrayList<Fabrica> listaDeFabricasDisponibles;
 
 
     public Espiral() {
@@ -32,11 +33,15 @@ public class Espiral extends Edificio {
     }
 
     public void pasarTurno() {
-        estado = estado.actualizar();
+        estado = estado.actualizar(listaDeFabricasDisponibles);
         vida.pasarTurno();
     }
 
     public FabricaMutalisco crearFabricaMutalisco() {
         return estado.crearFabricaMutalisco();
+    }
+
+    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
+        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
     }
 }

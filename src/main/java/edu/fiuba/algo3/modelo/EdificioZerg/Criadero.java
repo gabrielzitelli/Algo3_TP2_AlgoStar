@@ -5,9 +5,11 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.States.EstadoCriadero;
 import edu.fiuba.algo3.modelo.States.EstadoCriaderoEnConstruccion;
-import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.vida.VidaRegenerativa;
+
+import java.util.ArrayList;
 
 public class Criadero extends Edificio {
 
@@ -18,6 +20,8 @@ public class Criadero extends Edificio {
     private int maxLarvas = 3;
     private int cantidadLarvas;
     private int valorVital = 500;
+    private ArrayList<Fabrica> listaDeFabricasDisponibles;
+    private ArrayList<Unidad> unidades;
 
     public Criadero(){
         this.costoGas = 0;
@@ -30,12 +34,25 @@ public class Criadero extends Edificio {
         cantidadLarvas = maxLarvas;
     }
 
-    public UnidadZerg crearUnidad(Fabrica unaFabrica) {
+    public void crearUnidad(Fabrica unaFabrica) {
+        verificarQueSePuedeFabricar(unaFabrica);
         if (cantidadLarvas > 0) {
             cantidadLarvas--;
-            return estado.crearUnidad(unaFabrica);
+            estado.crearUnidad(unaFabrica, unidades);
+        }else {
+            throw new ErrorCriaderoNoTieneMasLarvas();
         }
-        throw new ErrorCriaderoNoTieneMasLarvas();
+    }
+
+    private void verificarQueSePuedeFabricar(Fabrica unaFabrica) {
+        if (listaDeFabricasDisponibles == null)
+            return;
+        for (Fabrica fabricaDisponible : listaDeFabricasDisponibles){
+            if (unaFabrica.esIgualA(fabricaDisponible)){
+                return;
+            }
+        }
+        throw new ErrorNoSeCumplenLosRequisitosDeEstaUnidad();
     }
 
     private void regenerarUnaLarva(){
@@ -53,5 +70,12 @@ public class Criadero extends Edificio {
         estado = estado.actualizar(coordenada);
         this.regenerarUnaLarva();
         vida.pasarTurno();
+    }
+
+    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
+        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
+    }
+    public void asignarListaDeUnidadesImperio(ArrayList<Unidad> unidades){
+        this.unidades = unidades;
     }
 }

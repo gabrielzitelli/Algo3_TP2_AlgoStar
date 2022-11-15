@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.*;
@@ -27,6 +26,7 @@ public class Mutalisco extends UnidadZerg {
         superficieDondeSeMueve.add(new SuperficieAerea());
         this.costoGasEvolucion = 100;
         this.costoMineralEvolucion = 50;
+        this.turnosDeConstruccion = 7;
     }
 
     @Override

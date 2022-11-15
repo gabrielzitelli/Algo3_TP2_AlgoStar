@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
-import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
 import java.util.ArrayList;
 
@@ -18,6 +17,7 @@ public class Zealot extends UnidadProtoss {
     private Vida vida = new VidaConEscudo(100, 60);
 
     public Zealot(){
+        this.turnosDeConstruccion = 4;
         superficieDondeSeMueve.add(new SuperficieTerrestre());
     }
 
