@@ -1,4 +1,6 @@
 package edu.fiuba.algo3.modelo.UnidadesProtoss;
 
-public interface UnidadProtoss {
+import edu.fiuba.algo3.modelo.Unidad;
+
+public interface UnidadProtoss extends Unidad {
 }

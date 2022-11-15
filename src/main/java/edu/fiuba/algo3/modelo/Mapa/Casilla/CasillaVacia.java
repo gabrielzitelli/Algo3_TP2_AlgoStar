@@ -4,7 +4,9 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoExisteNingunEdificioEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeDesconstruirUnEdificioNoCreado;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 
 public class CasillaVacia extends Casilla{
 
@@ -13,6 +15,7 @@ public class CasillaVacia extends Casilla{
         estadoMoho = new SinMoho();
         estadoCarga = new SinCarga();
         this.coordenada = coordenada;
+        this.unidad = null;
     }
 
     public Casilla construirEdificio(Edificio unEdificio){
@@ -50,5 +53,19 @@ public class CasillaVacia extends Casilla{
     @Override
     public Edificio obtenerEdificio() {
         throw new ErrorNoExisteNingunEdificioEnEstaCasilla();
+    }
+
+    public Casilla colocarUnidad(Unidad unaUnidad){
+        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable);
+        casillaOcupada.settearUnidad(unaUnidad);
+        return casillaOcupada;
+    }
+
+    public void atacar(Casilla casillaAtacada){
+        throw new Error();
+    }
+
+    protected void recibirAtaque(Ataque unAtaque){
+        throw new Error();
     }
 }

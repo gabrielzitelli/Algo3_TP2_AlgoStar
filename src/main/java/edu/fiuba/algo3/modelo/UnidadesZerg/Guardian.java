@@ -2,16 +2,16 @@ package edu.fiuba.algo3.modelo.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
+import edu.fiuba.algo3.modelo.danioYAtaque.DanioGuardian;
 import edu.fiuba.algo3.modelo.danioYAtaque.DanioMutalisco;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioZerling;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
-public class Mutalisco extends UnidadZerg {
-    private int danioBasico = 9;
-    private Danio danio = new DanioMutalisco(danioBasico);
+public class Guardian extends UnidadZerg{
+    private int danioBasico = 25;
+    private Danio danio = new DanioGuardian(danioBasico);
 
-    private Vida vida = new VidaSimple(120);
+    private Vida vida = new VidaSimple(100);
 
     public Ataque atacar(){
         Ataque unAtaque = new Ataque(danio);

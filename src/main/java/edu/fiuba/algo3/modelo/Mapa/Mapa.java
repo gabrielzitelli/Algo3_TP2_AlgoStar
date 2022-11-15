@@ -4,7 +4,9 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
 
 import java.util.LinkedList;
 
@@ -110,5 +112,21 @@ public class Mapa {
     public Edificio obtenerEdificio(Coordenada coordenada) {
         Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
         return casillaConEdificio.obtenerEdificio();
+    }
+
+
+    public void colocarUnaUnidad(Unidad unaUnidad, Coordenada coordenada){
+        // Busco la casilla de la coordenada y creo una nueva casilla ocupada por la unidad
+        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestino = casillaDestino.colocarUnidad(unaUnidad);
+        this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
+    }
+
+    public void atacar(Coordenada atacante, Coordenada atacado){
+        // Busco la casilla de atacante y atacado y hago que el atacante la ataque
+        Casilla casillaAtacante = this.encontrarCasillaPorCoordenada(atacante);
+        Casilla casillaAtacado = this.encontrarCasillaPorCoordenada(atacado);
+
+        casillaAtacante.atacar(casillaAtacado);
     }
 }

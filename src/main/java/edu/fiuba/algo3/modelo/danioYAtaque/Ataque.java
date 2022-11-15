@@ -2,9 +2,9 @@ package edu.fiuba.algo3.modelo.danioYAtaque;
 
 public class Ataque {
     // La clase ataque es la encargada aplicar el daño que se le pasa
-    private DanioBasico danio;
+    private Danio danio;
 
-    public Ataque(DanioBasico unDanio){
+    public Ataque(Danio unDanio){
         this.danio = unDanio;
     }
 

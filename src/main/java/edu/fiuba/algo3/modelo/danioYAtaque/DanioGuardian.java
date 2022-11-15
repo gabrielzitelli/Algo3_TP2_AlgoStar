@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo.danioYAtaque;
 
-public class DanioBasico implements Danio {
+public class DanioGuardian implements Danio{
 
     int danio;
-    public DanioBasico(int danio){
+
+    public DanioGuardian(int danio){
         this.danio = danio;
     }
     public int aplicarDanio(int cantidadVida){
