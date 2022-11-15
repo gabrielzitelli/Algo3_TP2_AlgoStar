@@ -1,13 +1,22 @@
 package edu.fiuba.algo3.modelo.danioYAtaque;
 
-public class DanioDragon implements Danio{
-    int danio;
+public class DanioDragon implements DanioUnidad {
 
-    public DanioDragon(int danio){
-        this.danio = danio;
+    private Danio danioTerrestre;
+    private Danio danioAereo;
+
+    public DanioDragon(int danioTerrestre, int danioAereo) {
+        this.danioTerrestre = new Danio(danioTerrestre);
+        this.danioAereo = new Danio(danioAereo);
     }
-    public int aplicarDanio(int cantidadVida){
-        // Devuelve la cantidad de vida luego de aplicarle el daño
-        return cantidadVida - danio;
+
+    @Override
+    public Danio danioTerrestre() {
+        return danioTerrestre;
+    }
+
+    @Override
+    public Danio danioAereo() {
+        return danioAereo;
     }
 }

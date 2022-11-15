@@ -1,18 +1,17 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioGuardian;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioMutalisco;
+import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
 import java.util.ArrayList;
 
-public class Guardian extends UnidadZerg{
-    private int danioBasico = 25;
-    private Danio danio = new DanioGuardian(danioBasico);
+public class Guardian extends UnidadZerg {
+
+    private int danioTerrestre = 25;
+
+    private DanioUnidad danio = new DanioGuardian(danioTerrestre);
 
     private Vida vida = new VidaSimple(100);
 

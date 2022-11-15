@@ -1,20 +1,21 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioMutalisco;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioZerling;
+import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
 import java.util.ArrayList;
 
 public class Mutalisco extends UnidadZerg {
+
     private final int costoGasEvolucion;
     private final int costoMineralEvolucion;
-    private int danioBasico = 9;
-    private Danio danio = new DanioMutalisco(danioBasico);
+
+    private int danioTerrestre = 10;
+    private int danioAereo = 10;
+
+    private DanioUnidad danio = new DanioMutalisco(danioTerrestre, danioAereo);
 
     private Vida vida = new VidaSimple(120);
 

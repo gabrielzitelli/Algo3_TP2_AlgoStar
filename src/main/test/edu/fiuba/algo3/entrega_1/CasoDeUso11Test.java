@@ -3,7 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.EdificioProtoss.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
+import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -13,8 +13,8 @@ public class CasoDeUso11Test {
     @Test
     public void test01PuedoDaniarElEscudoDeUnAccesoSeRegeneraYPuedoDaniarloDeVuelta(){
         Acceso unAcceso = new Acceso();
-        Ataque unAtaque = new Ataque( new DanioBasico(500) );
-        Ataque ataqueCasiLetal = new Ataque( new DanioBasico(999) );
+        Ataque unAtaque = new Ataque( new Danio(500) );
+        Ataque ataqueCasiLetal = new Ataque( new Danio(999) );
 
         // Acceso tiene 500E / 500V
 
@@ -30,8 +30,8 @@ public class CasoDeUso11Test {
     public void test02PuedoDaniarElEscudoDeUnNexoMineralSeRegeneraYPuedoDaniarloDeVuelta(){
         Recurso mineralesDelImperio = new Recurso(0);
         NexoMineral unNexoMineral = new NexoMineral(mineralesDelImperio);
-        Ataque unAtaque = new Ataque( new DanioBasico(250) );
-        Ataque ataqueCasiLetal = new Ataque( new DanioBasico(499) );
+        Ataque unAtaque = new Ataque( new Danio(250) );
+        Ataque ataqueCasiLetal = new Ataque( new Danio(499) );
 
         // Nexo Mineral tiene 250E / 250V
         unNexoMineral.aplicarAtaque(unAtaque);
@@ -45,8 +45,8 @@ public class CasoDeUso11Test {
     @Test
     public void test03PuedoDaniarElEscudoDeUnPilonYPuedoDaniarloDeVuelta(){
         Pilon unPilon = new Pilon();
-        Ataque unAtaque = new Ataque( new DanioBasico(300) );
-        Ataque ataqueCasiLetal = new Ataque( new DanioBasico(599) );
+        Ataque unAtaque = new Ataque( new Danio(300) );
+        Ataque ataqueCasiLetal = new Ataque( new Danio(599) );
 
         // Pilon tiene 300E / 300V
         unPilon.aplicarAtaque(unAtaque);
@@ -61,8 +61,8 @@ public class CasoDeUso11Test {
     public void test04PuedoDaniarElEscudoDeUnAsimiladorYPuedoDaniarloDeVuelta(){
         Recurso gasDelImperio = new Recurso(0);
         Asimilador unAsimilador = new Asimilador(gasDelImperio);
-        Ataque unAtaque = new Ataque( new DanioBasico(300) );
-        Ataque ataqueCasiLetal = new Ataque( new DanioBasico(599) );
+        Ataque unAtaque = new Ataque( new Danio(300) );
+        Ataque ataqueCasiLetal = new Ataque( new Danio(599) );
 
         // Asimilador tiene 450E / 450V
         unAsimilador.aplicarAtaque(unAtaque);
@@ -76,8 +76,8 @@ public class CasoDeUso11Test {
     @Test
     public void test05PuedoDaniarElEscudoDeUnPuertoEstelarYPuedoDaniarloDeVuelta() {
         PuertoEstelar unPuertoEstelar = new PuertoEstelar();
-        Ataque unAtaque = new Ataque(new DanioBasico(600));
-        Ataque ataqueCasiLetal = new Ataque(new DanioBasico(1199));
+        Ataque unAtaque = new Ataque(new Danio(600));
+        Ataque ataqueCasiLetal = new Ataque(new Danio(1199));
 
         // Puerto estelar tiene 600E / 600V
         unPuertoEstelar.aplicarAtaque(unAtaque);

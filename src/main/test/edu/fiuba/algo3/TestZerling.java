@@ -1,6 +1,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.EdificioProtoss.Pilon;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zerling;
@@ -34,6 +35,9 @@ public class TestZerling {
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
+
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
 
         elMapa.colocarUnaUnidad(unZerling, unaCoordenada);
         elMapa.colocarUnaUnidad(ZerlingADaniar, otraCoordenada);

@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.EdificioZerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
+import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -18,7 +18,7 @@ public class CasoDeUso13Test {
         // construir una reserva de produccion
         Coordenada coordenadaCriadero = new Coordenada(0,1);
         Criadero criadero = new Criadero();
-        Ataque unAtaque = new Ataque( new DanioBasico(500) );
+        Ataque unAtaque = new Ataque( new Danio(500) );
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();

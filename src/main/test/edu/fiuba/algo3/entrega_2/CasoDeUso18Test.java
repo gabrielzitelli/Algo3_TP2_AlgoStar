@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.UnidadesProtoss.Dragon;
@@ -28,6 +30,9 @@ public class CasoDeUso18Test {
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
+
         elMapa.colocarUnaUnidad(unZerling, unaCoordenada);
         elMapa.colocarUnaUnidad(ZerlingADaniar, otraCoordenada);
 
@@ -49,6 +54,9 @@ public class CasoDeUso18Test {
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
+
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
 
         elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
         elMapa.colocarUnaUnidad(unHidralisco, unaCoordenada);
@@ -72,6 +80,9 @@ public class CasoDeUso18Test {
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
+        elMapa.colocarSuperficie(new SuperficieAerea(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
+
         elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
         elMapa.colocarUnaUnidad(unMutalisco, unaCoordenada);
 
@@ -94,6 +105,9 @@ public class CasoDeUso18Test {
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
+        elMapa.colocarSuperficie(new SuperficieAerea(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
+
         elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
         elMapa.colocarUnaUnidad(unGuardian, unaCoordenada);
 
@@ -113,6 +127,9 @@ public class CasoDeUso18Test {
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
+
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
 
         elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
         elMapa.colocarUnaUnidad(unZealot, unaCoordenada);
@@ -136,6 +153,9 @@ public class CasoDeUso18Test {
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
+
         elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
         elMapa.colocarUnaUnidad(unDragon, unaCoordenada);
 
@@ -156,6 +176,9 @@ public class CasoDeUso18Test {
 
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
+
+        elMapa.colocarSuperficie(new SuperficieAerea(), unaCoordenada);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), otraCoordenada);
 
         elMapa.colocarUnaUnidad(unZerling, otraCoordenada);
         elMapa.colocarUnaUnidad(unScout, unaCoordenada);

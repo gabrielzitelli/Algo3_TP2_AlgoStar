@@ -16,7 +16,7 @@ public class Zangano extends UnidadZerg {
 
     private Recolectable recolecta = new MineralRecolectable();
 
-    private Danio danio = new DanioZerling(4);
+    private Danio danio = new Danio(4);
 
     private Vida vida = new VidaSimple(35);
 

@@ -3,7 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.EdificioZerg.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.DanioBasico;
+import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -13,7 +13,7 @@ public class CasoDeUso10Test {
     @Test
     public void test01PuedoDaniarUnCriaderoYLaVidaSeRegeneraTotalmente(){
         Criadero unCriadero = new Criadero();
-        Ataque unAtaque = new Ataque( new DanioBasico(499) );
+        Ataque unAtaque = new Ataque( new Danio(499) );
 
         // Criadero 500V
         unCriadero.aplicarAtaque(unAtaque);
@@ -27,7 +27,7 @@ public class CasoDeUso10Test {
     @Test
     public void test02PuedoDaniarUnaReservaDeProduccionYLaVidaSeRegeneraTotalmente(){
         ReservaDeReproduccion unaReservaDeReproduccion = new ReservaDeReproduccion();
-        Ataque unAtaque = new Ataque( new DanioBasico(999) );
+        Ataque unAtaque = new Ataque( new Danio(999) );
 
         // Reserva de produccion 1000V
         unaReservaDeReproduccion.aplicarAtaque(unAtaque);
@@ -42,7 +42,7 @@ public class CasoDeUso10Test {
     public void test03PuedoDaniarUnExtractorYLaVidaSeRegeneraTotalmente(){
         Recurso gasDelImperio = new Recurso(0);
         Extractor unExtractor = new Extractor(gasDelImperio);
-        Ataque unAtaque = new Ataque( new DanioBasico(749) );
+        Ataque unAtaque = new Ataque( new Danio(749) );
 
         // Extractor 750V
         unExtractor.aplicarAtaque(unAtaque);
@@ -56,7 +56,7 @@ public class CasoDeUso10Test {
     @Test
     public void test04PuedoDaniarUnGuaridaYLaVidaSeRegeneraTotalmente(){
         Guarida unaGuarida = new Guarida();
-        Ataque unAtaque = new Ataque( new DanioBasico(1249) );
+        Ataque unAtaque = new Ataque( new Danio(1249) );
 
         // Guardia 1250V
         unaGuarida.aplicarAtaque(unAtaque);
@@ -70,7 +70,7 @@ public class CasoDeUso10Test {
     @Test
     public void test05PuedoDaniarUnaEspiralYLaVidaSeRegeneraTotalmente(){
         Espiral unaEspiral = new Espiral();
-        Ataque unAtaque = new Ataque( new DanioBasico(1299) );
+        Ataque unAtaque = new Ataque( new Danio(1299) );
 
         // Espiral 1300V
         unaEspiral.aplicarAtaque(unAtaque);
