@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Recolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
 import edu.fiuba.algo3.modelo.danioYAtaque.DanioZerling;
@@ -21,14 +22,13 @@ public class Zangano extends UnidadZerg {
     private Vida vida = new VidaSimple(35);
 
     public Zangano(){
-        //FALTA CREAR UNA VIDA
+        superficieDondeSeMueve.add(new SuperficieTerrestre());
         this.mineralDelImperio = null;
     }
 
     @Override
     public void interaccionar(Casilla unaCasilla){
         unaCasilla.tieneEsteRecoletable(recolecta);
-        //CAMBIAR EL NOMBRE DEL ERROR
         this.recursoARecolectar = unaCasilla.obtenerMaterial();
     }
 

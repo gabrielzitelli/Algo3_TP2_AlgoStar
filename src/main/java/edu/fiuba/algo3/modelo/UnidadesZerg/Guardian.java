@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
@@ -14,6 +16,11 @@ public class Guardian extends UnidadZerg {
     private DanioUnidad danio = new DanioGuardian(danioTerrestre);
 
     private Vida vida = new VidaSimple(100);
+
+    public Guardian(){
+        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve.add(new SuperficieAerea());
+    }
 
     public Ataque atacar(){
         Ataque unAtaque = new Ataque(danio);

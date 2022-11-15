@@ -135,4 +135,18 @@ public class Mapa {
 
         casillaAtacante.atacar(casillaAtacado);
     }
+
+    public void moverUnidad(Coordenada coordenadaInicial, Coordenada coordenadaFinal){
+        Casilla casillaInicial = this.encontrarCasillaPorCoordenada(coordenadaInicial);
+        Casilla casillaFinal = this.encontrarCasillaPorCoordenada(coordenadaFinal);
+
+        //Actualizo la casillaFinal con una casilla que ahora tiene la Unidad de casillaInicial
+        casillaFinal = casillaInicial.moverUnidadHacia(casillaFinal);
+        this.actualizarCasillaPorCoordenada(coordenadaFinal, casillaFinal);
+
+        //Actualizo la casillaInicial con una casilla con los mismo atributos que tenia casillaInicial pero ahora
+        //sin la unidad que contenia
+        casillaInicial = casillaInicial.quitarUnidad();
+        this.actualizarCasillaPorCoordenada(coordenadaInicial, casillaInicial);
+    }
 }

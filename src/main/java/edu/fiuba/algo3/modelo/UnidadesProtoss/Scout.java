@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.UnidadesProtoss;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaConEscudo;
@@ -8,7 +10,7 @@ import edu.fiuba.algo3.modelo.vida.VidaSimple;
 
 import java.util.ArrayList;
 
-public class Scout implements UnidadProtoss{
+public class Scout extends UnidadProtoss{
 
     private int danioTerrestre = 8;
     private int danioAereo = 14;
@@ -16,6 +18,11 @@ public class Scout implements UnidadProtoss{
     private DanioUnidad danio = new DanioScout(danioTerrestre, danioAereo);
 
     private Vida vida = new VidaConEscudo(150, 100);
+
+    public Scout(){
+        superficieDondeSeMueve.add(new SuperficieAerea());
+        superficieDondeSeMueve.add(new SuperficieTerrestre());
+    }
 
     public Ataque atacar(){
         Ataque unAtaque = new Ataque(danio);

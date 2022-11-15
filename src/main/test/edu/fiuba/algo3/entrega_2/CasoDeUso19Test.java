@@ -8,13 +8,23 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.UnidadesProtoss.Scout;
 import edu.fiuba.algo3.modelo.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Guardian;
+import edu.fiuba.algo3.modelo.UnidadesZerg.Hidralisco;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Mutalisco;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zerling;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso19Test {
+
+    private Mapa elMapa = Mapa.obtener();
+
+    @BeforeEach
+    public void setup(){
+        elMapa.reiniciarMapa();
+    }
 
     @Test
     public void test01SiUnZerglingIntentaAtacarAUnMutaliscoSeLanzaExcepcion() {
@@ -23,9 +33,6 @@ public class CasoDeUso19Test {
 
         Coordenada coordenadaZerling = new Coordenada(0,0);
         Coordenada coordenadaMutalisco = new Coordenada(0,1);
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaZerling);
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaMutalisco);
@@ -45,9 +52,6 @@ public class CasoDeUso19Test {
         Coordenada coordenadaZerling = new Coordenada(0,0);
         Coordenada coordenadaGuardian = new Coordenada(0,1);
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
-
         elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaZerling);
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaGuardian);
 
@@ -65,9 +69,6 @@ public class CasoDeUso19Test {
 
         Coordenada coordenadaZerling = new Coordenada(0,0);
         Coordenada coordenadaScout = new Coordenada(0,1);
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaZerling);
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaScout);
@@ -87,9 +88,6 @@ public class CasoDeUso19Test {
         Coordenada coordenadaZealot = new Coordenada(0,0);
         Coordenada coordenadaMutalisco = new Coordenada(0,1);
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
-
         elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaZealot);
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaMutalisco);
 
@@ -107,9 +105,6 @@ public class CasoDeUso19Test {
 
         Coordenada coordenadaZealot = new Coordenada(0,0);
         Coordenada coordenadaGuardian = new Coordenada(0,1);
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaZealot);
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaGuardian);
@@ -129,9 +124,6 @@ public class CasoDeUso19Test {
         Coordenada coordenadaZealot = new Coordenada(0,0);
         Coordenada coordenadaScout = new Coordenada(0,1);
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
-
         elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaZealot);
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaScout);
 
@@ -140,5 +132,22 @@ public class CasoDeUso19Test {
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaZealot, coordenadaScout));
+    }
+
+    @Test
+    public void test07SiUnMutaliscoEnTierraPuedeAtacarAUnHidraliscoEnTierraYNoSeLanzaExcepcion() {
+        Mutalisco unMutalisco = new Mutalisco();
+        Hidralisco unHidralisco = new Hidralisco();
+
+        Coordenada coordenadaMutalisco = new Coordenada(0,0);
+        Coordenada coordenadaHidralisco = new Coordenada(0,1);
+
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaMutalisco);
+        elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaHidralisco);
+
+        elMapa.colocarUnaUnidad(unMutalisco, coordenadaMutalisco);
+        elMapa.colocarUnaUnidad(unHidralisco, coordenadaHidralisco);
+
+        assertDoesNotThrow(() -> elMapa.atacar(coordenadaMutalisco, coordenadaHidralisco));
     }
 }

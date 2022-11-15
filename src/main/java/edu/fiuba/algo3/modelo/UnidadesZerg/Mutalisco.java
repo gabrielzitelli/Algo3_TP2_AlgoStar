@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.danioYAtaque.*;
 import edu.fiuba.algo3.modelo.vida.Vida;
 import edu.fiuba.algo3.modelo.vida.VidaSimple;
@@ -20,6 +23,8 @@ public class Mutalisco extends UnidadZerg {
     private Vida vida = new VidaSimple(120);
 
     public Mutalisco(){
+        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve.add(new SuperficieAerea());
         this.costoGasEvolucion = 100;
         this.costoMineralEvolucion = 50;
     }
