@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SiRecolectable;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
 
 import java.util.LinkedList;
 
@@ -110,5 +111,10 @@ public class Mapa {
     public Edificio obtenerEdificio(Coordenada coordenada) {
         Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
         return casillaConEdificio.obtenerEdificio();
+    }
+
+    public void atacar(Danio danio, Coordenada coordenada){
+        Casilla casilla = this.encontrarCasillaPorCoordenada(coordenada);
+        casilla.aplicarDanio(danio);
     }
 }

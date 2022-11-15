@@ -52,4 +52,6 @@ public class CasillaVacia extends Casilla{
     public Edificio obtenerEdificio() {
         throw new ErrorNoExisteNingunEdificioEnEstaCasilla();
     }
+
+    public void
 }
