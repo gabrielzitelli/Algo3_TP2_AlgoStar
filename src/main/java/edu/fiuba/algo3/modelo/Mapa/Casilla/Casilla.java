@@ -4,7 +4,9 @@ import edu.fiuba.algo3.modelo.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
 
 public abstract class Casilla {
@@ -12,6 +14,8 @@ public abstract class Casilla {
     protected Recolectable estadoRecolectable;
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
+
+    protected Unidad unidad;
 
     protected Coordenada coordenada;
 
@@ -57,5 +61,9 @@ public abstract class Casilla {
     public abstract Casilla desconstruirEdificio(Coordenada coordenada);
     public abstract Edificio obtenerEdificio();
 
-    public abstract void aplicarDanio(Danio danio);
+    public abstract Casilla colocarUnidad(Unidad unaUnidad);
+
+    public abstract void atacar(Casilla casillaAtacada);
+
+    protected abstract void recibirAtaque(Ataque unAtaque);
 }

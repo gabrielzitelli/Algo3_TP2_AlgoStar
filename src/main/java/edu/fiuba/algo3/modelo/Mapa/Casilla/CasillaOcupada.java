@@ -5,7 +5,9 @@ import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorPosicionOcupada;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidad;
 import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
 
 public class CasillaOcupada extends Casilla{
     Edificio edificioQueOcupa = null;
@@ -44,5 +46,22 @@ public class CasillaOcupada extends Casilla{
     }
     public void establecerEdificio(Edificio unEdificio) {
         this.edificioQueOcupa = unEdificio;
+    }
+
+    public void settearUnidad(Unidad unaUnidad) {
+        this.unidad = unaUnidad;
+    }
+
+    public Casilla colocarUnidad(Unidad unaUnidad){
+        throw new Error();
+    }
+
+    public void atacar(Casilla casillaAtacada){
+        Ataque unAtaque = unidad.atacar();
+        casillaAtacada.recibirAtaque(unAtaque);
+    }
+
+     protected void recibirAtaque(Ataque unAtaque){
+         unidad.recibirAtaque(unAtaque);
     }
 }

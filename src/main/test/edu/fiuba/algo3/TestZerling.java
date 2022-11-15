@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestZerling {
@@ -27,12 +28,15 @@ public class TestZerling {
         Zerling unZerling = new Zerling();
         Zerling ZerlingADaniar = new Zerling();
 
+        Coordenada unaCoordenada = new Coordenada(0,0);
+        Coordenada otraCoordenada = new Coordenada(0,1);
+
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        Coordenada coordenadaDeAtaque = new Coordenada(0,1);
-        elMapa.colocarUnidadZerg(ZerlingADaniar, coordenadaDeAtaque);
+        elMapa.colocarUnaUnidad(unZerling, unaCoordenada);
+        elMapa.colocarUnaUnidad(ZerlingADaniar, otraCoordenada);
 
-        unZerling.atacar(coordenadaDeAtaque);
+        assertDoesNotThrow(() -> elMapa.atacar(unaCoordenada, otraCoordenada));
     }
 }
