@@ -19,6 +19,7 @@ public class CasoDeUso24Test {
     @Test
     public void test01ElMapaTieneUnaBaseDelLadoIzquierdoConMinerales(){
         Mapa elMapa = Mapa.obtener();
+        Protoss protoss = new Protoss();
         int tamanioMapa = 100;
         int mitadLadoMapa = tamanioMapa/2;
         int cuartoLadoMapa = tamanioMapa/4;
@@ -29,9 +30,7 @@ public class CasoDeUso24Test {
                 new Coordenada(mitadLadoMapa +1, cuartoLadoMapa+1),
         };
 
-        Protoss protoss = new Protoss();
         protoss.abastecerDeRecursos(new Recurso(500), new Recurso(0));
-
         protoss.construirNexoMineral(coordMineralesBase[0]);
         protoss.construirNexoMineral(coordMineralesBase[1]);
 
@@ -42,13 +41,13 @@ public class CasoDeUso24Test {
     @Test
     public void test02ElMapaTieneUnaBaseDelLadoIzquierdoConGas(){
         Mapa elMapa = Mapa.obtener();
+        Protoss protoss = new Protoss();
         int tamanioMapa = 100;
         int mitadLadoMapa = tamanioMapa/2;
         int cuartoLadoMapa = tamanioMapa/4;
-
-        Protoss protoss = new Protoss();
-        protoss.abastecerDeRecursos(new Recurso(500), new Recurso(0));
         Coordenada coordenadaGas = new Coordenada(mitadLadoMapa, cuartoLadoMapa);
+
+        protoss.abastecerDeRecursos(new Recurso(500), new Recurso(0));
 
         //No se lanza excepcion porque los 3 nexos minerales se construyeron sobre un mineral
         assertDoesNotThrow(()->protoss.construirAsimilador(coordenadaGas));

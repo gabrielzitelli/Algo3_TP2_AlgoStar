@@ -2,13 +2,13 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
-import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.Ataque.*;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeUso12Test {
+
     @Test
     public void test01PuedoDaniarElEscudoDeUnAccesoPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Acceso unAcceso = new Acceso();
@@ -28,7 +28,6 @@ public class CasoDeUso12Test {
     public void test02PuedoDaniarElEscudoDeUnAsimiladorPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Recurso gasDelImperio = new Recurso(0);
         Asimilador unAsimilador = new Asimilador(gasDelImperio);
-
         Ataque ataqueCasiLetal = new Ataque( new Danio(899) );
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(450) );
 
@@ -45,7 +44,6 @@ public class CasoDeUso12Test {
     public void test03PuedoDaniarElEscudoDeUnNexoMineralPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Recurso mineralesDelImperio = new Recurso(0);
         NexoMineral unNexo = new NexoMineral(mineralesDelImperio);
-
         Ataque ataqueCasiLetal = new Ataque( new Danio(499) );
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(250) );
 
@@ -61,7 +59,6 @@ public class CasoDeUso12Test {
     @Test
     public void test04PuedoDaniarElEscudoDeUnPilonPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Pilon unPilon = new Pilon();
-
         Ataque ataqueCasiLetal = new Ataque( new Danio(599) );
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(300) );
 
@@ -77,7 +74,6 @@ public class CasoDeUso12Test {
     @Test
     public void test05PuedoDaniarElEscudoDeUnPuertoEstelarPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         PuertoEstelar unPuertoEstelar = new PuertoEstelar();
-
         Ataque ataqueCasiLetal = new Ataque( new Danio(1199) );
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(599) );
 

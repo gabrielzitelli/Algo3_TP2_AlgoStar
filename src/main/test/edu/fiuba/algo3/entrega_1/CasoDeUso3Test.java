@@ -4,27 +4,30 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.*;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso3Test {
 
+    @BeforeEach
+    public void setup(){
+        Mapa.obtener().reiniciarMapa();
+    }
+
     @Test
     public void test01PuedoConstruirUnExtractorDondeHayVolcanDeGas(){
         // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
         // construir el extractor
-        Coordenada coordenada = new Coordenada(0,0);
-        Recurso gasDelImperio = new Recurso(0);
-        Coordenada coordenadaCriadero = new Coordenada(0,1);
-        Criadero criadero = new Criadero();
-
         Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
+        Recurso gasDelImperio = new Recurso(0);
+        Criadero criadero = new Criadero();
+        Coordenada coordenada = new Coordenada(0,0);
+        Coordenada coordenadaCriadero = new Coordenada(0,1);
 
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
@@ -38,10 +41,9 @@ public class CasoDeUso3Test {
 
     @Test
     public void test02PuedoConstruirUnAsimiladorDondeHayVolcanDeGas(){
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
         Recurso gasDelImperio = new Recurso(0);
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
@@ -50,9 +52,8 @@ public class CasoDeUso3Test {
 
     @Test
     public void test03NoPuedoConstruirUnCriaderoDondeHayVolcanDeGas(){
-        Coordenada coordenada = new Coordenada(0,0);
         Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
+        Coordenada coordenada = new Coordenada(0,0);
 
         elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
@@ -62,9 +63,8 @@ public class CasoDeUso3Test {
 
     @Test
     public void test04NoPuedoConstruirPilonDondeHayUnVolcanDeGas(){
-        Coordenada coordenada = new Coordenada(0,0);
         Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
+        Coordenada coordenada = new Coordenada(0,0);
 
         elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
@@ -76,12 +76,10 @@ public class CasoDeUso3Test {
     public void test05NoPuedoConstruirReservaDeProduccionDondeHayUnVolcanDeGas(){
         // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
         // construir el reserva de produccion
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(0,1);
         Criadero criadero = new Criadero();
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
@@ -98,12 +96,10 @@ public class CasoDeUso3Test {
     public void test06NoPuedoConstruirGuaridaDondeHayUnVolcanDeGas(){
         // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
         // construir el guarida
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(0,1);
         Criadero criadero = new Criadero();
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
@@ -120,12 +116,10 @@ public class CasoDeUso3Test {
     public void test07NoPuedoConstruirEspiralDondeHayUnVolcanDeGas(){
         // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
         // construir la espiral
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(0,1);
         Criadero criadero = new Criadero();
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
@@ -140,10 +134,9 @@ public class CasoDeUso3Test {
 
     @Test
     public void test08NoPuedoConstruirUnNexoMineralDondeHayVolcanDeGas(){
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
         Recurso mineralDelImperio = new Recurso(0);
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
@@ -155,12 +148,10 @@ public class CasoDeUso3Test {
     public void test09NoPuedoConstruirAccesoDondeHayUnVolcanDeGas(){
         // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
         // construir el acceso
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaPilon = new Coordenada(0,1);
         Pilon pilon = new Pilon();
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.construirEdificio(pilon, coordenadaPilon);
 
@@ -177,12 +168,10 @@ public class CasoDeUso3Test {
     public void test10NoPuedoConstruirPuertoEstelarDondeHayUnVolcanDeGas(){
         // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
         // construir la puerta estelar
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaPilon = new Coordenada(0,1);
         Pilon pilon = new Pilon();
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
 
         elMapa.construirEdificio(pilon, coordenadaPilon);
 

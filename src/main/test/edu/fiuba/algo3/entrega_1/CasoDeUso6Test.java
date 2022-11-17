@@ -1,32 +1,32 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.Mapa.*;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso6Test {
 
+    @BeforeEach
+    public void setup(){
+        Mapa.obtener().reiniciarMapa();
+    }
+
     @Test
-    public void MohoAumentaEn1DespuesDe2TurnosDelCriaderoEstandoOperativoYSePuedeConstruirEdificioZergDentroDelRango() {
+    public void test01MohoAumentaEn1DespuesDe2TurnosDelCriaderoEstandoOperativoYSePuedeConstruirEdificioZergDentroDelRango() {
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenadaCriadero = new Coordenada(0,0);
         Coordenada coordenadaReserva = new Coordenada(6,0);
-
         Criadero criadero = new Criadero();
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        int turnosConstruccionCriadero = 4;
-        for (int i = 0; i < turnosConstruccionCriadero; i++) {
+        for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
-        }
 
         criadero.pasarTurno();
         criadero.pasarTurno();
@@ -35,20 +35,16 @@ public class CasoDeUso6Test {
     }
 
     @Test
-    public void MohoAumentaEn1DespuesDe2TurnosDelCriaderoEstandoOperativoYNoSePuedeConstruirEdificioZergFueraDelRango() {
+    public void test02MohoAumentaEn1DespuesDe2TurnosDelCriaderoEstandoOperativoYNoSePuedeConstruirEdificioZergFueraDelRango() {
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenadaCriadero = new Coordenada(0,0);
         Coordenada coordenadaReserva = new Coordenada(7,0);
-
         Criadero criadero = new Criadero();
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        int turnosConstruccionCriadero = 4;
-        for (int i = 0; i < turnosConstruccionCriadero; i++) {
+        for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
-        }
 
         criadero.pasarTurno();
         criadero.pasarTurno();
@@ -58,69 +54,57 @@ public class CasoDeUso6Test {
     }
 
     @Test
-    public void MohoAumentaEn2DespuesDe4TurnosDelCriaderoEstandoOperativoYSePuedeConstruirEdificioZergDentroDelRango() {
+    public void test03MohoAumentaEn2DespuesDe4TurnosDelCriaderoEstandoOperativoYSePuedeConstruirEdificioZergDentroDelRango() {
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenadaCriadero = new Coordenada(0,0);
         Coordenada coordenadaReserva = new Coordenada(7,0);
-
         Criadero criadero = new Criadero();
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        int turnosConstruccionCriadero = 4;
-        for (int i = 0; i < turnosConstruccionCriadero; i++) {
+        //Se construye el criadero
+        for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
-        }
 
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
+        //Se expande 2 veces el moho
+        for (int i = 0; i < 4; i++)
+            criadero.pasarTurno();
 
         assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaReserva));
     }
 
     @Test
-    public void MohoAumentaEn2DespuesDe4TurnosDelCriaderoEstandoOperativoYNoSePuedeConstruirEdificioZergFueraDelRango() {
+    public void test04MohoAumentaEn2DespuesDe4TurnosDelCriaderoEstandoOperativoYNoSePuedeConstruirEdificioZergFueraDelRango() {
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenadaCriadero = new Coordenada(0,0);
         Coordenada coordenadaReserva = new Coordenada(8,0);
-
         Criadero criadero = new Criadero();
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        int turnosConstruccionCriadero = 4;
-        for (int i = 0; i < turnosConstruccionCriadero; i++) {
+        //Se construye el criadero
+        for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
-        }
 
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
+        //Se expande 2 veces el moho
+        for (int i = 0; i < 4; i++)
+            criadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
                 () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaReserva));
     }
 
     @Test
-    public void MohoNoAumentaEn1DespuesDe1TurnoDelCriaderoEstandoOperativoYNoSePuedeConstruirEdificioZergFueraDelRango() {
+    public void test05MohoNoAumentaEn1DespuesDe1TurnoDelCriaderoEstandoOperativoYNoSePuedeConstruirEdificioZergFueraDelRango() {
+        Mapa elMapa = Mapa.obtener();
         Coordenada coordenadaCriadero = new Coordenada(0,0);
         Coordenada coordenadaReserva = new Coordenada(6,0);
-
         Criadero criadero = new Criadero();
 
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 
-        int turnosConstruccionCriadero = 4;
-        for (int i = 0; i < turnosConstruccionCriadero; i++) {
+        for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
-        }
 
         criadero.pasarTurno();
 

@@ -2,10 +2,9 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
-import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.Ataque.*;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeUso11Test {
@@ -17,7 +16,6 @@ public class CasoDeUso11Test {
         Ataque ataqueCasiLetal = new Ataque( new Danio(999) );
 
         // Acceso tiene 500E / 500V
-
         unAcceso.aplicarAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)

@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
-import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeUso1Test {
@@ -22,12 +21,12 @@ public class CasoDeUso1Test {
         // Paso un turno para tener 3 larvas de nuevo
         unCriadero.pasarTurno();
 
+        // Consumo dos larvas
         unCriadero.crearUnidad(new FabricaZangano());
         unCriadero.crearUnidad(new FabricaZangano());
 
         // Al consumir la tercera larva no me tira error
         assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
-
     }
 
     @Test
@@ -46,6 +45,7 @@ public class CasoDeUso1Test {
         unCriadero.pasarTurno();
         unCriadero.pasarTurno();
 
+        // Consumo dos larvas
         unCriadero.crearUnidad(new FabricaZangano());
         unCriadero.crearUnidad(new FabricaZangano());
 
@@ -72,6 +72,7 @@ public class CasoDeUso1Test {
         unCriadero.pasarTurno();
         unCriadero.pasarTurno();
 
+        // Consumo dos larvas
         unCriadero.crearUnidad(new FabricaZangano());
         unCriadero.crearUnidad(new FabricaZangano());
 
