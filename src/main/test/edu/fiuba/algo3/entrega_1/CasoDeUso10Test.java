@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EdificioZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Ataque.Danio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

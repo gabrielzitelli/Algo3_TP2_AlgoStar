@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class AlgoStar {
 
-    ArrayList<Jugador> jugadores = new ArrayList<>();
-    public AlgoStar()
-    {
+    private ArrayList<Jugador> jugadores = new ArrayList<>();
 
+    public AlgoStar() {
     }
+
     public void asignarJugador(String nombre, String color, Imperio imperio) {
         if (jugadores.size() < 2){
             Jugador jugador = new Jugador(nombre,color,imperio);

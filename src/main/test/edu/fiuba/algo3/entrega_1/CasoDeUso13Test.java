@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
-import edu.fiuba.algo3.modelo.EdificioZerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
-import edu.fiuba.algo3.modelo.danioYAtaque.Danio;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Ataque.Danio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

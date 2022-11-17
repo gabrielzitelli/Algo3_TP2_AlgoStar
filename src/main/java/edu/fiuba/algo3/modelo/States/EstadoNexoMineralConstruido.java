@@ -12,8 +12,7 @@ public class EstadoNexoMineralConstruido implements EstadoNexoMineral{
     }
 
     public void extraer(Recurso mineralesDelImperio, MaterialBruto nodoMineral){
-        if (nodoMineral != null) {
+        if (nodoMineral != null)
             mineralesDelImperio.depositar(nodoMineral.extraer(cantidadDeExtraccionUnitaria));
-        }
     }
 }

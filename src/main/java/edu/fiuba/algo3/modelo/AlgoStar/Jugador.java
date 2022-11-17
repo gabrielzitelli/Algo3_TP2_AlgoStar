@@ -7,14 +7,13 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorELNombreDelJugadorDebeSerMayorA6C
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 
 public class Jugador {
+
     private String nombre;
     private String color;
     private Imperio imperio;
 
     public Jugador(String nombre, String color, Imperio imperio) {
-
         verificarLargoDeNombre(nombre);
-
         this.nombre = nombre;
         this.color = color;
         this.imperio = imperio;

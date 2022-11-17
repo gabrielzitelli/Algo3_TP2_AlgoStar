@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

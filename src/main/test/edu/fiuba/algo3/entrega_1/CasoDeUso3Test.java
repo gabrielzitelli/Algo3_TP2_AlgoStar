@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EdificioProtoss.*;
-import edu.fiuba.algo3.modelo.EdificioZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;

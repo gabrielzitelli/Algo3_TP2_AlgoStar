@@ -3,11 +3,12 @@ package edu.fiuba.algo3.modelo.States;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
-import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
 
 public class EstadoExtractorEnConstruccion implements EstadoExtractor{
+
     private int turnoParaEstarConstruido;
 
     public EstadoExtractorEnConstruccion(int turnoParaEstarConstruido){

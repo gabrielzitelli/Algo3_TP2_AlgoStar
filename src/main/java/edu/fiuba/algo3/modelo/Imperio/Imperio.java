@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
-import edu.fiuba.algo3.modelo.Edificio;
-import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,16 +1,17 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
-import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorPosicionOcupada;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Unidad;
-import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
-import edu.fiuba.algo3.modelo.danioYAtaque.Ataque;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
 
 public class CasillaOcupada extends Casilla {
+
     Edificio edificioQueOcupa = null;
 
     public CasillaOcupada(Coordenada coordenada) {
@@ -29,7 +30,6 @@ public class CasillaOcupada extends Casilla {
         throw new ErrorNoSePuedeConstruirEdificioSobreOtroEdificio();
     }
 
-    @Override
     public void llenarDeMoho() {
         estadoMoho = new SinMoho();
     }
@@ -43,7 +43,6 @@ public class CasillaOcupada extends Casilla {
         return nuevaCasillaSinEdificio;
     }
 
-    @Override
     public Edificio obtenerEdificio() {
         return edificioQueOcupa;
     }

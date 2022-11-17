@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificio;
-import edu.fiuba.algo3.modelo.EdificioProtoss.*;
-import edu.fiuba.algo3.modelo.EdificioZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -12,7 +14,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.UnidadesZerg.Zangano;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

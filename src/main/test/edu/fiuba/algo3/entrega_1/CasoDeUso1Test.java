@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EdificioZerg.Criadero;
-import edu.fiuba.algo3.modelo.EdificioZerg.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

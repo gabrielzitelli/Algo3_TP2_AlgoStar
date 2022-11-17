@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
-import edu.fiuba.algo3.modelo.EdificioZerg.FabricaHidralisco;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaHidralisco;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 
 import java.util.ArrayList;

@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.EdificioProtoss.Acceso;
-import edu.fiuba.algo3.modelo.EdificioProtoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.EdificioZerg.Espiral;
-import edu.fiuba.algo3.modelo.EdificioZerg.Extractor;
-import edu.fiuba.algo3.modelo.EdificioZerg.Guarida;
-import edu.fiuba.algo3.modelo.EdificioZerg.ReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Espiral;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Guarida;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;

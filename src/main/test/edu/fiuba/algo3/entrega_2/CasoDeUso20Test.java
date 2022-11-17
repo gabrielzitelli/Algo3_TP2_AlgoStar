@@ -6,10 +6,10 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.UnidadesProtoss.Dragon;
-import edu.fiuba.algo3.modelo.UnidadesProtoss.Scout;
-import edu.fiuba.algo3.modelo.UnidadesProtoss.Zealot;
-import edu.fiuba.algo3.modelo.UnidadesZerg.*;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

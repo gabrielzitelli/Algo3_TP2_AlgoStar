@@ -8,7 +8,6 @@ public class ConCarga extends Cargable  {
         carga = 1;
     }
 
-    @Override
     public Cargable cargar() {
         carga++;
         return this;

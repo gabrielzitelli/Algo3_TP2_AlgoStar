@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.States;
 
-import edu.fiuba.algo3.modelo.EdificioProtoss.FabricaScout;
-import edu.fiuba.algo3.modelo.EdificioZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaScout;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 
 import java.util.ArrayList;
 
 public interface EstadoPuertoEstelar {
-    EstadoPuertoEstelar actualizar(ArrayList<Fabrica> listaDeFabricasDisponibles);
 
-    FabricaScout crearFabricaScout();
+    public abstract EstadoPuertoEstelar actualizar(ArrayList<Fabrica> listaDeFabricasDisponibles);
+    public abstract FabricaScout crearFabricaScout();
 }

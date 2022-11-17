@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
-import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.Unidad;
-import edu.fiuba.algo3.modelo.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
 import java.util.LinkedList;
 
