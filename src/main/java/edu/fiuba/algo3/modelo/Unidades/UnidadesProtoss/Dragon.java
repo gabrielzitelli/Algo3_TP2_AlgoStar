@@ -17,7 +17,7 @@ public class Dragon extends UnidadProtoss {
 
     public Dragon() {
         this.turnosDeConstruccion = 6;
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve = new SuperficieTerrestre();
     }
 
     public Ataque atacar(){
@@ -25,7 +25,7 @@ public class Dragon extends UnidadProtoss {
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

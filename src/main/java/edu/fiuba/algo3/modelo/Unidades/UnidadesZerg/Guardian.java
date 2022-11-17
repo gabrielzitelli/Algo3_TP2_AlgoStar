@@ -16,8 +16,7 @@ public class Guardian extends UnidadZerg {
     private Vida vida = new VidaSimple(100);
 
     public Guardian(){
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
-        superficieDondeSeMueve.add(new SuperficieAerea());
+        superficieDondeSeMueve = new SuperficieAerea();
         this.turnosDeConstruccion = 4;
     }
 
@@ -26,9 +25,8 @@ public class Guardian extends UnidadZerg {
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
-
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
         return requisitosMateriales;

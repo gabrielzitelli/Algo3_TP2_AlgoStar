@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class UnidadProtoss implements Unidad {
 
     protected int turnosDeConstruccion;
-    protected ArrayList<Superficie> superficieDondeSeMueve = new ArrayList<>();
+    protected Superficie superficieDondeSeMueve;
 
     public boolean estaConstruida() {
         return (turnosDeConstruccion == 0);
@@ -20,7 +20,7 @@ public abstract class UnidadProtoss implements Unidad {
     }
 
     public void verificarSuperficie(Superficie superficie){
-        if( this.superficieDondeSeMueve.stream().allMatch( sup -> sup.soyDiferenteA(superficie) ) )
+        if (!superficie.puedeMoverse(this.superficieDondeSeMueve))
             throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
     }
 

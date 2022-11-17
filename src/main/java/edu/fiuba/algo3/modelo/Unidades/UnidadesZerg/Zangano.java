@@ -20,7 +20,7 @@ public class Zangano extends UnidadZerg {
 
     public Zangano(){
         this.turnosDeConstruccion = 0;
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve = new SuperficieTerrestre();
         this.mineralDelImperio = null;
     }
 
@@ -44,9 +44,8 @@ public class Zangano extends UnidadZerg {
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
-
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
         return requisitosMateriales;

@@ -2,15 +2,9 @@ package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 
-public abstract class Superficie {
+public interface Superficie {
 
-    public abstract Ataque conseguirTipoDeAtaque(Ataque unAtaque);
+    Ataque conseguirTipoDeAtaque(Ataque unAtaque);
 
-    public boolean soyDiferenteA(Superficie superficieAComparar){
-        return !this.getClass().equals(superficieAComparar.getClass());
-    }
-
-    public boolean soyIgualA(Superficie superficieAComparar){
-        return this.getClass().equals(superficieAComparar.getClass());
-    }
+    boolean puedeMoverse(Superficie superficieAComparar);
 }

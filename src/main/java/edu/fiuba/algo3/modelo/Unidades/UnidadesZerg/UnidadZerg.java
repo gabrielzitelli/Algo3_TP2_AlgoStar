@@ -13,7 +13,7 @@ public abstract class UnidadZerg implements Unidad {
 
     protected MaterialBruto recursoARecolectar;
     protected Recurso mineralDelImperio;
-    protected ArrayList<Superficie> superficieDondeSeMueve = new ArrayList<>();
+    protected Superficie superficieDondeSeMueve;
     protected int turnosDeConstruccion;
     //private int valorVital = x;
 
@@ -40,7 +40,7 @@ public abstract class UnidadZerg implements Unidad {
     }
 
     public void verificarSuperficie(Superficie superficie){
-        if( this.superficieDondeSeMueve.stream().allMatch( sup -> sup.soyDiferenteA(superficie) ) )
+        if (!superficie.puedeMoverse(this.superficieDondeSeMueve))
             throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
     }
 }

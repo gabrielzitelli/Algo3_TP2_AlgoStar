@@ -15,7 +15,7 @@ public class Zerling extends UnidadZerg {
     private Vida vida = new VidaSimple(35);
 
     public Zerling(){
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve = new SuperficieTerrestre();
         this.turnosDeConstruccion = 2;
     }
 
@@ -24,7 +24,7 @@ public class Zerling extends UnidadZerg {
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

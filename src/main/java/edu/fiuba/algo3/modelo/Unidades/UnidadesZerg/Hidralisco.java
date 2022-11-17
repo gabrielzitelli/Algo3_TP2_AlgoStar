@@ -16,15 +16,16 @@ public class Hidralisco extends UnidadZerg {
     private Vida vida = new VidaSimple(80);
 
     public Hidralisco(){
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve = new SuperficieTerrestre();
         this.turnosDeConstruccion = 4;
     }
+
     public Ataque atacar(){
         return new Ataque(danio);
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

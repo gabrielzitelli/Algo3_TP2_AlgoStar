@@ -18,8 +18,7 @@ public class Scout extends UnidadProtoss {
 
     public Scout(){
         this.turnosDeConstruccion = 9;
-        superficieDondeSeMueve.add(new SuperficieAerea());
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve = new SuperficieAerea();
     }
 
     public Ataque atacar(){
@@ -27,7 +26,7 @@ public class Scout extends UnidadProtoss {
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

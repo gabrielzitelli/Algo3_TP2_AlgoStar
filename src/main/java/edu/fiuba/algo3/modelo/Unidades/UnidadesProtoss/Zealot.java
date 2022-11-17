@@ -16,7 +16,7 @@ public class Zealot extends UnidadProtoss {
 
     public Zealot(){
         this.turnosDeConstruccion = 4;
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        superficieDondeSeMueve = new SuperficieTerrestre();
     }
 
     public Ataque atacar(){
@@ -24,7 +24,7 @@ public class Zealot extends UnidadProtoss {
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

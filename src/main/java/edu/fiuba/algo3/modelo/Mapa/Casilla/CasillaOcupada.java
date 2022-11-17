@@ -64,7 +64,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     protected void recibirAtaque(Ataque unAtaque) {
-        unidad.recibirAtaque(superficie.conseguirTipoDeAtaque(unAtaque));
+        unidad.recibirAtaque(unAtaque);
     }
 
     public Casilla moverUnidadHacia(Casilla destino) {

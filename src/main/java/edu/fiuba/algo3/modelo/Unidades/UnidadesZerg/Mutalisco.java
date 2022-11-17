@@ -13,14 +13,13 @@ public class Mutalisco extends UnidadZerg {
 
     private final int costoGasEvolucion;
     private final int costoMineralEvolucion;
-    private int danioTerrestre = 10;
-    private int danioAereo = 10;
+    private final int danioTerrestre = 10;
+    private final int danioAereo = 10;
     private DanioUnidad danio = new DanioMutalisco(danioTerrestre, danioAereo);
     private Vida vida = new VidaSimple(120);
 
     public Mutalisco(){
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
-        superficieDondeSeMueve.add(new SuperficieAerea());
+        this.superficieDondeSeMueve = new SuperficieAerea();
         this.costoGasEvolucion = 100;
         this.costoMineralEvolucion = 50;
         this.turnosDeConstruccion = 7;
@@ -38,6 +37,6 @@ public class Mutalisco extends UnidadZerg {
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
 }
