@@ -1,19 +1,20 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoEdificioRecolector;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoEdificioRecolectorEnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
-import edu.fiuba.algo3.modelo.States.EstadoNexoMineral;
-import edu.fiuba.algo3.modelo.States.EstadoNexoMineralEnConstruccion;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 public class NexoMineral extends Edificio {
 
-    private EstadoNexoMineral estado;
+    private EstadoEdificioRecolector estado;
     private int turnoParaEstarConstruido = 4;
     private Recurso mineralesDelImperio;
     private MaterialBruto nodoMineral = null;
+    private int cantidadDeExtraccionUnitaria = 10;
     private int valorVital = 250;
 
     public NexoMineral(Recurso mineralesDelImperio) {
@@ -23,7 +24,7 @@ public class NexoMineral extends Edificio {
         this.estadoMoho = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.mineralesDelImperio = mineralesDelImperio;
-        estado = new EstadoNexoMineralEnConstruccion(turnoParaEstarConstruido);
+        estado = new EstadoEdificioRecolectorEnConstruccion(turnoParaEstarConstruido);
     }
 
     public void pasarTurno() {
@@ -33,7 +34,7 @@ public class NexoMineral extends Edificio {
     }
 
     private void extraer() {
-        estado.extraer(mineralesDelImperio, nodoMineral);
+        estado.extraer(mineralesDelImperio, nodoMineral, cantidadDeExtraccionUnitaria);
     }
 
     public void verificarConstruccion(Casilla unaCasilla){
