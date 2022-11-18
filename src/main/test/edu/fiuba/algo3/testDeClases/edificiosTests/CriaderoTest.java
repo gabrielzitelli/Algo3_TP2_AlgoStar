@@ -5,10 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class CriaderoTest {
 
@@ -23,6 +26,10 @@ public class CriaderoTest {
     public void test02UnCriaderoNoSeConstruyeEn3Turnos(){
         Criadero unCriadero = new Criadero();
 
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+
         for (int i = 0; i < 3; i++)
             unCriadero.pasarTurno();
 
@@ -32,6 +39,10 @@ public class CriaderoTest {
     @Test
     public void test03UnCriaderoSeConstruyeEn4Turnos(){
         Criadero unCriadero = new Criadero();
+
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
 
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
@@ -43,6 +54,10 @@ public class CriaderoTest {
     public void test04UnCriaderoNoPuedeCrear4Unidades(){
         //No se pueden crear 4 unidades porque se consumirian 4 larvas, y el criadero empieza solo con 3
         Criadero unCriadero = new Criadero();
+
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -60,6 +75,10 @@ public class CriaderoTest {
         //No se pueden crear 4 unidades porque se consumirian 4 larvas, y el criadero empieza solo con 3
         Criadero unCriadero = new Criadero();
 
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
@@ -74,6 +93,10 @@ public class CriaderoTest {
     public void test06UnCriaderoPuedeCrearUnaUnidadDespuesDeGastar3LarvasYQuePaseUnTurno() {
         //No se pueden crear 4 unidades porque se consumirian 4 larvas, y el criadero empieza solo con 3
         Criadero unCriadero = new Criadero();
+
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
 
         //Construyo el edificio
         for (int i = 0; i < 4; i++)

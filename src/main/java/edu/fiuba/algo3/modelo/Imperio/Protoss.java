@@ -20,6 +20,7 @@ public class Protoss extends Imperio{
         this.comprobarRequisitos(PuertoEstelar.requisitos());
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.asignarListaDeUnidades(listaDeFabricasDisponibles);
+        puertoEstelar.asignarListaDeUnidadesImperio(unidades);
         this.construirEdificio(puertoEstelar, coordenada);
     }
 

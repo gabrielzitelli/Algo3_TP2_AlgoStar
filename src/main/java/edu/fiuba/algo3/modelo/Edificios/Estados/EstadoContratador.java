@@ -4,9 +4,9 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
 
-public interface EstadoEdificioContratador {
+public interface EstadoContratador {
 
-    EstadoEdificioContratador actualizar();
+    EstadoContratador actualizar();
 
     void contratar(Unidad unidadAContratar, LinkedList<Unidad> unidadesEmpleados);
 }

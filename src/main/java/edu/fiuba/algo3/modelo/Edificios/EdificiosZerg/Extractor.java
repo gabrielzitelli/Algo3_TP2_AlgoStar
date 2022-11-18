@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoEdificioContratador;
-import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoEdificioContratadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoEdificioRecolector;
-import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoEdificioRecolectorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratador;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratadorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
@@ -17,8 +17,8 @@ import java.util.LinkedList;
 
 public class Extractor extends Edificio {
 
-    private EstadoEdificioRecolector estadoEdificioRecolector;
-    private EstadoEdificioContratador estadoEdificioContratador;
+    private EstadoRecolector estadoRecolector;
+    private EstadoContratador estadoContratador;
     private int turnoParaEstarConstruido = 6;
     private Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
@@ -33,27 +33,27 @@ public class Extractor extends Edificio {
         this.estadoMoho = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
         this.gasDelImperio = gasDelImperio;
-        this.estadoEdificioRecolector = new EstadoEdificioRecolectorEnConstruccion(turnoParaEstarConstruido);
-        this.estadoEdificioContratador = new EstadoEdificioContratadorEnConstruccion(turnoParaEstarConstruido);
+        this.estadoRecolector = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
+        this.estadoContratador = new EstadoContratadorEnConstruccion(turnoParaEstarConstruido);
     }
 
     public void pasarTurno(){
-        estadoEdificioRecolector = estadoEdificioRecolector.actualizar();
-        estadoEdificioContratador = estadoEdificioContratador.actualizar();
+        estadoRecolector = estadoRecolector.actualizar();
+        estadoContratador = estadoContratador.actualizar();
         this.extraer();
         vida.pasarTurno();
     }
 
     private void extraer(){
         int cantidadAExtraer = zanganosEmpleados.size() * cantidadDeExtraccionUnitaria;
-        estadoEdificioRecolector.extraer(gasDelImperio, volcanDeGas, cantidadAExtraer);
+        estadoRecolector.extraer(gasDelImperio, volcanDeGas, cantidadAExtraer);
     }
 
     public void contratarZangano(Unidad zanganoAContratar){
         if (!zanganoAContratar.esIgualA(new Zangano()))
             throw new ErrorEstaUnidadNosePuedeContratar();
 
-        estadoEdificioContratador.contratar(zanganoAContratar, zanganosEmpleados);
+        estadoContratador.contratar(zanganoAContratar, zanganosEmpleados);
     }
 
     public void verificarConstruccion(Casilla unaCasilla){

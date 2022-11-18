@@ -1,11 +1,15 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeuso9Test {
@@ -22,6 +26,9 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon1 = new Coordenada(0,0);
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaDragon());
+        unAcceso.asignarListaDeUnidades(unidadesDisponibles);
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
 
@@ -38,7 +45,7 @@ public class CasoDeuso9Test {
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearFabricaDragon());
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaDragon()));
     }
 
     @Test
@@ -48,6 +55,9 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon1 = new Coordenada(0,0);
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaDragon());
+        unAcceso.asignarListaDeUnidades(unidadesDisponibles);
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );
@@ -71,6 +81,6 @@ public class CasoDeuso9Test {
         pilon1.pasarTurno();
         pilon2.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearFabricaDragon());
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaDragon()));
     }
 }

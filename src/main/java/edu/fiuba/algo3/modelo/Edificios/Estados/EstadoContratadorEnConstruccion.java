@@ -5,19 +5,19 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
 
-public class EstadoEdificioContratadorEnConstruccion implements EstadoEdificioContratador {
+public class EstadoContratadorEnConstruccion implements EstadoContratador {
 
     private int turnoParaEstarConstruido;
 
-    public EstadoEdificioContratadorEnConstruccion(int turnoParaEstarConstruido) {
+    public EstadoContratadorEnConstruccion(int turnoParaEstarConstruido) {
         this.turnoParaEstarConstruido = turnoParaEstarConstruido;
     }
 
     @Override
-    public EstadoEdificioContratador actualizar() {
+    public EstadoContratador actualizar() {
         turnoParaEstarConstruido--;
         if(turnoParaEstarConstruido == 0)
-            return new EstadoEdificioContratadorConstruido();
+            return new EstadoContratadorConstruido();
 
         return this;
     }

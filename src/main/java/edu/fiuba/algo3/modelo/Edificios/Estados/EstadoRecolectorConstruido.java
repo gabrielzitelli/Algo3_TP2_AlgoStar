@@ -3,10 +3,10 @@ package edu.fiuba.algo3.modelo.Edificios.Estados;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 
-public class EstadoEdificioRecolectorConstruido implements EstadoEdificioRecolector {
+public class EstadoRecolectorConstruido implements EstadoRecolector {
 
     @Override
-    public EstadoEdificioRecolector actualizar() {
+    public EstadoRecolector actualizar() {
         return this;
     }
 

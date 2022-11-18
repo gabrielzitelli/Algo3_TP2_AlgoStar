@@ -3,6 +3,9 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeUso1Test {
@@ -10,6 +13,10 @@ public class CasoDeUso1Test {
     @Test
     public void test01ConsumoUnaLarvaYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
+
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -32,6 +39,10 @@ public class CasoDeUso1Test {
     @Test
     public void test02ConsumoDosLarvasYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
+
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -57,6 +68,10 @@ public class CasoDeUso1Test {
     @Test
     public void test03ConsumoTresLarvasYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
+
+        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
+        unidadesDisponibles.add(new FabricaZangano());
+        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)

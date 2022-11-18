@@ -5,10 +5,10 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
 
-public class EstadoEdificioContratadorConstruido implements EstadoEdificioContratador {
+public class EstadoContratadorConstruido implements EstadoContratador {
 
     @Override
-    public EstadoEdificioContratador actualizar() {
+    public EstadoContratador actualizar() {
         return this;
     }
 

@@ -1,18 +1,21 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.States.EstadoReserva;
-import edu.fiuba.algo3.modelo.States.EstadoReservaEnConstruccion;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 
 public class ReservaDeReproduccion extends Edificio {
 
-    private EstadoReserva estado;
+    private EstadoHabilitador estadoHabilitador;
     private int turnoParaEstarConstruido = 12;
     private int valorVital = 1000;
+
+    // Fabricas que el edificio habilita
+    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
     private ArrayList<Fabrica> listaDeFabricasDisponibles;
 
     public ReservaDeReproduccion(){
@@ -20,17 +23,16 @@ public class ReservaDeReproduccion extends Edificio {
         this.costoGas = 0;
         this.estadoMoho = new ConMoho();
         this.estadoRecolectable = new NoRecolectable();
-        estado = new EstadoReservaEnConstruccion(turnoParaEstarConstruido);
         this.vida = new VidaRegenerativa(valorVital);
+
+        estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
+
+        listaFabricasAHabilitar.add(new FabricaZerling());
     }
 
     public void pasarTurno(){
-        estado = estado.actualizar(listaDeFabricasDisponibles);
+        estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, listaDeFabricasDisponibles);
         vida.pasarTurno();
-    }
-
-    public FabricaZerling crearFabricaZerling(){
-        return estado.crearFabricaZerling();
     }
 
     public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
