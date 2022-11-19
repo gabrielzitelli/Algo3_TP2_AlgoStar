@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
 
+// Permite contratar unidades (actualmente solo utilizado en el Extractor)
 public interface EstadoContratador {
 
     EstadoContratador actualizar();
