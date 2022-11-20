@@ -37,6 +37,11 @@ public class Guarida extends Edificio {
         return requisitos;
     }
 
+    protected void destruirEdificio() {
+        super.destruirEdificio();
+        fabricasDisponibles.disminuir(listaFabricasAHabilitar);
+    }
+
     public void pasarTurno() {
         estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, fabricasDisponibles);
         vida.pasarTurno();

@@ -31,6 +31,11 @@ public class ReservaDeReproduccion extends Edificio {
         listaFabricasAHabilitar.add(new FabricaZerling());
     }
 
+    protected void destruirEdificio() {
+        super.destruirEdificio();
+        fabricasDisponibles.disminuir(listaFabricasAHabilitar);
+    }
+
     public void pasarTurno(){
         estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, fabricasDisponibles);
         vida.pasarTurno();

@@ -3,28 +3,13 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaDragon;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AccesoTest {
-
-    FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
-
-    @BeforeEach
-    public void setupFabricasDisponibles() {
-        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<Fabrica>();
-        fabricasHabilitada.add(new FabricaDragon());
-        fabricasHabilitada.add(new FabricaZealot());
-        fabricasDisponibles.aumentar(fabricasHabilitada);
-    }
-
 
     @Test
     public void test01PuedoCrearUnAcceso(){
@@ -35,6 +20,7 @@ public class AccesoTest {
 
     @Test
     public void test02UnAccesoNoSeConstruyeEn7TurnosIntentandoCrearFabricaDragon(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 
@@ -46,6 +32,7 @@ public class AccesoTest {
 
     @Test
     public void test03UnAccesoNoSeConstruyeEn7TurnosIntentandoCrearFabricaZealot(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 
@@ -57,6 +44,7 @@ public class AccesoTest {
 
     @Test
     public void test04UnAccesoSeConstruyeEn8TurnosIntentandoCrearFabricaDragon(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 
@@ -68,6 +56,7 @@ public class AccesoTest {
 
     @Test
     public void test05UnAccesoSeConstruyeEn8TurnosIntentandoCrearFabricaZealot(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 

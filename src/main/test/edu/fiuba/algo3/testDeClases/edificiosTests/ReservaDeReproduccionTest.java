@@ -1,15 +1,18 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Ataque.Danio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -51,5 +54,31 @@ public class ReservaDeReproduccionTest {
             unCriadero.pasarTurno();
 
         assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZerling()));
+    }
+
+    @Test
+    public void test03SiSeDestruyeUnaReservaDeReproduccionNoSePuedeCrearLaUnidadQueHabilita() {
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
+
+        // Construyo criadero
+        Criadero unCriadero = new Criadero();
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        elMapa.construirEdificio(unCriadero, new Coordenada(0,0));
+        for (int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
+
+        // Construyo reserva de reproduccion
+        ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+        elMapa.construirEdificio(unaReserva, new Coordenada(1,0));
+        unaReserva.asignarListaDeUnidades(fabricasDisponibles);
+        for (int i = 0; i < 12; i++)
+            unaReserva.pasarTurno();
+
+        unaReserva.aplicarAtaque(new Ataque(new Danio(1000)));
+
+        assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
+                () -> unCriadero.crearUnidad(new FabricaZerling()));
     }
 }
