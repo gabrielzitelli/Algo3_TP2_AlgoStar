@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,13 +12,19 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeUso1Test {
 
+    FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
+
+    @BeforeEach
+    public void setupFabricasDisponibles() {
+        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<Fabrica>();
+        fabricasHabilitada.add(new FabricaZangano());
+        fabricasDisponibles.aumentar(fabricasHabilitada);
+    }
+
     @Test
     public void test01ConsumoUnaLarvaYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
-
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-        unidadesDisponibles.add(new FabricaZangano());
-        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -39,10 +47,7 @@ public class CasoDeUso1Test {
     @Test
     public void test02ConsumoDosLarvasYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
-
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-        unidadesDisponibles.add(new FabricaZangano());
-        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -68,10 +73,7 @@ public class CasoDeUso1Test {
     @Test
     public void test03ConsumoTresLarvasYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
-
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-        unidadesDisponibles.add(new FabricaZangano());
-        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)

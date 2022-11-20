@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -14,7 +14,7 @@ public abstract class Imperio {
     protected Recurso mineralesDelImperio;
     protected Recurso gasDelImperio;
     protected LinkedList<Edificio> edificios;
-    protected ArrayList<Fabrica> listaDeFabricasDisponibles;
+    protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
 
     public void terminarTurno(){
@@ -91,6 +91,14 @@ public abstract class Imperio {
         //Metodo de inicializacion utilitario
         mineralesDelImperio = mineral;
         gasDelImperio = gas;
+    }
+
+    public boolean tieneEdificio(Edificio edificioABuscar) {
+        for (Edificio edificio : edificios) {
+            if (edificio.esIgualA(edificioABuscar))
+                return true;
+        }
+        return false;
     }
 
     public boolean tieneUnidad(Unidad unidadABuscar) {

@@ -59,6 +59,10 @@ public abstract class Edificio {
         elMapa.destruirEdificio(coordenada);
     }
 
+    public boolean esIgualA(Edificio edificio) {
+        return this.getClass().equals(edificio.getClass());
+    }
+
     public void crearUnidad(Fabrica unaFabrica) {
         throw new ErrorElEdificioNoPuedeCrearUnidadades();
     }

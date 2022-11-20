@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
@@ -24,7 +25,7 @@ public class Criadero extends Edificio {
 
     // Fabricas que el edificio habilita
     private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
-    private ArrayList<Fabrica> listaDeFabricasDisponibles;
+    private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
 
     public Criadero(){
@@ -43,22 +44,12 @@ public class Criadero extends Edificio {
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
-        verificarQueSePuedeFabricar(unaFabrica);
         if (cantidadLarvas > 0) {
             cantidadLarvas--;
             estadoCreador.crearUnidad(unaFabrica, unidades);
         }else {
             throw new ErrorCriaderoNoTieneMasLarvas();
         }
-    }
-
-    private void verificarQueSePuedeFabricar(Fabrica unaFabrica) {
-        for (Fabrica fabricaDisponible : listaDeFabricasDisponibles){
-            if (unaFabrica.esIgualA(fabricaDisponible))
-                return;
-        }
-
-        throw new ErrorNoSeCumplenLosRequisitosDeEstaUnidad();
     }
 
     private void regenerarUnaLarva(){
@@ -73,15 +64,16 @@ public class Criadero extends Edificio {
     }
 
     public void pasarTurno(){
-        estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, listaDeFabricasDisponibles);
+        estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, fabricasDisponibles);
         estadoCreador = estadoCreador.actualizar();
         estadoGeneradorDeMoho = estadoGeneradorDeMoho.actualizar(coordenada);
         this.regenerarUnaLarva();
         vida.pasarTurno();
     }
 
-    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
-        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
+    public void asignarListaDeUnidades(FabricasDisponibles fabricasDisponibles) {
+        this.fabricasDisponibles = fabricasDisponibles;
+        estadoCreador.asignarFabricasDisponibles(fabricasDisponibles);
     }
 
     public void asignarListaDeUnidadesImperio(ArrayList<Unidad> unidades){

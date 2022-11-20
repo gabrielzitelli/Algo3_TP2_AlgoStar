@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
@@ -16,7 +17,7 @@ public class Espiral extends Edificio {
 
     // Fabricas que el edificio habilita
     private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
-    private ArrayList<Fabrica> listaDeFabricasDisponibles;
+    private FabricasDisponibles fabricasDisponibles;
 
     public Espiral() {
         this.costoGas = 100;
@@ -37,11 +38,11 @@ public class Espiral extends Edificio {
     }
 
     public void pasarTurno() {
-        estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, listaDeFabricasDisponibles);
+        estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, fabricasDisponibles);
         vida.pasarTurno();
     }
 
-    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
-        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
+    public void asignarListaDeUnidades(FabricasDisponibles fabricasDisponibles) {
+        this.fabricasDisponibles = fabricasDisponibles;
     }
 }

@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,17 +15,16 @@ public class GuaridaTest {
 
     @Test
     public void test01UnaGuaridaNoSeConstruyeEn11Turnos(){
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Guarida unaGuarida = new Guarida();
-        unaGuarida.asignarListaDeUnidades(unidadesDisponibles);
+        unaGuarida.asignarListaDeUnidades(fabricasDisponibles);
 
         for(int i = 0; i < 11; i++)
             unaGuarida.pasarTurno();
 
         // Construyo criadero
         Criadero unCriadero = new Criadero();
-        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
@@ -34,17 +34,16 @@ public class GuaridaTest {
 
     @Test
     public void test02GuaridaSePuedeConstruirEn12Turnos(){
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Guarida unaGuarida = new Guarida();
-        unaGuarida.asignarListaDeUnidades(unidadesDisponibles);
+        unaGuarida.asignarListaDeUnidades(fabricasDisponibles);
 
         for(int i = 0; i < 12; i++)
             unaGuarida.pasarTurno();
 
         // Construyo criadero
         Criadero unCriadero = new Criadero();
-        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 

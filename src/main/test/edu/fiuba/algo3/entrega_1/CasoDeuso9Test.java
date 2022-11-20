@@ -2,9 +2,11 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,15 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeuso9Test {
+
+    FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
+
+    @BeforeEach
+    public void setupFabricasDisponibles() {
+        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<Fabrica>();
+        fabricasHabilitada.add(new FabricaDragon());
+        fabricasDisponibles.aumentar(fabricasHabilitada);
+    }
 
     @BeforeEach
     public void setup(){
@@ -26,9 +37,7 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon1 = new Coordenada(0,0);
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-        unidadesDisponibles.add(new FabricaDragon());
-        unAcceso.asignarListaDeUnidades(unidadesDisponibles);
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
 
@@ -55,9 +64,7 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon1 = new Coordenada(0,0);
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-        unidadesDisponibles.add(new FabricaDragon());
-        unAcceso.asignarListaDeUnidades(unidadesDisponibles);
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );

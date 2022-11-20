@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,17 +15,16 @@ public class EspiralTest {
 
     @Test
     public void test01UnEspiralNoEstaConstruidoEn9Turnos() {
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Espiral unEspiral = new Espiral();
-        unEspiral.asignarListaDeUnidades(unidadesDisponibles);
+        unEspiral.asignarListaDeUnidades(fabricasDisponibles);
 
         for (int i = 0; i < 9; i++)
             unEspiral.pasarTurno();
 
         // Construyo criadero
         Criadero unCriadero = new Criadero();
-        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
@@ -34,17 +34,16 @@ public class EspiralTest {
 
     @Test
     public void test02UnEspiralEstaConstruidoEn10Turnos() {
-        ArrayList<Fabrica> unidadesDisponibles = new ArrayList<>();
-
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Espiral unEspiral = new Espiral();
-        unEspiral.asignarListaDeUnidades(unidadesDisponibles);
+        unEspiral.asignarListaDeUnidades(fabricasDisponibles);
 
         for (int i = 0; i < 10; i++)
             unEspiral.pasarTurno();
 
         // Construyo criadero
         Criadero unCriadero = new Criadero();
-        unCriadero.asignarListaDeUnidades(unidadesDisponibles);
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
