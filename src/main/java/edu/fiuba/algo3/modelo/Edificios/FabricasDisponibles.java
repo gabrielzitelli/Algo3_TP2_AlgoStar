@@ -39,15 +39,7 @@ public class FabricasDisponibles {
     public void disminuir(ArrayList<Fabrica> fabricasADisminuir) {
         for (Fabrica fabrica : fabricasADisminuir) {
             String clave = fabrica.getClass().getName();
-
-            if (!disponibles.containsKey(clave))
-                continue;
-
-            int valor = disponibles.get(clave);
-            if (valor == valorInicial)
-                continue;
-
-            disponibles.replace(clave, valor - valorModificador);
+            disponibles.replace(clave, disponibles.get(clave) - valorModificador);
         }
     }
 }

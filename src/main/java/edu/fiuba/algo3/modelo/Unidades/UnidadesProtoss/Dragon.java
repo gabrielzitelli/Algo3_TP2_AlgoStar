@@ -3,29 +3,23 @@ package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Vida.Vida;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 
 public class Dragon extends UnidadProtoss {
 
-    private int danioTerrestre = 20;
-    private int danioAereo = 20;
-    private DanioUnidad danio = new DanioDragon(danioTerrestre, danioAereo);
-    private Vida vida = new VidaConEscudo(100, 80);
+    private final int turnosDeContruccion = 6;
+    private final int danioTerrestre = 20;
+    private final int danioAereo = 20;
+    private final int cantidadDeVida = 100;
+    private final int cantidadDeEscudo = 80;
 
     public Dragon() {
-        this.turnosDeConstruccion = 6;
-        superficieDondeSeMueve = new SuperficieTerrestre();
-    }
-
-    public Ataque atacar(){
-        return new Ataque(danio);
-    }
-
-    public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
+        this.turnosDeConstruccion = turnosDeContruccion;
+        this.superficieDondeSeMueve = new SuperficieTerrestre();
+        this.danio = new DanioDragon(danioTerrestre, danioAereo);
+        this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

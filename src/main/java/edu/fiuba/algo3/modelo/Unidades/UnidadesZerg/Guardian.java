@@ -11,22 +11,17 @@ import java.util.ArrayList;
 
 public class Guardian extends UnidadZerg {
 
-    private int danioTerrestre = 25;
-    private DanioUnidad danio = new DanioGuardian(danioTerrestre);
-    private Vida vida = new VidaSimple(100);
+    private final int turnosDeContruccion = 4;
+    private final int danioTerrestre = 25;
+    private final int cantidadDeVida = 100;
 
-    public Guardian(){
-        superficieDondeSeMueve = new SuperficieAerea();
-        this.turnosDeConstruccion = 4;
+    public Guardian() {
+        this.turnosDeConstruccion = turnosDeContruccion;
+        this.superficieDondeSeMueve = new SuperficieAerea();
+        this.danio = new DanioGuardian(danioTerrestre);
+        this.vida = new VidaSimple(cantidadDeVida);
     }
 
-    public Ataque atacar(){
-        return new Ataque(danio);
-    }
-
-    public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
-    }
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
         return requisitosMateriales;

@@ -2,27 +2,29 @@ package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
-import edu.fiuba.algo3.modelo.Vida.Vida;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 import java.util.ArrayList;
 
 public class Mutalisco extends UnidadZerg {
 
-    private final int costoGasEvolucion;
-    private final int costoMineralEvolucion;
+    private final int turnosDeContruccion = 7;
     private final int danioTerrestre = 10;
     private final int danioAereo = 10;
-    private DanioUnidad danio = new DanioMutalisco(danioTerrestre, danioAereo);
-    private Vida vida = new VidaSimple(120);
+    private final int cantidadDeVida = 120;
+
+    private final int costoGasEvolucion;
+    private final int costoMineralEvolucion;
 
     public Mutalisco(){
+        this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
+        this.danio = new DanioMutalisco(danioTerrestre, danioAereo);
+        this.vida = new VidaSimple(cantidadDeVida);
+
         this.costoGasEvolucion = 100;
         this.costoMineralEvolucion = 50;
-        this.turnosDeConstruccion = 7;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {
@@ -30,13 +32,5 @@ public class Mutalisco extends UnidadZerg {
         requisitosMateriales.add(new Recurso(costoMineralEvolucion));
         requisitosMateriales.add(new Recurso(costoGasEvolucion));
         return requisitosMateriales;
-    }
-
-    public Ataque atacar(){
-        return new Ataque(danio);
-    }
-
-    public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
     }
 }

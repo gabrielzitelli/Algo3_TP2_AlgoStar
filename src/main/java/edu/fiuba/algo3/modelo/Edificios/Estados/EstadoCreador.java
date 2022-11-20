@@ -7,11 +7,15 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import java.util.ArrayList;
 
 // Permite crear unidades
-public interface EstadoCreador {
+public abstract class EstadoCreador {
 
-    EstadoCreador actualizar();
+    protected FabricasDisponibles fabricasDisponibles;
 
-    void asignarFabricasDisponibles(FabricasDisponibles fabricasDisponibles);
+    public abstract EstadoCreador actualizar();
 
-    void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades);
+    public void asignarFabricasDisponibles(FabricasDisponibles fabricasDisponibles) {
+        this.fabricasDisponibles = fabricasDisponibles;
+    }
+
+    public abstract void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades);
 }
