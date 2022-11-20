@@ -3,12 +3,14 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -129,5 +131,17 @@ public class ExtractorTest {
         zerg.terminarTurno();
 
         assertTrue(zerg.tienesEstaCantidadDeGas(30));
+    }
+
+    @Test
+    public void test07IntentarContratarUnidadInvalidaLanzaExcepcion() {
+        Recurso gasDelImperio = new Recurso(0);
+        Extractor unExtractor = new Extractor(gasDelImperio);
+
+        for(int i = 0; i < 6; i++)
+            unExtractor.pasarTurno();
+
+        assertThrows(ErrorEstaUnidadNosePuedeContratar.class,
+                () -> unExtractor.contratarZangano(new Zerling()));
     }
 }

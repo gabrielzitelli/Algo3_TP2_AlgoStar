@@ -2,13 +2,13 @@ package edu.fiuba.algo3.testDeClases;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
+import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -124,7 +124,6 @@ public class MapaTest {
     public void test10NoPuedoConstruirUnEspiralSinMoho(){
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso gasDelImperio = new Recurso(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
                 () -> elMapa.construirEdificio(new Espiral(), coordenada));
@@ -134,7 +133,6 @@ public class MapaTest {
     public void test11NoPuedoConstruirUnaGuaridaSinMoho(){
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso gasDelImperio = new Recurso(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
                 () -> elMapa.construirEdificio(new Guarida(), coordenada));
@@ -414,5 +412,41 @@ public class MapaTest {
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class ,
                 () -> elMapa.construirEdificio(new PuertoEstelar(), coordenadaEnergizadaYConMoho));
+    }
+
+    @Test
+    public void test29ColocarUnidadEnCasillaOcupadaLanzaExcepcion() {
+        Mapa elMapa = Mapa.obtener();
+        Criadero unCriadero = new Criadero();
+        Coordenada coordenada = new Coordenada(0,0);
+
+        elMapa.construirEdificio(unCriadero, coordenada);
+
+        Zangano unZangano = new Zangano();
+
+        assertThrows(ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarUnaUnidad(unZangano, coordenada));
+    }
+
+    @Test
+    public void test30AtacarUnaCasillaVaciaLanzaExcepcion() {
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaAtacante = new Coordenada(0,0);
+        Coordenada coordenadaAtacada = new Coordenada(1,0);
+
+        assertThrows(ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque.class,
+                () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacada));
+    }
+
+    @Test
+    public void test31DesconstruirEdificioDeUnaCasillaVaciaLanzaExcepcion() {
+        assertThrows(ErrorNoSePuedeDesconstruirUnEdificioNoCreado.class,
+                () -> Mapa.obtener().destruirEdificio(new Coordenada(0,0)));
+    }
+
+    @Test
+    public void test32ConseguirEdificioDeUnaCasillaVaciaLanzaExcepcion() {
+        assertThrows(ErrorNoExisteNingunEdificioEnEstaCasilla.class,
+                () -> Mapa.obtener().obtenerEdificio(new Coordenada(0,0)));
     }
 }
