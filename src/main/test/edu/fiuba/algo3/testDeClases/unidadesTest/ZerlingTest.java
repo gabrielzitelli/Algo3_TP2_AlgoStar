@@ -24,7 +24,7 @@ public class ZerlingTest {
     }
 
     @Test
-    public void test02UnZerlingPuedeDaniarAOtroZerling(){
+    public void test02UnZerlingPuedeDaniarAUnaUnidadTerrestre(){
         Mapa elMapa = Mapa.obtener();
 
         Zerling unZerling = new Zerling();

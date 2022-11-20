@@ -42,13 +42,6 @@ public class Zangano extends UnidadZerg {
         mineralDelImperio.depositar(recursoARecolectar.extraer(10));
     }
 
-    public Ataque atacar(){
-        return new Ataque(danio);
-    }
-
-    public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
-    }
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
         return requisitosMateriales;
