@@ -7,14 +7,13 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
 import java.util.LinkedList;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 public class Mapa {
     static private Mapa mapaInstanciaUnica = new Mapa();
-
-    //Hardcodeado, ver a futuro para crear en funcion de la cantidad de bases
     private int tamanio = 100;
     private Casilla[][] matriz;
+    private double coeficienteBases = 0.12; //Relacion entre bases y tamanio del mapa
 
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
@@ -30,26 +29,80 @@ public class Mapa {
         }
     }
 
-    private void inicializarBases(){
-        int mitadLadoMapa = tamanio/2;
-        int cuartoLadoMapa = tamanio/4;
+    void colocarBasesPorMitadDeMapa(double densidadDeBasesPorEje, int cantidadDeBases, int comienzoDeLaMitadDelMapa){
 
-        this.colocarUnaBase(new Coordenada(mitadLadoMapa, cuartoLadoMapa));
-        this.colocarUnaBase(new Coordenada(tamanio - mitadLadoMapa, cuartoLadoMapa));
+        int cantidadEjesHorizontales = 0; // Cantidad de ejes horizontales
+        int totalDeBasesRestantes = cantidadDeBases;
+
+        // Establezco la cantidad de ejes horizontales acorde al tamanio del mapa y a la densidadDeBasesPorEje
+        do {
+            cantidadEjesHorizontales++;
+            totalDeBasesRestantes -= tamanio * densidadDeBasesPorEje;
+        } while (totalDeBasesRestantes >= 0);
+
+        totalDeBasesRestantes = cantidadDeBases;
+        //Por cada eje horizontal colocaré las bases de los ejes verticales
+        for (int i = 0; i < cantidadEjesHorizontales; i++) {
+
+            int posicionHorizontal = (int)(tamanio * ( (i+1) / (cantidadDeBases+2.0)));
+            int cantidadDeEjesVerticales = (int)ceil((cantidadDeBases+1.0)/cantidadEjesHorizontales);
+
+            //Si hay bases por colocar, las coloco
+            for (int j = 0; j < cantidadDeEjesVerticales; j++) {
+                int posicionEquidistanteEnY = (int)(tamanio * ( (j+1) / (cantidadDeEjesVerticales+1.0) ));
+
+                if(totalDeBasesRestantes > 0){
+                    Coordenada coordenadaCentroBase = new Coordenada(posicionHorizontal + comienzoDeLaMitadDelMapa,
+                            posicionEquidistanteEnY);
+                    this.colocarUnaBase(coordenadaCentroBase);
+                    totalDeBasesRestantes--;
+                }
+            }
+        }
     }
 
+    private void inicializarBases(){
+
+        int cantidadBases = (int) round(tamanio * coeficienteBases);
+        int cantLadoDerecho = cantidadBases - (int) ceil(cantidadBases / 2.0);
+        int cantLadoIzquierdo = cantidadBases - (int) floor(cantidadBases / 2.0);
+
+        //Definira la cantidad de bases por eje horizontal en relacion con el tamanio del mapa
+        double densidadDeBasesPorEje = 0.02;
+
+        //Coloco bases en la primera mitad del mapa
+        this.colocarBasesPorMitadDeMapa(densidadDeBasesPorEje, cantLadoDerecho, 0);
+
+        //Coloco bases en la segunda mitad del mapa
+        this.colocarBasesPorMitadDeMapa(densidadDeBasesPorEje, cantLadoIzquierdo, tamanio/2);
+    }
+
+    /* Forma de una base. M = Mineral, V = Volcan de gas
+     *  - - - - -
+     *  - M M M -
+     *  - - V M -
+     *  - M M M -
+     *  - - - - -
+     */
     private void colocarUnaBase(Coordenada centroBase){
 
-        Coordenada[] coordMineralesBase = {
-                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()-1),
-                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()),
-                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()+1),
-        };
+        int xCentro = centroBase.getCoordenadaX();
+        int yCentro = centroBase.getCoordenadaY();
 
-        colocarMaterial(new GasRecolectable(), centroBase);
-        colocarMaterial(new MineralRecolectable(), coordMineralesBase[0]);
-        colocarMaterial(new MineralRecolectable(), coordMineralesBase[1]);
-        colocarMaterial(new MineralRecolectable(), coordMineralesBase[2]);
+        //Coloco los minerales en formación
+        for (int i = (xCentro -1); i < (xCentro +2); i++) {
+            for (int j = (yCentro -1); j < (yCentro +2); j++) {
+
+                boolean esPosicionVolcan = (xCentro == i) && (yCentro == j);
+                boolean esPosicionDedicadaVacia = (xCentro == i) && ((yCentro -1) == j);
+
+                if( !esPosicionVolcan && !esPosicionDedicadaVacia )
+                    colocarMaterial(new MineralRecolectable(), new Coordenada(i, j));
+            }
+        }
+
+        //Coloco el volcan de gas en el centro
+        colocarMaterial(new GasRecolectable(), new Coordenada(xCentro, yCentro));
     }
 
     static public Mapa obtener(){
