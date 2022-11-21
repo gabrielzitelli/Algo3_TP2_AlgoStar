@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
@@ -40,7 +41,7 @@ public class CasoDeUso10Test {
 
     @Test
     public void test03PuedoDaniarUnExtractorYLaVidaSeRegeneraTotalmente(){
-        Recurso gasDelImperio = new Recurso(0);
+        Recurso gasDelImperio = new Gas(0);
         Extractor unExtractor = new Extractor(gasDelImperio);
         Ataque unAtaque = new Ataque( new Danio(749) );
 

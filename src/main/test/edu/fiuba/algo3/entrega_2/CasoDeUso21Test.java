@@ -21,7 +21,7 @@ public class CasoDeUso21Test {
         Zerg imperioZerg = new Zerg();
         Coordenada unaCoordenada = new Coordenada(0,0);
 
-        imperioZerg.abastecerDeRecursos(new Recurso(50), new Recurso(50));
+        imperioZerg.abastecerDeRecursos(new Mineral(50), new Gas(50));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
                 () -> imperioZerg.evolucionarMutaliscoAGuardian(unaCoordenada));

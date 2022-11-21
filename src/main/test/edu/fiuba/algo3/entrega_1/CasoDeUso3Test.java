@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -24,7 +25,7 @@ public class CasoDeUso3Test {
         // En esta prueba genero un criadero para poner moho sobre el volcan de gas y luego
         // construir el extractor
         Mapa elMapa = Mapa.obtener();
-        Recurso gasDelImperio = new Recurso(0);
+        Gas gasDelImperio = new Gas(0);
         Criadero criadero = new Criadero();
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(0,1);
@@ -43,7 +44,7 @@ public class CasoDeUso3Test {
     public void test02PuedoConstruirUnAsimiladorDondeHayVolcanDeGas(){
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso gasDelImperio = new Recurso(0);
+        Gas gasDelImperio = new Gas(0);
 
         elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 
@@ -136,7 +137,7 @@ public class CasoDeUso3Test {
     public void test08NoPuedoConstruirUnNexoMineralDondeHayVolcanDeGas(){
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso mineralDelImperio = new Recurso(0);
+        Recurso mineralDelImperio = new Gas(0);
 
         elMapa.colocarMaterial(new GasRecolectable(),coordenada);
 

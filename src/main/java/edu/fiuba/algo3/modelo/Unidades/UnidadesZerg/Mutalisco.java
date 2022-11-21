@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Ataque.*;
@@ -29,8 +31,8 @@ public class Mutalisco extends UnidadZerg {
 
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Recurso(costoMineralEvolucion));
-        requisitosMateriales.add(new Recurso(costoGasEvolucion));
+        requisitosMateriales.add(new Mineral(costoMineralEvolucion));
+        requisitosMateriales.add(new Gas(costoGasEvolucion));
         return requisitosMateriales;
     }
 }

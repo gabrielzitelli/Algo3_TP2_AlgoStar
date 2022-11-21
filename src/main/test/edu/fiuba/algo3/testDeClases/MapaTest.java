@@ -3,6 +3,7 @@ package edu.fiuba.algo3.testDeClases;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
@@ -69,7 +70,7 @@ public class MapaTest {
     public void test05NoPuedoConstruirUnExtractorDondeNoHayGas(){
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso gasDelImperio = new Recurso(0);
+        Recurso gasDelImperio = new Gas(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
                 () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));

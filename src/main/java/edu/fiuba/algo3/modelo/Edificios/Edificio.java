@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo.Edificios;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidadades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -38,8 +40,8 @@ public abstract class Edificio {
 
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Recurso(costoMineral));
-        requisitosMateriales.add(new Recurso(costoGas));
+        requisitosMateriales.add(new Mineral(costoMineral));
+        requisitosMateriales.add(new Gas(costoGas));
         return requisitosMateriales;
     }
 

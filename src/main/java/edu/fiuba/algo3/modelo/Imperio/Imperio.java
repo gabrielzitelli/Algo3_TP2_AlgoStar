@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public abstract class Imperio {
-    protected Recurso mineralesDelImperio;
-    protected Recurso gasDelImperio;
+    protected Mineral mineralesDelImperio;
+    protected Gas gasDelImperio;
     protected LinkedList<Edificio> edificios;
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
@@ -83,11 +83,11 @@ public abstract class Imperio {
 
     public void abastecerDeRecursos() {
         //Metodo De inicializacion Utilitario
-        mineralesDelImperio = new Recurso(5000);
-        gasDelImperio = new Recurso(5000);
+        mineralesDelImperio = new Mineral(5000);
+        gasDelImperio = new Gas(5000);
     }
 
-    public void abastecerDeRecursos(Recurso mineral, Recurso gas) {
+    public void abastecerDeRecursos(Mineral mineral, Gas gas) {
         //Metodo de inicializacion utilitario
         mineralesDelImperio = mineral;
         gasDelImperio = gas;

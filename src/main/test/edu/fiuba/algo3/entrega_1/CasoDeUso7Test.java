@@ -3,6 +3,8 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -23,7 +25,7 @@ public class CasoDeUso7Test {
     public void test01MandoUnZanganoAExtraerUnMineralYRevisoQueDepositeEnElImperio(){
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso mineralDelImperio = new Recurso(0);
+        Recurso mineralDelImperio = new Mineral(0);
         UnidadZerg unZangano = new Zangano();
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
@@ -38,7 +40,7 @@ public class CasoDeUso7Test {
     public void test02CreoUnAsimiladorYRevisoQueDepositeEnElImperio() {
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0, 0);
-        Recurso mineralDelImperio = new Recurso(0);
+        Recurso mineralDelImperio = new Mineral(0);
         Edificio nexoMineral = new NexoMineral(mineralDelImperio);
 
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
@@ -56,7 +58,7 @@ public class CasoDeUso7Test {
     public void test03CreoUnNexoMineralYRevisoQueDepositeEnElImperio() {
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0, 0);
-        Recurso gasDelImperio = new Recurso(0);
+        Recurso gasDelImperio = new Mineral(0);
         Edificio Asimilador = new Asimilador(gasDelImperio);
 
         elMapa.colocarMaterial(new GasRecolectable(), coordenada);
@@ -75,7 +77,7 @@ public class CasoDeUso7Test {
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenadaCriadero = new Coordenada(0, 0);
         Coordenada coordenadaExtractor = new Coordenada(0,5);
-        Recurso gasDelImperio = new Recurso(0);
+        Recurso gasDelImperio = new Gas(0);
         Edificio criadero = new Criadero();
         Edificio extractor = new Extractor(gasDelImperio);
 

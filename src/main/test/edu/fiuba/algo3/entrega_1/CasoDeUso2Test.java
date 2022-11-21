@@ -26,7 +26,7 @@ public class CasoDeUso2Test {
     public void test01UnCriaderoNoEstaConstruidoEn3Turnos() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         int turnosParaConstruir = 3;
@@ -43,7 +43,7 @@ public class CasoDeUso2Test {
     public void test02UnCriaderoEstaConstruidoEn4Turnos() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         int turnosParaConstruir = 4;
@@ -56,7 +56,7 @@ public class CasoDeUso2Test {
     @Test
     public void test03UnExtractorNoEstaConstruidoEn5Turnos() {
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
@@ -81,7 +81,7 @@ public class CasoDeUso2Test {
     @Test
     public void test04UnExtractorEstaConstruidoEn6Turnos() {
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
@@ -97,13 +97,13 @@ public class CasoDeUso2Test {
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioZerg.terminarTurno();
 
-        assertTrue(imperioZerg.tieneEdificio(new Extractor(new Recurso(200))));
+        assertTrue(imperioZerg.tieneEdificio(new Extractor(new Gas(200))));
     }
 
     @Test
     public void test05UnaReservaDeReproduccionNoEstaConstruidaEn11Turnos(){
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
 
         // Construyo criadero para generar moho
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -125,7 +125,7 @@ public class CasoDeUso2Test {
      @Test
      public void test06UnaReservaDeReproduccionEstaConstruidaEn12Turnos() {
          Zerg imperioZerg = new Zerg();
-         imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+         imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
 
          // Construyo criadero para generar moho
          imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -147,7 +147,7 @@ public class CasoDeUso2Test {
     @Test
     public void test07UnaGuaridaNoEstaConstruidaEn11Turnos(){
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -172,7 +172,7 @@ public class CasoDeUso2Test {
     @Test
     public void test08UnaGuaridaEstaConstruidaEn12Turnos() {
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -194,7 +194,7 @@ public class CasoDeUso2Test {
     @Test
     public void test09UnEspiralNoEstaConstruidoEn9Turnos() {
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -220,7 +220,7 @@ public class CasoDeUso2Test {
     @Test
     public void test10UnEspiralEstaConstruidoEn10Turnos() {
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -243,7 +243,7 @@ public class CasoDeUso2Test {
     @Test
     public void test11UnNexoMineralNoEstaConstruidoEn3Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(50), new Recurso(0));
+        imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
@@ -260,7 +260,7 @@ public class CasoDeUso2Test {
     @Test
     public void test12UnNexoMineralEstaConstruidoEn4Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(50), new Recurso(0));
+        imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
@@ -277,7 +277,7 @@ public class CasoDeUso2Test {
     @Test
     public void test13UnPilonNoEstaConstruidoEn4TUrnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         imperioProtoss.construirPilon(new Coordenada(1,0));
 
@@ -292,7 +292,7 @@ public class CasoDeUso2Test {
     @Test
     public void test14UnPilonEstaConstruidoEn5TUrnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         imperioProtoss.construirPilon(new Coordenada(1,0));
 
@@ -306,7 +306,7 @@ public class CasoDeUso2Test {
     @Test
     public void test15UnAsimiladorNoEstaConstruidoEn5Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
+        imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
@@ -323,7 +323,7 @@ public class CasoDeUso2Test {
     @Test
     public void test16UnAsimiladorEstaConstruidoEn6Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
+        imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
@@ -340,7 +340,7 @@ public class CasoDeUso2Test {
     @Test
     public void test17UnAccesoNoEstaConstruidoEn7Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
         imperioProtoss.construirPilon(new Coordenada(0,0));
@@ -360,7 +360,7 @@ public class CasoDeUso2Test {
     @Test
     public void test18UnAccesoEstaConstruidoEn8Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
         imperioProtoss.construirPilon(new Coordenada(0,0));
@@ -378,7 +378,7 @@ public class CasoDeUso2Test {
     @Test
     public void test19UnPuertoEstelarNoEstaConstruidoEn9Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
         imperioProtoss.construirPilon(new Coordenada(0,0));
@@ -401,7 +401,7 @@ public class CasoDeUso2Test {
     @Test
     public void test20UnPuertoEstelarEstaConstruidoEn10Turnos() {
         Protoss imperioProtoss = new Protoss();
-        imperioProtoss.abastecerDeRecursos(new Recurso(1000), new Recurso(1000));
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
         imperioProtoss.construirPilon(new Coordenada(0,0));

@@ -12,8 +12,8 @@ import java.util.LinkedList;
 public class Zerg extends Imperio{
 
     public Zerg(){
-        mineralesDelImperio = new Recurso(0);
-        gasDelImperio = new Recurso(0);
+        mineralesDelImperio = new Mineral(0);
+        gasDelImperio = new Gas(0);
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         unidades = new ArrayList<>();

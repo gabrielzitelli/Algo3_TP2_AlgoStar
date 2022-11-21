@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -30,7 +32,7 @@ public class CasoDeUso24Test {
                 new Coordenada(mitadLadoMapa +1, cuartoLadoMapa+1),
         };
 
-        protoss.abastecerDeRecursos(new Recurso(500), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(500), new Gas(0));
         protoss.construirNexoMineral(coordMineralesBase[0]);
         protoss.construirNexoMineral(coordMineralesBase[1]);
 
@@ -47,7 +49,7 @@ public class CasoDeUso24Test {
         int cuartoLadoMapa = tamanioMapa/4;
         Coordenada coordenadaGas = new Coordenada(mitadLadoMapa, cuartoLadoMapa);
 
-        protoss.abastecerDeRecursos(new Recurso(500), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
         //No se lanza excepcion porque los 3 nexos minerales se construyeron sobre un mineral
         assertDoesNotThrow(()->protoss.construirAsimilador(coordenadaGas));
