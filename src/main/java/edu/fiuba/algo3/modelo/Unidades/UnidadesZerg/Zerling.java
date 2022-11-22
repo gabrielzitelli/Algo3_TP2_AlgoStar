@@ -18,6 +18,7 @@ public class Zerling extends UnidadZerg {
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.danio = new DanioZerling(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
+        this.rangoDeAtaque = 1;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

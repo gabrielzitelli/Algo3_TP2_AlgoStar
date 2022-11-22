@@ -26,7 +26,7 @@ public class VidaConEscudo implements Vida{
             this.cantidadVida += cantidadEscudoRestante;
             this.cantidadEscudo = 0;
         }else {
-            this.cantidadEscudo -= cantidadEscudoRestante;
+            this.cantidadEscudo = cantidadEscudoRestante;
         }
         this.validarVidaLlegoACero();
     }

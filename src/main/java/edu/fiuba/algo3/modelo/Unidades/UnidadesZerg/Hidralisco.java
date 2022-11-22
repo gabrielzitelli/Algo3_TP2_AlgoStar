@@ -19,6 +19,7 @@ public class Hidralisco extends UnidadZerg {
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.danio = new DanioHidralisco(danioTerrestre, danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
+        this.rangoDeAtaque = 4;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

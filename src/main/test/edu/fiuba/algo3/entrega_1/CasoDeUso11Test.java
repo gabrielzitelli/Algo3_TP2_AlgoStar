@@ -16,12 +16,12 @@ public class CasoDeUso11Test {
         Ataque ataqueCasiLetal = new Ataque( new Danio(999) );
 
         // Acceso tiene 500E / 500V
-        unAcceso.aplicarAtaque(unAtaque);
+        unAcceso.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow( () -> unAcceso.aplicarAtaque(ataqueCasiLetal) );
+        assertDoesNotThrow( () -> unAcceso.recibirAtaque(ataqueCasiLetal) );
     }
 
     @Test
@@ -32,12 +32,12 @@ public class CasoDeUso11Test {
         Ataque ataqueCasiLetal = new Ataque( new Danio(499) );
 
         // Nexo Mineral tiene 250E / 250V
-        unNexoMineral.aplicarAtaque(unAtaque);
+        unNexoMineral.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unNexoMineral.pasarTurno();
 
-        assertDoesNotThrow( () -> unNexoMineral.aplicarAtaque(ataqueCasiLetal) );
+        assertDoesNotThrow( () -> unNexoMineral.recibirAtaque(ataqueCasiLetal) );
     }
 
     @Test
@@ -47,12 +47,12 @@ public class CasoDeUso11Test {
         Ataque ataqueCasiLetal = new Ataque( new Danio(599) );
 
         // Pilon tiene 300E / 300V
-        unPilon.aplicarAtaque(unAtaque);
+        unPilon.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unPilon.pasarTurno();
 
-        assertDoesNotThrow( () -> unPilon.aplicarAtaque(ataqueCasiLetal) );
+        assertDoesNotThrow( () -> unPilon.recibirAtaque(ataqueCasiLetal) );
     }
 
     @Test
@@ -63,12 +63,12 @@ public class CasoDeUso11Test {
         Ataque ataqueCasiLetal = new Ataque( new Danio(599) );
 
         // Asimilador tiene 450E / 450V
-        unAsimilador.aplicarAtaque(unAtaque);
+        unAsimilador.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unAsimilador.pasarTurno();
 
-        assertDoesNotThrow( () -> unAsimilador.aplicarAtaque(ataqueCasiLetal) );
+        assertDoesNotThrow( () -> unAsimilador.recibirAtaque(ataqueCasiLetal) );
     }
 
     @Test
@@ -78,11 +78,11 @@ public class CasoDeUso11Test {
         Ataque ataqueCasiLetal = new Ataque(new Danio(1199));
 
         // Puerto estelar tiene 600E / 600V
-        unPuertoEstelar.aplicarAtaque(unAtaque);
+        unPuertoEstelar.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unPuertoEstelar.pasarTurno();
 
-        assertDoesNotThrow(() -> unPuertoEstelar.aplicarAtaque(ataqueCasiLetal));
+        assertDoesNotThrow(() -> unPuertoEstelar.recibirAtaque(ataqueCasiLetal));
     }
 }

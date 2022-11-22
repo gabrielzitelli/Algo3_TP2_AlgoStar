@@ -27,6 +27,8 @@ public class Mutalisco extends UnidadZerg {
 
         this.costoGasEvolucion = 100;
         this.costoMineralEvolucion = 50;
+
+        this.rangoDeAtaque = 3;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

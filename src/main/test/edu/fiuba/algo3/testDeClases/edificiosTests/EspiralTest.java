@@ -7,10 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -74,7 +71,7 @@ public class EspiralTest {
         for (int i = 0; i < 10; i++)
             unEspiral.pasarTurno();
 
-        unEspiral.aplicarAtaque(new Ataque(new Danio(1300)));
+        unEspiral.recibirAtaque(new Ataque(new Danio(1300)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
                 () -> unCriadero.crearUnidad(new FabricaMutalisco()));

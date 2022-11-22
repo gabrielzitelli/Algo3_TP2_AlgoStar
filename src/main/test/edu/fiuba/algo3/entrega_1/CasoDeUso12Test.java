@@ -16,12 +16,12 @@ public class CasoDeUso12Test {
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(500) );
 
         // Acceso tiene 500E / 500V
-        unAcceso.aplicarAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
+        unAcceso.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
 
         for (int i = 0; i < 7; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow( () -> unAcceso.aplicarAtaque(unAtaqueRompeEscudo) );
+        assertDoesNotThrow( () -> unAcceso.recibirAtaque(unAtaqueRompeEscudo) );
     }
 
     @Test
@@ -32,12 +32,12 @@ public class CasoDeUso12Test {
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(450) );
 
         // Acceso tiene  450E / 450V
-        unAsimilador.aplicarAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
+        unAsimilador.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
 
         for (int i = 0; i < 7; i++)
             unAsimilador.pasarTurno();
 
-        assertDoesNotThrow( () -> unAsimilador.aplicarAtaque(unAtaqueRompeEscudo) );
+        assertDoesNotThrow( () -> unAsimilador.recibirAtaque(unAtaqueRompeEscudo) );
     }
 
     @Test
@@ -48,12 +48,12 @@ public class CasoDeUso12Test {
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(250) );
 
         // Acceso tiene  250E / 250V
-        unNexo.aplicarAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
+        unNexo.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
 
         for (int i = 0; i < 7; i++)
             unNexo.pasarTurno();
 
-        assertDoesNotThrow( () -> unNexo.aplicarAtaque(unAtaqueRompeEscudo) );
+        assertDoesNotThrow( () -> unNexo.recibirAtaque(unAtaqueRompeEscudo) );
     }
 
     @Test
@@ -63,12 +63,12 @@ public class CasoDeUso12Test {
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(300) );
 
         // Acceso tiene  300E / 300V
-        unPilon.aplicarAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
+        unPilon.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
 
         for (int i = 0; i < 7; i++)
             unPilon.pasarTurno();
 
-        assertDoesNotThrow( () -> unPilon.aplicarAtaque(unAtaqueRompeEscudo) );
+        assertDoesNotThrow( () -> unPilon.recibirAtaque(unAtaqueRompeEscudo) );
     }
 
     @Test
@@ -78,12 +78,12 @@ public class CasoDeUso12Test {
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(599) );
 
         // Acceso tiene  600E / 600V
-        unPuertoEstelar.aplicarAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
+        unPuertoEstelar.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
 
         for (int i = 0; i < 7; i++)
             unPuertoEstelar.pasarTurno();
 
-        assertDoesNotThrow( () -> unPuertoEstelar.aplicarAtaque(unAtaqueRompeEscudo) );
+        assertDoesNotThrow( () -> unPuertoEstelar.recibirAtaque(unAtaqueRompeEscudo) );
     }
 
 }

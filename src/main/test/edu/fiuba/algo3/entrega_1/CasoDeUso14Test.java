@@ -186,7 +186,7 @@ public class CasoDeUso14Test {
             unCriadero.pasarTurno();
 
         // Destruyo Pilon
-        unPilon.aplicarAtaque(unAtaque);
+        unPilon.recibirAtaque(unAtaque);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
                 () -> elMapa.construirEdificio(unaReserva, coordenadaPilon));

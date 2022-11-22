@@ -20,6 +20,7 @@ public abstract class UnidadZerg implements Unidad {
     protected int turnosDeConstruccion;
     protected DanioUnidad danio;
     protected Vida vida;
+    protected int rangoDeAtaque;
     //private int valorVital = x;
 
     public boolean estaConstruida() {
@@ -56,5 +57,8 @@ public abstract class UnidadZerg implements Unidad {
     public void verificarSuperficie(Superficie superficie){
         if (!superficie.puedeMoverse(this.superficieDondeSeMueve))
             throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
+    }
+    public int rangoDeAtaque() {
+        return this.rangoDeAtaque;
     }
 }

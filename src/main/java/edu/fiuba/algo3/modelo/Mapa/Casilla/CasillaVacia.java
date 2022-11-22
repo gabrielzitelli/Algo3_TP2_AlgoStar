@@ -14,7 +14,7 @@ public class CasillaVacia extends Casilla{
         estadoMoho = new SinMoho();
         estadoCarga = new SinCarga();
         this.coordenada = coordenada;
-        this.unidad = null;
+        this.ocupable = null;
         this.superficie = new SuperficieTerrestre();
     }
 

@@ -12,4 +12,13 @@ public class ConCarga extends Cargable  {
         carga++;
         return this;
     }
+
+    @Override
+    public Cargable descargar() {
+        if (carga > 1) {
+            carga--;
+            return this;
+        }
+        return new SinCarga();
+    }
 }

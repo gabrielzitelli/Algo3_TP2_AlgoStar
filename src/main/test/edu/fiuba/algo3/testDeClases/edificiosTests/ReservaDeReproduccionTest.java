@@ -9,10 +9,7 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -76,7 +73,7 @@ public class ReservaDeReproduccionTest {
         for (int i = 0; i < 12; i++)
             unaReserva.pasarTurno();
 
-        unaReserva.aplicarAtaque(new Ataque(new Danio(1000)));
+        unaReserva.recibirAtaque(new Ataque(new Danio(1000)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
                 () -> unCriadero.crearUnidad(new FabricaZerling()));
