@@ -33,6 +33,7 @@ public class Extractor extends Edificio {
         this.estadoRecolectable = new GasRecolectable();
         this.estadoMoho = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;
         this.estadoRecolector = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.estadoContratador = new EstadoContratadorEnConstruccion(turnoParaEstarConstruido);

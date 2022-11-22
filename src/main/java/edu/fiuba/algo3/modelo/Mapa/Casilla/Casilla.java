@@ -56,6 +56,11 @@ public abstract class Casilla {
             throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
     }
 
+    public void tieneEstaSuperficie(Superficie superficieRequerida){
+        if(superficie.soyDiferenteA(superficieRequerida))
+            throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
+    }
+
     public Coordenada obtenerCoordenada(){
         return this.coordenada;
     }

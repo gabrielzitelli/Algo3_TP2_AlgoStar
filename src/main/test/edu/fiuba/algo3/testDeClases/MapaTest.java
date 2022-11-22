@@ -603,14 +603,28 @@ public class MapaTest {
     }
 
     @Test
-    public void test41NoPuedoColocarUnEdificioEnTerrenoEspacial(){
+    public void test41NoPuedoColocarUnEdificioZergEnTerrenoEspacial(){
         Mapa elMapa = Mapa.obtener();
         elMapa.recolocarBasesIniciales();
         //elMapa posee terreno espacial en el (0,0)
 
         Criadero unCriadero = new Criadero();
-        Coordenada coordenada = new Coordenada(0, 0);
+        Coordenada coordenadaEspacial = new Coordenada(0, 0);
 
-        elMapa.construirEdificio(unCriadero, coordenada);
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(unCriadero, coordenadaEspacial));
+    }
+
+    @Test
+    public void test42NoPuedoColocarUnEdificioProtossEnTerrenoEspacial(){
+        Mapa elMapa = Mapa.obtener();
+        elMapa.recolocarBasesIniciales();
+        //elMapa posee terreno espacial en el (0,0)
+
+        Pilon unPilon = new Pilon();
+        Coordenada coordenadaEspacial = new Coordenada(0, 0);
+
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
+                () -> elMapa.construirEdificio(unPilon, coordenadaEspacial));
     }
 }

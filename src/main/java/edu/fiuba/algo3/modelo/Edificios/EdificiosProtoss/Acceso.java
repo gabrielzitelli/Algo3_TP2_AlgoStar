@@ -34,6 +34,7 @@ public class Acceso extends EdificioConCarga {
         this.estadoMoho = new SinMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaConEscudo(valorVital, valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);

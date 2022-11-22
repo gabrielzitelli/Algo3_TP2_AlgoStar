@@ -34,6 +34,7 @@ public class PuertoEstelar extends Edificio {
         this.estadoCarga = new ConCarga();
         this.estadoMoho = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);

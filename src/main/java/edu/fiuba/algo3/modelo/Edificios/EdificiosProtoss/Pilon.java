@@ -19,6 +19,7 @@ public class Pilon extends Edificio {
         this.estadoRecolectable = new NoRecolectable();
         this.estadoMoho = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
 
         estadoGeneradorDeEnergia = new EstadoGeneradorDeEnergiaEnConstruccion(turnoParaEstarConstruido);
     }

@@ -23,6 +23,7 @@ public abstract class Edificio implements Ocupable {
     protected Recolectable estadoRecolectable;
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
+    protected Superficie superficieRequerida;
     protected int costoMineral;
     protected int costoGas;
 
@@ -35,6 +36,8 @@ public abstract class Edificio implements Ocupable {
             unaCasilla.tieneEsteMoho(estadoMoho);
         if (estadoCarga != null)
             unaCasilla.tieneEstaCarga(estadoCarga);
+
+        unaCasilla.tieneEstaSuperficie(superficieRequerida);
 
         coordenada = unaCasilla.obtenerCoordenada();
     }

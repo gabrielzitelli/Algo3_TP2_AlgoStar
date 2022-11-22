@@ -34,6 +34,7 @@ public class Criadero extends Edificio {
         this.estadoRecolectable = new NoRecolectable();
         this.estadoCarga = new SinCarga();
         this.vida = new VidaRegenerativa(valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
         cantidadLarvas = maxLarvas;
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
