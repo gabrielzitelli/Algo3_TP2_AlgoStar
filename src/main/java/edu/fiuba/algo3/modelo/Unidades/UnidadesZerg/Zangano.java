@@ -25,6 +25,7 @@ public class Zangano extends UnidadZerg {
         this.mineralDelImperio = null;
         this.danio = new DanioZangano();
         this.vida = new VidaSimple(cantidadDeVida);
+        this.rangoDeAtaque = 0;
     }
 
     @Override

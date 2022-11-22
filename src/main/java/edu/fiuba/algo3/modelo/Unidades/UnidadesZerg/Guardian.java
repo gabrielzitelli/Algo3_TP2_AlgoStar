@@ -20,6 +20,7 @@ public class Guardian extends UnidadZerg {
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.danio = new DanioGuardian(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
+        this.rangoDeAtaque = 10;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

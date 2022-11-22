@@ -29,7 +29,7 @@ public class CasoDeUso13Test {
         for (int i = 0; i < 5; i++)
             criadero.pasarTurno();
 
-        criadero.aplicarAtaque(unAtaque);
+        criadero.recibirAtaque(unAtaque);
 
         assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaCriadero));
     }

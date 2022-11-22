@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static java.lang.Math.*;
@@ -185,6 +186,11 @@ public class Mapa {
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.cargarDeEnergia();
     }
+    public void desabastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.descargarDeEnergia();
+    }
 
     public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
         Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
@@ -197,7 +203,6 @@ public class Mapa {
         Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
         return casillaConEdificio.obtenerEdificio();
     }
-
 
     public void colocarUnaUnidad(Unidad unaUnidad, Coordenada coordenada){
         // Busco la casilla de la coordenada y creo una nueva casilla ocupada por la unidad
@@ -254,5 +259,24 @@ public class Mapa {
             }
         }
         return volcanesDeGas;
+    }
+    public boolean estaEnergizado(Coordenada coordenada) {
+        boolean carga = true;
+        Casilla casilla = encontrarCasillaPorCoordenada(coordenada);
+        try {
+            casilla.tieneEstaCarga(new ConCarga());
+        } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla error){
+            carga = false;
+        }
+        return carga;
+    }
+
+    public boolean estaDentroDeRango(Coordenada coordenada, Casilla casillaAtacada, int rangoDeAtaque) {
+        if (rangoDeAtaque == 0){
+            throw new ErrorUnidadNoPuedeAtacar();
+        }
+
+        LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
+        return casillas.contains(casillaAtacada);
     }
 }

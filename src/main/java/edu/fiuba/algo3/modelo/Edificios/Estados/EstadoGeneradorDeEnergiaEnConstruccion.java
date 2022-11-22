@@ -18,4 +18,9 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
 
         return this;
     }
+
+    @Override
+    public void desenergizar(Coordenada coordenada) {
+
+    }
 }

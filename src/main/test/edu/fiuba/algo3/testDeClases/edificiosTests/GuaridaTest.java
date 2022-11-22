@@ -7,10 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -74,7 +71,7 @@ public class GuaridaTest {
         for (int i = 0; i < 12; i++)
             unaGuarida.pasarTurno();
 
-        unaGuarida.aplicarAtaque(new Ataque(new Danio(1250)));
+        unaGuarida.recibirAtaque(new Ataque(new Danio(1250)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
                 () -> unCriadero.crearUnidad(new FabricaHidralisco()));

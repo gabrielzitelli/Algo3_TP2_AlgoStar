@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
@@ -14,7 +15,7 @@ import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 
-public class Acceso extends Edificio {
+public class Acceso extends EdificioConCarga {
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
@@ -42,7 +43,10 @@ public class Acceso extends Edificio {
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
-        estadoCreador.crearUnidad(unaFabrica, unidades);
+        if (verificarCarga()) {
+            estadoCreador.crearUnidad(unaFabrica, unidades);
+        }
+        else throw new ErrorElEdificioNoTieneCarga();
     }
 
     public void pasarTurno(){

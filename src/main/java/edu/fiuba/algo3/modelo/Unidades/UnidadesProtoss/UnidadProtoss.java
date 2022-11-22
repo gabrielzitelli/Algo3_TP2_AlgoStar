@@ -14,6 +14,7 @@ public abstract class UnidadProtoss implements Unidad {
     protected Superficie superficieDondeSeMueve;
     protected DanioUnidad danio;
     protected Vida vida;
+    protected int rangoDeAtaque;
 
     public boolean estaConstruida() {
         return (turnosDeConstruccion == 0);
@@ -40,4 +41,9 @@ public abstract class UnidadProtoss implements Unidad {
     public boolean esIgualA(Unidad unidad) {
         return this.getClass().equals(unidad.getClass());
     }
+
+    public int rangoDeAtaque(){
+        return rangoDeAtaque;
+    }
 }
+
