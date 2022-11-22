@@ -25,7 +25,7 @@ public abstract class Casilla {
     public abstract Edificio obtenerEdificio();
     public abstract Casilla colocarUnidad(Unidad unaUnidad);
     public abstract void atacar(Casilla casillaAtacada);
-    protected abstract void recibirAtaque(Ataque unAtaque);
+    public abstract void recibirAtaque(Ataque unAtaque);
     public abstract Casilla moverUnidadHacia(Casilla destino);
     public abstract Casilla quitarUnidad();
 

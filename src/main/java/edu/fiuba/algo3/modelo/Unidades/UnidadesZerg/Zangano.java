@@ -42,9 +42,4 @@ public class Zangano extends UnidadZerg {
     public void extraer(){
         mineralDelImperio.depositar(recursoARecolectar.extraer(10));
     }
-
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        return requisitosMateriales;
-    }
 }

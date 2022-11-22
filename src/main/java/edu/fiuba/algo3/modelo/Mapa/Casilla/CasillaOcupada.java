@@ -59,14 +59,14 @@ public class CasillaOcupada extends Casilla {
     public void atacar(Casilla casillaAtacada) {
         Unidad unidad = (Unidad) ocupable;
         if (Mapa.obtener().estaDentroDeRango(coordenada,casillaAtacada, unidad.rangoDeAtaque())){
-            casillaAtacada.recibirAtaque(unidad.atacar());
+            unidad.atacar(casillaAtacada);
         }
         else {
             throw new ErrorLaUnidadNoPuedeAtacarFueraDeSuRango();
         }
     }
 
-    protected void recibirAtaque(Ataque unAtaque) {
+    public void recibirAtaque(Ataque unAtaque) {
         ocupable.recibirAtaque(unAtaque);
     }
 

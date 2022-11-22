@@ -28,8 +28,6 @@ public class CasoDeUso19Test {
         Coordenada coordenadaZerling = new Coordenada(0,0);
         Coordenada coordenadaMutalisco = new Coordenada(0,1);
 
-        elMapa.colocarSuperficie(new SuperficieTerrestre(), coordenadaMutalisco);
-
         elMapa.colocarUnaUnidad(unZerling, coordenadaZerling);
         elMapa.colocarUnaUnidad(unMutalisco, coordenadaMutalisco);
 

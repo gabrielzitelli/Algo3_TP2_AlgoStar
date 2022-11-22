@@ -22,9 +22,4 @@ public class Dragon extends UnidadProtoss {
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 4;
     }
-
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        return requisitosMateriales;
-    }
 }

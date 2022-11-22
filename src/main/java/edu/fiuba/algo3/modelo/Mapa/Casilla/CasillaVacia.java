@@ -54,8 +54,8 @@ public class CasillaVacia extends Casilla{
         throw new ErrorNoExisteNingunEdificioEnEstaCasilla();
     }
 
-    public Casilla colocarUnidad(Unidad unaUnidad){
-        unaUnidad.verificarSuperficie(this.superficie);
+    public Casilla colocarUnidad(Unidad unaUnidad) {
+        unaUnidad.verificarSuperficie(this.superficie, coordenada);
         CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
         casillaOcupada.settearUnidad(unaUnidad);
         return casillaOcupada;
@@ -65,7 +65,7 @@ public class CasillaVacia extends Casilla{
         throw new ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque();
     }
 
-    protected void recibirAtaque(Ataque unAtaque){
+    public void recibirAtaque(Ataque unAtaque){
         throw new ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque();
     }
 

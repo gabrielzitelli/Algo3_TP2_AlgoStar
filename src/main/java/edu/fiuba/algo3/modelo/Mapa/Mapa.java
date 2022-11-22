@@ -211,6 +211,12 @@ public class Mapa {
         this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
     }
 
+    public void quitarUnidad(Coordenada coordenada) {
+        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaAQuitar = casillaAQuitar.quitarUnidad();
+        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
+    }
+
     public void atacar(Coordenada atacante, Coordenada atacado){
         // Busco la casilla de atacante y atacado y hago que el atacante la ataque
         Casilla casillaAtacante = this.encontrarCasillaPorCoordenada(atacante);

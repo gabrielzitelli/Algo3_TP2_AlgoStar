@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
@@ -22,8 +25,15 @@ public class Zealot extends UnidadProtoss {
         this.rangoDeAtaque = 1;
     }
 
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        return requisitosMateriales;
+    @Override
+    public void atacar(Casilla casillaAAtacar) {
+        super.atacar(casillaAAtacar);
+        try {
+            Mapa.obtener().moverUnidad(coordenada, casillaAAtacar.obtenerCoordenada());
+        }
+        catch (ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada e) {
+            return;
+        }
+        // TODO contador de invisibilidad +1
     }
 }
