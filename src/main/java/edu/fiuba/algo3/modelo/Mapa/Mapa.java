@@ -19,6 +19,7 @@ public class Mapa {
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
         this.inicializarBases();
+        this.inicializarTerrenoEspacial();
     }
 
     private void inicializarMapaConCasillasVacias(){
@@ -106,6 +107,28 @@ public class Mapa {
         colocarMaterial(new GasRecolectable(), new Coordenada(xCentro, yCentro));
     }
 
+    private void inicializarTerrenoEspacial(){
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio-1), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/3, 5), 8);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio, 15), 6);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio/2), 5);
+        colocarTerrenoEspacialCircular(new Coordenada(3*tamanio/4, tamanio/2), 3);
+        colocarTerrenoEspacialCircular(new Coordenada(0, -5), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(4*tamanio/5, (int)(tamanio*1.1)), 15);
+    }
+
+    private void colocarTerrenoEspacialCircular(Coordenada coordenadaCentro, int radio){
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                Coordenada coordenadaAColocar = new Coordenada(i, j);
+                int dist = distanciaEntreDosCoordenadas(coordenadaAColocar, coordenadaCentro);
+
+                if(dist <= radio)
+                    colocarSuperficie(new SuperficieAerea(), coordenadaAColocar);
+            }
+        }
+    }
+
     static public Mapa obtener(){
         return mapaInstanciaUnica;
     }
@@ -142,6 +165,7 @@ public class Mapa {
     public void recolocarBasesIniciales(){
         this.reiniciarMapa();
         this.inicializarBases();
+        this.inicializarTerrenoEspacial();
     }
 
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){

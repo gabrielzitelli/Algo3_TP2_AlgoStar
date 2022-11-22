@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -599,5 +600,17 @@ public class MapaTest {
         int diferenciaDeVolcanes = abs(listaVolcanesMitadSuperior.size() - listaVolcanesMitadInferior.size());
 
         assertTrue(diferenciaDeVolcanes < (maximoDeBasesDeDiferenciaAceptable * cantidadDeVolcanesPorBase));
+    }
+
+    @Test
+    public void test41NoPuedoColocarUnEdificioEnTerrenoEspacial(){
+        Mapa elMapa = Mapa.obtener();
+        elMapa.recolocarBasesIniciales();
+        //elMapa posee terreno espacial en el (0,0)
+
+        Criadero unCriadero = new Criadero();
+        Coordenada coordenada = new Coordenada(0, 0);
+
+        elMapa.construirEdificio(unCriadero, coordenada);
     }
 }
