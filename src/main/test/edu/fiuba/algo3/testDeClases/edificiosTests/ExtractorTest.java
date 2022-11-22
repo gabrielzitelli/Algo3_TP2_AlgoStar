@@ -63,7 +63,7 @@ public class ExtractorTest {
         Zerg zerg = new Zerg();
         Coordenada coordenadasGas = new Coordenada(0,0);
 
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.construirCriadero(new Coordenada(1,1));
 
@@ -86,7 +86,7 @@ public class ExtractorTest {
         Zerg zerg = new Zerg();
         Coordenada coordenadasGas = new Coordenada(0,0);
 
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.construirCriadero(new Coordenada(1,1));
 
@@ -112,7 +112,7 @@ public class ExtractorTest {
         Zerg zerg = new Zerg();
         Coordenada coordenadasGas = new Coordenada(0, 0);
 
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.construirCriadero(new Coordenada(1, 1));
 

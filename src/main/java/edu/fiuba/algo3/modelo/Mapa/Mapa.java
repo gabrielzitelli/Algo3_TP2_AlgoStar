@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static java.lang.Math.*;
@@ -29,7 +30,7 @@ public class Mapa {
         }
     }
 
-    void colocarBasesPorMitadDeMapa(double densidadDeBasesPorEje, int cantidadDeBases, int comienzoDeLaMitadDelMapa){
+    private void colocarBasesPorMitadDeMapa(double densidadDeBasesPorEje, int cantidadDeBases, int comienzoDeLaMitadDelMapa){
 
         int cantidadEjesHorizontales = 0; // Cantidad de ejes horizontales
         int totalDeBasesRestantes = cantidadDeBases;
@@ -225,5 +226,33 @@ public class Mapa {
         //sin la unidad que contenia
         casillaInicial = casillaInicial.quitarUnidad();
         this.actualizarCasillaPorCoordenada(coordenadaInicial, casillaInicial);
+    }
+
+    public LinkedList<Casilla> obtenerMinerales(){
+
+        LinkedList<Casilla> minerales = new  LinkedList<>();
+
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                boolean tieneCasillaMineral = matriz[i][j].obtenerMaterial().getClass().equals(MineralBruto.class);
+                if (tieneCasillaMineral)
+                    minerales.push(matriz[i][j]);
+            }
+        }
+        return minerales;
+    }
+
+    public LinkedList<Casilla> obtenerVolcanesDeGas(){
+
+        LinkedList<Casilla> volcanesDeGas = new  LinkedList<>();
+
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                boolean tieneCasillaVolcan = matriz[i][j].obtenerMaterial().getClass().equals(GasBruto.class);
+                if (tieneCasillaVolcan)
+                    volcanesDeGas.push(matriz[i][j]);
+            }
+        }
+        return volcanesDeGas;
     }
 }

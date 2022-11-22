@@ -26,7 +26,7 @@ public class CasoDeUso4Test {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         zerg.construirCriadero(new Coordenada(1,1));
 
         for (int i = 0; i < 5; i++)
@@ -52,7 +52,7 @@ public class CasoDeUso4Test {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         zerg.construirCriadero(new Coordenada(1,1));
 
         for (int i = 0; i < 5; i++)
@@ -78,7 +78,7 @@ public class CasoDeUso4Test {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         zerg.construirCriadero(new Coordenada(1,1));
 
         for (int i = 0; i < 5; i++)
@@ -105,7 +105,7 @@ public class CasoDeUso4Test {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         zerg.construirCriadero(new Coordenada(1,1));
 
         for (int i = 0; i < 5; i++)
@@ -133,7 +133,7 @@ public class CasoDeUso4Test {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.abastecerDeRecursos(new Mineral(150), new Gas(0));
+        zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         zerg.construirCriadero(new Coordenada(1,1));
 
         for (int i = 0; i < 5; i++)

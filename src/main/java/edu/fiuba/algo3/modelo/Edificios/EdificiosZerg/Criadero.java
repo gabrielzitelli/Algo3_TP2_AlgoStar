@@ -30,7 +30,7 @@ public class Criadero extends Edificio {
 
     public Criadero(){
         this.costoGas = 0;
-        this.costoMineral = 50;
+        this.costoMineral = 200;
         this.estadoRecolectable = new NoRecolectable();
         this.estadoCarga = new SinCarga();
         this.vida = new VidaRegenerativa(valorVital);

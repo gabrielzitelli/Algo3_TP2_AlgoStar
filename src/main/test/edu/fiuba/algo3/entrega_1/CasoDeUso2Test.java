@@ -56,7 +56,7 @@ public class CasoDeUso2Test {
     @Test
     public void test03UnExtractorNoEstaConstruidoEn5Turnos() {
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
@@ -81,7 +81,7 @@ public class CasoDeUso2Test {
     @Test
     public void test04UnExtractorEstaConstruidoEn6Turnos() {
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
         Mapa elMapa = Mapa.obtener();
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
@@ -103,7 +103,7 @@ public class CasoDeUso2Test {
     @Test
     public void test05UnaReservaDeReproduccionNoEstaConstruidaEn11Turnos(){
         Zerg imperioZerg = new Zerg();
-        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
         // Construyo criadero para generar moho
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -125,7 +125,7 @@ public class CasoDeUso2Test {
      @Test
      public void test06UnaReservaDeReproduccionEstaConstruidaEn12Turnos() {
          Zerg imperioZerg = new Zerg();
-         imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+         imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
          // Construyo criadero para generar moho
          imperioZerg.construirCriadero(new Coordenada(0,0));

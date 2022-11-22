@@ -81,7 +81,7 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
@@ -114,7 +114,7 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Mineral(400), new Gas(100));
+        imperioZerg.abastecerDeRecursos(new Mineral(550), new Gas(100));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
