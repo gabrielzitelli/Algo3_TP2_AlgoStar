@@ -64,4 +64,9 @@ public class Acceso extends EdificioConCarga {
     public void asignarListaDeUnidadesImperio(ArrayList<Unidad> unidades){
         this.unidades = unidades;
     }
+
+    public void construirInmediatamente(){
+        for (int i = 0; i < turnoParaEstarConstruido; i++)
+            pasarTurno();
+    }
 }

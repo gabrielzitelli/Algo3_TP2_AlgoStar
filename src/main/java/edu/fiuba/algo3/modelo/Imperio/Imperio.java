@@ -33,7 +33,13 @@ public abstract class Imperio {
         comprobarRequisitosMateriales(edificio);
         mapa.construirEdificio(edificio, coordenada);
         edificios.add(edificio);
+    }
 
+    protected void construirEdificioSinVerificacionesMateriales(Edificio edificio, Coordenada coordenada){
+        Mapa mapa = Mapa.obtener();
+        edificio.modificarPoblacion(poblacion);
+        mapa.construirEdificio(edificio, coordenada);
+        edificios.add(edificio);
     }
 
     protected void construirUnidad(Unidad unaUnidad, Coordenada coordenada){

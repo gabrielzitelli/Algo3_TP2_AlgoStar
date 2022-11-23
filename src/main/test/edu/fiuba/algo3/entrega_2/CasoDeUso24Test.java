@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Imperio.Gas;
-import edu.fiuba.algo3.modelo.Imperio.Mineral;
-import edu.fiuba.algo3.modelo.Imperio.Protoss;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
+import edu.fiuba.algo3.modelo.Imperio.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso24Test {
 
@@ -18,42 +20,41 @@ public class CasoDeUso24Test {
         Mapa.obtener().recolocarBasesIniciales();
     }
 
-    //Pruebas comentadas, despues las actualizo
+    //El Imperio Zerg asienta una base en el lado superior del mapa porque son mas afines al frio del norte
     @Test
-    public void test01ElMapaTieneUnaBaseDelLadoIzquierdoConMinerales(){
-       /* Mapa elMapa = Mapa.obtener();
-        Protoss protoss = new Protoss();
-        int tamanioMapa = 100;
-        int mitadLadoMapa = tamanioMapa/2;
-        int cuartoLadoMapa = tamanioMapa/4;
+    public void test01ElMapaTieneUnaBaseDelLadoSuperiorDondeSeAsientanLosZerg(){
+        Mapa elMapa = Mapa.obtener();
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.inicializarAsentamientoPrimerTurno();
 
-        Coordenada[] coordMineralesBase = {
-                new Coordenada(mitadLadoMapa +1, cuartoLadoMapa-1),
-                new Coordenada(mitadLadoMapa +1, cuartoLadoMapa),
-                new Coordenada(mitadLadoMapa +1, cuartoLadoMapa+1),
-        };
+        Casilla casillaBase = elMapa.obtenerVolcanBaseLejanaPrimeraMitad();
+        Coordenada coordenadaBase = casillaBase.obtenerCoordenada();
+        Coordenada coordenadaAsentamientoZerg = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
 
-        protoss.abastecerDeRecursos(new Mineral(500), new Gas(0));
-        protoss.construirNexoMineral(coordMineralesBase[0]);
-        protoss.construirNexoMineral(coordMineralesBase[1]);
-
-        //No se lanza excepcion porque los 3 nexos minerales se construyeron sobre un mineral
-        assertDoesNotThrow(()->protoss.construirNexoMineral(coordMineralesBase[2]));*/
+        //Se tira la excepcion porque en esa casilla ya hay un criadero, el asentamiento inicial zerg
+        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
+                () -> elMapa.construirEdificio(new Criadero(), coordenadaAsentamientoZerg));
     }
 
+    //El Imperio Protoss asienta una base en el lado inferior del mapa porque los cristales Khaydarin resuenan mejor en el sur
     @Test
-    public void test02ElMapaTieneUnaBaseDelLadoIzquierdoConGas(){
-        /*Mapa elMapa = Mapa.obtener();
-        Protoss protoss = new Protoss();
-        int tamanioMapa = 100;
-        int mitadLadoMapa = tamanioMapa/2;
-        int cuartoLadoMapa = tamanioMapa/4;
-        Coordenada coordenadaGas = new Coordenada(mitadLadoMapa, cuartoLadoMapa);
+    public void test02ElMapaTieneUnaBaseDelLadoInferiorDondeSeAsientanLosProtoss(){
+        Mapa elMapa = Mapa.obtener();
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.inicializarAsentamientoPrimerTurno();
 
-        protoss.abastecerDeRecursos(new Mineral(500), new Gas(0));
+        Casilla casillaBase = elMapa.obtenerVolcanBaseLejanaSegundaMitad();
+        Coordenada coordenadaBase = casillaBase.obtenerCoordenada();
+        Coordenada coordenadaAcceso = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
+        Coordenada coordenadaPilon = new Coordenada(coordenadaBase.getCoordenadaX() -3, coordenadaBase.getCoordenadaY()-1);
 
-        //No se lanza excepcion porque los 3 nexos minerales se construyeron sobre un mineral
-        assertDoesNotThrow(()->protoss.construirAsimilador(coordenadaGas));*/
+        //Se tira la excepcion porque en esa casilla ya hay un edificio (un acceso),  parte del asentamiento inicial protoss
+        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
+                () -> elMapa.construirEdificio(new Pilon(), coordenadaAcceso));
+
+        //Se tira la excepcion porque en esa casilla ya hay un edificio (un pilon),  parte del asentamiento inicial protoss
+        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
+                () -> elMapa.construirEdificio(new Pilon(), coordenadaPilon));
     }
 
 }

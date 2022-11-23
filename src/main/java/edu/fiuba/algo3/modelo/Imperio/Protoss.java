@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -16,6 +19,25 @@ public class Protoss extends Imperio{
         this.edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
+    }
+
+    public void inicializarAsentamientoPrimerTurno(){
+        Mapa elMapa = Mapa.obtener();
+
+        Casilla casillaBase = elMapa.obtenerVolcanBaseLejanaSegundaMitad();
+        Coordenada coordenadaBase = casillaBase.obtenerCoordenada();
+        Coordenada coordenadaAcceso = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
+        Coordenada coordenadaPilon = new Coordenada(coordenadaBase.getCoordenadaX() -3, coordenadaBase.getCoordenadaY()-1);
+
+        Pilon unPilon = new Pilon();
+        this.construirEdificioSinVerificacionesMateriales(unPilon, coordenadaPilon);
+        unPilon.construirInmediatamente();
+
+        Acceso unAcceso = new Acceso();
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
+        unAcceso.asignarListaDeUnidadesImperio(unidades);
+        this.construirEdificioSinVerificacionesMateriales(unAcceso, coordenadaAcceso);
+        unAcceso.construirInmediatamente();
     }
 
     public void construirPuertoEstelar(Coordenada coordenada) {

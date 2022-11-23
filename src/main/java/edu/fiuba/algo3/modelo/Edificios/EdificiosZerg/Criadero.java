@@ -90,4 +90,8 @@ public class Criadero extends Edificio {
         estadoHabilitador.marcarSuministro(suministro, suministroAportado);
     }
 
+    public void construirInmediatamente(){
+        for (int i = 0; i < turnoParaEstarConstruido; i++)
+            pasarTurno();
+    }
 }

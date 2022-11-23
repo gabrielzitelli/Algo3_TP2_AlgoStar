@@ -284,6 +284,17 @@ public class Mapa {
         }
         return volcanesDeGas;
     }
+
+    public Casilla obtenerVolcanBaseLejanaPrimeraMitad(){
+        LinkedList<Casilla> volcanesDeGas = this.obtenerVolcanesDeGas();
+        return volcanesDeGas.getFirst();
+    }
+
+    public Casilla obtenerVolcanBaseLejanaSegundaMitad(){
+        LinkedList<Casilla> volcanesDeGas = this.obtenerVolcanesDeGas();
+        return volcanesDeGas.getLast();
+    }
+
     public boolean estaEnergizado(Coordenada coordenada) {
         boolean carga = true;
         Casilla casilla = encontrarCasillaPorCoordenada(coordenada);
