@@ -12,6 +12,7 @@ public class Protoss extends Imperio{
     public Protoss() {
         this.gasDelImperio = new Gas(0);
         this.mineralesDelImperio = new Mineral(0);
+        this.poblacion = new Suministro(0);
         this.edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
