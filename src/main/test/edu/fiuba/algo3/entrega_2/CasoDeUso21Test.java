@@ -84,7 +84,7 @@ public class CasoDeUso21Test {
     public void test03NoPuedoEvolucionarAUnMutaliscoNoTengoLosRecursosSuficientes() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Mineral(700), new Gas(200));
+        imperioZerg.abastecerDeRecursos(new Mineral(800), new Gas(300));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero

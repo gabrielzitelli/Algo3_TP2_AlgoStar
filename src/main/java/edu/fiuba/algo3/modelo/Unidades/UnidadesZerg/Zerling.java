@@ -19,5 +19,7 @@ public class Zerling extends UnidadZerg {
         this.danio = new DanioZerling(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 1;
+        this.costoGas = 0;
+        this.costoMineral = 25;
     }
 }

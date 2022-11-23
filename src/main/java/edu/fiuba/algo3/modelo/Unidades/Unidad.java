@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.Ataque.DanioUnidad;
 import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
@@ -22,6 +24,9 @@ public abstract class Unidad implements Ocupable {
      protected int rangoDeAtaque;
      protected DanioUnidad danio;
      protected Vida vida;
+     protected int costoMineral;
+     protected int costoGas;
+
 
      public void verificarColocable(Casilla unaCasilla) {
           if (!unaCasilla.puedeMoverse(this.superficieDondeSeMueve))
@@ -66,6 +71,9 @@ public abstract class Unidad implements Ocupable {
      }
 
      public ArrayList<Recurso> requisitosMateriales() {
-          return new ArrayList<>();
+          ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
+          requisitosMateriales.add(new Mineral(costoMineral));
+          requisitosMateriales.add(new Gas(costoGas));
+          return requisitosMateriales;
      }
 }

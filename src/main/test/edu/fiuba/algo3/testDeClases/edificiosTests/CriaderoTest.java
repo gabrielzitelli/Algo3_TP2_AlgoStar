@@ -10,6 +10,8 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +50,7 @@ public class CriaderoTest {
     public void test03UnCriaderoSeConstruyeEn4Turnos(){
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(1000), new Gas(100));
 
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
@@ -60,6 +63,7 @@ public class CriaderoTest {
         //No se pueden crear 4 unidades porque se consumirian 4 larvas, y el criadero empieza solo con 3
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(1000), new Gas(100));
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -77,6 +81,7 @@ public class CriaderoTest {
         //No se pueden crear 4 unidades porque se consumirian 4 larvas, y el criadero empieza solo con 3
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(1000), new Gas(100));
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -93,6 +98,7 @@ public class CriaderoTest {
         //No se pueden crear 4 unidades porque se consumirian 4 larvas, y el criadero empieza solo con 3
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(1000), new Gas(100));
 
         //Construyo el edificio
         for (int i = 0; i < 4; i++)

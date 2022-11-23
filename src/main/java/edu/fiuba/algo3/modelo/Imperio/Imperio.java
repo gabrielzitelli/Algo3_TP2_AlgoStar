@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -42,25 +44,17 @@ public abstract class Imperio {
         edificios.add(edificio);
     }
 
-    private void comprobarRequisitosMateriales(Edificio edificio){
-        ArrayList<Recurso> listaDeRequisitos = edificio.requisitosMateriales();
-
-        //TODO si gasto mineral y despues el error salta en gas ? YA ME LO SACO EN UNO
+    protected void comprobarRequisitosMateriales(Ocupable ocupable){
+        ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
-        mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
         Recurso gasAconsumir = listaDeRequisitos.get(1);
-        gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
 
-
-    }
-
-    protected void comprobarRequisitosMaterialesUnidad(Unidad unaUnidad){
-        ArrayList<Recurso> listaDeRequisitos = unaUnidad.requisitosMateriales();
-        //TODO si gasto mineral y despues el error salta en gas ? YA ME LO SACO EN UNO
-        Recurso mineralAConsumir = listaDeRequisitos.get(0);
-        mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
-        Recurso gasAconsumir = listaDeRequisitos.get(1);
-        gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
+        if (mineralesDelImperio.tienesMasQue(mineralAConsumir) && gasDelImperio.tienesMasQue(gasAconsumir)){
+            mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
+            gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
+        } else {
+            throw new ErrorCantidadDeRecursoInsuficiente();
+        }
     }
 
     protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {

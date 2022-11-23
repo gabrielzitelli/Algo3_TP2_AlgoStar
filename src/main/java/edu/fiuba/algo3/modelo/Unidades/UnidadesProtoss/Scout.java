@@ -21,5 +21,7 @@ public class Scout extends UnidadProtoss {
         this.danio = new DanioScout(danioTerrestre, danioAereo);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 4;
+        this.costoGas = 150;
+        this.costoMineral = 300;
     }
 }

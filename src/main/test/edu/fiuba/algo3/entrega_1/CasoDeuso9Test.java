@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
@@ -38,6 +40,7 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon1 = new Coordenada(0,0);
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
+        unAcceso.asignarRecursos(new Mineral(1000), new Gas(1000));
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
@@ -66,6 +69,7 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
+        unAcceso.asignarRecursos(new Mineral(1000), new Gas(1000));
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );

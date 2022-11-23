@@ -17,8 +17,6 @@ public class Devorador extends UnidadZerg {
     private final int turnosDeContruccion = 4;
     private final int danioAereo = 15;
     private final int cantidadDeVida = 200;
-    private final int costoMineralEvolucion = 100;
-    private final int costoGasEvolucion = 50;
 
     public Devorador() {
         this.turnosDeConstruccion = turnosDeContruccion;
@@ -26,12 +24,7 @@ public class Devorador extends UnidadZerg {
         this.danio = new DanioDevorador(danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 5;
-    }
-
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Mineral(costoMineralEvolucion));
-        requisitosMateriales.add(new Gas(costoGasEvolucion));
-        return requisitosMateriales;
+        this.costoGas = 50;
+        this.costoMineral = 100;
     }
 }

@@ -27,6 +27,8 @@ public class Zealot extends UnidadProtoss {
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 1;
         estado = new Visible(this, muertesParaInvisibilidad);
+        this.costoGas = 0;
+        this.costoMineral = 100;
     }
 
     @Override

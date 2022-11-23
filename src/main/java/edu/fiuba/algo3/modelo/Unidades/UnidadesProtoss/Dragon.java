@@ -21,5 +21,7 @@ public class Dragon extends UnidadProtoss {
         this.danio = new DanioDragon(danioTerrestre, danioAereo);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 4;
+        this.costoGas = 50;
+        this.costoMineral = 125;
     }
 }

@@ -7,13 +7,11 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PuertoEstelar extends Edificio {
 
@@ -50,7 +48,7 @@ public class PuertoEstelar extends Edificio {
 
     public void crearUnidad(Fabrica unaFabrica) {
         estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-        estadoCreador.crearUnidad(unaFabrica, unidades);
+        estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
     }
 
     public void pasarTurno() {

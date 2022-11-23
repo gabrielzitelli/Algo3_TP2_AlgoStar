@@ -16,27 +16,14 @@ public class Mutalisco extends UnidadZerg {
     private final int danioAereo = 10;
     private final int cantidadDeVida = 120;
 
-    //todo cambiar y pasar el costo de cada unidad a su respectiva clase abstracta
-    private final int costoGasEvolucion;
-    private final int costoMineralEvolucion;
-
     public Mutalisco() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.danio = new DanioMutalisco(danioTerrestre, danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
 
-        this.costoGasEvolucion = 100;
-        this.costoMineralEvolucion = 50;
-
         this.rangoDeAtaque = 3;
-    }
-
-    @Override
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Mineral(costoMineralEvolucion));
-        requisitosMateriales.add(new Gas(costoGasEvolucion));
-        return requisitosMateriales;
+        this.costoGas = 100;
+        this.costoMineral = 100;
     }
 }

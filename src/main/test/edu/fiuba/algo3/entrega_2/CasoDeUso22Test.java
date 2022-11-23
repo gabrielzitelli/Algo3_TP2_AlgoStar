@@ -24,7 +24,7 @@ public class CasoDeUso22Test {
     public void test01TengoCriaderoYPuedoConstruirUnZangano() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(225), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero

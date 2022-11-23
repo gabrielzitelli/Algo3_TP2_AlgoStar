@@ -17,6 +17,8 @@ public class AmoSupremo extends UnidadZerg {
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.danio = new DanioAmoSupremo();
         this.vida = new VidaSimple(cantidadDeVida);
+        this.costoGas = 0;
+        this.costoMineral = 50;
     }
 
     @Override

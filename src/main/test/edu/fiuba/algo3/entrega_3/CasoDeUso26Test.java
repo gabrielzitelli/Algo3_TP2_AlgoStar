@@ -31,7 +31,7 @@ public class CasoDeUso26Test {
         Zerg imperioZerg = new Zerg();
 
 
-        imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero

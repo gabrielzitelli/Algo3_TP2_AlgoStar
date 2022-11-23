@@ -20,5 +20,7 @@ public class Hidralisco extends UnidadZerg {
         this.danio = new DanioHidralisco(danioTerrestre, danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 4;
+        this.costoGas = 25;
+        this.costoMineral = 75;
     }
 }

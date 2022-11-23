@@ -16,8 +16,6 @@ public class Guardian extends UnidadZerg {
     private final int turnosDeContruccion = 4;
     private final int danioTerrestre = 25;
     private final int cantidadDeVida = 100;
-    private final int costoMineralEvolucion = 100;
-    private final int costoGasEvolucion = 50;
 
     public Guardian() {
         this.turnosDeConstruccion = turnosDeContruccion;
@@ -25,12 +23,7 @@ public class Guardian extends UnidadZerg {
         this.danio = new DanioGuardian(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 10;
-    }
-
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Mineral(costoMineralEvolucion));
-        requisitosMateriales.add(new Gas(costoGasEvolucion));
-        return requisitosMateriales;
+        this.costoGas = 50;
+        this.costoMineral = 100;
     }
 }

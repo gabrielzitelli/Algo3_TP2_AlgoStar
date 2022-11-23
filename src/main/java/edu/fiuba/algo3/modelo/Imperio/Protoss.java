@@ -45,6 +45,7 @@ public class Protoss extends Imperio{
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
         puertoEstelar.asignarListaDeUnidadesImperio(unidades);
+        puertoEstelar.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificio(puertoEstelar, coordenada);
     }
 
@@ -57,6 +58,7 @@ public class Protoss extends Imperio{
         Acceso acceso = new Acceso();
         acceso.asignarListaDeUnidades(fabricasDisponibles);
         acceso.asignarListaDeUnidadesImperio(unidades);
+        acceso.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificio(acceso, coordenada);
     }
 
