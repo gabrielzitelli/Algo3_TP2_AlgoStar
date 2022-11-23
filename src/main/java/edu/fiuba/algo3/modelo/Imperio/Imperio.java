@@ -121,4 +121,8 @@ public abstract class Imperio {
     public boolean tenesEsteSuministro(int unaCantidad){
         return ( unaCantidad == poblacion.obtenerSuministro() );
     }
+
+    public boolean tenesEstaPoblacion(int unaCantidad){
+        return (unaCantidad == poblacion.obtenerPoblacion());
+    }
 }

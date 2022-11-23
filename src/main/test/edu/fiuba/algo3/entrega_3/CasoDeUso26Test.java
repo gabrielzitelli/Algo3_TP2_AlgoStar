@@ -25,10 +25,13 @@ public class CasoDeUso26Test {
     }
 
 
-    /*
+
     @Test
     public void test01ConstruyoUnCriaderoParaTenerSuministroYCreoUnidades() {
         Zerg imperioZerg = new Zerg();
+
+        assertTrue(imperioZerg.tenesEsteSuministro(0));
+
 
         imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -49,7 +52,7 @@ public class CasoDeUso26Test {
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaZerling()));
-
+        
         //No pasan los turnos, aun no tengo al Zerlign
         assertFalse(imperioZerg.tieneUnidad(new Zerling()));
 
@@ -59,6 +62,10 @@ public class CasoDeUso26Test {
         imperioZerg.terminarTurno();
 
         assertTrue(imperioZerg.tieneUnidad(new Zerling()));
+
+        assertTrue(imperioZerg.tenesEsteSuministro(5));
+
+        assertTrue(imperioZerg.tenesEstaPoblacion(1));
     }
-*/
+
 }
