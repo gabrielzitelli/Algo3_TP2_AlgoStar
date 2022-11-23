@@ -87,17 +87,17 @@ public class AmoSupremoTest {
         assertThrows(ErrorUnidadNoPuedeAtacar.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
-/*
+
     @Test
-    public void test04UnAmoSupremoEnRangoDeUnaUnidadInvisibleLaRevelaYPuedeSerAtacada() {
+    public void test04UnaUnidadInvisibleSeRevelaEnElRangoDelAmoSupremoYPuedeSerAtacada() {
         Mapa elMapa = Mapa.obtener();
 
+        elMapa.colocarUnaUnidad(new AmoSupremo(), new Coordenada(0, 0));
+
+        // Coloco unidad invisible en rango del amo supremo
         Unidad unaUnidadInvisible = crearUnidadInvisible();
         Coordenada coordenadaUnidadInvisible = new Coordenada(0, 3);
         elMapa.colocarUnaUnidad(unaUnidadInvisible, coordenadaUnidadInvisible);
-
-        // Creo un amo supremo en rango de la unidad invisible
-        elMapa.colocarUnaUnidad(new AmoSupremo(), new Coordenada(0, 0));
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 2);
@@ -108,5 +108,4 @@ public class AmoSupremoTest {
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new AmoSupremo(), coordenadaUnidadInvisible));
     }
- */
 }

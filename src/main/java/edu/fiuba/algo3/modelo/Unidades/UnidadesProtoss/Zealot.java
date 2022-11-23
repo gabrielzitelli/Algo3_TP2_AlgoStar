@@ -26,12 +26,13 @@ public class Zealot extends UnidadProtoss {
         this.danio = new DanioZealot(danioTerrestre);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 1;
-        estado = new Visible(vida, superficieDondeSeMueve, muertesParaInvisibilidad);
+        estado = new Visible(this, muertesParaInvisibilidad);
     }
 
-    public void verificarSuperficie(Superficie superficie, Coordenada coordenada) {
-        super.verificarSuperficie(superficie, coordenada);
-        estado.establecerCoordenada(coordenada);
+    @Override
+    public void verificarColocable(Casilla unaCasilla) {
+        super.verificarColocable(unaCasilla);
+        estado = estado.verificarVisibilidadDe(unaCasilla);
     }
 
     @Override
@@ -49,5 +50,9 @@ public class Zealot extends UnidadProtoss {
     @Override
     public void recibirAtaque(Ataque unAtaque) {
         estado.recibirAtaque(unAtaque);
+    }
+
+    public void recibirAtaqueDefault(Ataque unAtaque) {
+        super.recibirAtaque(unAtaque);
     }
 }

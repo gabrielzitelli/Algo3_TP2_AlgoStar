@@ -14,12 +14,13 @@ public class CasillaOcupada extends Casilla {
         this.coordenada = coordenada;
     }
 
-    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie) {
+    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie, Revelable estadoRevelable) {
         this.estadoRecolectable = estadoRecolectable;
         this.estadoMoho = estadoMoho;
         this.estadoCarga = estadoCarga;
         this.coordenada = coordenada;
         this.superficie = superficie;
+        this.estadoRevelable = estadoRevelable;
     }
 
     public Casilla construirEdificio(Edificio unEdificio) {
@@ -35,7 +36,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Casilla desconstruirEdificio(Coordenada coordenada) {
-        Casilla nuevaCasillaSinEdificio = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
+        Casilla nuevaCasillaSinEdificio = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
         return nuevaCasillaSinEdificio;
     }
 
@@ -78,6 +79,6 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Casilla quitarUnidad() {
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
+        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
     }
 }

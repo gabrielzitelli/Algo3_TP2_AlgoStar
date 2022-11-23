@@ -13,22 +13,24 @@ public class CasillaVacia extends Casilla{
         estadoRecolectable = new NoRecolectable();
         estadoMoho = new SinMoho();
         estadoCarga = new SinCarga();
+        this.estadoRevelable = new SinRevelar();
         this.coordenada = coordenada;
         this.ocupable = null;
         this.superficie = new SuperficieTerrestre();
     }
 
-    public CasillaVacia(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie) {
+    public CasillaVacia(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie, Revelable estadoRevelable) {
         this.estadoRecolectable = estadoRecolectable;
         this.estadoMoho = estadoMoho;
         this.estadoCarga = estadoCarga;
         this.coordenada = coordenada;
         this.superficie = superficie;
+        this.estadoRevelable = estadoRevelable;
     }
 
     public Casilla construirEdificio(Edificio unEdificio){
         unEdificio.verificarConstruccion(this);
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
+        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
         casillaOcupada.establecerEdificio(unEdificio);
         return casillaOcupada;
     }
@@ -55,8 +57,8 @@ public class CasillaVacia extends Casilla{
     }
 
     public Casilla colocarUnidad(Unidad unaUnidad) {
-        unaUnidad.verificarSuperficie(this.superficie, coordenada);
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
+        unaUnidad.verificarColocable(this);
+        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
         casillaOcupada.settearUnidad(unaUnidad);
         return casillaOcupada;
     }
@@ -74,6 +76,6 @@ public class CasillaVacia extends Casilla{
     }
 
     public Casilla quitarUnidad(){
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
+        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
     }
 }

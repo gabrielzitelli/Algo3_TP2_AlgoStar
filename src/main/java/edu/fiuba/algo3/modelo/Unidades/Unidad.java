@@ -23,11 +23,11 @@ public abstract class Unidad implements Ocupable {
      protected DanioUnidad danio;
      protected Vida vida;
 
-     public void verificarSuperficie(Superficie superficie, Coordenada coordenada) {
-          if (!superficie.puedeMoverse(this.superficieDondeSeMueve))
+     public void verificarColocable(Casilla unaCasilla) {
+          if (!unaCasilla.puedeMoverse(this.superficieDondeSeMueve))
                throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
 
-          this.coordenada = coordenada;
+          this.coordenada = unaCasilla.obtenerCoordenada();
      }
 
      public int rangoDeAtaque() {

@@ -14,6 +14,7 @@ public abstract class Casilla {
     protected Recolectable estadoRecolectable;
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
+    protected Revelable estadoRevelable;
     protected Superficie superficie;
     protected Ocupable ocupable;
     protected Coordenada coordenada;
@@ -56,6 +57,10 @@ public abstract class Casilla {
             throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
     }
 
+    public boolean puedeMoverse(Superficie superficieAComparar) {
+        return superficie.puedeMoverse(superficieAComparar);
+    }
+
     public Coordenada obtenerCoordenada(){
         return this.coordenada;
     }
@@ -69,5 +74,13 @@ public abstract class Casilla {
 
     public void descargarDeEnergia() {
         estadoCarga = estadoCarga.descargar();
+    }
+
+    public void revelar() {
+        estadoRevelable = estadoRevelable.revelar();
+    }
+
+    public boolean tieneEsteRevelable(Revelable unRevelable) {
+        return estadoRevelable.esIgualA(unRevelable);
     }
 }

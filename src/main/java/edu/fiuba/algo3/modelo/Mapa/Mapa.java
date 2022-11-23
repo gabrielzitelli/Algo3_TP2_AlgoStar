@@ -192,6 +192,12 @@ public class Mapa {
             unaCasilla.descargarDeEnergia();
     }
 
+    public void revelar(Coordenada coordenadaOrigen, int radio) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(coordenadaOrigen, radio);
+        for (Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.revelar();
+    }
+
     public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
         Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
 
