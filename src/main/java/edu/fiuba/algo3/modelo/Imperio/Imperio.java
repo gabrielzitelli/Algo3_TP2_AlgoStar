@@ -13,6 +13,7 @@ import java.util.LinkedList;
 public abstract class Imperio {
     protected Mineral mineralesDelImperio;
     protected Gas gasDelImperio;
+    protected Suministro poblacion;
     protected LinkedList<Edificio> edificios;
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
@@ -28,9 +29,11 @@ public abstract class Imperio {
     }
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
+        edificio.modificarPoblacion(poblacion);
         comprobarRequisitosMateriales(edificio);
         mapa.construirEdificio(edificio, coordenada);
         edificios.add(edificio);
+
     }
 
     protected void construirUnidad(Unidad unaUnidad, Coordenada coordenada){
@@ -108,5 +111,9 @@ public abstract class Imperio {
                 return true;
         }
         return false;
+    }
+
+    public boolean tenesEsteSuministro(int unaCantidad){
+        return ( unaCantidad == poblacion.obtenerSuministro() );
     }
 }

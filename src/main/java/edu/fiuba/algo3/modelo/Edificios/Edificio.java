@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -26,6 +27,7 @@ public abstract class Edificio implements Ocupable {
     protected Superficie superficieRequerida;
     protected int costoMineral;
     protected int costoGas;
+    protected int suministroAportado = 0;
 
     public abstract void pasarTurno();
 
@@ -75,4 +77,7 @@ public abstract class Edificio implements Ocupable {
     public void contratarUnidad(Unidad unidad) {
         throw new ErrorElEdificioNoPuedeContratarUnidadades();
     }
+
+    public void modificarPoblacion(Suministro poblacion){}
+
 }

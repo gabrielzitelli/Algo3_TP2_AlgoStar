@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
@@ -36,6 +37,8 @@ public class Criadero extends Edificio {
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         cantidadLarvas = maxLarvas;
+
+        this.suministroAportado = 5;
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);
@@ -80,4 +83,11 @@ public class Criadero extends Edificio {
     public void asignarListaDeUnidadesImperio(ArrayList<Unidad> unidades){
         this.unidades = unidades;
     }
+
+
+    @Override
+    public void modificarPoblacion(Suministro suministro){
+        estadoHabilitador.marcarSuministro(suministro, suministroAportado);
+    }
+
 }
