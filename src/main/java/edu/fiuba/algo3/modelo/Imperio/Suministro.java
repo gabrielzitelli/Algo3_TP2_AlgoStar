@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
+
 import static java.lang.Math.min;
 
 public class Suministro{
@@ -33,4 +36,16 @@ public class Suministro{
     }
 
 
+    public void tenesCapacidad(int poblacionNecesaria) {
+        if (this.poblacion + poblacionNecesaria <= obtenerSuministro()){
+            poblacion += poblacionNecesaria;
+        }
+        else{
+            throw new ErrorSuperaMaximoDePoblacionActual();
+        }
+    }
+
+    public void agregarPoblacion(int poblacionNecesaria) {
+        this.poblacion += poblacionNecesaria;
+    }
 }

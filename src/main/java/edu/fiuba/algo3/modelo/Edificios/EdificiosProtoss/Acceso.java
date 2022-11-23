@@ -45,6 +45,7 @@ public class Acceso extends EdificioConCarga {
 
     public void crearUnidad(Fabrica unaFabrica) {
         if (verificarCarga()) {
+            estadoHabilitador.estaAptoParaCrearse(unaFabrica);
             estadoCreador.crearUnidad(unaFabrica, unidades);
         }
         else throw new ErrorElEdificioNoTieneCarga();

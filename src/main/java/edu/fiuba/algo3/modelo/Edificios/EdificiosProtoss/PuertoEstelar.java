@@ -49,6 +49,7 @@ public class PuertoEstelar extends Edificio {
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
+        estadoHabilitador.estaAptoParaCrearse(unaFabrica);
         estadoCreador.crearUnidad(unaFabrica, unidades);
     }
 
