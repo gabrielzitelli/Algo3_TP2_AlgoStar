@@ -19,7 +19,7 @@ public class Mutalisco extends UnidadZerg {
     private final int costoGasEvolucion;
     private final int costoMineralEvolucion;
 
-    public Mutalisco(){
+    public Mutalisco() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.danio = new DanioMutalisco(danioTerrestre, danioAereo);
