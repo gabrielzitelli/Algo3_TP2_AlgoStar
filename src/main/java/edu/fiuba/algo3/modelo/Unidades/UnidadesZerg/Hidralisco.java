@@ -21,9 +21,4 @@ public class Hidralisco extends UnidadZerg {
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 4;
     }
-
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        return requisitosMateriales;
-    }
 }

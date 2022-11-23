@@ -14,6 +14,7 @@ public abstract class Casilla {
     protected Recolectable estadoRecolectable;
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
+    protected Revelable estadoRevelable;
     protected Superficie superficie;
     protected Ocupable ocupable;
     protected Coordenada coordenada;
@@ -25,7 +26,7 @@ public abstract class Casilla {
     public abstract Edificio obtenerEdificio();
     public abstract Casilla colocarUnidad(Unidad unaUnidad);
     public abstract void atacar(Casilla casillaAtacada);
-    protected abstract void recibirAtaque(Ataque unAtaque);
+    public abstract void recibirAtaque(Ataque unAtaque);
     public abstract Casilla moverUnidadHacia(Casilla destino);
     public abstract Casilla quitarUnidad();
 
@@ -56,9 +57,8 @@ public abstract class Casilla {
             throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
     }
 
-    public void tieneEstaSuperficie(Superficie superficieRequerida){
-        if(superficie.soyDiferenteA(superficieRequerida))
-            throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
+    public boolean puedeMoverse(Superficie superficieAComparar) {
+        return superficie.puedeMoverse(superficieAComparar);
     }
 
     public Coordenada obtenerCoordenada(){
@@ -74,5 +74,13 @@ public abstract class Casilla {
 
     public void descargarDeEnergia() {
         estadoCarga = estadoCarga.descargar();
+    }
+
+    public void revelar() {
+        estadoRevelable = estadoRevelable.revelar();
+    }
+
+    public boolean tieneEsteRevelable(Revelable unRevelable) {
+        return estadoRevelable.esIgualA(unRevelable);
     }
 }

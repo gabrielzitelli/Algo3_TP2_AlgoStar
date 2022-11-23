@@ -20,7 +20,7 @@ public class Mutalisco extends UnidadZerg {
     private final int costoGasEvolucion;
     private final int costoMineralEvolucion;
 
-    public Mutalisco(){
+    public Mutalisco() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.danio = new DanioMutalisco(danioTerrestre, danioAereo);
@@ -32,6 +32,7 @@ public class Mutalisco extends UnidadZerg {
         this.rangoDeAtaque = 3;
     }
 
+    @Override
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
         requisitosMateriales.add(new Mineral(costoMineralEvolucion));

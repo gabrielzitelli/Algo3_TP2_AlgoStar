@@ -14,12 +14,13 @@ public class CasillaOcupada extends Casilla {
         this.coordenada = coordenada;
     }
 
-    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie) {
+    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie, Revelable estadoRevelable) {
         this.estadoRecolectable = estadoRecolectable;
         this.estadoMoho = estadoMoho;
         this.estadoCarga = estadoCarga;
         this.coordenada = coordenada;
         this.superficie = superficie;
+        this.estadoRevelable = estadoRevelable;
     }
 
     public Casilla construirEdificio(Edificio unEdificio) {
@@ -35,7 +36,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Casilla desconstruirEdificio(Coordenada coordenada) {
-        Casilla nuevaCasillaSinEdificio = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);
+        Casilla nuevaCasillaSinEdificio = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
         return nuevaCasillaSinEdificio;
     }
 
@@ -59,14 +60,14 @@ public class CasillaOcupada extends Casilla {
     public void atacar(Casilla casillaAtacada) {
         Unidad unidad = (Unidad) ocupable;
         if (Mapa.obtener().estaDentroDeRango(coordenada,casillaAtacada, unidad.rangoDeAtaque())){
-            casillaAtacada.recibirAtaque(unidad.atacar());
+            unidad.atacar(casillaAtacada);
         }
         else {
             throw new ErrorLaUnidadNoPuedeAtacarFueraDeSuRango();
         }
     }
 
-    protected void recibirAtaque(Ataque unAtaque) {
+    public void recibirAtaque(Ataque unAtaque) {
         ocupable.recibirAtaque(unAtaque);
     }
 
@@ -77,6 +78,7 @@ public class CasillaOcupada extends Casilla {
         return destino.colocarUnidad((Unidad) this.ocupable);
     }
 
-    public Casilla quitarUnidad(){
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie);    }
+    public Casilla quitarUnidad() {
+        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
+    }
 }

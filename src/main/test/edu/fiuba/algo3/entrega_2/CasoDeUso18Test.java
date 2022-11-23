@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso18Test {
@@ -28,11 +30,12 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacante);
         elMapa.colocarUnaUnidad(ZerlingADaniar, coordenadaAtacado);
 
-        // Dejo al zerling a un ataque mas del otro zerling
-        for (int i = 0; i < 8; i++)
+        // El zerling mata al otro zerling
+        for (int i = 0; i < 9; i++)
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
+        // La casilla esta vacia
+        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -46,11 +49,11 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
 
-        // Dejo al zerling a un ataque mas del hidralisco
-        for (int i = 0; i < 3; i++)
+        // El zerling mata al hidralisco
+        for (int i = 0; i < 4; i++)
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -66,11 +69,11 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
 
-        // Dejo al zerling a un ataque mas del mutalisco
-        for (int i = 0; i < 3; i++)
+        // El zerling mata al mutalisco
+        for (int i = 0; i < 4; i++)
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -86,10 +89,11 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
 
-        // Dejo al zerling a un ataque mas del guardian
+        // El zerling mata al guardian
+        elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -103,11 +107,11 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unZealot, coordenadaAtacante);
 
-        // Dejo al zerling a un ataque mas del Zealot
-        for (int i = 0; i < 4; i++)
+        // El zerling mata al zealot
+        for (int i = 0; i < 5; i++)
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacante));
     }
 
     @Test
@@ -121,10 +125,11 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
 
-        // Dejo al zerling a un ataque mas del Dragon
+        // El zerling mata al dragon
+        elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -140,10 +145,10 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unScout, coordenadaAtacante);
 
-        // Dejo al zerling a un ataque mas del Scout
-        for (int i = 0; i < 4; i++)
+        // El zerling mata al scout
+        for (int i = 0; i < 5; i++)
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertThrows(ErrorVidaLlegoACero.class,() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
 }

@@ -20,9 +20,4 @@ public class Zerling extends UnidadZerg {
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 1;
     }
-
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        return requisitosMateriales;
-    }
 }

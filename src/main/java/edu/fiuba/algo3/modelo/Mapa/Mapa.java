@@ -216,6 +216,12 @@ public class Mapa {
             unaCasilla.descargarDeEnergia();
     }
 
+    public void revelar(Coordenada coordenadaOrigen, int radio) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(coordenadaOrigen, radio);
+        for (Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.revelar();
+    }
+
     public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
         Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
 
@@ -233,6 +239,12 @@ public class Mapa {
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino = casillaDestino.colocarUnidad(unaUnidad);
         this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
+    }
+
+    public void quitarUnidad(Coordenada coordenada) {
+        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaAQuitar = casillaAQuitar.quitarUnidad();
+        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
     }
 
     public void atacar(Coordenada atacante, Coordenada atacado){

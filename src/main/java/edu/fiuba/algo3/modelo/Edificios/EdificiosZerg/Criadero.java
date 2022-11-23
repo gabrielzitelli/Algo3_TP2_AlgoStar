@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class Criadero extends Edificio {
         estadoGeneradorDeMoho = new EstadoGeneradorDeMohoEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaZangano());
+        listaFabricasAHabilitar.add(new FabricaAmoSupremo());
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
