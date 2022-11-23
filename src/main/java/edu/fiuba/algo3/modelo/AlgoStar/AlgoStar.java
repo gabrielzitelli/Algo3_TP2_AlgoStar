@@ -17,6 +17,7 @@ public class AlgoStar {
             Jugador jugador = new Jugador(nombre,color,imperio);
             revisarJugador(jugador);
             jugadores.add(jugador);
+            imperio.asignarJugadorAlImperio(jugador);
         } else {
             throw new ErrorSoloPuedenJugarDosPersonasAlMismoTiempo();
         }

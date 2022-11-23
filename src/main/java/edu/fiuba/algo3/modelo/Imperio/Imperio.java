@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.AlgoStar.Jugador;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
@@ -18,6 +19,7 @@ public abstract class Imperio {
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
     protected int cantidadInicialDeMineral = 200;
+    protected Jugador jugadorQueControlaImperio;
 
     public void terminarTurno(){
         for (Edificio edificio : edificios) {
@@ -120,5 +122,9 @@ public abstract class Imperio {
 
     public boolean tenesEsteSuministro(int unaCantidad){
         return ( unaCantidad == poblacion.obtenerSuministro() );
+    }
+
+    public void asignarJugadorAlImperio(Jugador unJugador){
+        this.jugadorQueControlaImperio = unJugador;
     }
 }
