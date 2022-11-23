@@ -1,39 +1,37 @@
-package edu.fiuba.algo3.entrega_2;
+package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
-import edu.fiuba.algo3.modelo.Imperio.*;
-import edu.fiuba.algo3.modelo.Mapa.*;
-
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
+import edu.fiuba.algo3.modelo.Imperio.Zerg;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CasoDeUso21Test {
-
+public class CasoDeUso27Test {
     @BeforeEach
     public void setup(){
         Mapa.obtener().reiniciarMapa();
     }
 
     @Test
-    public void test01NoPuedoEvolucionarAUnMutaliscoSinTenerAntesUnMutalisco(){
-        Mapa elMapa = Mapa.obtener();
+    public void test01NoPuedoEvolucionarAUnMutaliscoADevoradadorSinTenerAntesUnMutalisco(){
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Mineral(50), new Gas(50));
-
         assertThrows(ErrorNoHayMutaliscoParaEvolucionar.class,
-                () -> imperioZerg.evolucionarMutaliscoAGuardian());
+                () -> imperioZerg.evolucionarMutaliscoADevorador());
     }
     @Test
-    public void test02PuedoEvolucionarAUnMutaliscoSiTengoLosRecursosSuficientes() {
+    public void test02PuedoEvolucionarAUnMutaliscoADevoradorSiTengoLosRecursosSuficientes() {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
@@ -70,15 +68,15 @@ public class CasoDeUso21Test {
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
         //Lo evolucionamos
-        imperioZerg.evolucionarMutaliscoAGuardian();
+        imperioZerg.evolucionarMutaliscoADevorador();
         //No han pasado turnos, aún no lo tenemos
-        assertFalse(imperioZerg.tieneUnidad(new Guardian()));
+        assertFalse(imperioZerg.tieneUnidad(new Devorador()));
 
         for (int i = 0; i < 4; i++){
             imperioZerg.terminarTurno();
         }
         //tenemos el guardian
-        assertTrue(imperioZerg.tieneUnidad(new Guardian()));
+        assertTrue(imperioZerg.tieneUnidad(new Devorador()));
     }
     @Test
     public void test03NoPuedoEvolucionarAUnMutaliscoNoTengoLosRecursosSuficientes() {
@@ -119,6 +117,6 @@ public class CasoDeUso21Test {
             imperioZerg.terminarTurno();
         //No podemos evolucionar porque no tenemos más recursos
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class, () ->
-                imperioZerg.evolucionarMutaliscoAGuardian());
+                imperioZerg.evolucionarMutaliscoADevorador());
     }
 }

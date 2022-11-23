@@ -2,7 +2,12 @@ package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 
 import java.util.ArrayList;
@@ -10,6 +15,8 @@ import java.util.LinkedList;
 
 
 public class Zerg extends Imperio{
+
+    GestorDeCrianza gestorDeEvoluciones = new GestorDeCrianza();
 
     public Zerg(){
         //this.poner
@@ -53,9 +60,28 @@ public class Zerg extends Imperio{
         this.construirEdificio(espiral, coordenada);
     }
 
-    public void evolucionarMutaliscoAGuardian(Coordenada coordenada){
-        //TODO Esta raro pasarle el mutalisco aca
-        Mutalisco mutalisco = new Mutalisco();
-        this.construirUnidad(mutalisco, coordenada);
+    private void validarPreRequisitosDeEvolucionDeMutalisco(Unidad unaUnidad){
+        //revisamos que tengamos al mutalisco
+        if (!this.tieneUnidad(new Mutalisco())) {
+            throw new ErrorNoHayMutaliscoParaEvolucionar();
+        }
+        //comprobamos los materiales
+        this.comprobarRequisitosMaterialesUnidada(unaUnidad);
     }
+    public void evolucionarMutaliscoAGuardian(){
+        Unidad guardian = new Guardian();
+        validarPreRequisitosDeEvolucionDeMutalisco(guardian);
+        gestorDeEvoluciones.agregarUnidad(guardian, unidades);
+    }
+    public void evolucionarMutaliscoADevorador() {
+        Unidad devorador = new Devorador();
+        validarPreRequisitosDeEvolucionDeMutalisco(devorador);
+        gestorDeEvoluciones.agregarUnidad(devorador , unidades);
+    }
+    @Override
+    public void terminarTurno(){
+        super.terminarTurno();
+        gestorDeEvoluciones.actualizar();
+    }
+
 }
