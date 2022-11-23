@@ -66,7 +66,7 @@ public class Zerg extends Imperio{
             throw new ErrorNoHayMutaliscoParaEvolucionar();
         }
         //comprobamos los materiales
-        this.comprobarRequisitosMaterialesUnidada(unaUnidad);
+        this.comprobarRequisitosMaterialesUnidad(unaUnidad);
     }
     public void evolucionarMutaliscoAGuardian(){
         Unidad guardian = new Guardian();
@@ -75,6 +75,7 @@ public class Zerg extends Imperio{
     }
     public void evolucionarMutaliscoADevorador() {
         Unidad devorador = new Devorador();
+        //TODO falta sacar al mutalisco viejo que evoluciono
         validarPreRequisitosDeEvolucionDeMutalisco(devorador);
         gestorDeEvoluciones.agregarUnidad(devorador , unidades);
     }
