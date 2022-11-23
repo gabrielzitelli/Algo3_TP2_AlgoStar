@@ -30,8 +30,6 @@ public class CasoDeUso26Test {
     public void test01ConstruyoUnCriaderoParaTenerSuministroYCreoUnidades() {
         Zerg imperioZerg = new Zerg();
 
-        assertTrue(imperioZerg.tenesEsteSuministro(0));
-
 
         imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
@@ -39,8 +37,6 @@ public class CasoDeUso26Test {
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
-
-        assertTrue(imperioZerg.tenesEsteSuministro(5));
 
         imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
 
@@ -52,7 +48,7 @@ public class CasoDeUso26Test {
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaZerling()));
-        
+
         //No pasan los turnos, aun no tengo al Zerlign
         assertFalse(imperioZerg.tieneUnidad(new Zerling()));
 
