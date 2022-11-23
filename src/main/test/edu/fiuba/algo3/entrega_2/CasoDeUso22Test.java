@@ -64,7 +64,7 @@ public class CasoDeUso22Test {
     public void test03SiTengoReservaDeReproduccionPuedoConstruirUnZerlign() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero

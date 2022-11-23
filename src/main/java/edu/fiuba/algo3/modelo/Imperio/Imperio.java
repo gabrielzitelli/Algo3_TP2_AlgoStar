@@ -42,23 +42,21 @@ public abstract class Imperio {
         edificios.add(edificio);
     }
 
-    protected void construirUnidad(Unidad unaUnidad, Coordenada coordenada){
-        Mapa mapa = Mapa.obtener();
-        comprobarRequisitosMaterialesUnidada(unaUnidad);
-        mapa.colocarUnaUnidad(unaUnidad, coordenada);
-        // TODO Agregar la unidad a una coleccion de unidades del imperio
-    }
-
     private void comprobarRequisitosMateriales(Edificio edificio){
         ArrayList<Recurso> listaDeRequisitos = edificio.requisitosMateriales();
+
+        //TODO si gasto mineral y despues el error salta en gas ? YA ME LO SACO EN UNO
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
         mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
         Recurso gasAconsumir = listaDeRequisitos.get(1);
         gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
+
+
     }
 
-    private void comprobarRequisitosMaterialesUnidada(Unidad unaUnidad){
+    protected void comprobarRequisitosMaterialesUnidad(Unidad unaUnidad){
         ArrayList<Recurso> listaDeRequisitos = unaUnidad.requisitosMateriales();
+        //TODO si gasto mineral y despues el error salta en gas ? YA ME LO SACO EN UNO
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
         mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
         Recurso gasAconsumir = listaDeRequisitos.get(1);
@@ -66,6 +64,7 @@ public abstract class Imperio {
     }
 
     protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
+        //Digase de los edificios que son prerequisitos de otro edificio
         int requisitosCumplidos = 0;
         for(Edificio requisito: requisitos){
             for(Edificio edificio: edificios) {

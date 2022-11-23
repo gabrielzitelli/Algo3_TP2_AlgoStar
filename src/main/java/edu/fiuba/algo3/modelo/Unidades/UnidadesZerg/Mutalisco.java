@@ -16,6 +16,7 @@ public class Mutalisco extends UnidadZerg {
     private final int danioAereo = 10;
     private final int cantidadDeVida = 120;
 
+    //todo cambiar y pasar el costo de cada unidad a su respectiva clase abstracta
     private final int costoGasEvolucion;
     private final int costoMineralEvolucion;
 

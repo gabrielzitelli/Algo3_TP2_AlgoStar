@@ -48,9 +48,12 @@ public class Criadero extends Edificio {
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
+
+        //TODO la unidad en algun momento tiene que recibir el SUMINISTRO Y los recursos para gastarlos
+
         if (cantidadLarvas > 0) {
-            cantidadLarvas--;
             estadoCreador.crearUnidad(unaFabrica, unidades);
+            cantidadLarvas--;
         }else {
             throw new ErrorCriaderoNoTieneMasLarvas();
         }
