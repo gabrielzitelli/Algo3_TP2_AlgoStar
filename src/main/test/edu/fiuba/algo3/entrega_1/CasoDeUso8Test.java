@@ -21,6 +21,7 @@ public class CasoDeUso8Test {
     public void test01SiNoTengoLosRecursosNecesariosNoPuedoConstruirUnCriadero() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
                 () ->imperioZerg.construirCriadero(new Coordenada(0,0)));
@@ -40,6 +41,7 @@ public class CasoDeUso8Test {
     public void test03SiNoTengoLosRecursosNecesariosNoPuedoConstruirUnaReserva() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
                 () ->imperioZerg.construirReservaDeReproduccion(new Coordenada(0,0)));
@@ -60,6 +62,7 @@ public class CasoDeUso8Test {
     public void test05SiNoTengoLosRecursosNecesariosNoPuedoConstruirUnExtractor() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
                 () ->imperioZerg.construirExtractor(new Coordenada(0,0)));
@@ -150,6 +153,7 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
+        protoss.abastecerDeRecursos(new Mineral(0), new Gas(0));
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
@@ -174,6 +178,7 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
+        protoss.abastecerDeRecursos(new Mineral(0), new Gas(0));
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
@@ -197,6 +202,8 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
+
+        protoss.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
                 () -> protoss.construirPilon(coordenada));

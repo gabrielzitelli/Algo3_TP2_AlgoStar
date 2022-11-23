@@ -16,6 +16,7 @@ public abstract class Imperio {
     protected LinkedList<Edificio> edificios;
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
+    protected int cantidadInicialDeMineral = 200;
 
     public void terminarTurno(){
         for (Edificio edificio : edificios) {

@@ -21,7 +21,7 @@ public class CasoDeUso24Test {
     //Pruebas comentadas, despues las actualizo
     @Test
     public void test01ElMapaTieneUnaBaseDelLadoIzquierdoConMinerales(){
-        /*Mapa elMapa = Mapa.obtener();
+       /* Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         int tamanioMapa = 100;
         int mitadLadoMapa = tamanioMapa/2;
@@ -43,7 +43,7 @@ public class CasoDeUso24Test {
 
     @Test
     public void test02ElMapaTieneUnaBaseDelLadoIzquierdoConGas(){
-       /* Mapa elMapa = Mapa.obtener();
+        /*Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         int tamanioMapa = 100;
         int mitadLadoMapa = tamanioMapa/2;
