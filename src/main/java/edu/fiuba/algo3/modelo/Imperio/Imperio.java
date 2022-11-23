@@ -127,4 +127,8 @@ public abstract class Imperio {
     public void asignarJugadorAlImperio(Jugador unJugador){
         this.jugadorQueControlaImperio = unJugador;
     }
+
+    public boolean partidaTerminada(){
+        return (edificios.size() == 0);
+    }
 }
