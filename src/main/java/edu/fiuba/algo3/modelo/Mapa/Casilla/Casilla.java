@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -14,7 +15,7 @@ public abstract class Casilla {
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
     protected Superficie superficie;
-    protected Unidad unidad;
+    protected Ocupable ocupable;
     protected Coordenada coordenada;
 
     public abstract Casilla construirEdificio(Edificio unEdificio);
@@ -55,6 +56,11 @@ public abstract class Casilla {
             throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
     }
 
+    public void tieneEstaSuperficie(Superficie superficieRequerida){
+        if(superficie.soyDiferenteA(superficieRequerida))
+            throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
+    }
+
     public Coordenada obtenerCoordenada(){
         return this.coordenada;
     }
@@ -64,5 +70,9 @@ public abstract class Casilla {
             estadoCarga = new ConCarga();
 
         estadoCarga = estadoCarga.cargar();
+    }
+
+    public void descargarDeEnergia() {
+        estadoCarga = estadoCarga.descargar();
     }
 }

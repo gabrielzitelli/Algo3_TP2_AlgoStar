@@ -20,6 +20,7 @@ public class Scout extends UnidadProtoss {
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.danio = new DanioScout(danioTerrestre, danioAereo);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
+        this.rangoDeAtaque = 4;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

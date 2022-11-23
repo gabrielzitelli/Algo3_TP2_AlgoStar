@@ -19,6 +19,7 @@ public class Zealot extends UnidadProtoss {
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.danio = new DanioZealot(danioTerrestre);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
+        this.rangoDeAtaque = 1;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {

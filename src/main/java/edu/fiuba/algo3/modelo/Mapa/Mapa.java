@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static java.lang.Math.*;
@@ -19,6 +20,7 @@ public class Mapa {
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
         this.inicializarBases();
+        this.inicializarTerrenoEspacial();
     }
 
     private void inicializarMapaConCasillasVacias(){
@@ -106,6 +108,28 @@ public class Mapa {
         colocarMaterial(new GasRecolectable(), new Coordenada(xCentro, yCentro));
     }
 
+    private void inicializarTerrenoEspacial(){
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio-1), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/3, 5), 8);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio, 15), 6);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio/2), 5);
+        colocarTerrenoEspacialCircular(new Coordenada(3*tamanio/4, tamanio/2), 3);
+        colocarTerrenoEspacialCircular(new Coordenada(0, -5), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(4*tamanio/5, (int)(tamanio*1.1)), 15);
+    }
+
+    private void colocarTerrenoEspacialCircular(Coordenada coordenadaCentro, int radio){
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                Coordenada coordenadaAColocar = new Coordenada(i, j);
+                int dist = distanciaEntreDosCoordenadas(coordenadaAColocar, coordenadaCentro);
+
+                if(dist <= radio)
+                    colocarSuperficie(new SuperficieAerea(), coordenadaAColocar);
+            }
+        }
+    }
+
     static public Mapa obtener(){
         return mapaInstanciaUnica;
     }
@@ -142,6 +166,7 @@ public class Mapa {
     public void recolocarBasesIniciales(){
         this.reiniciarMapa();
         this.inicializarBases();
+        this.inicializarTerrenoEspacial();
     }
 
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
@@ -185,6 +210,11 @@ public class Mapa {
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.cargarDeEnergia();
     }
+    public void desabastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.descargarDeEnergia();
+    }
 
     public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
         Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
@@ -197,7 +227,6 @@ public class Mapa {
         Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
         return casillaConEdificio.obtenerEdificio();
     }
-
 
     public void colocarUnaUnidad(Unidad unaUnidad, Coordenada coordenada){
         // Busco la casilla de la coordenada y creo una nueva casilla ocupada por la unidad
@@ -254,5 +283,24 @@ public class Mapa {
             }
         }
         return volcanesDeGas;
+    }
+    public boolean estaEnergizado(Coordenada coordenada) {
+        boolean carga = true;
+        Casilla casilla = encontrarCasillaPorCoordenada(coordenada);
+        try {
+            casilla.tieneEstaCarga(new ConCarga());
+        } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla error){
+            carga = false;
+        }
+        return carga;
+    }
+
+    public boolean estaDentroDeRango(Coordenada coordenada, Casilla casillaAtacada, int rangoDeAtaque) {
+        if (rangoDeAtaque == 0){
+            throw new ErrorUnidadNoPuedeAtacar();
+        }
+
+        LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
+        return casillas.contains(casillaAtacada);
     }
 }

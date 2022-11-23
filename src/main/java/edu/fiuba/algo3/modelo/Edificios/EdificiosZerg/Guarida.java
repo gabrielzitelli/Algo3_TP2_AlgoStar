@@ -25,6 +25,7 @@ public class Guarida extends Edificio {
         this.estadoMoho = new ConMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaRegenerativa(valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 

@@ -35,4 +35,8 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
     public void modificarSuministro(){
         poblacionImperio.aumentarSuministro( aumentoSuministro );
     }
+
+    public void desenergizar(Coordenada coordenada) {
+
+    }
 }

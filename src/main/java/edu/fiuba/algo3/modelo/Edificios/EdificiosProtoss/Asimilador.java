@@ -23,6 +23,7 @@ public class Asimilador extends Edificio {
         this.estadoRecolectable = new GasRecolectable();
         this.estadoMoho = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
     }

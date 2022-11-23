@@ -23,4 +23,10 @@ public class EstadoGeneradorDeEnergiaConstruido implements EstadoGeneradorDeEner
 
     @Override
     public void modificarSuministro(){}
+
+    @Override
+    public void desenergizar(Coordenada coordenada) {
+        energia.desenergizar(coordenada);
+    }
+
 }

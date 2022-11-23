@@ -25,6 +25,7 @@ public class Espiral extends Edificio {
         this.estadoRecolectable = new NoRecolectable();
         this.estadoMoho = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 

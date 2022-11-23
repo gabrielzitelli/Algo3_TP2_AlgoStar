@@ -17,12 +17,12 @@ public class CasoDeUso10Test {
         Ataque unAtaque = new Ataque( new Danio(499) );
 
         // Criadero 500V
-        unCriadero.aplicarAtaque(unAtaque);
+        unCriadero.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow( () -> unCriadero.aplicarAtaque(unAtaque) );
+        assertDoesNotThrow( () -> unCriadero.recibirAtaque(unAtaque) );
     }
 
     @Test
@@ -31,12 +31,12 @@ public class CasoDeUso10Test {
         Ataque unAtaque = new Ataque( new Danio(999) );
 
         // Reserva de produccion 1000V
-        unaReservaDeReproduccion.aplicarAtaque(unAtaque);
+        unaReservaDeReproduccion.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unaReservaDeReproduccion.pasarTurno();
 
-        assertDoesNotThrow( () -> unaReservaDeReproduccion.aplicarAtaque(unAtaque) );
+        assertDoesNotThrow( () -> unaReservaDeReproduccion.recibirAtaque(unAtaque) );
     }
 
     @Test
@@ -46,12 +46,12 @@ public class CasoDeUso10Test {
         Ataque unAtaque = new Ataque( new Danio(749) );
 
         // Extractor 750V
-        unExtractor.aplicarAtaque(unAtaque);
+        unExtractor.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unExtractor.pasarTurno();
 
-        assertDoesNotThrow( () -> unExtractor.aplicarAtaque(unAtaque) );
+        assertDoesNotThrow( () -> unExtractor.recibirAtaque(unAtaque) );
     }
 
     @Test
@@ -60,12 +60,12 @@ public class CasoDeUso10Test {
         Ataque unAtaque = new Ataque( new Danio(1249) );
 
         // Guardia 1250V
-        unaGuarida.aplicarAtaque(unAtaque);
+        unaGuarida.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unaGuarida.pasarTurno();
 
-        assertDoesNotThrow( () -> unaGuarida.aplicarAtaque(unAtaque) );
+        assertDoesNotThrow( () -> unaGuarida.recibirAtaque(unAtaque) );
     }
 
     @Test
@@ -74,11 +74,11 @@ public class CasoDeUso10Test {
         Ataque unAtaque = new Ataque( new Danio(1299) );
 
         // Espiral 1300V
-        unaEspiral.aplicarAtaque(unAtaque);
+        unaEspiral.recibirAtaque(unAtaque);
 
         for (int i = 0; i < 7; i++)
             unaEspiral.pasarTurno();
 
-        assertDoesNotThrow( () -> unaEspiral.aplicarAtaque(unAtaque) );
+        assertDoesNotThrow( () -> unaEspiral.recibirAtaque(unAtaque) );
     }
 }

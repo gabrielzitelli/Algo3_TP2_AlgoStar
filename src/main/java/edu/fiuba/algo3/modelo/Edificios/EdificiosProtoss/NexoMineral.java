@@ -23,6 +23,7 @@ public class NexoMineral extends Edificio {
         this.estadoRecolectable = new MineralRecolectable();
         this.estadoMoho = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
+        this.superficieRequerida = new SuperficieTerrestre();
         this.mineralesDelImperio = mineralesDelImperio;
         estado = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
     }

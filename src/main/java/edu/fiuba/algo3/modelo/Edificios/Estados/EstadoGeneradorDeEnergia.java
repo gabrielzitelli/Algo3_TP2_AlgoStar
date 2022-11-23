@@ -10,4 +10,6 @@ public interface EstadoGeneradorDeEnergia {
 
     void marcarSuministro(Suministro suministroImperio, int cantidadAumentoSuministro);
     void modificarSuministro();
+    void desenergizar(Coordenada coordenada);
+
 }
