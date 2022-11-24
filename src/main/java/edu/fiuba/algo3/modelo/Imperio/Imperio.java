@@ -171,6 +171,11 @@ public abstract class Imperio {
     }
 
     public boolean tenesEstaPoblacion(int unaCantidad){
+
         return (unaCantidad == poblacion.obtenerPoblacion());
+    }
+
+    public ArrayList<Unidad> dameLaListaUnidades(){
+        return unidades;
     }
 }
