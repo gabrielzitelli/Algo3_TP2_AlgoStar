@@ -36,14 +36,14 @@ public abstract class Imperio {
     private void revisarDestruccionDeEdificios() {
         LinkedList<Edificio> edificiosDestruidos = new LinkedList<>();
 
-        for (Edificio edificio : edificios){
-            if(edificio.estaDestruido())
+        for (Edificio edificio : edificios) {
+            if (edificio.estaDestruido())
                 edificiosDestruidos.add(edificio);
-
-        for (Edificio edificioDestruido : edificiosDestruidos)
+        }
+        for (Edificio edificioDestruido : edificiosDestruidos) {
             this.edificios.remove(edificioDestruido);
+        }
     }
-
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
         edificio.modificarPoblacion(poblacion);
