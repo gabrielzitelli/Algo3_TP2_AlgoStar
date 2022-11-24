@@ -22,6 +22,7 @@ public abstract class Imperio {
     protected Jugador jugadorQueControlaImperio;
 
     public void terminarTurno(){
+        revisarDestruccionDeEdificios();
         for (Edificio edificio : edificios) {
             edificio.pasarTurno();
         }
@@ -29,6 +30,18 @@ public abstract class Imperio {
             unidad.pasarTurno();
         }
     }
+
+    private void revisarDestruccionDeEdificios() {
+        LinkedList<Edificio> edificiosDestruidos = new LinkedList<>();
+        for (Edificio edificio : edificios){
+            if(edificio.estaDestruido())
+                edificiosDestruidos.add(edificio);
+        }
+        for (Edificio edificioDestruido : edificiosDestruidos){
+            this.edificios.remove(edificioDestruido);
+        }
+    }
+
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
         edificio.modificarPoblacion(poblacion);
@@ -129,6 +142,6 @@ public abstract class Imperio {
     }
 
     public boolean partidaTerminada(){
-        return (edificios.size() == 0);
+        return (this.edificios.size() == 0);
     }
 }

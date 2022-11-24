@@ -65,7 +65,7 @@ public class CasoDeUso32Test {
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
         }
-
+        zergs.terminarTurno();
         // Despues del ataque al unico edificio zerg, la partida se termino
         assertTrue(algoStar.partidaTerminada());
     }
