@@ -175,6 +175,11 @@ public abstract class Imperio {
         return (unaCantidad == poblacion.obtenerPoblacion());
     }
 
+    //TODO Sacar, implementar algoritmo del mapa para obtener unidad como obtener Edificio
+
+    /**
+     * Provisorio porque implementar algoritmo del mapa para obtener unidad como obtener Edificio
+     */
     public ArrayList<Unidad> dameLaListaUnidades(){
         return unidades;
     }

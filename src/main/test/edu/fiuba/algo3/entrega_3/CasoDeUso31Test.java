@@ -18,6 +18,8 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -70,12 +72,12 @@ public class CasoDeUso31Test {
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        //Ahora tengo el criadero construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
-        //Creo un Dragon para atacar al criadero
+        //Ahora tengo el pilon construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
+        //Creo un Dragon para atacar al pilon
         Unidad unHidralisco = new Hidralisco();
         elMapa.colocarUnaUnidad(unHidralisco, coordenadaHidralisco);
 
-        //Destruyo el criadero
+        //Destruyo el pilon
         for (int i = 0; i < 60; i++)
             elMapa.atacar(coordenadaHidralisco, coordenadaPilon);
 
@@ -85,34 +87,11 @@ public class CasoDeUso31Test {
     }
 
     @Test
-    public void test03ConstruyoUnPilonYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
-        /*Mapa elMapa = Mapa.obtener();
-        Protoss imperioProtoss = new Protoss();
-        Coordenada coordenadaPilon = new Coordenada(0,0);
-        Coordenada coordenadaHidralisco = new Coordenada(1,0);
-
-        imperioProtoss.abastecerDeRecursos(new Mineral(375), new Gas(50));
-        imperioProtoss.construirPilon(coordenadaPilon);
-
-        //Esperamos a que se construya el pilon
-        for(int i = 0; i < 5; i++)
-            imperioProtoss.terminarTurno();
-
-        //Ahora tengo el criadero construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
-        //Creo un Dragon para atacar al criadero
-        Unidad unHidralisco = new Hidralisco();
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaHidralisco);
-
-        //Destruyo el criadero
-        for (int i = 0; i < 60; i++)
-            elMapa.atacar(coordenadaHidralisco, coordenadaPilon);
-
-        imperioProtoss.terminarTurno();
-
-        assertTrue(imperioProtoss.tenesEsteSuministro(0));*/
+    public void test03ConstruyoUnAmoPilonYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
+        Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
@@ -121,20 +100,29 @@ public class CasoDeUso31Test {
 
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
-
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaAmoSupremo()));
-
-        //No pasan los turnos, aun no tengo al amo supremo
-        assertFalse(imperioZerg.tieneUnidad(new AmoSupremo()));
+        criadero.crearUnidad(new FabricaAmoSupremo());
 
         //Pasan 5 turnos y lo tenemos
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        assertTrue(imperioZerg.tieneUnidad(new AmoSupremo()));
+        Coordenada coordenadaAmoSupremo = new Coordenada(1,1);
+        Coordenada coordenadaDragon = new Coordenada(1,2);
 
-        assertTrue(imperioZerg.tenesEsteSuministro(10)); //5 del criadero + 5 del amo supremo
+        ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
+        Unidad unAmoSupremo = listaZergUnidades.get(0);
 
-        assertTrue(imperioZerg.tenesEstaPoblacion(0));
+        elMapa.colocarUnaUnidad(unAmoSupremo, coordenadaAmoSupremo);
+
+        Unidad unDragon = new Dragon();
+        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+
+        //Mato al Amo Supremo
+        for (int i = 0; i < 10; i++)
+            elMapa.atacar(coordenadaDragon, coordenadaAmoSupremo);
+
+        imperioZerg.terminarTurno();
+
+        assertTrue(imperioZerg.tenesEsteSuministro(5)); //5 del criadero + 0 del AmoSupremo porque esta muerto
     }
 }
