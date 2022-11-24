@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
 
@@ -153,6 +154,7 @@ public class CasoDeUso3Test {
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaPilon = new Coordenada(0,1);
         Pilon pilon = new Pilon();
+        pilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(pilon, coordenadaPilon);
 
@@ -173,6 +175,7 @@ public class CasoDeUso3Test {
         Coordenada coordenada = new Coordenada(0,0);
         Coordenada coordenadaPilon = new Coordenada(0,1);
         Pilon pilon = new Pilon();
+        pilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(pilon, coordenadaPilon);
 

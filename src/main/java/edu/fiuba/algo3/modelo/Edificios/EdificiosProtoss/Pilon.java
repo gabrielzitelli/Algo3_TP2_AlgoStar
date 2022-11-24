@@ -28,6 +28,7 @@ public class Pilon extends Edificio {
     @Override
     protected void destruirEdificio() {
         Mapa elMapa = Mapa.obtener();
+        estadoGeneradorDeEnergia.disminuirSuministro(suministroAportado);
         elMapa.destruirEdificio(coordenada);
         estadoGeneradorDeEnergia.desenergizar(coordenada);
     }
@@ -45,5 +46,9 @@ public class Pilon extends Edificio {
     public void construirInmediatamente(){
         for (int i = 0; i < turnoParaEstarConstruido; i++)
             pasarTurno();
+    }
+
+    public void asignarSuministro(Suministro poblacionDelImperio){
+        estadoGeneradorDeEnergia.marcarSuministro(poblacionDelImperio, 0);
     }
 }

@@ -3,6 +3,7 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,6 +48,7 @@ public class PilonTest{
         Coordenada coordenadaAcceso = new Coordenada(2,3);
         Pilon unpilon = new Pilon();
         Acceso unAcceso = new Acceso();
+        unpilon.asignarSuministro(new Suministro(0));
 
         elmapa.construirEdificio(unpilon, coordenadasPilon);
 

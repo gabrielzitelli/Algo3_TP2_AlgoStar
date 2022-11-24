@@ -7,7 +7,7 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
 
     private int turnoParaEstarConstruido;
 
-    private Suministro poblacionImperio = new Suministro(0);
+    private Suministro poblacionImperio;
 
     private int aumentoSuministro;
 
@@ -20,7 +20,9 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
         turnoParaEstarConstruido--;
         if(turnoParaEstarConstruido == 0) {
             this.modificarSuministro();
-            return new EstadoGeneradorDeEnergiaConstruido(coordenada);
+            EstadoGeneradorDeEnergiaConstruido nuevoEstado = new EstadoGeneradorDeEnergiaConstruido(coordenada);
+            nuevoEstado.marcarSuministro(poblacionImperio, 0);
+            return nuevoEstado;
         }
         return this;
     }
@@ -37,6 +39,8 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
     }
 
     public void desenergizar(Coordenada coordenada) {
+    }
 
+    public void disminuirSuministro(int cantidadDisminucionSuministro){
     }
 }

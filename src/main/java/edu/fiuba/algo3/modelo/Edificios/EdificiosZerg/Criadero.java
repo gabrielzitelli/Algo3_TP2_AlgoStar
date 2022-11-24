@@ -66,9 +66,9 @@ public class Criadero extends Edificio {
 
     protected void destruirEdificio() {
         Mapa elMapa = Mapa.obtener();
+        estadoHabilitador.disminuirSuministro(suministroAportado);
         elMapa.destruirEdificio(coordenada);
         elMapa.expandirMoho(coordenada, 0);
-        estadoHabilitador.disminuirSuministro(suministroAportado);
         this.estaDestruido = true;
     }
 

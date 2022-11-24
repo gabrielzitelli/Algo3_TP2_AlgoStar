@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Ataque.*;
@@ -30,6 +31,7 @@ public class CasoDeUso14Test {
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
         Coordenada coordenadaAcceso = new Coordenada(1,0);
+        unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);
         //Se construye el pilon
@@ -54,6 +56,7 @@ public class CasoDeUso14Test {
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
         Coordenada coordenadaAcceso = new Coordenada(1,0);
+        unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);
         //Se construye el pilon
@@ -78,6 +81,7 @@ public class CasoDeUso14Test {
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
         Coordenada coordenadaReserva = new Coordenada(1,0);
+        unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);
         //Se construye el pilon
@@ -101,6 +105,7 @@ public class CasoDeUso14Test {
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
         Coordenada coordenadaGuarida = new Coordenada(1,0);
+        unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);
         //Se construye el pilon
@@ -125,6 +130,7 @@ public class CasoDeUso14Test {
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
         Coordenada coordenadaEspiral = new Coordenada(1,0);
+        unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);
         //Se construye el pilon
@@ -149,6 +155,7 @@ public class CasoDeUso14Test {
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
         Coordenada coordenadaExtractor = new Coordenada(1,0);
+        unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);
         //Se construye el pilon
@@ -174,6 +181,7 @@ public class CasoDeUso14Test {
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
         Ataque unAtaque = new Ataque(new Danio(600));
+        unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);
         //Se construye el pilon

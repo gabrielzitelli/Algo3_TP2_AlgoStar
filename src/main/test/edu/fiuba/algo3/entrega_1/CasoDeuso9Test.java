@@ -47,6 +47,9 @@ public class CasoDeuso9Test {
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
 
+        pilon1.asignarSuministro(new Suministro(0));
+        pilon2.asignarSuministro(new Suministro(0));
+
         elMapa.construirEdificio(pilon1, coordenadaPilon1);
         elMapa.construirEdificio(pilon2, coordenadaPilon2);
 
@@ -76,6 +79,9 @@ public class CasoDeuso9Test {
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );
+
+        pilon1.asignarSuministro(new Suministro(0));
+        pilon2.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(pilon1, coordenadaPilon1);
         elMapa.construirEdificio(pilon2, coordenadaPilon2);
@@ -109,6 +115,9 @@ public class CasoDeuso9Test {
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );
+
+        pilon1.asignarSuministro(new Suministro(0));
+        pilon2.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(pilon1, coordenadaPilon1);
         elMapa.construirEdificio(pilon2, coordenadaPilon2);
