@@ -141,7 +141,6 @@ public class Mapa {
     }
 
     public void destruirEdificio(Coordenada coordenada){
-        // Capaz estoy acoplando mucho edificio y mapa con esto
         Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestruir = casillaDestruir.desconstruirEdificio(coordenada);
         this.actualizarCasillaPorCoordenada(coordenada, casillaDestruir);

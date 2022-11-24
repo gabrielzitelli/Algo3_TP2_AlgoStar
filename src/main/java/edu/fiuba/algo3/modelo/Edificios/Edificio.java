@@ -28,6 +28,7 @@ public abstract class Edificio implements Ocupable {
     protected int costoMineral;
     protected int costoGas;
     protected int suministroAportado = 0;
+    protected boolean estaDestruido = false;
 
     public abstract void pasarTurno();
 
@@ -61,9 +62,9 @@ public abstract class Edificio implements Ocupable {
     }
 
     protected void destruirEdificio() {
-        // Capaz estoy acoplando mucho edificio y mapa con esto
         Mapa elMapa = Mapa.obtener();
         elMapa.destruirEdificio(coordenada);
+        this.estaDestruido = true;
     }
 
     public boolean esIgualA(Edificio edificio) {
@@ -80,4 +81,7 @@ public abstract class Edificio implements Ocupable {
 
     public void modificarPoblacion(Suministro poblacion){}
 
+    public boolean estaDestruido(){
+        return this.estaDestruido;
+    }
 }

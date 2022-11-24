@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.AlgoStar.Jugador;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
@@ -18,8 +19,10 @@ public abstract class Imperio {
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
     protected int cantidadInicialDeMineral = 200;
+    protected Jugador jugadorQueControlaImperio;
 
     public void terminarTurno(){
+        revisarDestruccionDeEdificios();
         for (Edificio edificio : edificios) {
             edificio.pasarTurno();
         }
@@ -27,6 +30,18 @@ public abstract class Imperio {
             unidad.pasarTurno();
         }
     }
+
+    private void revisarDestruccionDeEdificios() {
+        LinkedList<Edificio> edificiosDestruidos = new LinkedList<>();
+        for (Edificio edificio : edificios){
+            if(edificio.estaDestruido())
+                edificiosDestruidos.add(edificio);
+        }
+        for (Edificio edificioDestruido : edificiosDestruidos){
+            this.edificios.remove(edificioDestruido);
+        }
+    }
+
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
         edificio.modificarPoblacion(poblacion);
@@ -122,7 +137,17 @@ public abstract class Imperio {
         return ( unaCantidad == poblacion.obtenerSuministro() );
     }
 
+
+    public void asignarJugadorAlImperio(Jugador unJugador){
+        this.jugadorQueControlaImperio = unJugador;
+    }
+
+    public boolean partidaTerminada(){
+        return (this.edificios.size() == 0);
+    }
+    
     public boolean tenesEstaPoblacion(int unaCantidad){
         return (unaCantidad == poblacion.obtenerPoblacion());
+
     }
 }
