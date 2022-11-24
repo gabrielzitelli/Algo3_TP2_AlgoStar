@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaZealot;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
@@ -58,5 +61,9 @@ public class Zealot extends UnidadProtoss {
 
     public void recibirAtaqueDefault(Ataque unAtaque) {
         super.recibirAtaque(unAtaque);
+    }
+
+    public void disminuirPoblacion(Suministro suministroImperio){
+        suministroImperio.disminuirPoblacion(FabricaZealot.obtenerPoblacionNecesaria());
     }
 }

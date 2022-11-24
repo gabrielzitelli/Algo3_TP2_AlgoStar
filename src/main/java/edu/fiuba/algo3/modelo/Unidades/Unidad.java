@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
@@ -26,6 +27,8 @@ public abstract class Unidad implements Ocupable {
      protected Vida vida;
      protected int costoMineral;
      protected int costoGas;
+
+     protected boolean estadoMuerta = false;
 
 
      public void verificarColocable(Casilla unaCasilla) {
@@ -64,6 +67,7 @@ public abstract class Unidad implements Ocupable {
      protected void destruirUnidad() {
           Mapa elMapa = Mapa.obtener();
           elMapa.quitarUnidad(coordenada);
+          this.estadoMuerta = true;
      }
 
      public boolean esIgualA(Unidad unidad) {
@@ -76,4 +80,10 @@ public abstract class Unidad implements Ocupable {
           requisitosMateriales.add(new Gas(costoGas));
           return requisitosMateriales;
      }
+
+     public boolean estaMuerta() {
+          return this.estadoMuerta;
+     }
+
+     public abstract void disminuirPoblacion(Suministro suministroImperio);
 }

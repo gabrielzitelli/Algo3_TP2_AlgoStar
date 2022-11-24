@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Ataque.DanioZangano;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Recolectable;
@@ -43,5 +45,9 @@ public class Zangano extends UnidadZerg {
 
     public void extraer(){
         mineralDelImperio.depositar(recursoARecolectar.extraer(10));
+    }
+
+    public void disminuirPoblacion(Suministro suministroImperio){
+        suministroImperio.disminuirPoblacion(FabricaZangano.obtenerPoblacionNecesaria());
     }
 }

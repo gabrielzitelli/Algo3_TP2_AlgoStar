@@ -25,7 +25,7 @@ public abstract class Imperio {
 
     public void terminarTurno(){
         revisarDestruccionDeEdificios();
-
+        revisarDestruccionDeUnidades();
         for (Edificio edificio : edificios)
             edificio.pasarTurno();
 
@@ -44,6 +44,22 @@ public abstract class Imperio {
             this.edificios.remove(edificioDestruido);
         }
     }
+
+
+    private void revisarDestruccionDeUnidades() {
+        LinkedList<Unidad> unidadesAsesinadas = new LinkedList<>();
+
+        for (Unidad unidad : unidades) {
+            if (unidad.estaMuerta())
+                unidadesAsesinadas.add(unidad);
+        }
+        for (Unidad unidadAsesinada : unidadesAsesinadas) {
+            unidadAsesinada.disminuirPoblacion(poblacion);
+            this.unidades.remove(unidadAsesinada);
+        }
+    }
+
+
 
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();

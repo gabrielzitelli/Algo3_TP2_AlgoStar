@@ -112,7 +112,7 @@ public class CasoDeUso26Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaAmoSupremo( imperioZerg.obtenerSuministro() )));
+        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaAmoSupremo()));
 
         //No pasan los turnos, aun no tengo al amo supremo
         assertFalse(imperioZerg.tieneUnidad(new AmoSupremo()));

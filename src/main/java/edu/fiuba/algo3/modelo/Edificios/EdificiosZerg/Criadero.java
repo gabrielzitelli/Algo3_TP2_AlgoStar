@@ -46,12 +46,11 @@ public class Criadero extends Edificio {
         estadoGeneradorDeMoho = new EstadoGeneradorDeMohoEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaZangano());
-        listaFabricasAHabilitar.add(new FabricaAmoSupremo(estadoHabilitador.obtenerSuministro()));
+        listaFabricasAHabilitar.add(new FabricaAmoSupremo());
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
 
-        //TODO la unidad en algun momento tiene que recibir el SUMINISTRO Y los recursos para gastarlos
         if (cantidadLarvas > 0) {
             estadoHabilitador.estaAptoParaCrearse(unaFabrica);
             estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);

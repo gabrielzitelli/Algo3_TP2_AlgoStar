@@ -45,4 +45,12 @@ public class Suministro{
     public void agregarPoblacion(int poblacionNecesaria) {
         this.poblacion += poblacionNecesaria;
     }
+
+    public void disminuirPoblacion(int cantidadADisminuir){
+
+        if ((poblacion-cantidadADisminuir) < 0)
+            poblacion = 0;
+        else
+            poblacion -= cantidadADisminuir;
+    }
 }

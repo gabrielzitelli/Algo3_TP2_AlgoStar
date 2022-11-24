@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
@@ -21,5 +24,9 @@ public class Zerling extends UnidadZerg {
         this.rangoDeAtaque = 1;
         this.costoGas = 0;
         this.costoMineral = 25;
+    }
+
+    public void disminuirPoblacion(Suministro suministroImperio){
+        suministroImperio.disminuirPoblacion(FabricaZerling.obtenerPoblacionNecesaria());
     }
 }

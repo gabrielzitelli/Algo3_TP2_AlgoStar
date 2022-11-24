@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 public abstract class Fabrica {
 
-    protected int poblacionNecesaria;
+    protected static int poblacionNecesaria;
 
     public abstract Unidad crearUnidad();
 
@@ -17,4 +17,9 @@ public abstract class Fabrica {
         unSuministro.tenesCapacidad(poblacionNecesaria);
         unSuministro.agregarPoblacion(poblacionNecesaria);
     }
+
+    public static int obtenerPoblacionNecesaria(){
+        return poblacionNecesaria;
+    }
+
 }
