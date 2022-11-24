@@ -44,11 +44,10 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
         poblacionImperio.aumentarSuministro( aumentoSuministro );
     }
 
-    @Override
-    public void estaAptoParaCrearse(Fabrica unaFabrica){
+    public void disminuirSuministro(int cantidadDisminucionSuministro){
     }
 
-    public Suministro obtenerSuministro(){
-        return poblacionImperio;
+    @Override
+    public void estaAptoParaCrearse(Fabrica unaFabrica){
     }
 }

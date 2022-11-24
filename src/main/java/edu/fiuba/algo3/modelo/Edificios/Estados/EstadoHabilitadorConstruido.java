@@ -25,15 +25,14 @@ public class EstadoHabilitadorConstruido implements EstadoHabilitador {
 
     @Override
     public void modificarSuministro(){
+    }
 
+    public void disminuirSuministro(int cantidadDisminucionSuministro){
+        poblacionImperio.disminuirSuministro(cantidadDisminucionSuministro);
     }
 
     @Override
      public void estaAptoParaCrearse(Fabrica unaFabrica){
         unaFabrica.estasApta(poblacionImperio);
      }
-
-    public Suministro obtenerSuministro(){
-        return poblacionImperio;
-    }
 }

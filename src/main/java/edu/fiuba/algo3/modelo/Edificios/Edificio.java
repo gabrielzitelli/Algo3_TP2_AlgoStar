@@ -29,7 +29,7 @@ public abstract class Edificio implements Ocupable {
     protected int costoGas;
     protected Mineral mineralDelImperio;
     protected Gas gasDelImperio;
-    protected int suministroAportado = 0;
+    protected int suministroAportado;
     protected boolean estaDestruido = false;
 
     public abstract void pasarTurno();
