@@ -24,6 +24,7 @@ public class Pilon extends Edificio {
         this.superficieRequerida = new SuperficieTerrestre();
         estadoGeneradorDeEnergia = new EstadoGeneradorDeEnergiaEnConstruccion(turnoParaEstarConstruido);
     }
+
     @Override
     protected void destruirEdificio() {
         Mapa elMapa = Mapa.obtener();

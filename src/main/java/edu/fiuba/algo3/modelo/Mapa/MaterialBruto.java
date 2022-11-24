@@ -6,11 +6,10 @@ public abstract class MaterialBruto {
     public int extraer(int cantidadAExtraer){
 
         int nuevaCantidadMaterial = cantidad - cantidadAExtraer;
-        if(nuevaCantidadMaterial < 0){
+        if(nuevaCantidadMaterial < 0)
             return 0;
-        }
+
         cantidad = nuevaCantidadMaterial;
         return cantidadAExtraer;
-
     }
 }

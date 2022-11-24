@@ -24,8 +24,6 @@ public class CasoDeUso26Test {
         Mapa.obtener().reiniciarMapa();
     }
 
-
-
     @Test
     public void test01ConstruyoUnCriaderoParaTenerSuministroYCreoUnidades() {
         Zerg imperioZerg = new Zerg();

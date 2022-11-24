@@ -4,7 +4,6 @@ class AlgoStar {
     - jugadores : Jugador
 
     + AsignarJugador(nombre : String, color : String, imperio : Imperio)
-    + revisarJugador(jugadorARevisar : Jugador)
 }
 
 class Jugador {
@@ -13,11 +12,14 @@ class Jugador {
     - imperio : Imperio
 
     + Jugador(nombre : String, color : String, imperio : Imperio)
-    - verificarLargoDeNombre(nombre : String)
-    - verificarRespectoDe(jugador : Jugador)
-
 }
 
-AlgoStar *-- "0..8" Jugador
+class Imperio {
+
+    + asignarJugador(unJugador : Jugador)
+}
+
+AlgoStar *-- "*" Jugador
+Imperio -- Jugador
 
 @enduml

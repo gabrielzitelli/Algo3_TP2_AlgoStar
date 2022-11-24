@@ -24,6 +24,7 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
         if(turnoParaEstarConstruido == 0) {
             if (fabricasDisponibles != null)
                 fabricasDisponibles.aumentar(fabricasAHabilitar);
+
             modificarSuministro();
             EstadoHabilitador nuevoEstado = new EstadoHabilitadorConstruido();
             nuevoEstado.marcarSuministro(poblacionImperio, 0);

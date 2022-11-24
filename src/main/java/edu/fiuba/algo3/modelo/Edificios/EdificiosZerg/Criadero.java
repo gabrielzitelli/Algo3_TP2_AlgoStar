@@ -56,9 +56,8 @@ public class Criadero extends Edificio {
             estadoHabilitador.estaAptoParaCrearse(unaFabrica);
             estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
             cantidadLarvas--;
-        }else {
+        }else
             throw new ErrorCriaderoNoTieneMasLarvas();
-        }
     }
 
     private void regenerarUnaLarva(){
@@ -70,6 +69,7 @@ public class Criadero extends Edificio {
         Mapa elMapa = Mapa.obtener();
         elMapa.destruirEdificio(coordenada);
         elMapa.expandirMoho(coordenada, 0);
+        this.estaDestruido = true;
     }
 
     public void pasarTurno(){

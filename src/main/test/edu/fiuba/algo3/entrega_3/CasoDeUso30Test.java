@@ -17,12 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CasoDeUso30Test {
 
-
     @BeforeEach
     public void setup(){
         Mapa.obtener().reiniciarMapa();
     }
-
 
     @Test
     public void test01ConstruyoUnCriaderoParaTener5DeSuministroYCreo5UnidadesParaTener5DePoblacion() {
@@ -53,7 +51,6 @@ public class CasoDeUso30Test {
             imperioZerg.terminarTurno();
         }
 
-
         assertTrue(imperioZerg.tieneUnidad(new Zerling()));
 
         assertTrue(imperioZerg.tenesEsteSuministro(5));
@@ -64,7 +61,6 @@ public class CasoDeUso30Test {
     @Test
     public void test02ConstruyoUnCriaderoParaTener5DeSuministroYCreo6UnidadesMeDeberiaTirarUnaExcepcion() {
         Zerg imperioZerg = new Zerg();
-
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
         imperioZerg.construirCriadero(new Coordenada(0,0));

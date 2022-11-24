@@ -18,7 +18,6 @@ public class CasoDeUso29Test {
         Mapa.obtener().reiniciarMapa();
     }
 
-
     @Test
     public void test01InicioZergCreoCriaderosParaChequearQueAumenteBienElSuministro(){
         Mapa elMapa = Mapa.obtener();
@@ -155,7 +154,5 @@ public class CasoDeUso29Test {
         }
 
         assertTrue(imperioProto.tenesEsteSuministro(195));
-
     }
-
 }

@@ -25,11 +25,9 @@ public class Mapa {
 
     private void inicializarMapaConCasillasVacias(){
         matriz = new Casilla[tamanio][tamanio];
-        for (int i = 0; i < tamanio; i++) {
-            for (int j = 0; j < tamanio; j++) {
+        for (int i = 0; i < tamanio; i++)
+            for (int j = 0; j < tamanio; j++)
                 matriz[i][j] = new CasillaVacia(new Coordenada(i, j));
-            }
-        }
     }
 
     private void colocarBasesPorMitadDeMapa(double densidadDeBasesPorEje, int cantidadDeBases, int comienzoDeLaMitadDelMapa){
@@ -141,7 +139,6 @@ public class Mapa {
     }
 
     public void destruirEdificio(Coordenada coordenada){
-        // Capaz estoy acoplando mucho edificio y mapa con esto
         Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestruir = casillaDestruir.desconstruirEdificio(coordenada);
         this.actualizarCasillaPorCoordenada(coordenada, casillaDestruir);
@@ -310,18 +307,19 @@ public class Mapa {
     public boolean estaEnergizado(Coordenada coordenada) {
         boolean carga = true;
         Casilla casilla = encontrarCasillaPorCoordenada(coordenada);
+
         try {
             casilla.tieneEstaCarga(new ConCarga());
         } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla error){
             carga = false;
         }
+
         return carga;
     }
 
     public boolean estaDentroDeRango(Coordenada coordenada, Casilla casillaAtacada, int rangoDeAtaque) {
-        if (rangoDeAtaque == 0){
+        if (rangoDeAtaque == 0)
             throw new ErrorUnidadNoPuedeAtacar();
-        }
 
         LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
         return casillas.contains(casillaAtacada);

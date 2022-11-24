@@ -30,6 +30,7 @@ public class CasoDeUso27Test {
         assertThrows(ErrorNoHayMutaliscoParaEvolucionar.class,
                 () -> imperioZerg.evolucionarMutaliscoADevorador());
     }
+
     @Test
     public void test02PuedoEvolucionarAUnMutaliscoADevoradorSiTengoLosRecursosSuficientes() {
         Zerg imperioZerg = new Zerg();
@@ -78,6 +79,7 @@ public class CasoDeUso27Test {
         //tenemos el guardian
         assertTrue(imperioZerg.tieneUnidad(new Devorador()));
     }
+
     @Test
     public void test03NoPuedoEvolucionarAUnMutaliscoNoTengoLosRecursosSuficientes() {
         Zerg imperioZerg = new Zerg();
