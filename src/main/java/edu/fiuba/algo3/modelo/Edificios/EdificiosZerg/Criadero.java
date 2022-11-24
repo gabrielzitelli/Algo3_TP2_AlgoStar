@@ -46,7 +46,7 @@ public class Criadero extends Edificio {
         estadoGeneradorDeMoho = new EstadoGeneradorDeMohoEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaZangano());
-        listaFabricasAHabilitar.add(new FabricaAmoSupremo());
+        listaFabricasAHabilitar.add(new FabricaAmoSupremo(estadoHabilitador.obtenerSuministro()));
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
@@ -89,7 +89,6 @@ public class Criadero extends Edificio {
         this.unidades = unidades;
     }
 
-
     @Override
     public void modificarPoblacion(Suministro suministro){
         estadoHabilitador.marcarSuministro(suministro, suministroAportado);
@@ -98,5 +97,9 @@ public class Criadero extends Edificio {
     public void construirInmediatamente(){
         for (int i = 0; i < turnoParaEstarConstruido; i++)
             pasarTurno();
+    }
+
+    public void asignarSuministro(Suministro poblacionDelImperio){
+        estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
     }
 }

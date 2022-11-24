@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
@@ -42,6 +43,7 @@ public class CasoDeuso9Test {
         Acceso unAcceso = new Acceso();
         unAcceso.asignarRecursos(new Mineral(1000), new Gas(1000));
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
+        unAcceso.asignarSuministro(new Suministro(5));
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
 
@@ -70,6 +72,7 @@ public class CasoDeuso9Test {
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
         unAcceso.asignarRecursos(new Mineral(1000), new Gas(1000));
+        unAcceso.asignarSuministro(new Suministro(5));
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );

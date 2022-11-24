@@ -44,6 +44,7 @@ public abstract class Imperio {
             this.edificios.remove(edificioDestruido);
         }
     }
+
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
         edificio.modificarPoblacion(poblacion);
@@ -135,6 +136,9 @@ public abstract class Imperio {
         return ( unaCantidad == poblacion.obtenerSuministro() );
     }
 
+    public Suministro obtenerSuministro(){
+        return this.poblacion;
+    }
 
     public void asignarJugadorAlImperio(Jugador unJugador){
         this.jugadorQueControlaImperio = unJugador;

@@ -16,5 +16,5 @@ public interface EstadoHabilitador {
 
     void estaAptoParaCrearse(Fabrica unaFabrica);
 
-
+    Suministro obtenerSuministro();
 }

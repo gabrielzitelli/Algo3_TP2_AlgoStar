@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +43,7 @@ public class PuertoEstelarTest {
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
         puertoEstelar.asignarRecursos(new Mineral(1000), new Gas(1000));
+        puertoEstelar.asignarSuministro(new Suministro(4));
 
         //Construyo Puerto Estelar
         for(int i = 0; i < 10; i++)

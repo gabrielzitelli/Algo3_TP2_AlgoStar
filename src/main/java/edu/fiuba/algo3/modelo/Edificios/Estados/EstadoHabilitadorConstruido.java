@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class EstadoHabilitadorConstruido implements EstadoHabilitador {
 
-    private Suministro poblacionImperio = new Suministro(200);
+    private Suministro poblacionImperio;
 
     private int aumentoSuministro; // PUEDE SERVIR PARA DESTRUIR SINO SACARLO
 
@@ -33,5 +33,7 @@ public class EstadoHabilitadorConstruido implements EstadoHabilitador {
         unaFabrica.estasApta(poblacionImperio);
      }
 
-
+    public Suministro obtenerSuministro(){
+        return poblacionImperio;
+    }
 }

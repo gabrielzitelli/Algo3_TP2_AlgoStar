@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
@@ -67,5 +68,14 @@ public class Acceso extends EdificioConCarga {
     public void construirInmediatamente(){
         for (int i = 0; i < turnoParaEstarConstruido; i++)
             pasarTurno();
+    }
+
+    @Override
+    public void modificarPoblacion(Suministro suministro){
+        estadoHabilitador.marcarSuministro(suministro, suministroAportado);
+    }
+
+    public void asignarSuministro(Suministro poblacionDelImperio){
+        estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
     }
 }
