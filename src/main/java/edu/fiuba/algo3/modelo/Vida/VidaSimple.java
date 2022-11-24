@@ -23,8 +23,7 @@ public class VidaSimple implements Vida{
     }
 
     private void validarVidaLlegoACero(){
-        if(this.cantidad <= 0){
+        if(this.cantidad <= 0)
             throw new ErrorVidaLlegoACero();
-        }
     }
 }

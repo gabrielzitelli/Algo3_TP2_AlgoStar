@@ -23,23 +23,24 @@ public abstract class Imperio {
 
     public void terminarTurno(){
         revisarDestruccionDeEdificios();
-        for (Edificio edificio : edificios) {
+
+        for (Edificio edificio : edificios)
             edificio.pasarTurno();
-        }
-        for (Unidad unidad: unidades){
+
+        for (Unidad unidad: unidades)
             unidad.pasarTurno();
-        }
     }
 
     private void revisarDestruccionDeEdificios() {
         LinkedList<Edificio> edificiosDestruidos = new LinkedList<>();
+
         for (Edificio edificio : edificios){
             if(edificio.estaDestruido())
                 edificiosDestruidos.add(edificio);
         }
-        for (Edificio edificioDestruido : edificiosDestruidos){
+
+        for (Edificio edificioDestruido : edificiosDestruidos)
             this.edificios.remove(edificioDestruido);
-        }
     }
 
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
@@ -65,8 +66,6 @@ public abstract class Imperio {
         mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
         Recurso gasAconsumir = listaDeRequisitos.get(1);
         gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
-
-
     }
 
     protected void comprobarRequisitosMaterialesUnidad(Unidad unaUnidad){
@@ -89,10 +88,11 @@ public abstract class Imperio {
                 }
             }
         }
-        if (requisitosCumplidos != requisitos.size()){
+
+        if (requisitosCumplidos != requisitos.size())
             throw new ErrorNoSeCumplenLosPreRequisitosDelEdificio();
-        }
     }
+
     public boolean tienesEstaCantidadDeMineral(int recurso) {
         return mineralesDelImperio.tenesCantidadDeRecurso(recurso);
     }
@@ -100,6 +100,7 @@ public abstract class Imperio {
     public boolean tienesEstaCantidadDeGas(int recurso) {
         return gasDelImperio.tenesCantidadDeRecurso(recurso);
     }
+
     public Edificio conseguirEdificio(Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
         return mapa.obtenerEdificio(coordenada);
@@ -122,6 +123,7 @@ public abstract class Imperio {
             if (edificio.esIgualA(edificioABuscar))
                 return true;
         }
+
         return false;
     }
 
@@ -130,6 +132,7 @@ public abstract class Imperio {
             if (unidad.esIgualA(unidadABuscar))
                 return true;
         }
+
         return false;
     }
 
@@ -148,6 +151,5 @@ public abstract class Imperio {
     
     public boolean tenesEstaPoblacion(int unaCantidad){
         return (unaCantidad == poblacion.obtenerPoblacion());
-
     }
 }

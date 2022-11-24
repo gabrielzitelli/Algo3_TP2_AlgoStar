@@ -60,9 +60,8 @@ public class Criadero extends Edificio {
             estadoHabilitador.estaAptoParaCrearse(unaFabrica);
             estadoCreador.crearUnidad(unaFabrica, unidades);
             cantidadLarvas--;
-        }else {
+        }else
             throw new ErrorCriaderoNoTieneMasLarvas();
-        }
     }
 
     private void regenerarUnaLarva(){

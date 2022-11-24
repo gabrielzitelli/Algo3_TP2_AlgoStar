@@ -22,23 +22,21 @@ public class AlgoStar {
             // TODO Validar que no haya dos imperios iguales
             imperio.asignarJugadorAlImperio(jugador);
             imperios.add(imperio);
-        } else {
+        } else
             throw new ErrorSoloPuedenJugarDosPersonasAlMismoTiempo();
-        }
     }
 
     private void revisarJugador(Jugador jugadorARevisar) {
-        for (Jugador jugador : jugadores) {
+        for (Jugador jugador : jugadores)
             jugadorARevisar.verificarRespectoDe(jugador);
-        }
     }
 
     public boolean partidaTerminada(){
         for (Imperio imperio : imperios) {
-            if(imperio.partidaTerminada()){
+            if(imperio.partidaTerminada())
                 this.partidaFinalizada = true;
-            }
         }
+
         return this.partidaFinalizada;
     }
 }

@@ -38,12 +38,14 @@ public class Zealot extends UnidadProtoss {
     @Override
     public void atacar(Casilla casillaAAtacar) {
         super.atacar(casillaAAtacar);
+
         try {
             Mapa.obtener().moverUnidad(coordenada, casillaAAtacar.obtenerCoordenada());
         }
         catch (ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada e) {
             return;
         }
+
         estado = estado.aumentarContador();
     }
 

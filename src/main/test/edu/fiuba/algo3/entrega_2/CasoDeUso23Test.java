@@ -34,9 +34,9 @@ public class CasoDeUso23Test {
         elMapa.colocarUnaUnidad(zerling, coordenadaAtacante);
         imperioProtoss.construirPilon(new Coordenada(0,1));
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
-        }
+
         imperioProtoss.construirAcceso(coordenadaEdificio);
         assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class, () ->
                 elMapa.atacar(coordenadaAtacante, coordenadaEdificio));
@@ -53,9 +53,9 @@ public class CasoDeUso23Test {
         elMapa.colocarUnaUnidad(zerling, coordenadaAtacante);
         imperioProtoss.construirPilon(new Coordenada(0,1));
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
-        }
+
         imperioProtoss.construirAcceso(coordenadaEdificio);
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaEdificio));
     }
