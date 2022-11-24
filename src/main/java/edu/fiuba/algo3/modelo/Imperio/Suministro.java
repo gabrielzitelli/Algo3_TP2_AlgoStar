@@ -9,11 +9,12 @@ public class Suministro{
 
     private final int cantidadLimite = 200;
     private int cantidad;
-    private int poblacion = 0 ;
+    private int poblacion ;
 
 
     public Suministro(int cantidadInicial) {
         cantidad = cantidadInicial;
+        poblacion = 0;
     }
 
     public void aumentarSuministro(int cantidadADepositar){
@@ -33,6 +34,10 @@ public class Suministro{
 
     public int obtenerSuministro() {
         return min(cantidadLimite, cantidad);
+    }
+
+    public int obtenerPoblacion(){
+        return poblacion;
     }
 
 

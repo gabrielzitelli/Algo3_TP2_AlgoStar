@@ -137,11 +137,16 @@ public abstract class Imperio {
         return ( unaCantidad == poblacion.obtenerSuministro() );
     }
 
+
     public void asignarJugadorAlImperio(Jugador unJugador){
         this.jugadorQueControlaImperio = unJugador;
     }
 
     public boolean partidaTerminada(){
         return (this.edificios.size() == 0);
+
+    public boolean tenesEstaPoblacion(int unaCantidad){
+        return (unaCantidad == poblacion.obtenerPoblacion());
+
     }
 }
