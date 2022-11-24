@@ -1,0 +1,25 @@
+@startuml
+
+class AlgoStar {
+    - jugadores : Jugador
+
+    + AsignarJugador(nombre : String, color : String, imperio : Imperio)
+}
+
+class Jugador {
+    - nombre : String
+    - color : String
+    - imperio : Imperio
+
+    + Jugador(nombre : String, color : String, imperio : Imperio)
+}
+
+class Imperio {
+
+    + asignarJugador(unJugador : Jugador)
+}
+
+AlgoStar *-- "*" Jugador
+Imperio -- Jugador
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+
+class Mapa {
+    - {static} mapa : Mapa
+
+    - Mapa()
+    + {Static} obtener() : Mapa
+}
+
+
+Mapa --> Mapa
+
+note left of Mapa: Es un Singleton
+
+@enduml

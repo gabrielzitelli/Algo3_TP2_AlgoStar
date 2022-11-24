@@ -2,21 +2,29 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreador;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.States.EstadoAcceso;
-import edu.fiuba.algo3.modelo.States.EstadoAccesoEnConstruccion;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 
-public class Acceso extends Edificio {
+public class Acceso extends EdificioConCarga {
 
+    private EstadoHabilitador estadoHabilitador;
+    private EstadoCreador estadoCreador;
     private int turnoParaEstarConstruido = 8;
     private int valorVital = 500;
-    private EstadoAcceso estado;
-    private ArrayList<Fabrica> listaDeFabricasDisponibles;
+
+    // Fabricas que el edificio habilita
+    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
 
     public Acceso(){
@@ -26,43 +34,40 @@ public class Acceso extends Edificio {
         this.estadoMoho = new SinMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaConEscudo(valorVital, valorVital);
-        estado = new EstadoAccesoEnConstruccion(turnoParaEstarConstruido);
+        this.superficieRequerida = new SuperficieTerrestre();
+
+        estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
+        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);
+
+        listaFabricasAHabilitar.add(new FabricaDragon());
+        listaFabricasAHabilitar.add(new FabricaZealot());
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
-        verificarQueSePuedeFabricar(unaFabrica);
-        estado.crearUnidad(unaFabrica, unidades);
-    }
-
-    private void verificarQueSePuedeFabricar(Fabrica unaFabrica) {
-        for (Fabrica fabricaDisponible : listaDeFabricasDisponibles){
-            if (unaFabrica.esIgualA(fabricaDisponible))
-                return;
+        if (verificarCarga()) {
+            estadoHabilitador.estaAptoParaCrearse(unaFabrica);
+            estadoCreador.crearUnidad(unaFabrica, unidades);
         }
-
-        throw new ErrorNoSeCumplenLosRequisitosDeEstaUnidad();
+        else throw new ErrorElEdificioNoTieneCarga();
     }
 
     public void pasarTurno(){
-        estado = estado.actualizar();
+        estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, fabricasDisponibles);
+        estadoCreador = estadoCreador.actualizar();
         vida.pasarTurno();
     }
 
-    public FabricaDragon crearFabricaDragon() {
-        return estado.crearFabricaDragon();
-    }
-
-    public FabricaZealot crearFabricaZealot(){
-        return estado.crearFabricaZealot();
-    }
-
-    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
-        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
-        this.listaDeFabricasDisponibles.add(new FabricaZealot());
-        this.listaDeFabricasDisponibles.add(new FabricaDragon());
+    public void asignarListaDeUnidades(FabricasDisponibles fabricasDisponibles) {
+        this.fabricasDisponibles = fabricasDisponibles;
+        estadoCreador.asignarFabricasDisponibles(fabricasDisponibles);
     }
 
     public void asignarListaDeUnidadesImperio(ArrayList<Unidad> unidades){
         this.unidades = unidades;
+    }
+
+    public void construirInmediatamente(){
+        for (int i = 0; i < turnoParaEstarConstruido; i++)
+            pasarTurno();
     }
 }

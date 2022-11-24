@@ -7,4 +7,8 @@ public class SuperficieAerea extends Superficie {
     public Ataque conseguirTipoDeAtaque(Ataque unAtaque) {
         return unAtaque.ataqueAereo();
     }
+
+    public boolean puedeMoverse(Superficie superficieAComparar) {
+        return this.getClass().equals(superficieAComparar.getClass());
+    }
 }

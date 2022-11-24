@@ -11,6 +11,7 @@ public class Ataque {
 
     public Ataque(DanioUnidad unDanioUnidad) {
         this.danioUnidad = unDanioUnidad;
+        this.danio = danioUnidad.danioTerrestre();
     }
 
     public int aplicarAtaque(int cantidadVida) {

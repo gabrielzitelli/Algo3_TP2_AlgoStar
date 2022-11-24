@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -13,8 +14,9 @@ public abstract class Casilla {
     protected Recolectable estadoRecolectable;
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
+    protected Revelable estadoRevelable;
     protected Superficie superficie;
-    protected Unidad unidad;
+    protected Ocupable ocupable;
     protected Coordenada coordenada;
 
     public abstract Casilla construirEdificio(Edificio unEdificio);
@@ -24,7 +26,7 @@ public abstract class Casilla {
     public abstract Edificio obtenerEdificio();
     public abstract Casilla colocarUnidad(Unidad unaUnidad);
     public abstract void atacar(Casilla casillaAtacada);
-    protected abstract void recibirAtaque(Ataque unAtaque);
+    public abstract void recibirAtaque(Ataque unAtaque);
     public abstract Casilla moverUnidadHacia(Casilla destino);
     public abstract Casilla quitarUnidad();
 
@@ -55,6 +57,15 @@ public abstract class Casilla {
             throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
     }
 
+    public void tieneEstaSuperficie(Superficie superficieRequerida) {
+        if (superficie.soyDiferenteA(superficieRequerida))
+            throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
+    }
+
+    public boolean puedeMoverse(Superficie superficieAComparar) {
+        return superficie.puedeMoverse(superficieAComparar);
+    }
+
     public Coordenada obtenerCoordenada(){
         return this.coordenada;
     }
@@ -64,5 +75,17 @@ public abstract class Casilla {
             estadoCarga = new ConCarga();
 
         estadoCarga = estadoCarga.cargar();
+    }
+
+    public void descargarDeEnergia() {
+        estadoCarga = estadoCarga.descargar();
+    }
+
+    public void revelar() {
+        estadoRevelable = estadoRevelable.revelar();
+    }
+
+    public boolean tieneEsteRevelable(Revelable unRevelable) {
+        return estadoRevelable.esIgualA(unRevelable);
     }
 }

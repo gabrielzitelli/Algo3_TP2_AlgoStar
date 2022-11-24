@@ -6,11 +6,9 @@ public abstract class Superficie {
 
     public abstract Ataque conseguirTipoDeAtaque(Ataque unAtaque);
 
-    public boolean soyDiferenteA(Superficie superficieAComparar){
-        return !this.getClass().equals(superficieAComparar.getClass());
-    }
+    public abstract boolean puedeMoverse(Superficie superficieAComparar);
 
-    public boolean soyIgualA(Superficie superficieAComparar){
-        return this.getClass().equals(superficieAComparar.getClass());
+    public boolean soyDiferenteA(Superficie superficieRequerida){
+        return !this.getClass().equals(superficieRequerida.getClass());
     }
 }

@@ -11,6 +11,8 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CasoDeUso2Test {
@@ -22,252 +24,398 @@ public class CasoDeUso2Test {
 
     @Test
     public void test01UnCriaderoNoEstaConstruidoEn3Turnos() {
-        Criadero unCriadero = new Criadero();
+        Zerg imperioZerg = new Zerg();
 
-        for (int i = 0; i < 3; i++)
-            unCriadero.pasarTurno();
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+
+        int turnosParaConstruir = 3;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        //obtenemos el edificio
+        Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unCriadero.crearUnidad(new FabricaZangano()));
     }
 
     @Test
     public void test02UnCriaderoEstaConstruidoEn4Turnos() {
-        Criadero unCriadero = new Criadero();
+        Zerg imperioZerg = new Zerg();
 
-        for (int i = 0; i < 4; i++)
-            unCriadero.pasarTurno();
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
+        imperioZerg.construirCriadero(new Coordenada(0,0));
 
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZangano()));
+        int turnosParaConstruir = 4;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        assertTrue(imperioZerg.tieneEdificio(new Criadero()));
     }
 
     @Test
     public void test03UnExtractorNoEstaConstruidoEn5Turnos() {
-        Recurso gasDelImperio = new Recurso(0);
-        Extractor unExtractor = new Extractor(gasDelImperio);
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
-        for (int i = 0; i < 5; i++)
-            unExtractor.pasarTurno();
+        Mapa elMapa = Mapa.obtener();
+        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unExtractor.contratarZangano(new Zangano()));
+        // Construyo criadero para generar moho
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+        for(int i = 0; i < 4; i++)
+            imperioZerg.terminarTurno();
+
+        imperioZerg.construirExtractor(new Coordenada(1,0));
+
+        int turnosParaConstruir = 5;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        //obtenemos el edificio
+        Edificio unExtractor = imperioZerg.conseguirEdificio(new Coordenada(1,0));
+
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unExtractor.contratarUnidad(new Zangano()));
     }
 
     @Test
     public void test04UnExtractorEstaConstruidoEn6Turnos() {
-        Mapa mapa = Mapa.obtener();
-        Zerg zerg = new Zerg();
-        Coordenada coordenadasGas = new Coordenada(0,0);
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
-        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.abastecerDeRecursos(new Recurso(150), new Recurso(0));
-        zerg.construirCriadero(new Coordenada(1,1));
+        Mapa elMapa = Mapa.obtener();
+        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
-        for (int i = 0; i < 5; i++)
-            zerg.terminarTurno();
+        // Construyo criadero para generar moho
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+        for(int i = 0; i < 4; i++)
+            imperioZerg.terminarTurno();
 
-        zerg.construirExtractor(coordenadasGas);
+        imperioZerg.construirExtractor(new Coordenada(1,0));
 
-        //Construimos el extractor
-        for (int i = 0; i < 6; i++)
-            zerg.terminarTurno();
+        int turnosParaConstruir = 6;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
 
-        Edificio extractor = zerg.conseguirEdificio(coordenadasGas);
-        assertDoesNotThrow( () -> extractor.contratarUnidad(new Zangano()));
+        assertTrue(imperioZerg.tieneEdificio(new Extractor(new Gas(200))));
     }
 
     @Test
     public void test05UnaReservaDeReproduccionNoEstaConstruidaEn11Turnos(){
-        ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
-        for(int i = 0; i < 11; i++)
-            unaReserva.pasarTurno();
+        // Construyo criadero para generar moho
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+        for(int i = 0; i < 4; i++)
+            imperioZerg.terminarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unaReserva.crearFabricaZerling());
+        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+
+        int turnosParaConstruir = 11;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+
+        assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
+                () -> unCriadero.crearUnidad(new FabricaZerling()));
     }
 
      @Test
      public void test06UnaReservaDeReproduccionEstaConstruidaEn12Turnos() {
-        ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+         Zerg imperioZerg = new Zerg();
+         imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
-        for (int i = 0; i < 12; i++)
-            unaReserva.pasarTurno();
+         // Construyo criadero para generar moho
+         imperioZerg.construirCriadero(new Coordenada(0,0));
+         for(int i = 0; i < 4; i++)
+             imperioZerg.terminarTurno();
 
-        assertDoesNotThrow(() -> unaReserva.crearFabricaZerling());
+         imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+
+         int turnosParaConstruir = 11;
+         for(int i = 0; i < turnosParaConstruir; i++)
+             imperioZerg.terminarTurno();
+
+         Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+
+         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
+                 () -> unCriadero.crearUnidad(new FabricaZerling()));
      }
 
     @Test
     public void test07UnaGuaridaNoEstaConstruidaEn11Turnos(){
-        Guarida unaGuarida = new Guarida();
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for(int i = 0; i < 11; i++)
-            unaGuarida.pasarTurno();
+        // Construyo criadero para generar moho
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+        for(int i = 0; i < 4; i++)
+            imperioZerg.terminarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unaGuarida.crearFabricaHidralisco());
+        // Construyo una reserva de reproduccion para el prerequisito
+        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+
+        imperioZerg.construirGuarida(new Coordenada(1,0));
+
+        int turnosParaConstruir = 11;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+
+        assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
+                () -> unCriadero.crearUnidad(new FabricaHidralisco()));
     }
 
     @Test
     public void test08UnaGuaridaEstaConstruidaEn12Turnos() {
-        Guarida unaGuarida = new Guarida();
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for (int i = 0; i < 12; i++)
-            unaGuarida.pasarTurno();
+        // Construyo criadero para generar moho
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+        for(int i = 0; i < 4; i++)
+            imperioZerg.terminarTurno();
 
-        assertDoesNotThrow(() -> unaGuarida.crearFabricaHidralisco());
+        // Construyo una reserva de reproduccion para el prerequisito
+        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+
+        imperioZerg.construirGuarida(new Coordenada(1,0));
+
+        int turnosParaConstruir = 12;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        assertTrue(imperioZerg.tieneEdificio(new Guarida()));
     }
 
     @Test
     public void test09UnEspiralNoEstaConstruidoEn9Turnos() {
-        Espiral unEspiral = new Espiral();
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for (int i = 0; i < 9; i++)
-            unEspiral.pasarTurno();
+        // Construyo criadero para generar moho
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+        for(int i = 0; i < 4; i++)
+            imperioZerg.terminarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unEspiral.crearFabricaMutalisco());
+        // Construyo una reserva de reproduccion y guarida para el prerequisito
+        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+        imperioZerg.construirGuarida(new Coordenada(0,2));
+
+        imperioZerg.construirEspiral(new Coordenada(1,0));
+
+        int turnosParaConstruir = 9;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+
+        assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
+                () -> unCriadero.crearUnidad(new FabricaMutalisco()));
     }
 
     @Test
     public void test10UnEspiralEstaConstruidoEn10Turnos() {
-        Espiral unEspiral = new Espiral();
+        Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for (int i = 0; i < 10; i++)
-            unEspiral.pasarTurno();
+        // Construyo criadero para generar moho
+        imperioZerg.construirCriadero(new Coordenada(0,0));
+        for(int i = 0; i < 4; i++)
+            imperioZerg.terminarTurno();
 
-        assertDoesNotThrow(() -> unEspiral.crearFabricaMutalisco());
+        // Construyo una reserva de reproduccion para el prerequisito
+        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+        imperioZerg.construirGuarida(new Coordenada(0,2));
+
+        imperioZerg.construirEspiral(new Coordenada(1,0));
+
+        int turnosParaConstruir = 10;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioZerg.terminarTurno();
+
+        assertTrue(imperioZerg.tieneEdificio(new Guarida()));
     }
 
     @Test
     public void test11UnNexoMineralNoEstaConstruidoEn3Turnos() {
-        Mapa mapa = Mapa.obtener();
-        Protoss protoss = new Protoss();
-        Coordenada coordenadasMIneral = new Coordenada(0,0);
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
 
-        mapa.colocarMaterial(new MineralRecolectable(), coordenadasMIneral);
-        protoss.abastecerDeRecursos(new Recurso(50), new Recurso(0));
-        protoss.construirNexoMineral(coordenadasMIneral);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
 
-        for (int i = 0; i < 3; i++)
-            protoss.terminarTurno();
+        imperioProtoss.construirNexoMineral(new Coordenada(1,0));
 
-        assertTrue(protoss.tienesEstaCantidadDeMineral(0));
+        int turnosParaConstruir = 3;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        assertTrue(imperioProtoss.tienesEstaCantidadDeMineral(0));
     }
 
     @Test
     public void test12UnNexoMineralEstaConstruidoEn4Turnos() {
-        Mapa mapa = Mapa.obtener();
-        Protoss protoss = new Protoss();
-        Coordenada coordenadaMineral = new Coordenada(0,0);
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
 
-        mapa.colocarMaterial(new MineralRecolectable(), coordenadaMineral);
-        protoss.abastecerDeRecursos(new Recurso(50), new Recurso(0));
-        protoss.construirNexoMineral(coordenadaMineral);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
 
-        for (int i = 0; i < 4; i++)
-            protoss.terminarTurno();
+        imperioProtoss.construirNexoMineral(new Coordenada(1,0));
 
-        assertTrue(protoss.tienesEstaCantidadDeMineral(10));
+        int turnosParaConstruir = 4;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        assertTrue(imperioProtoss.tienesEstaCantidadDeMineral(10));
     }
 
     @Test
     public void test13UnPilonNoEstaConstruidoEn4TUrnos() {
-        Mapa elmapa = Mapa.obtener();
-        Pilon unpilon = new Pilon();
-        Acceso unAcceso = new Acceso();
-        Coordenada coordenadasPilon = new Coordenada(2,2);
-        Coordenada coordenadaAcceso = new Coordenada(2,3);
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        elmapa.construirEdificio(unpilon, coordenadasPilon);
+        imperioProtoss.construirPilon(new Coordenada(1,0));
 
-        for (int i = 0; i < 4; i++)
-            unpilon.pasarTurno();
+        int turnosParaConstruir = 4;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elmapa.construirEdificio(unAcceso, coordenadaAcceso));
+                () -> imperioProtoss.construirAcceso(new Coordenada(0,0)));
     }
 
     @Test
     public void test14UnPilonEstaConstruidoEn5TUrnos() {
-        Mapa elmapa = Mapa.obtener();
-        Pilon unpilon = new Pilon();
-        Acceso unAcceso = new Acceso();
-        Coordenada coordenadasPilon = new Coordenada(2,2);
-        Coordenada coordenadaAcceso = new Coordenada(2,3);
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        elmapa.construirEdificio(unpilon, coordenadasPilon);
+        imperioProtoss.construirPilon(new Coordenada(1,0));
 
-        for (int i = 0; i < 5; i++)
-            unpilon.pasarTurno();
+        int turnosParaConstruir = 5;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
 
-        assertDoesNotThrow(() -> elmapa.construirEdificio(unAcceso, coordenadaAcceso));
+        assertTrue(imperioProtoss.tieneEdificio(new Pilon()));
     }
 
     @Test
     public void test15UnAsimiladorNoEstaConstruidoEn5Turnos() {
-        Mapa mapa = Mapa.obtener();
-        Protoss protoss = new Protoss();
-        Coordenada coordenadasGas = new Coordenada(0,0);
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
 
-        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
-        protoss.construirAsimilador(coordenadasGas);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
-        for (int i = 0; i < 5; i++)
-            protoss.terminarTurno();
+        imperioProtoss.construirAsimilador(new Coordenada(1,0));
 
-        assertTrue(protoss.tienesEstaCantidadDeMineral(0));
+        int turnosParaConstruir = 5;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        assertTrue(imperioProtoss.tienesEstaCantidadDeGas(0));
     }
 
     @Test
     public void test16UnAsimiladorEstaConstruidoEn6Turnos() {
-        Mapa mapa = Mapa.obtener();
-        Protoss protoss = new Protoss();
-        Coordenada coordenadasGas = new Coordenada(0,0);
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
 
-        mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
-        protoss.construirAsimilador(coordenadasGas);
+        Mapa elMapa = Mapa.obtener();
+        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
-        for (int i = 0; i < 6; i++)
-            protoss.terminarTurno();
+        imperioProtoss.construirAsimilador(new Coordenada(1,0));
 
-        assertTrue(protoss.tienesEstaCantidadDeGas(20));
+        int turnosParaConstruir = 6;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        assertTrue(imperioProtoss.tienesEstaCantidadDeGas(20));
     }
 
     @Test
     public void test17UnAccesoNoEstaConstruidoEn7Turnos() {
-        Acceso unAcceso = new Acceso();
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for (int i = 0; i < 7; i++)
-            unAcceso.pasarTurno();
+        // construyo pilon para generar energia
+        imperioProtoss.construirPilon(new Coordenada(0,0));
+        for(int i = 0; i < 5; i++)
+            imperioProtoss.terminarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearFabricaDragon());
+        imperioProtoss.construirAcceso(new Coordenada(1,0));
+        int turnosParaConstruir = 7;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        Edificio unAcceso = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
+
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricaDragon()));
     }
 
     @Test
     public void test18UnAccesoEstaConstruidoEn8Turnos() {
-        Acceso unAcceso = new Acceso();
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for (int i = 0; i < 8; i++)
-            unAcceso.pasarTurno();
+        // construyo pilon para generar energia
+        imperioProtoss.construirPilon(new Coordenada(0,0));
+        for(int i = 0; i < 5; i++)
+            imperioProtoss.terminarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearFabricaDragon());
+        imperioProtoss.construirAcceso(new Coordenada(1,0));
+        int turnosParaConstruir = 8;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        assertTrue(imperioProtoss.tieneEdificio(new Acceso()));
     }
 
     @Test
     public void test19UnPuertoEstelarNoEstaConstruidoEn9Turnos() {
-        PuertoEstelar unPuertoEstelar = new PuertoEstelar();
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for (int i = 0; i < 9; i++)
-            unPuertoEstelar.pasarTurno();
+        // construyo pilon para generar energia
+        imperioProtoss.construirPilon(new Coordenada(0,0));
+        for(int i = 0; i < 5; i++)
+            imperioProtoss.terminarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unPuertoEstelar.crearFabricaScout());
+        // construyo un acceso para el prerequisito
+        imperioProtoss.construirAcceso(new Coordenada(0,1));
+
+        imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
+        int turnosParaConstruir = 9;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        Edificio puertoEstelar = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
+
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> puertoEstelar.crearUnidad(new FabricaScout()));
     }
 
     @Test
     public void test20UnPuertoEstelarEstaConstruidoEn10Turnos() {
-        PuertoEstelar unPuertoEstelar = new PuertoEstelar();
+        Protoss imperioProtoss = new Protoss();
+        imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        for (int i = 0; i < 10; i++)
-            unPuertoEstelar.pasarTurno();
+        // construyo pilon para generar energia
+        imperioProtoss.construirPilon(new Coordenada(0,0));
+        for(int i = 0; i < 5; i++)
+            imperioProtoss.terminarTurno();
 
-        assertDoesNotThrow(() -> unPuertoEstelar.crearFabricaScout());
+        // construyo un acceso para el prerequisito
+        imperioProtoss.construirAcceso(new Coordenada(0,1));
+
+        imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
+        int turnosParaConstruir = 10;
+        for(int i = 0; i < turnosParaConstruir; i++)
+            imperioProtoss.terminarTurno();
+
+        assertTrue(imperioProtoss.tieneEdificio(new PuertoEstelar()));
     }
 }

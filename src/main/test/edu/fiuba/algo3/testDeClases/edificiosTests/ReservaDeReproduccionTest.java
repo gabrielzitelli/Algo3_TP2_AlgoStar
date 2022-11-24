@@ -1,7 +1,14 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Ataque.Danio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -11,22 +18,64 @@ public class ReservaDeReproduccionTest {
 
     @Test
     public void test01UnaReservaDeReproduccionNoSeConstruyeEn11Turnos(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+        unaReserva.asignarListaDeUnidades(fabricasDisponibles);
 
         for(int i = 0; i < 11; i++)
             unaReserva.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unaReserva.crearFabricaZerling());
+        // Construyo criadero
+        Criadero unCriadero = new Criadero();
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        for (int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
+
+        assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
+                () -> unCriadero.crearUnidad(new FabricaZerling()));
     }
 
     @Test
     public void test02UnaReservaDeReproduccionSePuedeConstruirEn12Turnos(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+        unaReserva.asignarListaDeUnidades(fabricasDisponibles);
 
-        //Construyo la Reserva de Reproduccion
-        for(int i = 0; i < 12; i++)
+        for (int i = 0; i < 12; i++)
             unaReserva.pasarTurno();
 
-        assertDoesNotThrow(() -> unaReserva.crearFabricaZerling());
+        // Construyo criadero
+        Criadero unCriadero = new Criadero();
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        for (int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
+
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZerling()));
+    }
+
+    @Test
+    public void test03SiSeDestruyeUnaReservaDeReproduccionNoSePuedeCrearLaUnidadQueHabilita() {
+        Mapa elMapa = Mapa.obtener();
+        elMapa.reiniciarMapa();
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
+
+        // Construyo criadero
+        Criadero unCriadero = new Criadero();
+        unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        elMapa.construirEdificio(unCriadero, new Coordenada(0,0));
+        for (int i = 0; i < 4; i++)
+            unCriadero.pasarTurno();
+
+        // Construyo reserva de reproduccion
+        ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
+        elMapa.construirEdificio(unaReserva, new Coordenada(1,0));
+        unaReserva.asignarListaDeUnidades(fabricasDisponibles);
+        for (int i = 0; i < 12; i++)
+            unaReserva.pasarTurno();
+
+        unaReserva.recibirAtaque(new Ataque(new Danio(1000)));
+
+        assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
+                () -> unCriadero.crearUnidad(new FabricaZerling()));
     }
 }

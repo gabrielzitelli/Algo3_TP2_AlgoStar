@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 
 public class Recurso {
 
-    private int cantidad;
+    protected int cantidad;
 
     public Recurso(int cantidadInicial){
         this.cantidad = cantidadInicial;

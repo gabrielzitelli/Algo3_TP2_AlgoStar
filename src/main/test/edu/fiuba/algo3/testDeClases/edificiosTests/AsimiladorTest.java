@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Asimilador;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
@@ -36,7 +38,7 @@ public class AsimiladorTest {
         Mapa elMapa = Mapa.obtener();
 
         Protoss protoss = new Protoss();
-        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         elMapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
@@ -53,7 +55,7 @@ public class AsimiladorTest {
         Mapa mapa = Mapa.obtener();
 
         Protoss protoss = new Protoss();
-        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);

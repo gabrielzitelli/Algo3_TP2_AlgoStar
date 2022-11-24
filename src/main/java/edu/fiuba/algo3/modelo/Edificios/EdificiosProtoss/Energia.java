@@ -13,4 +13,10 @@ public class Energia {
             elMapa.abastecerEnergia(origenDeExpansion, radioDeEnergia);
         }
     }
+    public void desenergizar(Coordenada origenDeExpansion) {
+        if (origenDeExpansion != null){
+            Mapa elMapa = Mapa.obtener();
+            elMapa.desabastecerEnergia(origenDeExpansion, radioDeEnergia);
+        }
+    }
 }

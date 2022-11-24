@@ -1,30 +1,8 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import java.util.ArrayList;
 
-public abstract class UnidadProtoss implements Unidad {
+public abstract class UnidadProtoss extends Unidad {
 
-    protected int turnosDeConstruccion;
-    protected ArrayList<Superficie> superficieDondeSeMueve = new ArrayList<>();
-
-    public boolean estaConstruida() {
-        return (turnosDeConstruccion == 0);
-    }
-
-    public void pasarTurno() {
-        if (turnosDeConstruccion > 0)
-            turnosDeConstruccion--;
-    }
-
-    public void verificarSuperficie(Superficie superficie){
-        if( this.superficieDondeSeMueve.stream().allMatch( sup -> sup.soyDiferenteA(superficie) ) )
-            throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
-    }
-
-    public boolean esIgualA(Unidad unidad) {
-        return this.getClass().equals(unidad.getClass());
-    }
 }
+

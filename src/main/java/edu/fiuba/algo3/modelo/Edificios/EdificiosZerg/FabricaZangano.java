@@ -4,6 +4,9 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 public class FabricaZangano extends Fabrica {
 
+    public FabricaZangano(){
+        this.poblacionNecesaria = 1;
+    }
     public Zangano crearUnidad(){
         return new Zangano();
         // Ver para despues si hay que delegar en Criadero o no

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
@@ -11,26 +13,24 @@ import java.util.ArrayList;
 
 public class Guardian extends UnidadZerg {
 
-    private int danioTerrestre = 25;
-    private DanioUnidad danio = new DanioGuardian(danioTerrestre);
-    private Vida vida = new VidaSimple(100);
+    private final int turnosDeContruccion = 4;
+    private final int danioTerrestre = 25;
+    private final int cantidadDeVida = 100;
+    private final int costoMineralEvolucion = 100;
+    private final int costoGasEvolucion = 50;
 
-    public Guardian(){
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
-        superficieDondeSeMueve.add(new SuperficieAerea());
-        this.turnosDeConstruccion = 4;
-    }
-
-    public Ataque atacar(){
-        return new Ataque(danio);
-    }
-
-    public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
+    public Guardian() {
+        this.turnosDeConstruccion = turnosDeContruccion;
+        this.superficieDondeSeMueve = new SuperficieAerea();
+        this.danio = new DanioGuardian(danioTerrestre);
+        this.vida = new VidaSimple(cantidadDeVida);
+        this.rangoDeAtaque = 10;
     }
 
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
+        requisitosMateriales.add(new Mineral(costoMineralEvolucion));
+        requisitosMateriales.add(new Gas(costoGasEvolucion));
         return requisitosMateriales;
     }
 }

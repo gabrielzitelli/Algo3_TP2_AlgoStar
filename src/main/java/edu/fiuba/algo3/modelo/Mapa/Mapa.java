@@ -1,55 +1,131 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
 import java.util.LinkedList;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 public class Mapa {
     static private Mapa mapaInstanciaUnica = new Mapa();
-
-    //Hardcodeado, ver a futuro para crear en funcion de la cantidad de bases
     private int tamanio = 100;
     private Casilla[][] matriz;
+    private double coeficienteBases = 0.12; //Relacion entre bases y tamanio del mapa
 
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
         this.inicializarBases();
+        this.inicializarTerrenoEspacial();
     }
 
     private void inicializarMapaConCasillasVacias(){
         matriz = new Casilla[tamanio][tamanio];
-        for (int i = 0; i < tamanio; i++) {
-            for (int j = 0; j < tamanio; j++) {
+        for (int i = 0; i < tamanio; i++)
+            for (int j = 0; j < tamanio; j++)
                 matriz[i][j] = new CasillaVacia(new Coordenada(i, j));
+    }
+
+    private void colocarBasesPorMitadDeMapa(double densidadDeBasesPorEje, int cantidadDeBases, int comienzoDeLaMitadDelMapa){
+
+        int cantidadEjesHorizontales = 0; // Cantidad de ejes horizontales
+        int totalDeBasesRestantes = cantidadDeBases;
+
+        // Establezco la cantidad de ejes horizontales acorde al tamanio del mapa y a la densidadDeBasesPorEje
+        do {
+            cantidadEjesHorizontales++;
+            totalDeBasesRestantes -= tamanio * densidadDeBasesPorEje;
+        } while (totalDeBasesRestantes >= 0);
+
+        totalDeBasesRestantes = cantidadDeBases;
+        //Por cada eje horizontal colocaré las bases de los ejes verticales
+        for (int i = 0; i < cantidadEjesHorizontales; i++) {
+
+            int posicionHorizontal = (int)(tamanio * ( (i+1) / (cantidadDeBases+2.0)));
+            int cantidadDeEjesVerticales = (int)ceil((cantidadDeBases+1.0)/cantidadEjesHorizontales);
+
+            //Si hay bases por colocar, las coloco
+            for (int j = 0; j < cantidadDeEjesVerticales; j++) {
+                int posicionEquidistanteEnY = (int)(tamanio * ( (j+1) / (cantidadDeEjesVerticales+1.0) ));
+
+                if(totalDeBasesRestantes > 0){
+                    Coordenada coordenadaCentroBase = new Coordenada(posicionHorizontal + comienzoDeLaMitadDelMapa,
+                            posicionEquidistanteEnY);
+                    this.colocarUnaBase(coordenadaCentroBase);
+                    totalDeBasesRestantes--;
+                }
             }
         }
     }
 
     private void inicializarBases(){
-        int mitadLadoMapa = tamanio/2;
-        int cuartoLadoMapa = tamanio/4;
 
-        this.colocarUnaBase(new Coordenada(mitadLadoMapa, cuartoLadoMapa));
-        this.colocarUnaBase(new Coordenada(tamanio - mitadLadoMapa, cuartoLadoMapa));
+        int cantidadBases = (int) round(tamanio * coeficienteBases);
+        int cantLadoDerecho = cantidadBases - (int) ceil(cantidadBases / 2.0);
+        int cantLadoIzquierdo = cantidadBases - (int) floor(cantidadBases / 2.0);
+
+        //Definira la cantidad de bases por eje horizontal en relacion con el tamanio del mapa
+        double densidadDeBasesPorEje = 0.02;
+
+        //Coloco bases en la primera mitad del mapa
+        this.colocarBasesPorMitadDeMapa(densidadDeBasesPorEje, cantLadoDerecho, 0);
+
+        //Coloco bases en la segunda mitad del mapa
+        this.colocarBasesPorMitadDeMapa(densidadDeBasesPorEje, cantLadoIzquierdo, tamanio/2);
     }
 
+    /* Forma de una base. M = Mineral, V = Volcan de gas
+     *  - - - - -
+     *  - M M M -
+     *  - - V M -
+     *  - M M M -
+     *  - - - - -
+     */
     private void colocarUnaBase(Coordenada centroBase){
 
-        Coordenada[] coordMineralesBase = {
-                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()-1),
-                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()),
-                new Coordenada(centroBase.getCoordenadaX() +1, centroBase.getCoordenadaY()+1),
-        };
+        int xCentro = centroBase.getCoordenadaX();
+        int yCentro = centroBase.getCoordenadaY();
 
-        colocarMaterial(new GasRecolectable(), centroBase);
-        colocarMaterial(new MineralRecolectable(), coordMineralesBase[0]);
-        colocarMaterial(new MineralRecolectable(), coordMineralesBase[1]);
-        colocarMaterial(new MineralRecolectable(), coordMineralesBase[2]);
+        //Coloco los minerales en formación
+        for (int i = (xCentro -1); i < (xCentro +2); i++) {
+            for (int j = (yCentro -1); j < (yCentro +2); j++) {
+
+                boolean esPosicionVolcan = (xCentro == i) && (yCentro == j);
+                boolean esPosicionDedicadaVacia = (xCentro == i) && ((yCentro -1) == j);
+
+                if( !esPosicionVolcan && !esPosicionDedicadaVacia )
+                    colocarMaterial(new MineralRecolectable(), new Coordenada(i, j));
+            }
+        }
+
+        //Coloco el volcan de gas en el centro
+        colocarMaterial(new GasRecolectable(), new Coordenada(xCentro, yCentro));
+    }
+
+    private void inicializarTerrenoEspacial(){
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio-1), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/3, 5), 8);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio, 15), 6);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio/2), 5);
+        colocarTerrenoEspacialCircular(new Coordenada(3*tamanio/4, tamanio/2), 3);
+        colocarTerrenoEspacialCircular(new Coordenada(0, -5), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(4*tamanio/5, (int)(tamanio*1.1)), 15);
+    }
+
+    private void colocarTerrenoEspacialCircular(Coordenada coordenadaCentro, int radio){
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                Coordenada coordenadaAColocar = new Coordenada(i, j);
+                int dist = distanciaEntreDosCoordenadas(coordenadaAColocar, coordenadaCentro);
+
+                if(dist <= radio)
+                    colocarSuperficie(new SuperficieAerea(), coordenadaAColocar);
+            }
+        }
     }
 
     static public Mapa obtener(){
@@ -63,7 +139,6 @@ public class Mapa {
     }
 
     public void destruirEdificio(Coordenada coordenada){
-        // Capaz estoy acoplando mucho edificio y mapa con esto
         Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestruir = casillaDestruir.desconstruirEdificio(coordenada);
         this.actualizarCasillaPorCoordenada(coordenada, casillaDestruir);
@@ -88,6 +163,7 @@ public class Mapa {
     public void recolocarBasesIniciales(){
         this.reiniciarMapa();
         this.inicializarBases();
+        this.inicializarTerrenoEspacial();
     }
 
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
@@ -131,6 +207,17 @@ public class Mapa {
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.cargarDeEnergia();
     }
+    public void desabastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
+        for(Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.descargarDeEnergia();
+    }
+
+    public void revelar(Coordenada coordenadaOrigen, int radio) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(coordenadaOrigen, radio);
+        for (Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.revelar();
+    }
 
     public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
         Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
@@ -144,12 +231,17 @@ public class Mapa {
         return casillaConEdificio.obtenerEdificio();
     }
 
-
     public void colocarUnaUnidad(Unidad unaUnidad, Coordenada coordenada){
         // Busco la casilla de la coordenada y creo una nueva casilla ocupada por la unidad
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino = casillaDestino.colocarUnidad(unaUnidad);
         this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
+    }
+
+    public void quitarUnidad(Coordenada coordenada) {
+        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaAQuitar = casillaAQuitar.quitarUnidad();
+        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
     }
 
     public void atacar(Coordenada atacante, Coordenada atacado){
@@ -172,5 +264,64 @@ public class Mapa {
         //sin la unidad que contenia
         casillaInicial = casillaInicial.quitarUnidad();
         this.actualizarCasillaPorCoordenada(coordenadaInicial, casillaInicial);
+    }
+
+    public LinkedList<Casilla> obtenerMinerales(){
+
+        LinkedList<Casilla> minerales = new  LinkedList<>();
+
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                boolean tieneCasillaMineral = matriz[i][j].obtenerMaterial().getClass().equals(MineralBruto.class);
+                if (tieneCasillaMineral)
+                    minerales.push(matriz[i][j]);
+            }
+        }
+        return minerales;
+    }
+
+    public LinkedList<Casilla> obtenerVolcanesDeGas(){
+
+        LinkedList<Casilla> volcanesDeGas = new  LinkedList<>();
+
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                boolean tieneCasillaVolcan = matriz[i][j].obtenerMaterial().getClass().equals(GasBruto.class);
+                if (tieneCasillaVolcan)
+                    volcanesDeGas.push(matriz[i][j]);
+            }
+        }
+        return volcanesDeGas;
+    }
+
+    public Casilla obtenerVolcanBaseLejanaPrimeraMitad(){
+        LinkedList<Casilla> volcanesDeGas = this.obtenerVolcanesDeGas();
+        return volcanesDeGas.getFirst();
+    }
+
+    public Casilla obtenerVolcanBaseLejanaSegundaMitad(){
+        LinkedList<Casilla> volcanesDeGas = this.obtenerVolcanesDeGas();
+        return volcanesDeGas.getLast();
+    }
+
+    public boolean estaEnergizado(Coordenada coordenada) {
+        boolean carga = true;
+        Casilla casilla = encontrarCasillaPorCoordenada(coordenada);
+
+        try {
+            casilla.tieneEstaCarga(new ConCarga());
+        } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla error){
+            carga = false;
+        }
+
+        return carga;
+    }
+
+    public boolean estaDentroDeRango(Coordenada coordenada, Casilla casillaAtacada, int rangoDeAtaque) {
+        if (rangoDeAtaque == 0)
+            throw new ErrorUnidadNoPuedeAtacar();
+
+        LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
+        return casillas.contains(casillaAtacada);
     }
 }

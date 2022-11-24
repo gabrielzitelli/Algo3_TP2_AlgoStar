@@ -1,19 +1,23 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
+import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.States.EstadoEspiral;
-import edu.fiuba.algo3.modelo.States.EstadoEspiralEnConstruccion;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 
 public class Espiral extends Edificio {
 
-    private EstadoEspiral estado;
+    private EstadoHabilitador estadoHabilitador;
     private int turnoParaEstarConstruido = 10;
     private int valorVital = 1300;
-    private ArrayList<Fabrica> listaDeFabricasDisponibles;
+
+    // Fabricas que el edificio habilita
+    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private FabricasDisponibles fabricasDisponibles;
 
     public Espiral() {
         this.costoGas = 100;
@@ -21,7 +25,11 @@ public class Espiral extends Edificio {
         this.estadoRecolectable = new NoRecolectable();
         this.estadoMoho = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
-        estado = new EstadoEspiralEnConstruccion(turnoParaEstarConstruido);
+        this.superficieRequerida = new SuperficieTerrestre();
+
+        estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
+
+        listaFabricasAHabilitar.add(new FabricaMutalisco());
     }
 
     public static ArrayList<Edificio> requisitos() {
@@ -30,16 +38,17 @@ public class Espiral extends Edificio {
         return requisitos;
     }
 
+    protected void destruirEdificio() {
+        super.destruirEdificio();
+        fabricasDisponibles.disminuir(listaFabricasAHabilitar);
+    }
+
     public void pasarTurno() {
-        estado = estado.actualizar(listaDeFabricasDisponibles);
+        estadoHabilitador = estadoHabilitador.actualizar(listaFabricasAHabilitar, fabricasDisponibles);
         vida.pasarTurno();
     }
 
-    public FabricaMutalisco crearFabricaMutalisco() {
-        return estado.crearFabricaMutalisco();
-    }
-
-    public void asignarListaDeUnidades(ArrayList<Fabrica> listaDeFabricasDisponibles) {
-        this.listaDeFabricasDisponibles = listaDeFabricasDisponibles;
+    public void asignarListaDeUnidades(FabricasDisponibles fabricasDisponibles) {
+        this.fabricasDisponibles = fabricasDisponibles;
     }
 }

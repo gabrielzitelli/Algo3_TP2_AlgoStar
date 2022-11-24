@@ -22,7 +22,7 @@ public class CasoDeUso15Test {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
         protoss.construirAsimilador(coordenadasGas);
 
         //Construyo el asimilador
@@ -49,7 +49,7 @@ public class CasoDeUso15Test {
         Coordenada coordenadaMineral = new Coordenada(0,0);
 
         mapa.colocarMaterial(new MineralRecolectable(), coordenadaMineral);
-        protoss.abastecerDeRecursos(new Recurso(50), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
         protoss.construirNexoMineral(coordenadaMineral);
 
         //Construyo el nexo

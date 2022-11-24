@@ -21,7 +21,7 @@ public class CasoDeUso17Test {
         Mapa elMapa = Mapa.obtener();
         Zerg zerg = new Zerg();
 
-        zerg.abastecerDeRecursos(new Recurso(250), new Recurso(100));
+        zerg.abastecerDeRecursos(new Mineral(250), new Gas(100));
         zerg.construirCriadero(new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
@@ -41,7 +41,7 @@ public class CasoDeUso17Test {
         Mapa elMapa = Mapa.obtener();
         Zerg zerg = new Zerg();
 
-        zerg.abastecerDeRecursos(new Recurso(400), new Recurso(100));
+        zerg.abastecerDeRecursos(new Mineral(550), new Gas(100));
         zerg.construirCriadero(new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
@@ -63,7 +63,7 @@ public class CasoDeUso17Test {
         Mapa elMapa = Mapa.obtener();
         Zerg zerg = new Zerg();
 
-        zerg.abastecerDeRecursos(new Recurso(200), new Recurso(100));
+        zerg.abastecerDeRecursos(new Mineral(200), new Gas(100));
         zerg.construirCriadero(new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
@@ -83,7 +83,7 @@ public class CasoDeUso17Test {
         Mapa elMapa = Mapa.obtener();
         Zerg zerg = new Zerg();
 
-        zerg.abastecerDeRecursos(new Recurso(550), new Recurso(200));
+        zerg.abastecerDeRecursos(new Mineral(700), new Gas(200));
         zerg.construirCriadero(new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
@@ -106,7 +106,7 @@ public class CasoDeUso17Test {
         Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
 
-        protoss.abastecerDeRecursos(new Recurso(250), new Recurso(150));
+        protoss.abastecerDeRecursos(new Mineral(250), new Gas(150));
         protoss.construirPilon(new Coordenada(0,0));
 
         //Esperamos Cuatro Turnos Para La Construccion Del pilon
@@ -123,7 +123,7 @@ public class CasoDeUso17Test {
         Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
 
-        protoss.abastecerDeRecursos(new Recurso(400), new Recurso(150));
+        protoss.abastecerDeRecursos(new Mineral(400), new Gas(150));
         protoss.construirPilon(new Coordenada(0,0));
 
         //Esperamos Cuatro Turnos Para La Construccion Del pilon

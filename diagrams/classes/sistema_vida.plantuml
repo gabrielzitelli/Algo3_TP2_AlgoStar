@@ -1,35 +1,41 @@
 @startuml
 
 interface Vida {
-    + aplicarDanio(cantidad : int)
-    + accionDeTurno()
+    + aplicarDanio(unAtaque : Ataque)
+    + pasarTurno()
 }
 
-class VidaPlana {
+class VidaSimple {
     - capacidad : int
     - cantidad : int
-    + VidaPlana(capacidad : int)
-    + aplicarDanio(cantidad : int)
+
+    + aplicarAtaque(unAtaque : Ataque)
+    + pasarTurno()
 }
 
 class VidaRegenerativa {
-    - regeneracion : int
+    - porcentajeDeRegeneracion : double
+    - cantidad : int
+    - capacidad : int
+
     + VidaRegenerativa(capacidad : int)
-    + aplicarDanio(cantidad : int)
-    + accionDeTurno()
+    + aplicarAtaque(unAtaque : Ataque)
+    + pasarTurno()
 }
 
 class VidaConEscudo {
+    - cantidadVida : int
+    - porcentajeDeRegeneracion : double
+    - cantidadDeEscudo : int
+    - capacidadEscudo : int
+
     + VidaConEscudo(vida : int, escudo : int)
-    + aplicarDanio(cantidad : int)
-    + accionDeTurno()
+    + aplicarAtaque(unAtaque : Ataque)
+    + pasarTurno()
 }
 
 Vida <|.. VidaRegenerativa
 Vida <|.. VidaConEscudo
-
-VidaRegenerativa --> VidaPlana
-VidaConEscudo --> VidaPlana
-VidaConEscudo -> VidaRegenerativa
+Vida <|.. VidaSimple
 
 @enduml

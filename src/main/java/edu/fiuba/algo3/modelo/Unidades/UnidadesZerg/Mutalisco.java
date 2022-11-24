@@ -1,43 +1,42 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
-import edu.fiuba.algo3.modelo.Vida.Vida;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 import java.util.ArrayList;
 
 public class Mutalisco extends UnidadZerg {
 
+    private final int turnosDeContruccion = 7;
+    private final int danioTerrestre = 10;
+    private final int danioAereo = 10;
+    private final int cantidadDeVida = 120;
+
+    //todo cambiar y pasar el costo de cada unidad a su respectiva clase abstracta
     private final int costoGasEvolucion;
     private final int costoMineralEvolucion;
-    private int danioTerrestre = 10;
-    private int danioAereo = 10;
-    private DanioUnidad danio = new DanioMutalisco(danioTerrestre, danioAereo);
-    private Vida vida = new VidaSimple(120);
 
-    public Mutalisco(){
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
-        superficieDondeSeMueve.add(new SuperficieAerea());
+    public Mutalisco() {
+        this.turnosDeConstruccion = turnosDeContruccion;
+        this.superficieDondeSeMueve = new SuperficieAerea();
+        this.danio = new DanioMutalisco(danioTerrestre, danioAereo);
+        this.vida = new VidaSimple(cantidadDeVida);
+
         this.costoGasEvolucion = 100;
         this.costoMineralEvolucion = 50;
-        this.turnosDeConstruccion = 7;
+
+        this.rangoDeAtaque = 3;
     }
 
+    @Override
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Recurso(costoMineralEvolucion));
-        requisitosMateriales.add(new Recurso(costoGasEvolucion));
+        requisitosMateriales.add(new Mineral(costoMineralEvolucion));
+        requisitosMateriales.add(new Gas(costoGasEvolucion));
         return requisitosMateriales;
-    }
-
-    public Ataque atacar(){
-        return new Ataque(danio);
-    }
-
-    public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
     }
 }

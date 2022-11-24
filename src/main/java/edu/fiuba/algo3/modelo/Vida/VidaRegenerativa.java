@@ -28,16 +28,15 @@ public class VidaRegenerativa implements Vida{
         this.validarVidaLlegoACero();
 
         int cantidadARegenerar = (int)(this.capacidad * this.porcentajeDeRegeneracion);
-        if((cantidad + cantidadARegenerar) >= this.capacidad){
+
+        if((cantidad + cantidadARegenerar) >= this.capacidad)
             this.cantidad = this.capacidad;
-        }else{
+        else
             this.cantidad += cantidadARegenerar;
-        }
     }
 
     private void validarVidaLlegoACero(){
-        if(this.cantidad <= 0){
+        if(this.cantidad <= 0)
             throw new ErrorVidaLlegoACero();
-        }
     }
 }

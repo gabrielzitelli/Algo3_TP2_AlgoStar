@@ -21,6 +21,7 @@ public class CasoDeUso8Test {
     public void test01SiNoTengoLosRecursosNecesariosNoPuedoConstruirUnCriadero() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
                 () ->imperioZerg.construirCriadero(new Coordenada(0,0)));
@@ -40,6 +41,7 @@ public class CasoDeUso8Test {
     public void test03SiNoTengoLosRecursosNecesariosNoPuedoConstruirUnaReserva() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
                 () ->imperioZerg.construirReservaDeReproduccion(new Coordenada(0,0)));
@@ -60,6 +62,7 @@ public class CasoDeUso8Test {
     public void test05SiNoTengoLosRecursosNecesariosNoPuedoConstruirUnExtractor() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
                 () ->imperioZerg.construirExtractor(new Coordenada(0,0)));
@@ -81,7 +84,7 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
@@ -114,7 +117,7 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(400), new Recurso(100));
+        imperioZerg.abastecerDeRecursos(new Mineral(550), new Gas(100));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
@@ -150,6 +153,7 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
+        protoss.abastecerDeRecursos(new Mineral(0), new Gas(0));
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
@@ -174,6 +178,7 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
+        protoss.abastecerDeRecursos(new Mineral(0), new Gas(0));
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
@@ -198,6 +203,8 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
+        protoss.abastecerDeRecursos(new Mineral(0), new Gas(0));
+
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
                 () -> protoss.construirPilon(coordenada));
     }
@@ -219,7 +226,7 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
-        protoss.abastecerDeRecursos(new Recurso(100), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
         protoss.construirPilon(coordenada);
 
         for(int i = 0; i < 5; i++)
@@ -235,9 +242,8 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
-        protoss.abastecerDeRecursos(new Recurso(250), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(250), new Gas(0));
         protoss.construirPilon(coordenada);
-
         for(int i = 0; i < 6; i++)
             protoss.terminarTurno();
 
@@ -250,7 +256,7 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
-        protoss.abastecerDeRecursos(new Recurso(250), new Recurso(0));
+        protoss.abastecerDeRecursos(new Mineral(250), new Gas(0));
         protoss.construirPilon(coordenada);
 
         for(int i = 0; i < 5; i++)
@@ -268,7 +274,7 @@ public class CasoDeUso8Test {
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
-        protoss.abastecerDeRecursos(new Recurso(400), new Recurso(150));
+        protoss.abastecerDeRecursos(new Mineral(400), new Gas(150));
         protoss.construirPilon(coordenada);
 
         for(int i = 0; i < 6; i++)

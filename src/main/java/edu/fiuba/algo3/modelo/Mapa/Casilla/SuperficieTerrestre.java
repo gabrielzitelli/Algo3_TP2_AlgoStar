@@ -7,4 +7,8 @@ public class SuperficieTerrestre extends Superficie {
     public Ataque conseguirTipoDeAtaque(Ataque unAtaque) {
         return unAtaque.ataqueTerrestre();
     }
+
+    public boolean puedeMoverse(Superficie superficieAComparar) {
+        return true;
+    }
 }

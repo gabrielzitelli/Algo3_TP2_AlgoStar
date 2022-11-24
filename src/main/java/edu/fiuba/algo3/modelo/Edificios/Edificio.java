@@ -1,9 +1,13 @@
 package edu.fiuba.algo3.modelo.Edificios;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidadades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -13,15 +17,18 @@ import edu.fiuba.algo3.modelo.Vida.Vida;
 
 import java.util.ArrayList;
 
-public abstract class Edificio {
+public abstract class Edificio implements Ocupable {
 
     protected Vida vida;
     protected Coordenada coordenada;
     protected Recolectable estadoRecolectable;
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
+    protected Superficie superficieRequerida;
     protected int costoMineral;
     protected int costoGas;
+    protected int suministroAportado = 0;
+    protected boolean estaDestruido = false;
 
     public abstract void pasarTurno();
 
@@ -33,17 +40,19 @@ public abstract class Edificio {
         if (estadoCarga != null)
             unaCasilla.tieneEstaCarga(estadoCarga);
 
+        unaCasilla.tieneEstaSuperficie(superficieRequerida);
+
         coordenada = unaCasilla.obtenerCoordenada();
     }
 
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Recurso(costoMineral));
-        requisitosMateriales.add(new Recurso(costoGas));
+        requisitosMateriales.add(new Mineral(costoMineral));
+        requisitosMateriales.add(new Gas(costoGas));
         return requisitosMateriales;
     }
 
-    public void aplicarAtaque(Ataque unAtaque) {
+    public void recibirAtaque(Ataque unAtaque) {
         try {
             this.vida.aplicarAtaque(unAtaque);
         }
@@ -53,10 +62,13 @@ public abstract class Edificio {
     }
 
     protected void destruirEdificio() {
-        // Capaz estoy acoplando mucho edificio y mapa con esto
         Mapa elMapa = Mapa.obtener();
-        //TODO solo criadero sabe sus coordenadas
         elMapa.destruirEdificio(coordenada);
+        this.estaDestruido = true;
+    }
+
+    public boolean esIgualA(Edificio edificio) {
+        return this.getClass().equals(edificio.getClass());
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
@@ -65,5 +77,11 @@ public abstract class Edificio {
 
     public void contratarUnidad(Unidad unidad) {
         throw new ErrorElEdificioNoPuedeContratarUnidadades();
+    }
+
+    public void modificarPoblacion(Suministro poblacion){}
+
+    public boolean estaDestruido(){
+        return this.estaDestruido;
     }
 }

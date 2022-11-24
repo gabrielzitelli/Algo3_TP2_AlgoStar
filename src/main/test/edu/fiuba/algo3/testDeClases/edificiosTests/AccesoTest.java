@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaDragon;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaZealot;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import org.junit.jupiter.api.Test;
 
@@ -17,41 +20,49 @@ public class AccesoTest {
 
     @Test
     public void test02UnAccesoNoSeConstruyeEn7TurnosIntentandoCrearFabricaDragon(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 
         for (int i = 0; i < 7; i++)
             unAcceso.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearFabricaDragon());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricaDragon()));
     }
 
     @Test
     public void test03UnAccesoNoSeConstruyeEn7TurnosIntentandoCrearFabricaZealot(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 
         for (int i = 0; i < 7; i++)
             unAcceso.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearFabricaZealot());
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricaZealot()));
     }
 
     @Test
     public void test04UnAccesoSeConstruyeEn8TurnosIntentandoCrearFabricaDragon(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearFabricaDragon());
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaDragon()));
     }
 
     @Test
     public void test05UnAccesoSeConstruyeEn8TurnosIntentandoCrearFabricaZealot(){
+        FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
         Acceso unAcceso = new Acceso();
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
 
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearFabricaZealot());
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaZealot()));
     }
 }

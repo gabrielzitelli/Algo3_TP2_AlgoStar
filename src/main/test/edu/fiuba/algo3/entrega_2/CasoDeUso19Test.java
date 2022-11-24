@@ -3,6 +3,8 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.*;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
 
@@ -21,12 +23,10 @@ public class CasoDeUso19Test {
     @Test
     public void test01SiUnZerglingIntentaAtacarAUnMutaliscoSeLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
-        Zerling unZerling = new Zerling();
-        Mutalisco unMutalisco = new Mutalisco();
+        Unidad unZerling = new Zerling();
+        Unidad unMutalisco = new Mutalisco();
         Coordenada coordenadaZerling = new Coordenada(0,0);
         Coordenada coordenadaMutalisco = new Coordenada(0,1);
-
-        elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaMutalisco);
 
         elMapa.colocarUnaUnidad(unZerling, coordenadaZerling);
         elMapa.colocarUnaUnidad(unMutalisco, coordenadaMutalisco);
@@ -38,8 +38,8 @@ public class CasoDeUso19Test {
     @Test
     public void test02SiUnZerglingIntentaAtacarAUnGuardianSeLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
-        Zerling unZerling = new Zerling();
-        Guardian unGuardian = new Guardian();
+        Unidad unZerling = new Zerling();
+        Unidad unGuardian = new Guardian();
         Coordenada coordenadaZerling = new Coordenada(0,0);
         Coordenada coordenadaGuardian = new Coordenada(0,1);
 
@@ -55,8 +55,8 @@ public class CasoDeUso19Test {
     @Test
     public void test03SiUnZerglingIntentaAtacarAUnScoutSeLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
-        Zerling unZerling = new Zerling();
-        Scout unScout = new Scout();
+        Unidad unZerling = new Zerling();
+        Unidad unScout = new Scout();
         Coordenada coordenadaZerling = new Coordenada(0,0);
         Coordenada coordenadaScout = new Coordenada(0,1);
 
@@ -72,8 +72,8 @@ public class CasoDeUso19Test {
     @Test
     public void test04SiUnZealotIntentaAtacarAUnMutaliscoSeLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
-        Zealot unZealot = new Zealot();
-        Mutalisco unMutalisco = new Mutalisco();
+        Unidad unZealot = new Zealot();
+        Unidad unMutalisco = new Mutalisco();
         Coordenada coordenadaZealot = new Coordenada(0,0);
         Coordenada coordenadaMutalisco = new Coordenada(0,1);
 
@@ -89,8 +89,8 @@ public class CasoDeUso19Test {
     @Test
     public void test05SiUnZealotIntentaAtacarAUnGuardianSeLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
-        Zealot unZealot = new Zealot();
-        Guardian unGuardian = new Guardian();
+        Unidad unZealot = new Zealot();
+        Unidad unGuardian = new Guardian();
         Coordenada coordenadaZealot = new Coordenada(0,0);
         Coordenada coordenadaGuardian = new Coordenada(0,1);
 
@@ -106,8 +106,8 @@ public class CasoDeUso19Test {
     @Test
     public void test06SiUnZealotIntentaAtacarAUnScoutSeLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
-        Zealot unZealot = new Zealot();
-        Scout unScout = new Scout();
+        Unidad unZealot = new Zealot();
+        Unidad unScout = new Scout();
         Coordenada coordenadaZealot = new Coordenada(0,0);
         Coordenada coordenadaScout = new Coordenada(0,1);
 
@@ -123,8 +123,8 @@ public class CasoDeUso19Test {
     @Test
     public void test07SiUnMutaliscoEnTierraPuedeAtacarAUnHidraliscoEnTierraYNoSeLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
-        Mutalisco unMutalisco = new Mutalisco();
-        Hidralisco unHidralisco = new Hidralisco();
+        Unidad unMutalisco = new Mutalisco();
+        Unidad unHidralisco = new Hidralisco();
         Coordenada coordenadaMutalisco = new Coordenada(0,0);
         Coordenada coordenadaHidralisco = new Coordenada(0,1);
 

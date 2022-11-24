@@ -22,12 +22,13 @@ public class VidaConEscudo implements Vida{
         // a cero se saca vida del la vida plana. Si la vida plana, luego de aplicar el daño
         // es menor o igual a cero se lanza ErrorVidaLlegoACero
         int cantidadEscudoRestante = unAtaque.aplicarAtaque(this.cantidadEscudo);
+
         if(cantidadEscudoRestante <= 0){
             this.cantidadVida += cantidadEscudoRestante;
             this.cantidadEscudo = 0;
-        }else {
-            this.cantidadEscudo -= cantidadEscudoRestante;
-        }
+        }else
+            this.cantidadEscudo = cantidadEscudoRestante;
+
         this.validarVidaLlegoACero();
     }
 
@@ -35,16 +36,17 @@ public class VidaConEscudo implements Vida{
         // Se regenera el escudo, si con la suma de la regeneracion sobrepasa el maximo
         // inicial, entonces se regenera hasta el tope inicial
         int escudoRegenerado = (int)(this.capacidadEscudo * this.porcentajeDeRegeneracion);
+
         if ((this.cantidadEscudo + escudoRegenerado) >= this.capacidadEscudo){
             this.cantidadEscudo = this.capacidadEscudo;
             return;
         }
+
         this.cantidadEscudo += escudoRegenerado;
     }
 
     private void validarVidaLlegoACero(){
-        if(this.cantidadVida <= 0){
+        if(this.cantidadVida <= 0)
             throw new ErrorVidaLlegoACero();
-        }
     }
 }

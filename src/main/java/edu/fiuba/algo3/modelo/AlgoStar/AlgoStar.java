@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class AlgoStar {
 
     private ArrayList<Jugador> jugadores = new ArrayList<>();
+    private ArrayList<Imperio> imperios = new ArrayList<>();
+    private Boolean partidaFinalizada = false;
 
     public AlgoStar() {
     }
@@ -17,14 +19,24 @@ public class AlgoStar {
             Jugador jugador = new Jugador(nombre,color,imperio);
             revisarJugador(jugador);
             jugadores.add(jugador);
-        } else {
+            // TODO Validar que no haya dos imperios iguales
+            imperio.asignarJugadorAlImperio(jugador);
+            imperios.add(imperio);
+        } else
             throw new ErrorSoloPuedenJugarDosPersonasAlMismoTiempo();
-        }
     }
 
     private void revisarJugador(Jugador jugadorARevisar) {
-        for (Jugador jugador : jugadores) {
+        for (Jugador jugador : jugadores)
             jugadorARevisar.verificarRespectoDe(jugador);
+    }
+
+    public boolean partidaTerminada(){
+        for (Imperio imperio : imperios) {
+            if(imperio.partidaTerminada())
+                this.partidaFinalizada = true;
         }
+
+        return this.partidaFinalizada;
     }
 }

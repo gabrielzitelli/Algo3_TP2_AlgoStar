@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,17 +13,38 @@ import java.util.LinkedList;
 public class Protoss extends Imperio{
 
     public Protoss() {
-        this.gasDelImperio = new Recurso(0);
-        this.mineralesDelImperio = new Recurso(0);
+        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        this.gasDelImperio = new Gas(0);
+        this.poblacion = new Suministro(0);
         this.edificios = new LinkedList<>();
-        this.listaDeFabricasDisponibles = new ArrayList<>();
+        this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
+    }
+
+    public void inicializarAsentamientoPrimerTurno(){
+        Mapa elMapa = Mapa.obtener();
+
+        Casilla casillaBase = elMapa.obtenerVolcanBaseLejanaSegundaMitad();
+        Coordenada coordenadaBase = casillaBase.obtenerCoordenada();
+        Coordenada coordenadaAcceso = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
+        Coordenada coordenadaPilon = new Coordenada(coordenadaBase.getCoordenadaX() -3, coordenadaBase.getCoordenadaY()-1);
+
+        Pilon unPilon = new Pilon();
+        this.construirEdificioSinVerificacionesMateriales(unPilon, coordenadaPilon);
+        unPilon.construirInmediatamente();
+
+        Acceso unAcceso = new Acceso();
+        unAcceso.asignarListaDeUnidades(fabricasDisponibles);
+        unAcceso.asignarListaDeUnidadesImperio(unidades);
+        this.construirEdificioSinVerificacionesMateriales(unAcceso, coordenadaAcceso);
+        unAcceso.construirInmediatamente();
     }
 
     public void construirPuertoEstelar(Coordenada coordenada) {
         this.comprobarRequisitos(PuertoEstelar.requisitos());
         PuertoEstelar puertoEstelar = new PuertoEstelar();
-        puertoEstelar.asignarListaDeUnidades(listaDeFabricasDisponibles);
+        puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
+        puertoEstelar.asignarListaDeUnidadesImperio(unidades);
         this.construirEdificio(puertoEstelar, coordenada);
     }
 
@@ -30,7 +55,7 @@ public class Protoss extends Imperio{
 
     public void construirAcceso(Coordenada coordenada) {
         Acceso acceso = new Acceso();
-        acceso.asignarListaDeUnidades(listaDeFabricasDisponibles);
+        acceso.asignarListaDeUnidades(fabricasDisponibles);
         acceso.asignarListaDeUnidadesImperio(unidades);
         this.construirEdificio(acceso, coordenada);
     }

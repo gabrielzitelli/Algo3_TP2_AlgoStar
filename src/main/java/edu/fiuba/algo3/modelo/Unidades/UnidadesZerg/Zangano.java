@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
+import edu.fiuba.algo3.modelo.Ataque.DanioZangano;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
@@ -14,14 +15,17 @@ import java.util.ArrayList;
 
 public class Zangano extends UnidadZerg {
 
+    private final int turnosDeContruccion = 1;
+    private final int cantidadDeVida = 25;
     private Recolectable recolecta = new MineralRecolectable();
-    private Danio danio = new Danio(4);
-    private Vida vida = new VidaSimple(35);
 
     public Zangano(){
-        this.turnosDeConstruccion = 0;
-        superficieDondeSeMueve.add(new SuperficieTerrestre());
+        this.turnosDeConstruccion = turnosDeContruccion;
+        this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.mineralDelImperio = null;
+        this.danio = new DanioZangano();
+        this.vida = new VidaSimple(cantidadDeVida);
+        this.rangoDeAtaque = 0;
     }
 
     @Override
@@ -37,18 +41,5 @@ public class Zangano extends UnidadZerg {
 
     public void extraer(){
         mineralDelImperio.depositar(recursoARecolectar.extraer(10));
-    }
-
-    public Ataque atacar(){
-        return new Ataque(danio);
-    }
-
-    public void recibirAtaque(Ataque unAtaque){
-        this.vida.aplicarAtaque(unAtaque);
-    }
-
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        return requisitosMateriales;
     }
 }

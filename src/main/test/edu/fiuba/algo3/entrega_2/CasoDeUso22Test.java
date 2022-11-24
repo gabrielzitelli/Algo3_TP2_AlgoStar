@@ -24,7 +24,7 @@ public class CasoDeUso22Test {
     public void test01TengoCriaderoYPuedoConstruirUnZangano() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
@@ -46,7 +46,7 @@ public class CasoDeUso22Test {
     public void test02SiNoTengoReservaDeReproduccionNoPuedoConstruirUnZerlign() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
@@ -64,7 +64,7 @@ public class CasoDeUso22Test {
     public void test03SiTengoReservaDeReproduccionPuedoConstruirUnZerlign() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(200), new Recurso(0));
+        imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(0));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
@@ -97,7 +97,7 @@ public class CasoDeUso22Test {
     public void test04SiNoTengoGuaridaNoPuedoConstruirUnHidralisco() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(5000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
@@ -115,7 +115,7 @@ public class CasoDeUso22Test {
     public void test05SiTengoGuaridaPuedoConstruirUnHidralisco() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(5000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
@@ -152,7 +152,7 @@ public class CasoDeUso22Test {
     public void test06SiNoTengoEspiralNoPuedoConstruirUnMutalisco() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(5000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
@@ -170,7 +170,7 @@ public class CasoDeUso22Test {
     public void test07SiTengoEspiralPuedoConstruirUnHidralisco() {
         Zerg imperioZerg = new Zerg();
 
-        imperioZerg.abastecerDeRecursos(new Recurso(5000), new Recurso(1000));
+        imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
         imperioZerg.construirCriadero(new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
