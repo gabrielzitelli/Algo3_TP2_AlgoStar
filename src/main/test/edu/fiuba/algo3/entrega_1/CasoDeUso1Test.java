@@ -2,6 +2,9 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,9 +28,11 @@ public class CasoDeUso1Test {
     public void test01ConsumoUnaLarvaYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(150), new Gas(0));
+        unCriadero.asignarSuministro(new Suministro(5));
 
         //Construyo el edificio
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 5; i++)
             unCriadero.pasarTurno();
 
         // Consumo una larva
@@ -48,6 +53,8 @@ public class CasoDeUso1Test {
     public void test02ConsumoDosLarvasYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(150), new Gas(0));
+        unCriadero.asignarSuministro(new Suministro(5));
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)
@@ -74,6 +81,8 @@ public class CasoDeUso1Test {
     public void test03ConsumoTresLarvasYLuegoVuelvoATenerLasTres(){
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(150), new Gas(0));
+        unCriadero.asignarSuministro(new Suministro(6));
 
         //Construyo el edificio
         for(int i = 0; i < 4; i++)

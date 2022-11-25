@@ -4,6 +4,9 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
@@ -38,9 +41,14 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon1 = new Coordenada(0,0);
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
+        unAcceso.asignarRecursos(new Mineral(1000), new Gas(1000));
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
+        unAcceso.asignarSuministro(new Suministro(5));
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
+
+        pilon1.asignarSuministro(new Suministro(0));
+        pilon2.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(pilon1, coordenadaPilon1);
         elMapa.construirEdificio(pilon2, coordenadaPilon2);
@@ -66,9 +74,14 @@ public class CasoDeuso9Test {
         Coordenada coordenadaPilon2 = new Coordenada(0,4);
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
+        unAcceso.asignarRecursos(new Mineral(1000), new Gas(1000));
+        unAcceso.asignarSuministro(new Suministro(5));
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );
+
+        pilon1.asignarSuministro(new Suministro(0));
+        pilon2.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(pilon1, coordenadaPilon1);
         elMapa.construirEdificio(pilon2, coordenadaPilon2);
@@ -102,6 +115,9 @@ public class CasoDeuso9Test {
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
         Ataque unAtaque = new Ataque( new Danio(600) );
+
+        pilon1.asignarSuministro(new Suministro(0));
+        pilon2.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(pilon1, coordenadaPilon1);
         elMapa.construirEdificio(pilon2, coordenadaPilon2);

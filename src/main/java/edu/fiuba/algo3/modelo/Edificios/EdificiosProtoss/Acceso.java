@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
@@ -8,7 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
@@ -46,7 +45,7 @@ public class Acceso extends EdificioConCarga {
     public void crearUnidad(Fabrica unaFabrica) {
         if (verificarCarga()) {
             estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-            estadoCreador.crearUnidad(unaFabrica, unidades);
+            estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
         }
         else throw new ErrorElEdificioNoTieneCarga();
     }
@@ -69,5 +68,14 @@ public class Acceso extends EdificioConCarga {
     public void construirInmediatamente(){
         for (int i = 0; i < turnoParaEstarConstruido; i++)
             pasarTurno();
+    }
+
+    @Override
+    public void modificarPoblacion(Suministro suministro){
+        estadoHabilitador.marcarSuministro(suministro, suministroAportado);
+    }
+
+    public void asignarSuministro(Suministro poblacionDelImperio){
+        estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
     }
 }

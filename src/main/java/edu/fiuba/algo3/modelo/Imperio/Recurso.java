@@ -11,9 +11,6 @@ public class Recurso {
     }
 
     public void consumir(int cantidadAConsumir){
-        if(cantidad < cantidadAConsumir)
-            throw new ErrorCantidadDeRecursoInsuficiente();
-
         cantidad -= cantidadAConsumir;
     }
 
@@ -27,5 +24,9 @@ public class Recurso {
 
     public int obtenerCantidad() {
         return this.cantidad;
+    }
+
+    public boolean tienesMasQue(Recurso recurso) {
+        return this.cantidad >= recurso.cantidad;
     }
 }

@@ -156,6 +156,9 @@ public class Mapa {
         matriz[fila][columna] = casillaNueva;
     }
 
+    /**
+     * Reinicia el mapa con todas las casillas vacias y terrestres, no hay nada mas
+     */
     public void reiniciarMapa(){
         this.inicializarMapaConCasillasVacias();
     }

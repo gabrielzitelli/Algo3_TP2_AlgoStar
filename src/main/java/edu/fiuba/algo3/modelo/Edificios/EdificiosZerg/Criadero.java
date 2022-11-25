@@ -51,14 +51,9 @@ public class Criadero extends Edificio {
 
     public void crearUnidad(Fabrica unaFabrica) {
 
-        //TODO la unidad en algun momento tiene que recibir el SUMINISTRO Y los recursos para gastarlos
-
-
         if (cantidadLarvas > 0) {
-            //VA A SURGIR UN PROBLEMA SI SE GASTA EL RECURSO Y DESPUES SE GASTA EL SUMINISTRO
-            //VICEVERSA
             estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-            estadoCreador.crearUnidad(unaFabrica, unidades);
+            estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
             cantidadLarvas--;
         }else
             throw new ErrorCriaderoNoTieneMasLarvas();
@@ -71,6 +66,7 @@ public class Criadero extends Edificio {
 
     protected void destruirEdificio() {
         Mapa elMapa = Mapa.obtener();
+        estadoHabilitador.disminuirSuministro(suministroAportado);
         elMapa.destruirEdificio(coordenada);
         elMapa.expandirMoho(coordenada, 0);
         this.estaDestruido = true;
@@ -93,7 +89,6 @@ public class Criadero extends Edificio {
         this.unidades = unidades;
     }
 
-
     @Override
     public void modificarPoblacion(Suministro suministro){
         estadoHabilitador.marcarSuministro(suministro, suministroAportado);
@@ -102,5 +97,9 @@ public class Criadero extends Edificio {
     public void construirInmediatamente(){
         for (int i = 0; i < turnoParaEstarConstruido; i++)
             pasarTurno();
+    }
+
+    public void asignarSuministro(Suministro poblacionDelImperio){
+        estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
     }
 }

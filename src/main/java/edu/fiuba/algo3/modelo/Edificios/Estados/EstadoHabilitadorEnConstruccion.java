@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
 
     private int turnoParaEstarConstruido;
-    private Suministro poblacionImperio = new Suministro(200);
+    private Suministro poblacionImperio = new Suministro(0);
 
     private int aumentoSuministro;
 
@@ -43,6 +43,10 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
     public void modificarSuministro(){
         poblacionImperio.aumentarSuministro( aumentoSuministro );
     }
+
+    public void disminuirSuministro(int cantidadDisminucionSuministro){
+    }
+
     @Override
     public void estaAptoParaCrearse(Fabrica unaFabrica){
     }

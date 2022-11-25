@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.Edificios.Estados;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class EstadoCreadorEnConstruccion extends EstadoCreador {
     }
 
     @Override
-    public void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades) {
+    public void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
         throw new ErrorEdificioNoEstaConstruido();
     }
 }

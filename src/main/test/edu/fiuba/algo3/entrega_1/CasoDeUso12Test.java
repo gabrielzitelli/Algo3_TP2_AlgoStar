@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -61,6 +62,7 @@ public class CasoDeUso12Test {
         Pilon unPilon = new Pilon();
         Ataque ataqueCasiLetal = new Ataque( new Danio(599) );
         Ataque unAtaqueRompeEscudo = new Ataque( new Danio(300) );
+        unPilon.asignarSuministro(new Suministro(0));
 
         // Acceso tiene  300E / 300V
         unPilon.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo

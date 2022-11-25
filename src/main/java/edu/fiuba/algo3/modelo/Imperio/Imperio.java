@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.AlgoStar.Jugador;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -23,7 +25,7 @@ public abstract class Imperio {
 
     public void terminarTurno(){
         revisarDestruccionDeEdificios();
-
+        revisarDestruccionDeUnidades();
         for (Edificio edificio : edificios)
             edificio.pasarTurno();
 
@@ -34,14 +36,30 @@ public abstract class Imperio {
     private void revisarDestruccionDeEdificios() {
         LinkedList<Edificio> edificiosDestruidos = new LinkedList<>();
 
-        for (Edificio edificio : edificios){
-            if(edificio.estaDestruido())
+        for (Edificio edificio : edificios) {
+            if (edificio.estaDestruido())
                 edificiosDestruidos.add(edificio);
         }
-
-        for (Edificio edificioDestruido : edificiosDestruidos)
+        for (Edificio edificioDestruido : edificiosDestruidos) {
             this.edificios.remove(edificioDestruido);
+        }
     }
+
+
+    private void revisarDestruccionDeUnidades() {
+        LinkedList<Unidad> unidadesAsesinadas = new LinkedList<>();
+
+        for (Unidad unidad : unidades) {
+            if (unidad.estaMuerta())
+                unidadesAsesinadas.add(unidad);
+        }
+        for (Unidad unidadAsesinada : unidadesAsesinadas) {
+            unidadAsesinada.disminuirPoblacion(poblacion);
+            this.unidades.remove(unidadAsesinada);
+        }
+    }
+
+
 
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
@@ -58,23 +76,17 @@ public abstract class Imperio {
         edificios.add(edificio);
     }
 
-    private void comprobarRequisitosMateriales(Edificio edificio){
-        ArrayList<Recurso> listaDeRequisitos = edificio.requisitosMateriales();
-
-        //TODO si gasto mineral y despues el error salta en gas ? YA ME LO SACO EN UNO
+    protected void comprobarRequisitosMateriales(Ocupable ocupable){
+        ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
-        mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
         Recurso gasAconsumir = listaDeRequisitos.get(1);
-        gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
-    }
 
-    protected void comprobarRequisitosMaterialesUnidad(Unidad unaUnidad){
-        ArrayList<Recurso> listaDeRequisitos = unaUnidad.requisitosMateriales();
-        //TODO si gasto mineral y despues el error salta en gas ? YA ME LO SACO EN UNO
-        Recurso mineralAConsumir = listaDeRequisitos.get(0);
-        mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
-        Recurso gasAconsumir = listaDeRequisitos.get(1);
-        gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
+        if (mineralesDelImperio.tienesMasQue(mineralAConsumir) && gasDelImperio.tienesMasQue(gasAconsumir)){
+            mineralesDelImperio.consumir(mineralAConsumir.obtenerCantidad());
+            gasDelImperio.consumir(gasAconsumir.obtenerCantidad());
+        } else {
+            throw new ErrorCantidadDeRecursoInsuficiente();
+        }
     }
 
     protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
@@ -105,6 +117,12 @@ public abstract class Imperio {
         Mapa mapa = Mapa.obtener();
         return mapa.obtenerEdificio(coordenada);
     }
+
+    //TODO No lo hice todavia porque no vamos a usarlo, hay que hacerlo
+    /*public Unidad conseguirUnidad(Coordenada coordenada){
+        Mapa mapa = Mapa.obtener();
+        return mapa.obtenerUnidad(coordenada);
+    }*/
 
     public void abastecerDeRecursos() {
         //Metodo De inicializacion Utilitario
@@ -140,6 +158,9 @@ public abstract class Imperio {
         return ( unaCantidad == poblacion.obtenerSuministro() );
     }
 
+    public Suministro obtenerSuministro(){
+        return this.poblacion;
+    }
 
     public void asignarJugadorAlImperio(Jugador unJugador){
         this.jugadorQueControlaImperio = unJugador;
@@ -148,8 +169,18 @@ public abstract class Imperio {
     public boolean partidaTerminada(){
         return (this.edificios.size() == 0);
     }
-    
+
     public boolean tenesEstaPoblacion(int unaCantidad){
+
         return (unaCantidad == poblacion.obtenerPoblacion());
+    }
+
+    //TODO Sacar, implementar algoritmo del mapa para obtener unidad como obtener Edificio
+
+    /**
+     * Provisorio porque implementar algoritmo del mapa para obtener unidad como obtener Edificio
+     */
+    public ArrayList<Unidad> dameLaListaUnidades(){
+        return unidades;
     }
 }

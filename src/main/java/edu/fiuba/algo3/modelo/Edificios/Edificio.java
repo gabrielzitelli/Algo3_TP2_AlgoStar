@@ -27,7 +27,9 @@ public abstract class Edificio implements Ocupable {
     protected Superficie superficieRequerida;
     protected int costoMineral;
     protected int costoGas;
-    protected int suministroAportado = 0;
+    protected Mineral mineralDelImperio;
+    protected Gas gasDelImperio;
+    protected int suministroAportado;
     protected boolean estaDestruido = false;
 
     public abstract void pasarTurno();
@@ -83,5 +85,9 @@ public abstract class Edificio implements Ocupable {
 
     public boolean estaDestruido(){
         return this.estaDestruido;
+    }
+    public void asignarRecursos(Mineral mineralesDelImperio, Gas gasDelImperio) {
+        this.mineralDelImperio = mineralesDelImperio;
+        this.gasDelImperio = gasDelImperio;
     }
 }

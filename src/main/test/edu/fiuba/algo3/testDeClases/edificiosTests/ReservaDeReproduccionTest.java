@@ -7,6 +7,9 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
+import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.Test;
@@ -28,6 +31,7 @@ public class ReservaDeReproduccionTest {
         // Construyo criadero
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarSuministro(new Suministro(1));
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
@@ -47,6 +51,8 @@ public class ReservaDeReproduccionTest {
         // Construyo criadero
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarRecursos(new Mineral(1000), new Gas(1000));
+        unCriadero.asignarSuministro(new Suministro(1));
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
@@ -62,6 +68,7 @@ public class ReservaDeReproduccionTest {
         // Construyo criadero
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
+        unCriadero.asignarSuministro(new Suministro(1));
         elMapa.construirEdificio(unCriadero, new Coordenada(0,0));
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();

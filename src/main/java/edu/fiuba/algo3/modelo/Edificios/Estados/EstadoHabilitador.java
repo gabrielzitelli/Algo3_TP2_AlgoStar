@@ -13,8 +13,8 @@ public interface EstadoHabilitador {
 
     void marcarSuministro(Suministro suministroImperio, int cantidadAumentoSuministro);
     void modificarSuministro();
+    void disminuirSuministro(int cantidadDisminucionSuministro);
 
     void estaAptoParaCrearse(Fabrica unaFabrica);
-
 
 }

@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
@@ -16,8 +19,6 @@ public class Guardian extends UnidadZerg {
     private final int turnosDeContruccion = 4;
     private final int danioTerrestre = 25;
     private final int cantidadDeVida = 100;
-    private final int costoMineralEvolucion = 100;
-    private final int costoGasEvolucion = 50;
 
     public Guardian() {
         this.turnosDeConstruccion = turnosDeContruccion;
@@ -25,12 +26,11 @@ public class Guardian extends UnidadZerg {
         this.danio = new DanioGuardian(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 10;
+        this.costoGas = 50;
+        this.costoMineral = 100;
     }
 
-    public ArrayList<Recurso> requisitosMateriales() {
-        ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
-        requisitosMateriales.add(new Mineral(costoMineralEvolucion));
-        requisitosMateriales.add(new Gas(costoGasEvolucion));
-        return requisitosMateriales;
+    public void disminuirPoblacion(Suministro suministroImperio){
+        suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
     }
 }

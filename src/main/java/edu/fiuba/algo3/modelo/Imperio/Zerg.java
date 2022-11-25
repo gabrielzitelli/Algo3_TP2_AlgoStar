@@ -48,6 +48,7 @@ public class Zerg extends Imperio{
         Criadero criadero = new Criadero();
         criadero.asignarListaDeUnidades(fabricasDisponibles);
         criadero.asignarListaDeUnidadesImperio(unidades);
+        criadero.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificio(criadero, coordenada);
     }
 
@@ -82,7 +83,7 @@ public class Zerg extends Imperio{
             throw new ErrorNoHayMutaliscoParaEvolucionar();
         }
         //comprobamos los materiales
-        this.comprobarRequisitosMaterialesUnidad(unaUnidad);
+        this.comprobarRequisitosMateriales(unaUnidad);
     }
 
     public void evolucionarMutaliscoAGuardian(){

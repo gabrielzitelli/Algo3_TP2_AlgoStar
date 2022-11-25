@@ -38,13 +38,19 @@ public class Suministro{
     }
 
     public void tenesCapacidad(int poblacionNecesaria) {
-        if (this.poblacion + poblacionNecesaria <= obtenerSuministro())
-            poblacion += poblacionNecesaria;
-        else
+        if(this.poblacion + poblacionNecesaria > obtenerSuministro())
             throw new ErrorSuperaMaximoDePoblacionActual();
     }
 
     public void agregarPoblacion(int poblacionNecesaria) {
         this.poblacion += poblacionNecesaria;
+    }
+
+    public void disminuirPoblacion(int cantidadADisminuir){
+
+        if ((poblacion-cantidadADisminuir) < 0)
+            poblacion = 0;
+        else
+            poblacion -= cantidadADisminuir;
     }
 }

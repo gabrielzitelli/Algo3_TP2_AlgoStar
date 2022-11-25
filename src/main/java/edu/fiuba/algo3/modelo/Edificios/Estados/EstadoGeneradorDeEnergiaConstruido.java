@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 public class EstadoGeneradorDeEnergiaConstruido implements EstadoGeneradorDeEnergia {
 
     private Energia energia = new Energia();
+    private Suministro poblacionImperio;
 
     public EstadoGeneradorDeEnergiaConstruido(Coordenada coordenada) {
         energia.energizar(coordenada);
@@ -19,6 +20,7 @@ public class EstadoGeneradorDeEnergiaConstruido implements EstadoGeneradorDeEner
 
     @Override
     public void marcarSuministro(Suministro suministroImperio, int cantidadAumentoSuministro) {
+        this.poblacionImperio = suministroImperio;
     }
 
     @Override
@@ -29,4 +31,7 @@ public class EstadoGeneradorDeEnergiaConstruido implements EstadoGeneradorDeEner
         energia.desenergizar(coordenada);
     }
 
+    public void disminuirSuministro(int cantidadDisminucionSuministro){
+        poblacionImperio.disminuirSuministro(cantidadDisminucionSuministro);
+    }
 }
