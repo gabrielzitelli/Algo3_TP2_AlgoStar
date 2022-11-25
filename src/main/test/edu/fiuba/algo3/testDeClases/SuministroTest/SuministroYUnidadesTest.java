@@ -86,30 +86,25 @@ public class SuministroYUnidadesTest {
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
         imperioZerg.construirCriadero(new Coordenada(0,0));
-
-        //Esperamos a que se construya el criadero
+        
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
         imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
 
-        //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
         imperioZerg.construirGuarida(new Coordenada(2,0));
 
-        //esperamos a que se construya la reserva
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
 
         imperioZerg.construirEspiral(new Coordenada(3,0));
 
-        //esperamos a que se construya la reserva
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
 
-        //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
         criadero.crearUnidad(new FabricaMutalisco());
         for (int i = 0; i < 7; i++)
