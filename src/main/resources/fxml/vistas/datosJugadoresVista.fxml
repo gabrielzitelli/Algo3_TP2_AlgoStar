@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.DatosJugadoresControlador">
+   <children>
+      <ImageView fitHeight="239.0" fitWidth="780.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/StarCraft_Logo.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="140.0" layoutY="172.0" opacity="0.92" prefHeight="397.0" prefWidth="519.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
+         <children>
+            <Label layoutX="56.0" layoutY="27.0" prefHeight="52.0" prefWidth="107.0" text="JUGADOR 1" underline="true">
+               <font>
+                  <Font name="Calibri" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="87.0" text="Nombre">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="36.0" layoutY="114.0" text="Ingrese aqui el nombre" />
+            <Label layoutX="87.0" layoutY="164.0" text="Color">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ColorPicker editable="true" layoutX="38.0" layoutY="192.0">
+               <value>
+                  <Color blue="1.0" />
+               </value>
+            </ColorPicker>
+            <Label layoutX="90.0" layoutY="240.0" text="Raza">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ToggleButton layoutX="30.0" layoutY="292.0" mnemonicParsing="false" text="ToggleButton" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
