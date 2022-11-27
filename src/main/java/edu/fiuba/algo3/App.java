@@ -32,25 +32,11 @@ public class App extends Application {
         loader.setRoot(new AnchorPane());
 
         Scene scene = new Scene(loader.load(), INITIAL_WIDTH, INITIAL_HEIGHT);
-        stage.setTitle("AlgoStar");
-
         stage.setScene(scene);
+
+        stage.setTitle("AlgoStar");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/AS_logo_space.png"))));
         stage.setResizable(false);
         stage.show();
     }
-
-    //Start Viejo que mostraba la version de java fx
-    /*@Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
-
-
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
 }

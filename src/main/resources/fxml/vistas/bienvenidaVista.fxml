@@ -19,12 +19,12 @@
             </MediaView>
             <AnchorPane>
                <children>
-                  <Label layoutX="201.0" layoutY="263.0" text="Bienvenido a AlgoStar" textAlignment="CENTER" textFill="WHITE">
+                  <Label layoutX="318.0" layoutY="46.0" text="Bienvenido a" textAlignment="CENTER" textFill="#c8bfbf">
                      <font>
-                        <Font name="Calibri" size="67.0" />
+                        <Font name="Century Gothic" size="61.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="238.0" fitWidth="1006.0" layoutX="6.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="238.0" fitWidth="1006.0" layoutX="13.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/AlgoStar_banner.png" />
                      </image>
@@ -32,9 +32,9 @@
                         <Glow />
                      </effect>
                   </ImageView>
-                  <Button id="comenzarBoton" fx:id="comenzarBoton" layoutX="381.0" layoutY="404.0" mnemonicParsing="false" onAction="#empezarCreacionJugador" text="COMENZAR">
+                  <Button id="comenzarBoton" fx:id="comenzarBoton" layoutX="389.0" layoutY="407.0" mnemonicParsing="false" onAction="#empezarCreacionJugador" styleClass="comenzarBotonCSS" stylesheets="@../../css/style.css" text="COMENZAR" textAlignment="CENTER">
                      <font>
-                        <Font name="Calibri" size="39.0" />
+                        <Font name="Calibri" size="32.0" />
                      </font>
                   </Button>
                   <Button layoutX="414.0" layoutY="498.0" mnemonicParsing="false" onAction="#pruebaDeMovimiento" text="Quick Test">
