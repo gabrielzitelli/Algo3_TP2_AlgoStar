@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.TestGui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,9 +14,32 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 public class Titulo extends Escena{
+
+    EventHandler salir() {
+        EventHandler<ActionEvent> evento = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Node node = (Node) actionEvent.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();
+            }
+        };
+        return evento;
+    }
+    EventHandler comenzar() {
+        EventHandler<ActionEvent> evento = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Node node = (Node) actionEvent.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setScene(new MapaTest(stage).getScene());
+            }
+        };
+        return evento;
+    }
 
     public Titulo(Stage stage) {
         crearEscena(stage);
@@ -23,7 +48,7 @@ public class Titulo extends Escena{
     @Override
     protected void crearEscena(Stage stage){
         stage.setTitle("AlgoStar wtf!");
-        //stage.setResizable(false);
+        stage.setResizable(false);
         BorderPane panelPrincipal = new BorderPane();
         HBox contenedorTituloSuperior = crearTitulo();
         VBox contenedorCentroPantalla = crearCentro();
@@ -45,6 +70,7 @@ public class Titulo extends Escena{
         Button button = new Button("Salir");
         Font fuente = Font.font("Times New Roman", FontWeight.BOLD, 16);
         button.setFont(fuente);
+        button.setOnAction(salir());
 
         hBox.getChildren().add(button);
 
@@ -72,6 +98,7 @@ public class Titulo extends Escena{
         Button boton = new Button("Empezar");
         boton.setFont(fuente);
         boton.setPadding(new Insets(10,10,10,10));
+        boton.setOnAction(comenzar());
 
         vBox.getChildren().add(panel);
         vBox.getChildren().add(boton);

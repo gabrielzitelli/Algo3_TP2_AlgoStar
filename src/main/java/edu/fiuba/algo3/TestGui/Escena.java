@@ -21,6 +21,6 @@ public abstract class Escena {
 
         r.getChildren().add(l);
 
-        escena = new Scene(r, 800, 800);
+        escena = new Scene(r, 600, 600);
     }
 }
