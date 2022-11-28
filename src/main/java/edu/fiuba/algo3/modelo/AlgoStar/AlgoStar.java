@@ -1,42 +1,37 @@
 package edu.fiuba.algo3.modelo.AlgoStar;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorSoloPuedenJugarDosPersonasAlMismoTiempo;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 import java.util.ArrayList;
 
 public class AlgoStar {
 
-    private ArrayList<Jugador> jugadores = new ArrayList<>();
+    private AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
     private ArrayList<Imperio> imperios = new ArrayList<>();
-    private Boolean partidaFinalizada = false;
-
-    public AlgoStar() {
-    }
+    private Turno turno;
 
     public void asignarJugador(String nombre, String color, Imperio imperio) {
-        if (jugadores.size() < 2){
-            Jugador jugador = new Jugador(nombre,color,imperio);
-            revisarJugador(jugador);
-            jugadores.add(jugador);
-            // TODO Validar que no haya dos imperios iguales
-            imperio.asignarJugadorAlImperio(jugador);
-            imperios.add(imperio);
-        } else
-            throw new ErrorSoloPuedenJugarDosPersonasAlMismoTiempo();
+        jugadores.agregarJugador(new Jugador(nombre, color, imperio));
+        // TODO Validar que no haya dos imperios iguales
+        imperios.add(imperio);
     }
 
-    private void revisarJugador(Jugador jugadorARevisar) {
-        for (Jugador jugador : jugadores)
-            jugadorARevisar.verificarRespectoDe(jugador);
+    public void empezarJuego() {
+        // TODO inicicializar bases
+
+        turno = new TurnoJugador(jugadores.conseguirSiguienteJugador(), jugadores);
     }
 
-    public boolean partidaTerminada(){
-        for (Imperio imperio : imperios) {
-            if(imperio.partidaTerminada())
-                this.partidaFinalizada = true;
-        }
+    public void terminarTurno() {
+        turno = turno.terminarTurno();
+    }
 
-        return this.partidaFinalizada;
+    public boolean partidaTerminada() {
+        return turno.partidaTerminada();
+    }
+
+    public Jugador conseguirJugadorActual() {
+        return turno.jugadorActual();
     }
 }

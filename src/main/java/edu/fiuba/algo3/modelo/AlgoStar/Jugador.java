@@ -33,4 +33,16 @@ public class Jugador {
         if (this.imperio.getClass().equals(jugador.imperio.getClass()))
             throw new ErrorDosJugadoresNoPuedenTenerElMismoImperio();
     }
+
+    public Imperio conseguirImperio() {
+        return imperio;
+    }
+
+    public boolean perdio() {
+        return imperio.partidaTerminada();
+    }
+
+    public String conseguirNombre() {
+        return nombre;
+    }
 }

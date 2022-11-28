@@ -21,7 +21,6 @@ public abstract class Imperio {
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
     protected int cantidadInicialDeMineral = 200;
-    protected Jugador jugadorQueControlaImperio;
 
     public void terminarTurno(){
         revisarDestruccionDeEdificios();
@@ -160,10 +159,6 @@ public abstract class Imperio {
 
     public Suministro obtenerSuministro(){
         return this.poblacion;
-    }
-
-    public void asignarJugadorAlImperio(Jugador unJugador){
-        this.jugadorQueControlaImperio = unJugador;
     }
 
     public boolean partidaTerminada(){
