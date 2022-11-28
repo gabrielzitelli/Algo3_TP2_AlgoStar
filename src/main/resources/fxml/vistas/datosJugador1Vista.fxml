@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
@@ -46,6 +47,7 @@
                </font>
             </Label>
             <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="268.0" prefWidth="150.0" />
+            <Button layoutX="87.0" layoutY="325.0" mnemonicParsing="false" text="Button" />
          </children>
       </AnchorPane>
    </children>
