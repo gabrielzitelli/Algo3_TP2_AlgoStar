@@ -37,7 +37,7 @@
                         <Font name="Calibri" size="32.0" />
                      </font>
                   </Button>
-                  <Button layoutX="414.0" layoutY="498.0" mnemonicParsing="false" onAction="#pruebaDeMovimiento" text="Quick Test">
+                  <Button layoutX="402.0" layoutY="498.0" mnemonicParsing="false" onAction="#pruebaDeMovimiento" styleClass="comenzarBotonCSS" stylesheets="@../../css/style.css" text="Quick Test">
                      <font>
                         <Font size="29.0" />
                      </font>
