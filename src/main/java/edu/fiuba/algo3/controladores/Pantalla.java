@@ -1,12 +1,11 @@
-package edu.fiuba.algo3.TestGui;
+package edu.fiuba.algo3.controladores;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
-public abstract class Escena {
+public abstract class Pantalla {
     protected Scene escena;
 
     public Scene getScene() {

@@ -327,4 +327,8 @@ public class Mapa {
         LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
         return casillas.contains(casillaAtacada);
     }
+
+    public int obtenerTamanioMapa() {
+        return tamanio;
+    }
 }

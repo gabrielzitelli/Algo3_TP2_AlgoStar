@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.TestGui;
+package edu.fiuba.algo3.controladores.ElementosGui;
 
 public class Camara {
 

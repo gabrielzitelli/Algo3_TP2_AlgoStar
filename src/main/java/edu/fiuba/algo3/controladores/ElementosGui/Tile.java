@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.TestGui;
+package edu.fiuba.algo3.controladores.ElementosGui;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -14,5 +14,9 @@ public class Tile {
 
     public void render(GraphicsContext gc, int x, int y) {
         gc.drawImage(textura, x, y);
+    }
+
+    public int tamanio() {
+        return (int) textura.getHeight();
     }
 }

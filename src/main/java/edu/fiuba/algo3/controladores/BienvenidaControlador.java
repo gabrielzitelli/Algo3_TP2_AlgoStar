@@ -55,18 +55,21 @@ public class BienvenidaControlador extends Controlador implements Initializable 
         this.scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
         stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
     public void pruebaDeMovimiento(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/testMapa.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/Mapa.fxml"));
         root = loader.load();
+        MapaControlador controlador = (MapaControlador) loader.getController();
 
         stage = obtenerStageActual(event);
         this.scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
+        this.scene.setOnMouseClicked(controlador.pintarCasilla());
+        this.scene.setOnKeyPressed(controlador.pressKey());
+        this.scene.setOnKeyReleased(controlador.releaseKey());
+
         stage.setScene(scene);
-        stage.show();
     }
 }
