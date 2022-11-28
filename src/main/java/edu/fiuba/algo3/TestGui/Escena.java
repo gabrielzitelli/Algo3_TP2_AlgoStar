@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.TestGui;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
