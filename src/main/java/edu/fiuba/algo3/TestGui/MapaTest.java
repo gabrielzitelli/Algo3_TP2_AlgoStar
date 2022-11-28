@@ -45,7 +45,7 @@ public class MapaTest extends Escena {
 
     public MapaTest(Stage stage){
         //todo acomodar
-        camara = new Camara(((tamañoMapa - 10)*32) - 1024, (tamañoMapa*32) - 600);
+        camara = new Camara(((tamañoMapa + 8)*32) - 1024, (tamañoMapa*32) - 600);
         crearEscena(stage);
     }
     private void renderizarMapa() {
