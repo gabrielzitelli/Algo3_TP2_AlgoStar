@@ -18,7 +18,7 @@
             <Image url="@../../img/StarCraft_Logo.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="236.0" layoutY="117.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
+      <AnchorPane layoutX="419.0" layoutY="102.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
          <children>
             <Label layoutX="56.0" layoutY="27.0" text="JUGADOR 1" underline="true">
                <font>
@@ -30,24 +30,25 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="36.0" layoutY="114.0" text="Ingrese aqui el nombre" />
+            <TextField fx:id="nombreJugador1" layoutX="36.0" layoutY="114.0" text="Ingrese aqui el nombre" />
             <Label layoutX="87.0" layoutY="164.0" text="Color">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ColorPicker id="elegirColorBoton" fx:id="elegirColorBoton" editable="true" layoutX="38.0" layoutY="192.0">
+            <ColorPicker id="elegirColorBoton" fx:id="elegirColorJugador1" editable="true" layoutX="38.0" layoutY="192.0">
                <value>
                   <Color blue="1.0" />
                </value>
             </ColorPicker>
-            <Label layoutX="90.0" layoutY="240.0" text="Raza">
+            <Label layoutX="90.0" layoutY="234.0" text="Raza">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="268.0" prefWidth="150.0" />
-            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="70.0" layoutY="326.0" mnemonicParsing="false" onAction="#empezarCreacionJugador1" text="Crear Jugador" />
+            <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="261.0" prefWidth="150.0" />
+            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="61.0" layoutY="319.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" text="Crear Jugador" />
+            <Label id="mensajeError" fx:id="mensajeError" layoutX="8.0" layoutY="351.0" prefHeight="35.0" prefWidth="223.0" />
          </children>
       </AnchorPane>
    </children>
