@@ -92,4 +92,12 @@ public abstract class Casilla {
     public Superficie obtenerSuperficie() {
         return this.superficie;
     }
+
+    public Cargable obtenerCarga() {
+        return estadoCarga;
+    }
+
+    public EstadoMoho obtenerMoho() {
+        return estadoMoho;
+    }
 }

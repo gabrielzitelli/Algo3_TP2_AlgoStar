@@ -200,6 +200,9 @@ public class Mapa {
     }
 
     public void expandirMoho(Coordenada origenDeExpansion, int radio){
+        Casilla casilla = encontrarCasillaPorCoordenada(origenDeExpansion);
+        casilla.llenarDeMoho();
+
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.llenarDeMoho();

@@ -76,7 +76,7 @@ public abstract class Imperio {
         edificios.add(edificio);
     }
 
-    protected void comprobarRequisitosMateriales(Ocupable ocupable){
+    protected void  comprobarRequisitosMateriales(Ocupable ocupable){
         ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
         Recurso gasAconsumir = listaDeRequisitos.get(1);

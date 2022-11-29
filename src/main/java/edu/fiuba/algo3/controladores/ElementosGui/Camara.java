@@ -7,7 +7,7 @@ public class Camara {
     private int bordeX;
     private int bordeY;
 
-    private int razonDeMovimiento = 2;
+    private int razonDeMovimiento = 8;
 
     public Camara(int bordeX, int bordeY) {
         this.bordeX -= bordeX;
