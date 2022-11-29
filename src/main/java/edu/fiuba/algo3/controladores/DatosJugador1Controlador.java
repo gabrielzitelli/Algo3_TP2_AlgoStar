@@ -13,7 +13,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,13 +25,16 @@ public class DatosJugador1Controlador extends Controlador{
     private Scene scene;
     @FXML
     private ChoiceBox razaBox;
-
     ObservableList<String> razaLista = FXCollections.observableArrayList("Protoss", "Zergs");
     @FXML
     private TextField nombreJugador1;
     @FXML
     private ColorPicker elegirColorJugador1;
 
+    @FXML
+    private Label mensajeError;
+
+    private boolean datosValidos = false;
     @FXML
     public void initialize() {
         this.razaBox.setItems(razaLista);
@@ -40,27 +45,30 @@ public class DatosJugador1Controlador extends Controlador{
     public void empezarCreacionJugador2(ActionEvent event) throws IOException {
         guardarDatosJugador1();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador2Vista.fxml"));
+        if (this.datosValidos) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador2Vista.fxml"));
 
-        stage = obtenerStageActual(event);
-        this.scene = new Scene(loader.load(), App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
+            stage = obtenerStageActual(event);
+            this.scene = new Scene(loader.load(), App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
-        stage.setScene(scene);
+            stage.setScene(scene);
+        }
     }
 
     private void guardarDatosJugador1() {
         Imperio imperio = this.parsearImperio((String) razaBox.getValue());
         try {
             App.algoStar.asignarJugador(nombreJugador1.getText(), String.valueOf(elegirColorJugador1.getValue()), imperio);
+            this.datosValidos = true;
+            this.mensajeError.setText("Datos Validos");
+            this.mensajeError.setTextFill(Color.GREEN);
         }catch (ErrorELNombreDelJugadorDebeSerMayorA6Caracteres e) {
-            System.out.println(e);
-
+            this.mensajeError.setText("Nombre del jugador de ser mayor a 6 caracteres");
+            this.mensajeError.setTextFill(Color.RED);
         }
-
     }
 
     private Imperio parsearImperio(String stringImperio){
-        // TODO verificar que usaruario eliga si o si una opcion de imperio
         if (stringImperio.equals("Protoss")){
             return new Protoss();
         } else {

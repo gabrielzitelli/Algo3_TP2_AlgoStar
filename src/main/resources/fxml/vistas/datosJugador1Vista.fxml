@@ -48,6 +48,7 @@
             </Label>
             <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="268.0" prefWidth="150.0" />
             <Button id="crearJugador1" fx:id="crearJugador1" layoutX="70.0" layoutY="326.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" text="Crear Jugador" />
+            <Label id="mensajeError" fx:id="mensajeError" layoutX="97.0" layoutY="367.0" />
          </children>
       </AnchorPane>
    </children>
