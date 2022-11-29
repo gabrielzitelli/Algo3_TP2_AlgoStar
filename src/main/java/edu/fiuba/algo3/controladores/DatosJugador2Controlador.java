@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -46,7 +47,17 @@ public class DatosJugador2Controlador extends Controlador {
     public void iniciarJuego(ActionEvent event) throws IOException {
         guardarDatosJugador2();
         if (this.datosValidos) {
-            // TODO Mostrar el mapa
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/Mapa.fxml"));
+
+            stage = obtenerStageActual(event);
+            this.scene = new Scene(loader.load(), App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
+
+            MapaControlador controlador = loader.getController();
+            this.scene.setOnMouseClicked(controlador.pintarCasilla());
+            this.scene.setOnKeyPressed(controlador.pressKey());
+            this.scene.setOnKeyReleased(controlador.releaseKey());
+
+            stage.setScene(scene);
         }
     }
 
