@@ -10,12 +10,13 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 
-public class PuertoEstelar extends EdificioConCarga {
+public class PuertoEstelar extends EdificioProtoss {
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
@@ -46,6 +47,14 @@ public class PuertoEstelar extends EdificioConCarga {
         ArrayList<Edificio> requisitos = new ArrayList<>();
         requisitos.add(new Acceso());
         return requisitos;
+    }
+
+    public boolean verificarCarga() {
+        Mapa elMapa = Mapa.obtener();
+        if (coordenada == null)
+            return true;
+
+        return elMapa.estaEnergizado(coordenada);
     }
 
     public void crearUnidad(Fabrica unaFabrica) {

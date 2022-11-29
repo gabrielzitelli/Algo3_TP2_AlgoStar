@@ -9,12 +9,13 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 
-public class Acceso extends EdificioConCarga {
+public class Acceso extends EdificioProtoss {
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
@@ -40,6 +41,14 @@ public class Acceso extends EdificioConCarga {
 
         listaFabricasAHabilitar.add(new FabricaDragon());
         listaFabricasAHabilitar.add(new FabricaZealot());
+    }
+
+    public boolean verificarCarga() {
+        Mapa elMapa = Mapa.obtener();
+        if (coordenada == null)
+            return true;
+
+        return elMapa.estaEnergizado(coordenada);
     }
 
     public void crearUnidad(Fabrica unaFabrica) {

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
@@ -229,6 +230,11 @@ public class Mapa {
 
         this.actualizarCasillaPorCoordenada(unaCoordenada, casillaDondeColocar);
     }
+
+    public Ocupable obtenerOcupable(Coordenada coordenada) {
+        return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
+    }
+
     public Edificio obtenerEdificio(Coordenada coordenada) {
         Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
         return casillaConEdificio.obtenerEdificio();

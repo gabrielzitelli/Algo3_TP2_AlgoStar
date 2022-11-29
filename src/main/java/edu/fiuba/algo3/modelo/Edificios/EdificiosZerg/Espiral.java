@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 
-public class Espiral extends Edificio {
+public class Espiral extends EdificioZerg {
 
     private EstadoHabilitador estadoHabilitador;
     private int turnoParaEstarConstruido = 10;

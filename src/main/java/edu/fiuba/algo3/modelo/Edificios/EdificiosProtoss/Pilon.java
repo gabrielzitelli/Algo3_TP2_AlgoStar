@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergia;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergiaEnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -8,7 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
-public class Pilon extends Edificio {
+public class Pilon extends EdificioProtoss {
 
     private EstadoGeneradorDeEnergia estadoGeneradorDeEnergia;
     private int turnoParaEstarConstruido = 5;
