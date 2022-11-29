@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Mapa.MineralBruto;
 public class MineralBrutoVista extends RecursoVista {
 
     public MineralBrutoVista() {
-        tile = new Tile("mineral.png");
+        tile = new Tile("recursos/32px/mineral.png");
         elemento = new MineralBruto();
         info = "Minerales";
     }

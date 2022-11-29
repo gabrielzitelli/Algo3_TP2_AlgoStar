@@ -8,7 +8,7 @@ public class SuperficieTerrestreVista extends SuperficieVista {
 
     public SuperficieTerrestreVista(){
         this.elemento = new SuperficieTerrestre();
-        this.tile = new Tile("tierra.png");
+        this.tile = new Tile("superficies/32px/terrestre.png");
         this.info = "Superficie";
     }
 }

@@ -48,8 +48,8 @@ public class MapaControlador extends Controlador {
      * Graficos
      * ====================================================================================*/
     private GraphicsContext graphicsContext;
-    private final Tile tierra = new Tile("tierra.png");
-    private final Tile seleccion = new Tile("seleccion.png");
+    private final Tile tierra = new Tile("superficies/32px/terrestre.png");
+    private final Tile seleccion = new Tile("marcos/32px/seleccion.png");
     private Coordenada coordenadaSeleccion;
     private final int tileWidth = tierra.tamanio();
 

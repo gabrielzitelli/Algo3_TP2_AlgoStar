@@ -32,7 +32,7 @@ public class App extends Application {
         stage.setScene(scene);
 
         stage.setTitle("AlgoStar");
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/AS_logo_space.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/brand/AS_logo_space.png"))));
         stage.setResizable(false);
         stage.show();
     }
