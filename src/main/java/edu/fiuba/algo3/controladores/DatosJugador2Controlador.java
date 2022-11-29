@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoColor;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoImperio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoNombre;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorELNombreDelJugadorDebeSerMayorA6Caracteres;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -39,7 +43,19 @@ public class DatosJugador2Controlador extends Controlador{
 
     private void guardarDatosJugador2() {
         Imperio imperio = this.parsearImperio((String) razaBox2.getValue());
-        App.algoStar.asignarJugador(nombreJugador2.getText(), String.valueOf(elegirColorJugador2.getValue()), imperio);
+        try {
+            App.algoStar.asignarJugador(nombreJugador2.getText(), String.valueOf(elegirColorJugador2.getValue()), imperio);
+        }catch (Exception e) {
+            System.out.println(e);
+            this.manejarExcepcion(e);
+        }
+    }
+
+    private void manejarExcepcion(Exception e){
+        /* TODO
+        * Hacer que dependiendo de la excepcion que se reciba se le diga al usuario que dato
+        * tiene que modificar
+        */
     }
 
     private Imperio parsearImperio(String stringImperio){

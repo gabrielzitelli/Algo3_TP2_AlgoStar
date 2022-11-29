@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorELNombreDelJugadorDebeSerMayorA6Caracteres;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -51,7 +52,8 @@ public class DatosJugador1Controlador extends Controlador{
         Imperio imperio = this.parsearImperio((String) razaBox.getValue());
         try {
             App.algoStar.asignarJugador(nombreJugador1.getText(), String.valueOf(elegirColorJugador1.getValue()), imperio);
-        }catch (Exception e) {
+        }catch (ErrorELNombreDelJugadorDebeSerMayorA6Caracteres e) {
+            System.out.println(e);
 
         }
 
