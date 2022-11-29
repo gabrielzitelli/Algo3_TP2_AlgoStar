@@ -32,7 +32,7 @@ public class DatosJugador1Controlador extends Controlador{
     @FXML
     public void initialize() {
         this.razaBox.setItems(razaLista);
-        this.razaBox.setValue("Seleccionar Raza");
+        this.razaBox.setValue("Protoss");
     }
 
     @FXML
@@ -49,7 +49,12 @@ public class DatosJugador1Controlador extends Controlador{
 
     private void guardarDatosJugador1() {
         Imperio imperio = this.parsearImperio((String) razaBox.getValue());
-        App.algoStar.asignarJugador(nombreJugador1.getText(), String.valueOf(elegirColorJugador1.getValue()), imperio);
+        try {
+            App.algoStar.asignarJugador(nombreJugador1.getText(), String.valueOf(elegirColorJugador1.getValue()), imperio);
+        }catch (Exception e) {
+
+        }
+
     }
 
     private Imperio parsearImperio(String stringImperio){
