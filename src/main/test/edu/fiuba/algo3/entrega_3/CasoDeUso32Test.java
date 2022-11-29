@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
-import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -33,14 +32,11 @@ public class CasoDeUso32Test {
         elMapa.recolocarBasesIniciales();
 
         AlgoStar algoStar = new AlgoStar();
-        Protoss protoss = new Protoss();
-        Zerg zergs = new Zerg();
 
-        algoStar.asignarJugador("lalala01", "rojo", protoss);
-        algoStar.asignarJugador("XZangano", "azul", zergs);
+        algoStar.asignarJugador("lalala01", "rojo", new Protoss());
+        algoStar.asignarJugador("XZangano", "azul", new Zerg());
 
-        protoss.inicializarAsentamientoPrimerTurno();
-        zergs.inicializarAsentamientoPrimerTurno();
+        algoStar.empezarJuego();
 
         // La partida no esta terminada
         assertFalse(algoStar.partidaTerminada());
@@ -65,7 +61,9 @@ public class CasoDeUso32Test {
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
         }
-        zergs.terminarTurno();
+
+        algoStar.terminarTurno();
+
         // Despues del ataque al unico edificio zerg, la partida se termino
         assertTrue(algoStar.partidaTerminada());
     }

@@ -4,10 +4,7 @@ import edu.fiuba.algo3.modelo.Ataque.DanioUnidad;
 import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
-import edu.fiuba.algo3.modelo.Imperio.Gas;
-import edu.fiuba.algo3.modelo.Imperio.Mineral;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Imperio.Suministro;
+import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
@@ -30,6 +27,7 @@ public abstract class Unidad implements Ocupable {
 
      protected boolean estadoMuerta = false;
 
+     public abstract boolean perteneceAImperio(Imperio imperio);
 
      public void verificarColocable(Casilla unaCasilla) {
           if (!unaCasilla.puedeMoverse(this.superficieDondeSeMueve))

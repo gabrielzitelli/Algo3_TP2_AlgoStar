@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
@@ -9,7 +8,7 @@ import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 
-public class ReservaDeReproduccion extends Edificio {
+public class ReservaDeReproduccion extends EdificioZerg {
 
     private EstadoHabilitador estadoHabilitador;
     private int turnoParaEstarConstruido = 12;

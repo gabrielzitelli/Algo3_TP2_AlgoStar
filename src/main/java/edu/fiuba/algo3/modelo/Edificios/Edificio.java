@@ -4,10 +4,7 @@ import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidadades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
-import edu.fiuba.algo3.modelo.Imperio.Gas;
-import edu.fiuba.algo3.modelo.Imperio.Mineral;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Imperio.Suministro;
+import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -33,6 +30,8 @@ public abstract class Edificio implements Ocupable {
     protected boolean estaDestruido = false;
 
     public abstract void pasarTurno();
+
+    public abstract boolean perteneceAImperio(Imperio imperio);
 
     public void verificarConstruccion(Casilla unaCasilla){
         if (estadoRecolectable != null)

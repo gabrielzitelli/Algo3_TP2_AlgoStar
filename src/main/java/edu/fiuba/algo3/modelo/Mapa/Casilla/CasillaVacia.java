@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -50,6 +51,11 @@ public class CasillaVacia extends Casilla{
     
     public Casilla desconstruirEdificio(Coordenada coordenada){
         throw new ErrorNoSePuedeDesconstruirUnEdificioNoCreado();
+    }
+
+    @Override
+    public Ocupable obtenerOcupable() {
+        throw new ErrorCasillaVacia();
     }
 
     public Edificio obtenerEdificio() {
