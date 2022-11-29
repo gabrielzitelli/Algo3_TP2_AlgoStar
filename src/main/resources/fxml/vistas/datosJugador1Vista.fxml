@@ -30,13 +30,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="36.0" layoutY="114.0" text="Ingrese aqui el nombre" />
+            <TextField fx:id="nombreJugador1" layoutX="36.0" layoutY="114.0" text="Ingrese aqui el nombre" />
             <Label layoutX="87.0" layoutY="164.0" text="Color">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ColorPicker id="elegirColorBoton" fx:id="elegirColorBoton" editable="true" layoutX="38.0" layoutY="192.0">
+            <ColorPicker id="elegirColorBoton" fx:id="elegirColorJugador1" editable="true" layoutX="38.0" layoutY="192.0">
                <value>
                   <Color blue="1.0" />
                </value>
@@ -47,7 +47,7 @@
                </font>
             </Label>
             <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="268.0" prefWidth="150.0" />
-            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="70.0" layoutY="326.0" mnemonicParsing="false" onAction="#empezarCreacionJugador1" text="Crear Jugador" />
+            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="70.0" layoutY="326.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" text="Crear Jugador" />
          </children>
       </AnchorPane>
    </children>

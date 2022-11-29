@@ -22,7 +22,6 @@ public class App extends Application {
 
     public static int INITIAL_WIDTH = 1024;
     public static int INITIAL_HEIGHT = 600;
-
     public static AlgoStar algoStar = new AlgoStar();
 
     public static void run(String[] args) {
