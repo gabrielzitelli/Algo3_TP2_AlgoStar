@@ -18,15 +18,9 @@
             <Image url="@../../img/StarCraft_Logo.png" />
          </image>
       </ImageView>
-<<<<<<< HEAD
-      <AnchorPane layoutX="289.0" layoutY="134.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
-         <children>
-            <Label layoutX="54.0" layoutY="27.0" prefHeight="52.0" prefWidth="136.0" text="JUGADOR 1" underline="true">
-=======
       <AnchorPane layoutX="236.0" layoutY="117.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
          <children>
             <Label layoutX="56.0" layoutY="27.0" text="JUGADOR 1" underline="true">
->>>>>>> refs/remotes/origin/dev-ui-alpha
                <font>
                   <Font name="Calibri" size="22.0" />
                </font>
