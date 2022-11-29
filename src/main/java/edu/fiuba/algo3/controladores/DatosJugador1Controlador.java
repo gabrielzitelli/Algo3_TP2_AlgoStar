@@ -63,7 +63,7 @@ public class DatosJugador1Controlador extends Controlador{
             this.mensajeError.setText("Datos Validos");
             this.mensajeError.setTextFill(Color.GREEN);
         }catch (ErrorELNombreDelJugadorDebeSerMayorA6Caracteres e) {
-            this.mensajeError.setText("Nombre del jugador de ser mayor a 6 caracteres");
+            this.mensajeError.setText("Nombre del jugador debe ser\nmayor a 6 caracteres");
             this.mensajeError.setTextFill(Color.RED);
         }
     }

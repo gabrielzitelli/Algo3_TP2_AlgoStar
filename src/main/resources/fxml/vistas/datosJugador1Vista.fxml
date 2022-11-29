@@ -18,7 +18,7 @@
             <Image url="@../../img/StarCraft_Logo.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="236.0" layoutY="117.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
+      <AnchorPane layoutX="419.0" layoutY="102.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
          <children>
             <Label layoutX="56.0" layoutY="27.0" text="JUGADOR 1" underline="true">
                <font>
@@ -41,14 +41,14 @@
                   <Color blue="1.0" />
                </value>
             </ColorPicker>
-            <Label layoutX="90.0" layoutY="240.0" text="Raza">
+            <Label layoutX="90.0" layoutY="234.0" text="Raza">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="268.0" prefWidth="150.0" />
-            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="70.0" layoutY="326.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" text="Crear Jugador" />
-            <Label id="mensajeError" fx:id="mensajeError" layoutX="97.0" layoutY="367.0" />
+            <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="261.0" prefWidth="150.0" />
+            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="61.0" layoutY="319.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" text="Crear Jugador" />
+            <Label id="mensajeError" fx:id="mensajeError" layoutX="8.0" layoutY="351.0" prefHeight="35.0" prefWidth="223.0" />
          </children>
       </AnchorPane>
    </children>

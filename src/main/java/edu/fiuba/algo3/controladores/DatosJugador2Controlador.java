@@ -63,16 +63,16 @@ public class DatosJugador2Controlador extends Controlador{
 
     private void manejarExcepcion(Exception e){
         if(e instanceof ErrorDosJugadoresNoPuedenTenerElMismoNombre) {
-            this.mensajeError.setText("Dos jugadores no pueden tener el mismo nombre");
+            this.mensajeError.setText("Dos jugadores no pueden\ntener el mismo nombre");
             this.mensajeError.setTextFill(Color.RED);
         } else if (e instanceof ErrorDosJugadoresNoPuedenTenerElMismoColor) {
-            this.mensajeError.setText("Dos jugadores no pueden tener el mismo color");
+            this.mensajeError.setText("Dos jugadores no pueden\ntener el mismo color");
             this.mensajeError.setTextFill(Color.RED);
         } else if (e instanceof ErrorDosJugadoresNoPuedenTenerElMismoImperio) {
-            this.mensajeError.setText("Dos jugadores no pueden tener la misma raza");
+            this.mensajeError.setText("Dos jugadores no pueden\ntener la misma raza");
             this.mensajeError.setTextFill(Color.RED);
         } else if (e instanceof ErrorELNombreDelJugadorDebeSerMayorA6Caracteres) {
-            this.mensajeError.setText("Nombre del jugador de ser mayor a 6 caracteres");
+            this.mensajeError.setText("Nombre del jugador debe ser\nmayor a 6 caracteres");
             this.mensajeError.setTextFill(Color.RED);
         }
     }
