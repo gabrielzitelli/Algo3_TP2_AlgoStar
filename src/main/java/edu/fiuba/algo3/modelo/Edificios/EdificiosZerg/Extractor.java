@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
-import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
@@ -16,7 +14,7 @@ import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.LinkedList;
 
-public class Extractor extends Edificio {
+public class Extractor extends EdificioZerg {
 
     private EstadoRecolector estadoRecolector;
     private EstadoContratador estadoContratador;

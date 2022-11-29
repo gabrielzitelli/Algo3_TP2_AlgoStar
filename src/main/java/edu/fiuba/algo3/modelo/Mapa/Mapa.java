@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
+import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
@@ -200,6 +201,9 @@ public class Mapa {
     }
 
     public void expandirMoho(Coordenada origenDeExpansion, int radio){
+        Casilla casilla = encontrarCasillaPorCoordenada(origenDeExpansion);
+        casilla.llenarDeMoho();
+
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.llenarDeMoho();
@@ -229,6 +233,11 @@ public class Mapa {
 
         this.actualizarCasillaPorCoordenada(unaCoordenada, casillaDondeColocar);
     }
+
+    public Ocupable obtenerOcupable(Coordenada coordenada) {
+        return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
+    }
+
     public Edificio obtenerEdificio(Coordenada coordenada) {
         Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
         return casillaConEdificio.obtenerEdificio();

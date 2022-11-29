@@ -23,6 +23,7 @@ public abstract class Casilla {
     public abstract void llenarDeMoho();
     public abstract Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg);
     public abstract Casilla desconstruirEdificio(Coordenada coordenada);
+    public abstract Ocupable obtenerOcupable();
     public abstract Edificio obtenerEdificio();
     public abstract Casilla colocarUnidad(Unidad unaUnidad);
     public abstract void atacar(Casilla casillaAtacada);
@@ -91,5 +92,13 @@ public abstract class Casilla {
 
     public Superficie obtenerSuperficie() {
         return this.superficie;
+    }
+
+    public Cargable obtenerCarga() {
+        return estadoCarga;
+    }
+
+    public EstadoMoho obtenerMoho() {
+        return estadoMoho;
     }
 }

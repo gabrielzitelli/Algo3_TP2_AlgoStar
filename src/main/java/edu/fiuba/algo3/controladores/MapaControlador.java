@@ -1,10 +1,15 @@
 package edu.fiuba.algo3.controladores;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Camara;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho.MohoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
+import edu.fiuba.algo3.modelo.Imperio.Protoss;
+import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -37,6 +42,9 @@ public class MapaControlador extends Controlador {
      * Mapa y camara
      * ====================================================================================*/
     //debug
+    Protoss protoss = new Protoss();
+    Zerg zerg = new Zerg();
+
     private Mapa mapa = Mapa.obtener();
     private int tamanioMapa = mapa.obtenerTamanioMapa();
     private int anchoMapa = 24;
@@ -51,7 +59,7 @@ public class MapaControlador extends Controlador {
     private final Tile tierra = new Tile("superficies/32px/terrestre.png");
     private final Tile seleccion = new Tile("marcos/32px/seleccion.png");
     private Coordenada coordenadaSeleccion;
-    private final int tileWidth = tierra.tamanio();
+    private final int tileWidth = 32;
 
     /*=====================================================================================
      * GameLoop
@@ -70,6 +78,10 @@ public class MapaControlador extends Controlador {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         inicializarMapa();
+
+        //Debug todo luego sacar
+        protoss.inicializarAsentamientoPrimerTurno();
+        zerg.inicializarAsentamientoPrimerTurno();
     }
 
     private void inicializarMapa() {
@@ -87,6 +99,11 @@ public class MapaControlador extends Controlador {
                 renderizarCasilla(i,j);
             }
         }
+
+        //Renderizado de seleccion
+        renderizarSeleccion();
+    }
+    private void renderizarSeleccion(){
         if (coordenadaSeleccion != null) {
             int x = coordenadaSeleccion.getCoordenadaX();
             int y = coordenadaSeleccion.getCoordenadaY();
@@ -101,14 +118,28 @@ public class MapaControlador extends Controlador {
         int posicionX = camara.getX() + (i*tileWidth);
         int posicionY = camara.getY() + (j*tileWidth);
 
+        renderizarPorCapas(casilla, posicionX, posicionY);
+    }
+
+    private void renderizarPorCapas(Casilla casilla, int posicionX, int posicionY) {
         //Renderizamos la superficie
         Vista superficieVista = SuperficieVista.obtenerSuperficie(casilla.obtenerSuperficie());
         superficieVista.render(graphicsContext, posicionX, posicionY);
+
+        //Renderizamos la carga
+        Vista cargaVista = CargaVista.obtenerCarga(casilla.obtenerCarga());
+        cargaVista.render(graphicsContext, posicionX, posicionY);
+
+        //Renderizamos el moho
+        Vista mohoVista = MohoVista.obtenerMoho(casilla.obtenerMoho());
+        mohoVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos los recursos
         Vista recursoVista = RecursoVista.obtenerRecurso(casilla.obtenerMaterial());
         recursoVista.render(graphicsContext, posicionX, posicionY);
 
+        //Renderizamos los edificios y unidades
+        //Vista ocupableVista = OcupableVista.obtenerOcupable(casilla.obtenerOcupable());
     }
 
     private void render() {
@@ -180,6 +211,12 @@ public class MapaControlador extends Controlador {
 
         Vista recursoVista = RecursoVista.obtenerRecurso(casilla.obtenerMaterial());
         informacion += "Recurso: " + recursoVista.getInfo() + "\n";
+
+        Vista cargaVista = CargaVista.obtenerCarga(casilla.obtenerCarga());
+        informacion += "Carga del terreno: " + cargaVista.getInfo() + "\n";
+
+        Vista mohoVista = MohoVista.obtenerMoho(casilla.obtenerMoho());
+        informacion += "Contaminado con: " + mohoVista.getInfo() + "\n";
 
         return informacion;
     }

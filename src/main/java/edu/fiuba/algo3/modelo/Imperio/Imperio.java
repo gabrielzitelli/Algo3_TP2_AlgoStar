@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 
 public abstract class Imperio {
@@ -21,16 +22,22 @@ public abstract class Imperio {
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
     protected int cantidadInicialDeMineral = 200;
-    protected Jugador jugadorQueControlaImperio;
+
+
+    public abstract void inicializarAsentamientoPrimerTurno();
 
     public void terminarTurno(){
-        revisarDestruccionDeEdificios();
-        revisarDestruccionDeUnidades();
+        revisarDestrucciones();
         for (Edificio edificio : edificios)
             edificio.pasarTurno();
 
         for (Unidad unidad: unidades)
             unidad.pasarTurno();
+    }
+
+    public void revisarDestrucciones() {
+        revisarDestruccionDeEdificios();
+        revisarDestruccionDeUnidades();
     }
 
     private void revisarDestruccionDeEdificios() {
@@ -59,8 +66,6 @@ public abstract class Imperio {
         }
     }
 
-
-
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
         edificio.modificarPoblacion(poblacion);
@@ -76,7 +81,7 @@ public abstract class Imperio {
         edificios.add(edificio);
     }
 
-    protected void comprobarRequisitosMateriales(Ocupable ocupable){
+    protected void  comprobarRequisitosMateriales(Ocupable ocupable){
         ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
         Recurso gasAconsumir = listaDeRequisitos.get(1);
@@ -160,10 +165,6 @@ public abstract class Imperio {
 
     public Suministro obtenerSuministro(){
         return this.poblacion;
-    }
-
-    public void asignarJugadorAlImperio(Jugador unJugador){
-        this.jugadorQueControlaImperio = unJugador;
     }
 
     public boolean partidaTerminada(){

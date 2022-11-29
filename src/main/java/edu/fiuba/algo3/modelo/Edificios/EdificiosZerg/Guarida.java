@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 
-public class Guarida extends Edificio {
+public class Guarida extends EdificioZerg {
 
     private EstadoHabilitador estadoHabilitador;
     private int turnoParaEstarConstruido = 12;

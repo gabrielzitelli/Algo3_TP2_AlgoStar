@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
@@ -8,7 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
-public class NexoMineral extends Edificio {
+public class NexoMineral extends EdificioProtoss {
 
     private EstadoRecolector estado;
     private int turnoParaEstarConstruido = 4;

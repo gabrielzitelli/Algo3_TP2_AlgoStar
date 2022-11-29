@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -8,12 +7,11 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.*;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 
-public class Criadero extends Edificio {
+public class Criadero extends EdificioZerg {
 
     //SUPUESTO: CRIADERO NO SE PUEDE PONER EN TERRENO CARGADO
 
