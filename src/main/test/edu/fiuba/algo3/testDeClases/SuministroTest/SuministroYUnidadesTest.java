@@ -175,7 +175,7 @@ public class SuministroYUnidadesTest {
 
         ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
 
-        elMapa.colocarUnaUnidad((listaZergUnidades.get(1)), coordenadaMutalisco);
+        elMapa.colocarUnaUnidad((listaZergUnidades.get(0)), coordenadaMutalisco);
 
         Unidad unDragon = new Dragon();
         Coordenada coordenadaDragon = new Coordenada(5,5);

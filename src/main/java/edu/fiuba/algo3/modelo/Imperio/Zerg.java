@@ -84,6 +84,15 @@ public class Zerg extends Imperio{
         }
         //comprobamos los materiales
         this.comprobarRequisitosMateriales(unaUnidad);
+
+        //sacamos el mutalisco
+        Mutalisco mutalisco = new Mutalisco();
+        for (Unidad unidad : unidades) {
+            if (unidad.esIgualA(mutalisco)){
+                unidades.remove(unidad);
+                break;
+            }
+        }
     }
 
     public void evolucionarMutaliscoAGuardian(){
@@ -94,8 +103,6 @@ public class Zerg extends Imperio{
 
     public void evolucionarMutaliscoADevorador() {
         Unidad devorador = new Devorador();
-        //TODO falta sacar al mutalisco viejo que evoluciono
-        //TODO deberia tener fabrica de devorador
         validarPreRequisitosDeEvolucionDeMutalisco(devorador);
         gestorDeEvoluciones.agregarUnidad(devorador , unidades);
     }

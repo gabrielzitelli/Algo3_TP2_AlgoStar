@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.DatosJugador1Controlador">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.DatosJugador1Controlador">
     <children>
         <ImageView id="razaBox" fitHeight="239.0" fitWidth="780.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../img/StarCraft_Logo.png" />
             </image>
         </ImageView>
-        <AnchorPane layoutX="236.0" layoutY="117.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
+        <AnchorPane layoutX="510.0" layoutY="134.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
             <children>
                 <Label layoutX="56.0" layoutY="27.0" prefHeight="52.0" prefWidth="107.0" text="JUGADOR 1" underline="true">
                     <font>
@@ -46,6 +42,7 @@
                     </font>
                 </Label>
                 <ChoiceBox id="razaBox2" fx:id="razaBox" layoutX="43.0" layoutY="268.0" prefWidth="150.0" />
+            <Button layoutX="70.0" layoutY="326.0" mnemonicParsing="false" text="Crear Jugador" />
             </children>
         </AnchorPane>
     </children>

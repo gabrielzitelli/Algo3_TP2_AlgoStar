@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -78,6 +79,7 @@ public class CasoDeUso27Test {
         }
         //tenemos el guardian
         assertTrue(imperioZerg.tieneUnidad(new Devorador()));
+        assertFalse(imperioZerg.tieneUnidad(new Mutalisco()));
     }
 
     @Test

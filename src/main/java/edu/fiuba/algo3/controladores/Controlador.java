@@ -9,6 +9,9 @@ public abstract class Controlador {
     public Stage obtenerStageActual(ActionEvent event){
         return (Stage)(((Node)(event.getSource())).getScene().getWindow());
     }
+    public Stage obtenerSceneActual(ActionEvent event){
+        return (Stage)(((Node)(event.getSource())).getScene().getWindow());
+    }
 
     public Stage obtenerStageActual(Node nodo){
         return (Stage)(nodo.getScene().getWindow());

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.MapaControlador">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0">
+         <center>
+            <Canvas fx:id="canvasPrincipal" height="576.0" width="768.0" BorderPane.alignment="CENTER" />
+         </center>
+         <right>
+            <StackPane BorderPane.alignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="600.0" stroke="BLACK" strokeType="INSIDE" width="256.0">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.7445175647735596" green="0.7895467877388" blue="0.8289473652839661" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.006711409395973154">
+                                 <color>
+                                    <Color red="0.7445175647735596" green="0.7895467877388" blue="0.8289473652839661" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.948170731707317">
+                                 <color>
+                                    <Color red="0.40849998593330383" green="0.4199666678905487" blue="0.4300000071525574" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.40849998593330383" green="0.4199666678905487" blue="0.4300000071525574" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
+                  <HBox prefHeight="600.0" prefWidth="256.0">
+                     <children>
+                        <Line endX="-100.0" endY="600.0" startX="-100.0" strokeLineCap="ROUND" strokeWidth="10.0">
+                           <stroke>
+                              <LinearGradient endX="0.5023696682464456" endY="1.0" startX="0.6303317535545023">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.0975609756097561">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.3536585365853659">
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.45302013422818793">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6341463414634146">
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6798780487804877">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.9695121951219512">
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </Line>
+                        <Line endX="-100.0" endY="600.0" startX="-100.0" />
+                        <Line endX="-100.0" endY="600.0" startX="-100.0" stroke="#f2f2f2" />
+                        <VBox prefHeight="600.0" prefWidth="12.0">
+                           <children>
+                              <Text fx:id="debugCoordenadas" strokeType="OUTSIDE" strokeWidth="0.0" text="Coordenadas">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text id="debugPosMouse" fx:id="debugPosMouse" strokeType="OUTSIDE" strokeWidth="0.0" text="debugPosMouse">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+         </right>
+      </BorderPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="600.0" stroke="BLACK" strokeType="INSIDE" width="1024.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.17175573110580444" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.12804878048780488">
+                     <color>
+                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5091463414634146">
+                     <color>
+                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8597560975609756">
+                     <color>
+                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.17000000178813934" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+   </children>
+</StackPane>
