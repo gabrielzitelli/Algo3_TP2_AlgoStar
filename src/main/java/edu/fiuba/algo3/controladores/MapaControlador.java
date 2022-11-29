@@ -2,13 +2,16 @@ package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Camara;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -26,7 +29,7 @@ public class MapaControlador extends Controlador implements Initializable {
     @FXML
     protected Canvas canvasPrincipal;
     @FXML
-    protected Text debugPosMouse;
+    protected Text terrenoLabel;
     @FXML
     protected Text debugCoordenadas;
 
@@ -68,6 +71,7 @@ public class MapaControlador extends Controlador implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         inicializarMapa();
     }
+
     private void inicializarMapa() {
         int bordeHorizontal = tileWidth * (tamanioMapa - anchoMapa);
         int bordeVertical = tileWidth * (tamanioMapa - largoMapa);
@@ -77,11 +81,10 @@ public class MapaControlador extends Controlador implements Initializable {
         AnimationTimer gameloop = crearGameLoop();
         gameloop.start();
     }
-
     private void renderizarMapa() {
         for(int i = 0; i < tamanioMapa; i++){
             for(int j = 0; j < tamanioMapa; j++){
-                tierra.render(graphicsContext, camara.getX() + (i*tileWidth), camara.getY() + (j*tileWidth));
+                renderizarCasilla(i,j);
             }
         }
         if (coordenadaSeleccion != null) {
@@ -89,6 +92,23 @@ public class MapaControlador extends Controlador implements Initializable {
             int y = coordenadaSeleccion.getCoordenadaY();
             seleccion.render(graphicsContext, camara.getX() + (x*tileWidth), camara.getY() + (y*tileWidth));
         }
+    }
+
+    private void renderizarCasilla(int i, int j) {
+        Coordenada coordenada = new Coordenada(i,j);
+        Casilla casilla = mapa.obtenerCasilla(coordenada);
+        //Coordenadas en pantalla
+        int posicionX = camara.getX() + (i*tileWidth);
+        int posicionY = camara.getY() + (j*tileWidth);
+
+        //Renderizamos la superficie
+        Vista superficieVista = SuperficieVista.obtenerSuperficie(casilla.obtenerSuperficie());
+        superficieVista.render(graphicsContext, posicionX, posicionY);
+
+        //Renderizamos los recursos
+        Vista recursoVista = RecursoVista.obtenerRecurso(casilla.obtenerMaterial());
+        recursoVista.render(graphicsContext, posicionX, posicionY);
+
     }
 
     private void render() {
@@ -125,10 +145,12 @@ public class MapaControlador extends Controlador implements Initializable {
         return new AnimationTimer() {
             @Override
             public void handle(long currentTime) {
-                debugPosMouse.setText("Posicion de la camara: " + camara.getX() + " x " + camara.getY());
                 manejarInput();
                 render();
-                calcularFps(currentTime);
+
+                //FPS
+                if (mostrarFPS)
+                    calcularFps(currentTime);
             }
         };
     }
@@ -136,12 +158,30 @@ public class MapaControlador extends Controlador implements Initializable {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                int posX = (int) (((mouseEvent.getX() - camara.getX()) / tileWidth)) ;
-                int posY = (int) (((mouseEvent.getY() - camara.getY()) / tileWidth)) ;
-                coordenadaSeleccion = new Coordenada(posX, posY);
-                debugCoordenadas.setText("Coordenadas: " + posX + " - " + posY);
+                double posMouseX = mouseEvent.getX();
+                double posMouseY = mouseEvent.getY();
+                if (canvasPrincipal.contains(posMouseX, posMouseY)) {
+                    int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
+                    int posY = (int) ((((posMouseY - 12) - camara.getY()) / tileWidth));
+                    coordenadaSeleccion = new Coordenada(posX, posY);
+                    debugCoordenadas.setText("Coordenadas: " + posX + " - " + posY);
+                    terrenoLabel.setText(obtenerInfoCasilla(coordenadaSeleccion));
+                }
             }
         };
+    }
+
+    private String obtenerInfoCasilla(Coordenada coordenada) {
+        String informacion;
+        Casilla casilla = mapa.obtenerCasilla(coordenada);
+
+        Vista superficieVista = SuperficieVista.obtenerSuperficie(casilla.obtenerSuperficie());
+        informacion = "Terreno: " + superficieVista.getInfo() + "\n";
+
+        Vista recursoVista = RecursoVista.obtenerRecurso(casilla.obtenerMaterial());
+        informacion += "Recurso: " + recursoVista.getInfo() + "\n";
+
+        return informacion;
     }
     public EventHandler<? super KeyEvent> pressKey() {
         return new EventHandler<KeyEvent>() {

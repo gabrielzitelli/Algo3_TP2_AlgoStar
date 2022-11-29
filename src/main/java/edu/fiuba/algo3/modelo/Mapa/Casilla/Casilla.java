@@ -88,4 +88,8 @@ public abstract class Casilla {
     public boolean tieneEsteRevelable(Revelable unRevelable) {
         return estadoRevelable.esIgualA(unRevelable);
     }
+
+    public Superficie obtenerSuperficie() {
+        return this.superficie;
+    }
 }

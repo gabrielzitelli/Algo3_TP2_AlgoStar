@@ -331,4 +331,8 @@ public class Mapa {
     public int obtenerTamanioMapa() {
         return tamanio;
     }
+
+    public Casilla obtenerCasilla(Coordenada coordenada) {
+        return encontrarCasillaPorCoordenada(coordenada);
+    }
 }

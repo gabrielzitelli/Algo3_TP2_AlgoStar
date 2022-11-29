@@ -1,0 +1,13 @@
+package edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos;
+
+import edu.fiuba.algo3.controladores.ElementosGui.Tile;
+import edu.fiuba.algo3.modelo.Mapa.MineralBruto;
+
+public class MineralBrutoVista extends RecursoVista {
+
+    public MineralBrutoVista() {
+        tile = new Tile("mineral.png");
+        elemento = new MineralBruto();
+        info = "Minerales";
+    }
+}
