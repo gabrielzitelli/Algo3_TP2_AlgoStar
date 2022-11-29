@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class MapaControlador extends Controlador implements Initializable {
+public class MapaControlador extends Controlador {
 
     @FXML
     protected Canvas canvasPrincipal;

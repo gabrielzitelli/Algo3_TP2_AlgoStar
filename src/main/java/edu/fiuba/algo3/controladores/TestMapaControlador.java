@@ -11,6 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class TestMapaControlador extends Controlador {
 
     private Mapa elMapa;
@@ -18,6 +21,10 @@ public class TestMapaControlador extends Controlador {
     private Protoss imperioProtoss;
     @FXML
     GridPane mainGrid;
+
+    public void initialize(URL url, ResourceBundle resourceBundle){
+
+    }
 
     public TestMapaControlador(){
         elMapa = Mapa.obtener();

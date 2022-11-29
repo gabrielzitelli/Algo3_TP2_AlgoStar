@@ -1,10 +1,16 @@
 package edu.fiuba.algo3.controladores;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-public abstract class Controlador {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public abstract class Controlador implements Initializable {
+
+    public abstract void initialize(URL url, ResourceBundle resourceBundle);
 
     public Stage obtenerStageActual(ActionEvent event){
         return (Stage)(((Node)(event.getSource())).getScene().getWindow());
