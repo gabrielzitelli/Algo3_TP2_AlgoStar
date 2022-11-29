@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
 
 public class ConMohoVista extends MohoVista {
     public ConMohoVista(){
-        this.tile = new Tile("conMoho.png");
+        this.tile = new Tile("superficies/32px/moho_transparente.png");
         this.info = "Moho Zerg";
         this.elemento = new ConMoho();
     }

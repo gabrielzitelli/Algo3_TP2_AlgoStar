@@ -3,10 +3,12 @@ package edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
 
 import java.util.LinkedList;
 
@@ -201,9 +203,6 @@ public class Mapa {
     }
 
     public void expandirMoho(Coordenada origenDeExpansion, int radio){
-        Casilla casilla = encontrarCasillaPorCoordenada(origenDeExpansion);
-        casilla.llenarDeMoho();
-
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.llenarDeMoho();
@@ -267,6 +266,10 @@ public class Mapa {
     public void moverUnidad(Coordenada coordenadaInicial, Coordenada coordenadaFinal){
         Casilla casillaInicial = this.encontrarCasillaPorCoordenada(coordenadaInicial);
         Casilla casillaFinal = this.encontrarCasillaPorCoordenada(coordenadaFinal);
+
+        if (casillaInicial.obtenerOcupable().getClass().equals(new SinOcupar().getClass())){
+            throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
+        }
 
         //Actualizo la casillaFinal con una casilla que ahora tiene la Unidad de casillaInicial
         casillaFinal = casillaInicial.moverUnidadHacia(casillaFinal);

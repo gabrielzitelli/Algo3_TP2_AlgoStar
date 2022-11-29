@@ -1,13 +1,14 @@
 package edu.fiuba.algo3.controladores;
 
-import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Camara;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho.MohoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCasillaVacia;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -16,7 +17,6 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -139,7 +139,9 @@ public class MapaControlador extends Controlador {
         recursoVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos los edificios y unidades
-        //Vista ocupableVista = OcupableVista.obtenerOcupable(casilla.obtenerOcupable());
+        Vista ocupableVista = OcupableVista.obtenerOcupable(casilla.obtenerOcupable());
+        ocupableVista.render(graphicsContext, posicionX, posicionY);
+
     }
 
     private void render() {
@@ -217,6 +219,15 @@ public class MapaControlador extends Controlador {
 
         Vista mohoVista = MohoVista.obtenerMoho(casilla.obtenerMoho());
         informacion += "Contaminado con: " + mohoVista.getInfo() + "\n";
+
+        try {
+            Vista ocupableVista = OcupableVista.obtenerOcupable(casilla.obtenerOcupable());
+            informacion += "'" + ocupableVista.getInfo() + "'";
+        } catch (ErrorCasillaVacia casillaVacia){
+            //No hacemos nada
+        }
+
+
 
         return informacion;
     }
