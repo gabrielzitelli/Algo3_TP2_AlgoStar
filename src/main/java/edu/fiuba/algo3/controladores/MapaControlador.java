@@ -11,12 +11,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MapaControlador extends Controlador implements Initializable {
@@ -52,6 +54,11 @@ public class MapaControlador extends Controlador implements Initializable {
      * GameLoop
      * ====================================================================================*/
     private ArrayList<String> input = new ArrayList<>();
+    private final long[] frameTimes = new long[100];
+    private int frameTimeIndex = 0;
+    private  boolean arrayFilled = false;
+    private double frameRate;
+    private boolean mostrarFPS = false;
 
     /*===================================================================================================
     * Metodos
@@ -87,6 +94,9 @@ public class MapaControlador extends Controlador implements Initializable {
     private void render() {
         graphicsContext.clearRect(0, 0, 1024,600);
         renderizarMapa();
+        if (mostrarFPS) {
+            graphicsContext.fillText("FPS: " + frameRate, 10, 10);
+        }
     }
     private void manejarInput() {
         if (input.contains(("LEFT")))
@@ -98,13 +108,27 @@ public class MapaControlador extends Controlador implements Initializable {
         else if (input.contains("DOWN"))
             camara.bajar();
     }
+    private void calcularFps(long currentTime) {
+        long oldFrameTime = frameTimes[frameTimeIndex];
+        frameTimes[frameTimeIndex] = currentTime;
+        frameTimeIndex = (frameTimeIndex + 1) % frameTimes.length;
+        if (frameTimeIndex == 0) {
+            arrayFilled = true;
+        }
+        if (arrayFilled) {
+            long elapsedNanos = currentTime - oldFrameTime;
+            long elapsedNanosPerFrame = elapsedNanos / frameTimes.length;
+            frameRate = 1_000_000_000.0 / elapsedNanosPerFrame;
+        }
+    }
     private AnimationTimer crearGameLoop() {
         return new AnimationTimer() {
             @Override
-            public void handle(long l) {
+            public void handle(long currentTime) {
                 debugPosMouse.setText("Posicion de la camara: " + camara.getX() + " x " + camara.getY());
                 manejarInput();
                 render();
+                calcularFps(currentTime);
             }
         };
     }
@@ -136,6 +160,11 @@ public class MapaControlador extends Controlador implements Initializable {
             public void handle(KeyEvent keyEvent) {
                 String tecla = keyEvent.getCode().toString();
                 input.remove(tecla);
+
+                //Para fps
+                if (Objects.equals(tecla, KeyCode.TAB.toString())){
+                    mostrarFPS = !mostrarFPS;
+                }
             }
         };
     }

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class BienvenidaControlador extends Controlador implements Initializable {
@@ -34,9 +35,8 @@ public class BienvenidaControlador extends Controlador implements Initializable 
 
     private void inicializarVideoFondo(){
         //Prepare el mediaPlayer para setearlo en videoSpace
-        String workingDir = System.getProperty("user.dir");
-        File video = new File(workingDir, "src/main/resources/vid/space_flight_loop.mp4");
-        Media media = new Media(video.toURI().toString());
+
+        Media media = new Media(Objects.requireNonNull(getClass().getResource("/vid/space_flight_loop.mp4")).toExternalForm());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
 
         //Empieza a reproducir automaticamente y hace loop constante
