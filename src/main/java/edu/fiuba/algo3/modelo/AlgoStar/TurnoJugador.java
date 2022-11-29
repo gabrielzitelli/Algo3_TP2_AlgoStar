@@ -15,6 +15,7 @@ public class TurnoJugador implements Turno {
     @Override
     public Turno terminarTurno() {
         jugadorDeTurno.conseguirImperio().terminarTurno();
+
         Jugador siguienteJugador;
 
         try {
@@ -22,6 +23,9 @@ public class TurnoJugador implements Turno {
         } catch (ErrorNoHayMasJugadores e) {
             return new PartidaTerminada(jugadorDeTurno);
         }
+
+        if (siguienteJugador.conseguirNombre().equals(jugadorDeTurno.conseguirNombre()))
+            return new PartidaTerminada(jugadorDeTurno);
 
         return new TurnoJugador(siguienteJugador, jugadores);
     }

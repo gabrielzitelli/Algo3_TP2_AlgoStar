@@ -24,14 +24,22 @@ public class AdministradorDeJugadores {
             jugadorARevisar.verificarRespectoDe(jugador);
     }
 
+    public void inicializarBases() {
+        for (Jugador jugador : jugadores) {
+            jugador.conseguirImperio().inicializarAsentamientoPrimerTurno();
+        }
+    }
+
     public Jugador conseguirSiguienteJugador() {
         Jugador siguiente = jugadores.poll();
 
         if (siguiente == null)
             throw new ErrorNoHayMasJugadores();
 
-        if (siguiente.perdio())
+        siguiente.conseguirImperio().revisarDestrucciones();
+        if (siguiente.perdio()) {
             return conseguirSiguienteJugador();
+        }
 
         jugadores.add(siguiente);
         return siguiente;

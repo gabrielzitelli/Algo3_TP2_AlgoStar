@@ -13,14 +13,16 @@ public class AlgoStar {
 
     public void asignarJugador(String nombre, String color, Imperio imperio) {
         jugadores.agregarJugador(new Jugador(nombre, color, imperio));
-        // TODO Validar que no haya dos imperios iguales
         imperios.add(imperio);
     }
 
     public void empezarJuego() {
-        // TODO inicicializar bases
-
+        inicializarBases();
         turno = new TurnoJugador(jugadores.conseguirSiguienteJugador(), jugadores);
+    }
+
+    private void inicializarBases() {
+        jugadores.inicializarBases();
     }
 
     public void terminarTurno() {

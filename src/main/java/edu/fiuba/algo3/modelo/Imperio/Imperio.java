@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 
 public abstract class Imperio {
@@ -22,14 +23,21 @@ public abstract class Imperio {
     protected ArrayList<Unidad> unidades;
     protected int cantidadInicialDeMineral = 200;
 
+
+    public abstract void inicializarAsentamientoPrimerTurno();
+
     public void terminarTurno(){
-        revisarDestruccionDeEdificios();
-        revisarDestruccionDeUnidades();
+        revisarDestrucciones();
         for (Edificio edificio : edificios)
             edificio.pasarTurno();
 
         for (Unidad unidad: unidades)
             unidad.pasarTurno();
+    }
+
+    public void revisarDestrucciones() {
+        revisarDestruccionDeEdificios();
+        revisarDestruccionDeUnidades();
     }
 
     private void revisarDestruccionDeEdificios() {
@@ -57,8 +65,6 @@ public abstract class Imperio {
             this.unidades.remove(unidadAsesinada);
         }
     }
-
-
 
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         Mapa mapa = Mapa.obtener();
