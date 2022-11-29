@@ -19,7 +19,6 @@ public class AlgoStar {
             Jugador jugador = new Jugador(nombre,color,imperio);
             revisarJugador(jugador);
             jugadores.add(jugador);
-            // TODO Validar que no haya dos imperios iguales
             imperio.asignarJugadorAlImperio(jugador);
             imperios.add(imperio);
         } else

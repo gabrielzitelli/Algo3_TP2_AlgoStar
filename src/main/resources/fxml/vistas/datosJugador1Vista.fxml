@@ -18,9 +18,9 @@
             <Image url="@../../img/StarCraft_Logo.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="510.0" layoutY="134.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
+      <AnchorPane layoutX="289.0" layoutY="134.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
          <children>
-            <Label layoutX="56.0" layoutY="27.0" prefHeight="52.0" prefWidth="107.0" text="JUGADOR 1" underline="true">
+            <Label layoutX="54.0" layoutY="27.0" prefHeight="52.0" prefWidth="136.0" text="JUGADOR 1" underline="true">
                <font>
                   <Font name="Calibri" size="22.0" />
                </font>
@@ -47,7 +47,7 @@
                </font>
             </Label>
             <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="268.0" prefWidth="150.0" />
-            <Button layoutX="70.0" layoutY="326.0" mnemonicParsing="false" text="Crear Jugador" />
+            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="70.0" layoutY="326.0" mnemonicParsing="false" onAction="#empezarCreacionJugador1" text="Crear Jugador" />
          </children>
       </AnchorPane>
    </children>

@@ -32,7 +32,7 @@
                         <Glow />
                      </effect>
                   </ImageView>
-                  <Button id="comenzarBoton" fx:id="comenzarBoton" layoutX="389.0" layoutY="407.0" mnemonicParsing="false" onAction="#empezarCreacionJugador" styleClass="comenzarBotonCSS" stylesheets="@../../css/style.css" text="COMENZAR" textAlignment="CENTER">
+                  <Button id="comenzarBoton" fx:id="comenzarBoton" layoutX="389.0" layoutY="407.0" mnemonicParsing="false" onAction="#empezarCreacionJugador1" styleClass="comenzarBotonCSS" stylesheets="@../../css/style.css" text="COMENZAR" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri" size="32.0" />
                      </font>

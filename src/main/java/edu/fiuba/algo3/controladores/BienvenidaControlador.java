@@ -47,7 +47,7 @@ public class BienvenidaControlador extends Controlador implements Initializable 
     }
 
     @FXML
-    public void empezarCreacionJugador(ActionEvent event) throws IOException {
+    public void empezarCreacionJugador1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador1Vista.fxml"));
         root = loader.load();
 

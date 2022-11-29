@@ -1,6 +1,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controladores.BienvenidaControlador;
+import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Dimension2D;
@@ -21,6 +22,8 @@ public class App extends Application {
 
     public static int INITIAL_WIDTH = 1024;
     public static int INITIAL_HEIGHT = 600;
+
+    public static AlgoStar algoStar = new AlgoStar();
 
     public static void run(String[] args) {
         launch();
