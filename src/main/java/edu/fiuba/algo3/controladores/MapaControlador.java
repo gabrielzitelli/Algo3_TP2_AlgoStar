@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Camara;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
@@ -41,10 +42,6 @@ public class MapaControlador extends Controlador {
     /*=====================================================================================
      * Mapa y camara
      * ====================================================================================*/
-    //debug
-    Protoss protoss = new Protoss();
-    Zerg zerg = new Zerg();
-
     private Mapa mapa = Mapa.obtener();
     private int tamanioMapa = mapa.obtenerTamanioMapa();
     private int anchoMapa = 24;
@@ -79,9 +76,7 @@ public class MapaControlador extends Controlador {
     public void initialize(URL location, ResourceBundle resources) {
         inicializarMapa();
 
-        //Debug todo luego sacar
-        protoss.inicializarAsentamientoPrimerTurno();
-        zerg.inicializarAsentamientoPrimerTurno();
+        App.algoStar.empezarJuego();
     }
 
     private void inicializarMapa() {

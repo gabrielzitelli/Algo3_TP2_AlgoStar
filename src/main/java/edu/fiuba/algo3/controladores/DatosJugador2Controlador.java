@@ -40,13 +40,15 @@ public class DatosJugador2Controlador extends Controlador {
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){
         this.razaBox2.setItems(razaLista);
-        this.razaBox2.setValue("Protoss");
+        this.razaBox2.setValue("Zergs");
     }
 
     @FXML
     public void iniciarJuego(ActionEvent event) throws IOException {
         guardarDatosJugador2();
         if (this.datosValidos) {
+
+            // Cambio la vista al mapa
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/Mapa.fxml"));
 
             stage = obtenerStageActual(event);
