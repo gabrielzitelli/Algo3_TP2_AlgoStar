@@ -7,16 +7,18 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
 
 public class CasillaVacia extends Casilla{
 
     public CasillaVacia(Coordenada coordenada){
+        ocupable = new SinOcupar();
         estadoRecolectable = new NoRecolectable();
         estadoMoho = new SinMoho();
         estadoCarga = new SinCarga();
         this.estadoRevelable = new SinRevelar();
         this.coordenada = coordenada;
-        this.ocupable = null;
+        this.ocupable = new SinOcupar();
         this.superficie = new SuperficieTerrestre();
     }
 
@@ -26,6 +28,7 @@ public class CasillaVacia extends Casilla{
         this.estadoCarga = estadoCarga;
         this.coordenada = coordenada;
         this.superficie = superficie;
+        this.ocupable = new SinOcupar();
         this.estadoRevelable = estadoRevelable;
     }
 
@@ -55,7 +58,7 @@ public class CasillaVacia extends Casilla{
 
     @Override
     public Ocupable obtenerOcupable() {
-        throw new ErrorCasillaVacia();
+        return ocupable;
     }
 
     public Edificio obtenerEdificio() {
@@ -74,11 +77,11 @@ public class CasillaVacia extends Casilla{
     }
 
     public void recibirAtaque(Ataque unAtaque){
-        throw new ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque();
+        ocupable.recibirAtaque(unAtaque);
     }
 
     public Casilla moverUnidadHacia(Casilla destino){
-        throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
+        return destino;
     }
 
     public Casilla quitarUnidad(){
