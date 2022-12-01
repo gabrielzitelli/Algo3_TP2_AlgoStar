@@ -23,7 +23,7 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <TextField id="nombreJugador2" fx:id="nombreJugador2" layoutX="36.0" layoutY="114.0" text="Ingrese aqui el nombre" />
+                <TextField id="nombreJugador2" fx:id="nombreJugador2" layoutX="36.0" layoutY="114.0" promptText="Ingrese aqui el nombre" />
                 <Label layoutX="87.0" layoutY="164.0" text="Color">
                     <font>
                         <Font size="18.0" />
