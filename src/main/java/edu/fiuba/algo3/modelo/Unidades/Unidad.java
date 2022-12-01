@@ -44,6 +44,10 @@ public abstract class Unidad implements Ocupable {
           return (turnosDeConstruccion == 0);
      }
 
+     public void matarUnidad() {
+          estadoMuerta = true;
+     }
+
      public void pasarTurno() {
           if (turnosDeConstruccion > 0)
                turnosDeConstruccion--;
@@ -84,4 +88,8 @@ public abstract class Unidad implements Ocupable {
      }
 
      public abstract void disminuirPoblacion(Suministro suministroImperio);
+
+     public Coordenada obtenerCoordenada(){
+          return this.coordenada;
+     }
 }

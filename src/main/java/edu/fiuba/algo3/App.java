@@ -3,6 +3,7 @@ package edu.fiuba.algo3;
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -34,6 +35,10 @@ public class App extends Application {
         stage.setTitle("AlgoStar");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/brand/AS_logo_space.png"))));
         stage.setResizable(false);
+
+        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/cursor5.png")));
+       //scene.setCursor(new ImageCursor(image));
+
         stage.show();
     }
 }

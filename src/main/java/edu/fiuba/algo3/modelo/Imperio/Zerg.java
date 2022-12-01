@@ -19,7 +19,8 @@ import java.util.LinkedList;
 
 public class Zerg extends Imperio{
 
-    GestorDeCrianza gestorDeEvoluciones = new GestorDeCrianza();
+    LinkedList<GestorDeCrianza> gestoresDeEvoluciones = new LinkedList<>();
+    //GestorDeCrianza gestorDeEvoluciones = new GestorDeCrianza();
 
     public Zerg(){
         mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
@@ -89,7 +90,13 @@ public class Zerg extends Imperio{
         Mutalisco mutalisco = new Mutalisco();
         for (Unidad unidad : unidades) {
             if (unidad.esIgualA(mutalisco)){
+                Mapa.obtener().quitarUnidad(unidad.obtenerCoordenada());
                 unidades.remove(unidad);
+
+                GestorDeCrianza nuevoGestorEvoluciones = new GestorDeCrianza(unidad.obtenerCoordenada());
+                nuevoGestorEvoluciones.agregarUnidad(unaUnidad, unidades);
+                gestoresDeEvoluciones.add(nuevoGestorEvoluciones);
+
                 break;
             }
         }
@@ -98,18 +105,17 @@ public class Zerg extends Imperio{
     public void evolucionarMutaliscoAGuardian(){
         Unidad guardian = new Guardian();
         validarPreRequisitosDeEvolucionDeMutalisco(guardian);
-        gestorDeEvoluciones.agregarUnidad(guardian, unidades);
     }
 
     public void evolucionarMutaliscoADevorador() {
         Unidad devorador = new Devorador();
         validarPreRequisitosDeEvolucionDeMutalisco(devorador);
-        gestorDeEvoluciones.agregarUnidad(devorador , unidades);
     }
 
     @Override
     public void terminarTurno(){
         super.terminarTurno();
-        gestorDeEvoluciones.actualizar();
+        for(GestorDeCrianza gestorDeEvoluciones : gestoresDeEvoluciones)
+            gestorDeEvoluciones.actualizar();
     }
 }

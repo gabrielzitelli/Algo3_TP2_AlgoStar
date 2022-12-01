@@ -38,7 +38,7 @@ public class PuertoEstelar extends EdificioProtoss {
         this.superficieRequerida = new SuperficieTerrestre();
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
-        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);
+        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
 
         listaFabricasAHabilitar.add(new FabricaScout());
     }
@@ -87,5 +87,11 @@ public class PuertoEstelar extends EdificioProtoss {
 
     public void asignarSuministro(Suministro poblacionDelImperio){
         estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
+    }
+
+    @Override
+    public void verificarConstruccion(Casilla unaCasilla){
+        super.verificarConstruccion(unaCasilla);
+        estadoCreador.colocarCoordenadaAlGestorDeCrianza(unaCasilla.obtenerCoordenada());
     }
 }

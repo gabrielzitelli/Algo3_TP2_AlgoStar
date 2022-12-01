@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Excepciones.*;
@@ -12,8 +13,6 @@ import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 import java.util.ArrayList;
 
 public class Criadero extends EdificioZerg {
-
-    //SUPUESTO: CRIADERO NO SE PUEDE PONER EN TERRENO CARGADO
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
@@ -40,7 +39,8 @@ public class Criadero extends EdificioZerg {
         this.suministroAportado = 5;
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
-        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);
+
+        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
         estadoGeneradorDeMoho = new EstadoGeneradorDeMohoEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaZangano());
@@ -99,5 +99,11 @@ public class Criadero extends EdificioZerg {
 
     public void asignarSuministro(Suministro poblacionDelImperio){
         estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
+    }
+
+    @Override
+    public void verificarConstruccion(Casilla unaCasilla){
+        super.verificarConstruccion(unaCasilla);
+        estadoCreador.colocarCoordenadaAlGestorDeCrianza(unaCasilla.obtenerCoordenada());
     }
 }

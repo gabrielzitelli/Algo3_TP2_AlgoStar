@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasCasillasLibresEnElMapa;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
@@ -187,6 +188,56 @@ public class Mapa {
         int distanciaEnY = abs( coordenada1.getCoordenadaY() - coordenada2.getCoordenadaY() );
 
         return distanciaEnX + distanciaEnY;
+    }
+
+    private boolean estaCoordenadaEnAnillo(Coordenada coordenadaAVerificar, Coordenada centroAnillo, int distanciaDesdeElCentro ){
+        int distanciaEnX = abs( coordenadaAVerificar.getCoordenadaX() - centroAnillo.getCoordenadaX() );
+        int distanciaEnY = abs( coordenadaAVerificar.getCoordenadaY() - centroAnillo.getCoordenadaY() );
+
+        return (distanciaEnX == distanciaDesdeElCentro && distanciaEnY == distanciaDesdeElCentro);
+    }
+
+    private LinkedList<Casilla> obtenerCasillasEnUnAnilloCentrado(Coordenada centroAnillo, int distanciaDesdeElCentro){
+
+        LinkedList<Casilla> casillasSobreElAnillo = new LinkedList<>();
+
+        for(int i = 0; i < tamanio; i++){
+            for(int j = 0; j < tamanio; j++) {
+                if( estaCoordenadaEnAnillo( matriz[i][j].obtenerCoordenada(), centroAnillo, distanciaDesdeElCentro ) )
+                    casillasSobreElAnillo.add(matriz[i][j]);
+            }
+        }
+
+        return casillasSobreElAnillo;
+    }
+
+    public void colocarUnidadEnCasillaLibreMasCercana(Coordenada coordenadaOrigen, Unidad unaUnidad){
+
+        boolean sePudoColocarUnidad = false;
+        LinkedList<Casilla> casillasSobreUnAnillo;
+        Casilla casillaOrigen = obtenerCasilla(coordenadaOrigen);
+
+        try{
+            colocarUnaUnidad(unaUnidad, casillaOrigen.obtenerCoordenada());
+            sePudoColocarUnidad = true;
+        } catch(RuntimeException ignore) {}
+
+        int i = 1;
+        while ( i < tamanio && !sePudoColocarUnidad ){
+            casillasSobreUnAnillo = obtenerCasillasEnUnAnilloCentrado(coordenadaOrigen, i);
+
+            for(Casilla casillaCandidataParaColocar : casillasSobreUnAnillo){
+                try{
+                    colocarUnaUnidad(unaUnidad, casillaCandidataParaColocar.obtenerCoordenada());
+                    sePudoColocarUnidad = true;
+                    break;
+                } catch(RuntimeException ignore) {}
+            }
+            i++;
+        }
+
+        if(!sePudoColocarUnidad)
+            throw new ErrorNoHayMasCasillasLibresEnElMapa();
     }
 
     private LinkedList<Casilla> obtenerCasillasDentroDelRadio(Coordenada origenDeExpansion, int radio){

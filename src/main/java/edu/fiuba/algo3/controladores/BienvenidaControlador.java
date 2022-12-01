@@ -5,9 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -51,6 +53,9 @@ public class BienvenidaControlador extends Controlador {
         stage = obtenerStageActual(event);
         this.scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
+        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/cursor5.png")));
+        //scene.setCursor(new ImageCursor(image));
+
         stage.setScene(scene);
     }
 
@@ -66,6 +71,8 @@ public class BienvenidaControlador extends Controlador {
         this.scene.setOnMouseClicked(controlador.pintarCasilla());
         this.scene.setOnKeyPressed(controlador.pressKey());
         this.scene.setOnKeyReleased(controlador.releaseKey());
+        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/cursor5.png")));
+        //scene.setCursor(new ImageCursor(image));
 
         stage.setScene(scene);
     }
