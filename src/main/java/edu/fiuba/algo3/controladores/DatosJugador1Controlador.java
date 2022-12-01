@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 public class DatosJugador1Controlador extends Controlador{
     private Stage stage;
     private Scene scene;
+
     @FXML
     private ChoiceBox razaBox;
     ObservableList<String> razaLista = FXCollections.observableArrayList("Protoss", "Zergs");

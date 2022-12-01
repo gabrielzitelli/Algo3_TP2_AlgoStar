@@ -1,4 +1,4 @@
-.comenzarBotonCSS {
+.botonComenzar {
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-background-radius: 3;
     -fx-text-fill: white;
@@ -9,7 +9,7 @@
     -fx-border-color: transparent;
 }
 
-.comenzarBotonCSS:hover {
+.botonComenzar:hover {
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-background-radius: 3;
     -fx-padding: 10 20 10 20;
@@ -45,4 +45,35 @@
 
 .coordenadasText Text {
     -fx-text-alignment: center;
+}
+
+.labelCampoParaRellenar {
+}
+
+.textfieldNombreJugador {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-accent: rgba(136, 197, 203, 0.6);
+    -fx-font-size: 20px;
+}
+
+.textfieldNombreJugador:selected {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-accent: rgba(136, 197, 203, 0.6);
+    -fx-font-size: 20px;
+}
+
+.anchorPaneForm {
+    -fx-background-color: rgba(52, 52, 52, 0.44);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
 }

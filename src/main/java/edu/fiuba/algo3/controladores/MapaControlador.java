@@ -90,6 +90,7 @@ public class MapaControlador extends Controlador {
         AnimationTimer gameloop = crearGameLoop();
         gameloop.start();
     }
+
     private void renderizarMapa() {
         //renderizamos solo lo que se encuentra en pantalla
         for(int i = 0; i < anchoMapa + 1 ; i++){
@@ -102,7 +103,6 @@ public class MapaControlador extends Controlador {
                     xInicial -= 1;
                 if (yInicial == tamanioMapa)
                     yInicial -= 1;
-
 
                 renderizarCasilla(xInicial, yInicial);
             }
@@ -162,6 +162,7 @@ public class MapaControlador extends Controlador {
             graphicsContext.fillText("FPS: " + frameRate, 10, 10);
         }
     }
+
     private void manejarInput() {
         if (input.contains(("LEFT")))
             camara.irAIzquierda();
@@ -177,6 +178,7 @@ public class MapaControlador extends Controlador {
         if (input.contains(KeyCode.O.toString()))
             camara.irHacia(0*tileWidth, 23*tileWidth);
     }
+
     private void calcularFps(long currentTime) {
         long oldFrameTime = frameTimes[frameTimeIndex];
         frameTimes[frameTimeIndex] = currentTime;
@@ -190,6 +192,7 @@ public class MapaControlador extends Controlador {
             frameRate = 1_000_000_000.0 / elapsedNanosPerFrame;
         }
     }
+
     private AnimationTimer crearGameLoop() {
         return new AnimationTimer() {
             @Override
@@ -203,6 +206,7 @@ public class MapaControlador extends Controlador {
             }
         };
     }
+
     public EventHandler<? super MouseEvent> pintarCasilla() {
         return new EventHandler<MouseEvent>() {
             @Override
@@ -243,21 +247,20 @@ public class MapaControlador extends Controlador {
             //No hacemos nada
         }
 
-
-
         return informacion;
     }
+
     public EventHandler<? super KeyEvent> pressKey() {
         return new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 String tecla = keyEvent.getCode().toString();
-                if (!input.contains(tecla)){
+                if (!input.contains(tecla))
                     input.add(tecla);
-                }
             }
         };
     }
+
     public EventHandler<? super KeyEvent> releaseKey() {
         return new EventHandler<KeyEvent>() {
             @Override
@@ -266,9 +269,8 @@ public class MapaControlador extends Controlador {
                 input.remove(tecla);
 
                 //Para fps
-                if (Objects.equals(tecla, KeyCode.TAB.toString())){
+                if (Objects.equals(tecla, KeyCode.TAB.toString()))
                     mostrarFPS = !mostrarFPS;
-                }
             }
         };
     }

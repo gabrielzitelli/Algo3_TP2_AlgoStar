@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.SubScene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.InicioControlador">
+   <children>
+      <StackPane id="mainstack" fx:id="mainstack" prefHeight="600.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MediaView id="mediaviewVideoFondo" fx:id="mediaviewVideoFondo" fitHeight="600.0" fitWidth="1024.0" preserveRatio="false">
+
+            </MediaView>
+            <AnchorPane>
+               <children>
+                  <Label id="labelBienvenida" fx:id="labelBienvenida" layoutX="318.0" layoutY="46.0" text="Bienvenido a" textAlignment="CENTER" textFill="#c8bfbf">
+                     <font>
+                        <Font name="Century Gothic" size="61.0" />
+                     </font>
+                  </Label>
+                  <ImageView id="imagenAlgostar" fx:id="imagenAlgostar" fitHeight="238.0" fitWidth="1006.0" layoutX="13.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/brand/AlgoStar_banner.png" />
+                     </image>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </ImageView>
+                  <Button id="botonComenzar" fx:id="botonComenzar" layoutX="348.0" layoutY="412.0" mnemonicParsing="false" onAction="#empezarCreacionJugadores" styleClass="botonComenzar" stylesheets="@../../css/style.css" text="COMENZAR" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri" size="46.0" />
+                     </font>
+                  </Button>
+                  <SubScene id="subsceneForm" fx:id="subsceneForm" height="370.0" layoutX="284.0" layoutY="191.0" visible="false" width="450.0">
+                    <root>
+                      <Region />
+                    </root>
+                  </SubScene>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</fx:root>

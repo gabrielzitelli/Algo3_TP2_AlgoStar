@@ -5,49 +5,45 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.DatosJugador1Controlador">
+<AnchorPane styleClass="anchorPaneForm" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.DatosJugador1Controlador">
    <children>
-      <ImageView id="razaBox" fitHeight="239.0" fitWidth="780.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/StarCraft_Logo.png" />
-         </image>
-      </ImageView>
-      <AnchorPane layoutX="419.0" layoutY="102.0" opacity="0.92" prefHeight="397.0" prefWidth="236.0" style="-fx-background-color: #CCDFE6; -fx-background-radius: 15;">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="450.0" style="-fx-background-color: rgba(0, 0, 0, 0);" styleClass="anchorPaneForm" stylesheets="@../../css/style.css">
          <children>
-            <Label layoutX="56.0" layoutY="27.0" text="JUGADOR 1" underline="true">
+            <Label layoutX="152.0" layoutY="1.0" stylesheets="@../../css/style.css" text="JUGADOR 1" textFill="WHITE">
                <font>
-                  <Font name="Calibri" size="22.0" />
+                  <Font name="Century Gothic" size="25.0" />
                </font>
             </Label>
-            <Label layoutX="76.0" layoutY="87.0" text="Nombre">
+            <Label layoutX="22.0" layoutY="50.0" styleClass="labelCampoParaRellenar" stylesheets="@../../css/style.css" text="NOMBRE" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="nombreJugador1" layoutX="36.0" layoutY="114.0" text="Ingrese aqui el nombre" />
-            <Label layoutX="87.0" layoutY="164.0" text="Color">
+            <TextField fx:id="nombreJugador1" layoutX="22.0" layoutY="79.0" prefHeight="41.0" prefWidth="400.0" styleClass="textfieldNombreJugador" stylesheets="@../../css/style.css" text="Ingrese aqui el nombre">
                <font>
-                  <Font size="18.0" />
+                  <Font size="16.0" />
+               </font></TextField>
+            <Label layoutX="22.0" layoutY="145.0" styleClass="labelCampoParaRellenar" stylesheets="@../../css/style.css" text="COLOR" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <ColorPicker id="elegirColorBoton" fx:id="elegirColorJugador1" editable="true" layoutX="38.0" layoutY="192.0">
+            <ColorPicker id="elegirColorBoton" fx:id="elegirColorJugador1" editable="true" layoutX="22.0" layoutY="173.0" prefHeight="41.0" prefWidth="400.0">
                <value>
                   <Color blue="1.0" />
                </value>
             </ColorPicker>
-            <Label layoutX="90.0" layoutY="234.0" text="Raza">
+            <Label layoutX="22.0" layoutY="239.0" styleClass="labelCampoParaRellenar" stylesheets="@../../css/style.css" text="RAZA" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="43.0" layoutY="261.0" prefWidth="150.0" />
-            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="61.0" layoutY="319.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" text="Crear Jugador" />
+            <ChoiceBox id="razaBox" fx:id="razaBox" layoutX="22.0" layoutY="267.0" prefHeight="41.0" prefWidth="400.0" />
+            <Button id="crearJugador1" fx:id="crearJugador1" layoutX="190.0" layoutY="337.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" text="Crear Jugador" />
             <Label id="mensajeError" fx:id="mensajeError" layoutX="8.0" layoutY="351.0" prefHeight="35.0" prefWidth="223.0" />
          </children>
       </AnchorPane>
