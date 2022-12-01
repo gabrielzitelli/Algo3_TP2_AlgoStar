@@ -11,7 +11,6 @@ import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -24,6 +23,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class InicioControlador extends Controlador {
+
     @FXML
     protected Button botonComenzar;
     @FXML
@@ -34,11 +34,10 @@ public class InicioControlador extends Controlador {
     protected Label labelBienvenida;
     @FXML
     protected SubScene subsceneForm;
-    @FXML
-    protected StackPane mainstack;
+
     private Scene scene;
     private Stage stage;
-    Parent root;
+    private Parent root;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,11 +58,6 @@ public class InicioControlador extends Controlador {
 
     @FXML
     public void empezarCreacionJugadores(ActionEvent event) throws IOException {
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador1Vista.fxml"));
-        //root = loader.load();
-
-        //stage = obtenerStageActual(event);
-        //this.scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
         //Desaparece el texto de bienvenida
         FadeTransition animacionFadeOutBienvenida = new FadeTransition(Duration.millis(400), labelBienvenida);
@@ -71,7 +65,7 @@ public class InicioControlador extends Controlador {
         animacionFadeOutBienvenida.play();
 
         //Se mueve la imagen de algostar para arriba
-        TranslateTransition animacionMovimientoTitulo = new TranslateTransition(Duration.millis(500), imagenAlgostar);
+        TranslateTransition animacionMovimientoTitulo = new TranslateTransition(Duration.millis(550), imagenAlgostar);
         animacionMovimientoTitulo.setByY(-130);
         animacionMovimientoTitulo.setAutoReverse(true);
         animacionMovimientoTitulo.play();
@@ -83,13 +77,11 @@ public class InicioControlador extends Controlador {
         botonComenzar.setDisable(true);
 
         this.realizarCargaJugador1();
-
-        //stage.setScene(scene);
     }
 
     private void mostrarForm(SubScene subsceneForm){
         //Primero se esperan 500ms
-        FadeTransition animacionEsperarYMostrarForm = new FadeTransition(Duration.millis(500), subsceneForm);
+        FadeTransition animacionEsperarYMostrarForm = new FadeTransition(Duration.millis(300), subsceneForm);
         animacionEsperarYMostrarForm.setFromValue(0);
         animacionEsperarYMostrarForm.setToValue(0);
         animacionEsperarYMostrarForm.setOnFinished(e -> {
@@ -110,8 +102,18 @@ public class InicioControlador extends Controlador {
     private void realizarCargaJugador1() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador1Vista.fxml"));
         root = loader.load();
+
+        //Coloco la vista cargada en subsceneForm
         subsceneForm.setRoot(root);
 
+
         mostrarForm(subsceneForm);
+        DatosJugador1Controlador datosJugador1Controlador = loader.getController();
+        datosJugador1Controlador.setSubscene(subsceneForm);
+
+        /*loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador2Vista.fxml"));
+        root = loader.load();
+        subsceneForm.setRoot(root);*/
+
     }
 }

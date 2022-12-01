@@ -77,3 +77,167 @@
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
 }
+
+.anchorPaneError {
+    -fx-background-color: rgb(222, 222, 222);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-border-width: 3px;
+    -fx-border-color: rgb(107, 107, 107);
+    -fx-accent: rgba(136, 197, 203, 0.6);
+    -fx-font-size: 22px;
+}
+
+.mensajeError {
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.botonEntiendo {
+    -fx-background-color: rgb(213, 213, 213);
+    -fx-background-radius: 3;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 22px;
+    -fx-padding: 0 0 0 0;
+    -fx-border-width: 2px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.botonEntiendo:hover {
+    -fx-background-color: rgb(234, 234, 234);
+    -fx-background-radius: 3;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: #a4a4a4;
+}
+
+.comboBoxColores {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.comboBoxColores:focused {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.comboBoxColores:hover {
+    -fx-background-color: rgba(187, 70, 70, 0);
+}
+
+.comboBoxColores .list-view{
+    -fx-background-color: rgb(52, 52, 52);
+    -fx-border-color: white;
+}
+
+.comboBoxColores .list-cell {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent;
+}
+
+.comboBoxColores .arrow {
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+.comboBoxColores .list-cell:filled:selected {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.comboBoxColores .list-cell:filled:hover {
+    -fx-background-color: rgba(136, 197, 203, 0.6);
+}
+
+
+
+.razaBox {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.razaBox:focused {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.razaBox:hover {
+    -fx-background-color: rgba(187, 70, 70, 0);
+}
+
+.razaBox .list-view{
+    -fx-background-color: rgb(52, 52, 52);
+    -fx-border-color: white;
+}
+
+.razaBox .list-cell {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent;
+}
+
+.razaBox .arrow {
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+.razaBox .list-cell:filled:selected {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.razaBox .list-cell:filled:hover {
+    -fx-background-color: rgba(136, 197, 203, 0.6);
+}
+
+.botonCrearJugador {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 22px;
+    -fx-padding: 5 10 5 10;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent;
+}
+
+.botonCrearJugador:hover {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-padding: 5 10 5 10;
+    -fx-border-color: white;
+}

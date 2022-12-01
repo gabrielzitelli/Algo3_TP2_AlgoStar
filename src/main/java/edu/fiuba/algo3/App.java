@@ -35,7 +35,7 @@ public class App extends Application {
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/brand/AS_logo_space.png"))));
         stage.setResizable(false);
 
-        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/cursor5.png")));
+
        //scene.setCursor(new ImageCursor(image));
 
         stage.show();

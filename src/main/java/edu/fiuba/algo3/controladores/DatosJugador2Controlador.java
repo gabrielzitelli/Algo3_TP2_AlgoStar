@@ -41,6 +41,7 @@ public class DatosJugador2Controlador extends Controlador {
     public void initialize(URL url, ResourceBundle resourceBundle){
         this.razaBox2.setItems(razaLista);
         this.razaBox2.setValue("Zergs");
+        System.out.println("Hola");
     }
 
     @FXML
