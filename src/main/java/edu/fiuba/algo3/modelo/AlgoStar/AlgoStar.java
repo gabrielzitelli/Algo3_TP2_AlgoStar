@@ -6,17 +6,13 @@ import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
-import java.util.ArrayList;
-
 public class AlgoStar {
 
     private AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
-    private ArrayList<Imperio> imperios = new ArrayList<>();
     private Turno turno;
 
     public void asignarJugador(String nombre, String color, Imperio imperio) {
         jugadores.agregarJugador(new Jugador(nombre, color, imperio));
-        imperios.add(imperio);
     }
 
     public void empezarJuego() {
