@@ -94,4 +94,9 @@ public class PuertoEstelar extends EdificioProtoss {
         super.verificarConstruccion(unaCasilla);
         estadoCreador.colocarCoordenadaAlGestorDeCrianza(unaCasilla.obtenerCoordenada());
     }
+
+    @Override
+    public Object obtenerEstado() {
+        return estadoHabilitador.getEstado();
+    }
 }

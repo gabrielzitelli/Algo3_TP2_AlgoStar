@@ -50,4 +50,9 @@ public class Pilon extends EdificioProtoss {
     public void asignarSuministro(Suministro poblacionDelImperio){
         estadoGeneradorDeEnergia.marcarSuministro(poblacionDelImperio, 0);
     }
+
+    @Override
+    public Object obtenerEstado() {
+        return estadoGeneradorDeEnergia.getEstado();
+    }
 }

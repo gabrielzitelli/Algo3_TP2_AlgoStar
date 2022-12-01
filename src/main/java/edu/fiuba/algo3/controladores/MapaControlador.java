@@ -3,6 +3,7 @@ package edu.fiuba.algo3.controladores;
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Camara;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.especial.EspecialVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
@@ -53,7 +54,6 @@ public class MapaControlador extends Controlador {
      * Graficos
      * ====================================================================================*/
     private GraphicsContext graphicsContext;
-    private final Tile tierra = new Tile("superficies/32px/terrestre.png");
     private final Tile seleccion = new Tile("marcos/32px/seleccion.png");
     private Coordenada coordenadaSeleccion;
     private final int tileWidth = 32;
@@ -89,9 +89,20 @@ public class MapaControlador extends Controlador {
         gameloop.start();
     }
     private void renderizarMapa() {
-        for(int i = 0; i < tamanioMapa; i++){
-            for(int j = 0; j < tamanioMapa; j++){
-                renderizarCasilla(i,j);
+        //renderizamos solo lo que se encuentra en pantalla
+        for(int i = 0; i < anchoMapa + 1 ; i++){
+            for(int j = 0; j < largoMapa + 1; j++){
+                int xInicial = ( Math.abs(camara.getX()) / tileWidth) + i;
+                int yInicial = ( Math.abs(camara.getY()) / tileWidth) + j;
+
+                //verificamos que no nos salgamos del mapa
+                if (xInicial == tamanioMapa)
+                    xInicial -= 1;
+                if (yInicial == tamanioMapa)
+                    yInicial -= 1;
+
+
+                renderizarCasilla(xInicial, yInicial);
             }
         }
 
@@ -137,6 +148,9 @@ public class MapaControlador extends Controlador {
         Vista ocupableVista = OcupableVista.obtenerOcupable(casilla.obtenerOcupable());
         ocupableVista.render(graphicsContext, posicionX, posicionY);
 
+        //Renderizamos agregados especiales
+        Vista especialVista = EspecialVista.obtenerEspecial(casilla.obtenerOcupable());
+        especialVista.render(graphicsContext, posicionX, posicionY);
     }
 
     private void render() {
@@ -155,6 +169,11 @@ public class MapaControlador extends Controlador {
             camara.subir();
         else if (input.contains("DOWN"))
             camara.bajar();
+
+        if (input.contains(KeyCode.P.toString()))
+            camara.irHacia(73*tileWidth, 58*tileWidth);
+        if (input.contains(KeyCode.O.toString()))
+            camara.irHacia(0*tileWidth, 23*tileWidth);
     }
     private void calcularFps(long currentTime) {
         long oldFrameTime = frameTimes[frameTimeIndex];

@@ -69,4 +69,9 @@ public class Extractor extends EdificioZerg {
     public void contratarUnidad(Unidad unidad){
         contratarZangano(unidad);
     }
+
+    @Override
+    public Object obtenerEstado() {
+        return estadoRecolector.getEstado();
+    }
 }

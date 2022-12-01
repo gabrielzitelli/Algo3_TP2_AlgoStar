@@ -13,4 +13,5 @@ public interface EstadoGeneradorDeEnergia {
     void disminuirSuministro(int cantidadDisminucionSuministro);
     void desenergizar(Coordenada coordenada);
 
+    Object getEstado();
 }

@@ -92,4 +92,7 @@ public abstract class Unidad implements Ocupable {
      public Coordenada obtenerCoordenada(){
           return this.coordenada;
      }
+     public Object obtenerEstado(){
+          return null;
+     }
 }

@@ -7,11 +7,11 @@ public class Camara {
     private int bordeX;
     private int bordeY;
 
-    private int razonDeMovimiento = 8;
+    private final int razonDeMovimiento = 8;
 
     public Camara(int bordeX, int bordeY) {
         this.bordeX -= bordeX;
-        this.bordeY = - bordeY;
+        this.bordeY -= bordeY;
     }
 
     public void subir() {
@@ -40,5 +40,8 @@ public class Camara {
     public int getY() {return y;}
 
 
-
+    public void irHacia(int x, int y) {
+        this.x = -x;
+        this.y = -y;
+    }
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.EnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 
@@ -12,6 +13,8 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
     private Suministro poblacionImperio = new Suministro(0);
 
     private int aumentoSuministro;
+
+    private final EnConstruccion estado = new EnConstruccion();
 
     public EstadoHabilitadorEnConstruccion(int turnoParaEstarConstruido){
         this.turnoParaEstarConstruido = turnoParaEstarConstruido;
@@ -49,5 +52,10 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
 
     @Override
     public void estaAptoParaCrearse(Fabrica unaFabrica){
+    }
+
+    @Override
+    public Object getEstado() {
+        return estado;
     }
 }
