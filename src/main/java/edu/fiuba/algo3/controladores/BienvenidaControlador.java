@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.App;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +10,15 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -24,6 +29,10 @@ public class BienvenidaControlador extends Controlador {
     protected Button comenzarBoton;
     @FXML
     protected MediaView videoSpace;
+    @FXML
+    protected ImageView algoStarImage;
+    @FXML
+    protected Label bienvenidoLabel;
     private Scene scene;
     private Stage stage;
     Parent root;
@@ -53,24 +62,10 @@ public class BienvenidaControlador extends Controlador {
         stage = obtenerStageActual(event);
         this.scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
-        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/cursor5.png")));
-        //scene.setCursor(new ImageCursor(image));
-
-        stage.setScene(scene);
-    }
-
-    @FXML
-    public void pruebaDeMovimiento(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/Mapa.fxml"));
-        root = loader.load();
-        MapaControlador controlador = loader.getController();
-
-        stage = obtenerStageActual(event);
-        this.scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
-
-        this.scene.setOnMouseClicked(controlador.pintarCasilla());
-        this.scene.setOnKeyPressed(controlador.pressKey());
-        this.scene.setOnKeyReleased(controlador.releaseKey());
+        //comenzarBoton.setVisible(false);
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), bienvenidoLabel);
+        fadeTransition.setToValue(0);
+        fadeTransition.play();
         //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/cursor5.png")));
         //scene.setCursor(new ImageCursor(image));
 

@@ -21,12 +21,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -39,6 +41,8 @@ public class MapaControlador extends Controlador {
     protected Text terrenoLabel;
     @FXML
     protected Text debugCoordenadas;
+    @FXML
+    protected Button botonT;
 
     /*=====================================================================================
      * Mapa y camara
@@ -75,6 +79,7 @@ public class MapaControlador extends Controlador {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         inicializarMapa();
+        botonT.setFocusTraversable(false);
 
         App.algoStar.empezarJuego();
     }
