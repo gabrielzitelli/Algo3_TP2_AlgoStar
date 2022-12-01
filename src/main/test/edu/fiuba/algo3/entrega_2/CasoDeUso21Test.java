@@ -7,10 +7,14 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
 
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,7 +41,7 @@ public class CasoDeUso21Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirCriadero(new Coordenada(2,2));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -62,21 +66,25 @@ public class CasoDeUso21Test {
             imperioZerg.terminarTurno();
 
         //obtenemos el edificio
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(2,2));
 
         assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaMutalisco()));
 
         //Pasan los turnos y tenemos al mutalisco
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
+
         //Lo evolucionamos
         imperioZerg.evolucionarMutaliscoAGuardian();
+
         //No han pasado turnos, aún no lo tenemos
         assertFalse(imperioZerg.tieneUnidad(new Guardian()));
+
 
         for (int i = 0; i < 4; i++){
             imperioZerg.terminarTurno();
         }
+
         //tenemos el guardian
         assertTrue(imperioZerg.tieneUnidad(new Guardian()));
     }

@@ -9,16 +9,19 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUni
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
 public class EstadoCreadorConstruido extends EstadoCreador {
 
-    GestorDeCrianza gestorDeCrianza = new GestorDeCrianza();
+    private GestorDeCrianza gestorDeCrianza;
 
-    public EstadoCreadorConstruido(FabricasDisponibles fabricasDisponibles) {
+    public EstadoCreadorConstruido(FabricasDisponibles fabricasDisponibles, Coordenada coordenadaEdificioCreador) {
         this.fabricasDisponibles = fabricasDisponibles;
+        this.gestorDeCrianza = new GestorDeCrianza(coordenadaEdificioCreador);
     }
 
     @Override
@@ -38,6 +41,11 @@ public class EstadoCreadorConstruido extends EstadoCreador {
             throw new ErrorCantidadDeRecursoInsuficiente();
         }
     }
+
+    public void colocarCoordenadaAlGestorDeCrianza(Coordenada coordenadaEdificioCreador){
+        gestorDeCrianza.actualizarCoordenada(coordenadaEdificioCreador);
+    }
+
     @Override
     public void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
         verificarQueSePuedeFabricar(unaFabrica);

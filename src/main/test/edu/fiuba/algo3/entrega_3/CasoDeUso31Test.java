@@ -87,7 +87,7 @@ public class CasoDeUso31Test {
     }
 
     @Test
-    public void test03ConstruyoUnAmoPilonYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
+    public void test03ConstruyoUnAmoSupremoYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
@@ -106,13 +106,11 @@ public class CasoDeUso31Test {
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        Coordenada coordenadaAmoSupremo = new Coordenada(1,1);
         Coordenada coordenadaDragon = new Coordenada(1,2);
 
         ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
         Unidad unAmoSupremo = listaZergUnidades.get(0);
-
-        elMapa.colocarUnaUnidad(unAmoSupremo, coordenadaAmoSupremo);
+        Coordenada coordenadaAmoSupremo = unAmoSupremo.obtenerCoordenada();
 
         Unidad unDragon = new Dragon();
         elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
