@@ -111,13 +111,13 @@ public class Mapa {
     }
 
     private void inicializarTerrenoEspacial(){
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio-1), 15);
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio/3, 5), 8);
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio, 15), 6);
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio/2), 5);
-        colocarTerrenoEspacialCircular(new Coordenada(3*tamanio/4, tamanio/2), 3);
-        colocarTerrenoEspacialCircular(new Coordenada(0, -5), 15);
-        colocarTerrenoEspacialCircular(new Coordenada(4*tamanio/5, (int)(tamanio*1.1)), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio-1), (int)(0.15*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/3, 5), (int)(0.08*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio, 15), (int)(0.06*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio/2), (int)(0.05*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(3*tamanio/4, tamanio/2), (int)(0.05*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(0, -5), (int)(0.15*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(4*tamanio/5, (int)(tamanio*1.1)), (int)(0.15*tamanio));
     }
 
     private void colocarTerrenoEspacialCircular(Coordenada coordenadaCentro, int radio){

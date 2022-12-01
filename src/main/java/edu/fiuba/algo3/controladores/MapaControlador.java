@@ -11,8 +11,6 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho.MohoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCasillaVacia;
-import edu.fiuba.algo3.modelo.Imperio.Protoss;
-import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -28,7 +26,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -42,7 +39,7 @@ public class MapaControlador extends Controlador {
     @FXML
     protected Text debugCoordenadas;
     @FXML
-    protected Button botonT;
+    protected Button pasarTurnoBoton;
 
     /*=====================================================================================
      * Mapa y camara
@@ -79,7 +76,7 @@ public class MapaControlador extends Controlador {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         inicializarMapa();
-        botonT.setFocusTraversable(false);
+        pasarTurnoBoton.setFocusTraversable(false);
 
         App.algoStar.empezarJuego();
     }
@@ -216,7 +213,7 @@ public class MapaControlador extends Controlador {
                     int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
                     int posY = (int) ((((posMouseY - 12) - camara.getY()) / tileWidth));
                     coordenadaSeleccion = new Coordenada(posX, posY);
-                    debugCoordenadas.setText("Coordenadas: " + posX + " - " + posY);
+                    debugCoordenadas.setText("X " + posX + " , Y " + posY);
                     terrenoLabel.setText(obtenerInfoCasilla(coordenadaSeleccion));
                 }
             }
