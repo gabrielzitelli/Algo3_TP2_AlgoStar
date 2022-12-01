@@ -46,4 +46,9 @@ public class Asimilador extends EdificioProtoss {
     public void establecerSobreGas(MaterialBruto volcanDeGas){
         this.volcanDeGas = volcanDeGas;
     }
+
+    @Override
+    public Object obtenerEstado() {
+        return estado.getEstado();
+    }
 }

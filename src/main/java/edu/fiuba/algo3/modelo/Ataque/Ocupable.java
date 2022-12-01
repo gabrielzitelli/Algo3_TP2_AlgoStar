@@ -12,4 +12,6 @@ public interface Ocupable {
     ArrayList<Recurso> requisitosMateriales();
 
     boolean perteneceAImperio(Imperio imperio);
+
+    Object obtenerEstado();
 }

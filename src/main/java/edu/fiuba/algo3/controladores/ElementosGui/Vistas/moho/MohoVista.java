@@ -12,7 +12,6 @@ public abstract class MohoVista extends Vista {
     private static ArrayList<Vista> inicializarLista(){
         ArrayList<Vista> moho = new ArrayList<>();
         moho.add(new ConMohoVista());
-        moho.add(new SinMohoVista());
         return moho;
     }
     

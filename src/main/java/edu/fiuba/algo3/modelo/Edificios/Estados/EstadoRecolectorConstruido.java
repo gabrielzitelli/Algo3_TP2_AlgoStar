@@ -15,4 +15,9 @@ public class EstadoRecolectorConstruido implements EstadoRecolector {
         if (materialBruto != null)
             recursoDelImperio.depositar(materialBruto.extraer(cantidadAExtraer));
     }
+
+    @Override
+    public Object getEstado() {
+        return null;
+    }
 }

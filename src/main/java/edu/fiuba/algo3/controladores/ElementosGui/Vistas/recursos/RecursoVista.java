@@ -15,7 +15,6 @@ public abstract class RecursoVista extends Vista {
         ArrayList<Vista> recursos = new ArrayList<>();
         recursos.add(new MineralBrutoVista());
         recursos.add(new GasBrutoVista());
-        recursos.add(new SinMaterialBrutoVista());
         return recursos;
     }
 
