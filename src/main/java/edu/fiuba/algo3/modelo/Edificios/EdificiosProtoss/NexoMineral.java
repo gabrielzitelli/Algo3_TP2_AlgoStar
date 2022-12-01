@@ -45,4 +45,9 @@ public class NexoMineral extends EdificioProtoss {
     public void establecerSobreMineral(MaterialBruto nodoMineral){
         this.nodoMineral = nodoMineral;
     }
+
+    @Override
+    public Object obtenerEstado() {
+        return estado.getEstado();
+    }
 }

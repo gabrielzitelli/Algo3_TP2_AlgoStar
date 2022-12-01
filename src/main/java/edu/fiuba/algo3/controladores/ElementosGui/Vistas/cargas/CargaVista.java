@@ -11,7 +11,6 @@ public abstract class CargaVista extends Vista{
     private static ArrayList<Vista> inicializarLista(){
         ArrayList<Vista> cargas = new ArrayList<>();
         cargas.add(new ConCargaVista());
-        cargas.add(new SinCargaVista());
         return cargas;
     }
     public static Vista obtenerCarga(Cargable obtenerCarga) {

@@ -35,4 +35,9 @@ public class EstadoHabilitadorConstruido implements EstadoHabilitador {
      public void estaAptoParaCrearse(Fabrica unaFabrica){
         unaFabrica.estasApta(poblacionImperio);
      }
+
+    @Override
+    public Object getEstado() {
+        return null;
+    }
 }

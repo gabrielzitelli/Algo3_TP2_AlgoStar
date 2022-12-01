@@ -15,16 +15,17 @@ public abstract class Vista {
     protected Object elemento;
     protected Tile tile;
     protected String info;
+    private static Vista sinVista = new SinVista();
 
     protected static Vista obtenerVista(Object obtenerElemento, ArrayList<Vista> elementosVista) {
 
         for (Vista vista : elementosVista){
             Object elementoGuardado = vista.elemento;
-            if (elementoGuardado.getClass().equals(obtenerElemento.getClass())){
+            if (obtenerElemento != null && elementoGuardado.getClass().equals(obtenerElemento.getClass())){
                 return vista;
             }
         }
-        return null;
+        return sinVista;
     }
 
     public void render(GraphicsContext gc, int x, int y){

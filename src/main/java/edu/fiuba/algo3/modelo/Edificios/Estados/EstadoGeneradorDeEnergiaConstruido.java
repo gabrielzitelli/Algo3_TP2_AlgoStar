@@ -31,6 +31,11 @@ public class EstadoGeneradorDeEnergiaConstruido implements EstadoGeneradorDeEner
         energia.desenergizar(coordenada);
     }
 
+    @Override
+    public Object getEstado() {
+        return null;
+    }
+
     public void disminuirSuministro(int cantidadDisminucionSuministro){
         poblacionImperio.disminuirSuministro(cantidadDisminucionSuministro);
     }

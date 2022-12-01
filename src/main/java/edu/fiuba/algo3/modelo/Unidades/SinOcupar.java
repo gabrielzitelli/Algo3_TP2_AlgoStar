@@ -23,4 +23,9 @@ public class SinOcupar implements Ocupable {
     public boolean perteneceAImperio(Imperio imperio) {
         return false;
     }
+
+    @Override
+    public Object obtenerEstado() {
+        return null;
+    }
 }

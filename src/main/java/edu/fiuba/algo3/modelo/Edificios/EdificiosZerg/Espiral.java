@@ -51,4 +51,9 @@ public class Espiral extends EdificioZerg {
     public void asignarListaDeUnidades(FabricasDisponibles fabricasDisponibles) {
         this.fabricasDisponibles = fabricasDisponibles;
     }
+
+    @Override
+    public Object obtenerEstado() {
+        return estadoHabilitador.getEstado();
+    }
 }
