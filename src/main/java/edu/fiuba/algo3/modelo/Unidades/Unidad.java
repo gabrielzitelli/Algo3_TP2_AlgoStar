@@ -36,16 +36,16 @@ public abstract class Unidad implements Ocupable {
           this.coordenada = unaCasilla.obtenerCoordenada();
      }
 
+     public void actualizarColocable(Casilla unaCasilla) {
+          verificarColocable(unaCasilla);
+     }
+
      public int rangoDeAtaque() {
           return rangoDeAtaque;
      }
 
      public boolean estaConstruida() {
           return (turnosDeConstruccion == 0);
-     }
-
-     public void matarUnidad() {
-          estadoMuerta = true;
      }
 
      public void pasarTurno() {
@@ -70,6 +70,11 @@ public abstract class Unidad implements Ocupable {
           Mapa elMapa = Mapa.obtener();
           elMapa.quitarUnidad(coordenada);
           this.estadoMuerta = true;
+     }
+
+     public void moverA(Coordenada coordenadaDestino) {
+          Mapa elMapa = Mapa.obtener();
+          elMapa.moverUnidad(this.coordenada, coordenadaDestino);
      }
 
      public boolean esIgualA(Unidad unidad) {

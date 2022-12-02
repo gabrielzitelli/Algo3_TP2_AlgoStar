@@ -7,21 +7,21 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 
 public class Detectado implements Visibilidad {
 
-    private Zealot unZealot;
+    private Zealot unidadInvisible;
 
     public Detectado(Zealot unZealot) {
-        this.unZealot = unZealot;
+        this.unidadInvisible = unZealot;
     }
 
     @Override
     public void recibirAtaque(Ataque unAtaque) {
-        unZealot.recibirAtaqueDefault(unAtaque);
+        unidadInvisible.recibirAtaqueDefault(unAtaque);
     }
 
     @Override
     public Visibilidad verificarVisibilidadDe(Casilla unaCasilla) {
         if (unaCasilla.tieneEsteRevelable(new SinRevelar()))
-            return new Invisible(unZealot);
+            return new Invisible(unidadInvisible);
 
         return this;
     }

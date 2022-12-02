@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Ataque;
 
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 
 import java.util.ArrayList;
 
@@ -14,4 +15,6 @@ public interface Ocupable {
     boolean perteneceAImperio(Imperio imperio);
 
     Object obtenerEstado();
+
+    void actualizarColocable(Casilla unaCasilla);
 }

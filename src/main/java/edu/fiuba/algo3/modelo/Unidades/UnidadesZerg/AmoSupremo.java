@@ -2,10 +2,10 @@ package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Ataque.DanioAmoSupremo;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaAmoSupremo;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
@@ -28,6 +28,17 @@ public class AmoSupremo extends UnidadZerg {
     public void verificarColocable(Casilla unaCasilla) {
         super.verificarColocable(unaCasilla);
         Mapa.obtener().revelar(coordenada, radioDeRevelacion);
+    }
+
+    @Override
+    public void actualizarColocable(Casilla unaCasilla) {
+        super.verificarColocable(unaCasilla);
+     }
+
+    @Override
+    public void moverA(Coordenada coordenadaDestino) {
+        super.moverA(coordenadaDestino);
+        Mapa.obtener().desRevelar(coordenada, radioDeRevelacion);
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

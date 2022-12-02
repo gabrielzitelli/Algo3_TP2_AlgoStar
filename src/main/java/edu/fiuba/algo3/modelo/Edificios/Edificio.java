@@ -46,6 +46,10 @@ public abstract class Edificio implements Ocupable {
         coordenada = unaCasilla.obtenerCoordenada();
     }
 
+    public void actualizarColocable(Casilla unaCasilla) {
+        verificarConstruccion(unaCasilla);
+    }
+
     public ArrayList<Recurso> requisitosMateriales() {
         ArrayList<Recurso> requisitosMateriales = new ArrayList<>();
         requisitosMateriales.add(new Mineral(costoMineral));

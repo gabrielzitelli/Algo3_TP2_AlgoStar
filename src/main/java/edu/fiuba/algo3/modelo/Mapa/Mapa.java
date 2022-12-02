@@ -276,6 +276,12 @@ public class Mapa {
             unaCasilla.revelar();
     }
 
+    public void desRevelar(Coordenada coordenadaOrigen, int radio) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(coordenadaOrigen, radio);
+        for (Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.desRevelar();
+    }
+
     public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
         Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
 

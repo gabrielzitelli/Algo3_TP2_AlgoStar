@@ -37,8 +37,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Casilla desconstruirEdificio(Coordenada coordenada) {
-        Casilla nuevaCasillaSinEdificio = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-        return nuevaCasillaSinEdificio;
+        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
     }
 
     @Override
@@ -47,8 +46,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Edificio obtenerEdificio() {
-        Edificio edificio = (Edificio) this.ocupable;
-        return edificio;
+        return (Edificio) this.ocupable;
     }
 
     public void establecerEdificio(Edificio unEdificio) {
@@ -85,5 +83,17 @@ public class CasillaOcupada extends Casilla {
 
     public Casilla quitarUnidad() {
         return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
+    }
+
+    @Override
+    public void revelar() {
+        super.revelar();
+        ocupable.actualizarColocable(this);
+    }
+
+    @Override
+    public void desRevelar() {
+        super.desRevelar();
+        ocupable.actualizarColocable(this);
     }
 }

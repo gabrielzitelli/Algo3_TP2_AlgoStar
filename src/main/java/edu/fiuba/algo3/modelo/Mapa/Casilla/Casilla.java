@@ -86,6 +86,10 @@ public abstract class Casilla {
         estadoRevelable = estadoRevelable.revelar();
     }
 
+    public void desRevelar() {
+        estadoRevelable = estadoRevelable.desRevelar();
+    }
+
     public boolean tieneEsteRevelable(Revelable unRevelable) {
         return estadoRevelable.esIgualA(unRevelable);
     }
