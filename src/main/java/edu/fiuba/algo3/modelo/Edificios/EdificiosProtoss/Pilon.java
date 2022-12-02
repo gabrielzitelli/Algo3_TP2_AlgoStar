@@ -26,9 +26,9 @@ public class Pilon extends EdificioProtoss {
 
     @Override
     protected void destruirEdificio() {
-        Mapa elMapa = Mapa.obtener();
+        super.destruirEdificio();
+
         estadoGeneradorDeEnergia.disminuirSuministro(suministroAportado);
-        elMapa.destruirEdificio(coordenada);
         estadoGeneradorDeEnergia.desenergizar(coordenada);
     }
 

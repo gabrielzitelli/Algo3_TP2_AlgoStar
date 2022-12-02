@@ -63,11 +63,11 @@ public class Criadero extends EdificioZerg {
     }
 
     protected void destruirEdificio() {
+        super.destruirEdificio();
+
         Mapa elMapa = Mapa.obtener();
         estadoHabilitador.disminuirSuministro(suministroAportado);
-        elMapa.destruirEdificio(coordenada);
         elMapa.expandirMoho(coordenada, 0);
-        this.estaDestruido = true;
     }
 
     public void pasarTurno(){

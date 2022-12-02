@@ -39,9 +39,9 @@ public class AlgoStar {
     public Ocupable conseguirOcupableEn(Coordenada coordenada) {
         Ocupable ocupable = Mapa.obtener().obtenerOcupable(coordenada);
 
-        if (ocupable.perteneceAImperio(turno.jugadorActual().conseguirImperio()))
-            return ocupable;
+        if (!ocupable.perteneceAImperio(turno.jugadorActual().conseguirImperio()))
+            throw new ErrorJugadorNoPuedeAccederOcupableEnemigo();
 
-        throw new ErrorJugadorNoPuedeAccederOcupableEnemigo();
+        return ocupable;
     }
 }
