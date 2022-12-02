@@ -21,6 +21,10 @@
     -fx-border-radius: 10px;
 }
 
+.botonComenzar:armed {
+    -fx-background-color: rgb(229, 229, 229);
+}
+
 .pasarTurnoBoton {
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-text-alignment: center;
@@ -121,6 +125,10 @@
     -fx-padding: 0 0 0 0;
     -fx-border-color: transparent;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.74), 10, 0, 0, 0);
+}
+
+.botonEntiendo:armed {
+    -fx-background-color: rgba(38, 38, 38, 0.65);
 }
 
 .comboBoxColores {
@@ -259,4 +267,8 @@
     -fx-text-fill: black;
     -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 10, 0, 0, 0);
     -fx-border-radius: 5px;
+}
+
+.botonCrearJugador:armed {
+    -fx-background-color: rgb(229, 229, 229);
 }

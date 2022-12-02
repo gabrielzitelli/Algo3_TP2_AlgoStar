@@ -53,6 +53,7 @@ public class DatosJugador1Controlador extends Controlador{
     private ColorItem colorVerde = new ColorItem("Verde",  new Color(0.0824, 0.749, 0.2392, 1));
     private ColorItem colorRosa = new ColorItem("Rosa", new Color(0.749, 0.0824, 0.5608, 1));
     private ColorItem colorAmarillo =  new ColorItem("Amarillo", new Color(0.898, 0.9098, 0.2, 1));
+    private InicioControlador inicioControlador;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -112,30 +113,10 @@ public class DatosJugador1Controlador extends Controlador{
         comboBoxColores.setValue(colorAzul);
     }
 
-    public void setSubscene(SubScene subScene){
-        this.subsceneForm = subScene;
+    public void setInicioControlador(InicioControlador inicioControlador){
+        this.inicioControlador = inicioControlador;
     }
 
-
-    private void mostrarForm(SubScene subscene){
-        //Primero se esperan 500ms
-        FadeTransition animacionEsperarYMostrarForm = new FadeTransition(Duration.millis(300), subscene);
-        animacionEsperarYMostrarForm.setFromValue(0);
-        animacionEsperarYMostrarForm.setToValue(0);
-        animacionEsperarYMostrarForm.setOnFinished(e -> {
-
-            //Luego se muestra
-            FadeTransition animacionMostrarForm = new FadeTransition(Duration.millis(300), subscene);
-            animacionMostrarForm.setFromValue(0);
-            animacionMostrarForm.setToValue(1);
-            animacionMostrarForm.play();
-
-        });
-
-        animacionEsperarYMostrarForm.play();
-
-        subscene.setVisible(true);
-    }
 
     @FXML
     public void empezarCreacionJugador2(ActionEvent event) throws IOException {
@@ -144,25 +125,7 @@ public class DatosJugador1Controlador extends Controlador{
         if (this.datosValidos) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador2Vista.fxml"));
             Parent root = loader.load();
-
-            //this.subsceneForm = (SubScene) anchorPaneMain.getParent();
-
-            /*mostrarForm(subsceneForm);
-            System.out.println(subsceneForm.getLayoutY());
-            subsceneForm.setDisable(false);
-            subsceneForm.setVisible(true);*/
-            //this.subsceneForm.setFill(Color.BLUE);
-
-            //SubScene scene = NodeHelper.getSubScene(razaBox);
-            //scene.setRoot(loader.load());
-            //this.subsceneForm.setVisible(true);
-            //this.mostrarForm(subsceneForm);
-            //this.subsceneForm.getChildren().(loader.load());
-
-            stage = obtenerStageActual(razaBox);
-            this.scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
-
-            stage.setScene(scene);
+            inicioControlador.realizarCargaJugador2(root);
         }
     }
 
@@ -187,10 +150,7 @@ public class DatosJugador1Controlador extends Controlador{
 
         Imperio imperio = this.parsearImperio(razaBox.getValue());
         try {
-            //Color picker viejo
-            //App.algoStar.asignarJugador(nombreJugador1.getText(), String.valueOf(elegirColorJugador1.getValue()), imperio);
-
-            App.algoStar.asignarJugador(nombreJugador1.getText(), String.valueOf( comboBoxColores.getValue().obtenerColor() ), imperio);
+            App.algoStar.asignarJugador(nombreJugador1.getText().trim(), String.valueOf( comboBoxColores.getValue().obtenerColor() ), imperio);
             this.datosValidos = true;
             this.mensajeError.setText("Datos Validos");
             this.mensajeError.setTextFill(Color.web("#00690c"));

@@ -39,10 +39,15 @@
                         <Font name="Calibri" size="46.0" />
                      </font>
                   </Button>
-                  <SubScene id="subsceneForm" fx:id="subsceneForm" height="370.0" layoutX="284.0" layoutY="191.0" visible="false" width="450.0">
+                  <SubScene id="subsceneFormJugador1" fx:id="subsceneFormJugador1" height="370.0" layoutX="284.0" layoutY="191.0" visible="false" width="450.0">
                     <root>
                       <Region />
                     </root>
+                  </SubScene>
+                  <SubScene id="subsceneFormJugador1" fx:id="subsceneFormJugador2" height="370.0" layoutX="284.0" layoutY="191.0" visible="false" width="450.0">
+                     <root>
+                        <Region />
+                     </root>
                   </SubScene>
                </children>
             </AnchorPane>

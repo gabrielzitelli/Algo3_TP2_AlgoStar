@@ -33,7 +33,9 @@ public class InicioControlador extends Controlador {
     @FXML
     protected Label labelBienvenida;
     @FXML
-    protected SubScene subsceneForm;
+    protected SubScene subsceneFormJugador1;
+    @FXML
+    protected SubScene subsceneFormJugador2;
 
     private Scene scene;
     private Stage stage;
@@ -104,16 +106,25 @@ public class InicioControlador extends Controlador {
         root = loader.load();
 
         //Coloco la vista cargada en subsceneForm
-        subsceneForm.setRoot(root);
+        subsceneFormJugador1.setRoot(root);
 
+        mostrarForm(subsceneFormJugador1);
 
-        mostrarForm(subsceneForm);
         DatosJugador1Controlador datosJugador1Controlador = loader.getController();
-        datosJugador1Controlador.setSubscene(subsceneForm);
+        datosJugador1Controlador.setInicioControlador(this);
+    }
 
-        /*loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador2Vista.fxml"));
-        root = loader.load();
-        subsceneForm.setRoot(root);*/
+    public void realizarCargaJugador2(Parent root) {
+        //Desaparece el subsceneFormJugador1 y lo desactivo
+        FadeTransition animacionFadeOutSubsceneJugador1 = new FadeTransition(Duration.millis(400), subsceneFormJugador1);
+        animacionFadeOutSubsceneJugador1.setToValue(0);
+        animacionFadeOutSubsceneJugador1.play();
+        animacionFadeOutSubsceneJugador1.setOnFinished(e -> {
+            subsceneFormJugador1.setDisable(true);
+            subsceneFormJugador1.setVisible(false);
+        });
 
+        subsceneFormJugador2.setRoot(root);
+        mostrarForm(subsceneFormJugador2);
     }
 }
