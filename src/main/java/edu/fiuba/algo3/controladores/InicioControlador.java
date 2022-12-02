@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
+import edu.fiuba.algo3.App;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -18,9 +19,15 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.PortUnreachableException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class InicioControlador extends Controlador {
 
@@ -114,7 +121,7 @@ public class InicioControlador extends Controlador {
         datosJugador1Controlador.setInicioControlador(this);
     }
 
-    public void realizarCargaJugador2(Parent root) {
+    public void realizarCargaJugador2(Parent root, FXMLLoader loader) {
         //Desaparece el subsceneFormJugador1 y lo desactivo
         FadeTransition animacionFadeOutSubsceneJugador1 = new FadeTransition(Duration.millis(400), subsceneFormJugador1);
         animacionFadeOutSubsceneJugador1.setToValue(0);
@@ -126,5 +133,47 @@ public class InicioControlador extends Controlador {
 
         subsceneFormJugador2.setRoot(root);
         mostrarForm(subsceneFormJugador2);
+
+        DatosJugador2Controlador datosJugador2Controlador = loader.getController();
+        datosJugador2Controlador.setInicioControlador(this);
+    }
+
+    //loader ya está cargado
+    public void iniciarJuego(Parent root, FXMLLoader loader) throws InterruptedException {
+        //Desaparece el subsceneFormJugador1 y lo desactivo
+        FadeTransition animacionFadeOutSubsceneJugador2 = new FadeTransition(Duration.millis(400), subsceneFormJugador2);
+        animacionFadeOutSubsceneJugador2.setToValue(0);
+        animacionFadeOutSubsceneJugador2.play();
+        animacionFadeOutSubsceneJugador2.setOnFinished(e -> {
+            subsceneFormJugador2.setDisable(true);
+            subsceneFormJugador2.setVisible(false);
+        });
+
+        //Oculto el titulo y acelero el mediaplayer
+        FadeTransition animacionFadeOutImagenAlgostar = new FadeTransition(Duration.millis(400), imagenAlgostar);
+        animacionFadeOutImagenAlgostar.setToValue(0);
+        animacionFadeOutImagenAlgostar.play();
+        animacionFadeOutImagenAlgostar.setOnFinished(e -> {
+            imagenAlgostar.setVisible(false);
+            mediaviewVideoFondo.getMediaPlayer().setRate(8.0);
+
+
+            FadeTransition animacionWait = new FadeTransition(Duration.millis(1000), imagenAlgostar);
+            animacionWait.setToValue(0);
+            animacionWait.play();
+            animacionWait.setOnFinished(event -> {
+
+                //Seteo la nueva escena luego de acelerar
+                stage = obtenerStageActual(imagenAlgostar);
+                Scene scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
+
+                MapaControlador controlador = loader.getController();
+                scene.setOnMouseClicked(controlador.pintarCasilla());
+                scene.setOnKeyPressed(controlador.pressKey());
+                scene.setOnKeyReleased(controlador.releaseKey());
+
+                stage.setScene(scene);
+            });
+        });
     }
 }

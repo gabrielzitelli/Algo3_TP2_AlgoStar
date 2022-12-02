@@ -117,7 +117,6 @@ public class DatosJugador1Controlador extends Controlador{
         this.inicioControlador = inicioControlador;
     }
 
-
     @FXML
     public void empezarCreacionJugador2(ActionEvent event) throws IOException {
         guardarDatosJugador1();
@@ -125,7 +124,7 @@ public class DatosJugador1Controlador extends Controlador{
         if (this.datosValidos) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador2Vista.fxml"));
             Parent root = loader.load();
-            inicioControlador.realizarCargaJugador2(root);
+            inicioControlador.realizarCargaJugador2(root, loader);
         }
     }
 
@@ -156,9 +155,9 @@ public class DatosJugador1Controlador extends Controlador{
             this.mensajeError.setTextFill(Color.web("#00690c"));
 
         }catch (ErrorELNombreDelJugadorDebeSerMayorA6Caracteres e) {
-            mostrarPaneError();
             this.mensajeError.setText("El nombre debe tener más de 6 caracteres");
             this.mensajeError.setTextFill(Color.web("#940a00"));
+            mostrarPaneError();
         }
     }
 
