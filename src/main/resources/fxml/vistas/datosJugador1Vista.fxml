@@ -9,7 +9,7 @@
 
 <AnchorPane id="anchorPaneMain" fx:id="anchorPaneMain" styleClass="anchorPaneForm" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.DatosJugador1Controlador">
    <children>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="450.0" style="-fx-background-color: rgba(0, 0, 0, 0);" styleClass="anchorPaneForm" stylesheets="@../../css/style.css">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="450.0" styleClass="anchorPaneForm" stylesheets="@../../css/style.css">
          <children>
             <Label layoutX="152.0" layoutY="7.0" stylesheets="@../../css/style.css" text="JUGADOR 1" textFill="WHITE">
                <font>
@@ -35,15 +35,15 @@
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <Button id="botonCrearJugador1" fx:id="botonCrearJugador1" layoutX="122.0" layoutY="323.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" styleClass="botonCrearJugador" stylesheets="@../../css/style.css" text="CREAR JUGADOR" />
+            <Button id="botonCrearJugador1" fx:id="botonCrearJugador1" contentDisplay="CENTER" layoutX="124.0" layoutY="323.0" mnemonicParsing="false" onAction="#empezarCreacionJugador2" styleClass="botonCrearJugador" stylesheets="@../../css/style.css" text="CREAR JUGADOR" />
+            <ComboBox id="comboBoxColores" fx:id="comboBoxColores" layoutX="22.0" layoutY="173.0" prefHeight="41.0" prefWidth="400.0" styleClass="comboBoxColores" visibleRowCount="5" />
+            <ComboBox id="razaBox" fx:id="razaBox" layoutX="22.0" layoutY="267.0" prefHeight="41.0" prefWidth="400.0" styleClass="razaBox" />
             <AnchorPane id="anchorPaneError" fx:id="anchorPaneError" layoutX="71.0" layoutY="77.0" prefHeight="140.0" prefWidth="309.0" styleClass="anchorPaneError" stylesheets="@../../css/style.css" visible="false">
                <children>
                   <Label id="mensajeError" fx:id="mensajeError" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="6.0" prefHeight="128.0" prefWidth="302.0" styleClass="mensajeError" stylesheets="@../../css/style.css" wrapText="true" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
-                  <Button id="botonEntiendo" fx:id="botonEntiendo" layoutX="98.0" layoutY="133.0" mnemonicParsing="false" onAction="#ocultarPaneError" prefHeight="38.0" prefWidth="109.0" styleClass="botonEntiendo" stylesheets="@../../css/style.css" text="Entiendo" />
+                  <Button id="botonEntiendo" fx:id="botonEntiendo" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="133.0" mnemonicParsing="false" onAction="#ocultarPaneError" prefHeight="38.0" prefWidth="109.0" styleClass="botonEntiendo" stylesheets="@../../css/style.css" text="Entiendo" />
                </children>
             </AnchorPane>
-            <ComboBox id="comboBoxColores" fx:id="comboBoxColores" layoutX="22.0" layoutY="173.0" prefHeight="41.0" prefWidth="400.0" styleClass="comboBoxColores" visibleRowCount="5" />
-            <ComboBox id="razaBox" fx:id="razaBox" layoutX="22.0" layoutY="267.0" prefHeight="41.0" prefWidth="400.0" styleClass="razaBox" />
          </children>
       </AnchorPane>
    </children>

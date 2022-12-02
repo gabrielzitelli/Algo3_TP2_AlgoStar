@@ -1,19 +1,24 @@
 .botonComenzar {
     -fx-background-color: rgba(0, 0, 0, 0);
-    -fx-background-radius: 3;
+    -fx-background-radius: 10px;
     -fx-text-fill: white;
     -fx-font-family: "Century Gothic";
     -fx-font-size: 50px;
     -fx-padding: 10 20 10 20;
     -fx-border-width: 1px;
-    -fx-border-color: transparent;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 30, 0, 0, 0);
 }
 
 .botonComenzar:hover {
-    -fx-background-color: rgba(0, 0, 0, 0);
-    -fx-background-radius: 3;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 10px;
     -fx-padding: 10 20 10 20;
-    -fx-border-color: white;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+    -fx-border-radius: 10px;
 }
 
 .pasarTurnoBoton {
@@ -79,13 +84,13 @@
 }
 
 .anchorPaneError {
-    -fx-background-color: rgb(222, 222, 222);
+    -fx-background-color: rgb(255, 255, 255);
     -fx-background-radius: 3;
     -fx-text-fill: white;
     -fx-font-family: "Century Gothic";
     -fx-border-width: 3px;
-    -fx-border-color: rgb(107, 107, 107);
-    -fx-accent: rgba(136, 197, 203, 0.6);
+    -fx-border-color: rgb(121, 121, 121);
+    -fx-accent: rgb(136, 197, 203);
     -fx-font-size: 22px;
 }
 
@@ -95,21 +100,27 @@
 }
 
 .botonEntiendo {
-    -fx-background-color: rgb(213, 213, 213);
-    -fx-background-radius: 3;
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
     -fx-text-fill: #000000;
     -fx-font-family: "Century Gothic";
     -fx-font-size: 22px;
     -fx-padding: 0 0 0 0;
-    -fx-border-width: 2px;
-    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
 }
 
 .botonEntiendo:hover {
-    -fx-background-color: rgb(234, 234, 234);
-    -fx-background-radius: 3;
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+    -fx-text-fill: white;
+    -fx-border-width: 1px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
     -fx-padding: 0 0 0 0;
-    -fx-border-color: #a4a4a4;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.74), 10, 0, 0, 0);
 }
 
 .comboBoxColores {
@@ -226,18 +237,26 @@
 
 .botonCrearJugador {
     -fx-background-color: rgba(0, 0, 0, 0);
-    -fx-background-radius: 3;
+    -fx-background-radius: 5px;
     -fx-text-fill: white;
     -fx-font-family: "Century Gothic";
     -fx-font-size: 22px;
-    -fx-padding: 5 10 5 10;
+    -fx-padding: 5 5 5 5;
     -fx-border-width: 1px;
-    -fx-border-color: transparent;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
 }
 
 .botonCrearJugador:hover {
-    -fx-background-color: rgba(0, 0, 0, 0);
-    -fx-background-radius: 3;
-    -fx-padding: 5 10 5 10;
-    -fx-border-color: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 22px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 10, 0, 0, 0);
+    -fx-border-radius: 5px;
 }

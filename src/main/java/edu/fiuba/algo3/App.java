@@ -37,7 +37,6 @@ public class App extends Application {
 
 
        //scene.setCursor(new ImageCursor(image));
-
         stage.show();
     }
 }

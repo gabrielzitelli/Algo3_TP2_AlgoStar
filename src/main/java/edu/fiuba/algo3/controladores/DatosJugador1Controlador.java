@@ -168,7 +168,7 @@ public class DatosJugador1Controlador extends Controlador{
 
     public void ocultarPaneError(){
         FadeTransition animacionOcultarPaneError = new FadeTransition(Duration.millis(100), anchorPaneError);
-        animacionOcultarPaneError.setFromValue(1);
+        animacionOcultarPaneError.setFromValue(1.0);
         animacionOcultarPaneError.setToValue(0);
         animacionOcultarPaneError.setOnFinished(e -> anchorPaneError.setVisible(false));
         animacionOcultarPaneError.play();
@@ -177,7 +177,7 @@ public class DatosJugador1Controlador extends Controlador{
     private void mostrarPaneError(){
         FadeTransition animacionMostrarPaneError = new FadeTransition(Duration.millis(100), anchorPaneError);
         animacionMostrarPaneError.setFromValue(0);
-        animacionMostrarPaneError.setToValue(1);
+        animacionMostrarPaneError.setToValue(1.0);
         animacionMostrarPaneError.play();
 
         anchorPaneError.setVisible(true);
