@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.AlgoStar;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasJugadores;
-
 public class TurnoJugador implements Turno {
 
     private Jugador jugadorDeTurno;
@@ -18,11 +16,7 @@ public class TurnoJugador implements Turno {
 
         Jugador siguienteJugador;
 
-        try {
-            siguienteJugador = jugadores.conseguirSiguienteJugador();
-        } catch (ErrorNoHayMasJugadores e) {
-            return new PartidaTerminada(jugadorDeTurno);
-        }
+        siguienteJugador = jugadores.conseguirSiguienteJugador();
 
         if (siguienteJugador.conseguirNombre().equals(jugadorDeTurno.conseguirNombre()))
             return new PartidaTerminada(jugadorDeTurno);

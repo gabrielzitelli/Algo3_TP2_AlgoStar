@@ -324,7 +324,7 @@ public class Mapa {
         Casilla casillaInicial = this.encontrarCasillaPorCoordenada(coordenadaInicial);
         Casilla casillaFinal = this.encontrarCasillaPorCoordenada(coordenadaFinal);
 
-        if (casillaInicial.obtenerOcupable().getClass().equals(new SinOcupar().getClass())){
+        if (casillaInicial.obtenerOcupable().getClass().equals(SinOcupar.class)){
             throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
         }
 

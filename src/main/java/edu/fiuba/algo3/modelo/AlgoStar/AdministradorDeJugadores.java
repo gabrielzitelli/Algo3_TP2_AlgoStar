@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.AlgoStar;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasJugadores;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSoloPuedenJugarDosPersonasAlMismoTiempo;
 
 import java.util.LinkedList;
@@ -32,9 +31,6 @@ public class AdministradorDeJugadores {
 
     public Jugador conseguirSiguienteJugador() {
         Jugador siguiente = jugadores.poll();
-
-        if (siguiente == null)
-            throw new ErrorNoHayMasJugadores();
 
         siguiente.conseguirImperio().revisarDestrucciones();
         if (siguiente.perdio()) {
