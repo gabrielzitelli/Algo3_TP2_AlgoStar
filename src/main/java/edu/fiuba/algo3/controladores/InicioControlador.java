@@ -12,6 +12,8 @@ import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -20,15 +22,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.net.PortUnreachableException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class InicioControlador extends Controlador {
 
@@ -44,14 +40,38 @@ public class InicioControlador extends Controlador {
     protected SubScene subsceneFormJugador1;
     @FXML
     protected SubScene subsceneFormJugador2;
-
-    private Scene scene;
     private Stage stage;
     private Parent root;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.inicializarVideoFondo();
+    }
+
+    public void inicializar() {
+
+        //manejar redimension
+        stage = obtenerStageActual(labelBienvenida);
+        stage.widthProperty().addListener((o, oldValue, newValue) -> {
+            if (newValue.intValue() < App.INITIAL_WIDTH) {
+                stage.setResizable(false);
+                stage.setWidth(App.INITIAL_WIDTH);
+                stage.setResizable(true);
+            }
+            else {
+                mediaviewVideoFondo.setFitWidth(newValue.doubleValue());
+            }
+        });
+        stage.heightProperty().addListener((o, oldValue, newValue) -> {
+            if (newValue.intValue() < App.INITIAL_HEIGHT) {
+                stage.setResizable(false);
+                stage.setHeight(App.INITIAL_HEIGHT);
+                stage.setResizable(true);
+            }
+            else {
+                mediaviewVideoFondo.setFitHeight(newValue.doubleValue());
+            }
+        });
     }
 
     private void inicializarVideoFondo(){
@@ -87,6 +107,20 @@ public class InicioControlador extends Controlador {
         botonComenzar.setDisable(true);
 
         this.realizarCargaJugador1();
+    }
+
+    @FXML
+    public void manejarInput(KeyEvent keyEvent) throws IOException {
+        KeyCode tecla = keyEvent.getCode();
+        if (Objects.equals(tecla, KeyCode.F11)){
+            setPantallaCompleta();
+        }
+    }
+    private void setPantallaCompleta() {
+        stage = this.obtenerStageActual(labelBienvenida);
+        stage.setFullScreen(!stage.isFullScreen());
+        mediaviewVideoFondo.setFitHeight(stage.getHeight());
+        mediaviewVideoFondo.setFitWidth(stage.getWidth());
     }
 
     private void mostrarForm(SubScene subsceneForm){
