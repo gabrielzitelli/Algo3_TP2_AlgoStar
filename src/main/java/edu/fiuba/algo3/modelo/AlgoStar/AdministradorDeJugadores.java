@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSoloPuedenJugarDosPersonasAlMismoTiempo;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 
 public class AdministradorDeJugadores {
@@ -16,6 +17,19 @@ public class AdministradorDeJugadores {
 
         revisarJugador(jugadorNuevo);
         jugadores.add(jugadorNuevo);
+    }
+
+    public String[] jugadoresEnString(){
+
+        String[] jugadoresString = new String[jugadores.size()];
+        int i = 0;
+
+        for( Jugador jugador : jugadores){
+            jugadoresString[i] = jugador.toString();
+            i++;
+        }
+
+        return jugadoresString;
     }
 
     private void revisarJugador(Jugador jugadorARevisar) {

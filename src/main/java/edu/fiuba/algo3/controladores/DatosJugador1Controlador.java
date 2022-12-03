@@ -14,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -40,7 +42,11 @@ public class DatosJugador1Controlador extends Controlador{
     @FXML
     private AnchorPane anchorPaneError;
     @FXML
+    private AnchorPane anchorPaneForm;
+    @FXML
     private Button botonEntiendo;
+    @FXML
+    private Button botonCrearJugador1;
     @FXML
     private ComboBox<ColorItem> comboBoxColores;
 
@@ -143,6 +149,7 @@ public class DatosJugador1Controlador extends Controlador{
         animacionMostrarPaneError.play();
 
         anchorPaneError.setVisible(true);
+        anchorPaneError.requestFocus();
     }
 
     private void guardarDatosJugador1() {
@@ -158,6 +165,18 @@ public class DatosJugador1Controlador extends Controlador{
             this.mensajeError.setText("El nombre debe tener más de 6 caracteres");
             this.mensajeError.setTextFill(Color.web("#940a00"));
             mostrarPaneError();
+        }
+    }
+
+    public void ocultarPaneErrorConEnter(KeyEvent event){
+        if(event.getCode() == KeyCode.ENTER)
+            botonEntiendo.fire();
+    }
+
+    public void presionarEnterParaCrearJugador(KeyEvent event) throws IOException {
+        if(event.getCode() == KeyCode.ENTER){
+            botonCrearJugador1.requestFocus();
+            botonCrearJugador1.fire();
         }
     }
 

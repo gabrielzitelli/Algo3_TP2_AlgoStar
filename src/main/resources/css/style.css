@@ -214,6 +214,23 @@
     -fx-background-color: rgba(187, 70, 70, 0);
 }
 
+.razaBox:disabled {
+    -fx-opacity: 1;
+    -fx-border-color: rgb(154, 154, 154);
+}
+
+.razaBox:disabled .list-cell:disabled {
+    -fx-opacity: 1;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-style: italic;
+}
+
+
+.razaBox:disabled .arrow {
+    -fx-opacity: 1;
+    -fx-background-color: rgb(154, 154, 154);
+}
+
 .razaBox .list-view{
     -fx-background-color: rgb(52, 52, 52);
     -fx-border-color: white;
@@ -233,6 +250,7 @@
 .razaBox .arrow {
     -fx-background-color: rgb(255, 255, 255);
 }
+
 
 .razaBox .list-cell:filled:selected {
     -fx-font-weight: bold;

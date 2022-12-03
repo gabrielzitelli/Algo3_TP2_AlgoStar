@@ -15,6 +15,10 @@ public class AlgoStar {
         jugadores.agregarJugador(new Jugador(nombre, color, imperio));
     }
 
+    public String[] jugadoresEnString(){
+        return jugadores.jugadoresEnString();
+    }
+
     public void empezarJuego() {
         inicializarBases();
         turno = new TurnoJugador(jugadores.conseguirSiguienteJugador(), jugadores);

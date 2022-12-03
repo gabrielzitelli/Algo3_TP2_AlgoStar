@@ -16,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -24,6 +26,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class DatosJugador2Controlador extends Controlador {
@@ -44,6 +48,10 @@ public class DatosJugador2Controlador extends Controlador {
     private AnchorPane anchorPaneError;
     @FXML
     private Button botonEntiendo;
+    @FXML
+    private Button botonCrearJugador2;
+    @FXML
+    private AnchorPane anchorPaneForm;
 
     //Colores
     //Conversor de RGB 0-255 a RGB 0-1: https://giancr.com/calculadora-rgb-escala-0-255-0-1-hexadecimal/
@@ -61,7 +69,14 @@ public class DatosJugador2Controlador extends Controlador {
     }
 
     private void inicializarComboBoxRaza(){
-        this.razaBox.getItems().addAll("Protoss", "Zerg");
+
+        String informacionJugador1 = App.algoStar.jugadoresEnString()[0];
+        String razaJugador2 = "Zerg";
+
+        if(informacionJugador1.toUpperCase().contains("ZERG"))
+            razaJugador2 = "Protoss";
+
+        this.razaBox.getItems().addAll(razaJugador2);
 
         razaBox.setCellFactory(p -> new ListCell<>() {
 
@@ -77,12 +92,25 @@ public class DatosJugador2Controlador extends Controlador {
         });
 
         razaBox.setButtonCell(razaBox.getCellFactory().call(null));
-        razaBox.setValue("Zerg");
+        razaBox.setValue(razaJugador2);
+        razaBox.setDisable(true);
     }
 
     private void inicializarComboBoxColores(){
-        comboBoxColores.getItems().addAll(colorAzul, colorRojo, colorVerde, colorRosa, colorAmarillo);
 
+        LinkedList<ColorItem> listaColorItems = new LinkedList<ColorItem>( Arrays.asList(colorAzul, colorRojo, colorVerde, colorRosa, colorAmarillo) );
+
+        String informacionJugador1 = App.algoStar.jugadoresEnString()[0];
+
+        for (int i = 0; i < listaColorItems.size(); i++) {
+            ColorItem colorItem = listaColorItems.get(i);
+            String colorString = String.valueOf( colorItem.obtenerColor() );
+
+            if( informacionJugador1.contains(colorString) )
+                listaColorItems.remove(colorItem);
+        }
+
+        comboBoxColores.getItems().addAll(listaColorItems);
         comboBoxColores.setCellFactory(p -> new ListCell<>() {
 
             private final Rectangle rectangle;
@@ -108,7 +136,7 @@ public class DatosJugador2Controlador extends Controlador {
         });
 
         comboBoxColores.setButtonCell(comboBoxColores.getCellFactory().call(null));
-        comboBoxColores.setValue(colorAzul);
+        comboBoxColores.setValue(listaColorItems.getFirst());
     }
 
     public void setInicioControlador(InicioControlador inicioControlador){
@@ -141,6 +169,19 @@ public class DatosJugador2Controlador extends Controlador {
         animacionMostrarPaneError.play();
 
         anchorPaneError.setVisible(true);
+        anchorPaneError.requestFocus();
+    }
+
+    public void ocultarPaneErrorConEnter(KeyEvent event){
+        if(event.getCode() == KeyCode.ENTER)
+            botonEntiendo.fire();
+    }
+
+    public void presionarEnterParaCrearJugador(KeyEvent event) throws IOException {
+        if(event.getCode() == KeyCode.ENTER){
+            botonCrearJugador2.requestFocus();
+            botonCrearJugador2.fire();
+        }
     }
 
     private void guardarDatosJugador2() {
@@ -183,5 +224,9 @@ public class DatosJugador2Controlador extends Controlador {
             return new Protoss();
         else
             return new Zerg();
+    }
+
+    public void ponerFocusEnForm() {
+        anchorPaneForm.requestFocus();
     }
 }

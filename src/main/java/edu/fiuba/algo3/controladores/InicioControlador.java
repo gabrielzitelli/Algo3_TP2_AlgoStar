@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -136,6 +137,7 @@ public class InicioControlador extends Controlador {
 
         DatosJugador2Controlador datosJugador2Controlador = loader.getController();
         datosJugador2Controlador.setInicioControlador(this);
+        datosJugador2Controlador.ponerFocusEnForm();
     }
 
     //loader ya está cargado
@@ -157,6 +159,9 @@ public class InicioControlador extends Controlador {
             imagenAlgostar.setVisible(false);
             mediaviewVideoFondo.getMediaPlayer().setRate(8.0);
 
+            FadeTransition desaparecerVideo = new FadeTransition(Duration.millis(1000), mediaviewVideoFondo);
+            desaparecerVideo.setToValue(0);
+            desaparecerVideo.play();
 
             FadeTransition animacionWait = new FadeTransition(Duration.millis(1000), imagenAlgostar);
             animacionWait.setToValue(0);
@@ -167,10 +172,10 @@ public class InicioControlador extends Controlador {
                 stage = obtenerStageActual(imagenAlgostar);
                 Scene scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
-                MapaControlador controlador = loader.getController();
-                scene.setOnMouseClicked(controlador.pintarCasilla());
-                scene.setOnKeyPressed(controlador.pressKey());
-                scene.setOnKeyReleased(controlador.releaseKey());
+                MapaControlador controladorMapa = loader.getController();
+                scene.setOnMouseClicked(controladorMapa.pintarCasilla());
+                scene.setOnKeyPressed(controladorMapa.pressKey());
+                scene.setOnKeyReleased(controladorMapa.releaseKey());
 
                 stage.setScene(scene);
             });
