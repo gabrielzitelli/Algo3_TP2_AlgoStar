@@ -302,6 +302,7 @@ public class MapaControlador extends Controlador {
 
                 //Pantalla completa
                 if (Objects.equals(tecla, KeyCode.F11.toString())){
+                    System.out.print("presionado");
                     setPantallaCompleta();
                 }
             }

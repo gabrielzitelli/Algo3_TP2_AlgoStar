@@ -1,11 +1,13 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.controladores.InicioControlador;
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -26,14 +28,15 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/inicioVista.fxml"));
-        loader.setRoot(new AnchorPane());
+        loader.setRoot(new BorderPane());
 
         Scene scene = new Scene(loader.load(), INITIAL_WIDTH, INITIAL_HEIGHT);
         stage.setScene(scene);
+        InicioControlador controlador = loader.getController();
+        controlador.inicializar();
 
         stage.setTitle("AlgoStar");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/brand/AS_logo_space.png"))));
-        stage.setResizable(false);
 
        //scene.setCursor(new ImageCursor(image));
         stage.show();
