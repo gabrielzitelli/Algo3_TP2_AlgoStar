@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
 import java.net.URL;
@@ -209,6 +210,7 @@ public class MapaControlador extends Controlador {
             camara.irHacia(73*tileWidth, 58*tileWidth);
         if (input.contains(KeyCode.O.toString()))
             camara.irHacia(0*tileWidth, 23*tileWidth);
+
     }
 
     private void calcularFps(long currentTime) {
@@ -297,8 +299,18 @@ public class MapaControlador extends Controlador {
                 //Para fps
                 if (Objects.equals(tecla, KeyCode.TAB.toString()))
                     mostrarFPS = !mostrarFPS;
+
+                //Pantalla completa
+                if (Objects.equals(tecla, KeyCode.F11.toString())){
+                    setPantallaCompleta();
+                }
             }
         };
+    }
+
+    private void setPantallaCompleta() {
+        Stage stageActual = this.obtenerStageActual(estadoLabel);
+        stageActual.setFullScreen(!stageActual.isFullScreen());
     }
 
 }
