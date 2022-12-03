@@ -26,6 +26,7 @@ public abstract class Unidad implements Ocupable {
 
      protected boolean estadoMuerta = false;
      protected boolean yaAtaco = false;
+     protected boolean yaCamino = false;
 
      public abstract boolean perteneceAImperio(Imperio imperio);
 
@@ -53,6 +54,7 @@ public abstract class Unidad implements Ocupable {
                turnosDeConstruccion--;
 
           yaAtaco = false;
+          yaCamino = false;
      }
 
      public void atacar(Casilla casillaAAtacar) {
@@ -82,6 +84,9 @@ public abstract class Unidad implements Ocupable {
 
      public void moverA(Coordenada coordenadaDestino) {
           Mapa elMapa = Mapa.obtener();
+          if (yaCamino){
+               throw new ErrorYaCaminoLaUnidadEnEsteTurno();
+          }
           if ( estaDentroDelRadio(coordenadaDestino) ){
                elMapa.moverUnidad(this.coordenada, coordenadaDestino);
           }
