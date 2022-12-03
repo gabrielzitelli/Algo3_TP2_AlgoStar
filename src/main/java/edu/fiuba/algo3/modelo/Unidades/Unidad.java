@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.*;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 import java.util.ArrayList;
@@ -25,8 +26,13 @@ public abstract class Unidad implements Ocupable {
      protected int costoGas;
 
      protected boolean estadoMuerta = false;
-     protected boolean yaAtaco = false;
      protected boolean yaCamino = false;
+
+     private Atacar estadoPelea = new Atacante();
+
+     private Caminar estadoCaminar = new Caminadora();
+
+
 
      public abstract boolean perteneceAImperio(Imperio imperio);
 
@@ -53,18 +59,13 @@ public abstract class Unidad implements Ocupable {
           if (turnosDeConstruccion > 0)
                turnosDeConstruccion--;
 
-          yaAtaco = false;
-          yaCamino = false;
+          estadoPelea = new Atacante();
+          estadoCaminar = new Caminadora();
      }
 
      public void atacar(Casilla casillaAAtacar) {
-          if(!yaAtaco){
-               casillaAAtacar.recibirAtaque(new Ataque(danio));
-               yaAtaco = true;
-          }
-          else{
-               throw new ErrorYaAtaco();
-          }
+          estadoPelea.atacar(casillaAAtacar, danio);
+          estadoPelea = new NoAtacante();
      }
 
      public void recibirAtaque(Ataque unAtaque) {
@@ -83,36 +84,8 @@ public abstract class Unidad implements Ocupable {
      }
 
      public void moverA(Coordenada coordenadaDestino) {
-          Mapa elMapa = Mapa.obtener();
-          if (yaCamino){
-               throw new ErrorYaCaminoLaUnidadEnEsteTurno();
-          }
-          if ( estaDentroDelRadio(coordenadaDestino) ){
-               elMapa.moverUnidad(this.coordenada, coordenadaDestino);
-          }
-          else{
-               throw new ErrorNoSePuedeCaminarHastaEsaDistancia();
-          }
-
-     }
-
-     public boolean estaDentroDelRadio(Coordenada coordenadaFinal){
-          int xCoordenadaFinal, yCoordenadaFinal;
-          int xCoordenadaActual, yCoordenadaActual;
-          xCoordenadaFinal = coordenadaFinal.getCoordenadaX();
-          yCoordenadaFinal = coordenadaFinal.getCoordenadaY();
-          xCoordenadaActual = this.coordenada.getCoordenadaX();
-          yCoordenadaActual = this.coordenada.getCoordenadaY();
-
-          double circunf;
-          circunf = (Math.pow((xCoordenadaFinal-xCoordenadaActual),2) + Math.pow((yCoordenadaFinal-yCoordenadaActual),2) );
-
-          int rangoDeCaminar = 5;
-
-          double radio = Math.pow(rangoDeCaminar,2);
-          return (circunf <= radio);
-
-
+          estadoCaminar.caminar(this.coordenada, coordenadaDestino);
+          estadoCaminar = new NoCaminadora();
      }
 
      public boolean esIgualA(Unidad unidad) {
