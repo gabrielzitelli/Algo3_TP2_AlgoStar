@@ -20,19 +20,22 @@ public class CasoDeUso18Test {
     }
 
     @Test
-    public void test01VerificoQueSiAtacoUnoZerlingConOtroZerlingNueveVecesEsteMuere(){
+    public void test01VerificoQueSiAtacoUnoZerlingConOtroZerlingNueveVecesEsteMuere() {
         Mapa elMapa = Mapa.obtener();
         Zerling unZerling = new Zerling();
         Zerling ZerlingADaniar = new Zerling();
-        Coordenada coordenadaAtacante = new Coordenada(0,0);
-        Coordenada coordenadaAtacado = new Coordenada(0,1);
+        Coordenada coordenadaAtacante = new Coordenada(0, 0);
+        Coordenada coordenadaAtacado = new Coordenada(0, 1);
 
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacante);
         elMapa.colocarUnaUnidad(ZerlingADaniar, coordenadaAtacado);
 
         // El zerling mata al otro zerling
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unZerling.pasarTurno();
+        }
+
 
         // La casilla esta vacia
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
@@ -49,9 +52,12 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
 
-        // El zerling mata al hidralisco
-        for (int i = 0; i < 4; i++)
+
+        for (int i = 0; i < 4; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unHidralisco.pasarTurno();
+        }
+
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
@@ -69,10 +75,11 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
 
-        // El zerling mata al mutalisco
-        for (int i = 0; i < 4; i++)
-            elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
+        for (int i = 0; i < 4; i++){
+            elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unMutalisco.pasarTurno();
+        }
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }
 
@@ -89,8 +96,9 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
 
-        // El zerling mata al guardian
+
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+        unGuardian.pasarTurno();
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
@@ -107,9 +115,11 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unZealot, coordenadaAtacante);
 
-        // El zerling mata al zealot
-        for (int i = 0; i < 5; i++)
+
+        for (int i = 0; i < 5; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unZealot.pasarTurno();
+        }
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacante));
     }
@@ -125,8 +135,9 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
 
-        // El zerling mata al dragon
+
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+        unDragon.pasarTurno();
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
@@ -145,9 +156,12 @@ public class CasoDeUso18Test {
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
         elMapa.colocarUnaUnidad(unScout, coordenadaAtacante);
 
-        // El zerling mata al scout
-        for (int i = 0; i < 5; i++)
+
+        for (int i = 0; i < 5; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unScout.pasarTurno();
+        }
+
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
     }

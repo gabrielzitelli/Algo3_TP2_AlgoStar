@@ -39,12 +39,15 @@ public class AmoSupremoTest {
 
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaPrimerUnidad);
+            unaUnidad.pasarTurno();
         }
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
+            unaUnidad.pasarTurno();
         }
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
+            unaUnidad.pasarTurno();
         }
 
         return unaUnidad;
@@ -102,9 +105,11 @@ public class AmoSupremoTest {
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 2);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaAtacante);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaUnidadInvisible);
+            unGuardian.pasarTurno();
         }
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new AmoSupremo(), coordenadaUnidadInvisible));
@@ -125,9 +130,11 @@ public class AmoSupremoTest {
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 2);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaAtacante);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaFueraDelRango);
+            unGuardian.pasarTurno();
         }
 
         // La unidad invisible sigue viva
@@ -151,9 +158,11 @@ public class AmoSupremoTest {
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 2);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaAtacante);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaUnidadInvisible);
+            unGuardian.pasarTurno();
         }
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new AmoSupremo(), coordenadaUnidadInvisible));
@@ -175,9 +184,12 @@ public class AmoSupremoTest {
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 3);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaAtacante);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
+
             elMapa.atacar(coordenadaAtacante, coordenadaUnidadInvisible);
+            unGuardian.pasarTurno();
         }
 
         // La unidad invisible sigue viva
@@ -199,9 +211,11 @@ public class AmoSupremoTest {
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 2);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaAtacante);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaUnidadInvisible);
+            unGuardian.pasarTurno();
         }
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new AmoSupremo(), coordenadaUnidadInvisible));
@@ -221,9 +235,11 @@ public class AmoSupremoTest {
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 3);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaAtacante);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaUnidadInvisible);
+            unGuardian.pasarTurno();
         }
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new AmoSupremo(), coordenadaUnidadInvisible));

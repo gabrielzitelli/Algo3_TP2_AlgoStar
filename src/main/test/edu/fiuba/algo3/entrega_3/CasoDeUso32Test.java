@@ -60,6 +60,7 @@ public class CasoDeUso32Test {
 
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
+            unDragon.pasarTurno();
         }
 
         algoStar.terminarTurno();

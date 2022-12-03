@@ -68,6 +68,7 @@ public class SuministroYUnidadesTest {
 
         for (int i = 0; i < 2; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaZerling);
+            unDragon.pasarTurno();
         }
 
         imperioZerg.terminarTurno();
@@ -124,6 +125,7 @@ public class SuministroYUnidadesTest {
 
         for (int i = 0; i < 6; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaMutalisco);
+            unDragon.pasarTurno();
         }
 
         imperioZerg.terminarTurno();
@@ -183,6 +185,7 @@ public class SuministroYUnidadesTest {
 
         for (int i = 0; i < 10; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaMutalisco);
+            unDragon.pasarTurno();
         }
 
         imperioZerg.terminarTurno();
