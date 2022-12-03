@@ -26,6 +26,7 @@ public class Dragon extends UnidadProtoss {
         this.rangoDeAtaque = 4;
         this.costoGas = 50;
         this.costoMineral = 125;
+        this.identificador = "dragon";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

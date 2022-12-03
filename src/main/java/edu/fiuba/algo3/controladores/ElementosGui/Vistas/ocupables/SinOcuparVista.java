@@ -7,7 +7,7 @@ public class SinOcuparVista extends OcupableVista {
 
     public SinOcuparVista(){
         this.info = "libre";
-        this.elemento = new SinOcupar();
+        this.identificador = "ninguno";
     }
 
     @Override

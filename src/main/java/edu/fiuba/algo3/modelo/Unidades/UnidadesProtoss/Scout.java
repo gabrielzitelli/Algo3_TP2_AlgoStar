@@ -26,6 +26,7 @@ public class Scout extends UnidadProtoss {
         this.rangoDeAtaque = 4;
         this.costoGas = 150;
         this.costoMineral = 300;
+        this.identificador = "scout";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

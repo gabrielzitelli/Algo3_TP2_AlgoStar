@@ -31,6 +31,7 @@ public abstract class OcupableVista extends Vista {
         ocupable.add(new DragonVista());
         ocupable.add(new ScoutVista());
         ocupable.add(new ZealotVista());
+        ocupable.add(new ZealotInvisibleVista());
 
         //Zerg
         ocupable.add(new AmoSupremoVista());
@@ -57,7 +58,7 @@ public abstract class OcupableVista extends Vista {
         ocupable.add(new PilonVista());
         ocupable.add(new PuertoEstelarVista());
     }
-    public static Vista obtenerOcupable(Ocupable obtenerOcupable) {
-        return obtenerVista(obtenerOcupable, ocupables);
+    public static Vista obtenerOcupable(Object obtenerOcupable) {
+        return obtenerVista((String)obtenerOcupable, ocupables);
     }
 }

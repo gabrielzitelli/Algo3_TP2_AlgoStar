@@ -24,6 +24,7 @@ public class Zerling extends UnidadZerg {
         this.rangoDeAtaque = 1;
         this.costoGas = 0;
         this.costoMineral = 25;
+        this.identificador = "zerling";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

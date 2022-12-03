@@ -29,6 +29,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaZerling());
+        this.identificador = "reserva_reproduccion";
     }
 
     protected void destruirEdificio() {
@@ -46,7 +47,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoHabilitador.getEstado();
     }
 }

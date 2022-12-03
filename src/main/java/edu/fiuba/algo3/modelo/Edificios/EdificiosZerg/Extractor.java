@@ -35,6 +35,7 @@ public class Extractor extends EdificioZerg {
         this.gasDelImperio = gasDelImperio;
         this.estadoRecolector = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.estadoContratador = new EstadoContratadorEnConstruccion(turnoParaEstarConstruido);
+        this.identificador = "extractor";
     }
 
     public void pasarTurno(){
@@ -71,7 +72,7 @@ public class Extractor extends EdificioZerg {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoRecolector.getEstado();
     }
 }

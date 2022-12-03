@@ -10,4 +10,6 @@ public interface Visibilidad {
     Visibilidad verificarVisibilidadDe(Casilla unaCasilla);
 
     Visibilidad aumentarContador();
+
+    boolean esInvisible();
 }

@@ -22,7 +22,11 @@ public abstract class Imperio {
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
     protected int cantidadInicialDeMineral = 200;
+    protected String identificador;
 
+    public String toString() {
+        return identificador;
+    }
 
     public abstract void inicializarAsentamientoPrimerTurno();
 

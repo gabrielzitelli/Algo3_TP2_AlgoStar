@@ -37,7 +37,7 @@ public class EstadoHabilitadorConstruido implements EstadoHabilitador {
      }
 
     @Override
-    public Object getEstado() {
-        return null;
+    public String getEstado() {
+        return " estado contruido";
     }
 }

@@ -22,6 +22,7 @@ public class AmoSupremo extends UnidadZerg {
         this.vida = new VidaSimple(cantidadDeVida);
         this.costoGas = 0;
         this.costoMineral = 50;
+        this.identificador = "amo_supremo";
     }
 
     @Override

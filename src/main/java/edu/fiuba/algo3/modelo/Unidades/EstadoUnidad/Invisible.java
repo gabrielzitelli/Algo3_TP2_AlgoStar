@@ -28,4 +28,9 @@ public class Invisible implements Visibilidad {
     public Visibilidad aumentarContador() {
         return this;
     }
+
+    @Override
+    public boolean esInvisible() {
+        return true;
+    }
 }

@@ -41,6 +41,8 @@ public class Acceso extends EdificioProtoss {
 
         listaFabricasAHabilitar.add(new FabricaDragon());
         listaFabricasAHabilitar.add(new FabricaZealot());
+
+        this.identificador = "acceso";
     }
 
     public boolean verificarCarga() {
@@ -95,7 +97,7 @@ public class Acceso extends EdificioProtoss {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoHabilitador.getEstado();
     }
 }

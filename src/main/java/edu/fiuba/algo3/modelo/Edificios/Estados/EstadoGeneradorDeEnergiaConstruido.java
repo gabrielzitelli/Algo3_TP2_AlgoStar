@@ -32,8 +32,8 @@ public class EstadoGeneradorDeEnergiaConstruido implements EstadoGeneradorDeEner
     }
 
     @Override
-    public Object getEstado() {
-        return null;
+    public String getEstado() {
+        return " estado construido";
     }
 
     public void disminuirSuministro(int cantidadDisminucionSuministro){

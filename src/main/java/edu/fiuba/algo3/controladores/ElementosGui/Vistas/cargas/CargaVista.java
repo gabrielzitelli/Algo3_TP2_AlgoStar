@@ -13,7 +13,7 @@ public abstract class CargaVista extends Vista{
         cargas.add(new ConCargaVista());
         return cargas;
     }
-    public static Vista obtenerCarga(Cargable obtenerCarga) {
-        return obtenerVista(obtenerCarga, cargas);
+    public static Vista obtenerCarga(Object obtenerCarga) {
+        return obtenerVista((String)obtenerCarga, cargas);
     }
 }

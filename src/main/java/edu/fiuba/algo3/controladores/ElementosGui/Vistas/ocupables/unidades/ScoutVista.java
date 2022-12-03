@@ -8,7 +8,7 @@ public class ScoutVista extends OcupableVista {
 
     public ScoutVista() {
         this.tile = new Tile("unidades_protoss/32px/scout.png");
-        this.elemento = new Scout();
+        this.identificador = "scout";
         this.info = "Scout";
     }
 }

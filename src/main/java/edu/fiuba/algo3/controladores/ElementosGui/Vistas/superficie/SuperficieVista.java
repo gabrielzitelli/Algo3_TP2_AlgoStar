@@ -1,10 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie;
 
-import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
-import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 
@@ -18,7 +14,7 @@ public abstract class SuperficieVista extends Vista {
         superficies.add(new SuperficieAereaVista());
         return superficies;
     }
-    public static Vista obtenerSuperficie(Superficie obtenerSuperficie) {
-        return obtenerVista(obtenerSuperficie, superficies);
+    public static Vista obtenerSuperficie(Object obtenerSuperficie) {
+        return obtenerVista((String) obtenerSuperficie, superficies);
     }
 }

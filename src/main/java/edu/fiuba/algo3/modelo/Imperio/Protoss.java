@@ -19,6 +19,7 @@ public class Protoss extends Imperio{
         this.edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
+        this.identificador = "protoss";
     }
 
     public void inicializarAsentamientoPrimerTurno(){

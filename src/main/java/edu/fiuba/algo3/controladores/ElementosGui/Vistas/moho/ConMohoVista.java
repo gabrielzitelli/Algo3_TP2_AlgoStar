@@ -7,6 +7,6 @@ public class ConMohoVista extends MohoVista {
     public ConMohoVista(){
         this.tile = new Tile("superficies/32px/moho_transparente.png");
         this.info = "Moho Zerg";
-        this.elemento = new ConMoho();
+        this.identificador = "moho";
     }
 }

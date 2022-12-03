@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import java.util.ArrayList;
 
 public class SinOcupar implements Ocupable {
+
     @Override
     public void recibirAtaque(Ataque unAtaque) {
         throw new ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque();
@@ -26,8 +27,8 @@ public class SinOcupar implements Ocupable {
     }
 
     @Override
-    public Object obtenerEstado() {
-        return null;
+    public String toString() {
+        return "ninguno";
     }
 
     @Override

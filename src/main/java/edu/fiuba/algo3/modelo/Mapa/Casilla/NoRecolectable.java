@@ -6,5 +6,6 @@ public class NoRecolectable extends Recolectable{
 
     public NoRecolectable(){
         materialBruto = new SinMaterialBruto();
+        this.identificador = "ninguno";
     }
 }

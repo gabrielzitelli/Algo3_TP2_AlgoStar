@@ -8,7 +8,7 @@ public class DragonVista extends OcupableVista {
 
     public DragonVista() {
         this.tile = new Tile("unidades_protoss/32px/dragon.png");
-        this.elemento = new Dragon();
+        this.identificador = "dragon";
         this.info = "Dragon";
     }
 }

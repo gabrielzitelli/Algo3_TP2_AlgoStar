@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -26,22 +28,53 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="600.0" stroke="BLACK" strokeType="INSIDE" width="256.0" />
                   <HBox prefHeight="601.0" prefWidth="266.0" styleClass="hboxCostadoDerecha" stylesheets="@../../css/style.css">
                      <children>
-                        <VBox prefHeight="597.0" prefWidth="239.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="597.0" prefWidth="239.0">
                            <children>
-                              <AnchorPane prefHeight="602.0" prefWidth="239.0" stylesheets="@../../css/style.css" VBox.vgrow="ALWAYS">
+                              <Pane prefHeight="121.0" prefWidth="239.0">
                                  <children>
-                                    <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="131.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="171.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" />
-                                    <Text fx:id="debugCoordenadas" fill="WHITE" layoutX="14.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text=" " textOrigin="CENTER" wrappingWidth="225.68895530700684">
-                                       <font>
-                                          <Font name="Century Gothic" size="12.413793563842773" />
-                                       </font>
-                                    </Text>
-                                    <Text fx:id="terrenoLabel" fill="WHITE" layoutX="24.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terreno">
-                                       <font>
-                                          <Font name="Century Gothic" size="12.413793563842773" />
-                                       </font>
-                                    </Text>
-                                 </children></AnchorPane>
+                                    <Text fill="WHITE" layoutX="3.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imperio" textAlignment="CENTER" wrappingWidth="232.96875" />
+                                    <Line endX="200.0" layoutX="19.0" layoutY="46.0" stroke="#bbc7bc" strokeLineCap="ROUND" strokeWidth="2.0" />
+                                    <Text fill="WHITE" layoutX="20.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minerales" />
+                                    <Text fill="WHITE" layoutX="20.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gas Vespeno" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="239.0">
+                                 <children>
+                                    <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" textAlignment="CENTER">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                              <Text fx:id="terrenoLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Terreno" textAlignment="CENTER" wrappingWidth="217.41783905029297">
+                                 <font>
+                                    <Font name="Century Gothic" size="12.413793563842773" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text fx:id="recursoLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Recurso" textAlignment="CENTER" wrappingWidth="219.08203125" />
+                              <Text fx:id="cargaLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga" textAlignment="CENTER" wrappingWidth="219.08203125" />
+                              <Text fx:id="contaminadoLabel" fill="WHITE" layoutX="20.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contaminado" textAlignment="CENTER" wrappingWidth="219.08203125" />
+                              <Text fx:id="libreLabel" fill="WHITE" layoutX="20.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="libre" textAlignment="CENTER" wrappingWidth="219.08203125" />
+                              <Text fx:id="estadoLabel" fill="WHITE" layoutX="20.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" textAlignment="CENTER" wrappingWidth="219.08203125" />
+                              <Pane prefHeight="194.0" prefWidth="277.0" />
+                              <Text fx:id="debugCoordenadas" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text=" " textOrigin="CENTER" wrappingWidth="225.68895530700684">
+                                 <font>
+                                    <Font name="Century Gothic" size="12.413793563842773" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="100.0" />
+                                 </VBox.margin>
+                              </Text>
                            </children>
                         </VBox>
                      </children>

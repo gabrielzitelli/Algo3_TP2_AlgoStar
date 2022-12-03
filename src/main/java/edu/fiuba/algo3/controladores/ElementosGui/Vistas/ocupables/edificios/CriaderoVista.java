@@ -10,7 +10,7 @@ public class CriaderoVista extends OcupableVista {
     Tile piso = new Tile("superficies/32px/moho_transparente.png");
     public CriaderoVista(){
         this.tile = new Tile("edificios_zerg/32px/criadero.png");
-        this.elemento = new Criadero();
+        this.identificador = "criadero";
         this.info = "Criadero";
     }
 

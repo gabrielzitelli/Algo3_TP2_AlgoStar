@@ -94,15 +94,15 @@ public abstract class Casilla {
         return estadoRevelable.esIgualA(unRevelable);
     }
 
-    public Superficie obtenerSuperficie() {
-        return this.superficie;
-    }
+    public String toString() {
+        String string = "";
 
-    public Cargable obtenerCarga() {
-        return estadoCarga;
-    }
+        string += "superficie " + superficie.toString();
+        string += " recurso " + estadoRecolectable.toString();
+        string += " carga " + estadoCarga.toString();
+        string += " moho " + estadoMoho.toString();
+        string += " ocupable " + ocupable.toString();
 
-    public EstadoMoho obtenerMoho() {
-        return estadoMoho;
+        return string;
     }
 }

@@ -4,6 +4,9 @@ import edu.fiuba.algo3.modelo.Ataque.Ataque;
 
 public class SuperficieAerea extends Superficie {
 
+    public SuperficieAerea() {
+        this.identificador = "aerea";
+    }
     public Ataque conseguirTipoDeAtaque(Ataque unAtaque) {
         return unAtaque.ataqueAereo();
     }

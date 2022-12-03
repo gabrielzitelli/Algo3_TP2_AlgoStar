@@ -10,7 +10,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho.MohoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorCasillaVacia;
+import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -23,7 +23,10 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import org.json.simple.JSONObject;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,6 +40,16 @@ public class MapaControlador extends Controlador {
     @FXML
     protected Text terrenoLabel;
     @FXML
+    protected Text recursoLabel;
+    @FXML
+    protected Text cargaLabel;
+    @FXML
+    protected Text contaminadoLabel;
+    @FXML
+    protected Text libreLabel;
+    @FXML
+    protected Text estadoLabel;
+    @FXML
     protected Text debugCoordenadas;
     @FXML
     protected Button pasarTurnoBoton;
@@ -44,10 +57,10 @@ public class MapaControlador extends Controlador {
     /*=====================================================================================
      * Mapa y camara
      * ====================================================================================*/
-    private Mapa mapa = Mapa.obtener();
-    private int tamanioMapa = mapa.obtenerTamanioMapa();
-    private int anchoMapa = 24;
-    private int largoMapa = 18;
+    private final Mapa mapa = Mapa.obtener();
+    private final int tamanioMapa = mapa.obtenerTamanioMapa();
+    private final int anchoMapa = 24;
+    private final int largoMapa = 18;
 
     private Camara camara;
 
@@ -59,10 +72,12 @@ public class MapaControlador extends Controlador {
     private Coordenada coordenadaSeleccion;
     private final int tileWidth = 32;
 
+    private final Font fuente = Font.loadFont(Objects.requireNonNull(getClass().getResourceAsStream("/fonts/Retro Gaming.ttf")), 10);
+
     /*=====================================================================================
      * GameLoop
      * ====================================================================================*/
-    private ArrayList<String> input = new ArrayList<>();
+    private final ArrayList<String> input = new ArrayList<>();
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0;
     private  boolean arrayFilled = false;
@@ -79,6 +94,21 @@ public class MapaControlador extends Controlador {
         pasarTurnoBoton.setFocusTraversable(false);
 
         App.algoStar.empezarJuego();
+
+        terrenoLabel.setFont(fuente);
+        terrenoLabel.setFill(Color.GREEN);
+        recursoLabel.setFont(fuente);
+        recursoLabel.setFill(Color.GREEN);
+        cargaLabel.setFont(fuente);
+        cargaLabel.setFill(Color.GREEN);terrenoLabel.setFont(fuente);
+        contaminadoLabel.setFill(Color.GREEN);terrenoLabel.setFont(fuente);
+        contaminadoLabel.setFill(Color.GREEN);
+        libreLabel.setFont(fuente);
+        libreLabel.setFill(Color.GREEN);
+        estadoLabel.setFont(fuente);
+        estadoLabel.setFill(Color.GREEN);
+
+
     }
 
     private void inicializarMapa() {
@@ -130,28 +160,30 @@ public class MapaControlador extends Controlador {
     }
 
     private void renderizarPorCapas(Casilla casilla, int posicionX, int posicionY) {
+        JSONObject casillaJson = ConvertidorJSON.convertirAJSON(casilla);
+
         //Renderizamos la superficie
-        Vista superficieVista = SuperficieVista.obtenerSuperficie(casilla.obtenerSuperficie());
+        Vista superficieVista = SuperficieVista.obtenerSuperficie(casillaJson.get(ConvertidorJSON.SUPERFICIE));
         superficieVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos la carga
-        Vista cargaVista = CargaVista.obtenerCarga(casilla.obtenerCarga());
+        Vista cargaVista = CargaVista.obtenerCarga(casillaJson.get(ConvertidorJSON.CARGA));
         cargaVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos el moho
-        Vista mohoVista = MohoVista.obtenerMoho(casilla.obtenerMoho());
+        Vista mohoVista = MohoVista.obtenerMoho(casillaJson.get(ConvertidorJSON.MOHO));
         mohoVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos los recursos
-        Vista recursoVista = RecursoVista.obtenerRecurso(casilla.obtenerMaterial());
+        Vista recursoVista = RecursoVista.obtenerRecurso(casillaJson.get(ConvertidorJSON.RECURSO));
         recursoVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos los edificios y unidades
-        Vista ocupableVista = OcupableVista.obtenerOcupable(casilla.obtenerOcupable());
+        Vista ocupableVista = OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE));
         ocupableVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos agregados especiales
-        Vista especialVista = EspecialVista.obtenerEspecial(casilla.obtenerOcupable());
+        Vista especialVista = EspecialVista.obtenerEspecial(casillaJson.get(ConvertidorJSON.ESTADO));
         especialVista.render(graphicsContext, posicionX, posicionY);
     }
 
@@ -218,36 +250,30 @@ public class MapaControlador extends Controlador {
                     int posY = (int) ((((posMouseY - 12) - camara.getY()) / tileWidth));
                     coordenadaSeleccion = new Coordenada(posX, posY);
                     debugCoordenadas.setText("X " + posX + " , Y " + posY);
-                    terrenoLabel.setText(obtenerInfoCasilla(coordenadaSeleccion));
+                    obtenerInfoCasilla(coordenadaSeleccion);
                 }
             }
         };
     }
 
-    private String obtenerInfoCasilla(Coordenada coordenada) {
-        String informacion;
+    private void obtenerInfoCasilla(Coordenada coordenada) {
         Casilla casilla = mapa.obtenerCasilla(coordenada);
+        JSONObject casillaJson = ConvertidorJSON.convertirAJSON(casilla);
 
-        Vista superficieVista = SuperficieVista.obtenerSuperficie(casilla.obtenerSuperficie());
-        informacion = "Terreno: " + superficieVista.getInfo() + "\n";
+        Vista superficieVista = SuperficieVista.obtenerSuperficie(casillaJson.get(ConvertidorJSON.SUPERFICIE));
+        terrenoLabel.setText("Terreno: " + superficieVista.getInfo());
 
-        Vista recursoVista = RecursoVista.obtenerRecurso(casilla.obtenerMaterial());
-        informacion += "Recurso: " + recursoVista.getInfo() + "\n";
+        Vista recursoVista = RecursoVista.obtenerRecurso(casillaJson.get(ConvertidorJSON.RECURSO));
+        recursoLabel.setText("Recurso: " + recursoVista.getInfo());
 
-        Vista cargaVista = CargaVista.obtenerCarga(casilla.obtenerCarga());
-        informacion += "Carga del terreno: " + cargaVista.getInfo() + "\n";
+        Vista cargaVista = CargaVista.obtenerCarga(casillaJson.get(ConvertidorJSON.CARGA));
+        cargaLabel.setText("Carga del terreno: " + cargaVista.getInfo());
 
-        Vista mohoVista = MohoVista.obtenerMoho(casilla.obtenerMoho());
-        informacion += "Contaminado con: " + mohoVista.getInfo() + "\n";
+        Vista mohoVista = MohoVista.obtenerMoho(casillaJson.get(ConvertidorJSON.MOHO));
+        contaminadoLabel.setText("Contaminado con: " + mohoVista.getInfo());
 
-        try {
-            Vista ocupableVista = OcupableVista.obtenerOcupable(casilla.obtenerOcupable());
-            informacion += "'" + ocupableVista.getInfo() + "'";
-        } catch (ErrorCasillaVacia casillaVacia){
-            //No hacemos nada
-        }
-
-        return informacion;
+        Vista ocupableVista = OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE));
+        libreLabel.setText("'" + ocupableVista.getInfo() + "'");
     }
 
     public EventHandler<? super KeyEvent> pressKey() {

@@ -22,6 +22,7 @@ public class Pilon extends EdificioProtoss {
         this.suministroAportado = 5;
         this.superficieRequerida = new SuperficieTerrestre();
         estadoGeneradorDeEnergia = new EstadoGeneradorDeEnergiaEnConstruccion(turnoParaEstarConstruido);
+        this.identificador = "pilon";
     }
 
     @Override
@@ -52,7 +53,7 @@ public class Pilon extends EdificioProtoss {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoGeneradorDeEnergia.getEstado();
     }
 }

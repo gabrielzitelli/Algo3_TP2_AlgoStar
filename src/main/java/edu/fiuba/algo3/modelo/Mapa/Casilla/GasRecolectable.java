@@ -6,5 +6,6 @@ public class GasRecolectable extends SiRecolectable{
 
     public GasRecolectable(){
         materialBruto = new GasBruto();
+        this.identificador = "gas";
     }
 }

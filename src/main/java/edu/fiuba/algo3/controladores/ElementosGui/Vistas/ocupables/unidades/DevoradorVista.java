@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 public class DevoradorVista extends OcupableVista {
     public DevoradorVista(){
         this.tile = new Tile("unidades_zerg/32px/devorador.png");
-        this.elemento = new Devorador();
+        this.identificador = "devorador";
         this.info = "Devorador";
     }
 }

@@ -25,6 +25,7 @@ public class Hidralisco extends UnidadZerg {
         this.rangoDeAtaque = 4;
         this.costoGas = 25;
         this.costoMineral = 75;
+        this.identificador = "hidralisco";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

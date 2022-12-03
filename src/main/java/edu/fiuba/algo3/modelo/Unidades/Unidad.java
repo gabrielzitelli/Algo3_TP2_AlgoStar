@@ -24,6 +24,7 @@ public abstract class Unidad implements Ocupable {
      protected Vida vida;
      protected int costoMineral;
      protected int costoGas;
+     protected String identificador;
 
      protected boolean estadoMuerta = false;
 
@@ -97,7 +98,7 @@ public abstract class Unidad implements Ocupable {
      public Coordenada obtenerCoordenada(){
           return this.coordenada;
      }
-     public Object obtenerEstado(){
-          return null;
+     public String toString() {
+          return identificador;
      }
 }

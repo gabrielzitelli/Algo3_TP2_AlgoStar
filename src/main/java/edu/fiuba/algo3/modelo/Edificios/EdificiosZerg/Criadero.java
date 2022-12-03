@@ -45,6 +45,7 @@ public class Criadero extends EdificioZerg {
 
         listaFabricasAHabilitar.add(new FabricaZangano());
         listaFabricasAHabilitar.add(new FabricaAmoSupremo());
+        this.identificador = "criadero";
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
@@ -108,7 +109,7 @@ public class Criadero extends EdificioZerg {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoHabilitador.getEstado();
     }
 }

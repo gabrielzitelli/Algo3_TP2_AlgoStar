@@ -5,6 +5,7 @@ public class ConCarga extends Cargable  {
     private int carga;
 
     public ConCarga(){
+        this.identificador = "carga";
         carga = 1;
     }
 

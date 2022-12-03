@@ -32,6 +32,7 @@ public class Zealot extends UnidadProtoss {
         estado = new Visible(this, muertesParaInvisibilidad);
         this.costoGas = 0;
         this.costoMineral = 100;
+        this.identificador = "zealot";
     }
 
     @Override
@@ -52,6 +53,9 @@ public class Zealot extends UnidadProtoss {
         }
 
         estado = estado.aumentarContador();
+        if (estado.esInvisible()) {
+            this.identificador = "zealot_invisible";
+        }
     }
 
     @Override

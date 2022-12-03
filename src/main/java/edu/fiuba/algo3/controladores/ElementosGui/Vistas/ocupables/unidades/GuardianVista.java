@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 public class GuardianVista extends OcupableVista {
     public GuardianVista() {
         this.tile = new Tile("unidades_zerg/32px/guardian.png");
-        this.elemento = new Guardian();
+        this.identificador = "guardian";
         this.info = "Guardian";
     }
 }

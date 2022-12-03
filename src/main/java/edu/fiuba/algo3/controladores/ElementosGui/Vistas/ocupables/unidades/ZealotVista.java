@@ -8,7 +8,7 @@ public class ZealotVista extends OcupableVista {
 
     public ZealotVista(){
         this.tile = new Tile("unidades_protoss/32px/zealot.png");
-        this.elemento = new Zealot();
+        this.identificador = "zealot";
         this.info = "Zealot";
     }
 }

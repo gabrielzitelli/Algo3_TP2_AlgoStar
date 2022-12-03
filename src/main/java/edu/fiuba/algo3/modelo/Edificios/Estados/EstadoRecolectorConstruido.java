@@ -17,7 +17,7 @@ public class EstadoRecolectorConstruido implements EstadoRecolector {
     }
 
     @Override
-    public Object getEstado() {
-        return null;
+    public String getEstado() {
+        return " estado construido";
     }
 }

@@ -29,6 +29,7 @@ public class Devorador extends UnidadZerg {
         this.rangoDeAtaque = 5;
         this.costoGas = 50;
         this.costoMineral = 100;
+        this.identificador = "devorador";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

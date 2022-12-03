@@ -28,6 +28,7 @@ public class Mutalisco extends UnidadZerg {
         this.rangoDeAtaque = 3;
         this.costoGas = 100;
         this.costoMineral = 100;
+        this.identificador = "mutalisco";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

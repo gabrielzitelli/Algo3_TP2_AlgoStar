@@ -33,4 +33,9 @@ public class Visible implements Visibilidad {
 
         return this;
     }
+
+    @Override
+    public boolean esInvisible() {
+        return false;
+    }
 }

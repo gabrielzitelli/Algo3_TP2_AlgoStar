@@ -7,7 +7,7 @@ public class ConCargaVista extends CargaVista {
 
     public ConCargaVista() {
         this.tile = new Tile("superficies/32px/energia_transparente.png");
-        this.elemento = new ConCarga();
+        this.identificador = "carga";
         this.info = "electrificado";
     }
 }

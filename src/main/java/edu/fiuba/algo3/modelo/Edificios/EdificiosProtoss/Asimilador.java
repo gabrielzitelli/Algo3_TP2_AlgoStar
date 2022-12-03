@@ -25,6 +25,7 @@ public class Asimilador extends EdificioProtoss {
         this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
+        this.identificador = "asimilador";
     }
 
     public void pasarTurno(){
@@ -48,7 +49,7 @@ public class Asimilador extends EdificioProtoss {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estado.getEstado();
     }
 }

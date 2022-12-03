@@ -45,4 +45,10 @@ public class Jugador {
     public String conseguirNombre() {
         return nombre;
     }
+    public String conseguirColor() {
+        return color;
+    }
+    public String toString() {
+        return "imperio " + imperio.toString() + " nombre " + nombre + " color " +  color;
+    }
 }

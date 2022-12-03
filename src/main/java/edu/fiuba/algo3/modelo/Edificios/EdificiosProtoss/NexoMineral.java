@@ -25,6 +25,7 @@ public class NexoMineral extends EdificioProtoss {
         this.superficieRequerida = new SuperficieTerrestre();
         this.mineralesDelImperio = mineralesDelImperio;
         estado = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
+        this.identificador = "nexo_mineral";
     }
 
     public void pasarTurno() {
@@ -47,7 +48,7 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estado.getEstado();
     }
 }

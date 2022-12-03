@@ -7,7 +7,7 @@ public class MineralBrutoVista extends RecursoVista {
 
     public MineralBrutoVista() {
         tile = new Tile("recursos/32px/mineral.png");
-        elemento = new MineralBruto();
+        identificador = "mineral";
         info = "Minerales";
     }
 }

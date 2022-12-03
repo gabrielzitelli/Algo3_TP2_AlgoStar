@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 public class ZanganoVista extends OcupableVista {
     public ZanganoVista() {
         this.tile = new Tile("unidades_zerg/32px/zangano.png");
-        this.elemento = new Zangano();
+        this.identificador = "zangano";
         this.info = "Zangano";
     }
 }

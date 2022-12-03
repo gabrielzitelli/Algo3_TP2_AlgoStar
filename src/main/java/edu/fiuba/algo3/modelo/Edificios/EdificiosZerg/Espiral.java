@@ -30,6 +30,7 @@ public class Espiral extends EdificioZerg {
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaMutalisco());
+        this.identificador = "espiral";
     }
 
     public static ArrayList<Edificio> requisitos() {
@@ -53,7 +54,7 @@ public class Espiral extends EdificioZerg {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoHabilitador.getEstado();
     }
 }

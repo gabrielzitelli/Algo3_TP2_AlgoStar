@@ -14,7 +14,5 @@ public interface Ocupable {
 
     boolean perteneceAImperio(Imperio imperio);
 
-    Object obtenerEstado();
-
     void actualizarColocable(Casilla unaCasilla);
 }

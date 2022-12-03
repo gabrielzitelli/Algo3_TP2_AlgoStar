@@ -8,7 +8,7 @@ public class EspiralVista extends OcupableVista {
 
     public EspiralVista(){
         this.tile = new Tile("edificios_zerg/32px/espiral.png");
-        this.elemento = new Espiral();
+        this.identificador = "espiral";
         this.info = "Espiral";
     }
 }

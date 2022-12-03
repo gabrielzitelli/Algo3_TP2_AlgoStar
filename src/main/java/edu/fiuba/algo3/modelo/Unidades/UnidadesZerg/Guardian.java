@@ -28,6 +28,7 @@ public class Guardian extends UnidadZerg {
         this.rangoDeAtaque = 10;
         this.costoGas = 50;
         this.costoMineral = 100;
+        this.identificador = "guardian";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

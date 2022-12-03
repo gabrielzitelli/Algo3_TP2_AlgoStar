@@ -30,6 +30,7 @@ public class Guarida extends EdificioZerg {
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaHidralisco());
+        this.identificador = "guarida";
     }
 
     public static ArrayList<Edificio> requisitos() {
@@ -53,7 +54,7 @@ public class Guarida extends EdificioZerg {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoHabilitador.getEstado();
     }
 }

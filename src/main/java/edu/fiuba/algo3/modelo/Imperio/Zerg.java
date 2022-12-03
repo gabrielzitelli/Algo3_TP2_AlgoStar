@@ -29,6 +29,7 @@ public class Zerg extends Imperio{
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         unidades = new ArrayList<>();
+        this.identificador = "zerg";
     }
 
     public void inicializarAsentamientoPrimerTurno(){

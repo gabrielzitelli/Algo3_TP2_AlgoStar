@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 
 public abstract class Recolectable {
 
+    protected String identificador;
     protected MaterialBruto materialBruto;
 
     public boolean soyDiferenteA(Recolectable recolectableRequerido){
@@ -12,5 +13,10 @@ public abstract class Recolectable {
 
     public MaterialBruto obtenerMaterial(){
         return materialBruto;
+    }
+
+    @Override
+    public String toString() {
+        return identificador;
     }
 }

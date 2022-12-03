@@ -8,7 +8,7 @@ public class ReservaVista extends OcupableVista {
 
     public ReservaVista() {
         this.tile = new Tile("edificios_zerg/32px/reserva_reproduccion.png");
-        this.elemento = new ReservaDeReproduccion();
+        this.identificador = "reserva_reproduccion";
         this.info = "Reserva De Reproduccion";
     }
 }

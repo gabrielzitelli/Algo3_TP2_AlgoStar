@@ -30,6 +30,7 @@ public class Zangano extends UnidadZerg {
         this.rangoDeAtaque = 0;
         this.costoGas = 0;
         this.costoMineral = 25;
+        this.identificador = "zangano";
     }
 
     @Override

@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
 public class HidraliscoVista extends OcupableVista {
     public HidraliscoVista() {
         this.tile = new Tile("unidades_zerg/32px/hidralisco.png");
-        this.elemento = new Hidralisco();
+        this.identificador = "hidralisco";
         this.info = "Hidralisco";
     }
 }

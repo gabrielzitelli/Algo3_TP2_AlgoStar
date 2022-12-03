@@ -8,7 +8,7 @@ public class AccesoVista extends OcupableVista {
 
     public AccesoVista() {
         this.tile = new Tile("edificios_protoss/32px/acceso.png");
-        this.elemento = new Acceso();
+        this.identificador = "acceso";
         this.info = "Acceso";
     }
 }

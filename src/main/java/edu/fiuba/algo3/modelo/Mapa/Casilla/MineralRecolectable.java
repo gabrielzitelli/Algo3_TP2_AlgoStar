@@ -6,5 +6,6 @@ public class MineralRecolectable extends SiRecolectable{
 
     public MineralRecolectable(){
         materialBruto = new MineralBruto();
+        this.identificador = "mineral";
     }
 }

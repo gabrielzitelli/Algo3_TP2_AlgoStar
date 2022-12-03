@@ -41,6 +41,7 @@ public class PuertoEstelar extends EdificioProtoss {
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
 
         listaFabricasAHabilitar.add(new FabricaScout());
+        this.identificador = "puerto_estelar";
     }
 
     public static ArrayList<Edificio> requisitos() {
@@ -96,7 +97,7 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     @Override
-    public Object obtenerEstado() {
+    protected String obtenerEstado() {
         return estadoHabilitador.getEstado();
     }
 }

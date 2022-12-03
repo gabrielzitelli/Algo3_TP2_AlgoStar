@@ -30,4 +30,9 @@ public class Detectado implements Visibilidad {
     public Visibilidad aumentarContador() {
         return this;
     }
+
+    @Override
+    public boolean esInvisible() {
+        return false;
+    }
 }

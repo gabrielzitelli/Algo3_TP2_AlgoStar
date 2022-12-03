@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Edificios.EnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 
@@ -11,8 +10,6 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
     private Suministro poblacionImperio;
 
     private int aumentoSuministro;
-
-    private final EnConstruccion estado = new EnConstruccion();
 
     public EstadoGeneradorDeEnergiaEnConstruccion(int turnoParaEstarConstruido) {
         this.turnoParaEstarConstruido = turnoParaEstarConstruido;
@@ -45,8 +42,8 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
     }
 
     @Override
-    public Object getEstado() {
-        return estado;
+    public String getEstado() {
+        return " estado en_construccion";
     }
 
     public void disminuirSuministro(int cantidadDisminucionSuministro){

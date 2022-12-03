@@ -12,12 +12,10 @@ public abstract class EspecialVista extends Vista{
     private static ArrayList<Vista> inicializarLista() {
         ArrayList<Vista> especiales = new ArrayList<>();
         especiales.add(new EnConstruccionVista());
-        especiales.add(new ZealotInvisible());
         return especiales;
     }
 
-    public static Vista obtenerEspecial(Ocupable obtenerOcupable) {
-        Object objetoAComparar = obtenerOcupable.obtenerEstado();
-        return obtenerVista(objetoAComparar, especiales);
+    public static Vista obtenerEspecial(Object obtenerOcupable) {
+        return obtenerVista((String)obtenerOcupable, especiales);
     }
 }

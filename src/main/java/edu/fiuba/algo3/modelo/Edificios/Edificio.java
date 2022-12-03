@@ -29,6 +29,8 @@ public abstract class Edificio implements Ocupable {
     protected int suministroAportado;
     protected boolean estaDestruido = false;
 
+    protected String identificador;
+
     public abstract void pasarTurno();
 
     public abstract boolean perteneceAImperio(Imperio imperio);
@@ -92,5 +94,11 @@ public abstract class Edificio implements Ocupable {
     public void asignarRecursos(Mineral mineralesDelImperio, Gas gasDelImperio) {
         this.mineralDelImperio = mineralesDelImperio;
         this.gasDelImperio = gasDelImperio;
+    }
+
+    protected abstract String obtenerEstado();
+    @Override
+    public String toString() {
+        return this.identificador + this.obtenerEstado();
     }
 }

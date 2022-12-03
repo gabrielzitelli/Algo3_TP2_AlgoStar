@@ -18,7 +18,7 @@ public abstract class RecursoVista extends Vista {
         return recursos;
     }
 
-    public static Vista obtenerRecurso(MaterialBruto obtenerMaterial) {
-        return obtenerVista(obtenerMaterial, recursos);
+    public static Vista obtenerRecurso(Object obtenerMaterial) {
+        return obtenerVista((String) obtenerMaterial, recursos);
     }
 }

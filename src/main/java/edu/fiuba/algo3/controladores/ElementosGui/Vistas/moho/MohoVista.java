@@ -15,7 +15,7 @@ public abstract class MohoVista extends Vista {
         return moho;
     }
     
-    public static Vista obtenerMoho(EstadoMoho obtenerMoho) {
-        return obtenerVista(obtenerMoho, mohos);
+    public static Vista obtenerMoho(Object obtenerMoho) {
+        return obtenerVista((String)obtenerMoho, mohos);
     }
 }
