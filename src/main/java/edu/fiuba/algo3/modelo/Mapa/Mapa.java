@@ -256,7 +256,7 @@ public class Mapa {
     public void expandirMoho(Coordenada origenDeExpansion, int radio){
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
         for(Casilla unaCasilla : casillasDentroDelRadio)
-            unaCasilla.llenarDeMoho();
+                unaCasilla.llenarDeMoho();
     }
 
     public void abastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {

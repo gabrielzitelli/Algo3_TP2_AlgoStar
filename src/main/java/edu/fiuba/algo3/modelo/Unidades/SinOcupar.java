@@ -35,4 +35,8 @@ public class SinOcupar implements Ocupable {
     public void actualizarColocable(Casilla unaCasilla) {
         // Vacia a proposito
     }
+
+    public boolean esDeEsteTipo(Class claseAAverificar){
+        return this.getClass().equals(claseAAverificar);
+    }
 }

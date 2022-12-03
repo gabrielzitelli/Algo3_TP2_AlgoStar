@@ -25,7 +25,6 @@
          <right>
             <StackPane BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="600.0" stroke="BLACK" strokeType="INSIDE" width="256.0" />
                   <HBox prefHeight="601.0" prefWidth="266.0" styleClass="hboxCostadoDerecha" stylesheets="@../../css/style.css">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="597.0" prefWidth="239.0">
@@ -46,7 +45,7 @@
                               </Pane>
                               <Pane prefHeight="45.0" prefWidth="239.0">
                                  <children>
-                                    <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" textAlignment="CENTER">
+                                    <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pasarTurno" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" textAlignment="CENTER">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -66,7 +65,14 @@
                               <Text fx:id="contaminadoLabel" fill="WHITE" layoutX="20.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contaminado" textAlignment="CENTER" wrappingWidth="219.08203125" />
                               <Text fx:id="libreLabel" fill="WHITE" layoutX="20.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="libre" textAlignment="CENTER" wrappingWidth="219.08203125" />
                               <Text fx:id="estadoLabel" fill="WHITE" layoutX="20.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                              <Pane prefHeight="194.0" prefWidth="277.0" />
+                              <Pane prefHeight="194.0" prefWidth="277.0">
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="105.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setearEdifYUnid" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="Setup Edif &amp; Unit" textAlignment="CENTER">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Button>
+                                 </children></Pane>
                               <Text fx:id="debugCoordenadas" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text=" " textOrigin="CENTER" wrappingWidth="225.68895530700684">
                                  <font>
                                     <Font name="Century Gothic" size="12.413793563842773" />

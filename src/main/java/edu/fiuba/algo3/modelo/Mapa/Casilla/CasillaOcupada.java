@@ -29,7 +29,10 @@ public class CasillaOcupada extends Casilla {
     }
 
     public void llenarDeMoho() {
-        estadoMoho = new SinMoho();
+        if(ocupable.esDeEsteTipo(Edificio.class))
+            estadoMoho = new SinMoho();
+        else
+            estadoMoho = new ConMoho();
     }
 
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg) {

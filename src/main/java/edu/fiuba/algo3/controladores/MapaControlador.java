@@ -10,19 +10,31 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho.MohoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
+import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Asimilador;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -54,6 +66,9 @@ public class MapaControlador extends Controlador {
     protected Text debugCoordenadas;
     @FXML
     protected Button pasarTurnoBoton;
+    @FXML
+    protected Button botonTest;
+
 
     /*=====================================================================================
      * Mapa y camara
@@ -84,6 +99,11 @@ public class MapaControlador extends Controlador {
     private  boolean arrayFilled = false;
     private double frameRate;
     private boolean mostrarFPS = false;
+
+    /*=====================================================================================
+     * AlgoStar
+     * ====================================================================================*/
+    private AlgoStar algoStar = App.algoStar;
 
     /*===================================================================================================
     * Metodos
@@ -167,13 +187,14 @@ public class MapaControlador extends Controlador {
         Vista superficieVista = SuperficieVista.obtenerSuperficie(casillaJson.get(ConvertidorJSON.SUPERFICIE));
         superficieVista.render(graphicsContext, posicionX, posicionY);
 
-        //Renderizamos la carga
-        Vista cargaVista = CargaVista.obtenerCarga(casillaJson.get(ConvertidorJSON.CARGA));
-        cargaVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos el moho
         Vista mohoVista = MohoVista.obtenerMoho(casillaJson.get(ConvertidorJSON.MOHO));
         mohoVista.render(graphicsContext, posicionX, posicionY);
+
+        //Renderizamos la carga
+        Vista cargaVista = CargaVista.obtenerCarga(casillaJson.get(ConvertidorJSON.CARGA));
+        cargaVista.render(graphicsContext, posicionX, posicionY);
 
         //Renderizamos los recursos
         Vista recursoVista = RecursoVista.obtenerRecurso(casillaJson.get(ConvertidorJSON.RECURSO));
@@ -233,6 +254,7 @@ public class MapaControlador extends Controlador {
             public void handle(long currentTime) {
                 manejarInput();
                 render();
+                setFocusOnCanvas();
 
                 //FPS
                 if (mostrarFPS)
@@ -308,9 +330,38 @@ public class MapaControlador extends Controlador {
         };
     }
 
+    public void pasarTurno(ActionEvent event){
+        algoStar.terminarTurno();
+        ((Edificio)( Mapa.obtener().obtenerOcupable(new Coordenada(20,20)))).pasarTurno();
+    }
+
+    public void setearEdifYUnid(ActionEvent event){
+        Mapa elMapa = Mapa.obtener();
+        Criadero c = new Criadero();
+        Pilon pilon = new Pilon();
+        pilon.asignarSuministro(new Suministro(0));
+        elMapa.construirEdificio(c, new Coordenada(20, 20));
+        elMapa.construirEdificio(pilon, new Coordenada(4, 7));
+        pilon.pasarTurno();
+        pilon.pasarTurno();
+        pilon.pasarTurno();
+        pilon.pasarTurno();
+        pilon.pasarTurno();
+        c.pasarTurno();
+        c.pasarTurno();
+        c.pasarTurno();
+        c.pasarTurno();
+        c.pasarTurno();
+
+        elMapa.colocarUnaUnidad( new Dragon(),new Coordenada(83,58));
+    }
+
     private void setPantallaCompleta() {
         Stage stageActual = this.obtenerStageActual(estadoLabel);
         stageActual.setFullScreen(!stageActual.isFullScreen());
     }
 
+    public void setFocusOnCanvas() {
+        canvasPrincipal.requestFocus();
+    }
 }
