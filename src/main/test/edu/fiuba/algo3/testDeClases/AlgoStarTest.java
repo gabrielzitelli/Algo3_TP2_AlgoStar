@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import org.junit.jupiter.api.BeforeEach;
@@ -162,14 +163,17 @@ public class AlgoStarTest {
 
         // Coloco una unidad zergs al lado de los edificios protoss
         Coordenada coordenadaUnidad = new Coordenada(coordenadaBase.getCoordenadaX() - 2, coordenadaBase.getCoordenadaY() - 1);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaUnidad);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaUnidad);
 
         // Destruyo edificios protoss
         for (int i = 0; i < 24; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaPilon);
+            unGuardian.pasarTurno();
         }
         for (int i = 0; i < 40; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaAcceso);
+            unGuardian.pasarTurno();
         }
 
         algoStar.terminarTurno();
@@ -204,11 +208,13 @@ public class AlgoStarTest {
 
         // Coloco una unidad Protoss al lado del edificio Zerg
         Coordenada coordenadaUnidad = new Coordenada(coordenadaBase.getCoordenadaX() - 2, coordenadaBase.getCoordenadaY() - 1);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaUnidad);
+        Unidad unDragon = new Dragon();
+        elMapa.colocarUnaUnidad(unDragon, coordenadaUnidad);
 
         // Destruyo edificio Zerg
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaEdificioZerg);
+            unDragon.pasarTurno();
         }
 
         algoStar.terminarTurno();

@@ -21,6 +21,8 @@ public class CasoDeUso28Test {
         Mapa.obtener().reiniciarMapa();
     }
 
+
+
     private Unidad crearUnidadInvisible() {
         Mapa elMapa = Mapa.obtener();
 
@@ -37,55 +39,45 @@ public class CasoDeUso28Test {
 
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaPrimerUnidad);
+            unaUnidad.pasarTurno();
         }
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
+            unaUnidad.pasarTurno();
         }
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
+            unaUnidad.pasarTurno();
         }
 
         return unaUnidad;
     }
 
+    //TODO Comente el test porque no se a quien pasarle el turno
+
     @Test
     public void test01UnZealotSeHaceInvisibleYNoPuedeSerAtacadoPorOtraUnidad() {
         Mapa elMapa = Mapa.obtener();
 
-        Coordenada coordenadaZealot = new Coordenada(0,0);
-        Coordenada coordenadaPrimerUnidad = new Coordenada(0,1);
-        Coordenada coordenadaSegundaUnidad = new Coordenada(0,2);
-        Coordenada coordenadaTercerUnidad = new Coordenada(0,3);
+        // Coloco unidad invisible en rango del amo supremo
+        Unidad unZealotInvisible = crearUnidadInvisible();
+        Coordenada coordenadaZealotInvisible = new Coordenada(0, 3);
+        elMapa.colocarUnaUnidad(unZealotInvisible, coordenadaZealotInvisible);
 
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaZealot);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaPrimerUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaSegundaUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaTercerUnidad);
-
-        // El zealot mata a la primer unidad
-        for (int i = 0; i < 20; i++) {
-            elMapa.atacar(coordenadaZealot, coordenadaPrimerUnidad);
-        }
-        // El zealot mata a la segunda unidad
-        for (int i = 0; i < 20; i++) {
-            elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
-        }
-        // El zealot mata a la tercer unidad
-        for (int i = 0; i < 20; i++) {
-            elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
-        }
-
+        Unidad unDragon = new Dragon();
         Coordenada coordenadaAtacante = new Coordenada(0,2);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaAtacante);
+        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
         // La nueva unidad intenta matar al zealot invisible
         for (int i = 0; i < 8; i++) {
-            elMapa.atacar(coordenadaAtacante, coordenadaTercerUnidad);
+            elMapa.atacar(coordenadaAtacante, coordenadaZealotInvisible);
+            unDragon.pasarTurno();
         }
 
         // El zealot sigue vivo
         assertThrows(ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada.class,
-                () -> elMapa.colocarUnaUnidad(new Zealot(), coordenadaTercerUnidad));
+                () -> elMapa.colocarUnaUnidad(new Zealot(), coordenadaZealotInvisible));
     }
+
 
     @Test
     public void test02UnZealotSeHaceInvisiblePeroPuedeSerAtacadoPorEstarEnRangoDeUnAmoSupremo() {
@@ -100,9 +92,11 @@ public class CasoDeUso28Test {
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 2);
-        elMapa.colocarUnaUnidad(new Guardian(), coordenadaAtacante);
+        Unidad unGuardian = new Guardian();
+        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaZealotInvisible);
+            unGuardian.pasarTurno();
         }
 
         assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new AmoSupremo(), coordenadaZealotInvisible));

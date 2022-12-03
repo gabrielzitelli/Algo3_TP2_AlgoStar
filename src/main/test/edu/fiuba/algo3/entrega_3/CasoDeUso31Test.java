@@ -50,8 +50,11 @@ public class CasoDeUso31Test {
         elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
 
         //Destruyo el criadero
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 25; i++){
             elMapa.atacar(coordenadaDragon, coordenadaCriadero);
+            unDragon.pasarTurno();
+        }
+
 
         imperioZerg.terminarTurno();
 
@@ -62,14 +65,14 @@ public class CasoDeUso31Test {
     public void test02ConstruyoUnPilonYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
         Mapa elMapa = Mapa.obtener();
         Protoss imperioProtoss = new Protoss();
-        Coordenada coordenadaPilon = new Coordenada(0,0);
-        Coordenada coordenadaHidralisco = new Coordenada(1,0);
+        Coordenada coordenadaPilon = new Coordenada(0, 0);
+        Coordenada coordenadaHidralisco = new Coordenada(1, 0);
 
         imperioProtoss.abastecerDeRecursos(new Mineral(375), new Gas(50));
         imperioProtoss.construirPilon(coordenadaPilon);
 
         //Esperamos a que se construya el pilon
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
         //Ahora tengo el pilon construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
@@ -78,8 +81,10 @@ public class CasoDeUso31Test {
         elMapa.colocarUnaUnidad(unHidralisco, coordenadaHidralisco);
 
         //Destruyo el pilon
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < 60; i++){
             elMapa.atacar(coordenadaHidralisco, coordenadaPilon);
+            unHidralisco.pasarTurno();
+        }
 
         imperioProtoss.terminarTurno();
 
@@ -116,8 +121,11 @@ public class CasoDeUso31Test {
         elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
 
         //Mato al Amo Supremo
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++){
             elMapa.atacar(coordenadaDragon, coordenadaAmoSupremo);
+            unDragon.pasarTurno();
+        }
+
 
         imperioZerg.terminarTurno();
 

@@ -2,14 +2,14 @@ package edu.fiuba.algo3.modelo.Unidades;
 
 import edu.fiuba.algo3.modelo.Ataque.DanioUnidad;
 import edu.fiuba.algo3.modelo.Ataque.Ocupable;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
+import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.*;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 import java.util.ArrayList;
@@ -27,6 +27,13 @@ public abstract class Unidad implements Ocupable {
      protected String identificador;
 
      protected boolean estadoMuerta = false;
+     protected boolean yaCamino = false;
+
+     private Atacar estadoPelea = new Atacante();
+
+     private Caminar estadoCaminar = new Caminadora();
+
+
 
      public abstract boolean perteneceAImperio(Imperio imperio);
 
@@ -52,10 +59,14 @@ public abstract class Unidad implements Ocupable {
      public void pasarTurno() {
           if (turnosDeConstruccion > 0)
                turnosDeConstruccion--;
+
+          estadoPelea = new Atacante();
+          estadoCaminar = new Caminadora();
      }
 
      public void atacar(Casilla casillaAAtacar) {
-          casillaAAtacar.recibirAtaque(new Ataque(danio));
+          estadoPelea.atacar(casillaAAtacar, danio);
+          estadoPelea = new NoAtacante();
      }
 
      public void recibirAtaque(Ataque unAtaque) {
@@ -74,8 +85,8 @@ public abstract class Unidad implements Ocupable {
      }
 
      public void moverA(Coordenada coordenadaDestino) {
-          Mapa elMapa = Mapa.obtener();
-          elMapa.moverUnidad(this.coordenada, coordenadaDestino);
+          estadoCaminar.caminar(this.coordenada, coordenadaDestino);
+          estadoCaminar = new NoCaminadora();
      }
 
      public boolean esIgualA(Unidad unidad) {

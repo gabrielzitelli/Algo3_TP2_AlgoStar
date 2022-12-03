@@ -57,6 +57,7 @@ public class ZealotTest {
         // El zealot mata a la otra unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unZealot.pasarTurno();
         }
 
         // La posicion donde estaba la unidad atacada está ocupada
@@ -85,21 +86,26 @@ public class ZealotTest {
         // El zealot mata a la primer unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaZealot, coordenadaPrimerUnidad);
+            unZealot.pasarTurno();
         }
         // El zealot mata a la segunda unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
+            unZealot.pasarTurno();
         }
         // El zealot mata a la tercer unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
+            unZealot.pasarTurno();
         }
 
         Coordenada coordenadaAtacante = new Coordenada(0,2);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaAtacante);
+        Unidad unDragon = new Dragon();
+        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
         // La nueva unidad intenta matar al zealot
         for (int i = 0; i < 8; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaTercerUnidad);
+            unDragon.pasarTurno();
         }
 
         // El zealot sigue vivo
@@ -125,21 +131,26 @@ public class ZealotTest {
         // El zealot destruye al primer edificio
         for (int i = 0; i < 75; i++) {
             elMapa.atacar(coordenadaZealot, coordenadaPrimerEdificio);
+            unZealot.pasarTurno();
         }
         // El zealot destruye al segundo edificio
         for (int i = 0; i < 75; i++) {
             elMapa.atacar(coordenadaPrimerEdificio, coordenadaSegundoEdificio);
+            unZealot.pasarTurno();
         }
         // El zealot destruye al tercer edificio
         for (int i = 0; i < 75; i++) {
             elMapa.atacar(coordenadaSegundoEdificio, coordenadaTercerEdificio);
+            unZealot.pasarTurno();
         }
 
         Coordenada coordenadaAtacante = new Coordenada(0,2);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaAtacante);
+        Unidad unDragon = new Dragon();
+        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
         // La nueva unidad intenta matar al zealot
         for (int i = 0; i < 8; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaTercerEdificio);
+            unDragon.pasarTurno();
         }
 
         // El zealot sigue vivo
@@ -165,21 +176,26 @@ public class ZealotTest {
         // El zealot mata a la primer unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaZealot, coordenadaPrimerUnidad);
+            unZealot.pasarTurno();
         }
         // El zealot mata a la segunda unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
+            unZealot.pasarTurno();
         }
         // El zealot mata a la tercer unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
+            unZealot.pasarTurno();
         }
 
         // El zealot mata a una cuarta unidad
         Coordenada coordenadaCuartaUnidad = new Coordenada(0,4);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaCuartaUnidad);
+        Unidad otroZealot = new Zealot();
+        elMapa.colocarUnaUnidad(otroZealot, coordenadaCuartaUnidad);
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaTercerUnidad, coordenadaCuartaUnidad);
+            unZealot.pasarTurno();
         }
 
         // La posicion donde estaba la unidad atacada está ocupada
@@ -208,14 +224,17 @@ public class ZealotTest {
         // El zealot mata a la primer unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaZealot, coordenadaPrimerUnidad);
+            unZealot.pasarTurno();
         }
         // El zealot mata a la segunda unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
+            unZealot.pasarTurno();
         }
         // El zealot mata a la tercer unidad
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
+            unZealot.pasarTurno();
         }
 
         // Revelamos al Zealot con una unidad que revele
@@ -223,16 +242,20 @@ public class ZealotTest {
 
         // El zealot revelado mata a una cuarta unidad
         Coordenada coordenadaCuartaUnidad = new Coordenada(0,4);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaCuartaUnidad);
+        Unidad otroZealot = new Zealot();
+        elMapa.colocarUnaUnidad(otroZealot, coordenadaCuartaUnidad);
         for (int i = 0; i < 20; i++) {
             elMapa.atacar(coordenadaTercerUnidad, coordenadaCuartaUnidad);
+            unZealot.pasarTurno();
         }
 
         // Creo unidad para matar al Zealot
         Coordenada coordenadaAtacante = new Coordenada(0,3);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaAtacante);
+        Unidad unDragon = new Dragon();
+        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
         for (int i = 0; i < 8; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaCuartaUnidad);
+            unDragon.pasarTurno();
         }
 
         // El Zealot esta muerto
