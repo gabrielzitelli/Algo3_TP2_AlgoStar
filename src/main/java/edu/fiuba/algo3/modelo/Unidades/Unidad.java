@@ -27,7 +27,6 @@ public abstract class Unidad implements Ocupable {
      protected String identificador;
 
      protected boolean estadoMuerta = false;
-     protected boolean yaCamino = false;
 
      private Atacar estadoPelea = new Atacante();
 
