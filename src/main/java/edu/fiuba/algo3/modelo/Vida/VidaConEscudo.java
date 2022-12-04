@@ -49,4 +49,9 @@ public class VidaConEscudo implements Vida{
         if(this.cantidadVida <= 0)
             throw new ErrorVidaLlegoACero();
     }
+
+    @Override
+    public String toString() {
+        return " vida " + this.cantidadVida + " escudo " + this.cantidadEscudo;
+    }
 }

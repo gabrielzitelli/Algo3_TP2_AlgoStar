@@ -100,7 +100,7 @@ public abstract class Edificio implements Ocupable {
     protected abstract String obtenerEstado();
     @Override
     public String toString() {
-        return this.identificador + this.obtenerEstado();
+        return this.identificador + this.obtenerEstado() + vida.toString();
     }
     
     public boolean esDeEsteTipo(Class claseAAverificar){

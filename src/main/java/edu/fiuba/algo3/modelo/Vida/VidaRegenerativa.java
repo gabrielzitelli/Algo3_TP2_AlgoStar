@@ -39,4 +39,9 @@ public class VidaRegenerativa implements Vida{
         if(this.cantidad <= 0)
             throw new ErrorVidaLlegoACero();
     }
+
+    @Override
+    public String toString() {
+        return " vida " + this.cantidad;
+    }
 }

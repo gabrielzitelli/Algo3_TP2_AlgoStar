@@ -11,6 +11,7 @@ public class VidaSimple implements Vida{
         // Se settea la cantidad de vida deseada
         this.cantidad = cantidad;
         this.capacidad = cantidad;
+
     }
 
     public void aplicarAtaque(Ataque unAtaque){
@@ -25,5 +26,10 @@ public class VidaSimple implements Vida{
     private void validarVidaLlegoACero(){
         if(this.cantidad <= 0)
             throw new ErrorVidaLlegoACero();
+    }
+
+    @Override
+    public String toString() {
+        return " vida " + this.cantidad;
     }
 }
