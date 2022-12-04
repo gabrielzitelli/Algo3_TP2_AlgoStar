@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class Mutalisco extends UnidadZerg {
 
     private final int turnosDeContruccion = 7;
-    private final int danioTerrestre = 10;
-    private final int danioAereo = 10;
+    private final int danioTerrestre = 9;
+    private final int danioAereo = 9;
     private final int cantidadDeVida = 120;
 
     public Mutalisco() {

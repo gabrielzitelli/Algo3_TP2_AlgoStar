@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,19 +34,19 @@ public class AmoSupremoTest {
         Coordenada coordenadaTercerUnidad = new Coordenada(8,0);
 
         elMapa.colocarUnaUnidad(unaUnidad, coordenadaUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaPrimerUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaSegundaUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaTercerUnidad);
+        elMapa.colocarUnaUnidad(new Zerling(), coordenadaPrimerUnidad);
+        elMapa.colocarUnaUnidad(new Zerling(), coordenadaSegundaUnidad);
+        elMapa.colocarUnaUnidad(new Zerling(), coordenadaTercerUnidad);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaPrimerUnidad);
             unaUnidad.pasarTurno();
         }
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
             unaUnidad.pasarTurno();
         }
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
             unaUnidad.pasarTurno();
         }

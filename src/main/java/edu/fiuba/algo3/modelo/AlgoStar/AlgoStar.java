@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.AlgoStar;
 
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorJugadorNoPuedeAccederOcupableEnemigo;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios;
 
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidadades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
@@ -67,6 +67,7 @@ public abstract class Edificio implements Ocupable {
             this.destruirEdificio();
         }
     }
+    public abstract boolean somosAliados(Unidad unaUnidad);
 
     protected void destruirEdificio() {
         Mapa elMapa = Mapa.obtener();
@@ -101,4 +102,5 @@ public abstract class Edificio implements Ocupable {
     public String toString() {
         return this.identificador + this.obtenerEstado();
     }
+
 }

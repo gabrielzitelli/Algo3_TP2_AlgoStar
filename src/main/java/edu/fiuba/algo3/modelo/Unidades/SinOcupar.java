@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
@@ -34,5 +33,9 @@ public class SinOcupar implements Ocupable {
     @Override
     public void actualizarColocable(Casilla unaCasilla) {
         // Vacia a proposito
+    }
+
+    public boolean somosAliados(Unidad unaUnidad){
+        return false;
     }
 }
