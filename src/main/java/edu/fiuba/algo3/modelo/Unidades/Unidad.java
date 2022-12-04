@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades;
 
 import edu.fiuba.algo3.modelo.Ataque.DanioUnidad;
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -67,6 +66,12 @@ public abstract class Unidad implements Ocupable {
           estadoPelea.atacar(casillaAAtacar, danio);
           estadoPelea = new NoAtacante();
      }
+
+     public boolean fuegoAliado(Unidad unaUnidad, Casilla casillaAAtacar){
+          return casillaAAtacar.fuegoCompaniero(unaUnidad);
+     }
+     public abstract boolean somosAliados(Unidad unaUnidad);
+
 
      public void recibirAtaque(Ataque unAtaque) {
           try {

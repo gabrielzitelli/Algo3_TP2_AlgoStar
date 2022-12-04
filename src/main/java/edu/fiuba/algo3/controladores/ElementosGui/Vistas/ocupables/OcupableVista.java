@@ -3,13 +3,6 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.*;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieAereaVista;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieTerrestreVista;
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.NexoMineral;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
 
 import java.util.ArrayList;
 

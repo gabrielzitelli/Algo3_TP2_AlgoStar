@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.especial;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
 
 import java.util.ArrayList;
 

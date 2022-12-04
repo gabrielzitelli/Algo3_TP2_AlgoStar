@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasCasillasLibresEnElMapa;

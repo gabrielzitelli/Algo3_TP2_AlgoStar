@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -98,5 +98,10 @@ public class CasillaOcupada extends Casilla {
     public void desRevelar() {
         super.desRevelar();
         ocupable.actualizarColocable(this);
+    }
+
+    @Override
+    public boolean fuegoCompaniero(Unidad unidadZerg){
+        return this.ocupable.somosAliados(unidadZerg);
     }
 }

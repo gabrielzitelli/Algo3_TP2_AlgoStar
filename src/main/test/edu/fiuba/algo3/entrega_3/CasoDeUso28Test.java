@@ -6,8 +6,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,19 +32,19 @@ public class CasoDeUso28Test {
         Coordenada coordenadaTercerUnidad = new Coordenada(8,0);
 
         elMapa.colocarUnaUnidad(unaUnidad, coordenadaUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaPrimerUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaSegundaUnidad);
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaTercerUnidad);
+        elMapa.colocarUnaUnidad(new Zerling(), coordenadaPrimerUnidad);
+        elMapa.colocarUnaUnidad(new Zerling(), coordenadaSegundaUnidad);
+        elMapa.colocarUnaUnidad(new Zerling(), coordenadaTercerUnidad);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaPrimerUnidad);
             unaUnidad.pasarTurno();
         }
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             elMapa.atacar(coordenadaPrimerUnidad, coordenadaSegundaUnidad);
             unaUnidad.pasarTurno();
         }
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             elMapa.atacar(coordenadaSegundaUnidad, coordenadaTercerUnidad);
             unaUnidad.pasarTurno();
         }
@@ -64,13 +63,13 @@ public class CasoDeUso28Test {
         Coordenada coordenadaZealotInvisible = new Coordenada(0, 3);
         elMapa.colocarUnaUnidad(unZealotInvisible, coordenadaZealotInvisible);
 
-        Unidad unDragon = new Dragon();
+        Unidad unMutalisco = new Mutalisco();
         Coordenada coordenadaAtacante = new Coordenada(0,2);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
+        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
         // La nueva unidad intenta matar al zealot invisible
         for (int i = 0; i < 8; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaZealotInvisible);
-            unDragon.pasarTurno();
+            unMutalisco.pasarTurno();
         }
 
         // El zealot sigue vivo

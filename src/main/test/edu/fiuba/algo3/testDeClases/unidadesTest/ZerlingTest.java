@@ -2,6 +2,7 @@ package edu.fiuba.algo3.testDeClases.unidadesTest;
 
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,12 +29,12 @@ public class ZerlingTest {
         Mapa elMapa = Mapa.obtener();
 
         Zerling unZerling = new Zerling();
-        Zerling ZerlingADaniar = new Zerling();
+        Zealot unZealot = new Zealot();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
         elMapa.colocarUnaUnidad(unZerling, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(ZerlingADaniar, coordenadaAtacado);
+        elMapa.colocarUnaUnidad(unZealot, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
