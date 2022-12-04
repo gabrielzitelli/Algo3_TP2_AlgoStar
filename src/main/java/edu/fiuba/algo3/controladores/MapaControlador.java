@@ -140,7 +140,7 @@ public class MapaControlador extends Controlador {
         Stage stage = obtenerStageActual(canvasPrincipal);
         Scene scene = obtenerSceneActual(canvasPrincipal);
         canvasPrincipal.setHeight(scene.getHeight());
-        canvasPrincipal.setWidth(scene.getWidth() - bordeDerecha.getWidth() + bordeIzquierda.getWidth());
+        canvasPrincipal.setWidth(scene.getWidth() - bordeDerecha.getWidth() - bordeIzquierda.getWidth());
 
         int anchoMapa = (int) canvasPrincipal.getWidth();
         int largoMapa = (int) canvasPrincipal.getHeight();
@@ -164,7 +164,7 @@ public class MapaControlador extends Controlador {
                 double resto = 0;
                 if (!stage.isFullScreen())
                     resto = decoratorWidth;
-                canvasPrincipal.setWidth(stage.getWidth() - bordeDerecha.getWidth() + bordeIzquierda.getWidth() - resto);
+                canvasPrincipal.setWidth(stage.getWidth() - bordeDerecha.getWidth() - bordeIzquierda.getWidth() - resto);
                 camara.setBordeX((tileWidth * tamanioMapa) - (int)canvasPrincipal.getWidth());
 
                 if (Math.abs(camara.getX()) >= (tileWidth * tamanioMapa) - (int)canvasPrincipal.getWidth()){
@@ -323,7 +323,7 @@ public class MapaControlador extends Controlador {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                double posMouseX = mouseEvent.getX();
+                double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
                 double posMouseY = mouseEvent.getY();
                 if (canvasPrincipal.contains(posMouseX, posMouseY)) {
                     int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
