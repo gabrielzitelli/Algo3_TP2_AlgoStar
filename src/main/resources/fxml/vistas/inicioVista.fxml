@@ -15,11 +15,11 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<fx:root cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1024.0" onKeyReleased="#manejarInput" pickOnBounds="false" style="-fx-background-color: black;" type="BorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.InicioControlador">
+<fx:root cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1124.0" onKeyReleased="#manejarInput" pickOnBounds="false" style="-fx-background-color: black;" type="BorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.InicioControlador">
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <MediaView id="mediaviewVideoFondo" fx:id="mediaviewVideoFondo" fitHeight="600.0" fitWidth="1024.0" preserveRatio="false" StackPane.alignment="CENTER">
+            <MediaView id="mediaviewVideoFondo" fx:id="mediaviewVideoFondo" fitHeight="600.0" fitWidth="1124.0" preserveRatio="false" StackPane.alignment="CENTER">
                <viewport>
                   <Rectangle2D />
                </viewport>

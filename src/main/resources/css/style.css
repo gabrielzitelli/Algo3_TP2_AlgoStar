@@ -289,3 +289,15 @@
 .botonCrearJugador:armed {
     -fx-background-color: rgb(229, 229, 229);
 }
+
+.bordeDerecha {
+    -fx-background-color: blue;
+    -fx-background-image: url("../img/marcos/NuevoMarcoDerechaRawSinColor.png");
+    -fx-background-size: cover, auto;
+}
+
+.bordeIzquierda {
+    -fx-background-color: blue;
+    -fx-background-image: url("../img/marcos/marcoIzquierdoRawSinColor.png");
+    -fx-background-size: cover, auto;
+}
