@@ -39,6 +39,13 @@ public class Camara {
 
     public int getY() {return y;}
 
+    public void setBordeX(int bordeX) {
+        this.bordeX = -bordeX;
+    }
+    public void setBordeY(int bordeY){
+        this.bordeY = -bordeY;
+    }
+
 
     public void irHacia(int x, int y) {
         this.x = -x;

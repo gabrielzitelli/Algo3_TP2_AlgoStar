@@ -4,123 +4,66 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.MapaControlador">
-   <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0">
-         <center>
-            <Canvas fx:id="canvasPrincipal" height="576.0" width="768.0" BorderPane.alignment="CENTER" />
-         </center>
-         <right>
-            <StackPane BorderPane.alignment="CENTER">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.MapaControlador">
+   <center>
+      <Canvas fx:id="canvasPrincipal" />
+   </center>
+   <right>
+      <VBox fx:id="bordeDerecha" alignment="TOP_CENTER" style="-fx-background-color: black;">
+         <children>
+            <Pane>
                <children>
-                  <HBox prefHeight="601.0" prefWidth="266.0" styleClass="hboxCostadoDerecha" stylesheets="@../../css/style.css">
-                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="597.0" prefWidth="239.0">
-                           <children>
-                              <Pane prefHeight="121.0" prefWidth="239.0">
-                                 <children>
-                                    <Text fill="WHITE" layoutX="3.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imperio" textAlignment="CENTER" wrappingWidth="232.96875" />
-                                    <Line endX="200.0" layoutX="19.0" layoutY="46.0" stroke="#bbc7bc" strokeLineCap="ROUND" strokeWidth="2.0" />
-                                    <Text fill="WHITE" layoutX="20.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minerales" />
-                                    <Text fill="WHITE" layoutX="20.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gas Vespeno" />
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Pane>
-                              <Pane prefHeight="45.0" prefWidth="239.0">
-                                 <children>
-                                    <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pasarTurno" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" textAlignment="CENTER">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </Button>
-                                 </children>
-                              </Pane>
-                              <Text fx:id="terrenoLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Terreno" textAlignment="CENTER" wrappingWidth="217.41783905029297">
-                                 <font>
-                                    <Font name="Century Gothic" size="12.413793563842773" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Text fx:id="recursoLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Recurso" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                              <Text fx:id="cargaLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                              <Text fx:id="contaminadoLabel" fill="WHITE" layoutX="20.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contaminado" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                              <Text fx:id="libreLabel" fill="WHITE" layoutX="20.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="libre" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                              <Text fx:id="estadoLabel" fill="WHITE" layoutX="20.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                              <Pane prefHeight="194.0" prefWidth="277.0">
-                                 <children>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="105.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setearEdifYUnid" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="Setup Edif &amp; Unit" textAlignment="CENTER">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </Button>
-                                 </children></Pane>
-                              <Text fx:id="debugCoordenadas" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text=" " textOrigin="CENTER" wrappingWidth="225.68895530700684">
-                                 <font>
-                                    <Font name="Century Gothic" size="12.413793563842773" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="100.0" />
-                                 </VBox.margin>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
+                  <Text fill="WHITE" layoutX="3.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imperio" textAlignment="CENTER" wrappingWidth="232.96875" />
+                  <Line endX="200.0" layoutX="19.0" layoutY="46.0" stroke="#bbc7bc" strokeLineCap="ROUND" strokeWidth="2.0" />
+                  <Text fill="WHITE" layoutX="20.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minerales" />
+                  <Text fill="WHITE" layoutX="20.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gas Vespeno" />
                </children>
-            </StackPane>
-         </right>
-      </BorderPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="600.0" stroke="BLACK" strokeType="INSIDE" width="768.0" StackPane.alignment="CENTER_LEFT">
-         <fill>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.17175573110580444" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.12804878048780488">
-                     <color>
-                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.5091463414634146">
-                     <color>
-                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.8597560975609756">
-                     <color>
-                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.02160000056028366" green="0.15408000349998474" blue="0.27000001072883606" opacity="0.17000000178813934" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Rectangle>
-   </children>
-</StackPane>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Pane>
+            <Pane>
+               <children>
+                  <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </Pane>
+            <Text fx:id="terrenoLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Terreno" textAlignment="CENTER" wrappingWidth="217.41783905029297">
+               <font>
+                  <Font name="Century Gothic" size="12.413793563842773" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="recursoLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Recurso" textAlignment="CENTER" wrappingWidth="219.08203125" />
+            <Text fx:id="cargaLabel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga" textAlignment="CENTER" wrappingWidth="219.08203125" />
+            <Text fx:id="contaminadoLabel" fill="WHITE" layoutX="20.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contaminado" textAlignment="CENTER" wrappingWidth="219.08203125" />
+            <Text fx:id="libreLabel" fill="WHITE" layoutX="20.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="libre" textAlignment="CENTER" wrappingWidth="219.08203125" />
+            <Text fx:id="estadoLabel" fill="WHITE" layoutX="20.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" textAlignment="CENTER" wrappingWidth="219.08203125" />
+            <Pane />
+            <Text fx:id="debugCoordenadas" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text=" " textOrigin="CENTER" wrappingWidth="225.68895530700684">
+               <font>
+                  <Font name="Century Gothic" size="12.413793563842773" />
+               </font>
+               <VBox.margin>
+                  <Insets top="100.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>

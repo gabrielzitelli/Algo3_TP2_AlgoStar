@@ -17,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -43,19 +42,29 @@ public class InicioControlador extends Controlador {
     private Stage stage;
     private Parent root;
 
+    private double tamanioHorizontal;
+    private double tamanioVertical;
+    private double decoratorWidth;
+    private double decoratorHeight;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.inicializarVideoFondo();
     }
 
     public void inicializar() {
-
         //manejar redimension
         stage = obtenerStageActual(labelBienvenida);
+        Scene scene = obtenerSceneActual(labelBienvenida);
+        tamanioHorizontal = stage.getWidth();
+        tamanioVertical = stage.getHeight();
+        decoratorHeight = tamanioVertical - scene.getHeight();
+        decoratorWidth = tamanioHorizontal - scene.getWidth();
+
         stage.widthProperty().addListener((o, oldValue, newValue) -> {
-            if (newValue.intValue() < App.INITIAL_WIDTH) {
+            if (newValue.intValue() < tamanioHorizontal) {
                 stage.setResizable(false);
-                stage.setWidth(App.INITIAL_WIDTH);
+                stage.setWidth(tamanioHorizontal);
                 stage.setResizable(true);
             }
             else {
@@ -63,9 +72,9 @@ public class InicioControlador extends Controlador {
             }
         });
         stage.heightProperty().addListener((o, oldValue, newValue) -> {
-            if (newValue.intValue() < App.INITIAL_HEIGHT) {
+            if (newValue.intValue() < tamanioVertical) {
                 stage.setResizable(false);
-                stage.setHeight(App.INITIAL_HEIGHT);
+                stage.setHeight(tamanioVertical);
                 stage.setResizable(true);
             }
             else {
@@ -213,6 +222,9 @@ public class InicioControlador extends Controlador {
                 controladorMapa.setFocusOnCanvas();
 
                 stage.setScene(scene);
+                controladorMapa.setTamanioMinimo(tamanioHorizontal, tamanioVertical);
+                controladorMapa.setDecorators(decoratorWidth, decoratorHeight);
+                controladorMapa.inicializar();
             });
         });
     }
