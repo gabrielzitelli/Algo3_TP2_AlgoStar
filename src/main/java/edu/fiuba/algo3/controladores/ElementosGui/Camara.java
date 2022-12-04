@@ -18,21 +18,27 @@ public class Camara {
         if (y < 0){
             y += razonDeMovimiento;
         }
+        else y = 0;
     }
 
     public void bajar() {
         if (y > bordeY)
             y -= razonDeMovimiento;
+        else
+            y = bordeY;
     }
 
     public void irAderecha() {
         if (x > bordeX)
             x -= razonDeMovimiento;
+        else
+            x = bordeX;
     }
     public void irAIzquierda() {
         if (x < 0) {
             x += razonDeMovimiento;
         }
+        else x = 0;
     }
 
     public int getX() {return x;}

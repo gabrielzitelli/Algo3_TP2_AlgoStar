@@ -13,10 +13,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVi
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Asimilador;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -27,7 +24,6 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.SubScene;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -35,7 +31,6 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -291,12 +286,6 @@ public class MapaControlador extends Controlador {
             camara.subir();
         else if (input.contains("DOWN"))
             camara.bajar();
-
-        if (input.contains(KeyCode.P.toString()))
-            camara.irHacia(73*tileWidth, 58*tileWidth);
-        if (input.contains(KeyCode.O.toString()))
-            camara.irHacia(0*tileWidth, 23*tileWidth);
-
     }
 
     private void calcularFps(long currentTime) {
@@ -336,7 +325,7 @@ public class MapaControlador extends Controlador {
                 double posMouseY = mouseEvent.getY();
                 if (canvasPrincipal.contains(posMouseX, posMouseY)) {
                     int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
-                    int posY = (int) ((((posMouseY - 12) - camara.getY()) / tileWidth));
+                    int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
                     if (posX >= tamanioMapa)
                         posX = tamanioMapa - 1;
                     coordenadaSeleccion = new Coordenada(posX, posY);
@@ -401,9 +390,14 @@ public class MapaControlador extends Controlador {
         };
     }
 
+    @FXML
     public void pasarTurno(ActionEvent event){
         algoStar.terminarTurno();
-        ((Edificio)( Mapa.obtener().obtenerOcupable(new Coordenada(20,20)))).pasarTurno();
+        //TODO DEBUG SACAR CUANDO SE IMPLEMENTE
+        System.out.print("Turno pasado: " + algoStar.turnoActual() + "\n");
+
+        //Lo saqué porque tiraba excepcion
+        //((Edificio)( Mapa.obtener().obtenerOcupable(new Coordenada(20,20)))).pasarTurno();
     }
 
     public void setearEdifYUnid(ActionEvent event){
