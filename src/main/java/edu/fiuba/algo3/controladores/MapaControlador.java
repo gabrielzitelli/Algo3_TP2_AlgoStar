@@ -17,12 +17,14 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -54,16 +56,22 @@ public class MapaControlador extends Controlador {
     protected Text debugCoordenadas;
     @FXML
     protected Button pasarTurnoBoton;
+    @FXML
+    protected VBox bordeDerecha;
 
     /*=====================================================================================
      * Mapa y camara
      * ====================================================================================*/
     private final Mapa mapa = Mapa.obtener();
     private final int tamanioMapa = mapa.obtenerTamanioMapa();
-    private final int anchoMapa = 24;
-    private final int largoMapa = 18;
 
-    private Camara camara;
+    private Camara camara = new Camara(0,0);
+
+    private double tamanioHorizontal;
+    private double tamanioVertical;
+
+    private double decoratorWidth;
+    private double decoratorHeight;
 
     /*=====================================================================================
      * Graficos
@@ -112,10 +120,56 @@ public class MapaControlador extends Controlador {
 
     }
 
-    private void inicializarMapa() {
-        int bordeHorizontal = tileWidth * (tamanioMapa - anchoMapa);
-        int bordeVertical = tileWidth * (tamanioMapa - largoMapa);
+    public void inicializar() {
+        Stage stage = obtenerStageActual(canvasPrincipal);
+        Scene scene = obtenerSceneActual(canvasPrincipal);
+        canvasPrincipal.setHeight(scene.getHeight());
+        canvasPrincipal.setWidth(scene.getWidth() - bordeDerecha.getWidth());
+
+        int anchoMapa = (int) canvasPrincipal.getWidth();
+        int largoMapa = (int) canvasPrincipal.getHeight();
+
+        int bordeHorizontal = ((tileWidth * tamanioMapa) - anchoMapa);
+        int bordeVertical = ((tileWidth * tamanioMapa) - largoMapa);
         camara = new Camara(bordeHorizontal, bordeVertical);
+
+        menejarRedimension(stage);
+    }
+
+    private void menejarRedimension(Stage stage) {
+        //manejar redimension
+        stage.widthProperty().addListener((o, oldValue, newValue) -> {
+            if (newValue.intValue() < tamanioHorizontal) {
+                stage.setResizable(false);
+                stage.setWidth(tamanioHorizontal);
+                stage.setResizable(true);
+            }
+            else {
+                double resto = 0;
+                if (!stage.isFullScreen())
+                    resto = decoratorWidth;
+                canvasPrincipal.setWidth(stage.getWidth() - bordeDerecha.getWidth() - resto);
+                camara.setBordeX((tileWidth * tamanioMapa) - (int)canvasPrincipal.getWidth());
+            }
+        });
+        stage.heightProperty().addListener((o, oldValue, newValue) -> {
+            if (newValue.intValue() < tamanioVertical) {
+                stage.setResizable(false);
+                stage.setHeight(tamanioVertical);
+                stage.setResizable(true);
+            }
+            else {
+                double resto = 0;
+                if (!stage.isFullScreen())
+                    resto = decoratorHeight;
+                canvasPrincipal.setHeight(stage.getHeight() - resto);
+                camara.setBordeY((tileWidth * tamanioMapa) - (int)canvasPrincipal.getHeight());
+            }
+        });
+    }
+
+    private void inicializarMapa() {
+
         graphicsContext = canvasPrincipal.getGraphicsContext2D();
 
         AnimationTimer gameloop = crearGameLoop();
@@ -124,16 +178,19 @@ public class MapaControlador extends Controlador {
 
     private void renderizarMapa() {
         //renderizamos solo lo que se encuentra en pantalla
-        for(int i = 0; i < anchoMapa + 1 ; i++){
-            for(int j = 0; j < largoMapa + 1; j++){
+        int anchoMapa = (int) canvasPrincipal.getWidth() / (tileWidth);
+        int largoMapa = (int) (canvasPrincipal.getHeight() / (tileWidth));
+
+        for(int i = 0; i < anchoMapa + 2 ; i++){
+            for(int j = 0; j < largoMapa + 2; j++){
                 int xInicial = ( Math.abs(camara.getX()) / tileWidth) + i;
                 int yInicial = ( Math.abs(camara.getY()) / tileWidth) + j;
 
                 //verificamos que no nos salgamos del mapa
-                if (xInicial == tamanioMapa)
-                    xInicial -= 1;
-                if (yInicial == tamanioMapa)
-                    yInicial -= 1;
+                if (xInicial >= tamanioMapa)
+                    xInicial = 99;
+                if (yInicial >= tamanioMapa)
+                    yInicial =99;
 
                 renderizarCasilla(xInicial, yInicial);
             }
@@ -250,6 +307,8 @@ public class MapaControlador extends Controlador {
                 if (canvasPrincipal.contains(posMouseX, posMouseY)) {
                     int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
                     int posY = (int) ((((posMouseY - 12) - camara.getY()) / tileWidth));
+                    if (posX >= tamanioMapa)
+                        posX = tamanioMapa - 1;
                     coordenadaSeleccion = new Coordenada(posX, posY);
                     debugCoordenadas.setText("X " + posX + " , Y " + posY);
                     obtenerInfoCasilla(coordenadaSeleccion);
@@ -302,8 +361,10 @@ public class MapaControlador extends Controlador {
 
                 //Pantalla completa
                 if (Objects.equals(tecla, KeyCode.F11.toString())){
-                    System.out.print("presionado");
                     setPantallaCompleta();
+                } else if (Objects.equals(tecla, KeyCode.ESCAPE.toString())) {
+                    canvasPrincipal.setWidth(788.0);
+                    canvasPrincipal.setHeight(600.0);
                 }
             }
         };
@@ -314,4 +375,12 @@ public class MapaControlador extends Controlador {
         stageActual.setFullScreen(!stageActual.isFullScreen());
     }
 
+    public void setTamanioMinimo(double tamanioHorizontal, double tamanioVertical) {
+        this.tamanioHorizontal = tamanioHorizontal;
+        this.tamanioVertical = tamanioVertical;
+    }
+    public void setDecorators(double decoratorWidth, double decoratorHeight){
+        this.decoratorWidth = decoratorWidth;
+        this.decoratorHeight = decoratorHeight;
+    }
 }

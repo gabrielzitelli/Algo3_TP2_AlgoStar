@@ -33,12 +33,12 @@ public class App extends Application {
         Scene scene = new Scene(loader.load(), INITIAL_WIDTH, INITIAL_HEIGHT);
         stage.setScene(scene);
         InicioControlador controlador = loader.getController();
-        controlador.inicializar();
 
         stage.setTitle("AlgoStar");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/brand/AS_logo_space.png"))));
 
        //scene.setCursor(new ImageCursor(image));
         stage.show();
+        controlador.inicializar();
     }
 }

@@ -49,7 +49,6 @@
 .hboxCostadoDerecha {
     -fx-border-color: black;
     -fx-background-color: black;
-    -fx-background-image: url("../img/marcos/overlayDerecha.png");
 }
 
 .coordenadasText Text {
