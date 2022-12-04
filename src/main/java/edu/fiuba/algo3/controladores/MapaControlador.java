@@ -150,6 +150,10 @@ public class MapaControlador extends Controlador {
                     resto = decoratorWidth;
                 canvasPrincipal.setWidth(stage.getWidth() - bordeDerecha.getWidth() - resto);
                 camara.setBordeX((tileWidth * tamanioMapa) - (int)canvasPrincipal.getWidth());
+
+                if (Math.abs(camara.getX()) >= (tileWidth * tamanioMapa) - (int)canvasPrincipal.getWidth()){
+                    camara.irHacia((tileWidth * tamanioMapa) - (int)canvasPrincipal.getWidth() , Math.abs(camara.getY()));
+                }
             }
         });
         stage.heightProperty().addListener((o, oldValue, newValue) -> {
@@ -164,6 +168,9 @@ public class MapaControlador extends Controlador {
                     resto = decoratorHeight;
                 canvasPrincipal.setHeight(stage.getHeight() - resto);
                 camara.setBordeY((tileWidth * tamanioMapa) - (int)canvasPrincipal.getHeight());
+                if (Math.abs(camara.getY()) >= (tileWidth * tamanioMapa) - (int)canvasPrincipal.getHeight()){
+                    camara.irHacia(Math.abs(camara.getX()), (tileWidth * tamanioMapa) - (int)canvasPrincipal.getHeight());
+                }
             }
         });
     }
@@ -251,6 +258,8 @@ public class MapaControlador extends Controlador {
         if (mostrarFPS) {
             graphicsContext.fillText("FPS: " + frameRate, 10, 10);
         }
+
+        graphicsContext.fillText(camara.getX() + " x " + camara.getY(), 200,200);
     }
 
     private void manejarInput() {
@@ -362,7 +371,8 @@ public class MapaControlador extends Controlador {
                 //Pantalla completa
                 if (Objects.equals(tecla, KeyCode.F11.toString())){
                     setPantallaCompleta();
-                } else if (Objects.equals(tecla, KeyCode.ESCAPE.toString())) {
+                } else if (Objects.equals(tecla, KeyCode.ESCAPE.toString()) &&
+                        obtenerStageActual(canvasPrincipal).isFullScreen()) {
                     canvasPrincipal.setWidth(788.0);
                     canvasPrincipal.setHeight(600.0);
                 }

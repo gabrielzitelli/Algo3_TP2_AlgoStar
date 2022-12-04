@@ -47,6 +47,8 @@ public class InicioControlador extends Controlador {
     private double decoratorWidth;
     private double decoratorHeight;
 
+    private boolean enPantallaCompleta = false;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.inicializarVideoFondo();
@@ -127,7 +129,7 @@ public class InicioControlador extends Controlador {
     }
     private void setPantallaCompleta() {
         stage = this.obtenerStageActual(labelBienvenida);
-        stage.setFullScreen(!stage.isFullScreen());
+        stage.setFullScreen(enPantallaCompleta = !stage.isFullScreen());
         mediaviewVideoFondo.setFitHeight(stage.getHeight());
         mediaviewVideoFondo.setFitWidth(stage.getWidth());
     }
@@ -221,6 +223,8 @@ public class InicioControlador extends Controlador {
                 scene.setOnKeyReleased(controladorMapa.releaseKey());
 
                 stage.setScene(scene);
+                if (enPantallaCompleta)
+                    stage.setFullScreen(true);
                 controladorMapa.setTamanioMinimo(tamanioHorizontal, tamanioVertical);
                 controladorMapa.setDecorators(decoratorWidth, decoratorHeight);
                 controladorMapa.inicializar();
