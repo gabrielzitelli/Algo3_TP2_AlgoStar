@@ -221,6 +221,7 @@ public class InicioControlador extends Controlador {
                 scene.setOnMouseClicked(controladorMapa.pintarCasilla());
                 scene.setOnKeyPressed(controladorMapa.pressKey());
                 scene.setOnKeyReleased(controladorMapa.releaseKey());
+                controladorMapa.setFocusOnCanvas();
 
                 stage.setScene(scene);
                 if (enPantallaCompleta)

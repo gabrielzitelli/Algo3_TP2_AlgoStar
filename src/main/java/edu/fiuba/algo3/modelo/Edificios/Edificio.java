@@ -102,5 +102,8 @@ public abstract class Edificio implements Ocupable {
     public String toString() {
         return this.identificador + this.obtenerEstado();
     }
-
+    
+    public boolean esDeEsteTipo(Class claseAAverificar){
+        return Edificio.class.equals(claseAAverificar);
+    }
 }

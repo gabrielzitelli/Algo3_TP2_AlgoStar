@@ -116,4 +116,8 @@ public abstract class Unidad implements Ocupable {
      public String toString() {
           return identificador;
      }
+
+     public boolean esDeEsteTipo(Class claseAAverificar){
+          return Unidad.class.equals(claseAAverificar);
+     }
 }

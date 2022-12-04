@@ -73,10 +73,12 @@ public abstract class Casilla {
     }
 
     public void cargarDeEnergia() {
-        if (estadoCarga == null)
-            estadoCarga = new ConCarga();
+        if(this.superficie.soyDiferenteA(new SuperficieAerea())){
+            if (estadoCarga == null)
+                estadoCarga = new ConCarga();
 
-        estadoCarga = estadoCarga.cargar();
+            estadoCarga = estadoCarga.cargar();
+        }
     }
 
     public void descargarDeEnergia() {

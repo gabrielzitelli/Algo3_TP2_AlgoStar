@@ -35,7 +35,11 @@ public class SinOcupar implements Ocupable {
         // Vacia a proposito
     }
 
-    public boolean somosAliados(Unidad unaUnidad){
+    public boolean somosAliados(Unidad unaUnidad) {
         return false;
+    }
+    public boolean esDeEsteTipo(Class claseAAverificar){
+        return this.getClass().equals(claseAAverificar);
+
     }
 }

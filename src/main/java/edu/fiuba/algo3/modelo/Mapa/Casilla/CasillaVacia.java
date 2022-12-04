@@ -44,7 +44,8 @@ public class CasillaVacia extends Casilla{
     }
 
     public void llenarDeMoho() {
-        estadoMoho = new ConMoho();
+        if(this.superficie.soyDiferenteA(new SuperficieAerea()))
+            estadoMoho = new ConMoho();
     }
 
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
