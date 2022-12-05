@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Edificios;
 
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidadades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
 import edu.fiuba.algo3.modelo.Imperio.*;
