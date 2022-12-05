@@ -119,4 +119,13 @@ public class Zerg extends Imperio{
         for(GestorDeCrianza gestorDeEvoluciones : gestoresDeEvoluciones)
             gestorDeEvoluciones.actualizar();
     }
+    @Override
+    public void prepararParaRevancha(){
+        mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        gasDelImperio = new Gas(0);
+        this.poblacion = new Suministro(0);
+        edificios = new LinkedList<>();
+        this.fabricasDisponibles = new FabricasDisponibles();
+        unidades = new ArrayList<>();
+    }
 }

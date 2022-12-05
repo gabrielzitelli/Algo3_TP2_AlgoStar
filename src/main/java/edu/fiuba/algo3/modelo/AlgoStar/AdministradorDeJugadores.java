@@ -39,7 +39,7 @@ public class AdministradorDeJugadores {
 
     public void inicializarBases() {
         for (Jugador jugador : jugadores) {
-            jugador.conseguirImperio().inicializarAsentamientoPrimerTurno();
+            jugador.inicializarAsentamientoPrimerTurno();
         }
     }
 
@@ -53,5 +53,11 @@ public class AdministradorDeJugadores {
 
         jugadores.add(siguiente);
         return siguiente;
+    }
+
+    public void prepararParaRevancha() {
+        for (Jugador jugador : jugadores) {
+            jugador.prepararparaRevancha();
+        }
     }
 }
