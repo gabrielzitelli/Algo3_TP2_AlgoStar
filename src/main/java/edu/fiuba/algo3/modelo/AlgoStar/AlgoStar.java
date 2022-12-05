@@ -43,6 +43,10 @@ public class AlgoStar {
         return turno.jugadorActual();
     }
 
+    public String conseguirStringJugadorActual() {
+        return turno.jugadorActual().toString();
+    }
+
     public Ocupable conseguirOcupableEn(Coordenada coordenada) {
         Ocupable ocupable = Mapa.obtener().obtenerOcupable(coordenada);
 

@@ -26,6 +26,11 @@ public abstract class Imperio {
         return identificador;
     }
 
+    public String recursosToString(){
+        return "mineral " + mineralesDelImperio.obtenerCantidad() + " gas " + gasDelImperio.obtenerCantidad()
+                + " poblacion " + poblacion.obtenerPoblacion() + " suministro " + poblacion.obtenerSuministro();
+    }
+
     public abstract void inicializarAsentamientoPrimerTurno();
 
     public void terminarTurno(){

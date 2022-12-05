@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -24,7 +25,7 @@
                      <font>
                         <Font name="Century Gothic" size="14.0" />
                      </font></Text>
-                  <Text fill="WHITE" layoutX="10.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Jugador" textAlignment="CENTER" textOrigin="BOTTOM" wrappingWidth="238.48596169054508">
+                  <Text id="textoNombreJugador" fx:id="textoNombreJugador" fill="WHITE" layoutX="10.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Jugador" textAlignment="CENTER" textOrigin="BOTTOM" wrappingWidth="238.48596169054508">
                      <font>
                         <Font name="Century Gothic" size="23.0" />
                      </font>
@@ -54,7 +55,7 @@
                   </ImageView>
                   <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="12.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/recursos/original/poblacion2.png" />
+                        <Image url="@../../img/recursos/original/poblacion.png" />
                      </image>
                   </ImageView>
                   <Text id="textoCantPoblacion" fx:id="textoCantPoblacion" fill="WHITE" layoutX="168.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0/0" textAlignment="CENTER" wrappingWidth="76.5020751953125">
@@ -101,17 +102,100 @@
             </Pane>
             <Pane prefHeight="72.0" prefWidth="257.0">
                <children>
-                  <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pasarTurno" prefHeight="38.0" prefWidth="201.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" textAlignment="CENTER">
+                  <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pasarTurno" prefHeight="32.0" prefWidth="175.0" styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO" textAlignment="CENTER">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
+                  <Text id="textTurno" fx:id="textTurno" fill="WHITE" layoutX="42.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turno: 0" textAlignment="CENTER" wrappingWidth="175.63970947265625">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </children>
       </VBox>
    </right>
    <left>
-      <VBox id="bordeIzquierda" fx:id="bordeIzquierda" prefWidth="100.0" styleClass="bordeIzquierda" stylesheets="@../../css/style.css" />
+      <VBox id="bordeIzquierda" fx:id="bordeIzquierda" prefWidth="100.0" styleClass="bordeIzquierda" stylesheets="@../../css/style.css">
+         <children>
+            <Pane prefHeight="145.0" prefWidth="100.0" stylesheets="@../../css/style.css">
+               <children>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Terreno" textAlignment="CENTER" wrappingWidth="80.18115711212158">
+                     <font>
+                        <Font name="Century Gothic" size="17.6" />
+                     </font>
+                  </Text>
+                  <StackPane layoutX="21.0" layoutY="47.0" styleClass="stackpaneTerrenoSeleccionado" stylesheets="@../../css/style.css">
+                     <children>
+                        <ImageView id="imagenTerrenoSeleccionado" fx:id="imagenTerrenoSeleccionado" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" />
+                     </children>
+                  </StackPane>
+                  <Text id="textoTerrenoSeleccionado" fx:id="textoTerrenoSeleccionado" fill="WHITE" layoutX="11.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                     <font>
+                        <Font name="Century Gothic" size="17.6" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="154.0" prefWidth="100.0">
+               <children>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Recurso" textAlignment="CENTER" wrappingWidth="81.09762668609619">
+                     <font>
+                        <Font name="Century Gothic" size="17.6" />
+                     </font>
+                  </Text>
+                  <StackPane layoutX="21.0" layoutY="49.0" styleClass="stackpaneTerrenoSeleccionado" stylesheets="@../../css/style.css">
+                     <children>
+                        <ImageView id="imagenRecursoSeleccionado" fx:id="imagenRecursoSeleccionado" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" />
+                     </children>
+                  </StackPane>
+                  <Text id="textoRecursoSeleccionado" fx:id="textoRecursoSeleccionado" fill="WHITE" layoutX="11.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                     <font>
+                        <Font name="Century Gothic" size="17.6" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="148.0" prefWidth="100.0">
+               <children>
+                  <Text fill="WHITE" layoutX="9.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Carga" textAlignment="CENTER" wrappingWidth="81.09762668609619">
+                     <font>
+                        <Font name="Century Gothic" size="17.6" />
+                     </font>
+                  </Text>
+                  <StackPane layoutX="20.0" layoutY="45.0" styleClass="stackpaneTerrenoSeleccionado" stylesheets="@../../css/style.css">
+                     <children>
+                        <ImageView id="imagenCargaSeleccionado" fx:id="imagenCargaSeleccionado" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" />
+                     </children>
+                  </StackPane>
+                  <Text id="textoCargaSeleccionado" fx:id="textoCargaSeleccionado" fill="WHITE" layoutX="11.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                     <font>
+                        <Font name="Century Gothic" size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="155.0" prefWidth="100.0">
+               <children>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic;" text="Contagio" textAlignment="CENTER" wrappingWidth="81.09762668609619">
+                     <font>
+                        <Font name="Century Gothic" size="17.0" />
+                     </font>
+                  </Text>
+                  <StackPane layoutX="20.0" layoutY="49.0" styleClass="stackpaneTerrenoSeleccionado" stylesheets="@../../css/style.css">
+                     <children>
+                        <ImageView id="imagenContagioSeleccionado" fx:id="imagenContagioSeleccionado" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" />
+                     </children>
+                  </StackPane>
+                  <Text id="textoContagioSeleccionado" fx:id="textoContagioSeleccionado" fill="WHITE" layoutX="11.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                     <font>
+                        <Font name="Century Gothic" size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children></VBox>
    </left>
 </BorderPane>

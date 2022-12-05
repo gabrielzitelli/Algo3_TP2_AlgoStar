@@ -14,6 +14,7 @@ public abstract class SuperficieVista extends Vista {
         superficies.add(new SuperficieAereaVista());
         return superficies;
     }
+
     public static Vista obtenerSuperficie(Object obtenerSuperficie) {
         return obtenerVista((String) obtenerSuperficie, superficies);
     }
