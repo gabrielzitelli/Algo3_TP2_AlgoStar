@@ -15,8 +15,8 @@ public class ConvertirJugadorTest {
         ConvertidorJSON convertidor = new ConvertidorJSON();
         JSONObject obj =convertidor.convertirAJSON(jugador);
 
-        assertEquals("Miguelangel", obj.get("nombre"));
-        assertEquals("Rojo", obj.get("color"));
-        assertEquals("zerg", obj.get("imperio"));
+        assertEquals("Miguelangel", obj.get(ConvertidorJSON.NOMBRE));
+        assertEquals("Rojo", obj.get(ConvertidorJSON.COLOR));
+        assertEquals("zerg", obj.get(ConvertidorJSON.IMPERIO));
     }
 }

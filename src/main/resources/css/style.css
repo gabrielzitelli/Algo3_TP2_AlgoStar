@@ -26,24 +26,33 @@
 }
 
 .pasarTurnoBoton {
-    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-color: rgb(255, 255, 255);
     -fx-text-alignment: center;
     -fx-alignment: center;
-    -fx-background-radius: 3;
-    -fx-border-radius: 3px;
-    -fx-text-fill: white;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #000000;
     -fx-font-family: "Century Gothic";
     -fx-font-size: 20px;
-    -fx-border-width: 2px;
+    -fx-border-width: 0px;
     -fx-padding: 0 0 0 0;
-    -fx-border-color: transparent;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
 }
 
 .pasarTurnoBoton:hover {
-    -fx-border-width: 2px;
-    -fx-background-color: rgba(77, 71, 56, 0.32);
-    -fx-background-radius: 3;
-    -fx-border-color: #5e5644;
+    -fx-border-width: 0px;
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.74), 5, 0, 0, 0);
+}
+
+.pasarTurnoBoton:armed {
+    -fx-background-color: rgba(38, 38, 38, 0.65);
 }
 
 .hboxCostadoDerecha {
@@ -288,4 +297,21 @@
 
 .botonCrearJugador:armed {
     -fx-background-color: rgb(229, 229, 229);
+}
+
+.bordeDerecha {
+    -fx-background-color: #000000;
+    -fx-background-image: url("../img/marcos/marcoBordeDerecho.png");
+    -fx-background-size: auto;
+}
+
+.bordeIzquierda {
+    -fx-background-color: #000000;
+    -fx-background-image: url("../img/marcos/marcoBordeIzquierdo.png");
+    -fx-background-size: auto;
+}
+
+.stackpaneTerrenoSeleccionado {
+    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-width: 1px;
 }

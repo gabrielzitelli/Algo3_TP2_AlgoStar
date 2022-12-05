@@ -7,13 +7,20 @@ import org.json.simple.JSONObject;
 
 public class ConvertidorJSON {
 
+    //Para casilla
     public static String SUPERFICIE = "superficie";
     public static String RECURSO = "recurso";
     public static String CARGA = "carga";
     public static String MOHO = "moho";
     public static String OCUPABLE = "ocupable";
-    public static String ESTADO = "estado"
-;
+    public static String ESTADO = "estado";
+    public static String VIDA = "vida";
+    public static String ESCUDO = "escudo";
+
+    public static String IMPERIO = "imperio";
+    public static String NOMBRE = "nombre";
+    public static String COLOR = "color";
+
 
     public static JSONObject convertirAJSON(Object objeto){
 

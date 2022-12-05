@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Ataque.DanioZangano;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -20,7 +19,6 @@ public class Zangano extends UnidadZerg {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.mineralDelImperio = null;
-        this.danio = new DanioZangano();
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 0;
         this.costoGas = 0;

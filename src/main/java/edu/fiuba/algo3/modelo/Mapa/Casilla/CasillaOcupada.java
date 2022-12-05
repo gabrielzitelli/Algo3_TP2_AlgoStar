@@ -36,7 +36,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg) {
-        throw new ErrorPosicionOcupada();
+        throw new ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada();
     }
 
     public Casilla desconstruirEdificio(Coordenada coordenada) {
@@ -78,9 +78,6 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Casilla moverUnidadHacia(Casilla destino) {
-        if (this.ocupable == null)
-            throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
-
         return destino.colocarUnidad((Unidad) this.ocupable);
     }
 

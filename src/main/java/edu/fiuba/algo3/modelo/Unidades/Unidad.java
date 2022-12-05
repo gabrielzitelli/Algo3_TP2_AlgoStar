@@ -114,7 +114,7 @@ public abstract class Unidad implements Ocupable {
           return this.coordenada;
      }
      public String toString() {
-          return identificador;
+          return identificador + this.vida.toString();
      }
 
      public boolean esDeEsteTipo(Class claseAAverificar){

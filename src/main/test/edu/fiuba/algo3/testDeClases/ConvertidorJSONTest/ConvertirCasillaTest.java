@@ -26,7 +26,7 @@ public class ConvertirCasillaTest {
 
         JSONObject obj = ConvertidorJSON.convertirAJSON(casilla);
 
-        assertEquals("ninguno", obj.get("ocupable"));
+        assertEquals("ninguno", obj.get(ConvertidorJSON.OCUPABLE));
     }
     @Test
     public void test02conviertoUnaCasillaOcupadaConUnEdificioAJSON() {
@@ -39,8 +39,9 @@ public class ConvertirCasillaTest {
 
         JSONObject obj = ConvertidorJSON.convertirAJSON(casilla);
 
-        assertEquals("criadero", obj.get("ocupable"));
-        assertEquals("en_construccion", obj.get("estado"));
+        assertEquals("criadero", obj.get(ConvertidorJSON.OCUPABLE));
+        assertEquals("en_construccion", obj.get(ConvertidorJSON.ESTADO));
+        assertEquals("500", obj.get(ConvertidorJSON.VIDA));
     }
     @Test
     public void test03conviertoUnaCasillaOcupadaConUnaUnidadAJSON() {
@@ -54,7 +55,23 @@ public class ConvertirCasillaTest {
 
         JSONObject obj = ConvertidorJSON.convertirAJSON(casilla);
 
-        assertEquals("zealot", obj.get("ocupable"));
-        assertEquals("gas", obj.get("recurso"));
+        assertEquals("zealot", obj.get(ConvertidorJSON.OCUPABLE));
+        assertEquals("gas", obj.get(ConvertidorJSON.RECURSO));
+    }
+    @Test
+    public void test04conviertoUnaCasillaOcupadaConUnaUnidadAJSON() {
+        Mapa mapa = Mapa.obtener();
+        mapa.reiniciarMapa();
+        Coordenada coordenada = new Coordenada(0,0);
+
+        mapa.colocarUnaUnidad(new Zealot(), coordenada);
+        mapa.colocarMaterial(new GasRecolectable(), coordenada);
+        Casilla casilla = mapa.obtenerCasilla(coordenada);
+
+        JSONObject obj = ConvertidorJSON.convertirAJSON(casilla);
+
+        assertEquals("zealot", obj.get(ConvertidorJSON.OCUPABLE));
+        assertEquals("100", obj.get(ConvertidorJSON.VIDA));
+        assertEquals("60", obj.get(ConvertidorJSON.ESCUDO));
     }
 }

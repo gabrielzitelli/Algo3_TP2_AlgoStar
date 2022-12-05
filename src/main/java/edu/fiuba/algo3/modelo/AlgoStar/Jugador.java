@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.AlgoStar;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoColor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoImperio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoNombre;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorELNombreDelJugadorDebeSerMayorA6Caracteres;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElNombreDelJugadorDebeSerMayorA6Caracteres;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 
 public class Jugador {
@@ -22,7 +22,7 @@ public class Jugador {
 
     private void verificarLargoDeNombre(String nombre) {
         if (nombre.length() < largoMinimoNombre)
-            throw new ErrorELNombreDelJugadorDebeSerMayorA6Caracteres();
+            throw new ErrorElNombreDelJugadorDebeSerMayorA6Caracteres();
     }
 
     public void verificarRespectoDe(Jugador jugador) {
@@ -45,9 +45,11 @@ public class Jugador {
     public String conseguirNombre() {
         return nombre;
     }
+
     public String conseguirColor() {
         return color;
     }
+
     public String toString() {
         return "imperio " + imperio.toString() + " nombre " + nombre + " color " +  color;
     }

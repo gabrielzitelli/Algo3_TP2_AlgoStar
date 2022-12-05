@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.testDeClases.unidadesTest;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorLaUnidadNoPuedeAtacarFueraDeSuRango;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadTerrestre;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
@@ -73,7 +75,7 @@ public class AmoSupremoTest {
         elMapa.colocarUnaUnidad(unAmoSupremo, coordenadaAtacante);
         elMapa.colocarUnaUnidad(unaUnidadTerrestre, coordenadaAtacado);
 
-        assertThrows(ErrorUnidadNoPuedeAtacar.class,
+        assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
 
@@ -89,7 +91,7 @@ public class AmoSupremoTest {
         elMapa.colocarUnaUnidad(unAmoSupremo, coordenadaAtacante);
         elMapa.colocarUnaUnidad(unaUnidadAerea, coordenadaAtacado);
 
-        assertThrows(ErrorUnidadNoPuedeAtacar.class,
+        assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
 

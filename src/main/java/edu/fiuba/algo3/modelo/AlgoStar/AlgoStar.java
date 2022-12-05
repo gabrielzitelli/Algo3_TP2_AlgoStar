@@ -11,6 +11,8 @@ public class AlgoStar {
     private AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
     private Turno turno;
 
+    private int cantidadDeTurnos = 0;
+
     public void asignarJugador(String nombre, String color, Imperio imperio) {
         jugadores.agregarJugador(new Jugador(nombre, color, imperio));
     }
@@ -30,6 +32,7 @@ public class AlgoStar {
 
     public void terminarTurno() {
         turno = turno.terminarTurno();
+        cantidadDeTurnos++;
     }
 
     public boolean partidaTerminada() {
@@ -40,6 +43,10 @@ public class AlgoStar {
         return turno.jugadorActual();
     }
 
+    public String conseguirStringJugadorActual() {
+        return turno.jugadorActual().toString();
+    }
+
     public Ocupable conseguirOcupableEn(Coordenada coordenada) {
         Ocupable ocupable = Mapa.obtener().obtenerOcupable(coordenada);
 
@@ -47,5 +54,9 @@ public class AlgoStar {
             throw new ErrorJugadorNoPuedeAccederOcupableEnemigo();
 
         return ocupable;
+    }
+
+    public int turnoActual() {
+        return cantidadDeTurnos;
     }
 }

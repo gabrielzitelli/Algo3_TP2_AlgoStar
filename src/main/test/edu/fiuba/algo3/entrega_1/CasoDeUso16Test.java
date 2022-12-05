@@ -75,7 +75,7 @@ public class CasoDeUso16Test {
         unZangano.setDepositoRecurso(mineralDelImperio);
         elMapa.construirEdificio(new NexoMineral(mineralDelImperio), coordenada);
 
-        assertThrows(ErrorPosicionOcupada.class, () ->
+        assertThrows(ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada.class, () ->
                 elMapa.colocarUnidadZerg(unZangano, coordenada));
     }
 }

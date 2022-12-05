@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.testDeClases.unidadesTest;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorLaUnidadNoPuedeAtacarFueraDeSuRango;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadTerrestre;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
@@ -37,7 +39,7 @@ public class ZanganoTest {
         elMapa.colocarUnaUnidad(unZangano, coordenadaAtacante);
         elMapa.colocarUnaUnidad(otroZangano, coordenadaAtacado);
 
-        assertThrows(ErrorUnidadNoPuedeAtacar.class,
+        assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
 
@@ -53,7 +55,7 @@ public class ZanganoTest {
         elMapa.colocarUnaUnidad(unZangano, coordenadaAtacante);
         elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacado);
 
-        assertThrows(ErrorUnidadNoPuedeAtacar.class,
+        assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
 }

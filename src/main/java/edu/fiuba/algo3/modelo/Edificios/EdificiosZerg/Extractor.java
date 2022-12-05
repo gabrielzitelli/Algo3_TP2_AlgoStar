@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNoSePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
@@ -52,7 +52,7 @@ public class Extractor extends EdificioZerg {
 
     public void contratarZangano(Unidad zanganoAContratar){
         if (!zanganoAContratar.esIgualA(new Zangano()))
-            throw new ErrorEstaUnidadNosePuedeContratar();
+            throw new ErrorEstaUnidadNoSePuedeContratar();
 
         estadoContratador.contratar(zanganoAContratar, zanganosEmpleados);
     }

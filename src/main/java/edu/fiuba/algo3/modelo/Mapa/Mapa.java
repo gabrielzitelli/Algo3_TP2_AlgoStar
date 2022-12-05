@@ -1,11 +1,8 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
+import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasCasillasLibresEnElMapa;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
@@ -390,9 +387,6 @@ public class Mapa {
     }
 
     public boolean estaDentroDeRango(Coordenada coordenada, Casilla casillaAtacada, int rangoDeAtaque) {
-        if (rangoDeAtaque == 0)
-            throw new ErrorUnidadNoPuedeAtacar();
-
         LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
         return casillas.contains(casillaAtacada);
     }
