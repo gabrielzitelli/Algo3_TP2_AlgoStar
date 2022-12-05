@@ -9,6 +9,7 @@ import java.util.Queue;
 public class AdministradorDeJugadores {
 
     private Queue<Jugador> jugadores = new LinkedList<>();
+    private LinkedList<Jugador> todosLosJugadores =  new LinkedList<>();
     private final int MAXIMO_JUGADORES = 2;
 
     public void agregarJugador(Jugador jugadorNuevo) {
@@ -17,6 +18,7 @@ public class AdministradorDeJugadores {
 
         revisarJugador(jugadorNuevo);
         jugadores.add(jugadorNuevo);
+        todosLosJugadores.add(jugadorNuevo);
     }
 
     public String[] jugadoresEnString(){
@@ -38,7 +40,7 @@ public class AdministradorDeJugadores {
     }
 
     public void inicializarBases() {
-        for (Jugador jugador : jugadores) {
+        for (Jugador jugador : todosLosJugadores) {
             jugador.inicializarAsentamientoPrimerTurno();
         }
     }
