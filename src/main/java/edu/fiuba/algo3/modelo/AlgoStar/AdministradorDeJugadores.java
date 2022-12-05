@@ -58,8 +58,11 @@ public class AdministradorDeJugadores {
     }
 
     public void prepararParaRevancha() {
-        for (Jugador jugador : jugadores) {
+        // Renuevo la cola de jugadores directamente desde una nueva
+        jugadores = new LinkedList<>();
+        for (Jugador jugador : todosLosJugadores) {
             jugador.prepararparaRevancha();
+            jugadores.add(jugador);
         }
     }
 }
