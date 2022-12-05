@@ -22,6 +22,8 @@ public class RevanchaControlador extends Controlador {
 
     @FXML
     public void empezarRevancha(ActionEvent event) throws IOException {
+        App.algoStar.revancha();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/finDePartidaVista.fxml"));
 
         Stage stage = obtenerStageActual(event);
