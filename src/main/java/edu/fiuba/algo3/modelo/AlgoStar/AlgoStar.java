@@ -59,4 +59,16 @@ public class AlgoStar {
     public int turnoActual() {
         return cantidadDeTurnos;
     }
+    public void revancha(){
+        if(this.partidaTerminada()){
+            this.prepararJugadores();
+            Mapa elMapa = Mapa.obtener();
+            elMapa.prepararMapaParaRevancha();
+            this.empezarJuego();
+        }
+    }
+
+    private void prepararJugadores() {
+        jugadores.prepararParaRevancha();
+    }
 }

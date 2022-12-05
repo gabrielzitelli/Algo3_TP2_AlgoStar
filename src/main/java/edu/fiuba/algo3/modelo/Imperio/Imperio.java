@@ -191,4 +191,6 @@ public abstract class Imperio {
     public ArrayList<Unidad> dameLaListaUnidades(){
         return unidades;
     }
+
+    public abstract void prepararParaRevancha();
 }

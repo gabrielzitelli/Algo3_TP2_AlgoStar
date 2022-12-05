@@ -72,4 +72,14 @@ public class Protoss extends Imperio{
         Asimilador asimilador = new Asimilador(this.gasDelImperio);
         this.construirEdificio(asimilador, coordenada);
     }
+
+    @Override
+    public void prepararParaRevancha(){
+        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        this.gasDelImperio = new Gas(0);
+        this.poblacion = new Suministro(0);
+        this.edificios = new LinkedList<>();
+        this.fabricasDisponibles = new FabricasDisponibles();
+        this.unidades = new ArrayList<>();
+    }
 }

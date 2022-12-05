@@ -227,4 +227,121 @@ public class AlgoStarTest {
         assertTrue(algoStar.partidaTerminada());
         assertEquals(algoStar.conseguirJugadorActual().conseguirNombre(), primerJugador);
     }
+
+    @Test
+    public void test10SeIniciaUnaPartidaSeGanaYsePuedeJugarUnaRevancha() {
+        /*
+         * Empiezo una partida a traves de algo star, luego teletransporto un dragon
+         * hacia la base Zerg y la destruyo
+         */
+
+        Mapa elMapa = Mapa.obtener();
+
+        AlgoStar algoStar = new AlgoStar();
+
+        algoStar.asignarJugador("lalala01", "rojo", new Protoss());
+        algoStar.asignarJugador("XZangano", "azul", new Zerg());
+
+        algoStar.empezarJuego();
+
+        // La partida no esta terminada
+        assertFalse(algoStar.partidaTerminada());
+
+        Casilla casillaBase = elMapa.obtenerVolcanBaseLejanaPrimeraMitad();
+        Coordenada coordenadaBase = casillaBase.obtenerCoordenada();
+        Coordenada coordenadaAsentamientoZerg = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
+
+        /*
+         * En la coordenada coordenadaAsentamientoZerg hay un criadero, que es el unico edificio de los zergs
+         */
+
+        int coordenadaXAsentamientoZerg = coordenadaAsentamientoZerg.getCoordenadaX();
+        int coordenadaYAsentamientoZerg = coordenadaAsentamientoZerg.getCoordenadaY();
+
+        Coordenada coordenadaDragon = new Coordenada(coordenadaXAsentamientoZerg, coordenadaYAsentamientoZerg - 1);
+
+        Unidad unDragon = new Dragon();
+
+        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+
+        for (int i = 0; i < 25; i++) {
+            elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
+            unDragon.pasarTurno();
+        }
+
+        algoStar.terminarTurno();
+
+        // Despues del ataque al unico edificio zerg, la partida se termino
+        assertTrue(algoStar.partidaTerminada());
+
+        algoStar.revancha();
+
+        // La partida no esta terminada
+        assertFalse(algoStar.partidaTerminada());
+    }
+    @Test
+    public void test11SeIniciaUnaPartidaSeGanaYsePuedeJugarUnaRevancha() {
+        /*
+         * Empiezo una partida a traves de algo star, luego teletransporto un dragon
+         * hacia la base Zerg y la destruyo
+         */
+
+        Mapa elMapa = Mapa.obtener();
+
+        AlgoStar algoStar = new AlgoStar();
+
+        algoStar.asignarJugador("lalala01", "rojo", new Protoss());
+        algoStar.asignarJugador("XZangano", "azul", new Zerg());
+
+        algoStar.empezarJuego();
+
+        Casilla casillaBase = elMapa.obtenerVolcanBaseLejanaPrimeraMitad();
+        Coordenada coordenadaBase = casillaBase.obtenerCoordenada();
+        Coordenada coordenadaAsentamientoZerg = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
+
+        /*
+         * En la coordenada coordenadaAsentamientoZerg hay un criadero, que es el unico edificio de los zergs
+         */
+
+        int coordenadaXAsentamientoZerg = coordenadaAsentamientoZerg.getCoordenadaX();
+        int coordenadaYAsentamientoZerg = coordenadaAsentamientoZerg.getCoordenadaY();
+
+        Coordenada coordenadaDragon = new Coordenada(coordenadaXAsentamientoZerg, coordenadaYAsentamientoZerg - 1);
+
+        Unidad unDragon = new Dragon();
+
+        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+
+        for (int i = 0; i < 25; i++) {
+            elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
+            unDragon.pasarTurno();
+        }
+
+        algoStar.terminarTurno();
+
+        algoStar.revancha();
+
+        // Hago los mismos movimientos que antes y la partida termina
+
+        casillaBase = elMapa.obtenerVolcanBaseLejanaPrimeraMitad();
+        coordenadaBase = casillaBase.obtenerCoordenada();
+        coordenadaAsentamientoZerg = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
+
+        coordenadaXAsentamientoZerg = coordenadaAsentamientoZerg.getCoordenadaX();
+        coordenadaYAsentamientoZerg = coordenadaAsentamientoZerg.getCoordenadaY();
+
+        coordenadaDragon = new Coordenada(coordenadaXAsentamientoZerg, coordenadaYAsentamientoZerg - 1);
+
+        Dragon otroDragon = new Dragon();
+
+        elMapa.colocarUnaUnidad(otroDragon, coordenadaDragon);
+
+        for (int i = 0; i < 25; i++) {
+            elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
+            otroDragon.pasarTurno();
+        }
+
+        algoStar.terminarTurno();
+
+    }
 }

@@ -166,6 +166,14 @@ public class Mapa {
     public void reiniciarMapa(){
         this.inicializarMapaConCasillasVacias();
     }
+    /**
+     * Reinicia todas las bases del mapa, y lo deja listo como para una revancha
+     */
+    public void prepararMapaParaRevancha(){
+        this.inicializarMapaConCasillasVacias();
+        this.inicializarBases();
+        this.inicializarTerrenoEspacial();
+    }
 
     public void recolocarBasesIniciales(){
         this.reiniciarMapa();
