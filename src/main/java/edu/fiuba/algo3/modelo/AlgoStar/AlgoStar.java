@@ -58,7 +58,7 @@ public class AlgoStar {
     public void revancha(){
         if(this.partidaTerminada()){
             Mapa elMapa = Mapa.obtener();
-            elMapa.reiniciarMapa();
+            elMapa.prepararMapaParaRevancha();
             this.empezarJuego();
         }
     }
