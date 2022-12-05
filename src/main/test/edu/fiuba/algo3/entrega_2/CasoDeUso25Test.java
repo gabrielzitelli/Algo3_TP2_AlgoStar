@@ -17,7 +17,7 @@ public class CasoDeUso25Test {
         algoStar.asignarJugador("miguel", "rojo", new Zerg());
         algoStar.asignarJugador("marcos", "azul", new Protoss());
 
-        assertThrows(ErrorSoloPuedenJugarDosPersonasAlMismoTiempo.class, () ->
+        assertThrows(ErrorNoPuedenJugarMasPersonasEnLaMismaPartida.class, () ->
                 algoStar.asignarJugador("sofia16", "verde", new Zerg()));
     }
 
@@ -55,7 +55,7 @@ public class CasoDeUso25Test {
     public void test05NoPuedoAsignarUnJugadorConUnNombreDeMenosDe6Caracteres() {
         AlgoStar algoStar = new AlgoStar();
 
-        assertThrows(ErrorELNombreDelJugadorDebeSerMayorA6Caracteres.class ,
+        assertThrows(ErrorElNombreDelJugadorDebeSerMayorA6Caracteres.class ,
                 () -> algoStar.asignarJugador("aia", "purpura", new Protoss()));
     }
 }

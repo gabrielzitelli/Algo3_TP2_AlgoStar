@@ -3,7 +3,7 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNoSePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
@@ -143,7 +143,7 @@ public class ExtractorTest {
         for(int i = 0; i < 6; i++)
             unExtractor.pasarTurno();
 
-        assertThrows(ErrorEstaUnidadNosePuedeContratar.class,
+        assertThrows(ErrorEstaUnidadNoSePuedeContratar.class,
                 () -> unExtractor.contratarZangano(new Zerling()));
     }
 }

@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo.Edificios;
 
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidadades;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidadades;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidades;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidades;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -80,11 +80,11 @@ public abstract class Edificio implements Ocupable {
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
-        throw new ErrorElEdificioNoPuedeCrearUnidadades();
+        throw new ErrorElEdificioNoPuedeCrearUnidades();
     }
 
     public void contratarUnidad(Unidad unidad) {
-        throw new ErrorElEdificioNoPuedeContratarUnidadades();
+        throw new ErrorElEdificioNoPuedeContratarUnidades();
     }
 
     public void modificarPoblacion(Suministro poblacion){}

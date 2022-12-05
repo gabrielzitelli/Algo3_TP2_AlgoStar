@@ -9,6 +9,5 @@ public class Atacante implements Atacar{
     @Override
     public void atacar(Casilla casillaAAtacar, DanioUnidad unDanio){
         casillaAAtacar.recibirAtaque(new Ataque(unDanio));
-        //NADA
     }
 }

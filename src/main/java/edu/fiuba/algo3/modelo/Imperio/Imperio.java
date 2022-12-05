@@ -130,12 +130,6 @@ public abstract class Imperio {
         return mapa.obtenerEdificio(coordenada);
     }
 
-    //TODO No lo hice todavia porque no vamos a usarlo, hay que hacerlo
-    /*public Unidad conseguirUnidad(Coordenada coordenada){
-        Mapa mapa = Mapa.obtener();
-        return mapa.obtenerUnidad(coordenada);
-    }*/
-
     public void abastecerDeRecursos() {
         //Metodo De inicializacion Utilitario
         mineralesDelImperio = new Mineral(5000);
@@ -170,10 +164,6 @@ public abstract class Imperio {
         return ( unaCantidad == poblacion.obtenerSuministro() );
     }
 
-    public Suministro obtenerSuministro(){
-        return this.poblacion;
-    }
-
     public boolean partidaTerminada(){
         return (this.edificios.size() == 0);
     }
@@ -182,8 +172,6 @@ public abstract class Imperio {
 
         return (unaCantidad == poblacion.obtenerPoblacion());
     }
-
-    //TODO Sacar, implementar algoritmo del mapa para obtener unidad como obtener Edificio
 
     /**
      * Provisorio porque implementar algoritmo del mapa para obtener unidad como obtener Edificio
