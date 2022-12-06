@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
@@ -26,6 +27,12 @@ public class EstadoCreadorEnConstruccion extends EstadoCreador {
             return new EstadoCreadorConstruido(this.fabricasDisponibles, this.coordenadaEdificioCreador);
 
         return this;
+    }
+
+    public void verificarQueSePuedeFabricar(Fabrica unaFabrica){
+    }
+
+    public void comprobarRequisitosMaterialesVerificacion(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio){
     }
 
     public void colocarCoordenadaAlGestorDeCrianza(Coordenada coordenadaEdificioCreador){

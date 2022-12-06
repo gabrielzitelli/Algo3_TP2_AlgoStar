@@ -58,5 +58,19 @@ public class CriaderoVista extends OcupableVista {
         botonCrearHidralisco.setOnAction( event -> esteCriadero.crearUnidad(new FabricaHidralisco()));
         botonCrearMutalisco.setOnAction( event -> esteCriadero.crearUnidad(new FabricaMutalisco()));
         botonCrearAmoSupremo.setOnAction( event -> esteCriadero.crearUnidad(new FabricaAmoSupremo()));
+
+        prepararHabilitacionDeBoton(botonCrearZangano, new FabricaZangano(), esteCriadero);
+        prepararHabilitacionDeBoton(botonCrearZerling, new FabricaZerling(), esteCriadero);
+        prepararHabilitacionDeBoton(botonCrearHidralisco, new FabricaHidralisco(), esteCriadero);
+        prepararHabilitacionDeBoton(botonCrearMutalisco, new FabricaMutalisco(), esteCriadero);
+        prepararHabilitacionDeBoton(botonCrearAmoSupremo, new FabricaAmoSupremo(), esteCriadero);
+    }
+
+    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, Criadero unCriadero){
+        try{
+            unCriadero.estaAptaUnidadParaConstruir(unaFabrica);
+        } catch (RuntimeException e){
+            boton.setDisable(true);
+        }
     }
 }

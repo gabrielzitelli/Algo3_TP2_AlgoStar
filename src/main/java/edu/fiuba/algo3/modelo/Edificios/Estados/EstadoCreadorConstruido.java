@@ -28,6 +28,16 @@ public class EstadoCreadorConstruido extends EstadoCreador {
         gestorDeCrianza.actualizar();
         return this;
     }
+
+    public void comprobarRequisitosMaterialesVerificacion(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio){
+        ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
+        Recurso mineralAConsumir = listaDeRequisitos.get(0);
+        Recurso gasAconsumir = listaDeRequisitos.get(1);
+
+        if (!mineralDelImperio.tienesMasQue(mineralAConsumir) || !gasDelImperio.tienesMasQue(gasAconsumir))
+            throw new ErrorCantidadDeRecursoInsuficiente();
+    }
+
     private void comprobarRequisitosMateriales(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio){
         ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
@@ -53,7 +63,7 @@ public class EstadoCreadorConstruido extends EstadoCreador {
         gestorDeCrianza.agregarUnidad(unidad, unidades);
     }
 
-    private void verificarQueSePuedeFabricar(Fabrica unaFabrica) {
+    public void verificarQueSePuedeFabricar(Fabrica unaFabrica) {
         if (!this.fabricasDisponibles.verificar(unaFabrica))
             throw new ErrorNoSeCumplenLosRequisitosDeEstaUnidad();
     }

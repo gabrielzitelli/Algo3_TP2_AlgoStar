@@ -195,15 +195,15 @@ public class Mapa {
         return distanciaEnX + distanciaEnY;
     }
 
-    private boolean estaCoordenadaEnAnillo(Coordenada coordenadaAVerificar, Coordenada centroAnillo, int distanciaDesdeElCentro ){
+    /*private boolean estaCoordenadaEnAnillo(Coordenada coordenadaAVerificar, Coordenada centroAnillo, int distanciaDesdeElCentro ){
         int distanciaEnX = abs( coordenadaAVerificar.getCoordenadaX() - centroAnillo.getCoordenadaX() );
         int distanciaEnY = abs( coordenadaAVerificar.getCoordenadaY() - centroAnillo.getCoordenadaY() );
 
-        if(distanciaEnY == distanciaDesdeElCentro && distanciaEnX == distanciaDesdeElCentro)
+        if(estaCoordenadaEnAnilloParteCircunferencial(coordenadaAVerificar, centroAnillo, distanciaDesdeElCentro))
             return true;
 
-        return estaCoordenadaEnAnilloParteCircunferencial(coordenadaAVerificar, centroAnillo, distanciaDesdeElCentro);
-    }
+        return distanciaEnY == distanciaDesdeElCentro && distanciaEnX == distanciaDesdeElCentro;
+    }*/
 
     private boolean estaCoordenadaEnAnilloParteCircunferencial(Coordenada coordenadaAVerificar, Coordenada coordenadaCentro, int distanciaDesdeElCentro ){
         int xCoordenadaFinal = coordenadaAVerificar.getCoordenadaX();
@@ -223,7 +223,7 @@ public class Mapa {
 
         for(int i = 0; i < tamanio; i++){
             for(int j = 0; j < tamanio; j++) {
-                if( estaCoordenadaEnAnillo( matriz[i][j].obtenerCoordenada(), centroAnillo, distanciaDesdeElCentro ) )
+                if( estaCoordenadaEnAnilloParteCircunferencial( matriz[i][j].obtenerCoordenada(), centroAnillo, distanciaDesdeElCentro ) )
                     casillasSobreElAnillo.add(matriz[i][j]);
             }
         }
@@ -248,6 +248,7 @@ public class Mapa {
 
             for(Casilla casillaCandidataParaColocar : casillasSobreUnAnillo){
                 try{
+                    casillaCandidataParaColocar.tieneEsteRecoletable(new NoRecolectable());
                     colocarUnaUnidad(unaUnidad, casillaCandidataParaColocar.obtenerCoordenada());
                     sePudoColocarUnidad = true;
                     break;

@@ -114,4 +114,10 @@ public class Criadero extends EdificioZerg {
     protected String obtenerEstado() {
         return estadoHabilitador.getEstado();
     }
+
+    public void estaAptaUnidadParaConstruir(Fabrica unaFabrica){
+        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabrica);
+        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabrica.crearUnidad(), mineralDelImperio, gasDelImperio);
+        estadoCreador.verificarQueSePuedeFabricar(unaFabrica);
+    }
 }

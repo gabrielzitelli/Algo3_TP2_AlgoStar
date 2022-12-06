@@ -51,6 +51,9 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
     public void estaAptoParaCrearse(Fabrica unaFabrica){
     }
 
+    public void estaAptoParaCrearseVerificacion(Fabrica unaFabrica){
+    }
+
     @Override
     public String getEstado() {
         return " estado en_construccion";

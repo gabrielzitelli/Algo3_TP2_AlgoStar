@@ -14,6 +14,10 @@ public abstract class Fabrica {
         unSuministro.agregarPoblacion(poblacionNecesaria);
     }
 
+    public void estasAptaVerificacion(Suministro unSuministro){
+        unSuministro.tenesCapacidad(poblacionNecesaria);
+    }
+
     public static int obtenerPoblacionNecesaria(){
         return poblacionNecesaria;
     }

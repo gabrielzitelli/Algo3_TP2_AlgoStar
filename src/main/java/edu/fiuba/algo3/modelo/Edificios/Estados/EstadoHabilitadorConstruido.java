@@ -36,6 +36,10 @@ public class EstadoHabilitadorConstruido implements EstadoHabilitador {
         unaFabrica.estasApta(poblacionImperio);
      }
 
+    public void estaAptoParaCrearseVerificacion(Fabrica unaFabrica){
+        unaFabrica.estasAptaVerificacion(poblacionImperio);
+    }
+
     @Override
     public String getEstado() {
         return " estado contruido";

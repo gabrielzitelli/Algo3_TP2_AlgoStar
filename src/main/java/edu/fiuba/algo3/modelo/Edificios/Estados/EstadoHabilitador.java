@@ -16,6 +16,7 @@ public interface EstadoHabilitador {
     void disminuirSuministro(int cantidadDisminucionSuministro);
 
     void estaAptoParaCrearse(Fabrica unaFabrica);
+    void estaAptoParaCrearseVerificacion(Fabrica unaFabrica);
 
     String getEstado();
 }

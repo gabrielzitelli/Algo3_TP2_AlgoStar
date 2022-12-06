@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public abstract class EstadoCreador {
     public void asignarFabricasDisponibles(FabricasDisponibles fabricasDisponibles) {
         this.fabricasDisponibles = fabricasDisponibles;
     }
+
+    public abstract void verificarQueSePuedeFabricar(Fabrica unaFabrica);
+    public abstract void comprobarRequisitosMaterialesVerificacion(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio);
 
     public abstract void colocarCoordenadaAlGestorDeCrianza(Coordenada coordenadaEdificioCreador);
 
