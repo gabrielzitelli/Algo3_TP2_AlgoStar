@@ -9,10 +9,12 @@ public class VidaConEscudo implements Vida{
     private double porcentajeDeRegeneracion = 0.15; //supuesto
     private int cantidadEscudo;
     private int capacidadEscudo;
+    private int capacidadVida;
 
     public VidaConEscudo(int cantidadVida, int cantidadEscudo){
         // Se settea la cantidad de vida y esucdo deseada
         this.cantidadVida = cantidadVida;
+        this.capacidadVida = cantidadVida;
         this.cantidadEscudo = cantidadEscudo;
         this.capacidadEscudo = cantidadEscudo;
     }
@@ -52,6 +54,7 @@ public class VidaConEscudo implements Vida{
 
     @Override
     public String toString() {
-        return " vida " + this.cantidadVida + " escudo " + this.cantidadEscudo;
+        return " vidaActual " + this.cantidadVida + " vidaMaxima " + this.capacidadVida + " escudoActual "
+                + this.cantidadEscudo + " escudoMaximo " + this.capacidadEscudo;
     }
 }

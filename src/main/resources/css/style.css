@@ -300,13 +300,13 @@
 }
 
 .bordeDerecha {
-    -fx-background-color: #000000;
+    -fx-background-color: #ffffff;
     -fx-background-image: url("../img/marcos/marcoBordeDerecho.png");
     -fx-background-size: auto;
 }
 
 .bordeIzquierda {
-    -fx-background-color: #000000;
+    -fx-background-color: #ffffff;
     -fx-background-image: url("../img/marcos/marcoBordeIzquierdo.png");
     -fx-background-size: auto;
 }
@@ -314,4 +314,22 @@
 .stackpaneTerrenoSeleccionado {
     -fx-border-color: rgba(255, 255, 255, 0.5);
     -fx-border-width: 1px;
+}
+
+.botonAdd {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 5px;
+    -fx-padding: 0 0 0 0;
+}
+
+.botonAdd:hover {
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 255), 10, 0, 0, 0);
+    -fx-border-radius: 5px;
+    -fx-padding: 0 0 0 0;
 }
