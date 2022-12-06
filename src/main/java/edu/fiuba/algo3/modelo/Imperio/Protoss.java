@@ -12,8 +12,8 @@ import java.util.LinkedList;
 public class Protoss extends Imperio{
 
     public Protoss() {
-        this.mineralesDelImperio = new Mineral(1000);
-        this.gasDelImperio = new Gas(1000);
+        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        this.gasDelImperio = new Gas(0);
         this.poblacion = new Suministro(0);
         this.edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
