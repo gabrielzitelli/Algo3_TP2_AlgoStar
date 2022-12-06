@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;

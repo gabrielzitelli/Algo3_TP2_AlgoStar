@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
+package edu.fiuba.algo3.modelo.Edificios.Fabricas;
 
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 

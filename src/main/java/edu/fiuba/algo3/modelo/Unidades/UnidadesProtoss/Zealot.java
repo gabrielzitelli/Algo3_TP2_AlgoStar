@@ -1,14 +1,11 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visibilidad;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visible;

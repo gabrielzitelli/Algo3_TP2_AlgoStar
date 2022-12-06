@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
+package edu.fiuba.algo3.modelo.Edificios.Fabricas;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.UnidadProtoss;
 

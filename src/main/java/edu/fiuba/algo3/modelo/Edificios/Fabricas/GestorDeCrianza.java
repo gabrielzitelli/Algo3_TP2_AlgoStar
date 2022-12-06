@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Edificios;
+package edu.fiuba.algo3.modelo.Edificios.Fabricas;
 
 import edu.fiuba.algo3.modelo.Mapa.Casilla.ConRevelar;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
