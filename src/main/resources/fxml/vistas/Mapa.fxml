@@ -83,21 +83,39 @@
             </Pane>
             <Pane prefHeight="362.0" prefWidth="257.0">
                <children>
-                  <Text fx:id="terrenoLabel" fill="WHITE" layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terreno" textAlignment="CENTER" wrappingWidth="217.41783905029297">
+                  <Text fx:id="debugCoordenadas" fill="WHITE" layoutX="11.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" textOrigin="CENTER" wrappingWidth="235.2061061859131">
                      <font>
                         <Font name="Century Gothic" size="12.413793563842773" />
                      </font>
                   </Text>
-                  <Text fx:id="recursoLabel" fill="WHITE" layoutX="13.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recurso" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                  <Text fx:id="cargaLabel" fill="WHITE" layoutX="15.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                  <Text fx:id="contaminadoLabel" fill="WHITE" layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contaminado" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                  <Text fx:id="libreLabel" fill="WHITE" layoutX="15.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="libre" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                  <Text fx:id="estadoLabel" fill="WHITE" layoutX="16.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" textAlignment="CENTER" wrappingWidth="219.08203125" />
-                  <Text fx:id="debugCoordenadas" fill="WHITE" layoutX="14.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text=" " textOrigin="CENTER" wrappingWidth="225.68895530700684">
-                     <font>
-                        <Font name="Century Gothic" size="12.413793563842773" />
-                     </font>
-                  </Text>
+                  <Pane id="paneInfoEdificio" fx:id="paneInfoEdificio" prefHeight="362.0" prefWidth="257.0" styleClass="paneInfoEdificio">
+                     <children>
+                        <Text id="textoNombreEdificio" fx:id="textoNombreEdificio" fill="WHITE" layoutX="11.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio" textAlignment="CENTER" wrappingWidth="234.8125343322754">
+                           <font>
+                              <Font name="Century Gothic" size="20.0" />
+                           </font>
+                        </Text>
+                        <ImageView id="imageviewEdificio" fx:id="imageviewEdificio" fitHeight="139.0" fitWidth="172.0" layoutX="43.0" layoutY="55.0" pickOnBounds="true" />
+                        <Text id="textoVida" fx:id="textoVida" fill="#00e41b" layoutX="11.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoVida" textAlignment="CENTER" wrappingWidth="235.64011001586914">
+                           <font>
+                              <Font name="Century Gothic" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text id="textoEscudo" fx:id="textoEscudo" fill="#2acdff" layoutX="11.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoEscudo" textAlignment="CENTER" wrappingWidth="235.64011001586914">
+                           <font>
+                              <Font name="Century Gothic" size="17.0" />
+                           </font>
+                        </Text>
+                        <Button id="botonEdificio1" fx:id="botonEdificio1" layoutX="19.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Button id="botonEdificio2" fx:id="botonEdificio2" layoutX="77.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Button id="botonEdificio3" fx:id="botonEdificio3" layoutX="135.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Button id="botonEdificio4" fx:id="botonEdificio4" layoutX="193.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Button id="botonEdificio5" fx:id="botonEdificio5" layoutX="19.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Button id="botonEdificio6" fx:id="botonEdificio6" layoutX="77.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Button id="botonEdificio7" fx:id="botonEdificio7" layoutX="135.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Button fx:id="botonEdificio8" layoutX="193.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                     </children>
+                  </Pane>
                </children>
             </Pane>
             <Pane prefHeight="72.0" prefWidth="257.0">

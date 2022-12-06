@@ -1,14 +1,10 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
-
-import java.util.ArrayList;
 
 public class Zerling extends UnidadZerg {
 

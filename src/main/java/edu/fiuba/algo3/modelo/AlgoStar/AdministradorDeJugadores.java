@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.AlgoStar;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorSoloPuedenJugarDosPersonasAlMismoTiempo;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedenJugarMasPersonasEnLaMismaPartida;
 
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Queue;
 
 public class AdministradorDeJugadores {
@@ -14,7 +13,7 @@ public class AdministradorDeJugadores {
 
     public void agregarJugador(Jugador jugadorNuevo) {
         if (jugadores.size() >= MAXIMO_JUGADORES)
-            throw new ErrorSoloPuedenJugarDosPersonasAlMismoTiempo();
+            throw new ErrorNoPuedenJugarMasPersonasEnLaMismaPartida();
 
         revisarJugador(jugadorNuevo);
         jugadores.add(jugadorNuevo);

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;

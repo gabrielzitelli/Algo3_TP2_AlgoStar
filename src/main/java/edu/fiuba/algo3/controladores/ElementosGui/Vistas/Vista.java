@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Vista {
 
@@ -23,6 +24,18 @@ public abstract class Vista {
             }
         }
         return sinVista;
+    }
+
+    protected String obtenerAtributoDeString(String stringFormateado, String tipoAtributo){
+        String[] tokensJugador = stringFormateado.split(" ");
+        String atributoDeseado = null;
+
+        for (int i = 0; i < tokensJugador.length; i++) {
+            if(Objects.equals(tokensJugador[i], tipoAtributo))
+                atributoDeseado = new String(tokensJugador[i + 1]);
+        }
+
+        return atributoDeseado;
     }
 
    public void renderAdentroDeImageView(ImageView imageView){

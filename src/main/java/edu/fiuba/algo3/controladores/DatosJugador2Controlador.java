@@ -5,7 +5,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.ColorItem;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoColor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoImperio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorDosJugadoresNoPuedenTenerElMismoNombre;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorELNombreDelJugadorDebeSerMayorA6Caracteres;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElNombreDelJugadorDebeSerMayorA6Caracteres;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -27,7 +27,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -215,7 +214,7 @@ public class DatosJugador2Controlador extends Controlador {
             this.mensajeError.setTextFill(Color.web("#940a00"));
             mostrarPaneError();
 
-        } else if (exception instanceof ErrorELNombreDelJugadorDebeSerMayorA6Caracteres) {
+        } else if (exception instanceof ErrorElNombreDelJugadorDebeSerMayorA6Caracteres) {
             this.mensajeError.setText("El nombre debe tener más de 6 caracteres");
             this.mensajeError.setTextFill(Color.web("#940a00"));
             mostrarPaneError();

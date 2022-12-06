@@ -1,16 +1,12 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.*;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

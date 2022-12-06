@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaAmoSupremo;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -12,15 +10,12 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CasoDeUso31Test {

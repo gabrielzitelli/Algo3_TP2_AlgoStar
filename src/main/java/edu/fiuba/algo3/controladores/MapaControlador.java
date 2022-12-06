@@ -12,17 +12,11 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
-import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,13 +25,14 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
@@ -51,28 +46,17 @@ public class MapaControlador extends Controlador {
 
     @FXML
     protected Canvas canvasPrincipal;
-    @FXML
-    protected Text terrenoLabel;
-    @FXML
-    protected Text recursoLabel;
-    @FXML
-    protected Text cargaLabel;
-    @FXML
-    protected Text contaminadoLabel;
-    @FXML
-    protected Text libreLabel;
-    @FXML
-    protected Text estadoLabel;
+    //@FXML
+    //protected Text libreLabel;
     @FXML
     protected Text debugCoordenadas;
     @FXML
     protected Button pasarTurnoBoton;
     @FXML
-    protected Button botonTest;
-    @FXML
     protected VBox bordeDerecha;
     @FXML
     protected VBox bordeIzquierda;
+
 
     /*=====================================================================================
      * Mapa y camara
@@ -95,8 +79,6 @@ public class MapaControlador extends Controlador {
     private final Tile seleccion = new Tile("marcos/32px/seleccion.png");
     private Coordenada coordenadaSeleccion;
     private final int tileWidth = 32;
-
-    private final Font fuente = Font.loadFont(Objects.requireNonNull(getClass().getResourceAsStream("/fonts/Retro Gaming.ttf")), 10);
 
     /*=====================================================================================
      * GameLoop
@@ -127,6 +109,35 @@ public class MapaControlador extends Controlador {
     @FXML
     private Text textoNombreJugador;
 
+    @FXML
+    protected Text textoNombreEdificio;
+    @FXML
+    protected ImageView imageviewEdificio;
+    @FXML
+    protected Text textoVida;
+    @FXML
+    protected Text textoEscudo;
+    @FXML
+    protected Pane paneInfoEdificio;
+
+    @FXML
+    protected Button botonEdificio1;
+    @FXML
+    protected Button botonEdificio2;
+    @FXML
+    protected Button botonEdificio3;
+    @FXML
+    protected Button botonEdificio4;
+    @FXML
+    protected Button botonEdificio5;
+    @FXML
+    protected Button botonEdificio6;
+    @FXML
+    protected Button botonEdificio7;
+    @FXML
+    protected Button botonEdificio8;
+    protected Button[] arrayBotonesEdificio;
+
     /*==========  Borde Izquierdo   ==========*/
     @FXML
     private ImageView imagenTerrenoSeleccionado;
@@ -155,26 +166,22 @@ public class MapaControlador extends Controlador {
     public void initialize(URL location, ResourceBundle resources) {
         inicializarMapa();
         pasarTurnoBoton.setFocusTraversable(false);
-
         App.algoStar.empezarJuego();
-
-        terrenoLabel.setFont(fuente);
-        terrenoLabel.setFill(Color.GREEN);
-        recursoLabel.setFont(fuente);
-        recursoLabel.setFill(Color.GREEN);
-        cargaLabel.setFont(fuente);
-        cargaLabel.setFill(Color.GREEN);
-        terrenoLabel.setFont(fuente);
-        contaminadoLabel.setFill(Color.GREEN);
-        terrenoLabel.setFont(fuente);
-        contaminadoLabel.setFill(Color.GREEN);
-        libreLabel.setFont(fuente);
-        libreLabel.setFill(Color.GREEN);
-        estadoLabel.setFont(fuente);
-        estadoLabel.setFill(Color.GREEN);
 
         actualizarColorJugador(algoStar.conseguirStringJugadorActual());
         actualizarInfoBordeDerecho();
+
+        //Agrego efecto al imageview
+        DropShadow efectorBordePNGBlanco = new DropShadow( 10, Color.WHITE );
+        imageviewEdificio.setEffect(efectorBordePNGBlanco);
+
+        arrayBotonesEdificio = new Button[]{botonEdificio1, botonEdificio2, botonEdificio3, botonEdificio4,
+                                            botonEdificio5, botonEdificio6, botonEdificio7, botonEdificio8};
+
+        for(Button botonEdificio : arrayBotonesEdificio){
+            botonEdificio.setVisible(false);
+            botonEdificio.setDisable(true);
+        }
     }
 
     public void inicializar() {
@@ -372,31 +379,47 @@ public class MapaControlador extends Controlador {
                         posX = tamanioMapa - 1;
                     coordenadaSeleccion = new Coordenada(posX, posY);
                     debugCoordenadas.setText("X " + posX + " , Y " + posY);
-                    obtenerInfoCasilla(coordenadaSeleccion);
                     actualizarInfoBordeIzquierdo(coordenadaSeleccion);
+                    actualizarPaneOcupable(coordenadaSeleccion);
                 }
             }
         };
     }
 
-    private void obtenerInfoCasilla(Coordenada coordenada) {
+    private void actualizarPaneOcupable(Coordenada coordenada){
+
+        for(Button botonEdificio : arrayBotonesEdificio){
+            botonEdificio.setVisible(false);
+            botonEdificio.setDisable(true);
+        }
+
         Casilla casilla = mapa.obtenerCasilla(coordenada);
         JSONObject casillaJson = ConvertidorJSON.convertirAJSON(casilla);
+        String tipoOcupable = OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE)).getInfo();
 
-        Vista superficieVista = SuperficieVista.obtenerSuperficie(casillaJson.get(ConvertidorJSON.SUPERFICIE));
-        terrenoLabel.setText("Terreno: " + superficieVista.getInfo());
+        if(Objects.equals(tipoOcupable, "Libre"))
+            actualizarPaneOcupableConImperio();
+        else
+            actualizarPaneOcupableConOcupable(coordenada, (OcupableVista) OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE)));
+    }
 
-        Vista recursoVista = RecursoVista.obtenerRecurso(casillaJson.get(ConvertidorJSON.RECURSO));
-        recursoLabel.setText("Recurso: " + recursoVista.getInfo());
+    public void actualizarPaneOcupableConOcupable(Coordenada coordenada, OcupableVista ocupableVista){
+        paneInfoEdificio.setVisible(true);
 
-        Vista cargaVista = CargaVista.obtenerCarga(casillaJson.get(ConvertidorJSON.CARGA));
-        cargaLabel.setText("Carga del terreno: " + cargaVista.getInfo());
+        textoNombreEdificio.setText(ocupableVista.getInfo());
+        ocupableVista.renderAdentroDeImageView(imageviewEdificio);
 
-        Vista mohoVista = MohoVista.obtenerMoho(casillaJson.get(ConvertidorJSON.MOHO));
-        contaminadoLabel.setText("Contaminado con: " + mohoVista.getInfo());
+        String stringOcupable = mapa.obtenerOcupable(coordenada).toString();
+        String vidaActual = obtenerAtributoImperio(stringOcupable, "vidaActual");
+        String vidaMaxima = obtenerAtributoImperio(stringOcupable, "vidaMaxima");
+        textoVida.setText(vidaActual + "/" + vidaMaxima);
+        ocupableVista.aplicarTextoEscudo(textoEscudo, stringOcupable);
 
-        Vista ocupableVista = OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE));
-        libreLabel.setText("'" + ocupableVista.getInfo() + "'");
+        ocupableVista.manejarBotones(arrayBotonesEdificio);
+    }
+
+    public void actualizarPaneOcupableConImperio(){
+        paneInfoEdificio.setVisible(false);
     }
 
     public EventHandler<? super KeyEvent> pressKey() {
@@ -504,7 +527,7 @@ public class MapaControlador extends Controlador {
 
         //Actualizo el gas del jugador
         String gasImperio = obtenerAtributoImperio(algoStar.conseguirJugadorActual().conseguirImperio().recursosToString(), "gas");
-        textoCantGas.setText(mineralesImperio);
+        textoCantGas.setText(gasImperio);
 
         //Actualizo la poblacion y suministro del jugador
         String poblacionImperio = obtenerAtributoImperio(algoStar.conseguirJugadorActual().conseguirImperio().recursosToString(), "poblacion");
@@ -536,7 +559,7 @@ public class MapaControlador extends Controlador {
     }
 
     private void setPantallaCompleta() {
-        Stage stageActual = this.obtenerStageActual(estadoLabel);
+        Stage stageActual = this.obtenerStageActual(pasarTurnoBoton);
         stageActual.setFullScreen(!stageActual.isFullScreen());
     }
 

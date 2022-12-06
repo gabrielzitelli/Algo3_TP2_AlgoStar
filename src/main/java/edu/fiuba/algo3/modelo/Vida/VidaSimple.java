@@ -30,6 +30,6 @@ public class VidaSimple implements Vida{
 
     @Override
     public String toString() {
-        return " vida " + this.cantidad;
+        return " vidaActual " + this.cantidad + " vidaMaxima " + this.capacidad;
     }
 }

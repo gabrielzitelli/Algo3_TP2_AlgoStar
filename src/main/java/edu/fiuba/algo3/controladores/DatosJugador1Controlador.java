@@ -2,7 +2,7 @@ package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.ColorItem;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorELNombreDelJugadorDebeSerMayorA6Caracteres;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorElNombreDelJugadorDebeSerMayorA6Caracteres;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -25,7 +25,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DatosJugador1Controlador extends Controlador{
@@ -165,7 +164,7 @@ public class DatosJugador1Controlador extends Controlador{
             this.mensajeError.setText("Datos Validos");
             this.mensajeError.setTextFill(Color.web("#00690c"));
 
-        }catch (ErrorELNombreDelJugadorDebeSerMayorA6Caracteres e) {
+        }catch (ErrorElNombreDelJugadorDebeSerMayorA6Caracteres e) {
             this.mensajeError.setText("El nombre debe tener más de 6 caracteres");
             this.mensajeError.setTextFill(Color.web("#940a00"));
             mostrarPaneError();

@@ -2,7 +2,9 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 

@@ -1,14 +1,10 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaScout;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Ataque.*;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
-
-import java.util.ArrayList;
 
 public class Scout extends UnidadProtoss {
 

@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
