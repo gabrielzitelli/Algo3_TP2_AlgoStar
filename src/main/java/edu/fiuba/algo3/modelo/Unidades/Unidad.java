@@ -21,8 +21,8 @@ public abstract class Unidad implements Ocupable {
      protected int rangoDeAtaque;
      protected DanioUnidad danio;
      protected Vida vida;
-     protected int costoMineral;
-     protected int costoGas;
+     protected int costoMineral = 0;
+     protected int costoGas = 0;
      protected String identificador;
 
      protected boolean estadoMuerta = false;
@@ -117,7 +117,7 @@ public abstract class Unidad implements Ocupable {
           return this.coordenada;
      }
      public String toString() {
-          return identificador + this.vida.toString();
+          return identificador + " " + this.vida.toString() + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
      }
 
      public boolean esDeEsteTipo(Class claseAAverificar){

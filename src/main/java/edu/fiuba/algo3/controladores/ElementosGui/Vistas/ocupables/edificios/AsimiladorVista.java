@@ -16,6 +16,7 @@ public class AsimiladorVista extends OcupableVista {
         this.identificador = "asimilador";
         this.info = "Asimilador";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/asimiladorRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/construccion/asimiladorRawConstruir.png")));
     }
 
     @Override

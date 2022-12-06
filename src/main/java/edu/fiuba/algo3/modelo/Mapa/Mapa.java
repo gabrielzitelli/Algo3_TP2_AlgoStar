@@ -139,6 +139,11 @@ public class Mapa {
         this.actualizarCasillaPorCoordenada(coordenada, casillaDondeConstruir);
     }
 
+    public void construirEdificioVerificacion(Edificio unEdificio, Coordenada coordenada){
+        Casilla casillaDondeConstruir = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDondeConstruir.construirEdificioVerificacion(unEdificio);
+    }
+
     public void destruirEdificio(Coordenada coordenada){
         Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestruir = casillaDestruir.desconstruirEdificio(coordenada);

@@ -13,5 +13,6 @@ public class GuaridaVista extends OcupableVista {
         this.identificador = "guarida";
         this.info = "Guarida";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/guaridaRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/construccion/guaridaRawConstruir.png")));
     }
 }

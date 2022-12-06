@@ -14,5 +14,6 @@ public class ReservaVista extends OcupableVista {
         this.identificador = "reserva_reproduccion";
         this.info = "Reserva De Reproduccion";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/reserva_reproduccionRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/construccion/reserva_reproduccionRawCOnstruir.png")));
     }
 }

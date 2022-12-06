@@ -20,6 +20,7 @@ public abstract class Casilla {
     protected Coordenada coordenada;
 
     public abstract Casilla construirEdificio(Edificio unEdificio);
+    public abstract void construirEdificioVerificacion(Edificio unEdificio);
     public abstract void llenarDeMoho();
     public abstract Casilla desconstruirEdificio(Coordenada coordenada);
     public abstract Ocupable obtenerOcupable();

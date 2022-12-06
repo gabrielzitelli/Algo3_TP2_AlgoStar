@@ -32,6 +32,10 @@ public class CasillaVacia extends Casilla{
         this.estadoRevelable = estadoRevelable;
     }
 
+    public void construirEdificioVerificacion(Edificio unEdificio){
+        unEdificio.verificarConstruccion(this);
+    }
+
     public Casilla construirEdificio(Edificio unEdificio){
         unEdificio.verificarConstruccion(this);
         CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);

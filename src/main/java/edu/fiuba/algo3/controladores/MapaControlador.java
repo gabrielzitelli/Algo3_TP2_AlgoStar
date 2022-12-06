@@ -4,6 +4,8 @@ import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Camara;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.especial.EspecialVista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios.ProtossVista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios.ZergVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
@@ -25,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -121,6 +124,8 @@ public class MapaControlador extends Controlador {
     protected Text textoEscudo;
     @FXML
     protected Pane paneInfoEdificio;
+    @FXML
+    protected Pane paneInfoImperio;
 
     @FXML
     protected Button botonEdificio1;
@@ -138,7 +143,49 @@ public class MapaControlador extends Controlador {
     protected Button botonEdificio7;
     @FXML
     protected Button botonEdificio8;
+    @FXML
+    protected Pane wrapperBotonEdificio1;
+    @FXML
+    protected Pane wrapperBotonEdificio2;
+    @FXML
+    protected Pane wrapperBotonEdificio3;
+    @FXML
+    protected Pane wrapperBotonEdificio4;
+    @FXML
+    protected Pane wrapperBotonEdificio5;
+    @FXML
+    protected Pane wrapperBotonEdificio6;
+    @FXML
+    protected Pane wrapperBotonEdificio7;
+    @FXML
+    protected Pane wrapperBotonEdificio8;
+
     protected Button[] arrayBotonesEdificio;
+    protected Pane[] arrayWrappersBotonesEdificio;
+
+    @FXML
+    protected Button botonConstruirEdificio1;
+    @FXML
+    protected Button botonConstruirEdificio2;
+    @FXML
+    protected Button botonConstruirEdificio3;
+    @FXML
+    protected Button botonConstruirEdificio4;
+    @FXML
+    protected Button botonConstruirEdificio5;
+    @FXML
+    protected Pane wrapperBotonConstruirEdificio1;
+    @FXML
+    protected Pane wrapperBotonConstruirEdificio2;
+    @FXML
+    protected Pane wrapperBotonConstruirEdificio3;
+    @FXML
+    protected Pane wrapperBotonConstruirEdificio4;
+    @FXML
+    protected Pane wrapperBotonConstruirEdificio5;
+
+    protected Button[] arrayBotonesContruirEdificio;
+    protected Pane[] arrayWrappersBotonesConstruirEdificio;
 
     /*==========  Borde Izquierdo   ==========*/
     @FXML
@@ -180,10 +227,25 @@ public class MapaControlador extends Controlador {
         arrayBotonesEdificio = new Button[]{botonEdificio1, botonEdificio2, botonEdificio3, botonEdificio4,
                                             botonEdificio5, botonEdificio6, botonEdificio7, botonEdificio8};
 
+        arrayWrappersBotonesEdificio = new Pane[]{wrapperBotonEdificio1, wrapperBotonEdificio2, wrapperBotonEdificio3, wrapperBotonEdificio4,
+                wrapperBotonEdificio5, wrapperBotonEdificio6, wrapperBotonEdificio7, wrapperBotonEdificio8};
+
+        arrayBotonesContruirEdificio = new Button[]{botonConstruirEdificio1, botonConstruirEdificio2, botonConstruirEdificio3,
+                botonConstruirEdificio4, botonConstruirEdificio5};
+
+        arrayWrappersBotonesConstruirEdificio = new Pane[]{wrapperBotonConstruirEdificio1, wrapperBotonConstruirEdificio2, wrapperBotonConstruirEdificio3,
+                wrapperBotonConstruirEdificio4, wrapperBotonConstruirEdificio5};
+
         for(Button botonEdificio : arrayBotonesEdificio){
             botonEdificio.setVisible(false);
             botonEdificio.setDisable(true);
         }
+
+        for(Button botonConstruirEdificio : arrayBotonesContruirEdificio){
+            botonConstruirEdificio.setVisible(false);
+            botonConstruirEdificio.setDisable(true);
+        }
+        paneInfoImperio.setVisible(false);
     }
 
     public void inicializar() {
@@ -381,11 +443,17 @@ public class MapaControlador extends Controlador {
                         posX = tamanioMapa - 1;
                     coordenadaSeleccion = new Coordenada(posX, posY);
                     debugCoordenadas.setText("X " + posX + " , Y " + posY);
-                    actualizarInfoBordeIzquierdo(coordenadaSeleccion);
-                    actualizarPaneOcupable(coordenadaSeleccion);
+                    actualizarUI();
                 }
             }
         };
+    }
+
+    @FXML
+    private void actualizarUI(){
+        actualizarInfoBordeIzquierdo(coordenadaSeleccion);
+        actualizarInfoBordeDerecho();
+        actualizarPaneOcupable(coordenadaSeleccion);
     }
 
     private void actualizarPaneOcupable(Coordenada coordenada){
@@ -395,17 +463,23 @@ public class MapaControlador extends Controlador {
             botonEdificio.setDisable(true);
         }
 
+        for(Button botonConstruirEdificio : arrayBotonesContruirEdificio){
+            botonConstruirEdificio.setVisible(false);
+            botonConstruirEdificio.setDisable(true);
+        }
+
         Casilla casilla = mapa.obtenerCasilla(coordenada);
         JSONObject casillaJson = ConvertidorJSON.convertirAJSON(casilla);
         String tipoOcupable = OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE)).getInfo();
 
         if(Objects.equals(tipoOcupable, "Libre"))
             actualizarPaneOcupableConImperio();
-        else
+        else if(!Objects.equals(tipoOcupable, "No hay"))
             actualizarPaneOcupableConOcupable(coordenada, (OcupableVista) OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE)));
     }
 
     public void actualizarPaneOcupableConOcupable(Coordenada coordenada, OcupableVista ocupableVista){
+        paneInfoImperio.setVisible(false);
         paneInfoEdificio.setVisible(true);
 
         textoNombreEdificio.setText(ocupableVista.getInfo());
@@ -419,11 +493,19 @@ public class MapaControlador extends Controlador {
 
         String imperioDeJugadorActual = obtenerAtributoJugador( algoStar.conseguirStringJugadorActual() , "imperio");
 
-        ocupableVista.manejarBotones(arrayBotonesEdificio, coordenada, imperioDeJugadorActual);
+        ocupableVista.manejarBotones(arrayBotonesEdificio, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual);
     }
 
     public void actualizarPaneOcupableConImperio(){
         paneInfoEdificio.setVisible(false);
+        paneInfoImperio.setVisible(true);
+
+        String imperioDeJugadorActual = obtenerAtributoJugador( algoStar.conseguirStringJugadorActual() , "imperio");
+
+        if(imperioDeJugadorActual.equalsIgnoreCase( "Zerg"))
+            (new ZergVista()).manejarBotones(coordenadaSeleccion, arrayBotonesContruirEdificio, arrayWrappersBotonesConstruirEdificio, (Zerg)algoStar.conseguirJugadorActual().conseguirImperio());
+        else
+            (new ProtossVista()).manejarBotones(coordenadaSeleccion, arrayBotonesContruirEdificio, arrayWrappersBotonesConstruirEdificio, (Protoss) algoStar.conseguirJugadorActual().conseguirImperio());
     }
 
     public EventHandler<? super KeyEvent> pressKey() {
@@ -565,6 +647,7 @@ public class MapaControlador extends Controlador {
 
         Vista mohoVista = MohoVista.obtenerMoho(casillaJson.get(ConvertidorJSON.MOHO));
         mohoVista.renderAdentroDeImageView(imagenContagioSeleccionado);
+
         textoContagioSeleccionado.setText(mohoVista.getInfo());
     }
 

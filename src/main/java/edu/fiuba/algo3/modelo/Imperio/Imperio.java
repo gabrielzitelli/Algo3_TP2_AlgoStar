@@ -101,6 +101,20 @@ public abstract class Imperio {
         }
     }
 
+    public void verificarConstruccionDeEdificio(Edificio unEdificio, Coordenada coordenada){
+        comprobarRequisitosMaterialesVerificacion(unEdificio);
+        Mapa.obtener().construirEdificioVerificacion(unEdificio, coordenada);
+    }
+
+    private void  comprobarRequisitosMaterialesVerificacion(Ocupable ocupable){
+        ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
+        Recurso mineralAConsumir = listaDeRequisitos.get(0);
+        Recurso gasAconsumir = listaDeRequisitos.get(1);
+
+        if (!mineralesDelImperio.tienesMasQue(mineralAConsumir) || !gasDelImperio.tienesMasQue(gasAconsumir))
+            throw new ErrorCantidadDeRecursoInsuficiente();
+    }
+
     protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
         //Digase de los edificios que son prerequisitos de otro edificio
         int requisitosCumplidos = 0;

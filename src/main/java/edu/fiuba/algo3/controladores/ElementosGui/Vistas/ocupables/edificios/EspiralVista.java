@@ -14,5 +14,6 @@ public class EspiralVista extends OcupableVista {
         this.identificador = "espiral";
         this.info = "Espiral";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/espiralRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/construccion/espiralRawConstruir.png")));
     }
 }

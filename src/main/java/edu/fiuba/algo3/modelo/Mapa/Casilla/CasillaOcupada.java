@@ -24,6 +24,10 @@ public class CasillaOcupada extends Casilla {
         this.estadoRevelable = estadoRevelable;
     }
 
+    public void construirEdificioVerificacion(Edificio unEdificio){
+        throw new ErrorNoSePuedeConstruirEdificioSobreOtroEdificio();
+    }
+
     public Casilla construirEdificio(Edificio unEdificio) {
         throw new ErrorNoSePuedeConstruirEdificioSobreOtroEdificio();
     }
