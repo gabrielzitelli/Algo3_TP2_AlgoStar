@@ -1,0 +1,35 @@
+@startuml
+
+package "modelo" {
+    package "Mapa" #DDDDDD {
+    }
+    package "Edificios" #DDDDDD {}
+    package "Unidades" #DDDDDD {}
+    package "Ataque" #DDDDDD {}
+    package "Vida" #DDDDDD {}
+    package "AlgoStar" #DDDDDD {
+        class Jugador
+        interface Turno
+    }
+    package "Imperio" #DDDDDD {
+        class Protoss
+        class Zerg
+    }
+
+
+}
+
+"AlgoStar" ..> "Imperio"
+"Imperio" ..> "Unidades"
+"Imperio" ..> "Edificios"
+"Edificios" ..> "Vida"
+"Edificios" ..> "Ataque"
+"Unidades" ..> "Vida"
+"Unidades" ..> "Ataque"
+
+"Imperio" ..> "Mapa"
+"Edificios" .> "Mapa"
+"Mapa" <. "Unidades"
+
+
+@enduml
