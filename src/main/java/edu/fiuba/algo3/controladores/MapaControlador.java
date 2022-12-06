@@ -415,7 +415,9 @@ public class MapaControlador extends Controlador {
         textoVida.setText(vidaActual + "/" + vidaMaxima);
         ocupableVista.aplicarTextoEscudo(textoEscudo, stringOcupable);
 
-        ocupableVista.manejarBotones(arrayBotonesEdificio);
+        String imperioDeJugadorActual = obtenerAtributoJugador( algoStar.conseguirStringJugadorActual() , "imperio");
+
+        ocupableVista.manejarBotones(arrayBotonesEdificio, coordenada, imperioDeJugadorActual);
     }
 
     public void actualizarPaneOcupableConImperio(){
@@ -461,6 +463,9 @@ public class MapaControlador extends Controlador {
         algoStar.terminarTurno();
         actualizarColorJugador(algoStar.conseguirStringJugadorActual());
         actualizarInfoBordeDerecho();
+
+        if(coordenadaSeleccion != null)
+            actualizarPaneOcupable(coordenadaSeleccion);
     }
 
     private  String obtenerAtributoImperio(String stringImperio, String tipoAtributo){

@@ -6,6 +6,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.Drag
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ScoutVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ZealotVista;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
@@ -28,7 +29,7 @@ public class PuertoEstelarVista extends OcupableVista {
         textoEscudo.setText(escudoActual + "/" + escudoMaxima);
     }
 
-    public void manejarBotones(Button[] arrayBotones){
+    public void manejarBotones(Button[] arrayBotones, Coordenada coordenada, String imperioDeJugadorActual){
         Button botonCrearScout = arrayBotones[0];
 
         double anchoBoton = botonCrearScout.getPrefWidth();

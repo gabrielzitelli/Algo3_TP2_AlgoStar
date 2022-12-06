@@ -18,12 +18,12 @@ public class AdministradorDeJugadores {
         jugadores.add(jugadorNuevo);
     }
 
-    public String[] jugadoresEnString(){
+    public String[] jugadoresEnString() {
 
         String[] jugadoresString = new String[jugadores.size()];
         int i = 0;
 
-        for( Jugador jugador : jugadores){
+        for (Jugador jugador : jugadores) {
             jugadoresString[i] = jugador.toString();
             i++;
         }

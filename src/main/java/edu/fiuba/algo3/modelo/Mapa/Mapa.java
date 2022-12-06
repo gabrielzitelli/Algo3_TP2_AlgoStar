@@ -191,7 +191,22 @@ public class Mapa {
         int distanciaEnX = abs( coordenadaAVerificar.getCoordenadaX() - centroAnillo.getCoordenadaX() );
         int distanciaEnY = abs( coordenadaAVerificar.getCoordenadaY() - centroAnillo.getCoordenadaY() );
 
-        return (distanciaEnX == distanciaDesdeElCentro && distanciaEnY == distanciaDesdeElCentro);
+        if(distanciaEnY == distanciaDesdeElCentro && distanciaEnX == distanciaDesdeElCentro)
+            return true;
+
+        return estaCoordenadaEnAnilloParteCircunferencial(coordenadaAVerificar, centroAnillo, distanciaDesdeElCentro);
+    }
+
+    private boolean estaCoordenadaEnAnilloParteCircunferencial(Coordenada coordenadaAVerificar, Coordenada coordenadaCentro, int distanciaDesdeElCentro ){
+        int xCoordenadaFinal = coordenadaAVerificar.getCoordenadaX();
+        int yCoordenadaFinal = coordenadaAVerificar.getCoordenadaY();
+        int xCoordenadaActual = coordenadaCentro.getCoordenadaX();
+        int yCoordenadaActual = coordenadaCentro.getCoordenadaY();
+
+        double hipotenusaAlCuadrado = (Math.pow((xCoordenadaFinal-xCoordenadaActual),2) + Math.pow((yCoordenadaFinal-yCoordenadaActual),2) );
+        double radio = Math.pow(distanciaDesdeElCentro,2);
+
+        return (hipotenusaAlCuadrado <= radio);
     }
 
     private LinkedList<Casilla> obtenerCasillasEnUnAnilloCentrado(Coordenada centroAnillo, int distanciaDesdeElCentro){

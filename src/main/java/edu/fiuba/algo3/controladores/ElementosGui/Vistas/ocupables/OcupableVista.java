@@ -3,6 +3,7 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.*;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -67,7 +68,7 @@ public abstract class OcupableVista extends Vista {
         textoEscudo.setText("");
     }
 
-    public void manejarBotones(Button[] arrayBotones){
+    public void manejarBotones(Button[] arrayBotones, Coordenada coordenada, String imperioDeJugadorActual){
         for(Button boton : arrayBotones)
             boton.setVisible(false);
     }

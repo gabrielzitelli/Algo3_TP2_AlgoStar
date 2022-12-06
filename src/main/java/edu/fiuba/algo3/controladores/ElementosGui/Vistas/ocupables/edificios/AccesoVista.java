@@ -5,6 +5,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.DragonVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ZealotVista;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -30,7 +31,7 @@ public class AccesoVista extends OcupableVista {
         textoEscudo.setText(escudoActual + "/" + escudoMaxima);
     }
 
-    public void manejarBotones(Button[] arrayBotones){
+    public void manejarBotones(Button[] arrayBotones, Coordenada coordenada, String imperioDeJugadorActual){
         Button botonCrearZealot = arrayBotones[0];
         Button botonCrearDragon = arrayBotones[1];
         double anchoBoton = botonCrearZealot.getPrefWidth();

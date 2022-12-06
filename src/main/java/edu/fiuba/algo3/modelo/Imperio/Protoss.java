@@ -36,6 +36,7 @@ public class Protoss extends Imperio{
         Acceso unAcceso = new Acceso();
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
         unAcceso.asignarListaDeUnidadesImperio(unidades);
+        unAcceso.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificioSinVerificacionesMateriales(unAcceso, coordenadaAcceso);
         unAcceso.construirInmediatamente();
     }

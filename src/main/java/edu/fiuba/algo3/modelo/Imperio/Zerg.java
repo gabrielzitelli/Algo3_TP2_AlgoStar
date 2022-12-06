@@ -42,6 +42,7 @@ public class Zerg extends Imperio{
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         unCriadero.asignarListaDeUnidadesImperio(unidades);
         this.construirEdificioSinVerificacionesMateriales(unCriadero, coordenadaCriadero);
+        unCriadero.asignarRecursos(mineralesDelImperio, gasDelImperio);
         unCriadero.construirInmediatamente();
     }
 
