@@ -30,7 +30,7 @@ public class CasoDeUso7Test {
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
         unZangano.setDepositoRecurso(mineralDelImperio);
-        elMapa.colocarUnidadZerg(unZangano, coordenada);
+        elMapa.colocarUnaUnidad(unZangano, coordenada);
         unZangano.extraer();
 
         assertTrue(mineralDelImperio.tenesCantidadDeRecurso(10));

@@ -27,11 +27,12 @@ public class Zangano extends UnidadZerg {
     }
 
     @Override
-    public void interaccionar(Casilla unaCasilla){
-        unaCasilla.tieneEsteRecoletable(recolecta);
-        this.recursoARecolectar = unaCasilla.obtenerMaterial();
+    public void interaccionar(Casilla unaCasilla) {
+        try {
+            unaCasilla.tieneEsteRecoletable(recolecta);
+            this.recursoARecolectar = unaCasilla.obtenerMaterial();
+        }catch (RuntimeException ignore){}
     }
-
     @Override
     public void setDepositoRecurso( Recurso recursoImperio ) {
         this.mineralDelImperio = recursoImperio;
