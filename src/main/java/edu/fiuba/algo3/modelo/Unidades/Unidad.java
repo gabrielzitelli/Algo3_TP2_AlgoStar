@@ -117,7 +117,7 @@ public abstract class Unidad implements Ocupable {
           return this.coordenada;
      }
      public String toString() {
-          return identificador + " " + this.vida.toString() + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
+          return identificador + this.vida.toString() + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
      }
 
      public boolean esDeEsteTipo(Class claseAAverificar){

@@ -386,8 +386,6 @@ public class MapaControlador extends Controlador {
         if (mostrarFPS) {
             graphicsContext.fillText("FPS: " + frameRate, 10, 10);
         }
-
-        graphicsContext.fillText(camara.getX() + " x " + camara.getY(), 200,200);
     }
 
     private void manejarInput() {
