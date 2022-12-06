@@ -99,6 +99,8 @@ public class MapaControlador extends Controlador {
 
     /*==========  Borde Derecho   ==========*/
     @FXML
+    private Text textoJugadorRaza;
+    @FXML
     private Text textTurno;
     @FXML
     private Text textoCantMinerales;
@@ -521,6 +523,9 @@ public class MapaControlador extends Controlador {
     }
 
     private void actualizarInfoBordeDerecho(){
+
+        String imperioJugador = obtenerAtributoJugador(algoStar.conseguirStringJugadorActual(), "imperio");
+        textoJugadorRaza.setText("IMPERIO " + imperioJugador.toUpperCase());
 
         //Actualizo el nombre del jugador actual
         String nombreJugador = obtenerAtributoJugador(algoStar.conseguirStringJugadorActual(), "nombre");
