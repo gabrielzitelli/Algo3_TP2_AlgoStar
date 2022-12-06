@@ -32,6 +32,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -81,6 +82,7 @@ public class MapaControlador extends Controlador {
     private GraphicsContext graphicsContext;
     private final Tile seleccion = new Tile("marcos/32px/seleccion.png");
     private Coordenada coordenadaSeleccion;
+    private Coordenada coordenadaSeleccionSecundaria;
     private final int tileWidth = 32;
 
     /*=====================================================================================
@@ -334,6 +336,7 @@ public class MapaControlador extends Controlador {
         //Renderizado de seleccion
         renderizarSeleccion();
     }
+
     private void renderizarSeleccion(){
         if (coordenadaSeleccion != null) {
             int x = coordenadaSeleccion.getCoordenadaX();
@@ -428,20 +431,47 @@ public class MapaControlador extends Controlador {
         };
     }
 
+    /*public Coordenada obtenerCoordenadaDesdeMouseEvent(ActionEvent event){
+        Coordenada coordenadaDelClick = null;
+        double posMouseX = event.getX() - bordeIzquierda.getWidth();
+        double posMouseY = event.getY();
+        if (canvasPrincipal.contains(posMouseX, posMouseY)) {
+            int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
+            int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
+            if (posX >= tamanioMapa)
+                posX = tamanioMapa - 1;
+            coordenadaDelClick = new Coordenada(posX, posY);
+        }
+
+        return coordenadaDelClick;
+    }*/
+
     public EventHandler<? super MouseEvent> pintarCasilla() {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
-                double posMouseY = mouseEvent.getY();
-                if (canvasPrincipal.contains(posMouseX, posMouseY)) {
-                    int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
-                    int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
-                    if (posX >= tamanioMapa)
-                        posX = tamanioMapa - 1;
-                    coordenadaSeleccion = new Coordenada(posX, posY);
-                    debugCoordenadas.setText("X " + posX + " , Y " + posY);
-                    actualizarUI();
+                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                    double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
+                    double posMouseY = mouseEvent.getY();
+                    if (canvasPrincipal.contains(posMouseX, posMouseY)) {
+                        int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
+                        int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
+                        if (posX >= tamanioMapa)
+                            posX = tamanioMapa - 1;
+                        coordenadaSeleccion = new Coordenada(posX, posY);
+                        debugCoordenadas.setText("X " + posX + " , Y " + posY);
+                        actualizarUI();
+                    }
+                }else if(mouseEvent.getButton().equals(MouseButton.SECONDARY)){
+                    double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
+                    double posMouseY = mouseEvent.getY();
+                    if (canvasPrincipal.contains(posMouseX, posMouseY)) {
+                        int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
+                        int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
+                        if (posX >= tamanioMapa)
+                            posX = tamanioMapa - 1;
+                        coordenadaSeleccionSecundaria = new Coordenada(posX, posY);
+                    }
                 }
             }
         };
@@ -491,7 +521,7 @@ public class MapaControlador extends Controlador {
 
         String imperioDeJugadorActual = obtenerAtributoJugador( algoStar.conseguirStringJugadorActual() , "imperio");
 
-        ocupableVista.manejarBotones(arrayBotonesEdificio, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual);
+        ocupableVista.manejarBotones(arrayBotonesEdificio, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual, this);
     }
 
     public void actualizarPaneOcupableConImperio(){

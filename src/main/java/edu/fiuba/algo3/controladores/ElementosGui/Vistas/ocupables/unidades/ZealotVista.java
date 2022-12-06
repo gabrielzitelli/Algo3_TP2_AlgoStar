@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class ZealotVista extends OcupableVista {
+public class ZealotVista extends UnidadVista {
 
     public ZealotVista(){
         this.tile = new Tile("unidades_protoss/32px/zealot.png");

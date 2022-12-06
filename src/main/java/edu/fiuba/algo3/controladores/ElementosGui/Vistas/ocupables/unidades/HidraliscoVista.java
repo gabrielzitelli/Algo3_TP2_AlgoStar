@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class HidraliscoVista extends OcupableVista {
+public class HidraliscoVista extends UnidadVista {
     public HidraliscoVista() {
         this.tile = new Tile("unidades_zerg/32px/hidralisco.png");
         this.identificador = "hidralisco";

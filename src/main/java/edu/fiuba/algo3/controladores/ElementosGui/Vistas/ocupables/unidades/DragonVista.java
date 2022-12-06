@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class DragonVista extends OcupableVista {
+public class DragonVista extends UnidadVista {
 
     public DragonVista() {
         this.tile = new Tile("unidades_protoss/32px/dragon.png");

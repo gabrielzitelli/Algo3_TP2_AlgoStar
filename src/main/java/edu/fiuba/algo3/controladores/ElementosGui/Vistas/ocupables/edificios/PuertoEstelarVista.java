@@ -5,6 +5,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.DragonVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ScoutVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ZealotVista;
+import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
@@ -42,7 +43,7 @@ public class PuertoEstelarVista extends OcupableVista {
         textoEscudo.setText(escudoActual + "/" + escudoMaxima);
     }
 
-    public void manejarBotones(Button[] arrayBotones, Pane[] arrayWrappersBotonesEdificio, Coordenada coordenada, String imperioDeJugadorActual){
+    public void manejarBotones(Button[] arrayBotones, Pane[] arrayWrappersBotonesEdificio, Coordenada coordenada, String imperioDeJugadorActual, MapaControlador mapaControlador){
         if(!imperioDeJugadorActual.equalsIgnoreCase("protoss"))
             return;
 

@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class AmoSupremoVista extends OcupableVista {
+public class AmoSupremoVista extends UnidadVista {
     public AmoSupremoVista() {
         this.tile = new Tile("unidades_zerg/32px/amo_supremo.png");
         this.identificador = "amo_supremo";

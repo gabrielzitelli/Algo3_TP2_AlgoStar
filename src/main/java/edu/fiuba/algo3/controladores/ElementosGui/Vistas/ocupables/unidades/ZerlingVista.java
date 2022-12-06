@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class ZerlingVista extends OcupableVista {
+public class ZerlingVista extends UnidadVista {
     public ZerlingVista() {
         this.tile = new Tile("unidades_zerg/32px/zerling.png");
         this.identificador = "zerling";

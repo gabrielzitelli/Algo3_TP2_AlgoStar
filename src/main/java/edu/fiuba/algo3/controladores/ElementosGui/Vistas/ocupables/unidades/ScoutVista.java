@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class ScoutVista extends OcupableVista {
+public class ScoutVista extends UnidadVista {
 
     public ScoutVista() {
         this.tile = new Tile("unidades_protoss/32px/scout.png");
