@@ -21,7 +21,6 @@ public abstract class Casilla {
 
     public abstract Casilla construirEdificio(Edificio unEdificio);
     public abstract void llenarDeMoho();
-    public abstract Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg);
     public abstract Casilla desconstruirEdificio(Coordenada coordenada);
     public abstract Ocupable obtenerOcupable();
     public abstract Edificio obtenerEdificio();

@@ -303,14 +303,8 @@ public class Mapa {
             unaCasilla.desRevelar();
     }
 
-    public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
-        Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
 
-        casillaDondeColocar = casillaDondeColocar.colocarUnidadZerg(unaUnidadZerg);
-
-        this.actualizarCasillaPorCoordenada(unaCoordenada, casillaDondeColocar);
-    }
-
+    //Solo lo usa la interfaz
     public Ocupable obtenerOcupable(Coordenada coordenada) {
         return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
     }
