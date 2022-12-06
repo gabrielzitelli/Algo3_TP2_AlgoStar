@@ -19,8 +19,6 @@ public abstract class UnidadZerg extends Unidad {
         return imperio.getClass().equals(Zerg.class);
     }
 
-    public void interaccionar(Casilla unaCasilla){
-    }
 
     public void setDepositoRecurso( Recurso recursoImperio ){
     }

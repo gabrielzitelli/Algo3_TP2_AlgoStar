@@ -72,6 +72,7 @@ public class CasillaVacia extends Casilla{
 
     public Casilla colocarUnidad(Unidad unaUnidad) {
         unaUnidad.verificarColocable(this);
+        unaUnidad.interaccionar(this);
         CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
         casillaOcupada.settearUnidad(unaUnidad);
         return casillaOcupada;

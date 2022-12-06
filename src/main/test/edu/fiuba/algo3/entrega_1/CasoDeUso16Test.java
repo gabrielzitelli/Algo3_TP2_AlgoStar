@@ -58,7 +58,7 @@ public class CasoDeUso16Test {
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
         unZangano.setDepositoRecurso(mineralDelImperio);
-        elMapa.colocarUnidadZerg(unZangano, coordenada);
+        elMapa.colocarUnaUnidad(unZangano, coordenada);
 
         assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class, () ->
                 elMapa.construirEdificio(new NexoMineral(mineralDelImperio), coordenada));
@@ -76,6 +76,6 @@ public class CasoDeUso16Test {
         elMapa.construirEdificio(new NexoMineral(mineralDelImperio), coordenada);
 
         assertThrows(ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada.class, () ->
-                elMapa.colocarUnidadZerg(unZangano, coordenada));
+                elMapa.colocarUnaUnidad(unZangano, coordenada));
     }
 }

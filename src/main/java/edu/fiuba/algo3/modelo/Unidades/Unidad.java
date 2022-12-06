@@ -62,6 +62,9 @@ public abstract class Unidad implements Ocupable {
           estadoCaminar = new Caminadora();
      }
 
+     public void interaccionar(Casilla unaCasilla){
+     }
+
      public void atacar(Casilla casillaAAtacar) {
           estadoPelea.atacar(casillaAAtacar, danio);
           estadoPelea = new NoAtacante();
