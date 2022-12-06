@@ -116,8 +116,11 @@ public class Criadero extends EdificioZerg {
     }
 
     public void estaAptaUnidadParaConstruir(Fabrica unaFabrica){
-        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabrica);
-        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabrica.crearUnidad(), mineralDelImperio, gasDelImperio);
+        if(cantidadLarvas <= 0)
+            throw new ErrorCriaderoNoTieneMasLarvas();
+
         estadoCreador.verificarQueSePuedeFabricar(unaFabrica);
+        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabrica.crearUnidad(), mineralDelImperio, gasDelImperio);
+        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabrica);
     }
 }

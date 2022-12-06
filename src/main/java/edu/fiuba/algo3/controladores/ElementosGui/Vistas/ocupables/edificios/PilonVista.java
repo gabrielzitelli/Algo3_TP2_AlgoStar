@@ -15,6 +15,7 @@ public class PilonVista extends OcupableVista {
         this.identificador = "pilon";
         this.info = "Pilon";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/pilonRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/construccion/pilonRawConstruir.png")));
     }
 
     @Override

@@ -22,4 +22,7 @@ public abstract class Fabrica {
         return poblacionNecesaria;
     }
 
+    public int obtenerPoblacionNecesariaInstancia(){
+        return poblacionNecesaria;
+    }
 }

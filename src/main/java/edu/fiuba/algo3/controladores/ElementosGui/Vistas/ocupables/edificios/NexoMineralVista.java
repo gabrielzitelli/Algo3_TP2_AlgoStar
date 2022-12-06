@@ -16,6 +16,7 @@ public class NexoMineralVista extends OcupableVista {
         this.identificador = "nexo_mineral";
         this.info = "Nexo Mineral";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/nexo_mineralRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/construccion/nexo_mineralRawConstruir.png")));
     }
 
     @Override

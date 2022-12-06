@@ -22,8 +22,8 @@ public abstract class Edificio implements Ocupable {
     protected Cargable estadoCarga;
     protected EstadoMoho estadoMoho;
     protected Superficie superficieRequerida;
-    protected int costoMineral;
-    protected int costoGas;
+    protected int costoMineral = 0;
+    protected int costoGas = 0;
     protected Mineral mineralDelImperio;
     protected Gas gasDelImperio;
     protected int suministroAportado;
@@ -100,7 +100,7 @@ public abstract class Edificio implements Ocupable {
     protected abstract String obtenerEstado();
     @Override
     public String toString() {
-        return this.identificador + this.obtenerEstado() + vida.toString();
+        return this.identificador + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas + " estado " + this.obtenerEstado() + vida.toString();
     }
     
     public boolean esDeEsteTipo(Class claseAAverificar){

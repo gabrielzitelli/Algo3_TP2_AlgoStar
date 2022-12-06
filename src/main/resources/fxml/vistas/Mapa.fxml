@@ -21,7 +21,7 @@
          <children>
             <Pane prefHeight="164.0" prefWidth="257.0">
                <children>
-                  <Text id="textoJugadorRaza" fx:id="textoJugadorRaza" fill="WHITE" layoutX="9.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JUGADOR" textAlignment="CENTER" wrappingWidth="238.48596169054508">
+                  <Text id="textoJugadorRaza" fx:id="textoJugadorRaza" fill="WHITE" layoutX="9.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMPERIO" textAlignment="CENTER" wrappingWidth="238.48596169054508">
                      <font>
                         <Font name="Century Gothic" size="14.0" />
                      </font></Text>
@@ -88,7 +88,7 @@
                         <Font name="Century Gothic" size="12.413793563842773" />
                      </font>
                   </Text>
-                  <Pane id="paneInfoEdificio" fx:id="paneInfoEdificio" prefHeight="362.0" prefWidth="257.0" styleClass="paneInfoEdificio">
+                  <Pane id="paneInfoEdificio" fx:id="paneInfoEdificio" prefHeight="362.0" prefWidth="257.0" styleClass="paneInfoEdificio" visible="false">
                      <children>
                         <Text id="textoNombreEdificio" fx:id="textoNombreEdificio" fill="WHITE" layoutX="11.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio" textAlignment="CENTER" wrappingWidth="234.8125343322754">
                            <font>
@@ -106,14 +106,80 @@
                               <Font name="Century Gothic" size="17.0" />
                            </font>
                         </Text>
-                        <Button id="botonEdificio1" fx:id="botonEdificio1" layoutX="19.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
-                        <Button id="botonEdificio2" fx:id="botonEdificio2" layoutX="77.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
-                        <Button id="botonEdificio3" fx:id="botonEdificio3" layoutX="135.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
-                        <Button id="botonEdificio4" fx:id="botonEdificio4" layoutX="193.0" layoutY="252.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
-                        <Button id="botonEdificio5" fx:id="botonEdificio5" layoutX="19.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
-                        <Button id="botonEdificio6" fx:id="botonEdificio6" layoutX="77.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
-                        <Button id="botonEdificio7" fx:id="botonEdificio7" layoutX="135.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
-                        <Button fx:id="botonEdificio8" layoutX="193.0" layoutY="309.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                        <Pane id="wrapperBotonEdificio1" fx:id="wrapperBotonEdificio1" layoutX="19.0" layoutY="252.0">
+                           <children>
+                              <Button id="botonEdificio1" fx:id="botonEdificio1" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonEdificio2" fx:id="wrapperBotonEdificio2" layoutX="77.0" layoutY="252.0">
+                           <children>
+                              <Button id="botonEdificio2" fx:id="botonEdificio2" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonEdificio3" fx:id="wrapperBotonEdificio3" layoutX="135.0" layoutY="252.0">
+                           <children>
+                              <Button id="botonEdificio3" fx:id="botonEdificio3" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonEdificio4" fx:id="wrapperBotonEdificio4" layoutX="193.0" layoutY="252.0">
+                           <children>
+                              <Button id="botonEdificio4" fx:id="botonEdificio4" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonEdificio5" fx:id="wrapperBotonEdificio5" layoutX="19.0" layoutY="309.0">
+                           <children>
+                              <Button id="botonEdificio5" fx:id="botonEdificio5" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonEdificio6" fx:id="wrapperBotonEdificio6" layoutX="77.0" layoutY="309.0">
+                           <children>
+                              <Button id="botonEdificio6" fx:id="botonEdificio6" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonEdificio7" fx:id="wrapperBotonEdificio7" layoutX="135.0" layoutY="309.0">
+                           <children>
+                              <Button id="botonEdificio7" fx:id="botonEdificio7" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonEdificio8" fx:id="wrapperBotonEdificio8" layoutX="193.0" layoutY="309.0">
+                           <children>
+                              <Button fx:id="botonEdificio8" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane id="paneInfoImperio" fx:id="paneInfoImperio" prefHeight="362.0" prefWidth="257.0" styleClass="paneInfoEdificio">
+                     <children>
+                        <Text id="textoNombreEdificio" fx:id="textoNombreEdificio1" fill="WHITE" layoutX="11.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio" text="CONSTRUCCIÓN DE EDIFICIOS" textAlignment="CENTER" wrappingWidth="234.8125343322754">
+                           <font>
+                              <Font name="Century Gothic" size="20.0" />
+                           </font>
+                        </Text>
+                        <Pane id="wrapperBotonConstruirEdificio1" fx:id="wrapperBotonConstruirEdificio1" layoutX="42.0" layoutY="102.0">
+                           <children>
+                              <Button id="botonConstruirEdificio1" fx:id="botonConstruirEdificio1" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0" prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonConstruirEdificio2" fx:id="wrapperBotonConstruirEdificio2" layoutX="143.0" layoutY="102.0">
+                           <children>
+                              <Button id="botonConstruirEdificio2" fx:id="botonConstruirEdificio2" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0" prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonConstruirEdificio3" fx:id="wrapperBotonConstruirEdificio3" layoutX="42.0" layoutY="189.0">
+                           <children>
+                              <Button id="botonConstruirEdificio3" fx:id="botonConstruirEdificio3" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0" prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonConstruirEdificio4" fx:id="wrapperBotonConstruirEdificio4" layoutX="143.0" layoutY="189.0">
+                           <children>
+                              <Button id="botonConstruirEdificio4" fx:id="botonConstruirEdificio4" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0" prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
+                        <Pane id="wrapperBotonConstruirEdificio5" fx:id="wrapperBotonConstruirEdificio5" layoutX="42.0" layoutY="274.0">
+                           <children>
+                              <Button id="botonConstruirEdificio5" fx:id="botonConstruirEdificio5" mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0" prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css" />
+                           </children>
+                        </Pane>
                      </children>
                   </Pane>
                </children>

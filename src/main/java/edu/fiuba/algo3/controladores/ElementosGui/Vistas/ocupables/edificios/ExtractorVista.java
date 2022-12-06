@@ -14,5 +14,6 @@ public class ExtractorVista extends OcupableVista {
         this.identificador = "extractor";
         this.info = "Extractor";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/extractorRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/construccion/extractorRawConstruir.png")));
     }
 }

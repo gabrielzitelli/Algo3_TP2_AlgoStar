@@ -22,8 +22,8 @@ public class Zerg extends Imperio{
     //GestorDeCrianza gestorDeEvoluciones = new GestorDeCrianza();
 
     public Zerg(){
-        mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
-        gasDelImperio = new Gas(0);
+        mineralesDelImperio = new Mineral(1000);
+        gasDelImperio = new Gas(1000);
         this.poblacion = new Suministro(0);
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();

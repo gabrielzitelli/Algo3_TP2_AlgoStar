@@ -2,19 +2,33 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.*;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
+import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import org.json.simple.JSONObject;
 
 import java.util.Objects;
+
+import static edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica.obtenerPoblacionNecesaria;
 
 public class CriaderoVista extends OcupableVista {
 
@@ -24,6 +38,7 @@ public class CriaderoVista extends OcupableVista {
         this.identificador = "criadero";
         this.info = "Criadero";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/criaderoRaw.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/construccion/criaderoRawConstruir.png")));
     }
 
     @Override
@@ -32,8 +47,8 @@ public class CriaderoVista extends OcupableVista {
         super.render(gc,x,y);
     }
 
-    public void manejarBotones(Button[] arrayBotones, Coordenada coordenada, String imperioDeJugadorActual){
-        if(!imperioDeJugadorActual.equalsIgnoreCase("zerg"))
+    public void manejarBotones(Button[] arrayBotones, Pane[] arrayWrappersBotonesEdificio, Coordenada coordenada, String imperioDeJugadorActual) {
+        if (!imperioDeJugadorActual.equalsIgnoreCase("zerg"))
             return;
 
         Criadero esteCriadero = (Criadero) Mapa.obtener().obtenerOcupable(coordenada);
@@ -59,18 +74,43 @@ public class CriaderoVista extends OcupableVista {
         botonCrearMutalisco.setOnAction( event -> esteCriadero.crearUnidad(new FabricaMutalisco()));
         botonCrearAmoSupremo.setOnAction( event -> esteCriadero.crearUnidad(new FabricaAmoSupremo()));
 
-        prepararHabilitacionDeBoton(botonCrearZangano, new FabricaZangano(), esteCriadero);
-        prepararHabilitacionDeBoton(botonCrearZerling, new FabricaZerling(), esteCriadero);
-        prepararHabilitacionDeBoton(botonCrearHidralisco, new FabricaHidralisco(), esteCriadero);
-        prepararHabilitacionDeBoton(botonCrearMutalisco, new FabricaMutalisco(), esteCriadero);
-        prepararHabilitacionDeBoton(botonCrearAmoSupremo, new FabricaAmoSupremo(), esteCriadero);
+        prepararHabilitacionDeBoton(botonCrearZangano, new FabricaZangano(), esteCriadero, arrayWrappersBotonesEdificio[0], new ZanganoVista());
+        prepararHabilitacionDeBoton(botonCrearZerling, new FabricaZerling(), esteCriadero, arrayWrappersBotonesEdificio[1], new ZerlingVista());
+        prepararHabilitacionDeBoton(botonCrearHidralisco, new FabricaHidralisco(), esteCriadero, arrayWrappersBotonesEdificio[2], new HidraliscoVista());
+        prepararHabilitacionDeBoton(botonCrearMutalisco, new FabricaMutalisco(), esteCriadero, arrayWrappersBotonesEdificio[3], new MutaliscoVista());
+        prepararHabilitacionDeBoton(botonCrearAmoSupremo, new FabricaAmoSupremo(), esteCriadero, arrayWrappersBotonesEdificio[4], new AmoSupremoVista());
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, Criadero unCriadero){
+    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, Criadero unCriadero, Pane wrapperBoton, OcupableVista ocupableVista){
+        Unidad unidadACrear = unaFabrica.crearUnidad();
+
+        String informacionUnidad = unidadACrear.toString();
+        String identificadorUnidad = ocupableVista.getInfo();
+        String costoMineral = obtenerAtributoDeString(informacionUnidad, "costoMineral");
+        String costoGas = obtenerAtributoDeString(informacionUnidad, "costoGas");
+        String poblacionNecesaria = Integer.toString( unaFabrica.obtenerPoblacionNecesariaInstancia() ) ;
+
+        if(unCriadero.toString().contains(" estado en_construccion")){
+            boton.setDisable(true);
+            Tooltip.install(wrapperBoton, new Tooltip("El criadero de encuentra en construcción"));
+            return;
+        }
+
         try{
             unCriadero.estaAptaUnidadParaConstruir(unaFabrica);
-        } catch (RuntimeException e){
+            boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+        }catch (ErrorNoSeCumplenLosRequisitosDeEstaUnidad exception){
             boton.setDisable(true);
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo está disponible el edificio que permite construir esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+        }  catch (ErrorCriaderoNoTieneMasLarvas exception){
+            boton.setDisable(true);
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay larvas disponibles para crear esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+        } catch (ErrorCantidadDeRecursoInsuficiente exception){
+            boton.setDisable(true);
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay suficientes recursos como para crear a esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+        } catch (ErrorSuperaMaximoDePoblacionActual exception){
+            boton.setDisable(true);
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay suministro de población suficiente para crear a esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
         }
     }
 }
