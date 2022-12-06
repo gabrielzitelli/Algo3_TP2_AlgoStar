@@ -14,8 +14,8 @@ public class ConvertidorJSON {
     public static String MOHO = "moho";
     public static String OCUPABLE = "ocupable";
     public static String ESTADO = "estado";
-    public static String VIDA = "vida";
-    public static String ESCUDO = "escudo";
+    public static String VIDA = "vidaActual";
+    public static String ESCUDO = "escudoActual";
 
     public static String IMPERIO = "imperio";
     public static String NOMBRE = "nombre";

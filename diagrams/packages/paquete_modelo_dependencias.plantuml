@@ -1,7 +1,5 @@
 @startuml
 
-!include ../classes/herencia.plantuml!WITHOUTNOTES
-
 package JUnit {
         class Test
 }

@@ -53,4 +53,12 @@ public class Jugador {
     public String toString() {
         return "imperio " + imperio.toString() + " nombre " + nombre + " color " +  color;
     }
+
+    public void inicializarAsentamientoPrimerTurno() {
+        imperio.inicializarAsentamientoPrimerTurno();
+    }
+
+    public void prepararparaRevancha() {
+        imperio.prepararParaRevancha();
+    }
 }

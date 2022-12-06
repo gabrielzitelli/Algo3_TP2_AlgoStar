@@ -8,6 +8,7 @@ import java.util.Queue;
 public class AdministradorDeJugadores {
 
     private Queue<Jugador> jugadores = new LinkedList<>();
+    private LinkedList<Jugador> todosLosJugadores =  new LinkedList<>();
     private final int MAXIMO_JUGADORES = 2;
 
     public void agregarJugador(Jugador jugadorNuevo) {
@@ -16,6 +17,7 @@ public class AdministradorDeJugadores {
 
         revisarJugador(jugadorNuevo);
         jugadores.add(jugadorNuevo);
+        todosLosJugadores.add(jugadorNuevo);
     }
 
     public String[] jugadoresEnString() {
@@ -37,8 +39,8 @@ public class AdministradorDeJugadores {
     }
 
     public void inicializarBases() {
-        for (Jugador jugador : jugadores) {
-            jugador.conseguirImperio().inicializarAsentamientoPrimerTurno();
+        for (Jugador jugador : todosLosJugadores) {
+            jugador.inicializarAsentamientoPrimerTurno();
         }
     }
 
@@ -52,5 +54,14 @@ public class AdministradorDeJugadores {
 
         jugadores.add(siguiente);
         return siguiente;
+    }
+
+    public void prepararParaRevancha() {
+        // Renuevo la cola de jugadores directamente desde una nueva
+        jugadores = new LinkedList<>();
+        for (Jugador jugador : todosLosJugadores) {
+            jugador.prepararparaRevancha();
+            jugadores.add(jugador);
+        }
     }
 }
