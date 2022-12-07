@@ -21,7 +21,7 @@
                         <Font name="Century Gothic" size="20.0" />
                     </font>
                 </Label>
-                <TextField id="nombreJugador2" fx:id="nombreJugador2" layoutX="22.0" layoutY="79.0" prefHeight="41.0" prefWidth="400.0" promptText="Ingrese aqui el nombre" styleClass="textfieldNombreJugador" stylesheets="@../../css/style.css" />
+                <TextField id="nombreJugador2" fx:id="nombreJugador2" layoutX="22.0" layoutY="79.0" prefHeight="41.0" prefWidth="400.0" promptText="Ingrese aqui el nombre" styleClass="textfieldNombreJugador" stylesheets="@../../css/style.css" text="Jugador2_Test" />
                 <Label layoutX="22.0" layoutY="145.0" text="COLOR" textFill="WHITE">
                     <font>
                         <Font name="Century Gothic" size="20.0" />
