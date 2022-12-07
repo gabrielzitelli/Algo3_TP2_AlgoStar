@@ -15,7 +15,7 @@ public class Guardian extends UnidadZerg {
     public Guardian() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
-        this.danio = new DanioGuardian(danioTerrestre);
+        this.danio = new DanioTerrestre(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 10;
         this.costoGas = 50;

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades;
 
-import edu.fiuba.algo3.modelo.Ataque.DanioUnidad;
+import edu.fiuba.algo3.modelo.Ataque.TipoDanio;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -19,7 +19,7 @@ public abstract class Unidad implements Ocupable {
      protected Coordenada coordenada;
      protected int turnosDeConstruccion;
      protected int rangoDeAtaque;
-     protected DanioUnidad danio;
+     protected TipoDanio danio;
      protected Vida vida;
      protected int costoMineral = 0;
      protected int costoGas = 0;

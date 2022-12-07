@@ -1,19 +1,21 @@
 package edu.fiuba.algo3.modelo.Ataque;
 
-public class DanioMutalisco implements DanioUnidad {
+public class DanioMixto implements TipoDanio {
 
     private Danio danioTerrestre;
     private Danio danioAereo;
 
-    public DanioMutalisco(int danioTerrestre, int danioAereo){
-        this.danioTerrestre = new Danio(danioTerrestre);
+    public DanioMixto(int danioTerretre, int danioAereo) {
+        this.danioTerrestre = new Danio(danioTerretre);
         this.danioAereo = new Danio(danioAereo);
     }
 
+    @Override
     public Danio danioTerrestre() {
         return danioTerrestre;
     }
 
+    @Override
     public Danio danioAereo() {
         return danioAereo;
     }

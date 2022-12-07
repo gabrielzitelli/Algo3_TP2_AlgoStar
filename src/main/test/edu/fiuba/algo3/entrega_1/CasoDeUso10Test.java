@@ -1,16 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Ataque.*;
 
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -20,7 +14,7 @@ public class CasoDeUso10Test {
     @Test
     public void test01PuedoDaniarUnCriaderoYLaVidaSeRegeneraTotalmente(){
         Criadero unCriadero = new Criadero();
-        Ataque unAtaque = new Ataque(new DanioZealot(499));
+        Ataque unAtaque = new Ataque(new DanioTerrestre(499));
 
         // Criadero 500V
         unCriadero.recibirAtaque(unAtaque);
@@ -34,7 +28,7 @@ public class CasoDeUso10Test {
     @Test
     public void test02PuedoDaniarUnaReservaDeProduccionYLaVidaSeRegeneraTotalmente(){
         ReservaDeReproduccion unaReservaDeReproduccion = new ReservaDeReproduccion();
-        Ataque unAtaque = new Ataque(new DanioZealot(999));
+        Ataque unAtaque = new Ataque(new DanioTerrestre(999));
 
         // Reserva de produccion 1000V
         unaReservaDeReproduccion.recibirAtaque(unAtaque);
@@ -49,7 +43,7 @@ public class CasoDeUso10Test {
     public void test03PuedoDaniarUnExtractorYLaVidaSeRegeneraTotalmente(){
         Recurso gasDelImperio = new Gas(0);
         Extractor unExtractor = new Extractor(gasDelImperio);
-        Ataque unAtaque = new Ataque(new DanioZealot(749));
+        Ataque unAtaque = new Ataque(new DanioTerrestre(749));
 
         // Extractor 750V
         unExtractor.recibirAtaque(unAtaque);
@@ -63,7 +57,7 @@ public class CasoDeUso10Test {
     @Test
     public void test04PuedoDaniarUnGuaridaYLaVidaSeRegeneraTotalmente(){
         Guarida unaGuarida = new Guarida();
-        Ataque unAtaque = new Ataque(new DanioZealot(1249));
+        Ataque unAtaque = new Ataque(new DanioTerrestre(1249));
 
         // Guardia 1250V
         unaGuarida.recibirAtaque(unAtaque);
@@ -77,7 +71,7 @@ public class CasoDeUso10Test {
     @Test
     public void test05PuedoDaniarUnaEspiralYLaVidaSeRegeneraTotalmente(){
         Espiral unaEspiral = new Espiral();
-        Ataque unAtaque = new Ataque(new DanioZealot(1299));
+        Ataque unAtaque = new Ataque(new DanioTerrestre(1299));
 
         // Espiral 1300V
         unaEspiral.recibirAtaque(unAtaque);

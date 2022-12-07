@@ -17,7 +17,7 @@ public class Scout extends UnidadProtoss {
     public Scout(){
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
-        this.danio = new DanioScout(danioTerrestre, danioAereo);
+        this.danio = new DanioMixto(danioTerrestre, danioAereo);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 4;
         this.costoGas = 150;

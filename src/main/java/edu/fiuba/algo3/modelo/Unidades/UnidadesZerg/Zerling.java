@@ -15,7 +15,7 @@ public class Zerling extends UnidadZerg {
     public Zerling() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
-        this.danio = new DanioZerling(danioTerrestre);
+        this.danio = new DanioTerrestre(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 1;
         this.costoGas = 0;

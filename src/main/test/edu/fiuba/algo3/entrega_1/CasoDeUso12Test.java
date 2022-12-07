@@ -13,8 +13,8 @@ public class CasoDeUso12Test {
     @Test
     public void test01PuedoDaniarElEscudoDeUnAccesoPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Acceso unAcceso = new Acceso();
-        Ataque ataqueCasiLetal = new Ataque(new DanioZerling(999));
-        Ataque unAtaqueRompeEscudo = new Ataque(new DanioZerling(500));
+        Ataque ataqueCasiLetal = new Ataque(new DanioTerrestre(999));
+        Ataque unAtaqueRompeEscudo = new Ataque(new DanioTerrestre(500));
 
         // Acceso tiene 500E / 500V
         unAcceso.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
@@ -29,8 +29,8 @@ public class CasoDeUso12Test {
     public void test02PuedoDaniarElEscudoDeUnAsimiladorPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Recurso gasDelImperio = new Recurso(0);
         Asimilador unAsimilador = new Asimilador(gasDelImperio);
-        Ataque ataqueCasiLetal = new Ataque(new DanioZerling(899));
-        Ataque unAtaqueRompeEscudo = new Ataque(new DanioZerling(450));
+        Ataque ataqueCasiLetal = new Ataque(new DanioTerrestre(899));
+        Ataque unAtaqueRompeEscudo = new Ataque(new DanioTerrestre(450));
 
         // Acceso tiene  450E / 450V
         unAsimilador.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
@@ -45,8 +45,8 @@ public class CasoDeUso12Test {
     public void test03PuedoDaniarElEscudoDeUnNexoMineralPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Recurso mineralesDelImperio = new Recurso(0);
         NexoMineral unNexo = new NexoMineral(mineralesDelImperio);
-        Ataque ataqueCasiLetal = new Ataque(new DanioZerling(499));
-        Ataque unAtaqueRompeEscudo = new Ataque(new DanioZerling(250));
+        Ataque ataqueCasiLetal = new Ataque(new DanioTerrestre(499));
+        Ataque unAtaqueRompeEscudo = new Ataque(new DanioTerrestre(250));
 
         // Acceso tiene  250E / 250V
         unNexo.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo
@@ -60,8 +60,8 @@ public class CasoDeUso12Test {
     @Test
     public void test04PuedoDaniarElEscudoDeUnPilonPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         Pilon unPilon = new Pilon();
-        Ataque ataqueCasiLetal = new Ataque(new DanioZerling(599));
-        Ataque unAtaqueRompeEscudo = new Ataque(new DanioZerling(300));
+        Ataque ataqueCasiLetal = new Ataque(new DanioTerrestre(599));
+        Ataque unAtaqueRompeEscudo = new Ataque(new DanioTerrestre(300));
         unPilon.asignarSuministro(new Suministro(0));
 
         // Acceso tiene  300E / 300V
@@ -76,8 +76,8 @@ public class CasoDeUso12Test {
     @Test
     public void test05PuedoDaniarElEscudoDeUnPuertoEstelarPenetrandoLaVidaSeRegeneraYPuedoDaniarloDeVuelta(){
         PuertoEstelar unPuertoEstelar = new PuertoEstelar();
-        Ataque ataqueCasiLetal = new Ataque(new DanioZerling(1199));
-        Ataque unAtaqueRompeEscudo = new Ataque(new DanioZerling(599));
+        Ataque ataqueCasiLetal = new Ataque(new DanioTerrestre(1199));
+        Ataque unAtaqueRompeEscudo = new Ataque(new DanioTerrestre(599));
 
         // Acceso tiene  600E / 600V
         unPuertoEstelar.recibirAtaque(ataqueCasiLetal); //Queda con 1 de vida y 0 de escudo

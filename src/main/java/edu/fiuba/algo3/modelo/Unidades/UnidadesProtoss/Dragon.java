@@ -17,7 +17,7 @@ public class Dragon extends UnidadProtoss {
     public Dragon() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
-        this.danio = new DanioDragon(danioTerrestre, danioAereo);
+        this.danio = new DanioMixto(danioTerrestre, danioAereo);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 4;
         this.costoGas = 50;

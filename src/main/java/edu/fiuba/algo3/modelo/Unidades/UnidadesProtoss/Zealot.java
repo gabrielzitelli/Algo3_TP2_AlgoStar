@@ -23,7 +23,7 @@ public class Zealot extends UnidadProtoss {
     public Zealot(){
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
-        this.danio = new DanioZealot(danioTerrestre);
+        this.danio = new DanioTerrestre(danioTerrestre);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 1;
         estado = new Visible(this, muertesParaInvisibilidad);

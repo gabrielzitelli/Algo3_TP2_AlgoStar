@@ -2,16 +2,21 @@ package edu.fiuba.algo3.modelo.Ataque;
 
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadTerrestre;
 
-public class DanioDevorador implements DanioUnidad {
+public class DanioAereo implements TipoDanio {
+
     private Danio danioAereo;
 
-    public DanioDevorador(int danioAereo){
+    public DanioAereo(int danioAereo) {
         this.danioAereo = new Danio(danioAereo);
     }
 
+    @Override
     public Danio danioTerrestre() {
         throw new ErrorNoPuedeAtacarUnidadTerrestre();
     }
 
-    public Danio danioAereo() { return danioAereo; }
+    @Override
+    public Danio danioAereo() {
+        return danioAereo;
+    }
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Ataque.DanioDevorador;
+import edu.fiuba.algo3.modelo.Ataque.DanioAereo;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
@@ -14,7 +14,7 @@ public class Devorador extends UnidadZerg {
     public Devorador() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
-        this.danio = new DanioDevorador(danioAereo);
+        this.danio = new DanioAereo(danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 5;
         this.costoGas = 50;

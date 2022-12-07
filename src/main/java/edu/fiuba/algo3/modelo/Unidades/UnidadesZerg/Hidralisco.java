@@ -16,7 +16,7 @@ public class Hidralisco extends UnidadZerg {
     public Hidralisco(){
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
-        this.danio = new DanioHidralisco(danioTerrestre, danioAereo);
+        this.danio = new DanioMixto(danioTerrestre, danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
         this.rangoDeAtaque = 4;
         this.costoGas = 25;

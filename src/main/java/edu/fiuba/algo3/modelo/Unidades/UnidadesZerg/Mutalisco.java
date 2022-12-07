@@ -16,7 +16,7 @@ public class Mutalisco extends UnidadZerg {
     public Mutalisco() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
-        this.danio = new DanioMutalisco(danioTerrestre, danioAereo);
+        this.danio = new DanioMixto(danioTerrestre, danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
 
         this.rangoDeAtaque = 3;
