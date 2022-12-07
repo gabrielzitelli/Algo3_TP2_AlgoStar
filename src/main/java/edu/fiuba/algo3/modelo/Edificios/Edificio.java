@@ -68,8 +68,6 @@ public abstract class Edificio implements Ocupable {
         }
     }
 
-    public abstract boolean somosAliados(Unidad unaUnidad);
-
     protected void destruirEdificio() {
         Mapa elMapa = Mapa.obtener();
         elMapa.destruirEdificio(coordenada);

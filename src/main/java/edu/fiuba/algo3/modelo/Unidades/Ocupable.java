@@ -18,8 +18,6 @@ public interface Ocupable {
 
     void actualizarColocable(Casilla unaCasilla);
 
-    boolean somosAliados(Unidad unaUnidad);
-
     boolean esDeEsteTipo(Class claseAAverificar);
 
 }

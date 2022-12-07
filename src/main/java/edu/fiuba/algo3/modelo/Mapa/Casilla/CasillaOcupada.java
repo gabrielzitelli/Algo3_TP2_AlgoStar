@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
+import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.*;
@@ -77,6 +78,10 @@ public class CasillaOcupada extends Casilla {
             throw new ErrorLaUnidadNoPuedeAtacarFueraDeSuRango();
     }
 
+    public boolean esFuegoAliado(Imperio unImperio) {
+        return ocupable.perteneceAImperio(unImperio);
+    }
+
     public void recibirAtaque(Ataque unAtaque) {
         ocupable.recibirAtaque(unAtaque);
     }
@@ -99,10 +104,5 @@ public class CasillaOcupada extends Casilla {
     public void desRevelar() {
         super.desRevelar();
         ocupable.actualizarColocable(this);
-    }
-
-    @Override
-    public boolean fuegoCompaniero(Unidad unidadZerg){
-        return this.ocupable.somosAliados(unidadZerg);
     }
 }

@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
+import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 
 public abstract class Casilla {
@@ -27,10 +27,10 @@ public abstract class Casilla {
     public abstract Edificio obtenerEdificio();
     public abstract Casilla colocarUnidad(Unidad unaUnidad);
     public abstract void atacar(Casilla casillaAtacada);
+    public abstract boolean esFuegoAliado(Imperio unImperio);
     public abstract void recibirAtaque(Ataque unAtaque);
     public abstract Casilla moverUnidadHacia(Casilla destino);
     public abstract Casilla quitarUnidad();
-    public abstract boolean fuegoCompaniero(Unidad unidadZerg);
 
     public void colocarMaterial(SiRecolectable materialAColocar){
         estadoRecolectable = materialAColocar;

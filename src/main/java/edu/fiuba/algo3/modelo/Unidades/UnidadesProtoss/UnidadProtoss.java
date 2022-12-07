@@ -14,19 +14,9 @@ public abstract class UnidadProtoss extends Unidad {
     }
 
     @Override
-    public void atacar(Casilla casillaAAtacar){
-        if (!super.fuegoAliado(this, casillaAAtacar)){
-            super.atacar(casillaAAtacar);
-        }
-        else{
+    protected void verificarFuegoAliado(Casilla casillaAAtacar) {
+        if (casillaAAtacar.esFuegoAliado(new Protoss()))
             throw new ErrorFuegoCompañero();
-        }
     }
-
-    @Override
-    public boolean somosAliados(Unidad unaUnidad){
-        return unaUnidad.perteneceAImperio(new Protoss());
-    }
-
 }
 

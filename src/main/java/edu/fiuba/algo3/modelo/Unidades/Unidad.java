@@ -66,15 +66,12 @@ public abstract class Unidad implements Ocupable {
      }
 
      public void atacar(Casilla casillaAAtacar) {
+          verificarFuegoAliado(casillaAAtacar);
           estadoPelea.atacar(casillaAAtacar, danio);
           estadoPelea = new NoAtacante();
      }
 
-     public boolean fuegoAliado(Unidad unaUnidad, Casilla casillaAAtacar){
-          return casillaAAtacar.fuegoCompaniero(unaUnidad);
-     }
-     public abstract boolean somosAliados(Unidad unaUnidad);
-
+     protected abstract void verificarFuegoAliado(Casilla casillaAAtacar);
 
      public void recibirAtaque(Ataque unAtaque) {
           try {
