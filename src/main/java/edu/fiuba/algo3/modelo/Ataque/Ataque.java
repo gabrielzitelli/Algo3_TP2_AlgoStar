@@ -11,11 +11,13 @@ public class Ataque {
 
     public Ataque(DanioUnidad unDanioUnidad) {
         this.danioUnidad = unDanioUnidad;
-        this.danio = danioUnidad.danioTerrestre();
     }
 
     public int aplicarAtaque(int cantidadVida) {
         // Retorna el resultado de que Danio aplique su daño
+        if (danio == null)
+            danioUnidad.danioTerrestre();
+
         return this.danio.aplicarDanio(cantidadVida);
     }
 

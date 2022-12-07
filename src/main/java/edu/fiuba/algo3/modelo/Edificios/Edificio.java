@@ -61,12 +61,13 @@ public abstract class Edificio implements Ocupable {
 
     public void recibirAtaque(Ataque unAtaque) {
         try {
-            this.vida.aplicarAtaque(unAtaque);
+            this.vida.aplicarAtaque(unAtaque.ataqueTerrestre());
         }
         catch (Exception ErrorVidaLlegoACero){
             this.destruirEdificio();
         }
     }
+
     public abstract boolean somosAliados(Unidad unaUnidad);
 
     protected void destruirEdificio() {

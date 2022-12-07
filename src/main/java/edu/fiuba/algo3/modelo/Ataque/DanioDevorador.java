@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Ataque;
 
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadTerrestre;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 
 public class DanioDevorador implements DanioUnidad {
     private Danio danioAereo;
