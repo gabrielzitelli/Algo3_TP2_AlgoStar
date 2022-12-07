@@ -79,7 +79,7 @@ public class CasoDeuso9Test {
         unAcceso.asignarSuministro(new Suministro(5));
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
-        Ataque unAtaque = new Ataque( new Danio(600) );
+        Ataque unAtaque = new Ataque(new DanioTerrestre(600));
 
         pilon1.asignarSuministro(new Suministro(0));
         pilon2.asignarSuministro(new Suministro(0));
@@ -115,7 +115,7 @@ public class CasoDeuso9Test {
         unAcceso.asignarListaDeUnidades(fabricasDisponibles);
         Pilon pilon1 = new Pilon();
         Pilon pilon2 = new Pilon();
-        Ataque unAtaque = new Ataque( new Danio(600) );
+        Ataque unAtaque = new Ataque(new DanioTerrestre(600));
 
         pilon1.asignarSuministro(new Suministro(0));
         pilon2.asignarSuministro(new Suministro(0));

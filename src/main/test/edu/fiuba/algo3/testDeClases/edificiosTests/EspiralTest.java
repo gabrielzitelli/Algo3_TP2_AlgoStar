@@ -2,6 +2,7 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.Danio;
+import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
@@ -79,7 +80,7 @@ public class EspiralTest {
         for (int i = 0; i < 10; i++)
             unEspiral.pasarTurno();
 
-        unEspiral.recibirAtaque(new Ataque(new Danio(1300)));
+        unEspiral.recibirAtaque(new Ataque(new DanioTerrestre(1300)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
                 () -> unCriadero.crearUnidad(new FabricaMutalisco()));

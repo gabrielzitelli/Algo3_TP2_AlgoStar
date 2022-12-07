@@ -22,7 +22,7 @@ public class CasoDeUso13Test {
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenadaCriadero = new Coordenada(0,1);
         Criadero criadero = new Criadero();
-        Ataque unAtaque = new Ataque( new Danio(500) );
+        Ataque unAtaque = new Ataque(new DanioTerrestre(500));
 
         elMapa.construirEdificio(criadero, coordenadaCriadero);
 

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.Danio;
+import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
@@ -80,7 +81,7 @@ public class ReservaDeReproduccionTest {
         for (int i = 0; i < 12; i++)
             unaReserva.pasarTurno();
 
-        unaReserva.recibirAtaque(new Ataque(new Danio(1000)));
+        unaReserva.recibirAtaque(new Ataque(new DanioTerrestre(1000)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
                 () -> unCriadero.crearUnidad(new FabricaZerling()));

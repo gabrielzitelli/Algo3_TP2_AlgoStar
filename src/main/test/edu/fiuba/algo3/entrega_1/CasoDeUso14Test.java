@@ -180,7 +180,7 @@ public class CasoDeUso14Test {
         ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
-        Ataque unAtaque = new Ataque(new Danio(600));
+        Ataque unAtaque = new Ataque(new DanioTerrestre(600));
         unPilon.asignarSuministro(new Suministro(0));
 
         elMapa.construirEdificio(unPilon, coordenadaPilon);

@@ -5,27 +5,24 @@ public class Ataque {
     private Danio danio;
     private TipoDanio tipoDanio;
 
-    public Ataque(Danio unDanio){
-        this.danio = unDanio;
-    }
-
     public Ataque(TipoDanio unTipoDanio) {
         this.tipoDanio = unTipoDanio;
     }
 
     public int aplicarAtaque(int cantidadVida) {
-        // Retorna el resultado de que Danio aplique su daño
         if (danio == null)
-            tipoDanio.danioTerrestre();
+            danio = tipoDanio.danioTerrestre();
 
         return this.danio.aplicarDanio(cantidadVida);
     }
 
     public Ataque ataqueTerrestre() {
-        return new Ataque(tipoDanio.danioTerrestre());
+        danio = tipoDanio.danioTerrestre();
+        return this;
     }
 
     public Ataque ataqueAereo() {
-        return new Ataque(tipoDanio.danioAereo());
+        danio = tipoDanio.danioAereo();
+        return this;
     }
 }
