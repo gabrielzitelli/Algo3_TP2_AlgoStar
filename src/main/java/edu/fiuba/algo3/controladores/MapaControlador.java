@@ -47,6 +47,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static java.lang.Integer.parseInt;
+
 public class MapaControlador extends Controlador {
 
     @FXML
@@ -81,9 +83,9 @@ public class MapaControlador extends Controlador {
     private GraphicsContext graphicsContext;
     private final Tile seleccion = new Tile("marcos/32px/seleccion.png");
     private Coordenada coordenadaSeleccion;
-
     private Coordenada coordenadaMouse;
     private Coordenada coordenadaMover;
+    private Coordenada coordenadaAtacar;
     private final int tileWidth = 32;
 
     /*=====================================================================================
@@ -357,20 +359,48 @@ public class MapaControlador extends Controlador {
             seleccion.render(graphicsContext, camara.getX() + (x*tileWidth), camara.getY() + (y*tileWidth));
         }
 
-        //renderizarRango
-        if (coordenadaMover != null) {
-            pintarCasillasMovimiento(coordenadaMover.getCoordenadaX(), coordenadaMover.getCoordenadaY());
-        }
+        //renderizar Rango de Movimiento
+        pintarCasillasMovimiento(coordenadaMover);
+        //renderizar Rango de Ataque
+        pintarCasillasAtaque(coordenadaAtacar);
     }
 
-    private void pintarCasillasMovimiento(int x, int y) {
-        Coordenada origen = new Coordenada(x,y);
-        graphicsContext.setStroke(Color.GREEN);
-        graphicsContext.setFill(Color.color(0,1,0,0.1));
-        for (int i = x - 5; i <= x + 5; i++){
-            for (int j = y - 5; j <= y + 5; j++){
+    private void pintarCasillasAtaque(Coordenada origen) {
+        if (coordenadaAtacar == null)
+            return;
+
+        JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(mapa.obtenerOcupable(origen));
+        int rango = parseInt((String) unidadJSON.get(ConvertidorJSON.RANGO_ATAQUE));
+
+        if (rango == 0) {
+            coordenadaAtacar = null;
+            return;
+        }
+        Color borde = Color.DARKRED;
+        Color relleno = Color.color(1,0,0,0.2);
+        pintarCasillasEnRango(origen, rango, borde, relleno);
+
+    }
+
+    private void pintarCasillasMovimiento(Coordenada origen) {
+        if (coordenadaMover == null)
+            return;
+        int rango = 5;
+        Color borde = Color.GREEN;
+        Color relleno = Color.color(0,1,0,0.2);
+        pintarCasillasEnRango(origen, rango, borde, relleno);
+    }
+
+    private void pintarCasillasEnRango(Coordenada origen, int rango, Color borde, Color relleno) {
+        int x = origen.getCoordenadaX();
+        int y = origen.getCoordenadaY();
+
+        graphicsContext.setStroke(borde);
+        graphicsContext.setFill(relleno);
+        for (int i = x - rango; i <= x + rango; i++){
+            for (int j = y - rango; j <= y + rango; j++){
                 Coordenada coordenada = new Coordenada(i,j);
-                if (mapa.distanciaEntreDosCoordenadas(coordenada, origen) <= 5){
+                if (mapa.distanciaEntreDosCoordenadas(coordenada, origen) <= rango){
                     int posX = ((coordenada.getCoordenadaX() * tileWidth) + camara.getX());
                     int posY = ((coordenada.getCoordenadaY() * tileWidth) + camara.getY());
                     graphicsContext.fillRect(posX,posY,tileWidth,tileWidth);
@@ -408,8 +438,6 @@ public class MapaControlador extends Controlador {
         //Renderizamos los recursos
         Vista recursoVista = RecursoVista.obtenerRecurso(casillaJson.get(ConvertidorJSON.RECURSO));
         recursoVista.render(graphicsContext, posicionX, posicionY);
-
-
 
         //Renderizamos los edificios y unidades
         Vista ocupableVista = OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE));
@@ -481,11 +509,9 @@ public class MapaControlador extends Controlador {
 
                         Coordenada coordenadaClickeada = new Coordenada(posX, posY);
                         //Revisar movimiento
-                        if (coordenadaMover != null) {
-                            moverUnidad(coordenadaClickeada);
-                            coordenadaMover = null;
-                        }
-
+                        moverUnidad(coordenadaClickeada);
+                        //Revisar ataque
+                        atacarUnidad(coordenadaClickeada);
                         //click normal
                         coordenadaSeleccion = coordenadaClickeada;
                         debugCoordenadas.setText("X " + posX + " , Y " + posY);
@@ -496,7 +522,30 @@ public class MapaControlador extends Controlador {
         };
     }
 
+    private void atacarUnidad(Coordenada coordenadaClickeada) {
+        if(coordenadaAtacar == null)
+            return;
+
+        Unidad unidadAtacante = (Unidad) mapa.obtenerOcupable(coordenadaAtacar);
+        JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidadAtacante);
+
+        int distancia = mapa.distanciaEntreDosCoordenadas(coordenadaClickeada, coordenadaAtacar);
+        int rango = parseInt((String) unidadJSON.get(ConvertidorJSON.RANGO_ATAQUE));
+        if (distancia <= rango) {
+            //Puede atacar
+            try {
+                mapa.atacar(coordenadaAtacar, coordenadaClickeada);
+            } catch (RuntimeException ignore) {
+                //todo Agregar algún tipo de feedback para cada problema
+            }
+        }
+
+        coordenadaAtacar = null;
+    }
+
     private void moverUnidad(Coordenada coordenadaClickeada) {
+        if (coordenadaMover == null)
+            return;
         int distancia = mapa.distanciaEntreDosCoordenadas(coordenadaClickeada, coordenadaMover);
         if (distancia <= 5) {
             //Puede moverse
@@ -508,7 +557,7 @@ public class MapaControlador extends Controlador {
                 //Todo poner algun sonido o algo para indicar que no se puede
             }
         }
-
+        coordenadaMover = null;
     }
 
     @FXML
@@ -625,6 +674,9 @@ public class MapaControlador extends Controlador {
 
         if(coordenadaSeleccion != null)
             actualizarPaneOcupable(coordenadaSeleccion);
+
+        coordenadaAtacar = null;
+        coordenadaMover = null;
     }
 
     private void actualizarColorJugador(){
@@ -700,7 +752,13 @@ public class MapaControlador extends Controlador {
     }
 
     public void guardarCasillaMovimiento(Coordenada coordenadaAGuardar) {
+        coordenadaAtacar = null;
         coordenadaMover = coordenadaAGuardar;
+    }
+
+    public void guardarCasillaAtacar(Coordenada coordenadaAGuardar) {
+        coordenadaMover = null;
+        coordenadaAtacar = coordenadaAGuardar;
     }
 
     private void setPantallaCompleta() {

@@ -57,7 +57,7 @@ public abstract class UnidadVista extends OcupableVista {
         crearBoton(botonAtacar, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/atacar.png"))), anchoBoton, altoBoton);
 
         botonMover.setOnAction(event -> mapaControlador.guardarCasillaMovimiento(coordenada));
-        botonAtacar.setOnAction(actionEvent -> {});
+        botonAtacar.setOnAction(actionEvent -> mapaControlador.guardarCasillaAtacar(coordenada));
 
         botonMover.setTooltip( new Tooltip("MOVER UNIDAD" + "\nMover a la unidad a otra casilla"));
         botonAtacar.setTooltip( new Tooltip("ATACAR" + "\nAtacar a un edificio o unidad"));
@@ -66,6 +66,11 @@ public abstract class UnidadVista extends OcupableVista {
         if (unidadJSON.get(ConvertidorJSON.CAMINAR).equals("no_caminar")){
             botonMover.setDisable(true);
             botonMover.setTooltip(new Tooltip("MOVER UNIDAD" + "\nEsta unidad no se puede mover"));
+        }
+
+        if (unidadJSON.get(ConvertidorJSON.ATACAR).equals("no_atacar")){
+            botonAtacar.setDisable(true);
+            botonAtacar.setTooltip(new Tooltip("MOVER UNIDAD" + "\nEsta unidad no se puede mover"));
         }
     }
 

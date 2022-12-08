@@ -9,4 +9,9 @@ public class NoAtacante implements Atacar{
     public void atacar(Casilla casillaAAtacar, TipoDanio unDanio){
         //NADA
     }
+
+    @Override
+    public String toString() {
+        return "no_atacar";
+    }
 }

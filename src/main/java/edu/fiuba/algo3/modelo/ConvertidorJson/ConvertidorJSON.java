@@ -29,6 +29,9 @@ public class ConvertidorJSON {
     public static String POBLACION = "poblacion";
     public static String SUMINISTRO = "suministro";
     public static String CAMINAR = "estado_caminar";
+    public static String ATACAR = "estado_atacar";
+
+    public static String RANGO_ATAQUE = "rango_ataque";
 
 
     public static JSONObject convertirAJSON(Object objeto){

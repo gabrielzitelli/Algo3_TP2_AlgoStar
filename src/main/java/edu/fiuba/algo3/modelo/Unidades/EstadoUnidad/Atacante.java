@@ -10,4 +10,8 @@ public class Atacante implements Atacar{
     public void atacar(Casilla casillaAAtacar, TipoDanio unDanio){
         casillaAAtacar.recibirAtaque(new Ataque(unDanio));
     }
+
+    public String toString() {
+        return "atacar";
+    }
 }

@@ -123,6 +123,8 @@ public abstract class Unidad implements Ocupable {
           info += this.vida.toString();
           info += " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
           info += " estado_caminar " + estadoCaminar.toString();
+          info += " estado_atacar " + estadoPelea.toString();
+          info += " rango_ataque " + rangoDeAtaque;
           return info;
      }
 
