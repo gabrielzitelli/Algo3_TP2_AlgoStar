@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class AlgoStar {
 
-    private AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
+    private final AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
     private Turno turno;
 
     private int cantidadDeTurnos = 0;
@@ -41,10 +41,6 @@ public class AlgoStar {
 
     public Jugador conseguirJugadorActual() {
         return turno.jugadorActual();
-    }
-
-    public String conseguirStringJugadorActual() {
-        return turno.jugadorActual().toString();
     }
 
     public Ocupable conseguirOcupableEn(Coordenada coordenada) {

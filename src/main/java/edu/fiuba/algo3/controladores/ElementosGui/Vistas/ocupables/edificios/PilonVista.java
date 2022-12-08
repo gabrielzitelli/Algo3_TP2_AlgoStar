@@ -2,9 +2,10 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
+import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
+import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
@@ -19,9 +20,7 @@ public class PilonVista extends OcupableVista {
     }
 
     @Override
-    public void aplicarTextoEscudo(Text textoEscudo, String stringOcupable){
-        String escudoActual = obtenerAtributoDeString(stringOcupable, "escudoActual");
-        String escudoMaxima = obtenerAtributoDeString(stringOcupable, "escudoMaximo");
-        textoEscudo.setText(escudoActual + "/" + escudoMaxima);
+    public void aplicarTextoEscudo(Text textoEscudo, JSONObject ocupableJson){
+        textoEscudo.setText(ocupableJson.get(ConvertidorJSON.ESCUDO) + "/" + ocupableJson.get(ConvertidorJSON.ESCUDOMAX));
     }
 }

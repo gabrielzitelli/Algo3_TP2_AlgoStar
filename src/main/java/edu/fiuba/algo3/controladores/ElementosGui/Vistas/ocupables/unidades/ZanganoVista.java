@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class ZanganoVista extends UnidadVista {
+public class ZanganoVista extends UnidadZergVista {
     public ZanganoVista() {
         this.tile = new Tile("unidades_zerg/32px/zangano.png");
         this.identificador = "zangano";

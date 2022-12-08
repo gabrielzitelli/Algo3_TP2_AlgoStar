@@ -29,4 +29,8 @@ public class Atacante implements Atacar{
     public Atacar pasarTurno() {
         return this;
     }
+
+    public String toString() {
+        return "atacar";
+    }
 }

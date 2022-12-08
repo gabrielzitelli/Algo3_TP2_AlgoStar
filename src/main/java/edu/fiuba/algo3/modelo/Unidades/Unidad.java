@@ -86,6 +86,7 @@ public abstract class Unidad implements Ocupable {
 
      public void moverA(Coordenada coordenadaDestino) {
           estadoCaminar = estadoCaminar.caminar(this.coordenada, coordenadaDestino);
+          this.interaccionar(Mapa.obtener().obtenerCasilla(coordenada));
      }
 
      public boolean esIgualA(Unidad unidad) {
@@ -109,7 +110,13 @@ public abstract class Unidad implements Ocupable {
           return this.coordenada;
      }
      public String toString() {
-          return identificador + this.vida.toString() + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
+          String info = "ocupable " + identificador;
+          info += this.vida.toString();
+          info += " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
+          info += " estado_caminar " + estadoCaminar.toString();
+          info += " estado_atacar " + estadoPelea.toString();
+          info += " rango_ataque " + rangoDeAtaque;
+          return info;
      }
 
      public boolean esDeEsteTipo(Class claseAAverificar){

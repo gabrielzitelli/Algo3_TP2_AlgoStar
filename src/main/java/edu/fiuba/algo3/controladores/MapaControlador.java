@@ -14,11 +14,13 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +29,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -46,12 +47,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static java.lang.Integer.parseInt;
+
 public class MapaControlador extends Controlador {
 
     @FXML
     protected Canvas canvasPrincipal;
-    //@FXML
-    //protected Text libreLabel;
     @FXML
     protected Text debugCoordenadas;
     @FXML
@@ -82,7 +83,9 @@ public class MapaControlador extends Controlador {
     private GraphicsContext graphicsContext;
     private final Tile seleccion = new Tile("marcos/32px/seleccion.png");
     private Coordenada coordenadaSeleccion;
-    private Coordenada coordenadaSeleccionSecundaria;
+    private Coordenada coordenadaMouse;
+    private Coordenada coordenadaMover;
+    private Coordenada coordenadaAtacar;
     private final int tileWidth = 32;
 
     /*=====================================================================================
@@ -98,9 +101,7 @@ public class MapaControlador extends Controlador {
     /*=====================================================================================
      * AlgoStar
      * ====================================================================================*/
-    private AlgoStar algoStar = App.algoStar;
-    private Zerg imperioZerg;
-    private Protoss imperioProtoss;
+    private final AlgoStar algoStar = App.algoStar;
 
     /*==========  Borde Derecho   ==========*/
     @FXML
@@ -219,7 +220,7 @@ public class MapaControlador extends Controlador {
         pasarTurnoBoton.setFocusTraversable(false);
         App.algoStar.empezarJuego();
 
-        actualizarColorJugador(algoStar.conseguirStringJugadorActual());
+        actualizarColorJugador();
         actualizarInfoBordeDerecho();
 
         //Agrego efecto al imageview
@@ -298,6 +299,7 @@ public class MapaControlador extends Controlador {
                     resto = decoratorHeight;
                 canvasPrincipal.setHeight(stage.getHeight() - resto);
                 camara.setBordeY((tileWidth * tamanioMapa) - (int)canvasPrincipal.getHeight());
+
                 if (Math.abs(camara.getY()) >= (tileWidth * tamanioMapa) - (int)canvasPrincipal.getHeight()){
                     camara.irHacia(Math.abs(camara.getX()), (tileWidth * tamanioMapa) - (int)canvasPrincipal.getHeight());
                 }
@@ -335,6 +337,19 @@ public class MapaControlador extends Controlador {
 
         //Renderizado de seleccion
         renderizarSeleccion();
+
+        //renderizado de posicion de Mouse
+        renderizarPosicionMouse();
+
+    }
+
+    private void renderizarPosicionMouse() {
+        if (coordenadaMouse != null) {
+            int x = (coordenadaMouse.getCoordenadaX());
+            int y = coordenadaMouse.getCoordenadaY();
+            graphicsContext.setStroke(Color.color(1,1,1,0.4));
+            graphicsContext.strokeRect(camara.getX() + (x*tileWidth), camara.getY() + (y*tileWidth), tileWidth, tileWidth);
+        }
     }
 
     private void renderizarSeleccion(){
@@ -342,6 +357,56 @@ public class MapaControlador extends Controlador {
             int x = coordenadaSeleccion.getCoordenadaX();
             int y = coordenadaSeleccion.getCoordenadaY();
             seleccion.render(graphicsContext, camara.getX() + (x*tileWidth), camara.getY() + (y*tileWidth));
+        }
+
+        //renderizar Rango de Movimiento
+        pintarCasillasMovimiento(coordenadaMover);
+        //renderizar Rango de Ataque
+        pintarCasillasAtaque(coordenadaAtacar);
+    }
+
+    private void pintarCasillasAtaque(Coordenada origen) {
+        if (coordenadaAtacar == null)
+            return;
+
+        JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(mapa.obtenerOcupable(origen));
+        int rango = parseInt((String) unidadJSON.get(ConvertidorJSON.RANGO_ATAQUE));
+
+        if (rango == 0) {
+            coordenadaAtacar = null;
+            return;
+        }
+        Color borde = Color.DARKRED;
+        Color relleno = Color.color(1,0,0,0.2);
+        pintarCasillasEnRango(origen, rango, borde, relleno);
+
+    }
+
+    private void pintarCasillasMovimiento(Coordenada origen) {
+        if (coordenadaMover == null)
+            return;
+        int rango = 5;
+        Color borde = Color.GREEN;
+        Color relleno = Color.color(0,1,0,0.2);
+        pintarCasillasEnRango(origen, rango, borde, relleno);
+    }
+
+    private void pintarCasillasEnRango(Coordenada origen, int rango, Color borde, Color relleno) {
+        int x = origen.getCoordenadaX();
+        int y = origen.getCoordenadaY();
+
+        graphicsContext.setStroke(borde);
+        graphicsContext.setFill(relleno);
+        for (int i = x - rango; i <= x + rango; i++){
+            for (int j = y - rango; j <= y + rango; j++){
+                Coordenada coordenada = new Coordenada(i,j);
+                if (mapa.distanciaEntreDosCoordenadas(coordenada, origen) <= rango){
+                    int posX = ((coordenada.getCoordenadaX() * tileWidth) + camara.getX());
+                    int posY = ((coordenada.getCoordenadaY() * tileWidth) + camara.getY());
+                    graphicsContext.fillRect(posX,posY,tileWidth,tileWidth);
+                    graphicsContext.strokeRect(posX, posY, tileWidth, tileWidth);
+                }
+            }
         }
     }
 
@@ -431,21 +496,6 @@ public class MapaControlador extends Controlador {
         };
     }
 
-    /*public Coordenada obtenerCoordenadaDesdeMouseEvent(ActionEvent event){
-        Coordenada coordenadaDelClick = null;
-        double posMouseX = event.getX() - bordeIzquierda.getWidth();
-        double posMouseY = event.getY();
-        if (canvasPrincipal.contains(posMouseX, posMouseY)) {
-            int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
-            int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
-            if (posX >= tamanioMapa)
-                posX = tamanioMapa - 1;
-            coordenadaDelClick = new Coordenada(posX, posY);
-        }
-
-        return coordenadaDelClick;
-    }*/
-
     public EventHandler<? super MouseEvent> pintarCasilla() {
         return new EventHandler<MouseEvent>() {
             @Override
@@ -456,25 +506,58 @@ public class MapaControlador extends Controlador {
                     if (canvasPrincipal.contains(posMouseX, posMouseY)) {
                         int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
                         int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
-                        if (posX >= tamanioMapa)
-                            posX = tamanioMapa - 1;
-                        coordenadaSeleccion = new Coordenada(posX, posY);
+
+                        Coordenada coordenadaClickeada = new Coordenada(posX, posY);
+                        //Revisar movimiento
+                        moverUnidad(coordenadaClickeada);
+                        //Revisar ataque
+                        atacarUnidad(coordenadaClickeada);
+                        //click normal
+                        coordenadaSeleccion = coordenadaClickeada;
                         debugCoordenadas.setText("X " + posX + " , Y " + posY);
                         actualizarUI();
-                    }
-                }else if(mouseEvent.getButton().equals(MouseButton.SECONDARY)){
-                    double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
-                    double posMouseY = mouseEvent.getY();
-                    if (canvasPrincipal.contains(posMouseX, posMouseY)) {
-                        int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
-                        int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
-                        if (posX >= tamanioMapa)
-                            posX = tamanioMapa - 1;
-                        coordenadaSeleccionSecundaria = new Coordenada(posX, posY);
                     }
                 }
             }
         };
+    }
+
+    private void atacarUnidad(Coordenada coordenadaClickeada) {
+        if(coordenadaAtacar == null)
+            return;
+
+        Unidad unidadAtacante = (Unidad) mapa.obtenerOcupable(coordenadaAtacar);
+        JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidadAtacante);
+
+        int distancia = mapa.distanciaEntreDosCoordenadas(coordenadaClickeada, coordenadaAtacar);
+        int rango = parseInt((String) unidadJSON.get(ConvertidorJSON.RANGO_ATAQUE));
+        if (distancia <= rango) {
+            //Puede atacar
+            try {
+                mapa.atacar(coordenadaAtacar, coordenadaClickeada);
+            } catch (RuntimeException ignore) {
+                //todo Agregar algún tipo de feedback para cada problema
+            }
+        }
+
+        coordenadaAtacar = null;
+    }
+
+    private void moverUnidad(Coordenada coordenadaClickeada) {
+        if (coordenadaMover == null)
+            return;
+        int distancia = mapa.distanciaEntreDosCoordenadas(coordenadaClickeada, coordenadaMover);
+        if (distancia <= 5) {
+            //Puede moverse
+            Unidad unidad = (Unidad) algoStar.conseguirOcupableEn(coordenadaMover);
+
+            try {
+                unidad.moverA(coordenadaClickeada);
+            } catch (ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada error){
+                //Todo poner algun sonido o algo para indicar que no se puede
+            }
+        }
+        coordenadaMover = null;
     }
 
     @FXML
@@ -503,37 +586,50 @@ public class MapaControlador extends Controlador {
         if(Objects.equals(tipoOcupable, "Libre"))
             actualizarPaneOcupableConImperio();
         else if(!Objects.equals(tipoOcupable, "No hay"))
-            actualizarPaneOcupableConOcupable(coordenada, (OcupableVista) OcupableVista.obtenerOcupable(casillaJson.get(ConvertidorJSON.OCUPABLE)));
+            actualizarPaneOcupableConOcupable(coordenada);
     }
 
-    public void actualizarPaneOcupableConOcupable(Coordenada coordenada, OcupableVista ocupableVista){
+    public void actualizarPaneOcupableConOcupable(Coordenada coordenada){
         paneInfoImperio.setVisible(false);
         paneInfoEdificio.setVisible(true);
 
-        textoNombreEdificio.setText(ocupableVista.getInfo());
-        ocupableVista.renderAdentroDeImageView(imageviewEdificio);
+        JSONObject ocupableJSON = ConvertidorJSON.convertirAJSON(mapa.obtenerOcupable(coordenada));
+        OcupableVista ocupableView = (OcupableVista) OcupableVista.obtenerOcupable(ocupableJSON.get(ConvertidorJSON.OCUPABLE));
 
-        String stringOcupable = mapa.obtenerOcupable(coordenada).toString();
-        String vidaActual = obtenerAtributoImperio(stringOcupable, "vidaActual");
-        String vidaMaxima = obtenerAtributoImperio(stringOcupable, "vidaMaxima");
-        textoVida.setText(vidaActual + "/" + vidaMaxima);
-        ocupableVista.aplicarTextoEscudo(textoEscudo, stringOcupable);
 
-        String imperioDeJugadorActual = obtenerAtributoJugador( algoStar.conseguirStringJugadorActual() , "imperio");
+        textoNombreEdificio.setText(ocupableView.getInfo());
+        ocupableView.renderAdentroDeImageView(imageviewEdificio);
 
-        ocupableVista.manejarBotones(arrayBotonesEdificio, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual, this);
+        textoVida.setText(ocupableJSON.get(ConvertidorJSON.VIDA) + "/" + ocupableJSON.get(ConvertidorJSON.VIDAMAX));
+        ocupableView.aplicarTextoEscudo(textoEscudo, ocupableJSON);
+
+        JSONObject imperioJSON = ConvertidorJSON.convertirAJSON(algoStar.conseguirJugadorActual());
+        String imperioDeJugadorActual = (String) imperioJSON.get(ConvertidorJSON.IMPERIO);
+
+        ocupableView.manejarBotones(arrayBotonesEdificio, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual, this);
     }
 
     public void actualizarPaneOcupableConImperio(){
         paneInfoEdificio.setVisible(false);
         paneInfoImperio.setVisible(true);
 
-        String imperioDeJugadorActual = obtenerAtributoJugador( algoStar.conseguirStringJugadorActual() , "imperio");
+        JSONObject imperioActual = ConvertidorJSON.convertirAJSON(algoStar.conseguirJugadorActual());
+        String imperioDeJugadorActual = (String) imperioActual.get(ConvertidorJSON.IMPERIO);
 
         if(imperioDeJugadorActual.equalsIgnoreCase( "Zerg"))
             (new ZergVista()).manejarBotones(coordenadaSeleccion, arrayBotonesContruirEdificio, arrayWrappersBotonesConstruirEdificio, (Zerg)algoStar.conseguirJugadorActual().conseguirImperio());
         else
             (new ProtossVista()).manejarBotones(coordenadaSeleccion, arrayBotonesContruirEdificio, arrayWrappersBotonesConstruirEdificio, (Protoss) algoStar.conseguirJugadorActual().conseguirImperio());
+    }
+
+    @FXML
+    public void actualizarCoordenadaMouse(MouseEvent mouseEvent) {
+        double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
+        double posMouseY = mouseEvent.getY();
+        int posX = (int) (((posMouseX - camara.getX()) / tileWidth));
+        int posY = (int) (((posMouseY - camara.getY()) / tileWidth));
+
+        coordenadaMouse = new Coordenada(posX, posY);
     }
 
     public EventHandler<? super KeyEvent> pressKey() {
@@ -573,45 +669,25 @@ public class MapaControlador extends Controlador {
     @FXML
     public void pasarTurno(ActionEvent event){
         algoStar.terminarTurno();
-        actualizarColorJugador(algoStar.conseguirStringJugadorActual());
+        actualizarColorJugador();
         actualizarInfoBordeDerecho();
 
         if(coordenadaSeleccion != null)
             actualizarPaneOcupable(coordenadaSeleccion);
+
+        coordenadaAtacar = null;
+        coordenadaMover = null;
     }
 
-    private  String obtenerAtributoImperio(String stringImperio, String tipoAtributo){
-        String[] tokensJugador = stringImperio.split(" ");
-        String atributoDeseado = null;
-
-        for (int i = 0; i < tokensJugador.length; i++) {
-            if(Objects.equals(tokensJugador[i], tipoAtributo))
-                atributoDeseado = new String(tokensJugador[i + 1]);
-        }
-
-        return atributoDeseado;
-    }
-
-    private String obtenerAtributoJugador(String stringJugador, String tipoAtributo){
-        String[] tokensJugador = stringJugador.split(" ");
-        String atributoDeseado = null;
-
-        for (int i = 0; i < tokensJugador.length; i++) {
-            if(Objects.equals(tokensJugador[i], tipoAtributo))
-                atributoDeseado = new String(tokensJugador[i + 1]);
-        }
-
-        return atributoDeseado;
-    }
-
-    private void actualizarColorJugador(String stringJugadorCompleto){
+    private void actualizarColorJugador(){
         int r = 255;
         int g = 255;
         int b = 255;
         int a = 255;
         int tipoDeColorHexadecimal;
 
-        String colorJugadorString = obtenerAtributoJugador(stringJugadorCompleto, "color");
+        JSONObject jugadorJSON = ConvertidorJSON.convertirAJSON(algoStar.conseguirJugadorActual());
+        String colorJugadorString = (String) jugadorJSON.get(ConvertidorJSON.COLOR);
         colorJugadorString = colorJugadorString.replace("0x", "");
         tipoDeColorHexadecimal = colorJugadorString.length();
 
@@ -633,26 +709,22 @@ public class MapaControlador extends Controlador {
     }
 
     private void actualizarInfoBordeDerecho(){
+        JSONObject imperioActualJSON = ConvertidorJSON.convertirAJSON(algoStar.conseguirJugadorActual());
 
-        String imperioJugador = obtenerAtributoJugador(algoStar.conseguirStringJugadorActual(), "imperio");
-        textoJugadorRaza.setText("IMPERIO " + imperioJugador.toUpperCase());
+        textoJugadorRaza.setText(((String) imperioActualJSON.get(ConvertidorJSON.IMPERIO)).toUpperCase());
 
         //Actualizo el nombre del jugador actual
-        String nombreJugador = obtenerAtributoJugador(algoStar.conseguirStringJugadorActual(), "nombre");
-        textoNombreJugador.setText(nombreJugador);
+        textoNombreJugador.setText((String) imperioActualJSON.get(ConvertidorJSON.NOMBRE));
 
         //Actualizo los minerales del jugador
-        String mineralesImperio = obtenerAtributoImperio(algoStar.conseguirJugadorActual().conseguirImperio().recursosToString(), "mineral");
-        textoCantMinerales.setText(mineralesImperio);
+        textoCantMinerales.setText((String) imperioActualJSON.get(ConvertidorJSON.MINERAL));
 
         //Actualizo el gas del jugador
-        String gasImperio = obtenerAtributoImperio(algoStar.conseguirJugadorActual().conseguirImperio().recursosToString(), "gas");
-        textoCantGas.setText(gasImperio);
+        textoCantGas.setText((String) imperioActualJSON.get(ConvertidorJSON.GAS));
 
         //Actualizo la poblacion y suministro del jugador
-        String poblacionImperio = obtenerAtributoImperio(algoStar.conseguirJugadorActual().conseguirImperio().recursosToString(), "poblacion");
-        String suministroImperio = obtenerAtributoImperio(algoStar.conseguirJugadorActual().conseguirImperio().recursosToString(), "suministro");
-        textoCantPoblacion.setText(poblacionImperio + "/" + suministroImperio);
+        textoCantPoblacion.setText(imperioActualJSON.get(ConvertidorJSON.POBLACION) + "/" +
+                                    imperioActualJSON.get(ConvertidorJSON.SUMINISTRO));
 
         textTurno.setText("Turnos: " + algoStar.turnoActual());
     }
@@ -677,6 +749,16 @@ public class MapaControlador extends Controlador {
         mohoVista.renderAdentroDeImageView(imagenContagioSeleccionado);
 
         textoContagioSeleccionado.setText(mohoVista.getInfo());
+    }
+
+    public void guardarCasillaMovimiento(Coordenada coordenadaAGuardar) {
+        coordenadaAtacar = null;
+        coordenadaMover = coordenadaAGuardar;
+    }
+
+    public void guardarCasillaAtacar(Coordenada coordenadaAGuardar) {
+        coordenadaMover = null;
+        coordenadaAtacar = coordenadaAGuardar;
     }
 
     private void setPantallaCompleta() {
