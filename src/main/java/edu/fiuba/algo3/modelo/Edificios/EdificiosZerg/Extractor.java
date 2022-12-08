@@ -18,12 +18,12 @@ public class Extractor extends EdificioZerg {
 
     private EstadoRecolector estadoRecolector;
     private EstadoContratador estadoContratador;
-    private int turnoParaEstarConstruido = 6;
-    private Recurso gasDelImperio;
+    private final int turnoParaEstarConstruido = 6;
+    private final Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
-    private LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
-    private int cantidadDeExtraccionUnitaria = 10;
-    private int valorVital = 750;
+    private final LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
+    private final int cantidadDeExtraccionUnitaria = 10;
+    private final int valorVital = 750;
 
     public Extractor(Recurso gasDelImperio){
         this.costoGas = 0;
@@ -57,6 +57,10 @@ public class Extractor extends EdificioZerg {
         estadoContratador.contratar(zanganoAContratar, zanganosEmpleados);
     }
 
+    public void descontratarZangano() {
+        estadoContratador.desContratar(zanganosEmpleados);
+    }
+
     public void verificarConstruccion(Casilla unaCasilla){
         super.verificarConstruccion(unaCasilla);
         establecerSobreGas(unaCasilla.obtenerMaterial());
@@ -74,5 +78,11 @@ public class Extractor extends EdificioZerg {
     @Override
     protected String obtenerEstado() {
         return estadoRecolector.getEstado();
+    }
+
+    public String toString() {
+        String info = super.toString();
+        info += " cantidad_unidades " + zanganosEmpleados.size();
+        return info;
     }
 }

@@ -12,16 +12,17 @@ public class Zerling extends UnidadZerg {
     private final int turnosDeContruccion = 2;
     private final int danioTerrestre = 4;
     private final int cantidadDeVida = 35;
-    private final int rangoDeAtaque = 1;
 
     public Zerling() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
+        this.rangoDeAtaque = 1;
         this.danio = new DanioTerrestre(danioTerrestre);
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 0;
         this.costoMineral = 25;
+        this.rangoDeAtaque = 1;
         this.identificador = "zerling";
     }
 

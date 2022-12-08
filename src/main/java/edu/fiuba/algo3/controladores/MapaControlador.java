@@ -14,7 +14,6 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -553,7 +552,7 @@ public class MapaControlador extends Controlador {
 
             try {
                 unidad.moverA(coordenadaClickeada);
-            } catch (ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada error){
+            } catch (RuntimeException error){
                 //Todo poner algun sonido o algo para indicar que no se puede
             }
         }

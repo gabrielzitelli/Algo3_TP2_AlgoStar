@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorExtractorNoPuedeDescontratarUnidadesSiNoContrataPrimero;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
@@ -18,5 +20,14 @@ public class EstadoContratadorConstruido implements EstadoContratador {
             throw new ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo();
 
         unidadesEmpleados.add(unidadAContratar);
+    }
+
+    @Override
+    public void desContratar(LinkedList<Unidad> unidadesEmpleados) {
+        if (unidadesEmpleados.size() <= 0)
+            throw new ErrorExtractorNoPuedeDescontratarUnidadesSiNoContrataPrimero();
+
+        Unidad zangano = unidadesEmpleados.removeLast();
+        Mapa.obtener().colocarUnidadEnCasillaLibreMasCercana(zangano.obtenerCoordenada(), zangano);
     }
 }

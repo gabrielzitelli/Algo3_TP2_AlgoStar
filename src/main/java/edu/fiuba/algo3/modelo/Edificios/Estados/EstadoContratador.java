@@ -10,4 +10,6 @@ public interface EstadoContratador {
     EstadoContratador actualizar();
 
     void contratar(Unidad unidadAContratar, LinkedList<Unidad> unidadesEmpleados);
+
+    void desContratar(LinkedList<Unidad> unidadesEmpleados);
 }

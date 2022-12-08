@@ -19,6 +19,7 @@ public class ConvertidorJSON {
     public static String VIDAMAX = "vidaMaxima";
     public static String ESCUDO = "escudoActual";
     public static String ESCUDOMAX = "escudoMaximo";
+    public static String CANTIDAD_UNIDADES = "cantidad_unidades";
 
     public static String IMPERIO = "imperio";
     public static String NOMBRE = "nombre";
