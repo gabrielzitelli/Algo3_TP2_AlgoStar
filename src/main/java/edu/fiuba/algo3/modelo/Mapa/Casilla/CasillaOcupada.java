@@ -1,15 +1,15 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
-import edu.fiuba.algo3.modelo.Imperio.Imperio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
+import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 public class CasillaOcupada extends Casilla {

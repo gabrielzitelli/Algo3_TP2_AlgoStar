@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.Fabricas;
 
-import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;

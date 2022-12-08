@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.EstadoMoho;
 
 import java.util.ArrayList;
 

@@ -3,8 +3,9 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergia;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergiaEnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SinMoho;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 public class Pilon extends EdificioProtoss {

@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.Fabricas;
 
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
