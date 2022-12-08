@@ -527,7 +527,6 @@ public class MapaControlador extends Controlador {
 
         Unidad unidadAtacante = (Unidad) mapa.obtenerOcupable(coordenadaAtacar);
 
-        System.out.println(algoStar.conseguirJugadorActual().conseguirImperio().toString());
         JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidadAtacante);
 
         int distancia = mapa.distanciaEntreDosCoordenadas(coordenadaClickeada, coordenadaAtacar);
@@ -678,7 +677,6 @@ public class MapaControlador extends Controlador {
 
         coordenadaAtacar = null;
         coordenadaMover = null;
-        System.out.println(algoStar.conseguirJugadorActual().conseguirImperio().toString());
     }
 
     private void actualizarColorJugador(){
