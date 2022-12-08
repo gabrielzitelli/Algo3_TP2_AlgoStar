@@ -95,7 +95,7 @@ public class Zerg extends Imperio{
                 unidades.remove(unidad);
 
                 GestorDeCrianza nuevoGestorEvoluciones = new GestorDeCrianza(unidad.obtenerCoordenada());
-                nuevoGestorEvoluciones.agregarUnidad(unaUnidad, unidades);
+                nuevoGestorEvoluciones.agregarUnidad(unaUnidad, unidades, mineralesDelImperio);
                 gestoresDeEvoluciones.add(nuevoGestorEvoluciones);
 
                 break;

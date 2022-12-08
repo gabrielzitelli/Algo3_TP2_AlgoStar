@@ -60,6 +60,7 @@ public abstract class Unidad implements Ocupable {
 
           estadoPelea = new Atacante();
           estadoCaminar = new Caminadora();
+
      }
 
      public void interaccionar(Casilla unaCasilla){
@@ -93,6 +94,7 @@ public abstract class Unidad implements Ocupable {
 
      public void moverA(Coordenada coordenadaDestino) {
           estadoCaminar.caminar(this.coordenada, coordenadaDestino);
+          this.interaccionar(Mapa.obtener().obtenerCasilla(coordenada));
           estadoCaminar = new NoCaminadora();
      }
 
@@ -117,7 +119,11 @@ public abstract class Unidad implements Ocupable {
           return this.coordenada;
      }
      public String toString() {
-          return identificador + this.vida.toString() + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
+          String info = "ocupable " + identificador;
+          info += this.vida.toString();
+          info += " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
+          info += " estado_caminar " + estadoCaminar.toString();
+          return info;
      }
 
      public boolean esDeEsteTipo(Class claseAAverificar){

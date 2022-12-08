@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class MutaliscoVista extends UnidadVista {
+public class MutaliscoVista extends UnidadZergVista {
     public MutaliscoVista() {
         this.tile = new Tile("unidades_zerg/32px/mutalisco.png");
         this.identificador = "mutalisco";

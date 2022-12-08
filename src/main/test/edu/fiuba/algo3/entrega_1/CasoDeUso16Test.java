@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
@@ -53,7 +52,7 @@ public class CasoDeUso16Test {
     public void test03NoSePuedeConstruirUnNexoMineralSiHayUnZanganoTrabajandoEnElMineral() {
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso mineralDelImperio = new Mineral(0);
+        Mineral mineralDelImperio = new Mineral(0);
         UnidadZerg unZangano = new Zangano();
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
@@ -68,7 +67,7 @@ public class CasoDeUso16Test {
     public void test04NoSeMandarATrabajarUnZanganoSiHayUnNexoMineralEnElMineral() {
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso mineralDelImperio = new Mineral(0);
+        Mineral mineralDelImperio = new Mineral(0);
         UnidadZerg unZangano = new Zangano();
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);

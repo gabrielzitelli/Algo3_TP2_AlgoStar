@@ -34,6 +34,10 @@ public class Caminadora implements Caminar{
         double radio = Math.pow(rangoDeCaminar,2);
         return (circunf <= radio);
 
+    }
 
+    @Override
+    public String toString() {
+        return "caminar";
     }
 }

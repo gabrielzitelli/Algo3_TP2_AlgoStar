@@ -101,7 +101,7 @@ public abstract class Edificio implements Ocupable {
     protected abstract String obtenerEstado();
     @Override
     public String toString() {
-        return this.identificador + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas + " estado " + this.obtenerEstado() + vida.toString();
+        return "ocupable " + this.identificador + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas + " estado " + this.obtenerEstado() + vida.toString();
     }
     
     public boolean esDeEsteTipo(Class claseAAverificar){

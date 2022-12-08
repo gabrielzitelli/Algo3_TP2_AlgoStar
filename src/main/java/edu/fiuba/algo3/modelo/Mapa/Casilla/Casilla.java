@@ -104,7 +104,7 @@ public abstract class Casilla {
         string += " recurso " + estadoRecolectable.toString();
         string += " carga " + estadoCarga.toString();
         string += " moho " + estadoMoho.toString();
-        string += " ocupable " + ocupable.toString();
+        string += " " + ocupable.toString();
 
         return string;
     }

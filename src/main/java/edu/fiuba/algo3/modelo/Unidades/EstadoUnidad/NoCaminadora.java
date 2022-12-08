@@ -8,4 +8,9 @@ public class NoCaminadora implements Caminar{
     public void caminar(Coordenada coordenadaInicial, Coordenada coordenadaDestino){
         //NADA
     }
+
+    @Override
+    public String toString() {
+        return "no_caminar";
+    }
 }

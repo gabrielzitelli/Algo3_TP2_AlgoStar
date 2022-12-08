@@ -60,7 +60,7 @@ public class EstadoCreadorConstruido extends EstadoCreador {
         verificarQueSePuedeFabricar(unaFabrica);
         Unidad unidad = unaFabrica.crearUnidad();
         comprobarRequisitosMateriales(unidad, mineralDelImperio, gasDelImperio);
-        gestorDeCrianza.agregarUnidad(unidad, unidades);
+        gestorDeCrianza.agregarUnidad(unidad, unidades, mineralDelImperio);
     }
 
     public void verificarQueSePuedeFabricar(Fabrica unaFabrica) {

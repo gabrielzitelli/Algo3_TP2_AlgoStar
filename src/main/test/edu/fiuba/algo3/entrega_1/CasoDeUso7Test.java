@@ -25,7 +25,7 @@ public class CasoDeUso7Test {
     public void test01MandoUnZanganoAExtraerUnMineralYRevisoQueDepositeEnElImperio(){
         Mapa elMapa = Mapa.obtener();
         Coordenada coordenada = new Coordenada(0,0);
-        Recurso mineralDelImperio = new Mineral(0);
+        Mineral mineralDelImperio = new Mineral(0);
         UnidadZerg unZangano = new Zangano();
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);

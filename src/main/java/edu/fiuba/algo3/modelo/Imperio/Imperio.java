@@ -23,12 +23,12 @@ public abstract class Imperio {
     protected String identificador;
 
     public String toString() {
-        return identificador;
-    }
-
-    public String recursosToString(){
-        return "mineral " + mineralesDelImperio.obtenerCantidad() + " gas " + gasDelImperio.obtenerCantidad()
-                + " poblacion " + poblacion.obtenerPoblacion() + " suministro " + poblacion.obtenerSuministro();
+        String info = identificador;
+        info += " mineral " + mineralesDelImperio.obtenerCantidad();
+        info += " gas " + gasDelImperio.obtenerCantidad();
+        info += " poblacion " + poblacion.obtenerPoblacion();
+        info += " suministro " + poblacion.obtenerSuministro();
+        return info;
     }
 
     public abstract void inicializarAsentamientoPrimerTurno();
