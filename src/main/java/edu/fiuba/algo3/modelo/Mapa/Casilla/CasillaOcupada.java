@@ -70,12 +70,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     public void atacar(Casilla casillaAtacada) {
-        Unidad unidad = (Unidad) ocupable;
-
-        if (Mapa.obtener().estaDentroDeRango(coordenada,casillaAtacada, unidad.rangoDeAtaque()))
-            unidad.atacar(casillaAtacada);
-        else
-            throw new ErrorLaUnidadNoPuedeAtacarFueraDeSuRango();
+        ((Unidad) ocupable).atacar(casillaAtacada);
     }
 
     public boolean esFuegoAliado(Imperio unImperio) {

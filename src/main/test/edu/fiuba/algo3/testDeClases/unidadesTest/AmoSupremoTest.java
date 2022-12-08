@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasill
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
@@ -68,7 +69,7 @@ public class AmoSupremoTest {
         Mapa elMapa = Mapa.obtener();
 
         AmoSupremo unAmoSupremo = new AmoSupremo();
-        Unidad unaUnidadTerrestre = new Zangano();
+        Unidad unaUnidadTerrestre = new Zealot();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
@@ -84,7 +85,7 @@ public class AmoSupremoTest {
         Mapa elMapa = Mapa.obtener();
 
         AmoSupremo unAmoSupremo = new AmoSupremo();
-        Unidad unaUnidadAerea = new AmoSupremo();
+        Unidad unaUnidadAerea = new Scout();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 

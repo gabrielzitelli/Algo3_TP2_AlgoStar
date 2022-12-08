@@ -4,5 +4,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 
 public interface Caminar {
 
-    void caminar(Coordenada coordenadaInicial, Coordenada coordenadaDestino);
+    Caminar caminar(Coordenada coordenadaInicial, Coordenada coordenadaDestino);
+
+    Caminar pasarTurno();
 }

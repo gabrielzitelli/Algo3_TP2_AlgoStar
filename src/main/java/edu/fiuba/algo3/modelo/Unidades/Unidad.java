@@ -24,16 +24,19 @@ public abstract class Unidad implements Ocupable {
      protected int costoMineral = 0;
      protected int costoGas = 0;
      protected String identificador;
+     protected int radioQuePuedeCaminar = 5;
 
      protected boolean estadoMuerta = false;
 
-     private Atacar estadoPelea = new Atacante();
+     protected Atacar estadoPelea;
 
-     private Caminar estadoCaminar = new Caminadora();
-
+     private Caminar estadoCaminar = new Caminadora(radioQuePuedeCaminar);
 
 
      public abstract boolean perteneceAImperio(Imperio imperio);
+
+     protected abstract void verificarFuegoAliado(Casilla casillaAAtacar);
+
 
      public void verificarColocable(Casilla unaCasilla) {
           if (!unaCasilla.puedeMoverse(this.superficieDondeSeMueve))
@@ -46,10 +49,6 @@ public abstract class Unidad implements Ocupable {
           verificarColocable(unaCasilla);
      }
 
-     public int rangoDeAtaque() {
-          return rangoDeAtaque;
-     }
-
      public boolean estaConstruida() {
           return (turnosDeConstruccion == 0);
      }
@@ -58,8 +57,8 @@ public abstract class Unidad implements Ocupable {
           if (turnosDeConstruccion > 0)
                turnosDeConstruccion--;
 
-          estadoPelea = new Atacante();
-          estadoCaminar = new Caminadora();
+          estadoPelea = estadoPelea.pasarTurno();
+          estadoCaminar = estadoCaminar.pasarTurno();
      }
 
      public void interaccionar(Casilla unaCasilla){
@@ -67,11 +66,8 @@ public abstract class Unidad implements Ocupable {
 
      public void atacar(Casilla casillaAAtacar) {
           verificarFuegoAliado(casillaAAtacar);
-          estadoPelea.atacar(casillaAAtacar, danio);
-          estadoPelea = new NoAtacante();
+          estadoPelea = estadoPelea.atacar(coordenada, casillaAAtacar, danio);
      }
-
-     protected abstract void verificarFuegoAliado(Casilla casillaAAtacar);
 
      public void recibirAtaque(Ataque unAtaque) {
           try {
@@ -89,8 +85,7 @@ public abstract class Unidad implements Ocupable {
      }
 
      public void moverA(Coordenada coordenadaDestino) {
-          estadoCaminar.caminar(this.coordenada, coordenadaDestino);
-          estadoCaminar = new NoCaminadora();
+          estadoCaminar = estadoCaminar.caminar(this.coordenada, coordenadaDestino);
      }
 
      public boolean esIgualA(Unidad unidad) {

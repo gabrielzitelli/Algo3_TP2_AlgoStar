@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Recolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Zangano extends UnidadZerg {
@@ -15,12 +16,12 @@ public class Zangano extends UnidadZerg {
     private final int cantidadDeVida = 25;
     private Recolectable recolecta = new MineralRecolectable();
 
-    public Zangano(){
+    public Zangano() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.mineralDelImperio = null;
         this.vida = new VidaSimple(cantidadDeVida);
-        this.rangoDeAtaque = 0;
+        this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 0;
         this.costoMineral = 25;
         this.identificador = "zangano";

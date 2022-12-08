@@ -409,9 +409,9 @@ public class Mapa {
         return carga;
     }
 
-    public boolean estaDentroDeRango(Coordenada coordenada, Casilla casillaAtacada, int rangoDeAtaque) {
-        LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
-        return casillas.contains(casillaAtacada);
+    public boolean estaDentroDeRango(Coordenada coordenadaOrigen, Casilla casillaDestino, int rango) {
+        LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenadaOrigen, rango);
+        return casillas.contains(casillaDestino);
     }
 
     public int obtenerTamanioMapa() {

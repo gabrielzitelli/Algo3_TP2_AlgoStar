@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Ataque.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visibilidad;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visible;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
@@ -17,6 +18,7 @@ public class Zealot extends UnidadProtoss {
     private final int danioTerrestre = 8;
     private final int cantidadDeVida = 100;
     private final int cantidadDeEscudo = 60;
+    private final int rangoDeAtaque = 1;
     private Visibilidad estado;
     private int muertesParaInvisibilidad = 3;
 
@@ -25,7 +27,7 @@ public class Zealot extends UnidadProtoss {
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.danio = new DanioTerrestre(danioTerrestre);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
-        this.rangoDeAtaque = 1;
+        this.estadoPelea = new Atacante(rangoDeAtaque);
         estado = new Visible(this, muertesParaInvisibilidad);
         this.costoGas = 0;
         this.costoMineral = 100;

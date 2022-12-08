@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class AmoSupremo extends UnidadZerg {
@@ -18,6 +19,7 @@ public class AmoSupremo extends UnidadZerg {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.vida = new VidaSimple(cantidadDeVida);
+        this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 0;
         this.costoMineral = 50;
         this.identificador = "amo_supremo";
