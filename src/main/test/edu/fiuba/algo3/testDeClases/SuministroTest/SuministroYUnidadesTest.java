@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.testDeClases.SuministroTest;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -189,5 +191,42 @@ public class SuministroYUnidadesTest {
         assertTrue(imperioZerg.tenesEsteSuministro(5));
 
         assertTrue(imperioZerg.tenesEstaPoblacion(0));
+    }
+    @Test
+    public void test04Creo3ZanganosYTengo3PoblacionMato1YTengo2() {
+        Zerg imperio = new Zerg();
+        imperio.abastecerDeRecursos();
+
+        imperio.construirCriadero(new Coordenada(0,0));
+        for (int i = 0; i < 5; i++){
+            imperio.terminarTurno();
+        }
+
+        Criadero criadero = (Criadero) Mapa.obtener().obtenerOcupable(new Coordenada(0,0));
+        criadero.crearUnidad(new FabricaZangano());
+        criadero.crearUnidad(new FabricaZangano());
+        criadero.crearUnidad(new FabricaZangano());
+
+        imperio.terminarTurno();
+
+        assertTrue(imperio.tenesEstaPoblacion(3));
+
+        Dragon dragon = new Dragon();
+        Mapa.obtener().colocarUnidadEnCasillaLibreMasCercana(new Coordenada(0,0), dragon);
+        Mapa.obtener().atacar(dragon.obtenerCoordenada(), new Coordenada(0,2));
+        dragon.pasarTurno();
+        Mapa.obtener().atacar(dragon.obtenerCoordenada(), new Coordenada(0,2));
+        dragon.pasarTurno();
+
+        imperio.terminarTurno();
+        assertTrue(imperio.tenesEstaPoblacion(2));
+
+        Mapa.obtener().atacar(dragon.obtenerCoordenada(), new Coordenada(1,0));
+        dragon.pasarTurno();
+        Mapa.obtener().atacar(dragon.obtenerCoordenada(), new Coordenada(1,0));
+
+        imperio.terminarTurno();
+
+        assertTrue(imperio.tenesEstaPoblacion(1));
     }
 }
