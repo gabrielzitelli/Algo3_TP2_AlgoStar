@@ -99,6 +99,12 @@ public class CasillaOcupada extends Casilla {
     }
 
     @Override
+    public boolean tieneEsteOcupable(Ocupable ocupable) {
+
+        return this.ocupable.getClass().equals(ocupable.getClass());
+    }
+
+    @Override
     public void revelar() {
         super.revelar();
         ocupable.actualizarColocable(this);

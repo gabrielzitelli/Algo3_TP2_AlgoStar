@@ -412,4 +412,8 @@ public class Mapa {
     public Casilla obtenerCasilla(Coordenada coordenada) {
         return encontrarCasillaPorCoordenada(coordenada);
     }
+
+    public boolean tieneEsteOcupable(Ocupable ocupable, Coordenada coordenada) {
+        return this.encontrarCasillaPorCoordenada(coordenada).tieneEsteOcupable(ocupable);
+    }
 }

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
 
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -22,9 +23,11 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
+        Coordenada coordenada = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
-                () ->imperioZerg.construirCriadero(new Coordenada(0,0)));
+                () ->imperioZerg.construirCriadero(coordenada));
     }
 
     @Test
@@ -33,8 +36,10 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos();
+        Coordenada coordenada = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenada);
 
-        assertDoesNotThrow(() -> imperioZerg.construirCriadero(new Coordenada(0,0)));
+        assertDoesNotThrow(() -> imperioZerg.construirCriadero(coordenada));
     }
 
     @Test
@@ -42,9 +47,11 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
+        Coordenada coordenada = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
-                () ->imperioZerg.construirReservaDeReproduccion(new Coordenada(0,0)));
+                () ->imperioZerg.construirReservaDeReproduccion(coordenada));
     }
 
     @Test
@@ -63,9 +70,11 @@ public class CasoDeUso8Test {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
+        Coordenada coordenada = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
-                () ->imperioZerg.construirExtractor(new Coordenada(0,0)));
+                () ->imperioZerg.construirExtractor(coordenada));
     }
 
     @Test
@@ -85,12 +94,17 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirCriadero(coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+
+        Coordenada coordenadaReserva =new Coordenada(0,1);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaReserva);
+        imperioZerg.construirReservaDeReproduccion(coordenadaReserva);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
                 () -> imperioZerg.construirGuarida(new Coordenada(1,1)));
@@ -102,14 +116,20 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos();
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirCriadero(coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+        Coordenada coordenadaReserva =new Coordenada(0,1);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaReserva);
+        imperioZerg.construirReservaDeReproduccion(coordenadaReserva);
 
-        assertDoesNotThrow(() ->imperioZerg.construirGuarida(new Coordenada(1,1)));
+        Coordenada coordenadaGuarida =new Coordenada(1,1);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaGuarida);
+        assertDoesNotThrow(() ->imperioZerg.construirGuarida(coordenadaGuarida));
     }
 
     @Test
@@ -118,13 +138,20 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(550), new Gas(100));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirCriadero(coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
-        imperioZerg.construirGuarida(new Coordenada(1,0));
+        Coordenada coordenadaReserva =new Coordenada(0,1);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaReserva);
+        imperioZerg.construirReservaDeReproduccion(coordenadaReserva);
+
+        Coordenada coordenadaGuarida =new Coordenada(1,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaGuarida);
+        imperioZerg.construirGuarida(coordenadaGuarida);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
                 () -> imperioZerg.construirEspiral(new Coordenada(1,1)));
@@ -136,15 +163,24 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos();
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirCriadero(coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
-        imperioZerg.construirGuarida(new Coordenada(1,0));
+        Coordenada coordenadaReserva =new Coordenada(0,1);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaReserva);
+        imperioZerg.construirReservaDeReproduccion(coordenadaReserva);
 
-        assertDoesNotThrow(() ->imperioZerg.construirEspiral(new Coordenada(1,1)));
+        Coordenada coordenadaGuarida =new Coordenada(1,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaGuarida);
+        imperioZerg.construirGuarida(coordenadaGuarida);
+
+        Coordenada coordenadaEspiral =new Coordenada(1,1);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaEspiral);
+        assertDoesNotThrow(() ->imperioZerg.construirEspiral(coordenadaEspiral));
     }
 
     @Test

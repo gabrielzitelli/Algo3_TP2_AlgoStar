@@ -76,7 +76,6 @@ public abstract class Imperio {
 
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         edificio.modificarPoblacion(poblacion);
-        comprobarRequisitosMateriales(edificio);
         mapa.construirEdificio(edificio, coordenada);
         edificios.add(edificio);
     }

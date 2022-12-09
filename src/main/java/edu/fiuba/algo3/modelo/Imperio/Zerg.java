@@ -3,14 +3,17 @@ package edu.fiuba.algo3.modelo.Imperio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -46,36 +49,54 @@ public class Zerg extends Imperio{
         unCriadero.construirInmediatamente();
     }
 
-    public void construirCriadero(Coordenada coordenada){
+    private void verificarZangano(Coordenada coordenada) {
+        Mapa elMapa = Mapa.obtener();
+        if (!elMapa.tieneEsteOcupable(new Zangano(), coordenada))
+            throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
+
+        ((Unidad) elMapa.obtenerOcupable(coordenada)).destruirUnidad();
+    }
+
+    public void construirCriadero(Coordenada coordenada) {
         Criadero criadero = new Criadero();
         criadero.asignarListaDeUnidades(fabricasDisponibles);
         criadero.asignarListaDeUnidadesImperio(unidades);
         criadero.asignarRecursos(mineralesDelImperio, gasDelImperio);
+        this.comprobarRequisitosMateriales(criadero);
+        verificarZangano(coordenada);
         this.construirEdificio(criadero, coordenada);
     }
 
-    public void construirReservaDeReproduccion(Coordenada coordenada){
+    public void construirReservaDeReproduccion(Coordenada coordenada) {
         ReservaDeReproduccion reserva = new ReservaDeReproduccion();
         reserva.asignarListaDeUnidades(fabricasDisponibles);
+        this.comprobarRequisitosMateriales(reserva);
+        verificarZangano(coordenada);
         this.construirEdificio(reserva, coordenada);
     }
 
-    public void construirExtractor(Coordenada coordenada){
+    public void construirExtractor(Coordenada coordenada) {
         Extractor extractor = new Extractor(gasDelImperio);
+        this.comprobarRequisitosMateriales(extractor);
+        verificarZangano(coordenada);
         this.construirEdificio(extractor, coordenada);
     }
 
-    public void construirGuarida(Coordenada coordenada){
+    public void construirGuarida(Coordenada coordenada) {
         this.comprobarRequisitos(Guarida.requisitos());
         Guarida guarida = new Guarida();
         guarida.asignarListaDeUnidades(fabricasDisponibles);
+        this.comprobarRequisitosMateriales(guarida);
+        verificarZangano(coordenada);
         this.construirEdificio(guarida, coordenada);
     }
 
-    public void construirEspiral(Coordenada coordenada){
+    public void construirEspiral(Coordenada coordenada) {
         this.comprobarRequisitos(Espiral.requisitos());
         Espiral espiral = new Espiral();
         espiral.asignarListaDeUnidades(fabricasDisponibles);
+        this.comprobarRequisitosMateriales(espiral);
+        verificarZangano(coordenada);
         this.construirEdificio(espiral, coordenada);
     }
 

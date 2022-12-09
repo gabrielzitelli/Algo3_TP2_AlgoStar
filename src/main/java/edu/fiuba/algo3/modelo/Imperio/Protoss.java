@@ -47,11 +47,13 @@ public class Protoss extends Imperio{
         puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
         puertoEstelar.asignarListaDeUnidadesImperio(unidades);
         puertoEstelar.asignarRecursos(mineralesDelImperio, gasDelImperio);
+        this.comprobarRequisitosMateriales(puertoEstelar);
         this.construirEdificio(puertoEstelar, coordenada);
     }
 
     public void construirPilon(Coordenada coordenada) {
         Pilon pilon = new Pilon();
+        this.comprobarRequisitosMateriales(pilon);
         this.construirEdificio(pilon, coordenada);
     }
 
@@ -60,16 +62,19 @@ public class Protoss extends Imperio{
         acceso.asignarListaDeUnidades(fabricasDisponibles);
         acceso.asignarListaDeUnidadesImperio(unidades);
         acceso.asignarRecursos(mineralesDelImperio, gasDelImperio);
+        this.comprobarRequisitosMateriales(acceso);
         this.construirEdificio(acceso, coordenada);
     }
 
     public void construirNexoMineral(Coordenada coordenada) {
         NexoMineral nexoMineral = new NexoMineral(this.mineralesDelImperio);
+        this.comprobarRequisitosMateriales(nexoMineral);
         this.construirEdificio(nexoMineral, coordenada);
     }
 
     public void construirAsimilador(Coordenada coordenada) {
         Asimilador asimilador = new Asimilador(this.gasDelImperio);
+        this.comprobarRequisitosMateriales(asimilador);
         this.construirEdificio(asimilador, coordenada);
     }
 

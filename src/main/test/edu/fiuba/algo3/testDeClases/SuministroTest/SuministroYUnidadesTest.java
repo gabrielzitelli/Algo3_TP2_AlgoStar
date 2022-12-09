@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,24 +27,29 @@ public class SuministroYUnidadesTest {
     @Test
     public void test01CreoUnZerlingEnUnaCoordenadaYLaDestruyoParaVerSiDisminuyeBienLaPoblacionDelImperio() {
         Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        Coordenada coordenadaReserva = new Coordenada(1,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaReserva);
+
         Zerg imperioZerg = new Zerg();
 
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirCriadero(coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirReservaDeReproduccion(coordenadaReserva);
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
         //obtenemos el edificio
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+        Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
         criadero.crearUnidad(new FabricaZerling());
 
             //Pasan dos turnos y lo tenemos
@@ -78,31 +84,39 @@ public class SuministroYUnidadesTest {
     @Test
     public void test02CreoUnMutaliscoEnUnaCoordenadaYLaDestruyoParaVerSiDisminuyeBienLaPoblacionDelImperio() {
         Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        Coordenada coordenadaReserva = new Coordenada(1,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaReserva);
+        Coordenada coordenadaGuarida = new Coordenada(2,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaGuarida);
+        Coordenada coordenadaEspiral = new Coordenada(3,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaEspiral);
+
         Zerg imperioZerg = new Zerg();
 
-
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirCriadero(coordenadaCriadero);
         
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirReservaDeReproduccion(coordenadaReserva);
 
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(2,0));
+        imperioZerg.construirGuarida(coordenadaGuarida);
 
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEspiral(new Coordenada(3,0));
+        imperioZerg.construirEspiral(coordenadaEspiral);
 
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
 
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+        Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
         criadero.crearUnidad(new FabricaMutalisco());
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
@@ -134,31 +148,39 @@ public class SuministroYUnidadesTest {
     @Test
     public void test03CreoUnMutaliscoLoEvoluionoADevoradorYLaDestruyoParaVerSiDisminuyeBienLaPoblacionDelImperio() {
         Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        Coordenada coordenadaReserva = new Coordenada(1,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaReserva);
+        Coordenada coordenadaGuarida = new Coordenada(2,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaGuarida);
+        Coordenada coordenadaEspiral = new Coordenada(3,0);
+        elMapa.colocarUnaUnidad(new Zangano(), coordenadaEspiral);
+
         Zerg imperioZerg = new Zerg();
 
-
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirCriadero(coordenadaCriadero);
 
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
-
+        imperioZerg.construirReservaDeReproduccion(coordenadaReserva);
 
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(2,0));
-        for (int i = 0; i < 15; i++)
-            imperioZerg.terminarTurno();
-
-        imperioZerg.construirEspiral(new Coordenada(3,0));
+        imperioZerg.construirGuarida(coordenadaGuarida);
 
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
 
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+        imperioZerg.construirEspiral(coordenadaEspiral);
+
+        for (int i = 0; i < 15; i++)
+            imperioZerg.terminarTurno();
+
+        Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
         criadero.crearUnidad(new FabricaMutalisco());
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();

@@ -81,7 +81,7 @@ public abstract class Unidad implements Ocupable {
           }
      }
 
-     protected void destruirUnidad() {
+     public void destruirUnidad() {
           Mapa elMapa = Mapa.obtener();
           elMapa.quitarUnidad(coordenada);
           this.estadoMuerta = true;

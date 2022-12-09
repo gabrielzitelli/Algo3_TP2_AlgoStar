@@ -65,11 +65,15 @@ public class ExtractorTest {
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1,1));
+
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        mapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        zerg.construirCriadero(coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarUnaUnidad(new Zangano(), coordenadasGas);
         zerg.construirExtractor(coordenadasGas);
 
         //Construimos el extractor
@@ -81,18 +85,22 @@ public class ExtractorTest {
     }
 
     @Test
-    public void test05PuedoContratarUnZanganoEnUnExtractorYMextraeCadaTurno(){
+    public void test05PuedoContratarUnZanganoEnUnExtractorYExtraeCadaTurno(){
         Mapa mapa = Mapa.obtener();
         Zerg zerg = new Zerg();
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1,1));
+
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        mapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        zerg.construirCriadero(coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarUnaUnidad(new Zangano(), coordenadasGas);
         zerg.construirExtractor(coordenadasGas);
 
         //Construimos el extractor
@@ -107,18 +115,22 @@ public class ExtractorTest {
     }
 
     @Test
-    public void test06PuedoContratarTresZanganosEnUnExtractorYMextraeCadaTurno() {
+    public void test06PuedoContratarTresZanganosEnUnExtractorYExtraeCadaTurno() {
         Mapa mapa = Mapa.obtener();
         Zerg zerg = new Zerg();
         Coordenada coordenadasGas = new Coordenada(0, 0);
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1, 1));
+
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        mapa.colocarUnaUnidad(new Zangano(), coordenadaCriadero);
+        zerg.construirCriadero(coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarUnaUnidad(new Zangano(), coordenadasGas);
         zerg.construirExtractor(coordenadasGas);
 
         //Construimos el extractor

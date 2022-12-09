@@ -31,6 +31,7 @@ public abstract class Casilla {
     public abstract void recibirAtaque(Ataque unAtaque);
     public abstract Casilla moverUnidadHacia(Casilla destino);
     public abstract Casilla quitarUnidad();
+    public abstract boolean tieneEsteOcupable(Ocupable ocupable);
 
     public void colocarMaterial(SiRecolectable materialAColocar){
         estadoRecolectable = materialAColocar;
