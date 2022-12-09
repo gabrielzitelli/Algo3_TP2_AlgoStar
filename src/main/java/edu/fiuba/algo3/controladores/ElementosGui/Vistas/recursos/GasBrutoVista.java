@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import javafx.scene.image.Image;
 
 import java.util.Objects;

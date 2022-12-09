@@ -5,7 +5,9 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     public ReservaDeReproduccion(){
         this.costoMineral = 150;
         this.costoGas = 0;
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();

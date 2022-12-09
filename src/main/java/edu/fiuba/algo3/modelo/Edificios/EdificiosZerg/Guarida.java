@@ -6,7 +6,9 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaHidralisco;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class Guarida extends EdificioZerg {
     public Guarida(){
         this.costoMineral = 200;
         this.costoGas = 100;
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();

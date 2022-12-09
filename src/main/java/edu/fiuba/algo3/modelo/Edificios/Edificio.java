@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios;
 
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidades;
@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
@@ -19,8 +19,8 @@ public abstract class Edificio implements Ocupable {
     protected Vida vida;
     protected Coordenada coordenada;
     protected Recolectable estadoRecolectable;
-    protected Cargable estadoCarga;
-    protected EstadoMoho estadoMoho;
+    protected Cargable estadoCargaRequerido;
+    protected EstadoMoho estadoMohoRequerido;
     protected Superficie superficieRequerida;
     protected int costoMineral = 0;
     protected int costoGas = 0;
@@ -38,10 +38,10 @@ public abstract class Edificio implements Ocupable {
     public void verificarConstruccion(Casilla unaCasilla){
         if (estadoRecolectable != null)
             unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        if (estadoMoho != null)
-            unaCasilla.tieneEsteMoho(estadoMoho);
-        if (estadoCarga != null)
-            unaCasilla.tieneEstaCarga(estadoCarga);
+        if (estadoMohoRequerido != null)
+            unaCasilla.tieneEsteMoho(estadoMohoRequerido);
+        if (estadoCargaRequerido != null)
+            unaCasilla.tieneEstaCarga(estadoCargaRequerido);
 
         unaCasilla.tieneEstaSuperficie(superficieRequerida);
 

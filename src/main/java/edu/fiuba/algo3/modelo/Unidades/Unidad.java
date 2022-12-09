@@ -1,14 +1,17 @@
 package edu.fiuba.algo3.modelo.Unidades;
 
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.TipoDanio;
-import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.*;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacar;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminadora;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminar;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 import java.util.ArrayList;

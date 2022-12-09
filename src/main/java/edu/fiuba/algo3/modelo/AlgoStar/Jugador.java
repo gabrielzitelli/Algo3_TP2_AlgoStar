@@ -57,4 +57,8 @@ public class Jugador {
     public void prepararparaRevancha() {
         imperio.prepararParaRevancha();
     }
+
+    public void revisarDestrucciones() {
+        imperio.revisarDestrucciones();
+    }
 }

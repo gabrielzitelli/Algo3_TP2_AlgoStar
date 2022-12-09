@@ -3,13 +3,13 @@ package edu.fiuba.algo3.controladores;
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Camara;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.especial.EspecialVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios.ProtossVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios.ZergVista;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho.MohoVista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVista;
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
@@ -526,6 +526,7 @@ public class MapaControlador extends Controlador {
             return;
 
         Unidad unidadAtacante = (Unidad) mapa.obtenerOcupable(coordenadaAtacar);
+
         JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidadAtacante);
 
         int distancia = mapa.distanciaEntreDosCoordenadas(coordenadaClickeada, coordenadaAtacar);
@@ -534,8 +535,8 @@ public class MapaControlador extends Controlador {
             //Puede atacar
             try {
                 mapa.atacar(coordenadaAtacar, coordenadaClickeada);
-            } catch (RuntimeException ignore) {
-                //todo Agregar algún tipo de feedback para cada problema
+            } catch (RuntimeException e) {
+                e.printStackTrace();
             }
         }
 

@@ -27,6 +27,13 @@ import java.util.ResourceBundle;
 
 public class InicioControlador extends Controlador {
 
+    private Stage stage;
+    private double tamanioHorizontal;
+    private double tamanioVertical;
+    private double decoratorWidth;
+    private double decoratorHeight;
+    private boolean enPantallaCompleta = false;
+
     @FXML
     protected Button botonComenzar;
     @FXML
@@ -39,15 +46,6 @@ public class InicioControlador extends Controlador {
     protected SubScene subsceneFormJugador1;
     @FXML
     protected SubScene subsceneFormJugador2;
-    private Stage stage;
-    private Parent root;
-
-    private double tamanioHorizontal;
-    private double tamanioVertical;
-    private double decoratorWidth;
-    private double decoratorHeight;
-
-    private boolean enPantallaCompleta = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,7 +53,10 @@ public class InicioControlador extends Controlador {
     }
 
     public void inicializar() {
-        //manejar redimension
+        manejarRedimensionDelStage();
+    }
+
+    private void manejarRedimensionDelStage(){
         stage = obtenerStageActual(labelBienvenida);
         Scene scene = obtenerSceneActual(labelBienvenida);
         tamanioHorizontal = stage.getWidth();
@@ -63,25 +64,31 @@ public class InicioControlador extends Controlador {
         decoratorHeight = tamanioVertical - scene.getHeight();
         decoratorWidth = tamanioHorizontal - scene.getWidth();
 
+        manejarRedimensionDelStageEnAncho();
+        manejarRedimensionDelStageEnAlto();
+    }
+
+    private void manejarRedimensionDelStageEnAncho(){
         stage.widthProperty().addListener((o, oldValue, newValue) -> {
             if (newValue.intValue() < tamanioHorizontal) {
                 stage.setResizable(false);
                 stage.setWidth(tamanioHorizontal);
                 stage.setResizable(true);
-            }
-            else {
+
+            } else
                 mediaviewVideoFondo.setFitWidth(newValue.doubleValue());
-            }
         });
+    }
+
+    private void manejarRedimensionDelStageEnAlto(){
         stage.heightProperty().addListener((o, oldValue, newValue) -> {
             if (newValue.intValue() < tamanioVertical) {
                 stage.setResizable(false);
                 stage.setHeight(tamanioVertical);
                 stage.setResizable(true);
-            }
-            else {
+
+            } else
                 mediaviewVideoFondo.setFitHeight(newValue.doubleValue());
-            }
         });
     }
 
@@ -99,7 +106,11 @@ public class InicioControlador extends Controlador {
 
     @FXML
     public void empezarCreacionJugadores(ActionEvent event) throws IOException {
+        this.prepararUIParaCargarJugadores();
+        this.realizarCargaJugador1();
+    }
 
+    private void prepararUIParaCargarJugadores(){
         //Desaparece el texto de bienvenida
         FadeTransition animacionFadeOutBienvenida = new FadeTransition(Duration.millis(400), labelBienvenida);
         animacionFadeOutBienvenida.setToValue(0);
@@ -116,8 +127,6 @@ public class InicioControlador extends Controlador {
         animacionFadeOutBotonComenzar.setToValue(0);
         animacionFadeOutBotonComenzar.play();
         botonComenzar.setDisable(true);
-
-        this.realizarCargaJugador1();
     }
 
     @FXML
@@ -146,7 +155,6 @@ public class InicioControlador extends Controlador {
             animacionMostrarForm.setFromValue(0);
             animacionMostrarForm.setToValue(1);
             animacionMostrarForm.play();
-
         });
 
         animacionEsperarYMostrarForm.play();
@@ -156,26 +164,21 @@ public class InicioControlador extends Controlador {
 
     private void realizarCargaJugador1() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/datosJugador1Vista.fxml"));
-        root = loader.load();
+        Parent root = loader.load();
 
         //Coloco la vista cargada en subsceneForm
         subsceneFormJugador1.setRoot(root);
-
         mostrarForm(subsceneFormJugador1);
 
         DatosJugador1Controlador datosJugador1Controlador = loader.getController();
         datosJugador1Controlador.setInicioControlador(this);
     }
 
+    /**
+     * @param loader Llega cargado ( se le hizo loader.load() )
+     */
     public void realizarCargaJugador2(Parent root, FXMLLoader loader) {
-        //Desaparece el subsceneFormJugador1 y lo desactivo
-        FadeTransition animacionFadeOutSubsceneJugador1 = new FadeTransition(Duration.millis(400), subsceneFormJugador1);
-        animacionFadeOutSubsceneJugador1.setToValue(0);
-        animacionFadeOutSubsceneJugador1.play();
-        animacionFadeOutSubsceneJugador1.setOnFinished(e -> {
-            subsceneFormJugador1.setDisable(true);
-            subsceneFormJugador1.setVisible(false);
-        });
+        prepararUIParaCargarJugador2();
 
         subsceneFormJugador2.setRoot(root);
         mostrarForm(subsceneFormJugador2);
@@ -185,9 +188,50 @@ public class InicioControlador extends Controlador {
         datosJugador2Controlador.ponerFocusEnForm();
     }
 
-    //loader ya está cargado
-    public void iniciarJuego(Parent root, FXMLLoader loader) throws InterruptedException {
+    private void prepararUIParaCargarJugador2(){
         //Desaparece el subsceneFormJugador1 y lo desactivo
+        FadeTransition animacionFadeOutSubsceneJugador1 = new FadeTransition(Duration.millis(400), subsceneFormJugador1);
+        animacionFadeOutSubsceneJugador1.setToValue(0);
+        animacionFadeOutSubsceneJugador1.play();
+        animacionFadeOutSubsceneJugador1.setOnFinished(e -> {
+            subsceneFormJugador1.setDisable(true);
+            subsceneFormJugador1.setVisible(false);
+        });
+    }
+
+    /**
+     * @param loader Llega cargado ( se le hizo loader.load() )
+     */
+    public void prepararInicioDelJuego(Parent root, FXMLLoader loader) {
+
+        hacerDesaparecersubsceneFormJugador2();
+
+        //Oculto la imagenAlgostar
+        FadeTransition animacionFadeOutImagenAlgostar = new FadeTransition(Duration.millis(400), imagenAlgostar);
+        animacionFadeOutImagenAlgostar.setToValue(0);
+        animacionFadeOutImagenAlgostar.play();
+        animacionFadeOutImagenAlgostar.setOnFinished(e -> {
+
+            imagenAlgostar.setVisible(false);
+
+            //Acelero el video de fondo
+            mediaviewVideoFondo.getMediaPlayer().setRate(8.0);
+
+            //Ejecuto animacion de fundido al negro del video
+            FadeTransition desaparecerVideo = new FadeTransition(Duration.millis(1000), mediaviewVideoFondo);
+            desaparecerVideo.setToValue(0);
+            desaparecerVideo.play();
+
+            //Espero a que termine el fundido al negro y comienzo el juego
+            FadeTransition animacionWait = new FadeTransition(Duration.millis(1000), imagenAlgostar);
+            animacionWait.setToValue(0);
+            animacionWait.play();
+            animacionWait.setOnFinished(event -> ejecutarComienzoDeJuego(root, loader) );
+        });
+    }
+
+    private void hacerDesaparecersubsceneFormJugador2(){
+        //Desaparece el subsceneFormJugador2 y lo desactivo
         FadeTransition animacionFadeOutSubsceneJugador2 = new FadeTransition(Duration.millis(400), subsceneFormJugador2);
         animacionFadeOutSubsceneJugador2.setToValue(0);
         animacionFadeOutSubsceneJugador2.play();
@@ -195,41 +239,28 @@ public class InicioControlador extends Controlador {
             subsceneFormJugador2.setDisable(true);
             subsceneFormJugador2.setVisible(false);
         });
+    }
 
-        //Oculto el titulo y acelero el mediaplayer
-        FadeTransition animacionFadeOutImagenAlgostar = new FadeTransition(Duration.millis(400), imagenAlgostar);
-        animacionFadeOutImagenAlgostar.setToValue(0);
-        animacionFadeOutImagenAlgostar.play();
-        animacionFadeOutImagenAlgostar.setOnFinished(e -> {
-            imagenAlgostar.setVisible(false);
-            mediaviewVideoFondo.getMediaPlayer().setRate(8.0);
+    private void ejecutarComienzoDeJuego(Parent root, FXMLLoader loader){
+        stage = obtenerStageActual(imagenAlgostar);
+        Scene scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
 
-            FadeTransition desaparecerVideo = new FadeTransition(Duration.millis(1000), mediaviewVideoFondo);
-            desaparecerVideo.setToValue(0);
-            desaparecerVideo.play();
+        //Preparo controles del mapa
+        MapaControlador controladorMapa = loader.getController();
+        scene.setOnMouseClicked(controladorMapa.pintarCasilla());
+        scene.setOnKeyPressed(controladorMapa.pressKey());
+        scene.setOnKeyReleased(controladorMapa.releaseKey());
+        controladorMapa.setFocusOnCanvas();
 
-            FadeTransition animacionWait = new FadeTransition(Duration.millis(1000), imagenAlgostar);
-            animacionWait.setToValue(0);
-            animacionWait.play();
-            animacionWait.setOnFinished(event -> {
+        //Muestro la scene principal
+        stage.setScene(scene);
 
-                //Seteo la nueva escena luego de acelerar
-                stage = obtenerStageActual(imagenAlgostar);
-                Scene scene = new Scene(root, App.INITIAL_WIDTH, App.INITIAL_HEIGHT);
+        //Manejo el resize de la pantalla completa y termino de inicializar el mapa
+        if (enPantallaCompleta)
+            stage.setFullScreen(true);
 
-                MapaControlador controladorMapa = loader.getController();
-                scene.setOnMouseClicked(controladorMapa.pintarCasilla());
-                scene.setOnKeyPressed(controladorMapa.pressKey());
-                scene.setOnKeyReleased(controladorMapa.releaseKey());
-                controladorMapa.setFocusOnCanvas();
-
-                stage.setScene(scene);
-                if (enPantallaCompleta)
-                    stage.setFullScreen(true);
-                controladorMapa.setTamanioMinimo(tamanioHorizontal, tamanioVertical);
-                controladorMapa.setDecorators(decoratorWidth, decoratorHeight);
-                controladorMapa.inicializar();
-            });
-        });
+        controladorMapa.setTamanioMinimo(tamanioHorizontal, tamanioVertical);
+        controladorMapa.setDecorators(decoratorWidth, decoratorHeight);
+        controladorMapa.inicializar();
     }
 }

@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
@@ -33,8 +33,8 @@ public class PuertoEstelar extends EdificioProtoss {
         this.costoGas = 150;
         this.costoMineral = 150;
         this.estadoRecolectable = new NoRecolectable();
-        this.estadoCarga = new ConCarga();
-        this.estadoMoho = new SinMoho();
+        this.estadoCargaRequerido = new ConCarga();
+        this.estadoMohoRequerido = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 
@@ -51,20 +51,20 @@ public class PuertoEstelar extends EdificioProtoss {
         return requisitos;
     }
 
-    public boolean verificarCarga() {
+    public void verificarCarga() throws ErrorElEdificioNoTieneCarga {
         Mapa elMapa = Mapa.obtener();
-        if (coordenada == null)
-            return true;
-
-        return elMapa.estaEnergizado(coordenada);
+        if (coordenada == null){
+            return;
+        }
+        if (!elMapa.estaEnergizado(coordenada)){
+            throw new ErrorElEdificioNoTieneCarga();
+        }
     }
 
     public void crearUnidad(Fabrica unaFabrica) {
-        if (verificarCarga()) {
-            estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-            estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
-        }
-        else throw new ErrorElEdificioNoTieneCarga();
+        this.verificarCarga();
+        estadoHabilitador.estaAptoParaCrearse(unaFabrica);
+        estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
     }
 
     public void pasarTurno() {

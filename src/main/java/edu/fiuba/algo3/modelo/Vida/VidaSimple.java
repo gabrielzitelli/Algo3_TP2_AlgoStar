@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Vida;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 
 public class VidaSimple implements Vida{
     private int cantidad;

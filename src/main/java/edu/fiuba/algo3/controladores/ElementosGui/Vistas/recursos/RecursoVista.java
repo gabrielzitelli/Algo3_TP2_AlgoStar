@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos;
 
-import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
-import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
-import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 

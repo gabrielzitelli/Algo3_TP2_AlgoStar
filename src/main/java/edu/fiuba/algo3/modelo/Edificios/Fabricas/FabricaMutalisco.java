@@ -4,8 +4,14 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 
 public class FabricaMutalisco extends Fabrica {
 
+    private static int poblacionQueOcupa = 4;
+
     public FabricaMutalisco(){
-        this.poblacionNecesaria = 4;
+        this.poblacionNecesaria = poblacionQueOcupa;
+    }
+
+    public static int obtenerPoblacionNecesaria(){
+        return poblacionQueOcupa;
     }
 
     public Mutalisco crearUnidad() {

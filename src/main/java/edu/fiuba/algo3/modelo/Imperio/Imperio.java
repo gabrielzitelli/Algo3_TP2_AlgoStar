@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
@@ -21,6 +21,7 @@ public abstract class Imperio {
     protected ArrayList<Unidad> unidades;
     protected int cantidadInicialDeMineral = 200;
     protected String identificador;
+    private Mapa mapa = Mapa.obtener();
 
     public String toString() {
         String info = identificador;
@@ -74,7 +75,6 @@ public abstract class Imperio {
     }
 
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
-        Mapa mapa = Mapa.obtener();
         edificio.modificarPoblacion(poblacion);
         comprobarRequisitosMateriales(edificio);
         mapa.construirEdificio(edificio, coordenada);
@@ -82,7 +82,6 @@ public abstract class Imperio {
     }
 
     protected void construirEdificioSinVerificacionesMateriales(Edificio edificio, Coordenada coordenada){
-        Mapa mapa = Mapa.obtener();
         edificio.modificarPoblacion(poblacion);
         mapa.construirEdificio(edificio, coordenada);
         edificios.add(edificio);
@@ -140,7 +139,6 @@ public abstract class Imperio {
     }
 
     public Edificio conseguirEdificio(Coordenada coordenada){
-        Mapa mapa = Mapa.obtener();
         return mapa.obtenerEdificio(coordenada);
     }
 

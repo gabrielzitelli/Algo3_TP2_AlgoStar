@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+class Imperio {
+
+}
+
+class Protoss {
+ + crearEdificio(FabricaEdificiosDeUnidades f, Coordenada c)
+ + crearEdificio(FabricaEdificiosDeRecursos f, Coordenada c)
+}
+
+
+class FabricaEdificiosDeUnidades {
+ + crearEdificio()
+}
+
+class FabricaPilon {
+ + crearEdificio()
+}
+
+
+FabricaEdificiosDeUnidades <|-- FabricaPilon
+
+@enduml

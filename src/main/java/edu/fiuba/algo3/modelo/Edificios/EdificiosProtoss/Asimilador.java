@@ -3,7 +3,10 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SinMoho;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
@@ -20,7 +23,7 @@ public class Asimilador extends EdificioProtoss {
         this.costoGas = 0;
         this.costoMineral = 100;
         this.estadoRecolectable = new GasRecolectable();
-        this.estadoMoho = new SinMoho();
+        this.estadoMohoRequerido = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;

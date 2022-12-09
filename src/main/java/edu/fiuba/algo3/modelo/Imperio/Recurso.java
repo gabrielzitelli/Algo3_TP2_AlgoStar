@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
-
 public class Recurso {
 
     protected int cantidad;
