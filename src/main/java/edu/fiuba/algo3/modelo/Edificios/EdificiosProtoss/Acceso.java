@@ -32,8 +32,8 @@ public class Acceso extends EdificioProtoss {
     public Acceso(){
         this.costoGas = 0;
         this.costoMineral = 150;
-        this.estadoCarga = new ConCarga();
-        this.estadoMoho = new SinMoho();
+        this.estadoCargaRequerido = new ConCarga();
+        this.estadoMohoRequerido = new SinMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();

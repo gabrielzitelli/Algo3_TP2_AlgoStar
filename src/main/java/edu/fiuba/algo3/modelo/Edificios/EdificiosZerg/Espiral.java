@@ -27,7 +27,7 @@ public class Espiral extends EdificioZerg {
         this.costoGas = 100;
         this.costoMineral = 150;
         this.estadoRecolectable = new NoRecolectable();
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 

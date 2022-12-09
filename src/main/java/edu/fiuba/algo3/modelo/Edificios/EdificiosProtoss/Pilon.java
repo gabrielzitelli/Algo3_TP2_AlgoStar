@@ -18,7 +18,7 @@ public class Pilon extends EdificioProtoss {
         this.costoGas = 0;
         this.costoMineral = 100;
         this.estadoRecolectable = new NoRecolectable();
-        this.estadoMoho = new SinMoho();
+        this.estadoMohoRequerido = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.suministroAportado = 5;
         this.superficieRequerida = new SuperficieTerrestre();

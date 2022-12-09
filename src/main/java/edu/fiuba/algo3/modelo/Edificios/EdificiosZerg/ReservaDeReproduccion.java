@@ -25,7 +25,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     public ReservaDeReproduccion(){
         this.costoMineral = 150;
         this.costoGas = 0;
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();

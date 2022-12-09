@@ -36,7 +36,7 @@ public class Criadero extends EdificioZerg {
         this.costoGas = 0;
         this.costoMineral = 200;
         this.estadoRecolectable = new NoRecolectable();
-        this.estadoCarga = new SinCarga();
+        this.estadoCargaRequerido = new SinCarga();
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         cantidadLarvas = maxLarvas;

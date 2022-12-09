@@ -82,4 +82,10 @@ public class Protoss extends Imperio{
         this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
     }
+    /*
+    public void crearEdifcio(FabricaEdificios unaFabricaDeEdificios, Coordenada coordenada){
+
+    }
+    */
+
 }

@@ -32,7 +32,7 @@ public class Extractor extends EdificioZerg {
         this.costoGas = 0;
         this.costoMineral = 100;
         this.estadoRecolectable = new GasRecolectable();
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;

@@ -23,7 +23,7 @@ public class Asimilador extends EdificioProtoss {
         this.costoGas = 0;
         this.costoMineral = 100;
         this.estadoRecolectable = new GasRecolectable();
-        this.estadoMoho = new SinMoho();
+        this.estadoMohoRequerido = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;

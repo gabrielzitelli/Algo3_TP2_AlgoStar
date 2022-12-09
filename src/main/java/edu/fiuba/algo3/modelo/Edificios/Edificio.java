@@ -19,8 +19,8 @@ public abstract class Edificio implements Ocupable {
     protected Vida vida;
     protected Coordenada coordenada;
     protected Recolectable estadoRecolectable;
-    protected Cargable estadoCarga;
-    protected EstadoMoho estadoMoho;
+    protected Cargable estadoCargaRequerido;
+    protected EstadoMoho estadoMohoRequerido;
     protected Superficie superficieRequerida;
     protected int costoMineral = 0;
     protected int costoGas = 0;
@@ -38,10 +38,10 @@ public abstract class Edificio implements Ocupable {
     public void verificarConstruccion(Casilla unaCasilla){
         if (estadoRecolectable != null)
             unaCasilla.tieneEsteRecoletable(estadoRecolectable);
-        if (estadoMoho != null)
-            unaCasilla.tieneEsteMoho(estadoMoho);
-        if (estadoCarga != null)
-            unaCasilla.tieneEstaCarga(estadoCarga);
+        if (estadoMohoRequerido != null)
+            unaCasilla.tieneEsteMoho(estadoMohoRequerido);
+        if (estadoCargaRequerido != null)
+            unaCasilla.tieneEstaCarga(estadoCargaRequerido);
 
         unaCasilla.tieneEstaSuperficie(superficieRequerida);
 

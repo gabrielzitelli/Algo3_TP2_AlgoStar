@@ -23,7 +23,7 @@ public class NexoMineral extends EdificioProtoss {
         this.costoMineral = 50;
         this.costoGas = 0;
         this.estadoRecolectable = new MineralRecolectable();
-        this.estadoMoho = new SinMoho();
+        this.estadoMohoRequerido = new SinMoho();
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.mineralesDelImperio = mineralesDelImperio;

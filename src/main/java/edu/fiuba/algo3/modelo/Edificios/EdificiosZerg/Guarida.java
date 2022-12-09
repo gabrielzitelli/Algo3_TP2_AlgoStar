@@ -26,7 +26,7 @@ public class Guarida extends EdificioZerg {
     public Guarida(){
         this.costoMineral = 200;
         this.costoGas = 100;
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
         this.estadoRecolectable = new NoRecolectable();
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
