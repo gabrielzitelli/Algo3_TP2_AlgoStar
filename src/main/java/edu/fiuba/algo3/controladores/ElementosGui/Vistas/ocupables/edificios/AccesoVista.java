@@ -5,11 +5,12 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.DragonVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ZealotVista;
 import edu.fiuba.algo3.controladores.MapaControlador;
+import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -17,12 +18,10 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
@@ -37,10 +36,8 @@ public class AccesoVista extends OcupableVista {
     }
 
     @Override
-    public void aplicarTextoEscudo(Text textoEscudo, String stringOcupable){
-        String escudoActual = obtenerAtributoDeString(stringOcupable, "escudoActual");
-        String escudoMaxima = obtenerAtributoDeString(stringOcupable, "escudoMaximo");
-        textoEscudo.setText(escudoActual + "/" + escudoMaxima);
+    public void aplicarTextoEscudo(Text textoEscudo, JSONObject ocupableJson){
+        textoEscudo.setText(ocupableJson.get(ConvertidorJSON.ESCUDO) + "/" + ocupableJson.get(ConvertidorJSON.ESCUDOMAX));
     }
 
     public void manejarBotones(Button[] arrayBotones, Pane[] arrayWrappersBotonesEdificio, Coordenada coordenada, String imperioDeJugadorActual, MapaControlador mapaControlador){

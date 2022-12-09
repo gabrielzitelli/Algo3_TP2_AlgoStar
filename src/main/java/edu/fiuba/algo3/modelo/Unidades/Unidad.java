@@ -1,14 +1,17 @@
 package edu.fiuba.algo3.modelo.Unidades;
 
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.TipoDanio;
-import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.*;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacar;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminadora;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminar;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
 import java.util.ArrayList;
@@ -86,6 +89,7 @@ public abstract class Unidad implements Ocupable {
 
      public void moverA(Coordenada coordenadaDestino) {
           estadoCaminar = estadoCaminar.caminar(this.coordenada, coordenadaDestino);
+          this.interaccionar(Mapa.obtener().obtenerCasilla(coordenada));
      }
 
      public boolean esIgualA(Unidad unidad) {
@@ -109,7 +113,13 @@ public abstract class Unidad implements Ocupable {
           return this.coordenada;
      }
      public String toString() {
-          return identificador + this.vida.toString() + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
+          String info = "ocupable " + identificador;
+          info += this.vida.toString();
+          info += " costoMineral " + this.costoMineral + " costoGas " + this.costoGas;
+          info += " estado_caminar " + estadoCaminar.toString();
+          info += " estado_atacar " + estadoPelea.toString();
+          info += " rango_ataque " + rangoDeAtaque;
+          return info;
      }
 
      public boolean esDeEsteTipo(Class claseAAverificar){

@@ -27,7 +27,7 @@ public class SinOcupar implements Ocupable {
 
     @Override
     public String toString() {
-        return "ninguno";
+        return "ocupable ninguno";
     }
 
     @Override

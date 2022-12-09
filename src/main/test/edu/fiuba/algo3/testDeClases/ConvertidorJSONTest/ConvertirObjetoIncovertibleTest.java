@@ -2,18 +2,16 @@ package edu.fiuba.algo3.testDeClases.ConvertidorJSONTest;
 
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorObjetoNoSePuedeConvertirAJSON;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
-import org.json.simple.JSONObject;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ConvertirObjetoIncovertible {
+public class ConvertirObjetoIncovertibleTest {
     @Test
     public void test01IntentoCovertirAJSONUnObjetoQueNoPuedeSerConvertido() {
-        ConvertidorJSON convertidorJSON = new ConvertidorJSON();
 
         assertThrows( ErrorObjetoNoSePuedeConvertirAJSON.class, () ->
-                convertidorJSON.convertirAJSON(new Zangano()));
+                ConvertidorJSON.convertirAJSON(new Mineral(0)));
     }
 }

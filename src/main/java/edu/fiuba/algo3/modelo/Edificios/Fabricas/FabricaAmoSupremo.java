@@ -9,9 +9,14 @@ public class FabricaAmoSupremo extends Fabrica {
     //private Suministro poblacionDelImperio;
     private static int suministroAportado = 5;
 
-    public FabricaAmoSupremo(){
-        this.poblacionNecesaria = 0;
+    private static int poblacionQueOcupa = 0;
 
+    public FabricaAmoSupremo(){
+        this.poblacionNecesaria = poblacionQueOcupa;
+    }
+
+    public static int obtenerPoblacionNecesaria(){
+        return poblacionQueOcupa;
     }
 
     @Override

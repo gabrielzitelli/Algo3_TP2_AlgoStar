@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
 import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class ScoutVista extends UnidadVista {
+public class ScoutVista extends UnidadProtossVista {
 
     public ScoutVista() {
         this.tile = new Tile("unidades_protoss/32px/scout.png");

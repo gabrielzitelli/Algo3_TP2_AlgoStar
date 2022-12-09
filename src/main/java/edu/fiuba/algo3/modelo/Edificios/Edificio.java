@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios;
 
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidades;
@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.Vida;
 
@@ -99,7 +99,7 @@ public abstract class Edificio implements Ocupable {
     protected abstract String obtenerEstado();
     @Override
     public String toString() {
-        return this.identificador + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas + " estado " + this.obtenerEstado() + vida.toString();
+        return "ocupable " + this.identificador + " costoMineral " + this.costoMineral + " costoGas " + this.costoGas + " estado " + this.obtenerEstado() + vida.toString();
     }
     
     public boolean esDeEsteTipo(Class claseAAverificar){

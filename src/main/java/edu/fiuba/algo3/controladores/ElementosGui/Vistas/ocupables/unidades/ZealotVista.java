@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class ZealotVista extends UnidadVista {
+public class ZealotVista extends UnidadProtossVista {
 
     public ZealotVista(){
         this.tile = new Tile("unidades_protoss/32px/zealot.png");

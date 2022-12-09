@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
@@ -23,12 +23,12 @@ public abstract class Imperio {
     protected String identificador;
 
     public String toString() {
-        return identificador;
-    }
-
-    public String recursosToString(){
-        return "mineral " + mineralesDelImperio.obtenerCantidad() + " gas " + gasDelImperio.obtenerCantidad()
-                + " poblacion " + poblacion.obtenerPoblacion() + " suministro " + poblacion.obtenerSuministro();
+        String info = identificador;
+        info += " mineral " + mineralesDelImperio.obtenerCantidad();
+        info += " gas " + gasDelImperio.obtenerCantidad();
+        info += " poblacion " + poblacion.obtenerPoblacion();
+        info += " suministro " + poblacion.obtenerSuministro();
+        return info;
     }
 
     public abstract void inicializarAsentamientoPrimerTurno();

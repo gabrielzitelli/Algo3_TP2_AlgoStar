@@ -14,12 +14,12 @@ public abstract class Vista {
     protected Tile tile;
     protected String info;
     protected Image imagenParaDisplay;
-    private static Vista sinVista = new SinVista();
+    private static final Vista sinVista = new SinVista();
 
     protected static Vista obtenerVista(String obtenerElemento, ArrayList<Vista> elementosVista) {
         for (Vista vista : elementosVista){
 
-            if (obtenerElemento != null && vista.identificador.equals(obtenerElemento)){
+            if (vista.identificador.equals(obtenerElemento)){
                 return vista;
             }
         }
@@ -32,7 +32,7 @@ public abstract class Vista {
 
         for (int i = 0; i < tokensJugador.length; i++) {
             if(Objects.equals(tokensJugador[i], tipoAtributo))
-                atributoDeseado = new String(tokensJugador[i + 1]);
+                atributoDeseado = tokensJugador[i + 1];
         }
 
         return atributoDeseado;

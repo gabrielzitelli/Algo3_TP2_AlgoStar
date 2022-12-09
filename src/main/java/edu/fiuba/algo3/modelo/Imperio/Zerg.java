@@ -2,11 +2,11 @@ package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
@@ -95,7 +95,7 @@ public class Zerg extends Imperio{
                 unidades.remove(unidad);
 
                 GestorDeCrianza nuevoGestorEvoluciones = new GestorDeCrianza(unidad.obtenerCoordenada());
-                nuevoGestorEvoluciones.agregarUnidad(unaUnidad, unidades);
+                nuevoGestorEvoluciones.agregarUnidad(unaUnidad, unidades, mineralesDelImperio);
                 gestoresDeEvoluciones.add(nuevoGestorEvoluciones);
 
                 break;
@@ -119,6 +119,7 @@ public class Zerg extends Imperio{
         for(GestorDeCrianza gestorDeEvoluciones : gestoresDeEvoluciones)
             gestorDeEvoluciones.actualizar();
     }
+
     @Override
     public void prepararParaRevancha(){
         mineralesDelImperio = new Mineral(cantidadInicialDeMineral);

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables;
 
-import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 

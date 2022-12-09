@@ -18,5 +18,9 @@ public class ConvertirJugadorTest {
         assertEquals("Miguelangel", obj.get(ConvertidorJSON.NOMBRE));
         assertEquals("Rojo", obj.get(ConvertidorJSON.COLOR));
         assertEquals("zerg", obj.get(ConvertidorJSON.IMPERIO));
+        assertEquals("200", obj.get(ConvertidorJSON.MINERAL));
+        assertEquals("0", obj.get(ConvertidorJSON.GAS));
+        assertEquals("0", obj.get(ConvertidorJSON.POBLACION));
+        assertEquals("0", obj.get(ConvertidorJSON.SUMINISTRO));
     }
 }

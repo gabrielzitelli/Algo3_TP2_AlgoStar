@@ -20,4 +20,9 @@ public class NoCaminadora implements Caminar{
     public Caminar pasarTurno() {
         return new Caminadora(rangoDeCaminata);
     }
+
+    @Override
+    public String toString() {
+        return "no_caminar";
+    }
 }

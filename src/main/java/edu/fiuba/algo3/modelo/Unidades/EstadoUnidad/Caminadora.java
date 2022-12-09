@@ -27,4 +27,9 @@ public class Caminadora implements Caminar{
     public Caminar pasarTurno() {
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "caminar";
+    }
 }

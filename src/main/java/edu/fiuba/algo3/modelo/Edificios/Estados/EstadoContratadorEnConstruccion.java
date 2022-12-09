@@ -26,4 +26,11 @@ public class EstadoContratadorEnConstruccion implements EstadoContratador {
     public void contratar(Unidad unidadAContratar, LinkedList<Unidad> unidadesEmpleados) {
         throw new ErrorEdificioNoEstaConstruido();
     }
+
+    @Override
+    public void desContratar(LinkedList<Unidad> unidadesEmpleados) {
+        throw new ErrorEdificioNoEstaConstruido();
+    }
+
+
 }

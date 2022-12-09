@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
@@ -10,6 +9,7 @@ import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class EstadoCreadorConstruido extends EstadoCreador {
         verificarQueSePuedeFabricar(unaFabrica);
         Unidad unidad = unaFabrica.crearUnidad();
         comprobarRequisitosMateriales(unidad, mineralDelImperio, gasDelImperio);
-        gestorDeCrianza.agregarUnidad(unidad, unidades);
+        gestorDeCrianza.agregarUnidad(unidad, unidades, mineralDelImperio);
     }
 
     public void verificarQueSePuedeFabricar(Fabrica unaFabrica) {

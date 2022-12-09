@@ -22,4 +22,9 @@ public class NoAtacante implements Atacar{
     public Atacar pasarTurno() {
         return new Atacante(rangoDeAtaque);
     }
+
+    @Override
+    public String toString() {
+        return "no_atacar";
+    }
 }

@@ -6,7 +6,10 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNoSePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
@@ -18,12 +21,12 @@ public class Extractor extends EdificioZerg {
 
     private EstadoRecolector estadoRecolector;
     private EstadoContratador estadoContratador;
-    private int turnoParaEstarConstruido = 6;
-    private Recurso gasDelImperio;
+    private final int turnoParaEstarConstruido = 6;
+    private final Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
-    private LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
-    private int cantidadDeExtraccionUnitaria = 10;
-    private int valorVital = 750;
+    private final LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
+    private final int cantidadDeExtraccionUnitaria = 10;
+    private final int valorVital = 750;
 
     public Extractor(Recurso gasDelImperio){
         this.costoGas = 0;
@@ -57,6 +60,10 @@ public class Extractor extends EdificioZerg {
         estadoContratador.contratar(zanganoAContratar, zanganosEmpleados);
     }
 
+    public void descontratarZangano() {
+        estadoContratador.desContratar(zanganosEmpleados);
+    }
+
     public void verificarConstruccion(Casilla unaCasilla){
         super.verificarConstruccion(unaCasilla);
         establecerSobreGas(unaCasilla.obtenerMaterial());
@@ -74,5 +81,11 @@ public class Extractor extends EdificioZerg {
     @Override
     protected String obtenerEstado() {
         return estadoRecolector.getEstado();
+    }
+
+    public String toString() {
+        String info = super.toString();
+        info += " cantidad_unidades " + zanganosEmpleados.size();
+        return info;
     }
 }

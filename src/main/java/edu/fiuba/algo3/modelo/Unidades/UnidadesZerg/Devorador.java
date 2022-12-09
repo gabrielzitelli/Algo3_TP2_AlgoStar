@@ -11,11 +11,11 @@ public class Devorador extends UnidadZerg {
     private final int turnosDeContruccion = 4;
     private final int danioAereo = 15;
     private final int cantidadDeVida = 200;
-    private final int rangoDeAtaque = 5;
 
     public Devorador() {
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieAerea();
+        this.rangoDeAtaque = 5;
         this.danio = new DanioAereo(danioAereo);
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);

@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
 import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class HidraliscoVista extends UnidadVista {
+public class HidraliscoVista extends UnidadZergVista {
     public HidraliscoVista() {
         this.tile = new Tile("unidades_zerg/32px/hidralisco.png");
         this.identificador = "hidralisco";

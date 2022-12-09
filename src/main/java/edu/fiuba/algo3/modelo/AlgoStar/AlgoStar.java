@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.modelo.AlgoStar;
 
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorJugadorNoPuedeAccederOcupableEnemigo;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 
 public class AlgoStar {
 
-    private AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
+    private final AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
     private Turno turno;
 
     private int cantidadDeTurnos = 0;
@@ -41,10 +41,6 @@ public class AlgoStar {
 
     public Jugador conseguirJugadorActual() {
         return turno.jugadorActual();
-    }
-
-    public String conseguirStringJugadorActual() {
-        return turno.jugadorActual().toString();
     }
 
     public Ocupable conseguirOcupableEn(Coordenada coordenada) {

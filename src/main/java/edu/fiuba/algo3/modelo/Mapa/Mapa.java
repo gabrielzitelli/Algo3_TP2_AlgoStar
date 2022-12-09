@@ -1,12 +1,13 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
-import edu.fiuba.algo3.modelo.Excepciones.*;
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasCasillasLibresEnElMapa;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
 
@@ -199,16 +200,6 @@ public class Mapa {
 
         return distanciaEnX + distanciaEnY;
     }
-
-    /*private boolean estaCoordenadaEnAnillo(Coordenada coordenadaAVerificar, Coordenada centroAnillo, int distanciaDesdeElCentro ){
-        int distanciaEnX = abs( coordenadaAVerificar.getCoordenadaX() - centroAnillo.getCoordenadaX() );
-        int distanciaEnY = abs( coordenadaAVerificar.getCoordenadaY() - centroAnillo.getCoordenadaY() );
-
-        if(estaCoordenadaEnAnilloParteCircunferencial(coordenadaAVerificar, centroAnillo, distanciaDesdeElCentro))
-            return true;
-
-        return distanciaEnY == distanciaDesdeElCentro && distanciaEnX == distanciaDesdeElCentro;
-    }*/
 
     private boolean estaCoordenadaEnAnilloParteCircunferencial(Coordenada coordenadaAVerificar, Coordenada coordenadaCentro, int distanciaDesdeElCentro ){
         int xCoordenadaFinal = coordenadaAVerificar.getCoordenadaX();

@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
@@ -66,7 +67,7 @@ public abstract class OcupableVista extends Vista {
         return obtenerVista((String)obtenerOcupable, ocupables);
     }
 
-    public void aplicarTextoEscudo(Text textoEscudo, String stringOcupable){
+    public void aplicarTextoEscudo(Text textoEscudo, JSONObject ocupableJson){
         textoEscudo.setText("");
     }
 

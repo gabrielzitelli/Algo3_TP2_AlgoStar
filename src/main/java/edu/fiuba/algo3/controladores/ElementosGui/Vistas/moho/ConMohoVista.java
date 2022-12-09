@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieTerrestreVista;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.util.Objects;
 

@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class DragonVista extends UnidadVista {
+public class DragonVista extends UnidadProtossVista {
 
     public DragonVista() {
         this.tile = new Tile("unidades_protoss/32px/dragon.png");

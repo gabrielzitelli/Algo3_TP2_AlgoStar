@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
-import edu.fiuba.algo3.modelo.Ataque.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visibilidad;
@@ -18,13 +19,13 @@ public class Zealot extends UnidadProtoss {
     private final int danioTerrestre = 8;
     private final int cantidadDeVida = 100;
     private final int cantidadDeEscudo = 60;
-    private final int rangoDeAtaque = 1;
     private Visibilidad estado;
-    private int muertesParaInvisibilidad = 3;
+    private final int muertesParaInvisibilidad = 3;
 
     public Zealot(){
         this.turnosDeConstruccion = turnosDeContruccion;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
+        this.rangoDeAtaque = 1;
         this.danio = new DanioTerrestre(danioTerrestre);
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.estadoPelea = new Atacante(rangoDeAtaque);

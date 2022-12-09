@@ -8,10 +8,10 @@ import edu.fiuba.algo3.modelo.Imperio.Imperio;
 
 public class Jugador {
 
-    private String nombre;
-    private String color;
-    private Imperio imperio;
-    private int largoMinimoNombre = 6;
+    private final String nombre;
+    private final String color;
+    private final Imperio imperio;
+    private final int largoMinimoNombre = 6;
 
     public Jugador(String nombre, String color, Imperio imperio) {
         verificarLargoDeNombre(nombre);
@@ -44,10 +44,6 @@ public class Jugador {
 
     public String conseguirNombre() {
         return nombre;
-    }
-
-    public String conseguirColor() {
-        return color;
     }
 
     public String toString() {
