@@ -47,7 +47,7 @@ public class AdministradorDeJugadores {
     public Jugador conseguirSiguienteJugador() {
         Jugador siguiente = jugadores.poll();
 
-        siguiente.conseguirImperio().revisarDestrucciones();
+        siguiente.revisarDestrucciones();
         if (siguiente.perdio()) {
             return conseguirSiguienteJugador();
         }
