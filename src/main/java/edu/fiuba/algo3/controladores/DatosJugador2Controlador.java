@@ -68,13 +68,13 @@ public class DatosJugador2Controlador extends DatosJugadorControlador {
     }
 
     @FXML
-    public void iniciarJuego(ActionEvent event) throws IOException, InterruptedException {
+    public void iniciarJuego(ActionEvent event) throws IOException {
         guardarDatosJugador2();
 
         if (this.datosValidos) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/Mapa.fxml"));
             Parent root = loader.load();
-            inicioControlador.iniciarJuego(root, loader);
+            inicioControlador.prepararInicioDelJuego(root, loader);
         }
     }
 
