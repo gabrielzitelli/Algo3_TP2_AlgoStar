@@ -42,6 +42,20 @@ public class Protoss extends Imperio{
         this.construirEdificioSinVerificacionesMateriales(unAcceso, coordenadaAcceso);
         unAcceso.construirInmediatamente();
     }
+    public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
+        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
+
+        this.construirEdificio(fabricaEdificio.crear(), coordenada);
+    }
+    @Override
+    public void prepararParaRevancha(){
+        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        this.gasDelImperio = new Gas(0);
+        this.poblacion = new Suministro(0);
+        this.edificios = new LinkedList<>();
+        this.fabricasDisponibles = new FabricasDisponibles();
+        this.unidades = new ArrayList<>();
+    }
 /*
     public void construirPuertoEstelar(Coordenada coordenada) {
         PuertoEstelar puertoEstelar = new PuertoEstelar();
@@ -74,19 +88,4 @@ public class Protoss extends Imperio{
         this.construirEdificio(asimilador, coordenada);
     }
 */
-    @Override
-    public void prepararParaRevancha(){
-        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
-        this.gasDelImperio = new Gas(0);
-        this.poblacion = new Suministro(0);
-        this.edificios = new LinkedList<>();
-        this.fabricasDisponibles = new FabricasDisponibles();
-        this.unidades = new ArrayList<>();
-    }
-
-    public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
-        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
-
-        this.construirEdificio(fabricaEdificio.crear(), coordenada);
-    }
 }
