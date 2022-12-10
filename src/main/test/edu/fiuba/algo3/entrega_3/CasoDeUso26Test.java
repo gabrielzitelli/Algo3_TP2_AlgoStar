@@ -2,9 +2,9 @@ package edu.fiuba.algo3.entrega_3;
 
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;

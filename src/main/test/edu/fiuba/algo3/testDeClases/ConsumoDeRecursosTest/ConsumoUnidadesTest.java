@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.testDeClases.ConsumoDeRecursosTest;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaZangano;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Imperio.Gas;

@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.GestorDeCrianza;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;

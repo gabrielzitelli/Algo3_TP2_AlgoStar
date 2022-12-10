@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 
 import java.util.ArrayList;

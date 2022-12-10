@@ -6,8 +6,8 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.Scou
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaScout;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Ataque.DanioMixto;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaHidralisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaHidralisco;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;

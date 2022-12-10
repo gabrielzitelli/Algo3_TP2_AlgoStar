@@ -7,9 +7,9 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.Zeal
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaZealot;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;

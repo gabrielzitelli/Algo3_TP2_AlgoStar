@@ -2,9 +2,9 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;

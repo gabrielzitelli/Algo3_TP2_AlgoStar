@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Edificios.Fabricas;
+package edu.fiuba.algo3.modelo.Edificios.FabricasUnidades;
 
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 

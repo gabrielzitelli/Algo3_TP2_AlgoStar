@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.testDeClases.unidadesTest;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricaZangano;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaExtractor;
 import edu.fiuba.algo3.modelo.Imperio.Gas;

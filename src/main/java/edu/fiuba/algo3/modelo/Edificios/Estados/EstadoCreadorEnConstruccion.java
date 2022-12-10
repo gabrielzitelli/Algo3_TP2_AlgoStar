@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
