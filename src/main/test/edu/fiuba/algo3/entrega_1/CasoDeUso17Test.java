@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPuertaEstelar;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -129,7 +126,7 @@ public class CasoDeUso17Test {
         for (int i = 0; i < 5; i++)
             protoss.terminarTurno();
 
-        protoss.construirAcceso(new Coordenada(1,0));
+        protoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
 
         //IntentamosConstruirPuertoEstelar
         assertDoesNotThrow( () -> protoss.construirPuertoEstelar(new Coordenada( 1, 1)));

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.*;
@@ -291,7 +292,7 @@ public class CasoDeUso2Test {
             imperioProtoss.terminarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> imperioProtoss.construirAcceso(new Coordenada(0,0)));
+                () -> imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,0)));
     }
 
     @Test
@@ -354,7 +355,7 @@ public class CasoDeUso2Test {
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
         int turnosParaConstruir = 7;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
@@ -374,7 +375,7 @@ public class CasoDeUso2Test {
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
         int turnosParaConstruir = 8;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
@@ -393,7 +394,7 @@ public class CasoDeUso2Test {
             imperioProtoss.terminarTurno();
 
         // construyo un acceso para el prerequisito
-        imperioProtoss.construirAcceso(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
         imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
         int turnosParaConstruir = 9;
@@ -416,7 +417,7 @@ public class CasoDeUso2Test {
             imperioProtoss.terminarTurno();
 
         // construyo un acceso para el prerequisito
-        imperioProtoss.construirAcceso(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
         imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
         int turnosParaConstruir = 10;

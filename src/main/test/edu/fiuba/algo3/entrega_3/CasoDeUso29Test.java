@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -144,7 +145,7 @@ public class CasoDeUso29Test {
         }
 
         Coordenada unaCoordenada = new Coordenada(1,1);
-        imperioProto.construirAcceso(unaCoordenada);
+        imperioProto.construirEdificio(new FabricaAcceso(), unaCoordenada);
 
         unaCoordenada = new Coordenada(2,1);
         imperioProto.construirPuertoEstelar(unaCoordenada);

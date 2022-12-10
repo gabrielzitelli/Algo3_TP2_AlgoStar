@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
@@ -221,7 +222,7 @@ public class CasoDeUso22Test {
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)
@@ -251,7 +252,7 @@ public class CasoDeUso22Test {
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)
@@ -281,7 +282,7 @@ public class CasoDeUso22Test {
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)
@@ -304,7 +305,7 @@ public class CasoDeUso22Test {
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)

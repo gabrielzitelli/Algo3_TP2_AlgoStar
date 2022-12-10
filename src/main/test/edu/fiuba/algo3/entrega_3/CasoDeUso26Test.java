@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -71,7 +72,7 @@ public class CasoDeUso26Test {
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
 
         //esperamos a que se construya el acceso
         for (int i = 0; i < 8; i++)

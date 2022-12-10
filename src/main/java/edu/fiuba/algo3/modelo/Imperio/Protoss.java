@@ -55,7 +55,7 @@ public class Protoss extends Imperio{
         Pilon pilon = new Pilon();
         this.construirEdificio(pilon, coordenada);
     }
-
+/*
     public void construirAcceso(Coordenada coordenada) {
         Acceso acceso = new Acceso();
         acceso.asignarListaDeUnidades(fabricasDisponibles);
@@ -63,7 +63,7 @@ public class Protoss extends Imperio{
         acceso.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificio(acceso, coordenada);
     }
-/*
+
     public void construirNexoMineral(Coordenada coordenada) {
         NexoMineral nexoMineral = new NexoMineral(this.mineralesDelImperio);
         this.construirEdificio(nexoMineral, coordenada);

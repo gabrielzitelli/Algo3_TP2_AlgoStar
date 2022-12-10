@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.*;
@@ -235,7 +236,7 @@ public class CasoDeUso8Test {
             protoss.terminarTurno();
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
-                () -> protoss.construirAcceso(new Coordenada(1,1)));
+                () -> protoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,1)));
     }
 
     @Test
@@ -249,7 +250,7 @@ public class CasoDeUso8Test {
         for(int i = 0; i < 6; i++)
             protoss.terminarTurno();
 
-        assertDoesNotThrow(() -> protoss.construirAcceso(new Coordenada(0,1)));
+        assertDoesNotThrow(() -> protoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1)));
     }
 
     @Test
@@ -264,7 +265,7 @@ public class CasoDeUso8Test {
         for(int i = 0; i < 5; i++)
             protoss.terminarTurno();
 
-        protoss.construirAcceso(new Coordenada(1,0));
+        protoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
                 () -> protoss.construirPuertoEstelar(new Coordenada(1,1)));
@@ -282,7 +283,7 @@ public class CasoDeUso8Test {
         for(int i = 0; i < 6; i++)
             protoss.terminarTurno();
 
-        protoss.construirAcceso(new Coordenada(1,0));
+        protoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
 
         assertDoesNotThrow(() -> protoss.construirPuertoEstelar(new Coordenada(0,1)));
     }

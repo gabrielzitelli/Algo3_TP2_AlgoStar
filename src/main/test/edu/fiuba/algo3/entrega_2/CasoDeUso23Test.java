@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorLaUnidadNoPuedeAtacarFueraDeSuRango;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -37,7 +39,7 @@ public class CasoDeUso23Test {
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(coordenadaEdificio);
+        imperioProtoss.construirEdificio(new FabricaAcceso(), coordenadaEdificio);
         assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class, () ->
                 elMapa.atacar(coordenadaAtacante, coordenadaEdificio));
     }
@@ -56,7 +58,7 @@ public class CasoDeUso23Test {
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(coordenadaEdificio);
+        imperioProtoss.construirEdificio(new FabricaAcceso(), coordenadaEdificio);
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaEdificio));
     }
     @Test
