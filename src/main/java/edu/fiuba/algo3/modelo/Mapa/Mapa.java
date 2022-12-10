@@ -134,21 +134,25 @@ public class Mapa {
         return mapaInstanciaUnica;
     }
 
-    public void construirEdificio(Edificio unEdificio, Coordenada coordenada){
-        Casilla casillaDondeConstruir = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDondeConstruir = casillaDondeConstruir.construirEdificio(unEdificio);
-        this.actualizarCasillaPorCoordenada(coordenada, casillaDondeConstruir);
-    }
-
     public void construirEdificioVerificacion(Edificio unEdificio, Coordenada coordenada){
         Casilla casillaDondeConstruir = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDondeConstruir.construirEdificioVerificacion(unEdificio);
     }
 
-    public void destruirEdificio(Coordenada coordenada){
-        Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDestruir = casillaDestruir.desconstruirEdificio(coordenada);
-        this.actualizarCasillaPorCoordenada(coordenada, casillaDestruir);
+    public void colocarOcupable(Ocupable unOcupable, Coordenada coordenada) {
+        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestino = casillaDestino.colocarOcupable(unOcupable);
+        this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
+    }
+
+    public void quitarOcupable(Coordenada coordenada) {
+        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaAQuitar = casillaAQuitar.quitarOcupable();
+        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
+    }
+
+    public Ocupable obtenerOcupable(Coordenada coordenada) {
+        return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
     }
 
     private Casilla encontrarCasillaPorCoordenada(Coordenada coordenada){
@@ -234,7 +238,7 @@ public class Mapa {
         Casilla casillaOrigen = obtenerCasilla(coordenadaOrigen);
 
         try{
-            colocarUnaUnidad(unaUnidad, casillaOrigen.obtenerCoordenada());
+            colocarOcupable(unaUnidad, casillaOrigen.obtenerCoordenada());
             sePudoColocarUnidad = true;
         } catch(RuntimeException ignore) {}
 
@@ -245,7 +249,7 @@ public class Mapa {
             for(Casilla casillaCandidataParaColocar : casillasSobreUnAnillo){
                 try{
                     casillaCandidataParaColocar.tieneEsteRecoletable(new NoRecolectable());
-                    colocarUnaUnidad(unaUnidad, casillaCandidataParaColocar.obtenerCoordenada());
+                    colocarOcupable(unaUnidad, casillaCandidataParaColocar.obtenerCoordenada());
                     sePudoColocarUnidad = true;
                     break;
                 } catch(RuntimeException ignore) {}
@@ -299,29 +303,6 @@ public class Mapa {
             unaCasilla.desRevelar();
     }
 
-    //Solo lo usa la interfaz
-    public Ocupable obtenerOcupable(Coordenada coordenada) {
-        return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
-    }
-
-    public Edificio obtenerEdificio(Coordenada coordenada) {
-        Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
-        return casillaConEdificio.obtenerEdificio();
-    }
-
-    public void colocarUnaUnidad(Unidad unaUnidad, Coordenada coordenada){
-        // Busco la casilla de la coordenada y creo una nueva casilla ocupada por la unidad
-        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDestino = casillaDestino.colocarUnidad(unaUnidad);
-        this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
-    }
-
-    public void quitarUnidad(Coordenada coordenada) {
-        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaAQuitar = casillaAQuitar.quitarUnidad();
-        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
-    }
-
     public void atacar(Coordenada atacante, Coordenada atacado){
         // Busco la casilla de atacante y atacado y hago que el atacante la ataque
         Casilla casillaAtacante = this.encontrarCasillaPorCoordenada(atacante);
@@ -344,7 +325,7 @@ public class Mapa {
 
         //Actualizo la casillaInicial con una casilla con los mismo atributos que tenia casillaInicial pero ahora
         //sin la unidad que contenia
-        casillaInicial = casillaInicial.quitarUnidad();
+        casillaInicial = casillaInicial.quitarOcupable();
         this.actualizarCasillaPorCoordenada(coordenadaInicial, casillaInicial);
     }
 

@@ -43,7 +43,7 @@ public class CasoDeUso31Test {
         //Ahora tengo el criadero construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
         //Creo un Dragon para atacar al criadero
         Unidad unDragon = new Dragon();
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         //Destruyo el criadero
         for (int i = 0; i < 25; i++){
@@ -74,7 +74,7 @@ public class CasoDeUso31Test {
         //Ahora tengo el pilon construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
         //Creo un Dragon para atacar al pilon
         Unidad unHidralisco = new Hidralisco();
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaHidralisco);
+        elMapa.colocarOcupable(unHidralisco, coordenadaHidralisco);
 
         //Destruyo el pilon
         for (int i = 0; i < 60; i++){
@@ -114,7 +114,7 @@ public class CasoDeUso31Test {
         Coordenada coordenadaAmoSupremo = unAmoSupremo.obtenerCoordenada();
 
         Unidad unDragon = new Dragon();
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         //Mato al Amo Supremo
         for (int i = 0; i < 10; i++){

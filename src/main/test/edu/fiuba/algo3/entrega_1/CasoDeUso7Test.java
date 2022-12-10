@@ -30,7 +30,7 @@ public class CasoDeUso7Test {
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
         unZangano.setDepositoRecurso(mineralDelImperio);
-        elMapa.colocarUnaUnidad(unZangano, coordenada);
+        elMapa.colocarOcupable(unZangano, coordenada);
         unZangano.extraer();
 
         assertTrue(mineralDelImperio.tenesCantidadDeRecurso(10));
@@ -44,7 +44,7 @@ public class CasoDeUso7Test {
         Edificio nexoMineral = new NexoMineral(mineralDelImperio);
 
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
-        elMapa.construirEdificio(nexoMineral, coordenada);
+        elMapa.colocarOcupable(nexoMineral, coordenada);
 
         for (int i = 0; i < 3; i++)
             nexoMineral.pasarTurno();
@@ -62,7 +62,7 @@ public class CasoDeUso7Test {
         Edificio Asimilador = new Asimilador(gasDelImperio);
 
         elMapa.colocarMaterial(new GasRecolectable(), coordenada);
-        elMapa.construirEdificio(Asimilador, coordenada);
+        elMapa.colocarOcupable(Asimilador, coordenada);
 
         for (int i = 0; i < 5; i++)
             Asimilador.pasarTurno();
@@ -81,13 +81,13 @@ public class CasoDeUso7Test {
         Edificio criadero = new Criadero();
         Edificio extractor = new Extractor(gasDelImperio);
 
-        elMapa.construirEdificio(criadero,coordenadaCriadero);
+        elMapa.colocarOcupable(criadero,coordenadaCriadero);
 
         for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
 
         elMapa.colocarMaterial(new GasRecolectable(), coordenadaExtractor);
-        elMapa.construirEdificio(extractor, coordenadaExtractor);
+        elMapa.colocarOcupable(extractor, coordenadaExtractor);
 
         for (int i = 0; i < 6; i++)
             extractor.pasarTurno();

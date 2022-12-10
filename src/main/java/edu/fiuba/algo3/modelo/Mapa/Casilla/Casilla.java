@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 public abstract class Casilla {
 
@@ -19,18 +18,15 @@ public abstract class Casilla {
     protected Ocupable ocupable;
     protected Coordenada coordenada;
 
-    public abstract Casilla construirEdificio(Edificio unEdificio);
+    public abstract Casilla colocarOcupable(Ocupable unOcupable);
     public abstract void construirEdificioVerificacion(Edificio unEdificio);
     public abstract void llenarDeMoho();
-    public abstract Casilla desconstruirEdificio(Coordenada coordenada);
     public abstract Ocupable obtenerOcupable();
-    public abstract Edificio obtenerEdificio();
-    public abstract Casilla colocarUnidad(Unidad unaUnidad);
+    public abstract Casilla quitarOcupable();
     public abstract void atacar(Casilla casillaAtacada);
     public abstract boolean esFuegoAliado(Imperio unImperio);
     public abstract void recibirAtaque(Ataque unAtaque);
     public abstract Casilla moverUnidadHacia(Casilla destino);
-    public abstract Casilla quitarUnidad();
 
     public void colocarMaterial(SiRecolectable materialAColocar){
         estadoRecolectable = materialAColocar;

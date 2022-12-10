@@ -36,8 +36,8 @@ public class ZanganoTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZangano, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unaUnidadTerrestre, coordenadaAtacado);
+        elMapa.colocarOcupable(unZangano, coordenadaAtacante);
+        elMapa.colocarOcupable(unaUnidadTerrestre, coordenadaAtacado);
 
         assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
@@ -52,8 +52,8 @@ public class ZanganoTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZangano, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unaUnidadAerea, coordenadaAtacado);
+        elMapa.colocarOcupable(unZangano, coordenadaAtacante);
+        elMapa.colocarOcupable(unaUnidadAerea, coordenadaAtacado);
 
         assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));

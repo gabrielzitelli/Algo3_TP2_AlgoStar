@@ -24,7 +24,7 @@ public class CasoDeUso5Test {
         Recurso gasDelImperio = new Recurso(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
+                () -> elMapa.colocarOcupable(new Extractor(gasDelImperio), coordenada));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenada));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Guarida(), coordenada));
+                () -> elMapa.colocarOcupable(new Guarida(), coordenada));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Espiral(), coordenada));
+                () -> elMapa.colocarOcupable(new Espiral(), coordenada));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Acceso(), coordenada));
+                () -> elMapa.colocarOcupable(new Acceso(), coordenada));
     }
 
     @Test
@@ -69,6 +69,6 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenada));
+                () -> elMapa.colocarOcupable(new PuertoEstelar(), coordenada));
     }
 }

@@ -164,7 +164,7 @@ public class AlgoStarTest {
         // Coloco una unidad zergs al lado de los edificios protoss
         Coordenada coordenadaUnidad = new Coordenada(coordenadaBase.getCoordenadaX() - 2, coordenadaBase.getCoordenadaY() - 1);
         Unidad unGuardian = new Guardian();
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaUnidad);
+        elMapa.colocarOcupable(unGuardian, coordenadaUnidad);
 
         // Destruyo edificios protoss
         for (int i = 0; i < 24; i++) {
@@ -209,7 +209,7 @@ public class AlgoStarTest {
         // Coloco una unidad Protoss al lado del edificio Zerg
         Coordenada coordenadaUnidad = new Coordenada(coordenadaBase.getCoordenadaX() - 2, coordenadaBase.getCoordenadaY() - 1);
         Unidad unDragon = new Dragon();
-        elMapa.colocarUnaUnidad(unDragon, coordenadaUnidad);
+        elMapa.colocarOcupable(unDragon, coordenadaUnidad);
 
         // Destruyo edificio Zerg
         for (int i = 0; i < 25; i++) {
@@ -262,7 +262,7 @@ public class AlgoStarTest {
 
         Unidad unDragon = new Dragon();
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
@@ -310,7 +310,7 @@ public class AlgoStarTest {
 
         Unidad unDragon = new Dragon();
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);
@@ -334,7 +334,7 @@ public class AlgoStarTest {
 
         Dragon otroDragon = new Dragon();
 
-        elMapa.colocarUnaUnidad(otroDragon, coordenadaDragon);
+        elMapa.colocarOcupable(otroDragon, coordenadaDragon);
 
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);

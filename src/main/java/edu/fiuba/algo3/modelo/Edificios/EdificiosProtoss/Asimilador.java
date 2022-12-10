@@ -42,8 +42,8 @@ public class Asimilador extends EdificioProtoss {
     }
 
     @Override
-    public void verificarConstruccion(Casilla unaCasilla) {
-        super.verificarConstruccion(unaCasilla);
+    public void verificarColocable(Casilla unaCasilla) {
+        super.verificarColocable(unaCasilla);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }
 

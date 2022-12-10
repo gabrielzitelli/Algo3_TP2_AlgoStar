@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
@@ -66,7 +65,7 @@ public class Zerg extends Imperio{
         Mutalisco mutalisco = new Mutalisco();
         for (Unidad unidad : unidades) {
             if (unidad.esIgualA(mutalisco)){
-                Mapa.obtener().quitarUnidad(unidad.obtenerCoordenada());
+                Mapa.obtener().quitarOcupable(unidad.obtenerCoordenada());
                 unidades.remove(unidad);
 
                 GestorDeCrianza nuevoGestorEvoluciones = new GestorDeCrianza(unidad.obtenerCoordenada());

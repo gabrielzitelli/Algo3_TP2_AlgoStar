@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
@@ -48,7 +48,7 @@ public class Zealot extends UnidadProtoss {
         try {
             Mapa.obtener().moverUnidad(coordenada, casillaAAtacar.obtenerCoordenada());
         }
-        catch (ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada e) {
+        catch (ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada e) {
             return;
         }
 

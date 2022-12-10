@@ -26,13 +26,18 @@ public class SinOcupar implements Ocupable {
     }
 
     @Override
+    public void verificarColocable(Casilla unaCasilla) {
+        // Vacia a proposito
+    }
+
+    @Override
     public String toString() {
         return "ocupable ninguno";
     }
 
     @Override
     public void actualizarColocable(Casilla unaCasilla) {
-        // Vacia a proposito
+        verificarColocable(unaCasilla);
     }
 
     public boolean esDeEsteTipo(Class claseAAverificar){

@@ -9,7 +9,6 @@ import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.GasBruto;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -42,9 +41,9 @@ public class MapaTest {
     public void test02NoPuedoConstruirpilonEnUnaCasillaQueTieneUnEdificioEncima() {
         Mapa elMapa = Mapa.obtener();
 
-        elMapa.construirEdificio(new Criadero(), new Coordenada(2, 2));
+        elMapa.colocarOcupable(new Criadero(), new Coordenada(2, 2));
 
-        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class, () -> elMapa.construirEdificio(new Criadero(), new Coordenada(2, 2)));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class, () -> elMapa.colocarOcupable(new Criadero(), new Coordenada(2, 2)));
     }
 
     /*
@@ -60,7 +59,7 @@ public class MapaTest {
         elMapa.colocarMaterial(new GasRecolectable(), coordenada);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Pilon(), coordenada));
+                () -> elMapa.colocarOcupable(new Pilon(), coordenada));
     }
 
     @Test
@@ -71,7 +70,7 @@ public class MapaTest {
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Criadero(), coordenada));
+                () -> elMapa.colocarOcupable(new Criadero(), coordenada));
     }
 
     @Test
@@ -81,7 +80,7 @@ public class MapaTest {
         Recurso gasDelImperio = new Gas(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
+                () -> elMapa.colocarOcupable(new Extractor(gasDelImperio), coordenada));
     }
 
     @Test
@@ -93,7 +92,7 @@ public class MapaTest {
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
+                () -> elMapa.colocarOcupable(new Extractor(gasDelImperio), coordenada));
     }
 
     @Test
@@ -105,7 +104,7 @@ public class MapaTest {
         elMapa.colocarMaterial(new GasRecolectable(), coordenada);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new NexoMineral(mineralesDelImperio), coordenada));
+                () -> elMapa.colocarOcupable(new NexoMineral(mineralesDelImperio), coordenada));
     }
 
     @Test
@@ -115,7 +114,7 @@ public class MapaTest {
         Recurso mineralesDelImperio = new Recurso(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new NexoMineral(mineralesDelImperio), coordenada));
+                () -> elMapa.colocarOcupable(new NexoMineral(mineralesDelImperio), coordenada));
     }
 
     @Test
@@ -126,7 +125,7 @@ public class MapaTest {
 
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new NexoMineral(mineralesDelImperio), coordenada));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new NexoMineral(mineralesDelImperio), coordenada));
     }
 
     @Test
@@ -135,7 +134,7 @@ public class MapaTest {
         Coordenada coordenada = new Coordenada(0, 0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Espiral(), coordenada));
+                () -> elMapa.colocarOcupable(new Espiral(), coordenada));
     }
 
     @Test
@@ -144,7 +143,7 @@ public class MapaTest {
         Coordenada coordenada = new Coordenada(0, 0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Guarida(), coordenada));
+                () -> elMapa.colocarOcupable(new Guarida(), coordenada));
     }
 
     @Test
@@ -153,7 +152,7 @@ public class MapaTest {
         Coordenada coordenada = new Coordenada(0, 0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenada));
+                () -> elMapa.colocarOcupable(new PuertoEstelar(), coordenada));
     }
 
     @Test
@@ -162,7 +161,7 @@ public class MapaTest {
         Coordenada coordenada = new Coordenada(0, 0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Acceso(), coordenada));
+                () -> elMapa.colocarOcupable(new Acceso(), coordenada));
     }
 
     @Test
@@ -172,7 +171,7 @@ public class MapaTest {
         Recurso gasDelImperio = new Recurso(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Asimilador(gasDelImperio), coordenada));
+                () -> elMapa.colocarOcupable(new Asimilador(gasDelImperio), coordenada));
     }
 
     @Test
@@ -183,7 +182,7 @@ public class MapaTest {
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenada));
     }
 
     @Test
@@ -194,7 +193,7 @@ public class MapaTest {
         elMapa.colocarMaterial(new GasRecolectable(), coordenada);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenada));
     }
 
     @Test
@@ -203,7 +202,7 @@ public class MapaTest {
         Coordenada coordenada = new Coordenada(0, 0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenada));
     }
 
     @Test
@@ -212,7 +211,7 @@ public class MapaTest {
         Coordenada coordenadaCriadero = new Coordenada(0, 0);
         Coordenada coordenadaConMoho = new Coordenada(0, 1);
         Criadero unCriadero = new Criadero();
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         //El criadero se termina de construir
         for (int i = 0; i < 4; i++)
@@ -221,7 +220,7 @@ public class MapaTest {
         //El moho se expande
         unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaConMoho));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaConMoho));
     }
 
     @Test
@@ -230,7 +229,7 @@ public class MapaTest {
         Coordenada coordenadaCriadero = new Coordenada(0, 0);
         Coordenada coordenadaSinMohoExpandido = new Coordenada(0, 99);
         Criadero unCriadero = new Criadero();
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         //construyo el criadero
         for (int i = 0; i < 4; i++)
@@ -240,7 +239,7 @@ public class MapaTest {
         unCriadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaSinMohoExpandido));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaSinMohoExpandido));
     }
 
     @Test
@@ -252,7 +251,7 @@ public class MapaTest {
         Mapa elMapa = Mapa.obtener();
         elMapa.reiniciarMapa();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         //construyo el criadero
         for (int i = 0; i < 4; i++)
@@ -262,7 +261,7 @@ public class MapaTest {
         unCriadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaLimiteMoho));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaLimiteMoho));
     }
 
     @Test
@@ -272,7 +271,7 @@ public class MapaTest {
         Coordenada coordenadaLimiteMoho = new Coordenada(3, 3);
         Criadero unCriadero = new Criadero();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         //construyo el criadero
         for (int i = 0; i < 4; i++)
@@ -282,7 +281,7 @@ public class MapaTest {
         unCriadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaLimiteMoho));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaLimiteMoho));
     }
 
     @Test
@@ -292,7 +291,7 @@ public class MapaTest {
         Coordenada coordenadaConMoho = new Coordenada(3, 1);
         Criadero unCriadero = new Criadero();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         //construyo el criadero
         for (int i = 0; i < 4; i++)
@@ -301,7 +300,7 @@ public class MapaTest {
         //El moho se expande
         unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaConMoho));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaConMoho));
     }
 
     @Test
@@ -311,7 +310,7 @@ public class MapaTest {
         Coordenada coordenadaConMoho = new Coordenada(0, 6);
         Criadero unCriadero = new Criadero();
 
-        elMapa.construirEdificio(unCriadero, coordenada);
+        elMapa.colocarOcupable(unCriadero, coordenada);
 
         //construyo el criadero
         for (int i = 0; i < 4; i++)
@@ -321,7 +320,7 @@ public class MapaTest {
         for (int i = 0; i < 3; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaConMoho));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaConMoho));
     }
 
     @Test
@@ -331,7 +330,7 @@ public class MapaTest {
         Coordenada coordenadaLimiteMoho = new Coordenada(0, 7);
         Criadero unCriadero = new Criadero();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         //construyo el criadero
         for (int i = 0; i < 4; i++)
@@ -342,7 +341,7 @@ public class MapaTest {
             unCriadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaLimiteMoho));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaLimiteMoho));
     }
 
     @Test
@@ -353,13 +352,13 @@ public class MapaTest {
         Pilon unPilon = new Pilon();
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
 
         //construyo el pilon
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new Acceso(), coordenadaEnergizada));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Acceso(), coordenadaEnergizada));
     }
 
     @Test
@@ -370,14 +369,14 @@ public class MapaTest {
         Pilon unPilon = new Pilon();
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
 
         //construyo el criadero
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Acceso(), coordenadaLimiteSinEnergia));
+                () -> elMapa.colocarOcupable(new Acceso(), coordenadaLimiteSinEnergia));
     }
 
     @Test
@@ -390,8 +389,8 @@ public class MapaTest {
         Criadero unCriadero = new Criadero();
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         for (int i = 0; i < 5; i++) {
             //Construyo el pilon y energizo la zona
@@ -401,7 +400,7 @@ public class MapaTest {
             unCriadero.pasarTurno();
         }
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new Espiral(), coordenadaEnergizadaYConMoho));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Espiral(), coordenadaEnergizadaYConMoho));
     }
 
     @Test
@@ -414,8 +413,8 @@ public class MapaTest {
         Criadero unCriadero = new Criadero();
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
 
         for (int i = 0; i < 5; i++) {
             //Construyo el pilon y energizo la zona
@@ -426,7 +425,7 @@ public class MapaTest {
         }
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenadaEnergizadaYConMoho));
+                () -> elMapa.colocarOcupable(new PuertoEstelar(), coordenadaEnergizadaYConMoho));
     }
 
     @Test
@@ -435,12 +434,12 @@ public class MapaTest {
         Criadero unCriadero = new Criadero();
         Coordenada coordenada = new Coordenada(0, 0);
 
-        elMapa.construirEdificio(unCriadero, coordenada);
+        elMapa.colocarOcupable(unCriadero, coordenada);
 
         Zangano unZangano = new Zangano();
 
-        assertThrows(ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada.class,
-                () -> elMapa.colocarUnaUnidad(unZangano, coordenada));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarOcupable(unZangano, coordenada));
     }
 
     @Test
@@ -451,18 +450,6 @@ public class MapaTest {
 
         assertThrows(ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacada));
-    }
-
-    @Test
-    public void test31DesconstruirEdificioDeUnaCasillaVaciaLanzaExcepcion() {
-        assertThrows(ErrorNoSePuedeDesconstruirUnEdificioNoCreado.class,
-                () -> Mapa.obtener().destruirEdificio(new Coordenada(0, 0)));
-    }
-
-    @Test
-    public void test32ConseguirEdificioDeUnaCasillaVaciaLanzaExcepcion() {
-        assertThrows(ErrorNoExisteNingunEdificioEnEstaCasilla.class,
-                () -> Mapa.obtener().obtenerEdificio(new Coordenada(0, 0)));
     }
 
     @Test
@@ -617,7 +604,7 @@ public class MapaTest {
         Coordenada coordenadaEspacial = new Coordenada(0, 0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(unCriadero, coordenadaEspacial));
+                () -> elMapa.colocarOcupable(unCriadero, coordenadaEspacial));
     }
 
     @Test
@@ -630,6 +617,6 @@ public class MapaTest {
         Coordenada coordenadaEspacial = new Coordenada(0, 0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(unPilon, coordenadaEspacial));
+                () -> elMapa.colocarOcupable(unPilon, coordenadaEspacial));
     }
 }

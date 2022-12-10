@@ -3,7 +3,6 @@ package edu.fiuba.algo3.testDeClases.unidadesTest;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,8 +34,8 @@ public class ScoutTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(1,0);
 
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unScout, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
@@ -50,8 +49,8 @@ public class ScoutTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(1,0);
 
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacado);
+        elMapa.colocarOcupable(unScout, coordenadaAtacante);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

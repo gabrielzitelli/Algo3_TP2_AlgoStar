@@ -23,7 +23,7 @@ public class CasoDeUso6Test {
         Coordenada coordenadaReserva = new Coordenada(6,0);
         Criadero criadero = new Criadero();
 
-        elMapa.construirEdificio(criadero, coordenadaCriadero);
+        elMapa.colocarOcupable(criadero, coordenadaCriadero);
 
         for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
@@ -31,7 +31,7 @@ public class CasoDeUso6Test {
         criadero.pasarTurno();
         criadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaReserva));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaReserva));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class CasoDeUso6Test {
         Coordenada coordenadaReserva = new Coordenada(7,0);
         Criadero criadero = new Criadero();
 
-        elMapa.construirEdificio(criadero, coordenadaCriadero);
+        elMapa.colocarOcupable(criadero, coordenadaCriadero);
 
         for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
@@ -50,7 +50,7 @@ public class CasoDeUso6Test {
         criadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaReserva));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaReserva));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class CasoDeUso6Test {
         Coordenada coordenadaReserva = new Coordenada(7,0);
         Criadero criadero = new Criadero();
 
-        elMapa.construirEdificio(criadero, coordenadaCriadero);
+        elMapa.colocarOcupable(criadero, coordenadaCriadero);
 
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
@@ -70,7 +70,7 @@ public class CasoDeUso6Test {
         for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaReserva));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaReserva));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class CasoDeUso6Test {
         Coordenada coordenadaReserva = new Coordenada(8,0);
         Criadero criadero = new Criadero();
 
-        elMapa.construirEdificio(criadero, coordenadaCriadero);
+        elMapa.colocarOcupable(criadero, coordenadaCriadero);
 
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
@@ -91,7 +91,7 @@ public class CasoDeUso6Test {
             criadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaReserva));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaReserva));
     }
 
     @Test
@@ -101,7 +101,7 @@ public class CasoDeUso6Test {
         Coordenada coordenadaReserva = new Coordenada(6,0);
         Criadero criadero = new Criadero();
 
-        elMapa.construirEdificio(criadero, coordenadaCriadero);
+        elMapa.colocarOcupable(criadero, coordenadaCriadero);
 
         for (int i = 0; i < 4; i++)
             criadero.pasarTurno();
@@ -109,6 +109,6 @@ public class CasoDeUso6Test {
         criadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaReserva));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaReserva));
     }
 }

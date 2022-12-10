@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaHidralisco;
@@ -69,13 +68,13 @@ public class GuaridaTest {
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         unCriadero.asignarSuministro(new Suministro(2));
-        elMapa.construirEdificio(unCriadero, new Coordenada(0,0));
+        elMapa.colocarOcupable(unCriadero, new Coordenada(0,0));
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
         // Construyo guarida
         Guarida unaGuarida = new Guarida();
-        elMapa.construirEdificio(unaGuarida, new Coordenada(1,0));
+        elMapa.colocarOcupable(unaGuarida, new Coordenada(1,0));
         unaGuarida.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 12; i++)
             unaGuarida.pasarTurno();

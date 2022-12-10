@@ -34,7 +34,7 @@ public class ConvertirCasillaTest {
         mapa.reiniciarMapa();
         Coordenada coordenada = new Coordenada(0,0);
 
-        mapa.construirEdificio(new Criadero(), coordenada);
+        mapa.colocarOcupable(new Criadero(), coordenada);
         Casilla casilla = mapa.obtenerCasilla(coordenada);
 
         JSONObject obj = ConvertidorJSON.convertirAJSON(casilla);
@@ -49,7 +49,7 @@ public class ConvertirCasillaTest {
         mapa.reiniciarMapa();
         Coordenada coordenada = new Coordenada(0,0);
 
-        mapa.colocarUnaUnidad(new Zealot(), coordenada);
+        mapa.colocarOcupable(new Zealot(), coordenada);
         mapa.colocarMaterial(new GasRecolectable(), coordenada);
         Casilla casilla = mapa.obtenerCasilla(coordenada);
 
@@ -64,7 +64,7 @@ public class ConvertirCasillaTest {
         mapa.reiniciarMapa();
         Coordenada coordenada = new Coordenada(0,0);
 
-        mapa.colocarUnaUnidad(new Zealot(), coordenada);
+        mapa.colocarOcupable(new Zealot(), coordenada);
         mapa.colocarMaterial(new GasRecolectable(), coordenada);
         Casilla casilla = mapa.obtenerCasilla(coordenada);
 

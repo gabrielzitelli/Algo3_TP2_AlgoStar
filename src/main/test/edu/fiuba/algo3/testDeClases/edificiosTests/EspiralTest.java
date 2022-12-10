@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
@@ -69,13 +68,13 @@ public class EspiralTest {
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         unCriadero.asignarSuministro(new Suministro(4));
-        elMapa.construirEdificio(unCriadero, new Coordenada(0,0));
+        elMapa.colocarOcupable(unCriadero, new Coordenada(0,0));
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
         // Construyo espiral
         Espiral unEspiral = new Espiral();
-        elMapa.construirEdificio(unEspiral, new Coordenada(1,0));
+        elMapa.colocarOcupable(unEspiral, new Coordenada(1,0));
         unEspiral.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 10; i++)
             unEspiral.pasarTurno();

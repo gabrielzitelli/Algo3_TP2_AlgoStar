@@ -60,11 +60,11 @@ public class SuministroYUnidadesTest {
 
         ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
 
-        elMapa.colocarUnaUnidad((listaZergUnidades.get(0)), coordenadaZerling);
+        elMapa.colocarOcupable((listaZergUnidades.get(0)), coordenadaZerling);
 
         Unidad unDragon = new Dragon();
         Coordenada coordenadaDragon = new Coordenada(5,5);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         for (int i = 0; i < 2; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaZerling);
@@ -117,11 +117,11 @@ public class SuministroYUnidadesTest {
 
         ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
 
-        elMapa.colocarUnaUnidad((listaZergUnidades.get(0)), coordenadaMutalisco);
+        elMapa.colocarOcupable((listaZergUnidades.get(0)), coordenadaMutalisco);
 
         Unidad unDragon = new Dragon();
         Coordenada coordenadaDragon = new Coordenada(5,5);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         for (int i = 0; i < 6; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaMutalisco);
@@ -177,11 +177,11 @@ public class SuministroYUnidadesTest {
 
         ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
 
-        elMapa.colocarUnaUnidad((listaZergUnidades.get(0)), coordenadaMutalisco);
+        elMapa.colocarOcupable((listaZergUnidades.get(0)), coordenadaMutalisco);
 
         Unidad unDragon = new Dragon();
         Coordenada coordenadaDragon = new Coordenada(5,5);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         for (int i = 0; i < 10; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaMutalisco);

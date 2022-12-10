@@ -35,8 +35,8 @@ public class DevoradorTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unDevorador, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unZealot, coordenadaAtacado);
+        elMapa.colocarOcupable(unDevorador, coordenadaAtacante);
+        elMapa.colocarOcupable(unZealot, coordenadaAtacado);
 
         assertThrows(ErrorNoPuedeAtacarUnidadTerrestre.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
@@ -51,8 +51,8 @@ public class DevoradorTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unDevorador, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacado);
+        elMapa.colocarOcupable(unDevorador, coordenadaAtacante);
+        elMapa.colocarOcupable(unScout, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

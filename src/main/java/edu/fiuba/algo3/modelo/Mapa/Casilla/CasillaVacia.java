@@ -2,15 +2,11 @@ package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoExisteNingunEdificioEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeDesconstruirUnEdificioNoCreado;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
 public class CasillaVacia extends Casilla{
 
@@ -36,14 +32,13 @@ public class CasillaVacia extends Casilla{
     }
 
     public void construirEdificioVerificacion(Edificio unEdificio){
-        unEdificio.verificarConstruccion(this);
+        unEdificio.verificarColocable(this);
     }
 
-    public Casilla construirEdificio(Edificio unEdificio){
-        unEdificio.verificarConstruccion(this);
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-        casillaOcupada.establecerEdificio(unEdificio);
-        return casillaOcupada;
+    public Casilla colocarOcupable(Ocupable unOcupable) {
+        unOcupable.verificarColocable(this);
+        return new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable,
+                this.superficie, this.estadoRevelable, unOcupable);
     }
 
     public Coordenada obtenerCoordenada(){
@@ -55,30 +50,13 @@ public class CasillaVacia extends Casilla{
             estadoMoho = new ConMoho();
     }
 
-    public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
-        unaUnidadZerg.interaccionar(this);
-        return new CasillaOcupada(coordenada);
-    }
-    
-    public Casilla desconstruirEdificio(Coordenada coordenada){
-        throw new ErrorNoSePuedeDesconstruirUnEdificioNoCreado();
-    }
-
     @Override
     public Ocupable obtenerOcupable() {
         return ocupable;
     }
 
-    public Edificio obtenerEdificio() {
-        throw new ErrorNoExisteNingunEdificioEnEstaCasilla();
-    }
-
-    public Casilla colocarUnidad(Unidad unaUnidad) {
-        unaUnidad.verificarColocable(this);
-        unaUnidad.interaccionar(this);
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-        casillaOcupada.settearUnidad(unaUnidad);
-        return casillaOcupada;
+    public Casilla quitarOcupable() {
+        return this;
     }
 
     public void atacar(Casilla casillaAtacada){
@@ -95,9 +73,5 @@ public class CasillaVacia extends Casilla{
 
     public Casilla moverUnidadHacia(Casilla destino){
         return destino;
-    }
-
-    public Casilla quitarUnidad(){
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
     }
 }
