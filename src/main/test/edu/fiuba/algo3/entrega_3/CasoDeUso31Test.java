@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -65,7 +66,7 @@ public class CasoDeUso31Test {
         Coordenada coordenadaHidralisco = new Coordenada(1, 0);
 
         imperioProtoss.abastecerDeRecursos(new Mineral(375), new Gas(50));
-        imperioProtoss.construirPilon(coordenadaPilon);
+        imperioProtoss.construirEdificio(new FabricaPilon(), coordenadaPilon);
 
         //Esperamos a que se construya el pilon
         for (int i = 0; i < 5; i++)
