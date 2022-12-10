@@ -84,7 +84,7 @@ public class Protoss extends Imperio{
         this.unidades = new ArrayList<>();
     }
     public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
-        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio);
+        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
 
         Edificio edificio = fabricaEdificio.crear();
 

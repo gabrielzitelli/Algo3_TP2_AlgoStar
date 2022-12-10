@@ -6,7 +6,7 @@ public class FabricaPuertaEstelar extends FabricaEdificio{
 
     @Override
     public Edificio crear() {
-        //this.comprobarRequisitos(PuertoEstelar.requisitos());
+        this.comprobarRequisitos(PuertoEstelar.requisitos());
 
         PuertoEstelar unaPuertaEstelar = new PuertoEstelar();
 
