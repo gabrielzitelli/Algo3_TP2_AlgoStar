@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,10 +30,10 @@ public class CasoDeUso28Test {
         Coordenada coordenadaSegundaUnidad = new Coordenada(7,0);
         Coordenada coordenadaTercerUnidad = new Coordenada(8,0);
 
-        elMapa.colocarUnaUnidad(unaUnidad, coordenadaUnidad);
-        elMapa.colocarUnaUnidad(new Zerling(), coordenadaPrimerUnidad);
-        elMapa.colocarUnaUnidad(new Zerling(), coordenadaSegundaUnidad);
-        elMapa.colocarUnaUnidad(new Zerling(), coordenadaTercerUnidad);
+        elMapa.colocarOcupable(unaUnidad, coordenadaUnidad);
+        elMapa.colocarOcupable(new Zerling(), coordenadaPrimerUnidad);
+        elMapa.colocarOcupable(new Zerling(), coordenadaSegundaUnidad);
+        elMapa.colocarOcupable(new Zerling(), coordenadaTercerUnidad);
 
         for (int i = 0; i < 5; i++) {
             elMapa.atacar(coordenadaUnidad, coordenadaPrimerUnidad);
@@ -61,11 +60,11 @@ public class CasoDeUso28Test {
         // Coloco unidad invisible en rango del amo supremo
         Unidad unZealotInvisible = crearUnidadInvisible();
         Coordenada coordenadaZealotInvisible = new Coordenada(0, 3);
-        elMapa.colocarUnaUnidad(unZealotInvisible, coordenadaZealotInvisible);
+        elMapa.colocarOcupable(unZealotInvisible, coordenadaZealotInvisible);
 
         Unidad unMutalisco = new Mutalisco();
         Coordenada coordenadaAtacante = new Coordenada(0,2);
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unMutalisco, coordenadaAtacante);
         // La nueva unidad intenta matar al zealot invisible
         for (int i = 0; i < 8; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaZealotInvisible);
@@ -73,8 +72,8 @@ public class CasoDeUso28Test {
         }
 
         // El zealot sigue vivo
-        assertThrows(ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada.class,
-                () -> elMapa.colocarUnaUnidad(new Zealot(), coordenadaZealotInvisible));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarOcupable(new Zealot(), coordenadaZealotInvisible));
     }
 
 
@@ -82,22 +81,22 @@ public class CasoDeUso28Test {
     public void test02UnZealotSeHaceInvisiblePeroPuedeSerAtacadoPorEstarEnRangoDeUnAmoSupremo() {
         Mapa elMapa = Mapa.obtener();
 
-        elMapa.colocarUnaUnidad(new AmoSupremo(), new Coordenada(0, 0));
+        elMapa.colocarOcupable(new AmoSupremo(), new Coordenada(0, 0));
 
         // Coloco unidad invisible en rango del amo supremo
         Unidad unZealotInvisible = crearUnidadInvisible();
         Coordenada coordenadaZealotInvisible = new Coordenada(0, 3);
-        elMapa.colocarUnaUnidad(unZealotInvisible, coordenadaZealotInvisible);
+        elMapa.colocarOcupable(unZealotInvisible, coordenadaZealotInvisible);
 
         // Creo unidad auxiliar para atacar y matar a la unidad invisible
         Coordenada coordenadaAtacante = new Coordenada(0, 2);
         Unidad unGuardian = new Guardian();
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacante);
         for (int i = 0; i < 7; i++) {
             elMapa.atacar(coordenadaAtacante, coordenadaZealotInvisible);
             unGuardian.pasarTurno();
         }
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new AmoSupremo(), coordenadaZealotInvisible));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new AmoSupremo(), coordenadaZealotInvisible));
     }
 }

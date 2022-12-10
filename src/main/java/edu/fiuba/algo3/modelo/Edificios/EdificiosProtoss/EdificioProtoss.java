@@ -13,8 +13,8 @@ public abstract class EdificioProtoss extends Edificio {
     }
 
     @Override
-    public void verificarConstruccion(Casilla unaCasilla){
-        super.verificarConstruccion(unaCasilla);
+    public void verificarColocable(Casilla unaCasilla){
+        super.verificarColocable(unaCasilla);
     }
 
     public boolean somosAliados(Unidad unaUnidad){

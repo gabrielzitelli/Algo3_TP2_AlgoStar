@@ -40,7 +40,6 @@ public abstract class Unidad implements Ocupable {
 
      protected abstract void verificarFuegoAliado(Casilla casillaAAtacar);
 
-
      public void verificarColocable(Casilla unaCasilla) {
           if (!unaCasilla.puedeMoverse(this.superficieDondeSeMueve))
                throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
@@ -64,9 +63,6 @@ public abstract class Unidad implements Ocupable {
           estadoCaminar = estadoCaminar.pasarTurno();
      }
 
-     public void interaccionar(Casilla unaCasilla){
-     }
-
      public void atacar(Casilla casillaAAtacar) {
           verificarFuegoAliado(casillaAAtacar);
           estadoPelea = estadoPelea.atacar(coordenada, casillaAAtacar, danio);
@@ -83,13 +79,12 @@ public abstract class Unidad implements Ocupable {
 
      protected void destruirUnidad() {
           Mapa elMapa = Mapa.obtener();
-          elMapa.quitarUnidad(coordenada);
+          elMapa.quitarOcupable(coordenada);
           this.estadoMuerta = true;
      }
 
      public void moverA(Coordenada coordenadaDestino) {
           estadoCaminar = estadoCaminar.caminar(this.coordenada, coordenadaDestino);
-          this.interaccionar(Mapa.obtener().obtenerCasilla(coordenada));
      }
 
      public boolean esIgualA(Unidad unidad) {

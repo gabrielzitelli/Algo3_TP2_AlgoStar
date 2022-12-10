@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
@@ -28,10 +28,10 @@ public class CasoDeUso16Test {
         Asimilador otroAsimilador = new Asimilador(new Gas(0));
 
         elMapa.colocarMaterial(new GasRecolectable(), coordenadasAsimilador);
-        elMapa.construirEdificio(asimilador, coordenadasAsimilador);
+        elMapa.colocarOcupable(asimilador, coordenadasAsimilador);
 
-        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
-                () -> elMapa.construirEdificio(otroAsimilador, coordenadasAsimilador));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarOcupable(otroAsimilador, coordenadasAsimilador));
     }
 
     @Test
@@ -42,10 +42,10 @@ public class CasoDeUso16Test {
         Extractor unExtractor = new Extractor(new Gas(0));
 
         elMapa.colocarMaterial(new GasRecolectable(), coordenadasAsimilador);
-        elMapa.construirEdificio(asimilador, coordenadasAsimilador);
+        elMapa.colocarOcupable(asimilador, coordenadasAsimilador);
 
-        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
-                () -> elMapa.construirEdificio(unExtractor, coordenadasAsimilador));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarOcupable(unExtractor, coordenadasAsimilador));
     }
 
     @Test
@@ -57,10 +57,10 @@ public class CasoDeUso16Test {
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
         unZangano.setDepositoRecurso(mineralDelImperio);
-        elMapa.colocarUnaUnidad(unZangano, coordenada);
+        elMapa.colocarOcupable(unZangano, coordenada);
 
-        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class, () ->
-                elMapa.construirEdificio(new NexoMineral(mineralDelImperio), coordenada));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class, () ->
+                elMapa.colocarOcupable(new NexoMineral(mineralDelImperio), coordenada));
     }
 
     @Test
@@ -72,9 +72,9 @@ public class CasoDeUso16Test {
 
         elMapa.colocarMaterial(new MineralRecolectable(),coordenada);
         unZangano.setDepositoRecurso(mineralDelImperio);
-        elMapa.construirEdificio(new NexoMineral(mineralDelImperio), coordenada);
+        elMapa.colocarOcupable(new NexoMineral(mineralDelImperio), coordenada);
 
-        assertThrows(ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada.class, () ->
-                elMapa.colocarUnaUnidad(unZangano, coordenada));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class, () ->
+                elMapa.colocarOcupable(unZangano, coordenada));
     }
 }

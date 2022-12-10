@@ -35,7 +35,7 @@ public abstract class Edificio implements Ocupable {
 
     public abstract boolean perteneceAImperio(Imperio imperio);
 
-    public void verificarConstruccion(Casilla unaCasilla){
+    public void verificarColocable(Casilla unaCasilla){
         if (estadoRecolectable != null)
             unaCasilla.tieneEsteRecoletable(estadoRecolectable);
         if (estadoMohoRequerido != null)
@@ -49,7 +49,7 @@ public abstract class Edificio implements Ocupable {
     }
 
     public void actualizarColocable(Casilla unaCasilla) {
-        verificarConstruccion(unaCasilla);
+        verificarColocable(unaCasilla);
     }
 
     public ArrayList<Recurso> requisitosMateriales() {
@@ -70,7 +70,7 @@ public abstract class Edificio implements Ocupable {
 
     protected void destruirEdificio() {
         Mapa elMapa = Mapa.obtener();
-        elMapa.destruirEdificio(coordenada);
+        elMapa.quitarOcupable(coordenada);
         this.estaDestruido = true;
     }
 

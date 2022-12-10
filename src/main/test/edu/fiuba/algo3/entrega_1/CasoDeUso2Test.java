@@ -4,6 +4,10 @@ import edu.fiuba.algo3.modelo.Edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -28,7 +32,7 @@ public class CasoDeUso2Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(),new Coordenada(0,0));
 
         int turnosParaConstruir = 3;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -45,7 +49,7 @@ public class CasoDeUso2Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         int turnosParaConstruir = 4;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -63,11 +67,11 @@ public class CasoDeUso2Test {
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirExtractor(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaExtractor(), new Coordenada(1,0));
 
         int turnosParaConstruir = 5;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -88,11 +92,11 @@ public class CasoDeUso2Test {
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirExtractor(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaExtractor(), new Coordenada(1,0));
 
         int turnosParaConstruir = 6;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -107,11 +111,11 @@ public class CasoDeUso2Test {
         imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         int turnosParaConstruir = 11;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -129,11 +133,11 @@ public class CasoDeUso2Test {
          imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
          // Construyo criadero para generar moho
-         imperioZerg.construirCriadero(new Coordenada(0,0));
+         imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
          for(int i = 0; i < 4; i++)
              imperioZerg.terminarTurno();
 
-         imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+         imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
          int turnosParaConstruir = 11;
          for(int i = 0; i < turnosParaConstruir; i++)
@@ -151,14 +155,14 @@ public class CasoDeUso2Test {
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
         // Construyo una reserva de reproduccion para el prerequisito
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
 
-        imperioZerg.construirGuarida(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,0));
 
         int turnosParaConstruir = 11;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -176,14 +180,14 @@ public class CasoDeUso2Test {
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
         // Construyo una reserva de reproduccion para el prerequisito
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
 
-        imperioZerg.construirGuarida(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,0));
 
         int turnosParaConstruir = 12;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -198,15 +202,15 @@ public class CasoDeUso2Test {
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
         // Construyo una reserva de reproduccion y guarida para el prerequisito
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
-        imperioZerg.construirGuarida(new Coordenada(0,2));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,2));
 
-        imperioZerg.construirEspiral(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,0));
 
         int turnosParaConstruir = 9;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -224,15 +228,15 @@ public class CasoDeUso2Test {
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
         // Construyo una reserva de reproduccion para el prerequisito
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
-        imperioZerg.construirGuarida(new Coordenada(0,2));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,2));
 
-        imperioZerg.construirEspiral(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,0));
 
         int turnosParaConstruir = 10;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -245,11 +249,12 @@ public class CasoDeUso2Test {
     public void test11UnNexoMineralNoEstaConstruidoEn3Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
+        Coordenada coordenada = new Coordenada(1,0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
-        imperioProtoss.construirNexoMineral(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaNexoMineral(), coordenada);
 
         int turnosParaConstruir = 3;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -262,11 +267,12 @@ public class CasoDeUso2Test {
     public void test12UnNexoMineralEstaConstruidoEn4Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
+        Coordenada coordenada = new Coordenada(1, 0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
-        imperioProtoss.construirNexoMineral(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaNexoMineral(), coordenada);
 
         int turnosParaConstruir = 4;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -280,14 +286,14 @@ public class CasoDeUso2Test {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        imperioProtoss.construirPilon(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(1,0));
 
         int turnosParaConstruir = 4;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> imperioProtoss.construirAcceso(new Coordenada(0,0)));
+                () -> imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,0)));
     }
 
     @Test
@@ -295,7 +301,7 @@ public class CasoDeUso2Test {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        imperioProtoss.construirPilon(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(1,0));
 
         int turnosParaConstruir = 5;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -308,11 +314,12 @@ public class CasoDeUso2Test {
     public void test15UnAsimiladorNoEstaConstruidoEn5Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
+        Coordenada coordenadasGas = new Coordenada(1, 0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
 
-        imperioProtoss.construirAsimilador(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAsimilador(), coordenadasGas);
 
         int turnosParaConstruir = 5;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -325,11 +332,12 @@ public class CasoDeUso2Test {
     public void test16UnAsimiladorEstaConstruidoEn6Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
+        Coordenada coordenadasGas = new Coordenada(1, 0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
 
-        imperioProtoss.construirAsimilador(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAsimilador(), coordenadasGas);
 
         int turnosParaConstruir = 6;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -344,11 +352,11 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
         int turnosParaConstruir = 7;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
@@ -364,11 +372,11 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
         int turnosParaConstruir = 8;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
@@ -382,14 +390,14 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
         // construyo un acceso para el prerequisito
-        imperioProtoss.construirAcceso(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
-        imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(1,0));
         int turnosParaConstruir = 9;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
@@ -405,14 +413,14 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
         // construyo un acceso para el prerequisito
-        imperioProtoss.construirAcceso(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
-        imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(1,0));
         int turnosParaConstruir = 10;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();

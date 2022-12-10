@@ -108,8 +108,8 @@ public class Criadero extends EdificioZerg {
     }
 
     @Override
-    public void verificarConstruccion(Casilla unaCasilla){
-        super.verificarConstruccion(unaCasilla);
+    public void verificarColocable(Casilla unaCasilla){
+        super.verificarColocable(unaCasilla);
         estadoCreador.colocarCoordenadaAlGestorDeCrianza(unaCasilla.obtenerCoordenada());
     }
 

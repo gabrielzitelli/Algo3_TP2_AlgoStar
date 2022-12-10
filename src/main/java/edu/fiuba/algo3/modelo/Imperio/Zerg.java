@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
@@ -46,37 +47,10 @@ public class Zerg extends Imperio{
         unCriadero.construirInmediatamente();
     }
 
-    public void construirCriadero(Coordenada coordenada){
-        Criadero criadero = new Criadero();
-        criadero.asignarListaDeUnidades(fabricasDisponibles);
-        criadero.asignarListaDeUnidadesImperio(unidades);
-        criadero.asignarRecursos(mineralesDelImperio, gasDelImperio);
-        this.construirEdificio(criadero, coordenada);
-    }
+    public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
+        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
 
-    public void construirReservaDeReproduccion(Coordenada coordenada){
-        ReservaDeReproduccion reserva = new ReservaDeReproduccion();
-        reserva.asignarListaDeUnidades(fabricasDisponibles);
-        this.construirEdificio(reserva, coordenada);
-    }
-
-    public void construirExtractor(Coordenada coordenada){
-        Extractor extractor = new Extractor(gasDelImperio);
-        this.construirEdificio(extractor, coordenada);
-    }
-
-    public void construirGuarida(Coordenada coordenada){
-        this.comprobarRequisitos(Guarida.requisitos());
-        Guarida guarida = new Guarida();
-        guarida.asignarListaDeUnidades(fabricasDisponibles);
-        this.construirEdificio(guarida, coordenada);
-    }
-
-    public void construirEspiral(Coordenada coordenada){
-        this.comprobarRequisitos(Espiral.requisitos());
-        Espiral espiral = new Espiral();
-        espiral.asignarListaDeUnidades(fabricasDisponibles);
-        this.construirEdificio(espiral, coordenada);
+        this.construirEdificio(fabricaEdificio.crear(), coordenada);
     }
 
     private void validarPreRequisitosDeEvolucionDeMutalisco(Unidad unaUnidad){
@@ -91,7 +65,7 @@ public class Zerg extends Imperio{
         Mutalisco mutalisco = new Mutalisco();
         for (Unidad unidad : unidades) {
             if (unidad.esIgualA(mutalisco)){
-                Mapa.obtener().quitarUnidad(unidad.obtenerCoordenada());
+                Mapa.obtener().quitarOcupable(unidad.obtenerCoordenada());
                 unidades.remove(unidad);
 
                 GestorDeCrianza nuevoGestorEvoluciones = new GestorDeCrianza(unidad.obtenerCoordenada());

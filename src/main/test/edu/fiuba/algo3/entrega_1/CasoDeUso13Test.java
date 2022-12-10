@@ -24,13 +24,13 @@ public class CasoDeUso13Test {
         Criadero criadero = new Criadero();
         Ataque unAtaque = new Ataque(new DanioTerrestre(500));
 
-        elMapa.construirEdificio(criadero, coordenadaCriadero);
+        elMapa.colocarOcupable(criadero, coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             criadero.pasarTurno();
 
         criadero.recibirAtaque(unAtaque);
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenadaCriadero));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenadaCriadero));
     }
 }

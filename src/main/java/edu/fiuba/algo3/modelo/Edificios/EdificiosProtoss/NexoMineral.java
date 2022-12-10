@@ -41,8 +41,8 @@ public class NexoMineral extends EdificioProtoss {
         estado.extraer(mineralesDelImperio, nodoMineral, cantidadDeExtraccionUnitaria);
     }
 
-    public void verificarConstruccion(Casilla unaCasilla){
-        super.verificarConstruccion(unaCasilla);
+    public void verificarColocable(Casilla unaCasilla){
+        super.verificarColocable(unaCasilla);
         establecerSobreMineral(unaCasilla.obtenerMaterial());
     }
 

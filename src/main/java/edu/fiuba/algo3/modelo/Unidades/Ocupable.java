@@ -15,6 +15,8 @@ public interface Ocupable {
 
     boolean perteneceAImperio(Imperio imperio);
 
+    void verificarColocable(Casilla unaCasilla);
+
     void actualizarColocable(Casilla unaCasilla);
 
     boolean esDeEsteTipo(Class claseAAverificar);

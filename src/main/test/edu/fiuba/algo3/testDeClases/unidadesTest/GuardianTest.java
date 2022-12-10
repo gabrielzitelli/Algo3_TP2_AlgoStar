@@ -6,8 +6,6 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,8 +34,8 @@ public class GuardianTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unZealot, coordenadaAtacado);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacante);
+        elMapa.colocarOcupable(unZealot, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
@@ -51,8 +49,8 @@ public class GuardianTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacado);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacante);
+        elMapa.colocarOcupable(unScout, coordenadaAtacado);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
@@ -67,8 +65,8 @@ public class GuardianTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacado);
+        elMapa.colocarOcupable(unScout, coordenadaAtacante);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

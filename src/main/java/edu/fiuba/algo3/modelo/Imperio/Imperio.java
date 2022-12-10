@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Imperio;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
@@ -77,13 +76,13 @@ public abstract class Imperio {
     protected void construirEdificio(Edificio edificio, Coordenada coordenada){
         edificio.modificarPoblacion(poblacion);
         comprobarRequisitosMateriales(edificio);
-        mapa.construirEdificio(edificio, coordenada);
+        mapa.colocarOcupable(edificio, coordenada);
         edificios.add(edificio);
     }
 
     protected void construirEdificioSinVerificacionesMateriales(Edificio edificio, Coordenada coordenada){
         edificio.modificarPoblacion(poblacion);
-        mapa.construirEdificio(edificio, coordenada);
+        mapa.colocarOcupable(edificio, coordenada);
         edificios.add(edificio);
     }
 
@@ -114,22 +113,6 @@ public abstract class Imperio {
             throw new ErrorCantidadDeRecursoInsuficiente();
     }
 
-    protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
-        //Digase de los edificios que son prerequisitos de otro edificio
-        int requisitosCumplidos = 0;
-        for(Edificio requisito: requisitos){
-            for(Edificio edificio: edificios) {
-                if (edificio.getClass().equals(requisito.getClass())){
-                    requisitosCumplidos++;
-                    break;
-                }
-            }
-        }
-
-        if (requisitosCumplidos != requisitos.size())
-            throw new ErrorNoSeCumplenLosPreRequisitosDelEdificio();
-    }
-
     public boolean tienesEstaCantidadDeMineral(int recurso) {
         return mineralesDelImperio.tenesCantidadDeRecurso(recurso);
     }
@@ -139,7 +122,7 @@ public abstract class Imperio {
     }
 
     public Edificio conseguirEdificio(Coordenada coordenada){
-        return mapa.obtenerEdificio(coordenada);
+        return (Edificio) mapa.obtenerOcupable(coordenada);
     }
 
     public void abastecerDeRecursos() {

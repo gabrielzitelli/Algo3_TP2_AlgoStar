@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,8 +34,8 @@ public class HidraliscoTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unHidralisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
@@ -50,8 +49,8 @@ public class HidraliscoTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacado);
+        elMapa.colocarOcupable(unHidralisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unScout, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

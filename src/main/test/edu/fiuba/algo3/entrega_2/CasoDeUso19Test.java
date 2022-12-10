@@ -3,7 +3,6 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.*;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.*;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
@@ -28,8 +27,8 @@ public class CasoDeUso19Test {
         Coordenada coordenadaZealot = new Coordenada(0,0);
         Coordenada coordenadaMutalisco = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZealot, coordenadaZealot);
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaMutalisco);
+        elMapa.colocarOcupable(unZealot, coordenadaZealot);
+        elMapa.colocarOcupable(unMutalisco, coordenadaMutalisco);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaZealot, coordenadaMutalisco));
@@ -45,8 +44,8 @@ public class CasoDeUso19Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaScout);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaZerling);
-        elMapa.colocarUnaUnidad(unScout, coordenadaScout);
+        elMapa.colocarOcupable(unZerling, coordenadaZerling);
+        elMapa.colocarOcupable(unScout, coordenadaScout);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaZerling, coordenadaScout));
@@ -62,8 +61,8 @@ public class CasoDeUso19Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaScout);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaZerling);
-        elMapa.colocarUnaUnidad(unScout, coordenadaScout);
+        elMapa.colocarOcupable(unZerling, coordenadaZerling);
+        elMapa.colocarOcupable(unScout, coordenadaScout);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaZerling, coordenadaScout));
@@ -79,8 +78,8 @@ public class CasoDeUso19Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaMutalisco);
 
-        elMapa.colocarUnaUnidad(unZealot, coordenadaZealot);
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaMutalisco);
+        elMapa.colocarOcupable(unZealot, coordenadaZealot);
+        elMapa.colocarOcupable(unMutalisco, coordenadaMutalisco);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaZealot, coordenadaMutalisco));
@@ -96,8 +95,8 @@ public class CasoDeUso19Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaGuardian);
 
-        elMapa.colocarUnaUnidad(unZealot, coordenadaZealot);
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaGuardian);
+        elMapa.colocarOcupable(unZealot, coordenadaZealot);
+        elMapa.colocarOcupable(unGuardian, coordenadaGuardian);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaZealot, coordenadaGuardian));
@@ -113,8 +112,8 @@ public class CasoDeUso19Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaGuardian);
 
-        elMapa.colocarUnaUnidad(unZealot, coordenadaZealot);
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaGuardian);
+        elMapa.colocarOcupable(unZealot, coordenadaZealot);
+        elMapa.colocarOcupable(unGuardian, coordenadaGuardian);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaZealot, coordenadaGuardian));
@@ -128,8 +127,8 @@ public class CasoDeUso19Test {
         Coordenada coordenadaMutalisco = new Coordenada(0,0);
         Coordenada coordenadaZealot = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaMutalisco);
-        elMapa.colocarUnaUnidad(unZealot, coordenadaZealot);
+        elMapa.colocarOcupable(unMutalisco, coordenadaMutalisco);
+        elMapa.colocarOcupable(unZealot, coordenadaZealot);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaMutalisco, coordenadaZealot));
     }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -23,7 +25,7 @@ public class CasoDeUso15Test {
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         protoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
-        protoss.construirAsimilador(coordenadasGas);
+        protoss.construirEdificio(new FabricaAsimilador(), coordenadasGas);
 
         //Construyo el asimilador
         for (int i = 0; i < 5; i++)
@@ -50,7 +52,7 @@ public class CasoDeUso15Test {
 
         mapa.colocarMaterial(new MineralRecolectable(), coordenadaMineral);
         protoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
-        protoss.construirNexoMineral(coordenadaMineral);
+        protoss.construirEdificio(new FabricaNexoMineral(), coordenadaMineral);
 
         //Construyo el nexo
         for (int i = 0; i < 3; i++)

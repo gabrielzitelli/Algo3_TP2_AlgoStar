@@ -56,7 +56,7 @@ public class CasoDeUso32Test {
 
         Unidad unDragon = new Dragon();
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         for (int i = 0; i < 25; i++) {
             elMapa.atacar(coordenadaDragon, coordenadaAsentamientoZerg);

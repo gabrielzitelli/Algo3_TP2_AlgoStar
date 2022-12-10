@@ -2,6 +2,8 @@ package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -33,7 +35,7 @@ public class CasoDeUso31Test {
         Coordenada coordenadaDragon = new Coordenada(1,0);
 
         imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
-        imperioZerg.construirCriadero(coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -42,7 +44,7 @@ public class CasoDeUso31Test {
         //Ahora tengo el criadero construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
         //Creo un Dragon para atacar al criadero
         Unidad unDragon = new Dragon();
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         //Destruyo el criadero
         for (int i = 0; i < 25; i++){
@@ -64,7 +66,7 @@ public class CasoDeUso31Test {
         Coordenada coordenadaHidralisco = new Coordenada(1, 0);
 
         imperioProtoss.abastecerDeRecursos(new Mineral(375), new Gas(50));
-        imperioProtoss.construirPilon(coordenadaPilon);
+        imperioProtoss.construirEdificio(new FabricaPilon(), coordenadaPilon);
 
         //Esperamos a que se construya el pilon
         for (int i = 0; i < 5; i++)
@@ -73,7 +75,7 @@ public class CasoDeUso31Test {
         //Ahora tengo el pilon construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
         //Creo un Dragon para atacar al pilon
         Unidad unHidralisco = new Hidralisco();
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaHidralisco);
+        elMapa.colocarOcupable(unHidralisco, coordenadaHidralisco);
 
         //Destruyo el pilon
         for (int i = 0; i < 60; i++){
@@ -92,7 +94,7 @@ public class CasoDeUso31Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -113,7 +115,7 @@ public class CasoDeUso31Test {
         Coordenada coordenadaAmoSupremo = unAmoSupremo.obtenerCoordenada();
 
         Unidad unDragon = new Dragon();
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         //Mato al Amo Supremo
         for (int i = 0; i < 10; i++){

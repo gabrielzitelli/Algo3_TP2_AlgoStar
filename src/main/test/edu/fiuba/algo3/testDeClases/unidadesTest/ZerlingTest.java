@@ -33,8 +33,8 @@ public class ZerlingTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unZealot, coordenadaAtacado);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacante);
+        elMapa.colocarOcupable(unZealot, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

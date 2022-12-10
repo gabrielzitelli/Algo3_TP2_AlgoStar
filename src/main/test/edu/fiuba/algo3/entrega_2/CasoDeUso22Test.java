@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.*;
@@ -24,7 +25,7 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(225), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -46,7 +47,7 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -64,13 +65,13 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
@@ -97,7 +98,7 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -115,19 +116,19 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0, 1));
 
         //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
@@ -152,7 +153,7 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -170,25 +171,25 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,1));
 
         //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEspiral(new Coordenada(1,1));
+        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1));
 
         //Espero a que se construya el espiral
         for (int i = 0; i < 10; i++)
@@ -213,13 +214,13 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)
@@ -243,13 +244,13 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)
@@ -273,13 +274,13 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)
@@ -296,19 +297,19 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(new Coordenada( 1, 0));
+        imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada( 1, 0));
 
         //construimos el Acceso
         for (int i = 0; i < 8; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirPuertoEstelar(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(0,1));
 
         //construimos el puerto estelar
         for (int i = 0; i < 10; i++)

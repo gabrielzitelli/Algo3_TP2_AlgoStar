@@ -30,8 +30,8 @@ public class UnidadTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacada = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacante);
-        elMapa.colocarUnaUnidad(new Hidralisco(), coordenadaAtacada);
+        elMapa.colocarOcupable(new Zerling(), coordenadaAtacante);
+        elMapa.colocarOcupable(new Hidralisco(), coordenadaAtacada);
 
         assertThrows(ErrorFuegoCompañero.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacada));
@@ -44,8 +44,8 @@ public class UnidadTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacada = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(new Zealot(), coordenadaAtacante);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaAtacada);
+        elMapa.colocarOcupable(new Zealot(), coordenadaAtacante);
+        elMapa.colocarOcupable(new Dragon(), coordenadaAtacada);
 
         assertThrows(ErrorFuegoCompañero.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacada));
@@ -58,8 +58,8 @@ public class UnidadTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacada = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacante);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaAtacada);
+        elMapa.colocarOcupable(new Zerling(), coordenadaAtacante);
+        elMapa.colocarOcupable(new Dragon(), coordenadaAtacada);
 
         elMapa.atacar(coordenadaAtacante, coordenadaAtacada);
 
@@ -76,8 +76,8 @@ public class UnidadTest {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacada = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unidadAtacadora, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(new Dragon(), coordenadaAtacada);
+        elMapa.colocarOcupable(unidadAtacadora, coordenadaAtacante);
+        elMapa.colocarOcupable(new Dragon(), coordenadaAtacada);
 
         elMapa.atacar(coordenadaAtacante, coordenadaAtacada);
         unidadAtacadora.pasarTurno();
@@ -92,7 +92,7 @@ public class UnidadTest {
         Unidad unaUnidad = new Zerling();
         Coordenada coordenadaUnidad = new Coordenada(0,0);
 
-        elMapa.colocarUnaUnidad(unaUnidad, coordenadaUnidad);
+        elMapa.colocarOcupable(unaUnidad, coordenadaUnidad);
 
         unaUnidad.moverA(new Coordenada(0, 1));
 
@@ -107,7 +107,7 @@ public class UnidadTest {
         Unidad unaUnidad = new Zerling();
         Coordenada coordenadaUnidad = new Coordenada(0,0);
 
-        elMapa.colocarUnaUnidad(unaUnidad, coordenadaUnidad);
+        elMapa.colocarOcupable(unaUnidad, coordenadaUnidad);
 
         unaUnidad.moverA(new Coordenada(0, 1));
         unaUnidad.pasarTurno();

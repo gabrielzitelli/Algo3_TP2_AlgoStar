@@ -4,9 +4,10 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -68,11 +69,11 @@ public class ZergVista {
         crearBotonDeEdificio(botonCrearGuarida, new GuaridaVista(), anchoBoton, altoBoton);
         crearBotonDeEdificio(botonCrearEspiral, new EspiralVista(), anchoBoton, altoBoton);
 
-        botonCrearCriadero.setOnAction( event -> imperioZerg.construirCriadero(coordenada));
-        botonCrearReserva.setOnAction( event ->imperioZerg.construirReservaDeReproduccion(coordenada) );
-        botonCrearExtractor.setOnAction( event -> imperioZerg.construirExtractor(coordenada) );
-        botonCrearGuarida.setOnAction( event -> imperioZerg.construirGuarida(coordenada) );
-        botonCrearEspiral.setOnAction( event -> imperioZerg.construirEspiral(coordenada) );
+        botonCrearCriadero.setOnAction( event -> imperioZerg.construirEdificio(new FabricaCriadero(),coordenada));
+        botonCrearReserva.setOnAction( event ->imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenada));
+        botonCrearExtractor.setOnAction( event -> imperioZerg.construirEdificio(new FabricaExtractor(), coordenada));
+        botonCrearGuarida.setOnAction( event -> imperioZerg.construirEdificio(new FabricaGuarida(), coordenada));
+        botonCrearEspiral.setOnAction( event -> imperioZerg.construirEdificio(new FabricaEspiral(), coordenada));
 
         prepararHabilitacionDeBoton(botonCrearCriadero, new Criadero(), arrayWrappersBotonesConstruirEdificio[0], new CriaderoVista(), imperioZerg, coordenada);
         prepararHabilitacionDeBoton(botonCrearReserva, new ReservaDeReproduccion(), arrayWrappersBotonesConstruirEdificio[1], new ReservaVista(), imperioZerg, coordenada);
@@ -99,7 +100,7 @@ public class ZergVista {
         } catch (ErrorCantidadDeRecursoInsuficiente exception){
             boton.setDisable(true);
             Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo hay suficientes recursos como para construir este edificio" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
-        } catch (ErrorNoSePuedeConstruirEdificioSobreOtroEdificio exception){
+        } catch (ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada exception){
             boton.setDisable(true);
             Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio en esta casilla ocupada" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
         } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla exception) {

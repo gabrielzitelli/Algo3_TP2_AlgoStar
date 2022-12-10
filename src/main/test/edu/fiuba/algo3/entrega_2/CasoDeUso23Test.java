@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorLaUnidadNoPuedeAtacarFueraDeSuRango;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
-import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
@@ -10,8 +12,6 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,13 +31,13 @@ public class CasoDeUso23Test {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaEdificio = new Coordenada(0,2);
 
-        elMapa.colocarUnaUnidad(zerling, coordenadaAtacante);
-        imperioProtoss.construirPilon(new Coordenada(0,1));
+        elMapa.colocarOcupable(zerling, coordenadaAtacante);
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,1));
 
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(coordenadaEdificio);
+        imperioProtoss.construirEdificio(new FabricaAcceso(), coordenadaEdificio);
         assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class, () ->
                 elMapa.atacar(coordenadaAtacante, coordenadaEdificio));
     }
@@ -50,13 +50,13 @@ public class CasoDeUso23Test {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaEdificio = new Coordenada(1,0);
 
-        elMapa.colocarUnaUnidad(zerling, coordenadaAtacante);
-        imperioProtoss.construirPilon(new Coordenada(0,1));
+        elMapa.colocarOcupable(zerling, coordenadaAtacante);
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,1));
 
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirAcceso(coordenadaEdificio);
+        imperioProtoss.construirEdificio(new FabricaAcceso(), coordenadaEdificio);
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaEdificio));
     }
     @Test
@@ -68,8 +68,8 @@ public class CasoDeUso23Test {
         Coordenada coordenadaZerling = new Coordenada(7,3);
         Coordenada coordenadaAtacada = new Coordenada(4,0);
 
-        elMapa.colocarUnaUnidad(zerling, coordenadaZerling);
-        elMapa.colocarUnaUnidad(dragon, coordenadaDragon);
+        elMapa.colocarOcupable(zerling, coordenadaZerling);
+        elMapa.colocarOcupable(dragon, coordenadaDragon);
 
         assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class, () ->
                 elMapa.atacar(coordenadaDragon,coordenadaZerling));

@@ -33,12 +33,12 @@ public class PilonTest{
         Pilon unpilon = new Pilon();
         Acceso unAcceso = new Acceso();
 
-        elmapa.construirEdificio(unpilon, coordenadasPilon);
+        elmapa.colocarOcupable(unpilon, coordenadasPilon);
 
         for (int i = 0; i < 4; i++)
             unpilon.pasarTurno();
 
-        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elmapa.construirEdificio(unAcceso, coordenadaAcceso));
+        assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class, () -> elmapa.colocarOcupable(unAcceso, coordenadaAcceso));
     }
 
     @Test
@@ -50,12 +50,12 @@ public class PilonTest{
         Acceso unAcceso = new Acceso();
         unpilon.asignarSuministro(new Suministro(0));
 
-        elmapa.construirEdificio(unpilon, coordenadasPilon);
+        elmapa.colocarOcupable(unpilon, coordenadasPilon);
 
         //Construyo Pilon
         for (int i = 0; i < 5; i++)
             unpilon.pasarTurno();
 
-        assertDoesNotThrow(() -> elmapa.construirEdificio(unAcceso, coordenadaAcceso));
+        assertDoesNotThrow(() -> elmapa.colocarOcupable(unAcceso, coordenadaAcceso));
     }
 }

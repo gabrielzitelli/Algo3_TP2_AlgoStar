@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.*;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.*;
@@ -27,8 +26,8 @@ public class CasoDeUso18Test {
         Coordenada coordenadaAtacante = new Coordenada(0, 0);
         Coordenada coordenadaAtacado = new Coordenada(0, 1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
 
         // El zerling mata al otro zerling
         for (int i = 0; i < 45; i++){
@@ -38,7 +37,7 @@ public class CasoDeUso18Test {
 
 
         // La casilla esta vacia
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -49,8 +48,8 @@ public class CasoDeUso18Test {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unHidralisco, coordenadaAtacante);
 
 
         for (int i = 0; i < 18; i++){
@@ -59,7 +58,7 @@ public class CasoDeUso18Test {
         }
 
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -72,15 +71,15 @@ public class CasoDeUso18Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaAtacante);
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unMutalisco, coordenadaAtacante);
 
 
         for (int i = 0; i < 20; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
             unMutalisco.pasarTurno();
         }
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -93,15 +92,15 @@ public class CasoDeUso18Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaAtacante);
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacante);
 
 
         for ( int i = 0; i < 8 ; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
             unGuardian.pasarTurno();
         }
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -112,8 +111,8 @@ public class CasoDeUso18Test {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unZealot, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unZealot, coordenadaAtacante);
 
 
         for (int i = 0; i < 5; i++){
@@ -121,7 +120,7 @@ public class CasoDeUso18Test {
             unZealot.pasarTurno();
         }
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacante));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacante));
     }
 
     @Test
@@ -132,15 +131,15 @@ public class CasoDeUso18Test {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacante);
 
 
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
         unDragon.pasarTurno();
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -153,8 +152,8 @@ public class CasoDeUso18Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaAtacante);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unScout, coordenadaAtacante);
 
 
         for (int i = 0; i < 5; i++){
@@ -163,6 +162,6 @@ public class CasoDeUso18Test {
         }
 
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 }

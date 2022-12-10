@@ -51,15 +51,15 @@ public class CasoDeuso9Test {
         pilon1.asignarSuministro(new Suministro(0));
         pilon2.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(pilon1, coordenadaPilon1);
-        elMapa.construirEdificio(pilon2, coordenadaPilon2);
+        elMapa.colocarOcupable(pilon1, coordenadaPilon1);
+        elMapa.colocarOcupable(pilon2, coordenadaPilon2);
 
         for (int i = 0; i < 5; i++) {
             pilon1.pasarTurno();
             pilon2.pasarTurno();
         }
 
-        elMapa.construirEdificio(unAcceso, coordenadaAcceso);
+        elMapa.colocarOcupable(unAcceso, coordenadaAcceso);
 
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
@@ -84,15 +84,15 @@ public class CasoDeuso9Test {
         pilon1.asignarSuministro(new Suministro(0));
         pilon2.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(pilon1, coordenadaPilon1);
-        elMapa.construirEdificio(pilon2, coordenadaPilon2);
+        elMapa.colocarOcupable(pilon1, coordenadaPilon1);
+        elMapa.colocarOcupable(pilon2, coordenadaPilon2);
 
         for (int i = 0; i < 5; i++) {
             pilon1.pasarTurno();
             pilon2.pasarTurno();
         }
 
-        elMapa.construirEdificio(unAcceso, coordenadaAcceso);
+        elMapa.colocarOcupable(unAcceso, coordenadaAcceso);
 
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
@@ -120,15 +120,15 @@ public class CasoDeuso9Test {
         pilon1.asignarSuministro(new Suministro(0));
         pilon2.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(pilon1, coordenadaPilon1);
-        elMapa.construirEdificio(pilon2, coordenadaPilon2);
+        elMapa.colocarOcupable(pilon1, coordenadaPilon1);
+        elMapa.colocarOcupable(pilon2, coordenadaPilon2);
 
         for (int i = 0; i < 5; i++) {
             pilon1.pasarTurno();
             pilon2.pasarTurno();
         }
 
-        elMapa.construirEdificio(unAcceso, coordenadaAcceso);
+        elMapa.colocarOcupable(unAcceso, coordenadaAcceso);
 
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();

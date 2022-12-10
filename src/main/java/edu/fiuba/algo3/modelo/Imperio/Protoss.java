@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -40,9 +42,22 @@ public class Protoss extends Imperio{
         this.construirEdificioSinVerificacionesMateriales(unAcceso, coordenadaAcceso);
         unAcceso.construirInmediatamente();
     }
+    public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
+        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
 
+        this.construirEdificio(fabricaEdificio.crear(), coordenada);
+    }
+    @Override
+    public void prepararParaRevancha(){
+        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        this.gasDelImperio = new Gas(0);
+        this.poblacion = new Suministro(0);
+        this.edificios = new LinkedList<>();
+        this.fabricasDisponibles = new FabricasDisponibles();
+        this.unidades = new ArrayList<>();
+    }
+/*
     public void construirPuertoEstelar(Coordenada coordenada) {
-        this.comprobarRequisitos(PuertoEstelar.requisitos());
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
         puertoEstelar.asignarListaDeUnidadesImperio(unidades);
@@ -72,20 +87,5 @@ public class Protoss extends Imperio{
         Asimilador asimilador = new Asimilador(this.gasDelImperio);
         this.construirEdificio(asimilador, coordenada);
     }
-
-    @Override
-    public void prepararParaRevancha(){
-        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
-        this.gasDelImperio = new Gas(0);
-        this.poblacion = new Suministro(0);
-        this.edificios = new LinkedList<>();
-        this.fabricasDisponibles = new FabricasDisponibles();
-        this.unidades = new ArrayList<>();
-    }
-    /*
-    public void crearEdifcio(FabricaEdificios unaFabricaDeEdificios, Coordenada coordenada){
-
-    }
-    */
-
+*/
 }
