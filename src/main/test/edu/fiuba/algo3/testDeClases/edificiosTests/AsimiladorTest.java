@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Asimilador;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -42,7 +44,7 @@ public class AsimiladorTest {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         elMapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        protoss.construirAsimilador(coordenadasGas);
+        protoss.construirEdificio(new FabricaAsimilador(), coordenadasGas);
 
         for (int i = 0; i < 5; i++)
             protoss.terminarTurno();
@@ -59,7 +61,7 @@ public class AsimiladorTest {
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        protoss.construirAsimilador(coordenadasGas);
+        protoss.construirEdificio(new FabricaAsimilador(), coordenadasGas);
 
         for (int i = 0; i < 6; i++)
             protoss.terminarTurno();

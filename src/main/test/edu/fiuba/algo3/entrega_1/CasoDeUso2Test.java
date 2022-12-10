@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
@@ -311,11 +312,12 @@ public class CasoDeUso2Test {
     public void test15UnAsimiladorNoEstaConstruidoEn5Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
+        Coordenada coordenadasGas = new Coordenada(1, 0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
 
-        imperioProtoss.construirAsimilador(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAsimilador(), coordenadasGas);
 
         int turnosParaConstruir = 5;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -328,11 +330,12 @@ public class CasoDeUso2Test {
     public void test16UnAsimiladorEstaConstruidoEn6Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
+        Coordenada coordenadasGas = new Coordenada(1, 0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
 
-        imperioProtoss.construirAsimilador(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaAsimilador(), coordenadasGas);
 
         int turnosParaConstruir = 6;
         for(int i = 0; i < turnosParaConstruir; i++)

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
@@ -70,7 +71,7 @@ public class ProtossVista {
         crearBotonDeEdificio(botonCrearPuertoEstelar, new PuertoEstelarVista(), anchoBoton, altoBoton);
 
         botonCrearNexoMineral.setOnAction( event -> imperioProtoss.construirEdificio(new FabricaNexoMineral(), coordenada));
-        botonCrearAsimilador.setOnAction( event ->imperioProtoss.construirAsimilador(coordenada));
+        botonCrearAsimilador.setOnAction( event ->imperioProtoss.construirEdificio(new FabricaAsimilador(), coordenada));
         botonCrearPilon.setOnAction( event -> imperioProtoss.construirPilon(coordenada));
         botonCrearAcceso.setOnAction( event -> imperioProtoss.construirAcceso(coordenada));
         botonCrearPuertoEstelar.setOnAction( event -> imperioProtoss.construirPuertoEstelar(coordenada));
