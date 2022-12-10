@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
@@ -44,6 +46,16 @@ public class Zerg extends Imperio{
         this.construirEdificioSinVerificacionesMateriales(unCriadero, coordenadaCriadero);
         unCriadero.asignarRecursos(mineralesDelImperio, gasDelImperio);
         unCriadero.construirInmediatamente();
+    }
+
+    public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
+        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio);
+
+        Edificio edificio = fabricaEdificio.crear();
+
+        this.comprobarRequisitosMateriales(edificio);
+
+        this.construirEdificio(edificio, coordenada);
     }
 
     public void construirCriadero(Coordenada coordenada){
