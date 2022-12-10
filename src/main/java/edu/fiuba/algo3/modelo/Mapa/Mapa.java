@@ -299,7 +299,6 @@ public class Mapa {
             unaCasilla.desRevelar();
     }
 
-
     //Solo lo usa la interfaz
     public Ocupable obtenerOcupable(Coordenada coordenada) {
         return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();

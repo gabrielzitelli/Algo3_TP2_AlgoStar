@@ -76,14 +76,12 @@ public class Zerg extends Imperio{
     }
 
     public void construirGuarida(Coordenada coordenada){
-
         Guarida guarida = new Guarida();
         guarida.asignarListaDeUnidades(fabricasDisponibles);
         this.construirEdificio(guarida, coordenada);
     }
 
     public void construirEspiral(Coordenada coordenada){
-
         Espiral espiral = new Espiral();
         espiral.asignarListaDeUnidades(fabricasDisponibles);
         this.construirEdificio(espiral, coordenada);

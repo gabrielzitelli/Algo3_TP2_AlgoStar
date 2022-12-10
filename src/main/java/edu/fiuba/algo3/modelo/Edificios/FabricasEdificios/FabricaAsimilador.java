@@ -7,8 +7,6 @@ public class FabricaAsimilador extends FabricaEdificio {
 
     @Override
     public Edificio crear() {
-        Asimilador unAsimilador = new Asimilador(gasDelImperio);
-
-        return unAsimilador;
+        return new Asimilador(gasDelImperio);
     }
 }
