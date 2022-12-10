@@ -28,4 +28,9 @@ public class Guardian extends UnidadZerg {
     public void disminuirPoblacion(Suministro suministroImperio){
         suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
     }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return Guardian.class.equals(claseAAverificar);
+    }
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
@@ -15,6 +16,8 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Extractor extends EdificioZerg {
@@ -28,6 +31,8 @@ public class Extractor extends EdificioZerg {
     private final int cantidadDeExtraccionUnitaria = 10;
     private final int valorVital = 750;
 
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+
     public Extractor(Recurso gasDelImperio){
         this.costoGas = 0;
         this.costoMineral = 100;
@@ -39,6 +44,10 @@ public class Extractor extends EdificioZerg {
         this.estadoRecolector = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.estadoContratador = new EstadoContratadorEnConstruccion(turnoParaEstarConstruido);
         this.identificador = "extractor";
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     public void pasarTurno(){

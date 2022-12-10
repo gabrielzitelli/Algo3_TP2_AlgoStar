@@ -99,12 +99,7 @@ public abstract class Imperio {
         }
     }
 
-    public void verificarConstruccionDeEdificio(Edificio unEdificio, Coordenada coordenada){
-        comprobarRequisitosMaterialesVerificacion(unEdificio);
-        Mapa.obtener().construirEdificioVerificacion(unEdificio, coordenada);
-    }
-
-    private void  comprobarRequisitosMaterialesVerificacion(Ocupable ocupable){
+    protected void  comprobarRequisitosMaterialesVerificacion(Ocupable ocupable){
         ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
         Recurso gasAconsumir = listaDeRequisitos.get(1);

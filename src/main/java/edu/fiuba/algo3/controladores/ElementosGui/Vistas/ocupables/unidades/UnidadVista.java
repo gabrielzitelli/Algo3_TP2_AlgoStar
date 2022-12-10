@@ -40,6 +40,8 @@ public abstract class UnidadVista extends OcupableVista {
     public void manejarBotones(Button[] arrayBotones, Pane[] arrayWrappersBotonesEdificio, Coordenada coordenada, String imperioDeJugadorActual, MapaControlador mapaControlador){
         Button botonMover = arrayBotones[0];
         Button botonAtacar = arrayBotones[1];
+        Pane wrapperBotonMover = arrayWrappersBotonesEdificio[0];
+        Pane wrapperBotonAtacar = arrayWrappersBotonesEdificio[1];
 
         Unidad unidad = (Unidad) Mapa.obtener().obtenerOcupable(coordenada);
 
@@ -49,7 +51,7 @@ public abstract class UnidadVista extends OcupableVista {
         crearBoton(botonMover, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/mover.png"))), anchoBoton, altoBoton);
         crearBoton(botonAtacar, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/atacar.png"))), anchoBoton, altoBoton);
 
-        botonMover.setOnAction(event -> mapaControlador.guardarCasillaMovimiento(coordenada));
+        botonMover.setOnAction(actionEvent -> mapaControlador.guardarCasillaMovimiento(coordenada));
         botonAtacar.setOnAction(actionEvent -> mapaControlador.guardarCasillaAtacar(coordenada));
 
         botonMover.setTooltip( new Tooltip("MOVER UNIDAD" + "\nMover a la unidad a otra casilla"));
@@ -58,12 +60,12 @@ public abstract class UnidadVista extends OcupableVista {
         JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidad);
         if (unidadJSON.get(ConvertidorJSON.CAMINAR).equals("no_caminar")){
             botonMover.setDisable(true);
-            botonMover.setTooltip(new Tooltip("MOVER UNIDAD" + "\nEsta unidad no se puede mover"));
+            Tooltip.install(wrapperBotonMover, new Tooltip("MOVER UNIDAD" + "\nEsta unidad ya se ha movido"));
         }
 
         if (unidadJSON.get(ConvertidorJSON.ATACAR).equals("no_atacar")){
             botonAtacar.setDisable(true);
-            botonAtacar.setTooltip(new Tooltip("ATACAR UNIDAD" + "\nEsta unidad no puede atacar"));
+            Tooltip.install(wrapperBotonAtacar, new Tooltip("ATACAR" + "\nEsta movida ya ha atacado"));
         }
     }
 

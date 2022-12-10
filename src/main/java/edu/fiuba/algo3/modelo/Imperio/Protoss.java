@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -86,5 +87,10 @@ public class Protoss extends Imperio{
         this.edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
+    }
+
+    public void verificarConstruccionDeEdificio(Edificio unEdificio, Coordenada coordenada){
+        comprobarRequisitosMaterialesVerificacion(unEdificio);
+        Mapa.obtener().construirEdificioVerificacion(unEdificio, coordenada);
     }
 }

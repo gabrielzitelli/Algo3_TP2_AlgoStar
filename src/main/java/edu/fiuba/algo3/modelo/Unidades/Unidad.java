@@ -122,7 +122,5 @@ public abstract class Unidad implements Ocupable {
           return info;
      }
 
-     public boolean esDeEsteTipo(Class claseAAverificar){
-          return Unidad.class.equals(claseAAverificar);
-     }
+     public abstract boolean esDeEsteTipo(Class claseAAverificar);
 }

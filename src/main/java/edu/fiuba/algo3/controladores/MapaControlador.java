@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -226,8 +227,15 @@ public class MapaControlador extends Controlador {
         DropShadow efectorBordePNGBlanco = new DropShadow( 10, Color.WHITE );
         imageviewEdificio.setEffect(efectorBordePNGBlanco);
 
+        inicializarArraysDeBotonesYPanes();
+        deshabilitarBotonesYPanes();
+
+        paneInfoImperio.setVisible(false);
+    }
+
+    private void inicializarArraysDeBotonesYPanes(){
         arrayBotonesEdificio = new Button[]{botonEdificio1, botonEdificio2, botonEdificio3, botonEdificio4,
-                                            botonEdificio5, botonEdificio6, botonEdificio7, botonEdificio8};
+                botonEdificio5, botonEdificio6, botonEdificio7, botonEdificio8};
 
         arrayWrappersBotonesEdificio = new Pane[]{wrapperBotonEdificio1, wrapperBotonEdificio2, wrapperBotonEdificio3, wrapperBotonEdificio4,
                 wrapperBotonEdificio5, wrapperBotonEdificio6, wrapperBotonEdificio7, wrapperBotonEdificio8};
@@ -237,7 +245,9 @@ public class MapaControlador extends Controlador {
 
         arrayWrappersBotonesConstruirEdificio = new Pane[]{wrapperBotonConstruirEdificio1, wrapperBotonConstruirEdificio2, wrapperBotonConstruirEdificio3,
                 wrapperBotonConstruirEdificio4, wrapperBotonConstruirEdificio5};
+    }
 
+    private void deshabilitarBotonesYPanes(){
         for(Button botonEdificio : arrayBotonesEdificio){
             botonEdificio.setVisible(false);
             botonEdificio.setDisable(true);
@@ -247,7 +257,12 @@ public class MapaControlador extends Controlador {
             botonConstruirEdificio.setVisible(false);
             botonConstruirEdificio.setDisable(true);
         }
-        paneInfoImperio.setVisible(false);
+
+        for(Pane wrapper : arrayWrappersBotonesEdificio)
+            Tooltip.install(wrapper, null);
+
+        for(Pane wrapper : arrayWrappersBotonesConstruirEdificio)
+            Tooltip.install(wrapper, null);
     }
 
     public void inicializar() {
@@ -568,16 +583,7 @@ public class MapaControlador extends Controlador {
     }
 
     private void actualizarPaneOcupable(Coordenada coordenada){
-
-        for(Button botonEdificio : arrayBotonesEdificio){
-            botonEdificio.setVisible(false);
-            botonEdificio.setDisable(true);
-        }
-
-        for(Button botonConstruirEdificio : arrayBotonesContruirEdificio){
-            botonConstruirEdificio.setVisible(false);
-            botonConstruirEdificio.setDisable(true);
-        }
+        deshabilitarBotonesYPanes();
 
         Casilla casilla = mapa.obtenerCasilla(coordenada);
         JSONObject casillaJson = ConvertidorJSON.convertirAJSON(casilla);

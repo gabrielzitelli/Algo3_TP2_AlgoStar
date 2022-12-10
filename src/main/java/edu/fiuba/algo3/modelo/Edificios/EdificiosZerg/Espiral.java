@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Espiral extends EdificioZerg {
 
@@ -22,6 +23,7 @@ public class Espiral extends EdificioZerg {
     // Fabricas que el edificio habilita
     private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
     private FabricasDisponibles fabricasDisponibles;
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>(Arrays.asList(new Guarida()));
 
     public Espiral() {
         this.costoGas = 100;
@@ -37,10 +39,12 @@ public class Espiral extends EdificioZerg {
         this.identificador = "espiral";
     }
 
-    public static ArrayList<Edificio> requisitos() {
-        ArrayList<Edificio> requisitos = new ArrayList<>();
-        requisitos.add(new Guarida());
-        return requisitos;
+    public static ArrayList<Edificio> requisitosEdilicios() {
+        return requisitosEdilicios;
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     protected void destruirEdificio() {

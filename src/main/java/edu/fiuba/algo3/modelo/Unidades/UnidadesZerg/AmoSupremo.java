@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class AmoSupremo extends UnidadZerg {
@@ -45,5 +46,10 @@ public class AmoSupremo extends UnidadZerg {
     public void disminuirPoblacion(Suministro suministroImperio){
         suministroImperio.disminuirPoblacion(FabricaAmoSupremo.obtenerPoblacionNecesaria());
         suministroImperio.disminuirSuministro(FabricaAmoSupremo.obtenerSuministroAportado());
+    }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return AmoSupremo.class.equals(claseAAverificar);
     }
 }

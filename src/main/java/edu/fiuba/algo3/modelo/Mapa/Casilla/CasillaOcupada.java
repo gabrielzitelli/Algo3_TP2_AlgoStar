@@ -28,7 +28,8 @@ public class CasillaOcupada extends Casilla {
     }
 
     public void construirEdificioVerificacion(Edificio unEdificio){
-        throw new ErrorNoSePuedeConstruirEdificioSobreOtroEdificio();
+        CasillaVacia copiaVaciaDeEstaCasilla = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
+        unEdificio.construirSobreCasillaOcupadaVerificacion(this.ocupable, copiaVaciaDeEstaCasilla);
     }
 
     public Casilla construirEdificio(Edificio unEdificio) {

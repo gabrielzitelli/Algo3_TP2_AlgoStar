@@ -57,4 +57,9 @@ public class Zangano extends UnidadZerg {
     public void disminuirPoblacion(Suministro suministroImperio){
         suministroImperio.disminuirPoblacion(FabricaZangano.obtenerPoblacionNecesaria());
     }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return Zangano.class.equals(claseAAverificar);
+    }
 }
