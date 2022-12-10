@@ -53,8 +53,6 @@ public class Zerg extends Imperio{
 
         Edificio edificio = fabricaEdificio.crear();
 
-        this.comprobarRequisitosMateriales(edificio);
-
         this.construirEdificio(edificio, coordenada);
     }
 

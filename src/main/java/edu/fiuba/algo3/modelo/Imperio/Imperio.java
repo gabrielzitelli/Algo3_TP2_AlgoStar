@@ -114,22 +114,6 @@ public abstract class Imperio {
             throw new ErrorCantidadDeRecursoInsuficiente();
     }
 
-    protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
-        //Digase de los edificios que son prerequisitos de otro edificio
-        int requisitosCumplidos = 0;
-        for(Edificio requisito: requisitos){
-            for(Edificio edificio: edificios) {
-                if (edificio.getClass().equals(requisito.getClass())){
-                    requisitosCumplidos++;
-                    break;
-                }
-            }
-        }
-
-        if (requisitosCumplidos != requisitos.size())
-            throw new ErrorNoSeCumplenLosPreRequisitosDelEdificio();
-    }
-
     public boolean tienesEstaCantidadDeMineral(int recurso) {
         return mineralesDelImperio.tenesCantidadDeRecurso(recurso);
     }

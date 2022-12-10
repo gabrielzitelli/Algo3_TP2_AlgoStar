@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -42,7 +44,6 @@ public class Protoss extends Imperio{
     }
 
     public void construirPuertoEstelar(Coordenada coordenada) {
-        this.comprobarRequisitos(PuertoEstelar.requisitos());
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
         puertoEstelar.asignarListaDeUnidadesImperio(unidades);
@@ -82,10 +83,12 @@ public class Protoss extends Imperio{
         this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
     }
-    /*
-    public void crearEdifcio(FabricaEdificios unaFabricaDeEdificios, Coordenada coordenada){
+    public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
+        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio);
 
+        Edificio edificio = fabricaEdificio.crear();
+
+        this.construirEdificio(edificio, coordenada);
     }
-    */
 
 }
