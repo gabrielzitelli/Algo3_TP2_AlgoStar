@@ -51,40 +51,7 @@ public class Zerg extends Imperio{
     public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
         fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
 
-        Edificio edificio = fabricaEdificio.crear();
-
-        this.construirEdificio(edificio, coordenada);
-    }
-
-    public void construirCriadero(Coordenada coordenada){
-        Criadero criadero = new Criadero();
-        criadero.asignarListaDeUnidades(fabricasDisponibles);
-        criadero.asignarListaDeUnidadesImperio(unidades);
-        criadero.asignarRecursos(mineralesDelImperio, gasDelImperio);
-        this.construirEdificio(criadero, coordenada);
-    }
-
-    public void construirReservaDeReproduccion(Coordenada coordenada){
-        ReservaDeReproduccion reserva = new ReservaDeReproduccion();
-        reserva.asignarListaDeUnidades(fabricasDisponibles);
-        this.construirEdificio(reserva, coordenada);
-    }
-
-    public void construirExtractor(Coordenada coordenada){
-        Extractor extractor = new Extractor(gasDelImperio);
-        this.construirEdificio(extractor, coordenada);
-    }
-
-    public void construirGuarida(Coordenada coordenada){
-        Guarida guarida = new Guarida();
-        guarida.asignarListaDeUnidades(fabricasDisponibles);
-        this.construirEdificio(guarida, coordenada);
-    }
-
-    public void construirEspiral(Coordenada coordenada){
-        Espiral espiral = new Espiral();
-        espiral.asignarListaDeUnidades(fabricasDisponibles);
-        this.construirEdificio(espiral, coordenada);
+        this.construirEdificio(fabricaEdificio.crear(), coordenada);
     }
 
     private void validarPreRequisitosDeEvolucionDeMutalisco(Unidad unaUnidad){

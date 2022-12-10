@@ -3,6 +3,10 @@ package edu.fiuba.algo3.testDeClases.SuministroTest;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -30,13 +34,13 @@ public class SuministroYUnidadesTest {
 
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
@@ -82,22 +86,22 @@ public class SuministroYUnidadesTest {
 
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(2,0));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(2,0));
 
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEspiral(new Coordenada(3,0));
+        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(3,0));
 
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
@@ -138,22 +142,22 @@ public class SuministroYUnidadesTest {
 
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
 
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(2,0));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(2,0));
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEspiral(new Coordenada(3,0));
+        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(3,0));
 
         for (int i = 0; i < 15; i++)
             imperioZerg.terminarTurno();

@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -28,13 +30,13 @@ public class CasoDeUso26Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
@@ -101,7 +103,7 @@ public class CasoDeUso26Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)

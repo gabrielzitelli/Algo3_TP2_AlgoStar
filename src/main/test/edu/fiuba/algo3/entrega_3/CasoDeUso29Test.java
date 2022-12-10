@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -26,7 +30,7 @@ public class CasoDeUso29Test {
         imperioZerg.abastecerDeRecursos(new Mineral(9000), new Gas(9000));
         for ( int i = 1; i <41; i++){
             Coordenada unaCoordenada = new Coordenada(i,0);
-            imperioZerg.construirCriadero(unaCoordenada);
+            imperioZerg.construirEdificio(new FabricaCriadero(), unaCoordenada);
         }
 
         for ( int j = 1; j < 5 ; j++ ){
@@ -45,7 +49,7 @@ public class CasoDeUso29Test {
         imperioZerg.abastecerDeRecursos(new Mineral(15000), new Gas(15000));
         for ( int i = 1; i <50; i++){
             Coordenada unaCoordenada = new Coordenada(i,0);
-            imperioZerg.construirCriadero(unaCoordenada);
+            imperioZerg.construirEdificio(new FabricaCriadero(), unaCoordenada);
         }
 
         for ( int j = 1; j < 5 ; j++ ){
@@ -64,7 +68,7 @@ public class CasoDeUso29Test {
         imperioZerg.abastecerDeRecursos(new Mineral(9000), new Gas(9000));
         for ( int i = 1; i <40; i++){
             Coordenada unaCoordenada = new Coordenada(i,0);
-            imperioZerg.construirCriadero(unaCoordenada);
+            imperioZerg.construirEdificio(new FabricaCriadero(), unaCoordenada);
 
         }
 
@@ -73,13 +77,13 @@ public class CasoDeUso29Test {
         }
 
         Coordenada unaCoordenada = new Coordenada(1,1);
-        imperioZerg.construirReservaDeReproduccion(unaCoordenada);
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), unaCoordenada);
 
         unaCoordenada = new Coordenada(2,1);
-        imperioZerg.construirGuarida(unaCoordenada);
+        imperioZerg.construirEdificio(new FabricaGuarida(), unaCoordenada);
 
         unaCoordenada = new Coordenada(3,1);
-        imperioZerg.construirEspiral(unaCoordenada);
+        imperioZerg.construirEdificio(new FabricaEspiral(), unaCoordenada);
 
         for ( int j = 1; j < 16 ; j++ ){
             imperioZerg.terminarTurno();

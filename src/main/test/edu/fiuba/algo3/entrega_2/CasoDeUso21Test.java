@@ -2,6 +2,10 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Imperio.*;
@@ -36,25 +40,25 @@ public class CasoDeUso21Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirCriadero(new Coordenada(2,2));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(2,2));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,1));
 
         //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEspiral(new Coordenada(1,1));
+        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1));
 
         //Espero a que se construya el espiral
         for (int i = 0; i < 10; i++)
@@ -88,25 +92,25 @@ public class CasoDeUso21Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(800), new Gas(300));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,1));
 
         //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEspiral(new Coordenada(1,1));
+        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1));
 
         //Espero a que se construya el espiral
         for (int i = 0; i < 10; i++)

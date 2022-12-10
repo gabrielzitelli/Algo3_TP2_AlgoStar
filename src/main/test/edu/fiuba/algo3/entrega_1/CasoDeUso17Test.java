@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPuertaEstelar;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -25,7 +22,7 @@ public class CasoDeUso17Test {
         Zerg zerg = new Zerg();
 
         zerg.abastecerDeRecursos(new Mineral(250), new Gas(100));
-        zerg.construirCriadero(new Coordenada(1,1));
+        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
         for (int i = 0; i < 4; i++)
@@ -44,7 +41,7 @@ public class CasoDeUso17Test {
         Zerg zerg = new Zerg();
 
         zerg.abastecerDeRecursos(new Mineral(550), new Gas(100));
-        zerg.construirCriadero(new Coordenada(1,1));
+        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
         for (int i = 0; i < 4; i++)
@@ -54,10 +51,10 @@ public class CasoDeUso17Test {
         zerg.terminarTurno();
 
         //Construimos una reserva
-        zerg.construirReservaDeReproduccion(new Coordenada(1,2));
+        zerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,2));
 
         //IntentamosConstruirGuarida
-        assertDoesNotThrow( () -> zerg.construirGuarida(new Coordenada(2,2)));
+        assertDoesNotThrow( () -> zerg.construirEdificio(new FabricaGuarida(), new Coordenada(2,2)));
     }
 
     @Test
@@ -65,7 +62,7 @@ public class CasoDeUso17Test {
         Zerg zerg = new Zerg();
 
         zerg.abastecerDeRecursos(new Mineral(200), new Gas(100));
-        zerg.construirCriadero(new Coordenada(1,1));
+        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
         for (int i = 0; i < 4; i++)
@@ -84,7 +81,7 @@ public class CasoDeUso17Test {
         Zerg zerg = new Zerg();
 
         zerg.abastecerDeRecursos(new Mineral(700), new Gas(200));
-        zerg.construirCriadero(new Coordenada(1,1));
+        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
         for (int i = 0; i < 4; i++)

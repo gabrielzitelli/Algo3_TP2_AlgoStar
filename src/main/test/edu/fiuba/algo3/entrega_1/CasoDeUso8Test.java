@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
@@ -26,7 +25,7 @@ public class CasoDeUso8Test {
         imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
-                () ->imperioZerg.construirCriadero(new Coordenada(0,0)));
+                () ->imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0)));
     }
 
     @Test
@@ -36,7 +35,7 @@ public class CasoDeUso8Test {
 
         imperioZerg.abastecerDeRecursos();
 
-        assertDoesNotThrow(() -> imperioZerg.construirCriadero(new Coordenada(0,0)));
+        assertDoesNotThrow(() -> imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0)));
     }
 
     @Test
@@ -46,7 +45,7 @@ public class CasoDeUso8Test {
         imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
-                () ->imperioZerg.construirReservaDeReproduccion(new Coordenada(0,0)));
+                () ->imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,0)));
     }
 
     @Test
@@ -57,7 +56,7 @@ public class CasoDeUso8Test {
         imperioZerg.abastecerDeRecursos();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> imperioZerg.construirReservaDeReproduccion(new Coordenada(0,0)));
+                () -> imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,0)));
     }
 
     @Test
@@ -67,7 +66,7 @@ public class CasoDeUso8Test {
         imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class ,
-                () ->imperioZerg.construirExtractor(new Coordenada(0,0)));
+                () ->imperioZerg.construirEdificio(new FabricaExtractor(), new Coordenada(0,0)));
     }
 
     @Test
@@ -78,7 +77,7 @@ public class CasoDeUso8Test {
         imperioZerg.abastecerDeRecursos();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> imperioZerg.construirExtractor(new Coordenada(0,0)));
+                () -> imperioZerg.construirEdificio(new FabricaExtractor(), new Coordenada(0,0)));
     }
 
     @Test
@@ -87,15 +86,15 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(350), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
-                () -> imperioZerg.construirGuarida(new Coordenada(1,1)));
+                () -> imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,1)));
     }
 
     @Test
@@ -104,14 +103,14 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos();
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
 
-        assertDoesNotThrow(() ->imperioZerg.construirGuarida(new Coordenada(1,1)));
+        assertDoesNotThrow(() ->imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,1)));
     }
 
     @Test
@@ -120,16 +119,16 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(550), new Gas(100));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
-        imperioZerg.construirGuarida(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
-                () -> imperioZerg.construirEspiral(new Coordenada(1,1)));
+                () -> imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1)));
     }
 
     @Test
@@ -138,15 +137,15 @@ public class CasoDeUso8Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos();
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         for (int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirReservaDeReproduccion(new Coordenada(0,1));
-        imperioZerg.construirGuarida(new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,0));
 
-        assertDoesNotThrow(() ->imperioZerg.construirEspiral(new Coordenada(1,1)));
+        assertDoesNotThrow(() ->imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1)));
     }
 
     @Test
