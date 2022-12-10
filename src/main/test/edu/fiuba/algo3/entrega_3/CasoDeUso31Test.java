@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -33,7 +34,7 @@ public class CasoDeUso31Test {
         Coordenada coordenadaDragon = new Coordenada(1,0);
 
         imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
-        imperioZerg.construirCriadero(coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -92,7 +93,7 @@ public class CasoDeUso31Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)

@@ -2,6 +2,8 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaExtractor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNoSePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
@@ -65,12 +67,12 @@ public class ExtractorTest {
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1,1));
+        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
-        zerg.construirExtractor(coordenadasGas);
+        zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
         for (int i = 0; i < 6; i++)
@@ -88,12 +90,12 @@ public class ExtractorTest {
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1,1));
+        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
-        zerg.construirExtractor(coordenadasGas);
+        zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
         for (int i = 0; i < 6; i++)
@@ -114,12 +116,12 @@ public class ExtractorTest {
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1, 1));
+        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1, 1));
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
-        zerg.construirExtractor(coordenadasGas);
+        zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
         for (int i = 0; i < 6; i++)
