@@ -63,11 +63,11 @@ public class Protoss extends Imperio{
         acceso.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificio(acceso, coordenada);
     }
-
+/*
     public void construirNexoMineral(Coordenada coordenada) {
         NexoMineral nexoMineral = new NexoMineral(this.mineralesDelImperio);
         this.construirEdificio(nexoMineral, coordenada);
-    }
+    }*/
 
     public void construirAsimilador(Coordenada coordenada) {
         Asimilador asimilador = new Asimilador(this.gasDelImperio);

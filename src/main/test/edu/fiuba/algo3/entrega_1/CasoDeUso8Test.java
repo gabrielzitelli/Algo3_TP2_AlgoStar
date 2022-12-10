@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
@@ -157,7 +158,7 @@ public class CasoDeUso8Test {
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
-                () -> protoss.construirNexoMineral(coordenada));
+                () -> protoss.construirEdificio(new FabricaNexoMineral(), coordenada));
     }
 
     @Test
@@ -169,7 +170,7 @@ public class CasoDeUso8Test {
         protoss.abastecerDeRecursos();
         elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
-        assertDoesNotThrow(() -> protoss.construirNexoMineral(coordenada));
+        assertDoesNotThrow(() -> protoss.construirEdificio(new FabricaNexoMineral(), coordenada));
     }
 
     @Test

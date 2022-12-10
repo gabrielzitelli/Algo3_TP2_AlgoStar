@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -245,11 +246,12 @@ public class CasoDeUso2Test {
     public void test11UnNexoMineralNoEstaConstruidoEn3Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
+        Coordenada coordenada = new Coordenada(1,0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
-        imperioProtoss.construirNexoMineral(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaNexoMineral(), coordenada);
 
         int turnosParaConstruir = 3;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -262,11 +264,12 @@ public class CasoDeUso2Test {
     public void test12UnNexoMineralEstaConstruidoEn4Turnos() {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
+        Coordenada coordenada = new Coordenada(1, 0);
 
         Mapa elMapa = Mapa.obtener();
-        elMapa.colocarMaterial(new MineralRecolectable(), new Coordenada(1,0));
+        elMapa.colocarMaterial(new MineralRecolectable(), coordenada);
 
-        imperioProtoss.construirNexoMineral(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaNexoMineral(), coordenada);
 
         int turnosParaConstruir = 4;
         for(int i = 0; i < turnosParaConstruir; i++)
