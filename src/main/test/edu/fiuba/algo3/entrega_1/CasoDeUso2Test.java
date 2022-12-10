@@ -286,7 +286,7 @@ public class CasoDeUso2Test {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        imperioProtoss.construirPilon(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(1,0));
 
         int turnosParaConstruir = 4;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -301,7 +301,7 @@ public class CasoDeUso2Test {
         Protoss imperioProtoss = new Protoss();
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
-        imperioProtoss.construirPilon(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(1,0));
 
         int turnosParaConstruir = 5;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -352,7 +352,7 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
@@ -372,7 +372,7 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
@@ -390,7 +390,7 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
@@ -413,7 +413,7 @@ public class CasoDeUso2Test {
         imperioProtoss.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
 
         // construyo pilon para generar energia
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
         for(int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 

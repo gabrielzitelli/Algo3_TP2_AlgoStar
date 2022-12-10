@@ -50,12 +50,12 @@ public class Protoss extends Imperio{
         puertoEstelar.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificio(puertoEstelar, coordenada);
     }
-
+/*
     public void construirPilon(Coordenada coordenada) {
         Pilon pilon = new Pilon();
         this.construirEdificio(pilon, coordenada);
     }
-/*
+
     public void construirAcceso(Coordenada coordenada) {
         Acceso acceso = new Acceso();
         acceso.asignarListaDeUnidades(fabricasDisponibles);

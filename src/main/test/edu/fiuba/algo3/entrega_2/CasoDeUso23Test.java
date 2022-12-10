@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAsimilador;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorLaUnidadNoPuedeAtacarFueraDeSuRango;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -34,7 +35,7 @@ public class CasoDeUso23Test {
         Coordenada coordenadaEdificio = new Coordenada(0,2);
 
         elMapa.colocarUnaUnidad(zerling, coordenadaAtacante);
-        imperioProtoss.construirPilon(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,1));
 
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
@@ -53,7 +54,7 @@ public class CasoDeUso23Test {
         Coordenada coordenadaEdificio = new Coordenada(1,0);
 
         elMapa.colocarUnaUnidad(zerling, coordenadaAtacante);
-        imperioProtoss.construirPilon(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,1));
 
         for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();

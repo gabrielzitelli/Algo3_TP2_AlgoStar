@@ -104,7 +104,7 @@ public class CasoDeUso17Test {
         Protoss protoss = new Protoss();
 
         protoss.abastecerDeRecursos(new Mineral(250), new Gas(150));
-        protoss.construirPilon(new Coordenada(0,0));
+        protoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //Esperamos Cuatro Turnos Para La Construccion Del pilon
         for (int i = 0; i < 5; i++)
@@ -120,7 +120,7 @@ public class CasoDeUso17Test {
         Protoss protoss = new Protoss();
 
         protoss.abastecerDeRecursos(new Mineral(400), new Gas(150));
-        protoss.construirPilon(new Coordenada(0,0));
+        protoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //Esperamos Cuatro Turnos Para La Construccion Del pilon
         for (int i = 0; i < 5; i++)

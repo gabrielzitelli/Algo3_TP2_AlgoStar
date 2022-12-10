@@ -210,7 +210,7 @@ public class CasoDeUso8Test {
         protoss.abastecerDeRecursos(new Mineral(0), new Gas(0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
-                () -> protoss.construirPilon(coordenada));
+                () -> protoss.construirEdificio(new FabricaPilon(), coordenada));
     }
 
     @Test
@@ -221,7 +221,7 @@ public class CasoDeUso8Test {
 
         protoss.abastecerDeRecursos();
 
-        assertDoesNotThrow(() -> protoss.construirPilon(coordenada));
+        assertDoesNotThrow(() -> protoss.construirEdificio(new FabricaPilon(), coordenada));
     }
 
     @Test
@@ -231,7 +231,7 @@ public class CasoDeUso8Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         protoss.abastecerDeRecursos(new Mineral(100), new Gas(0));
-        protoss.construirPilon(coordenada);
+        protoss.construirEdificio(new FabricaPilon(), coordenada);
 
         for(int i = 0; i < 5; i++)
             protoss.terminarTurno();
@@ -247,7 +247,7 @@ public class CasoDeUso8Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         protoss.abastecerDeRecursos(new Mineral(250), new Gas(0));
-        protoss.construirPilon(coordenada);
+        protoss.construirEdificio(new FabricaPilon(), coordenada);
         for(int i = 0; i < 6; i++)
             protoss.terminarTurno();
 
@@ -261,7 +261,7 @@ public class CasoDeUso8Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         protoss.abastecerDeRecursos(new Mineral(250), new Gas(0));
-        protoss.construirPilon(coordenada);
+        protoss.construirEdificio(new FabricaPilon(), coordenada);
 
         for(int i = 0; i < 5; i++)
             protoss.terminarTurno();
@@ -279,7 +279,7 @@ public class CasoDeUso8Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         protoss.abastecerDeRecursos(new Mineral(400), new Gas(150));
-        protoss.construirPilon(coordenada);
+        protoss.construirEdificio(new FabricaPilon(), coordenada);
 
         for(int i = 0; i < 6; i++)
             protoss.terminarTurno();

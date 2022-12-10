@@ -1,12 +1,8 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
@@ -218,7 +214,7 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
@@ -248,7 +244,7 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
@@ -278,7 +274,7 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
@@ -301,7 +297,7 @@ public class CasoDeUso22Test {
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos();
-        imperioProtoss.construirPilon(new Coordenada(0,0));
+        imperioProtoss.construirEdificio(new FabricaPilon(), new Coordenada(0,0));
 
         //construimos el pilon
         for (int i = 0; i < 5; i++)
