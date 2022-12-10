@@ -49,11 +49,9 @@ public class Zerg extends Imperio{
     }
 
     public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
-        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio);
+        fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
 
         Edificio edificio = fabricaEdificio.crear();
-
-        this.comprobarRequisitosMateriales(edificio);
 
         this.construirEdificio(edificio, coordenada);
     }
@@ -78,14 +76,14 @@ public class Zerg extends Imperio{
     }
 
     public void construirGuarida(Coordenada coordenada){
-        this.comprobarRequisitos(Guarida.requisitos());
+
         Guarida guarida = new Guarida();
         guarida.asignarListaDeUnidades(fabricasDisponibles);
         this.construirEdificio(guarida, coordenada);
     }
 
     public void construirEspiral(Coordenada coordenada){
-        this.comprobarRequisitos(Espiral.requisitos());
+
         Espiral espiral = new Espiral();
         espiral.asignarListaDeUnidades(fabricasDisponibles);
         this.construirEdificio(espiral, coordenada);

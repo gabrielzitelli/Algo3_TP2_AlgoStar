@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricaGuarida;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.*;
@@ -24,7 +26,7 @@ public class CasoDeUso22Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(225), new Gas(0));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -127,7 +129,7 @@ public class CasoDeUso22Test {
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirGuarida(new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0, 1));
 
         //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
