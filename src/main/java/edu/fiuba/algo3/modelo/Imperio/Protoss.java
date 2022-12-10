@@ -42,7 +42,7 @@ public class Protoss extends Imperio{
         this.construirEdificioSinVerificacionesMateriales(unAcceso, coordenadaAcceso);
         unAcceso.construirInmediatamente();
     }
-
+/*
     public void construirPuertoEstelar(Coordenada coordenada) {
         PuertoEstelar puertoEstelar = new PuertoEstelar();
         puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
@@ -50,7 +50,7 @@ public class Protoss extends Imperio{
         puertoEstelar.asignarRecursos(mineralesDelImperio, gasDelImperio);
         this.construirEdificio(puertoEstelar, coordenada);
     }
-/*
+
     public void construirPilon(Coordenada coordenada) {
         Pilon pilon = new Pilon();
         this.construirEdificio(pilon, coordenada);

@@ -129,6 +129,6 @@ public class CasoDeUso17Test {
         protoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
 
         //IntentamosConstruirPuertoEstelar
-        assertDoesNotThrow( () -> protoss.construirPuertoEstelar(new Coordenada( 1, 1)));
+        assertDoesNotThrow( () -> protoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada( 1, 1)));
     }
 }

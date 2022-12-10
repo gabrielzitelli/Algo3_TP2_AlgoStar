@@ -309,7 +309,7 @@ public class CasoDeUso22Test {
         for (int i = 0; i < 8; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirPuertoEstelar(new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(0,1));
 
         //construimos el puerto estelar
         for (int i = 0; i < 10; i++)

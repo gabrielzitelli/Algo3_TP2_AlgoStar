@@ -397,7 +397,7 @@ public class CasoDeUso2Test {
         // construyo un acceso para el prerequisito
         imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
-        imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(1,0));
         int turnosParaConstruir = 9;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
@@ -420,7 +420,7 @@ public class CasoDeUso2Test {
         // construyo un acceso para el prerequisito
         imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
-        imperioProtoss.construirPuertoEstelar(new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(1,0));
         int turnosParaConstruir = 10;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
