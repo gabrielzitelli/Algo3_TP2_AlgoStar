@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.modelo.Edificios;
+package edu.fiuba.algo3.modelo.Edificios.FabricasEdificios;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Asimilador;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
 
-public class FabricaAsimilador extends FabricaEdificio{
+public class FabricaAsimilador extends FabricaEdificio {
 
     @Override
     public Edificio crear() {

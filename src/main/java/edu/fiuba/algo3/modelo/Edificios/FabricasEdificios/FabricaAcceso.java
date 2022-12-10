@@ -1,8 +1,9 @@
-package edu.fiuba.algo3.modelo.Edificios;
+package edu.fiuba.algo3.modelo.Edificios.FabricasEdificios;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
 
-public class FabricaAcceso extends FabricaEdificio{
+public class FabricaAcceso extends FabricaEdificio {
 
     @Override
     public Edificio crear() {
