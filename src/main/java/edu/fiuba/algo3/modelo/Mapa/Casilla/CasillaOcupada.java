@@ -39,9 +39,7 @@ public class CasillaOcupada extends Casilla {
     }
 
     public void llenarDeMoho() {
-        if(ocupable.esDeEsteTipo(Edificio.class))
-            estadoMoho = new SinMoho();
-        else
+        if(!ocupable.esDeEsteTipo(Edificio.class) && this.superficie.soyDiferenteA(new SuperficieAerea()))
             estadoMoho = new ConMoho();
     }
 
