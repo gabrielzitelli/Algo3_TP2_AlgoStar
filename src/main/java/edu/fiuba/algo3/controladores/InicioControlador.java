@@ -47,11 +47,39 @@ public class InicioControlador extends Controlador {
     @FXML
     protected SubScene subsceneFormJugador2;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.inicializarVideoFondo();
+        this.inicializarSonido();
     }
 
+    public void inicializarSonido() {
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.cargarMusica("temaPrincipal.mp3", "temaPrincipal");
+
+        sonido.cargarSonido("atacar.wav", "atacar");
+        sonido.cargarSonido("clickBoton.mp3", "boton");
+        sonido.cargarSonido("colocarEdificio.mp3", "click");
+
+        sonido.cargarSonido("protoss/Dragon.wav", "dragon");
+        sonido.cargarSonido("protoss/scout.wav", "scout");
+        sonido.cargarSonido("protoss/zealot.wav", "zealot");
+
+        sonido.cargarSonido("zerg/amoSupremo.wav", "amoSupremo");
+        sonido.cargarSonido("zerg/devorador.wav", "devorador");
+        sonido.cargarSonido("zerg/guardian.wav", "guardian");
+        sonido.cargarSonido("zerg/hidralisco.wav", "hidralisco");
+        sonido.cargarSonido("zerg/mutalisco.wav", "mutalisco");
+        sonido.cargarSonido("zerg/zangano.wav", "zangano");
+        sonido.cargarSonido("zerg/zerling.wav", "zerling");
+
+        sonido.modificarVolumenEfectos(50);
+
+
+        sonido.reproducirMusica("temaPrincipal");
+        sonido.modificarVolumenMusica(50);
+    }
     public void inicializar() {
         manejarRedimensionDelStage();
     }
@@ -106,6 +134,8 @@ public class InicioControlador extends Controlador {
 
     @FXML
     public void empezarCreacionJugadores(ActionEvent event) throws IOException {
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.reproducirFX("boton");
         this.prepararUIParaCargarJugadores();
         this.realizarCargaJugador1();
     }
@@ -228,6 +258,9 @@ public class InicioControlador extends Controlador {
             animacionWait.play();
             animacionWait.setOnFinished(event -> ejecutarComienzoDeJuego(root, loader) );
         });
+
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.detenerMusica();
     }
 
     private void hacerDesaparecersubsceneFormJugador2(){

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios;
 
+import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
@@ -8,7 +9,6 @@ import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -29,7 +29,7 @@ public class ProtossVista {
 
         for (int i = 0; i < tokensJugador.length; i++) {
             if(Objects.equals(tokensJugador[i], tipoAtributo))
-                atributoDeseado = new String(tokensJugador[i + 1]);
+                atributoDeseado = tokensJugador[i + 1];
         }
 
         return atributoDeseado;
@@ -70,11 +70,29 @@ public class ProtossVista {
         crearBotonDeEdificio(botonCrearAcceso, new AccesoVista(), anchoBoton, altoBoton);
         crearBotonDeEdificio(botonCrearPuertoEstelar, new PuertoEstelarVista(), anchoBoton, altoBoton);
 
-        botonCrearNexoMineral.setOnAction( event -> imperioProtoss.construirEdificio(new FabricaNexoMineral(), coordenada));
-        botonCrearAsimilador.setOnAction( event ->imperioProtoss.construirEdificio(new FabricaAsimilador(), coordenada));
-        botonCrearPilon.setOnAction( event -> imperioProtoss.construirEdificio(new FabricaPilon(), coordenada));
-        botonCrearAcceso.setOnAction( event -> imperioProtoss.construirEdificio(new FabricaAcceso(), coordenada));
-        botonCrearPuertoEstelar.setOnAction( event -> imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), coordenada));
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+
+        botonCrearNexoMineral.setOnAction( event -> {
+
+            sonido.reproducirFX("boton");
+            imperioProtoss.construirEdificio(new FabricaNexoMineral(), coordenada);
+        });
+        botonCrearAsimilador.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioProtoss.construirEdificio(new FabricaAsimilador(), coordenada);
+        });
+        botonCrearPilon.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioProtoss.construirEdificio(new FabricaPilon(), coordenada);
+        });
+        botonCrearAcceso.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioProtoss.construirEdificio(new FabricaAcceso(), coordenada);
+        });
+        botonCrearPuertoEstelar.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), coordenada);
+        });
 
         prepararHabilitacionDeBoton(botonCrearNexoMineral, new NexoMineral(new Mineral(0)), arrayWrappersBotonesConstruirEdificio[0], new NexoMineralVista(), imperioProtoss, coordenada);
         prepararHabilitacionDeBoton(botonCrearAsimilador, new Asimilador(new Gas(0)), arrayWrappersBotonesConstruirEdificio[1], new AsimiladorVista(), imperioProtoss, coordenada);

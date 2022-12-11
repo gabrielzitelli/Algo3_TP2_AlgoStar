@@ -13,5 +13,6 @@ public class HidraliscoVista extends UnidadZergVista {
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/hidraliscoRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/hidraliscoRawCrear.png")));
         this.requisitosUnidad = "\n" + emojiInformacionUnicode + " Requiere: Guarida";
+        this.archivoDeSonido = "hidralisco";
     }
 }

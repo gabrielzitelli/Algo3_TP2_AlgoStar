@@ -69,6 +69,8 @@ public class DatosJugador2Controlador extends DatosJugadorControlador {
 
     @FXML
     public void iniciarJuego(ActionEvent event) throws IOException {
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.reproducirFX("boton");
         guardarDatosJugador2();
 
         if (this.datosValidos) {

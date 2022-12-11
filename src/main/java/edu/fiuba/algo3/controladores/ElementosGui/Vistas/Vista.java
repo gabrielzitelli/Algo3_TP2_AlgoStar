@@ -14,6 +14,7 @@ public abstract class Vista {
     protected Tile tile;
     protected String info;
     protected Image imagenParaDisplay;
+    protected String archivoDeSonido;
     private static final Vista sinVista = new SinVista();
     protected String emojiInformacionUnicode = "ⓘ";
     protected String emojiAdvertenciaUnidode = "⚠";
@@ -51,5 +52,9 @@ public abstract class Vista {
 
     public String getInfo() {
         return info;
+    }
+
+    public String obtenerAudio() {
+        return archivoDeSonido;
     }
 }

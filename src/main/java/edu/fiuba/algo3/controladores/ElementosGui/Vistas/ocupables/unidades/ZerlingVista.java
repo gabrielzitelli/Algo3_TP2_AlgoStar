@@ -13,5 +13,6 @@ public class ZerlingVista extends UnidadZergVista {
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/zerlingRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/zerlingRawCrear.png")));
         this.requisitosUnidad = "\n" + emojiInformacionUnicode + " Requiere: Reserva de reproducción";
+        this.archivoDeSonido = "zerling";
     }
 }

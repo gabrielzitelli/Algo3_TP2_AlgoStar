@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
+import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.*;
@@ -54,17 +55,34 @@ public class CriaderoVista extends EdificioVista {
         double anchoBoton = botonCrearZangano.getPrefWidth();
         double altoBoton = botonCrearZangano.getPrefWidth();
 
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+
         crearBotonDeUnidad(botonCrearZangano, new ZanganoVista(), anchoBoton, altoBoton);
         crearBotonDeUnidad(botonCrearZerling, new ZerlingVista(), anchoBoton, altoBoton);
         crearBotonDeUnidad(botonCrearHidralisco, new HidraliscoVista(), anchoBoton, altoBoton);
         crearBotonDeUnidad(botonCrearMutalisco, new MutaliscoVista(), anchoBoton, altoBoton);
         crearBotonDeUnidad(botonCrearAmoSupremo, new AmoSupremoVista(), anchoBoton, altoBoton);
 
-        botonCrearZangano.setOnAction( event -> esteCriadero.crearUnidad(new FabricaZangano()));
-        botonCrearZerling.setOnAction( event -> esteCriadero.crearUnidad(new FabricaZerling()));
-        botonCrearHidralisco.setOnAction( event -> esteCriadero.crearUnidad(new FabricaHidralisco()));
-        botonCrearMutalisco.setOnAction( event -> esteCriadero.crearUnidad(new FabricaMutalisco()));
-        botonCrearAmoSupremo.setOnAction( event -> esteCriadero.crearUnidad(new FabricaAmoSupremo()));
+        botonCrearZangano.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            esteCriadero.crearUnidad(new FabricaZangano());
+        });
+        botonCrearZerling.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            esteCriadero.crearUnidad(new FabricaZerling());
+        });
+        botonCrearHidralisco.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            esteCriadero.crearUnidad(new FabricaHidralisco());
+        });
+        botonCrearMutalisco.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            esteCriadero.crearUnidad(new FabricaMutalisco());
+        });
+        botonCrearAmoSupremo.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            esteCriadero.crearUnidad(new FabricaAmoSupremo());
+        });
 
         prepararHabilitacionDeBoton(botonCrearZangano, new FabricaZangano(), esteCriadero, arrayWrappersBotonesEdificio[0], new ZanganoVista());
         prepararHabilitacionDeBoton(botonCrearZerling, new FabricaZerling(), esteCriadero, arrayWrappersBotonesEdificio[1], new ZerlingVista());
