@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Mapa.CasillaDecorator;
 
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+
 import java.util.LinkedList;
 
 public class CargaDecorator extends SuperficieDecorator{
@@ -17,5 +19,10 @@ public class CargaDecorator extends SuperficieDecorator{
             }
         }
         return false;
+    }
+
+    @Override
+    public Coordenada obtenerCoordenada() {
+        return this.unaCasilla.obtenerCoordenada();
     }
 }

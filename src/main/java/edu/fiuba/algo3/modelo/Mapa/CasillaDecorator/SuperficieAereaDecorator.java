@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Mapa.CasillaDecorator;
 
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+
 import java.util.LinkedList;
 
 public class SuperficieAereaDecorator extends CasillaDecorator{
@@ -12,5 +14,10 @@ public class SuperficieAereaDecorator extends CasillaDecorator{
     @Override
     public Boolean tenesEstosDecoradores(LinkedList<CasillaDecorator> casillas) {
         return false;
+    }
+
+    @Override
+    public Coordenada obtenerCoordenada() {
+        return this.unaCasilla.obtenerCoordenada();
     }
 }

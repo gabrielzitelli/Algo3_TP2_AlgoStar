@@ -5,9 +5,13 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaC
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasCasillasLibresEnElMapa;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.CasillaDecorator.CasillaDecorator;
+import edu.fiuba.algo3.modelo.Mapa.CasillaDecorator.OcupableDecorator;
+import edu.fiuba.algo3.modelo.Mapa.CasillaDecorator.SuperficieBase;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 import java.util.LinkedList;
 
@@ -16,7 +20,7 @@ import static java.lang.Math.*;
 public class Mapa {
     static private Mapa mapaInstanciaUnica = new Mapa();
     private int tamanio = 100;
-    private Casilla[][] matriz;
+    private CasillaDecorator[][] matriz;
     private double coeficienteBases = 0.12; //Relacion entre bases y tamanio del mapa
 
     private Mapa(){
@@ -26,10 +30,10 @@ public class Mapa {
     }
 
     private void inicializarMapaConCasillasVacias(){
-        matriz = new Casilla[tamanio][tamanio];
+        matriz = new CasillaDecorator[tamanio][tamanio];
         for (int i = 0; i < tamanio; i++)
             for (int j = 0; j < tamanio; j++)
-                matriz[i][j] = new CasillaVacia(new Coordenada(i, j));
+                matriz[i][j] = new SuperficieBase(new Coordenada(i, j));
     }
 
     private void colocarBasesPorMitadDeMapa(double densidadDeBasesPorEje, int cantidadDeBases, int comienzoDeLaMitadDelMapa){
@@ -133,35 +137,38 @@ public class Mapa {
     static public Mapa obtener(){
         return mapaInstanciaUnica;
     }
-
+/*
     public void construirEdificioVerificacion(Edificio unEdificio, Coordenada coordenada){
         Casilla casillaDondeConstruir = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDondeConstruir.construirEdificioVerificacion(unEdificio);
     }
-
+*/
     public void colocarOcupable(Ocupable unOcupable, Coordenada coordenada) {
-        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDestino = casillaDestino.colocarOcupable(unOcupable);
-        this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
+        CasillaDecorator casillaADecorar = this.encontrarCasillaPorCoordenada(coordenada);
+        CasillaDecorator nuevaCasillaDecorada = new OcupableDecorator(unOcupable, casillaADecorar);
+        this.actualizarCasillaPorCoordenada(coordenada, nuevaCasillaDecorada);
     }
 
     public void quitarOcupable(Coordenada coordenada) {
-        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaAQuitar = casillaAQuitar.quitarOcupable();
+        CasillaDecorator casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
+        // TODO aprender a quitar una capa del decorator. Capar armando las capaz desde cero obviando la ultima.
+        //casillaAQuitar = casillaAQuitar.quitarOcupable();
         this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
     }
 
     public Ocupable obtenerOcupable(Coordenada coordenada) {
-        return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
+        return new Zangano();
+        // TODO Completar la logica de ocupable en el decorator
+        //return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
     }
 
-    private Casilla encontrarCasillaPorCoordenada(Coordenada coordenada){
+    private CasillaDecorator encontrarCasillaPorCoordenada(Coordenada coordenada){
         int fila = coordenada.getCoordenadaX();
         int columna = coordenada.getCoordenadaY();
         return matriz[fila][columna];
     }
 
-    private void actualizarCasillaPorCoordenada(Coordenada coordenada, Casilla casillaNueva){
+    private void actualizarCasillaPorCoordenada(Coordenada coordenada, CasillaDecorator casillaNueva){
         int fila = coordenada.getCoordenadaX();
         int columna = coordenada.getCoordenadaY();
         matriz[fila][columna] = casillaNueva;
@@ -189,12 +196,13 @@ public class Mapa {
     }
 
     public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
-        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDestino.colocarMaterial(materialAColocar);
+        CasillaDecorator casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        // TODO
+        //casillaDestino.colocarMaterial(materialAColocar);
     }
 
     public void colocarSuperficie(Superficie superficieAColocar, Coordenada coordenada) {
-        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        CasillaDecorator casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarSuperficie(superficieAColocar);
     }
 
