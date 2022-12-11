@@ -67,10 +67,6 @@ public class CasillaVacia extends Casilla{
         return false;
     }
 
-    public Casilla quitarUnidad(){
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-    }
-
     public boolean tieneEsteOcupable(Ocupable ocupable) {
         return false;
     }

@@ -58,10 +58,6 @@ public class CasillaOcupada extends Casilla {
         return this.ocupable.getClass().equals(ocupable.getClass());
     }
 
-    public Casilla quitarUnidad() {
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-    }
-
     public void atacar(Casilla casillaAtacada) {
         ((Unidad) ocupable).atacar(casillaAtacada);
     }
