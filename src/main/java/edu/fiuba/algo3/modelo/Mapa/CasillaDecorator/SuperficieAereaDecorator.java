@@ -11,9 +11,6 @@ public class SuperficieAereaDecorator extends CasillaDecorator{
 
     @Override
     public Boolean tenesEstosDecoradores(LinkedList<CasillaDecorator> casillas) {
-        for(CasillaDecorator decorador : casillas){
-
-        }
         return false;
     }
 }

@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.modelo.Mapa.CasillaDecorator;
 
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
+
 import java.util.LinkedList;
 
-public class RevelarDecorator extends CasillaDecorator{
+public class EdificioDecorator extends CasillaDecorator{
     private CasillaDecorator unaCasilla;
 
-    public RevelarDecorator(CasillaDecorator unaCasilla){
+    public EdificioDecorator(CasillaDecorator unaCasilla){
         this.unaCasilla = unaCasilla;
     }
 
@@ -17,5 +19,6 @@ public class RevelarDecorator extends CasillaDecorator{
             }
         }
         return false;
+        //throw new ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada();
     }
 }

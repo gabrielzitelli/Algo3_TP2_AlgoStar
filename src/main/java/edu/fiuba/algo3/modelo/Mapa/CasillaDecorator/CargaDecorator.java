@@ -12,7 +12,9 @@ public class CargaDecorator extends SuperficieDecorator{
     @Override
     public Boolean tenesEstosDecoradores(LinkedList<CasillaDecorator> casillas) {
         for(CasillaDecorator decorador : casillas){
-
+            if (this.getClass().equals(decorador.getClass())){
+                return this.unaCasilla.tenesEstosDecoradores(casillas);
+            }
         }
         return false;
     }
