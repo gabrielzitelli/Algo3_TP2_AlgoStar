@@ -9,20 +9,17 @@ import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Zerling extends UnidadZerg {
 
-    private final int turnosDeContruccion = 2;
-    private final int danioTerrestre = 4;
-    private final int cantidadDeVida = 35;
-
     public Zerling() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 2;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.rangoDeAtaque = 1;
+        int danioTerrestre = 4;
         this.danio = new DanioTerrestre(danioTerrestre);
+        int cantidadDeVida = 35;
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 0;
         this.costoMineral = 25;
-        this.rangoDeAtaque = 1;
         this.identificador = "zerling";
     }
 

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -17,14 +16,13 @@ import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Zangano extends UnidadZerg {
 
-    private final int turnosDeContruccion = 1;
-    private final int cantidadDeVida = 25;
-    private Recolectable recolecta = new MineralRecolectable();
+    private final Recolectable recolecta = new MineralRecolectable();
 
     public Zangano() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 1;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.mineralDelImperio = null;
+        int cantidadDeVida = 25;
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 0;

@@ -168,25 +168,22 @@ public class SuministroYUnidadesTest {
         criadero.crearUnidad(new FabricaMutalisco());
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
-        imperioZerg.evolucionarMutaliscoADevorador();
+
+        Unidad mutalisco = (Unidad) elMapa.obtenerOcupable(new Coordenada(0,1));
+        imperioZerg.evolucionarMutaliscoADevorador(mutalisco);
 
         for (int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
         assertTrue(imperioZerg.tenesEstaPoblacion(4));
 
-
-        Coordenada coordenadaMutalisco = new Coordenada(6,6);
-
-        ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
-
-        elMapa.colocarOcupable((listaZergUnidades.get(0)), coordenadaMutalisco);
+        Coordenada coordenadaDevorador = new Coordenada(0,1);
 
         Unidad unDragon = new Dragon();
-        Coordenada coordenadaDragon = new Coordenada(5,5);
+        Coordenada coordenadaDragon = new Coordenada(1,1);
         elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         for (int i = 0; i < 10; i++) {
-            elMapa.atacar(coordenadaDragon, coordenadaMutalisco);
+            elMapa.atacar(coordenadaDragon, coordenadaDevorador);
             unDragon.pasarTurno();
         }
 
@@ -201,7 +198,7 @@ public class SuministroYUnidadesTest {
         Zerg imperio = new Zerg();
         imperio.abastecerDeRecursos();
 
-        imperio.construirCriadero(new Coordenada(0,0));
+        imperio.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for (int i = 0; i < 5; i++){
             imperio.terminarTurno();
         }

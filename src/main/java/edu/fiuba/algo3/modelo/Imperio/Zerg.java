@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadEnEvolucion;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
@@ -20,7 +21,7 @@ import java.util.LinkedList;
 public class Zerg extends Imperio{
 
     LinkedList<GestorDeCrianza> gestoresDeEvoluciones = new LinkedList<>();
-    //GestorDeCrianza gestorDeEvoluciones = new GestorDeCrianza();
+    LinkedList<UnidadEnEvolucion> unidadesAEvolucionar = new LinkedList<>();
 
     public Zerg(){
         mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
@@ -53,45 +54,40 @@ public class Zerg extends Imperio{
         this.construirEdificio(fabricaEdificio.crear(), coordenada);
     }
 
-    private void validarPreRequisitosDeEvolucionDeMutalisco(Unidad unaUnidad){
-        //revisamos que tengamos al mutalisco
-        if (!this.tieneUnidad(new Mutalisco())) {
+    private void validarPreRequisitosDeEvolucionDeMutalisco(Unidad unidadEvolucionada, Unidad unidadAEvolucionar){
+        if (!unidadAEvolucionar.esIgualA(new Mutalisco())) {
             throw new ErrorNoHayMutaliscoParaEvolucionar();
         }
         //comprobamos los materiales
-        this.comprobarRequisitosMateriales(unaUnidad);
+        this.comprobarRequisitosMateriales(unidadEvolucionada);
 
-        //sacamos el mutalisco
-        Mutalisco mutalisco = new Mutalisco();
-        for (Unidad unidad : unidades) {
-            if (unidad.esIgualA(mutalisco)){
-                Mapa.obtener().quitarOcupable(unidad.obtenerCoordenada());
-                unidades.remove(unidad);
-
-                GestorDeCrianza nuevoGestorEvoluciones = new GestorDeCrianza(unidad.obtenerCoordenada());
-                nuevoGestorEvoluciones.agregarUnidad(unaUnidad, unidades, mineralesDelImperio);
-                gestoresDeEvoluciones.add(nuevoGestorEvoluciones);
-
-                break;
-            }
-        }
+        unidadesAEvolucionar.add(new UnidadEnEvolucion(unidadAEvolucionar, unidadEvolucionada));
     }
 
-    public void evolucionarMutaliscoAGuardian(){
+    public void evolucionarMutaliscoAGuardian(Unidad unidad){
         Unidad guardian = new Guardian();
-        validarPreRequisitosDeEvolucionDeMutalisco(guardian);
+        validarPreRequisitosDeEvolucionDeMutalisco(guardian, unidad);
     }
 
-    public void evolucionarMutaliscoADevorador() {
+    public void evolucionarMutaliscoADevorador(Unidad unidad) {
         Unidad devorador = new Devorador();
-        validarPreRequisitosDeEvolucionDeMutalisco(devorador);
+        validarPreRequisitosDeEvolucionDeMutalisco(devorador, unidad);
     }
 
     @Override
     public void terminarTurno(){
         super.terminarTurno();
-        for(GestorDeCrianza gestorDeEvoluciones : gestoresDeEvoluciones)
+        for(GestorDeCrianza gestorDeEvoluciones : gestoresDeEvoluciones) {
             gestorDeEvoluciones.actualizar();
+        }
+        for(UnidadEnEvolucion unidadEnEvolucion: unidadesAEvolucionar) {
+            unidadEnEvolucion.pasarTurno();
+
+            if (unidadEnEvolucion.unidadYaEvoluciono()) {
+                unidades.add(unidadEnEvolucion.obtenerUnidad());
+                unidadesAEvolucionar.remove(unidadEnEvolucion);
+            }
+        }
     }
 
     @Override

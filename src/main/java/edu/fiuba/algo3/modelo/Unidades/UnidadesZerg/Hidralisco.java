@@ -9,16 +9,14 @@ import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Hidralisco extends UnidadZerg {
 
-    private final int turnosDeContruccion = 4;
-    private final int danioTerrestre = 10;
-    private final int danioAereo = 10;
-    private final int cantidadDeVida = 80;
-
     public Hidralisco(){
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 4;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.rangoDeAtaque = 4;
+        int danioTerrestre = 10;
+        int danioAereo = 10;
         this.danio = new DanioMixto(danioTerrestre, danioAereo);
+        int cantidadDeVida = 80;
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 25;

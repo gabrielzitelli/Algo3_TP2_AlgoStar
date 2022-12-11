@@ -1,20 +1,19 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,108 +21,94 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso27Test {
+    Mapa mapa = Mapa.obtener();
+    Zerg imperioZerg;
+    Criadero criadero;
+
     @BeforeEach
     public void setup(){
-        Mapa.obtener().reiniciarMapa();
-    }
+        mapa.reiniciarMapa();
 
-    @Test
-    public void test01NoPuedoEvolucionarAUnMutaliscoADevoradadorSinTenerAntesUnMutalisco(){
-        Zerg imperioZerg = new Zerg();
+        imperioZerg = new Zerg();
+        imperioZerg.abastecerDeRecursos();
 
-        assertThrows(ErrorNoHayMutaliscoParaEvolucionar.class,
-                () -> imperioZerg.evolucionarMutaliscoADevorador());
-    }
+        Coordenada coordenadaCriadero = new Coordenada(0, 0);
+        Coordenada coordenadaReservaReproduccion = new Coordenada(1, 0);
+        Coordenada coordenadaGuarida = new Coordenada(0, 1);
+        Coordenada coordenadaEspiral = new Coordenada(1, 1);
 
-    @Test
-    public void test02PuedoEvolucionarAUnMutaliscoADevoradorSiTengoLosRecursosSuficientes() {
-        Zerg imperioZerg = new Zerg();
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
-        imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
-
-        //Esperamos a que se construya el criadero
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReservaReproduccion);
 
-        //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
 
-        //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1));
+        imperioZerg.construirEdificio(new FabricaEspiral(), coordenadaEspiral);
 
-        //Espero a que se construya el espiral
         for (int i = 0; i < 10; i++)
             imperioZerg.terminarTurno();
 
-        //obtenemos el edificio
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+        criadero = (Criadero) imperioZerg.conseguirEdificio(coordenadaCriadero);
+    }
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaMutalisco()));
+    @Test
+    public void test01NoPuedoEvolucionarAUnMutaliscoADevoradadorSinTenerRecursos() {
+        criadero.crearUnidad(new FabricaMutalisco());
 
-        //Pasan los turnos y tenemos al mutalisco
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
-        //Lo evolucionamos
-        imperioZerg.evolucionarMutaliscoADevorador();
-        //No han pasado turnos, aún no lo tenemos
+
+        Unidad mutalisco = (Unidad) mapa.obtenerOcupable(new Coordenada(0, 2));
+
+        //Nos aseguramos que no tengamos más recursos
+        imperioZerg.abastecerDeRecursos(new Mineral(0), new Gas(0));
+
+        assertThrows(ErrorCantidadDeRecursoInsuficiente.class, () ->
+                imperioZerg.evolucionarMutaliscoADevorador(mutalisco));
+    }
+
+    @Test
+    public void test02PuedoEvolucionarAUnMutaliscoADevoradorTeniendoRecursos() {
+        criadero.crearUnidad(new FabricaMutalisco());
+
+        for (int i = 0; i < 7; i++)
+            imperioZerg.terminarTurno();
+
+        Unidad mutalisco = (Unidad) mapa.obtenerOcupable(new Coordenada(0, 2));
+
+        imperioZerg.evolucionarMutaliscoADevorador(mutalisco);
+        //movemos al mutalisco
+        mutalisco.moverA(new Coordenada(0,7));
+
+        //Tenemos el mutalisco todavía porque no han pasado los turnos
+        assertTrue(imperioZerg.tieneUnidad(mutalisco));
         assertFalse(imperioZerg.tieneUnidad(new Devorador()));
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 3; i++)
             imperioZerg.terminarTurno();
-        }
-        //tenemos el guardian
+
+        //Pasan 3 turnos y aun no tengo el guardian
+        assertTrue(imperioZerg.tieneUnidad(mutalisco));
+        assertFalse(imperioZerg.tieneUnidad(new Devorador()));
+
+        imperioZerg.terminarTurno();
+        imperioZerg.terminarTurno();
+
+        //Ya no tenemos al mutalisco y tenemos al guardian
         assertTrue(imperioZerg.tieneUnidad(new Devorador()));
-        assertFalse(imperioZerg.tieneUnidad(new Mutalisco()));
-    }
+        assertFalse(imperioZerg.tieneUnidad(mutalisco));
 
-    @Test
-    public void test03NoPuedoEvolucionarAUnMutaliscoNoTengoLosRecursosSuficientes() {
-        Zerg imperioZerg = new Zerg();
-
-        imperioZerg.abastecerDeRecursos(new Mineral(800), new Gas(300));
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
-
-        //Esperamos a que se construya el criadero
-        for(int i = 0; i < 5; i++)
-            imperioZerg.terminarTurno();
-
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
-
-        //esperamos a que se construya la reserva
-        for (int i = 0; i < 12; i++)
-            imperioZerg.terminarTurno();
-
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,1));
-
-        //Esperamos a que se construya la guarida
-        for (int i = 0; i < 12; i++)
-            imperioZerg.terminarTurno();
-
-        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1));
-
-        //Espero a que se construya el espiral
-        for (int i = 0; i < 10; i++)
-            imperioZerg.terminarTurno();
-
-        //obtenemos el edificio
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
-
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaMutalisco()));
-
-        //Pasan los turnos y tenemos al mutalisco
-        for (int i = 0; i < 7; i++)
-            imperioZerg.terminarTurno();
-        //No podemos evolucionar porque no tenemos más recursos
-        assertThrows(ErrorCantidadDeRecursoInsuficiente.class, () ->
-                imperioZerg.evolucionarMutaliscoADevorador());
+        //el guardian está en la posición en la que estaba el mutalisco
+        Unidad guardian = (Unidad) mapa.obtenerOcupable(new Coordenada(0,7));
+        assertTrue(guardian.esIgualA(new Devorador()));
     }
 }

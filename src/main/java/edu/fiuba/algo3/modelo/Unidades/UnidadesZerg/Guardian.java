@@ -9,15 +9,13 @@ import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Guardian extends UnidadZerg {
 
-    private final int turnosDeContruccion = 4;
-    private final int danioTerrestre = 25;
-    private final int cantidadDeVida = 100;
-
     public Guardian() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 4;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.rangoDeAtaque = 10;
+        int danioTerrestre = 25;
         this.danio = new DanioTerrestre(danioTerrestre);
+        int cantidadDeVida = 100;
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 50;
