@@ -13,7 +13,9 @@ import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import static java.lang.Math.*;
 
@@ -21,6 +23,7 @@ public class Mapa {
     static private Mapa mapaInstanciaUnica = new Mapa();
     private int tamanio = 100;
     private CasillaDecorator[][] matriz;
+    private Map<Coordenada, Ocupable> diccionarioOcupables = new HashMap<>()
     private double coeficienteBases = 0.12; //Relacion entre bases y tamanio del mapa
 
     private Mapa(){
@@ -150,14 +153,16 @@ public class Mapa {
     }
 
     public void quitarOcupable(Coordenada coordenada) {
-        CasillaDecorator casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
-        // TODO aprender a quitar una capa del decorator. Capar armando las capaz desde cero obviando la ultima.
-        //casillaAQuitar = casillaAQuitar.quitarOcupable();
-        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
+        CasillaDecorator casillaAQuitarOcupable = this.encontrarCasillaPorCoordenada(coordenada);
+        // TODO Colocar el valor Boolean estoyOcupada en casilla.
+        casillaAQuitarOcupable = casillaAQuitarOcupable.quitarOcupable();
+        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitarOcupable);
     }
 
     public Ocupable obtenerOcupable(Coordenada coordenada) {
         return new Zangano();
+        // OcupableDecorator a = (OcupableDecorator)this.encontrarCasillaPorCoordenada(coordenada);
+        // a.obtenerOcupable;
         // TODO Completar la logica de ocupable en el decorator
         //return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
     }

@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 
 import java.util.LinkedList;
 
+// TODO Borrar esta clase y hacer que ocupable delegue a casilla de alguna forma
 public class OcupableDecorator extends CasillaDecorator{
     private Ocupable unOcupable;
     private CasillaDecorator unaCasilla;
