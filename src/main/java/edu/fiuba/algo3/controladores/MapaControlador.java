@@ -96,6 +96,8 @@ public class MapaControlador extends Controlador {
     private double frameRate;
     private boolean mostrarFPS = false;
 
+    private ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+
     /*=====================================================================================
      * AlgoStar
      * ====================================================================================*/
@@ -231,6 +233,8 @@ public class MapaControlador extends Controlador {
         deshabilitarBotonesYPanes();
 
         paneInfoImperio.setVisible(false);
+
+        sonido.cargarMusica("ambientSound.mp3", "ambiente");
     }
 
     private void inicializarArraysDeBotonesYPanes(){
@@ -281,6 +285,8 @@ public class MapaControlador extends Controlador {
         camara = new Camara(bordeHorizontal, bordeVertical);
 
         menejarRedimension(stage);
+
+        sonido.reproducirMusica("ambiente");
     }
 
     private void menejarRedimension(Stage stage) {
