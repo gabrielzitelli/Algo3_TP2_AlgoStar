@@ -222,6 +222,7 @@ public class SuministroYUnidadesTest {
         Zerg imperio = new Zerg();
         imperio.abastecerDeRecursos();
 
+        Mapa.obtener().colocarOcupable(new Zangano(), new Coordenada(0,0));
         imperio.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
         for (int i = 0; i < 5; i++){
             imperio.terminarTurno();

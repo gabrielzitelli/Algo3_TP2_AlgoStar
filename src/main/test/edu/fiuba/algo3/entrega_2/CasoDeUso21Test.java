@@ -41,21 +41,25 @@ public class CasoDeUso21Test {
         Coordenada coordenadaGuarida = new Coordenada(0, 1);
         Coordenada coordenadaEspiral = new Coordenada(1, 1);
 
+        mapa.colocarOcupable(new Zangano(), coordenadaCriadero);
         imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         for (int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(), coordenadaReservaReproduccion);
         imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReservaReproduccion);
 
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(), coordenadaGuarida);
         imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
 
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(), coordenadaEspiral);
         imperioZerg.construirEdificio(new FabricaEspiral(), coordenadaEspiral);
 
         for (int i = 0; i < 10; i++)
