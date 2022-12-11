@@ -13,5 +13,6 @@ public class DragonVista extends UnidadProtossVista {
         this.info = "Dragon";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_protoss/original/dragonRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_protoss/original/creacion/dragonRawCrear.png")));
+        this.archivoDeSonido = "dragon";
     }
 }

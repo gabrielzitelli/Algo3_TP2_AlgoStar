@@ -11,6 +11,7 @@ public class DevoradorVista extends UnidadZergVista {
         this.identificador = "devorador";
         this.info = "Devorador";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/devoradorRaw.png")));
+        this.archivoDeSonido = "devorador";
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/devoradorRawEvolucionar.png")));
     }
 }

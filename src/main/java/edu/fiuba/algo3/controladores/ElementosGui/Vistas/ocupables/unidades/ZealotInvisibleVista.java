@@ -9,6 +9,7 @@ public class ZealotInvisibleVista extends UnidadProtossVista {
     public ZealotInvisibleVista(){
         this.tile = new Tile("unidades_protoss/32px/zealot_invisible.png");
         this.identificador = "zealot_invisible";
+        this.archivoDeSonido = "zealot";
         this.info = "Zealot Invisible";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_protoss/original/zealotRawInvisible.png")));
     }

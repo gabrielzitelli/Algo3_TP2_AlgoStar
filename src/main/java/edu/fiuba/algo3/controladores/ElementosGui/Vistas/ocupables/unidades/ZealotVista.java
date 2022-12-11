@@ -13,5 +13,6 @@ public class ZealotVista extends UnidadProtossVista {
         this.info = "Zealot";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_protoss/original/zealotRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_protoss/original/creacion/zealotRawCrear.png")));
+        this.archivoDeSonido = "zealot";
     }
 }
