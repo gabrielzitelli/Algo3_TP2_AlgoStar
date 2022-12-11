@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Casilla {
+    + tenesEstasSuperficies(Casillas : Collection) : Boolean
+}
+
+class Superficie {
+    + tenesEstasSuperficies(Casillas : Collection) : Boolean
+}
+
+class SuperficieDecorator {
+    + tenesEstasSuperficies(Casillas : Collection) : Boolean
+}
+
+class MohoDecorator {
+    + tenesEstasSuperficies(Casillas : Collection) : Boolean
+}
+
+class CargaDecorator {
+    + tenesEstasSuperficies(Casillas : Collection) : Boolean
+}
+
+class SuperficieAereaDecorator {
+    + tenesEstasSuperficies(Casillas : Collection) : Boolean
+}
+
+
+Casilla <|-- Superficie
+Casilla <|-- SuperficieDecorator
+SuperficieDecorator --> Casilla
+SuperficieDecorator <|-- MohoDecorator
+SuperficieDecorator <|-- CargaDecorator
+SuperficieDecorator <|-- SuperficieAereaDecorator
+
+
+
+@enduml
