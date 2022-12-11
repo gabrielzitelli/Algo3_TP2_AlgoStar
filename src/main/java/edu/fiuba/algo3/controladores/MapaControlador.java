@@ -554,6 +554,7 @@ public class MapaControlador extends Controlador {
             //Puede atacar
             try {
                 mapa.atacar(coordenadaAtacar, coordenadaClickeada);
+
             } catch (RuntimeException e) {
                 //todo agregar feedback
                 e.printStackTrace();

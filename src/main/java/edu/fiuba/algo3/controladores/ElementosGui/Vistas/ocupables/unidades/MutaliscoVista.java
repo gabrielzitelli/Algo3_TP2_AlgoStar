@@ -57,7 +57,6 @@ public class MutaliscoVista extends UnidadZergVista {
         botonCrearDevorador.setOnAction( event -> imperioZerg.evolucionarMutaliscoADevorador(mutalisco));
 
         //verificamos que se puede evolucionar
-
         prepararHabilitacionDeBoton(botonCrearGuardian, new Guardian(), imperioZerg, arrayWrappersBotonesEdificio[2], mutalisco);
         prepararHabilitacionDeBoton(botonCrearDevorador, new Devorador(), imperioZerg, arrayWrappersBotonesEdificio[3], mutalisco);
     }
@@ -68,16 +67,21 @@ public class MutaliscoVista extends UnidadZergVista {
         String identificadorUnidad = (String) guardianJSON.get(ConvertidorJSON.OCUPABLE);
         String costoMineral = (String) guardianJSON.get("costoMineral");
         String costoGas = (String) guardianJSON.get("costoGas");
+        String informacionDeCosto = String.format("\n%s Minerales necesarios: %s\n%s Gas necesario: %s", emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas);
 
         try {
             imperioZerg.estaAptoParaEvolucionarA(unidad, mutalisco);
-            boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            boton.setTooltip(new Tooltip("EVOLUCIONAR EN " + identificadorUnidad.toUpperCase() + informacionDeCosto));
+
         } catch (ErrorCantidadDeRecursoInsuficiente error) {
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + " \nNo hay suficientes recursos como para crear a esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suficientes recursos como para crear a esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("EVOLUCIONAR EN " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorEstaUnidadYaEstaEvolucionando error) {
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("Esta unidad ya está evolucionando"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " Esta unidad ya está evolucionando";
+            Tooltip.install(wrapperBoton, new Tooltip("EVOLUCIONAR EN " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
         }
     }
 }

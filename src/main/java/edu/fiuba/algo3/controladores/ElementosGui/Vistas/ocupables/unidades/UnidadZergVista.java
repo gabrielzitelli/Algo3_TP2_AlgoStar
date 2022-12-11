@@ -11,6 +11,6 @@ public abstract class UnidadZergVista extends UnidadVista{
         if (!imperioDeJugadorActual.equalsIgnoreCase("zerg"))
             return;
 
-        super.manejarBotones(arrayBotones,arrayWrappersBotonesEdificio,coordenada,imperioDeJugadorActual,mapaControlador);
+        super.manejarBotones(arrayBotones, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual, mapaControlador);
     }
 }

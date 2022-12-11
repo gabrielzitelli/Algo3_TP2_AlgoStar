@@ -3,6 +3,7 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ScoutVista;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.UnidadVista;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
@@ -56,14 +57,16 @@ public class PuertoEstelarVista extends EdificioVista {
         prepararHabilitacionDeBoton(botonCrearScout, new FabricaScout(), estePuerto, arrayWrappersBotonesEdificio[0], new ScoutVista());
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, PuertoEstelar unPuerto, Pane wrapperBoton, OcupableVista ocupableVista){
+    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, PuertoEstelar unPuerto, Pane wrapperBoton, UnidadVista unidadVista){
         Unidad unidadACrear = unaFabrica.crearUnidad();
 
         String informacionUnidad = unidadACrear.toString();
-        String identificadorUnidad = ocupableVista.getInfo();
+        String identificadorUnidad = unidadVista.getInfo();
         String costoMineral = obtenerAtributoDeString(informacionUnidad, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionUnidad, "costoGas");
         String poblacionNecesaria = Integer.toString( unaFabrica.obtenerPoblacionNecesariaInstancia() ) ;
+        String requisitosUnidad = unidadVista.getRequisitosUnidad();
+        String informacionDeCosto = String.format("%s\n%s Minerales necesarios: %s\n%s Gas necesario: %s\n%s Ocupa: %s de población", requisitosUnidad, emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas, emojiBulletPoint, poblacionNecesaria);
 
         if(unPuerto.toString().contains(" estado en_construccion")){
             boton.setDisable(true);
@@ -73,16 +76,22 @@ public class PuertoEstelarVista extends EdificioVista {
 
         try{
             unPuerto.estaAptaUnidadParaConstruir(unaFabrica);
-            boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionDeCosto));
+
         } catch (ErrorNoSeCumplenLosRequisitosDeEstaUnidad exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo está disponible el edificio que permite construir esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No está disponible el edificio que permite construir esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorCantidadDeRecursoInsuficiente exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay suficientes recursos como para crear a esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suficientes recursos como para crear a esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorSuperaMaximoDePoblacionActual exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay suministro de población suficiente para crear a esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suministro de población suficiente para crear a esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
         }
     }
 }
