@@ -7,8 +7,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Vida.VidaSimple;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 
 public class AmoSupremo extends UnidadZerg {
 
@@ -38,8 +37,8 @@ public class AmoSupremo extends UnidadZerg {
 
     @Override
     public void moverA(Coordenada coordenadaDestino) {
-        super.moverA(coordenadaDestino);
         Mapa.obtener().desRevelar(coordenada, radioDeRevelacion);
+        super.moverA(coordenadaDestino);
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){

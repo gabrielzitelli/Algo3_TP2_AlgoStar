@@ -11,8 +11,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visibilidad;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visible;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
-import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 
 public class Zealot extends UnidadProtoss {
 
@@ -53,9 +52,15 @@ public class Zealot extends UnidadProtoss {
         }
 
         estado = estado.aumentarContador();
-        if (estado.esInvisible()) {
+
+        actualizarIdentificador(estado.esInvisible());
+    }
+
+    public void actualizarIdentificador(boolean esInvisible){
+        if (esInvisible)
             this.identificador = "zealot_invisible";
-        }
+        else
+            this.identificador = "zealot";
     }
 
     @Override

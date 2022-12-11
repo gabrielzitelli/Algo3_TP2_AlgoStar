@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Mapa.MineralBruto;
 import edu.fiuba.algo3.modelo.Mapa.SinMaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
-import edu.fiuba.algo3.modelo.Vida.VidaSimple;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 
 public class Zangano extends UnidadZerg {
 

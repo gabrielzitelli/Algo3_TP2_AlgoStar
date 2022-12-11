@@ -4,9 +4,8 @@ package edu.fiuba.algo3.testDeClases.vidasTests;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
-import edu.fiuba.algo3.modelo.Vida.Vida;
-import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Edificios.Vida.Vida;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

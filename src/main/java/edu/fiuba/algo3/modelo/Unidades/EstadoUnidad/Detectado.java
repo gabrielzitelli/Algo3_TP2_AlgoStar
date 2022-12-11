@@ -20,8 +20,10 @@ public class Detectado implements Visibilidad {
 
     @Override
     public Visibilidad verificarVisibilidadDe(Casilla unaCasilla) {
-        if (unaCasilla.tieneEsteRevelable(new SinRevelar()))
+        if (unaCasilla.tieneEsteRevelable(new SinRevelar())) {
+            unidadInvisible.actualizarIdentificador(true);
             return new Invisible(unidadInvisible);
+        }
 
         return this;
     }

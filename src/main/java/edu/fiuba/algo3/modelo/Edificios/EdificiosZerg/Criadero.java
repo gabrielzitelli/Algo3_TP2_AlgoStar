@@ -14,10 +14,9 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SinCarga;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Criadero extends EdificioZerg {
 

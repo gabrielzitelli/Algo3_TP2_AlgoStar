@@ -609,7 +609,6 @@ public class MapaControlador extends Controlador {
         JSONObject ocupableJSON = ConvertidorJSON.convertirAJSON(mapa.obtenerOcupable(coordenada));
         OcupableVista ocupableView = (OcupableVista) OcupableVista.obtenerOcupable(ocupableJSON.get(ConvertidorJSON.OCUPABLE));
 
-
         textoNombreEdificio.setText(ocupableView.getInfo());
         ocupableView.renderAdentroDeImageView(imageviewEdificio);
 

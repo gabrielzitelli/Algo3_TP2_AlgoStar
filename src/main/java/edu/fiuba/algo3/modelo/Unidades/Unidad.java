@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacar;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminadora;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminar;
-import edu.fiuba.algo3.modelo.Vida.Vida;
+import edu.fiuba.algo3.modelo.Edificios.Vida.Vida;
 
 import java.util.ArrayList;
 

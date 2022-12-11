@@ -285,6 +285,7 @@ public class Mapa {
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.cargarDeEnergia();
     }
+
     public void desabastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
         for(Casilla unaCasilla : casillasDentroDelRadio)

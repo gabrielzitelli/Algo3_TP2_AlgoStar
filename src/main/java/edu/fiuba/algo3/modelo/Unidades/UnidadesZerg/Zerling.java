@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
-import edu.fiuba.algo3.modelo.Vida.VidaSimple;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 
 public class Zerling extends UnidadZerg {
 

@@ -5,8 +5,7 @@ import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
-import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 
 public class Scout extends UnidadProtoss {
 

@@ -9,10 +9,9 @@ import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
-import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ReservaDeReproduccion extends EdificioZerg {
 

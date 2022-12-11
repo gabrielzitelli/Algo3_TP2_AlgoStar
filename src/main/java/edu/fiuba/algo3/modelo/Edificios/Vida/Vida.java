@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Vida;
+package edu.fiuba.algo3.modelo.Edificios.Vida;
 
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;

@@ -14,10 +14,9 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
-import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Extractor extends EdificioZerg {

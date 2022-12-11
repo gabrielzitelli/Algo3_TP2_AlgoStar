@@ -18,8 +18,10 @@ public class Invisible implements Visibilidad {
 
     @Override
     public Visibilidad verificarVisibilidadDe(Casilla unaCasilla) {
-        if (unaCasilla.tieneEsteRevelable(new ConRevelar()))
+        if (unaCasilla.tieneEsteRevelable(new ConRevelar())){
+            unidadInvisible.actualizarIdentificador(false);
             return new Detectado(unidadInvisible);
+        }
 
         return this;
     }

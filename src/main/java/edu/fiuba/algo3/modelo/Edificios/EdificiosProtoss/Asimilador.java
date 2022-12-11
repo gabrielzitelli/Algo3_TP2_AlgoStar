@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SinMoho;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
-import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 
