@@ -29,6 +29,7 @@ public class MutaliscoVista extends UnidadZergVista {
         this.info = "Mutalisco";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/mutaliscoRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/mutaliscoRawCrear.png")));
+        this.requisitosUnidad = "\n" + emojiInformacionUnicode + " Requiere: Espiral";
     }
 
     @Override

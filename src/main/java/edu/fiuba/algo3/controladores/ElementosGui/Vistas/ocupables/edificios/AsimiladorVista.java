@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
-public class AsimiladorVista extends OcupableVista {
+public class AsimiladorVista extends EdificioVista {
 
     public AsimiladorVista() {
         this.tile = new Tile("edificios_protoss/32px/asimilador.png");

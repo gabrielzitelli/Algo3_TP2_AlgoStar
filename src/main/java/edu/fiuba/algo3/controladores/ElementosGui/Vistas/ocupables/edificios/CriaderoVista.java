@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
 import java.util.Objects;
 
 
-public class CriaderoVista extends OcupableVista {
+public class CriaderoVista extends EdificioVista {
 
     Tile piso = new Tile("superficies/32px/moho_transparente.png");
     public CriaderoVista(){
@@ -30,7 +30,7 @@ public class CriaderoVista extends OcupableVista {
         this.identificador = "criadero";
         this.info = "Criadero";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/criaderoRaw.png")));
-        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/construccion/criaderoRawConstruir.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/evolucion/criaderoRawEvolucion.png")));
     }
 
     @Override
@@ -73,14 +73,16 @@ public class CriaderoVista extends OcupableVista {
         prepararHabilitacionDeBoton(botonCrearAmoSupremo, new FabricaAmoSupremo(), esteCriadero, arrayWrappersBotonesEdificio[4], new AmoSupremoVista());
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, Criadero unCriadero, Pane wrapperBoton, OcupableVista ocupableVista){
+    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, Criadero unCriadero, Pane wrapperBoton, UnidadVista unidadVista){
         Unidad unidadACrear = unaFabrica.crearUnidad();
 
         String informacionUnidad = unidadACrear.toString();
-        String identificadorUnidad = ocupableVista.getInfo();
+        String identificadorUnidad = unidadVista.getInfo();
         String costoMineral = obtenerAtributoDeString(informacionUnidad, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionUnidad, "costoGas");
-        String poblacionNecesaria = Integer.toString( unaFabrica.obtenerPoblacionNecesariaInstancia() ) ;
+        String poblacionNecesaria = Integer.toString( unaFabrica.obtenerPoblacionNecesariaInstancia() );
+        String requisitosUnidad = unidadVista.getRequisitosUnidad();
+        String informacionDeCosto = String.format("%s\n%s Minerales necesarios: %s\n%s Gas necesario: %s\n%s Ocupa: %s de población", requisitosUnidad, emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas, emojiBulletPoint, poblacionNecesaria);
 
         if(unCriadero.toString().contains(" estado en_construccion")){
             boton.setDisable(true);
@@ -90,19 +92,27 @@ public class CriaderoVista extends OcupableVista {
 
         try{
             unCriadero.estaAptaUnidadParaConstruir(unaFabrica);
-            boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionDeCosto));
+            
         }catch (ErrorNoSeCumplenLosRequisitosDeEstaUnidad exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo está disponible el edificio que permite construir esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No está disponible el edificio que permite construir esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+        
         }  catch (ErrorCriaderoNoTieneMasLarvas exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay larvas disponibles para crear esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay larvas disponibles para crear esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+        
         } catch (ErrorCantidadDeRecursoInsuficiente exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay suficientes recursos como para crear a esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suficientes recursos como para crear a esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+        
         } catch (ErrorSuperaMaximoDePoblacionActual exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + "\nNo hay suministro de población suficiente para crear a esta unidad" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas + "\n Ocupa: " + poblacionNecesaria + " de población"));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suministro de población suficiente para crear a esta unidad";
+            Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
         }
     }
 }

@@ -25,7 +25,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
-public class AccesoVista extends OcupableVista {
+public class AccesoVista extends EdificioVista {
 
     public AccesoVista() {
         this.tile = new Tile("edificios_protoss/32px/acceso.png");

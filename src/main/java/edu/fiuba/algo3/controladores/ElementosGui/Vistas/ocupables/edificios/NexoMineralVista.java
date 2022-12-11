@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
-public class NexoMineralVista extends OcupableVista {
+public class NexoMineralVista extends EdificioVista {
 
     public NexoMineralVista() {
         this.tile = new Tile("edificios_protoss/32px/nexo_mineral.png");

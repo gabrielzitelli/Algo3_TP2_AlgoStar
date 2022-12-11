@@ -556,6 +556,7 @@ public class MapaControlador extends Controlador {
                 mapa.atacar(coordenadaAtacar, coordenadaClickeada);
             } catch (RuntimeException e) {
                 //todo agregar feedback
+                e.printStackTrace();
             }
         }
 
@@ -574,6 +575,7 @@ public class MapaControlador extends Controlador {
                 unidad.moverA(coordenadaClickeada);
             } catch (RuntimeException error){
                 //Todo poner algun sonido o algo para indicar que no se puede
+                error.printStackTrace();
             }
         }
         coordenadaMover = null;

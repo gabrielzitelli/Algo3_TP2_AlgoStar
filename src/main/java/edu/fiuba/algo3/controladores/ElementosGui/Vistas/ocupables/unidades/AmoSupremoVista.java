@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import java.util.Objects;
 
 public class AmoSupremoVista extends UnidadZergVista {
+
     public AmoSupremoVista() {
         this.tile = new Tile("unidades_zerg/32px/amo_supremo.png");
         this.identificador = "amo_supremo";
@@ -24,8 +25,11 @@ public class AmoSupremoVista extends UnidadZergVista {
         super.manejarBotones(arrayBotones, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual, mapaControlador);
 
         Button botonAtacar = arrayBotones[1];
+        Pane wrapperBotonAtacar = arrayWrappersBotonesEdificio[1];
+
+        //Desactivo botón de atacar
         botonAtacar.setDisable(true);
         botonAtacar.setVisible(false);
-        botonAtacar.setTooltip(new Tooltip(""));
+        Tooltip.install(wrapperBotonAtacar, null);
     }
 }

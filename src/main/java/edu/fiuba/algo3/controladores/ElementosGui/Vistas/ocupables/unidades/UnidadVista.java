@@ -19,6 +19,14 @@ import java.util.Objects;
 
 public abstract class UnidadVista extends OcupableVista {
 
+    protected String requisitosUnidad = "";
+    protected Image imagenDeMover = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/mover.png")));
+    protected Image imagenDeAtacar = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/atacar.png")));
+
+    public String getRequisitosUnidad(){
+        return requisitosUnidad;
+    }
+
     protected void crearBoton(Button boton, Image imagenAColocar, double ancho, double alto){
         ImageView imagen = new ImageView();
         imagen.setPreserveRatio(false);
@@ -48,25 +56,24 @@ public abstract class UnidadVista extends OcupableVista {
         double anchoBoton = botonMover.getPrefWidth();
         double altoBoton = botonMover.getPrefWidth();
 
-        crearBoton(botonMover, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/mover.png"))), anchoBoton, altoBoton);
-        crearBoton(botonAtacar, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/atacar.png"))), anchoBoton, altoBoton);
+        crearBoton(botonMover, imagenDeMover, anchoBoton, altoBoton);
+        crearBoton(botonAtacar, imagenDeAtacar, anchoBoton, altoBoton);
 
         botonMover.setOnAction(actionEvent -> mapaControlador.guardarCasillaMovimiento(coordenada));
         botonAtacar.setOnAction(actionEvent -> mapaControlador.guardarCasillaAtacar(coordenada));
 
-        botonMover.setTooltip( new Tooltip("MOVER UNIDAD" + "\nMover a la unidad a otra casilla"));
-        botonAtacar.setTooltip( new Tooltip("ATACAR" + "\nAtacar a un edificio o unidad"));
+        botonMover.setTooltip(new Tooltip("MOVER UNIDAD\n" + emojiInformacionUnicode + " Mover a la unidad a otra casilla"));
+        botonAtacar.setTooltip( new Tooltip("ATACAR\n" + emojiInformacionUnicode + " Atacar a un edificio o unidad"));
 
         JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidad);
         if (unidadJSON.get(ConvertidorJSON.CAMINAR).equals("no_caminar")){
             botonMover.setDisable(true);
-            Tooltip.install(wrapperBotonMover, new Tooltip("MOVER UNIDAD" + "\nEsta unidad ya se ha movido"));
+            Tooltip.install(wrapperBotonMover, new Tooltip("MOVER UNIDAD\n" + emojiAdvertenciaUnidode + " Esta unidad ya se ha movido"));
         }
 
         if (unidadJSON.get(ConvertidorJSON.ATACAR).equals("no_atacar")){
             botonAtacar.setDisable(true);
-            Tooltip.install(wrapperBotonAtacar, new Tooltip("ATACAR" + "\nEsta movida ya ha atacado"));
+            Tooltip.install(wrapperBotonAtacar, new Tooltip("ATACAR\n" + emojiAdvertenciaUnidode + " Esta movida ya ha atacado"));
         }
     }
-
 }

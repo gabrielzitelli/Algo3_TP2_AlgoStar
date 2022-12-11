@@ -5,7 +5,6 @@ import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.controladores.MapaControlador;
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
@@ -102,27 +101,37 @@ public class ZanganoVista extends UnidadZergVista {
         boton.setGraphic(imagenEdificio);
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, EdificioZerg unEdificio, Pane wrapperBoton, OcupableVista ocupableVista, Zerg imperioZerg, Coordenada coordenada){
+    private void prepararHabilitacionDeBoton(Button boton, EdificioZerg unEdificio, Pane wrapperBoton, EdificioVista edificioVista, Zerg imperioZerg, Coordenada coordenada){
         String informacionEdificio = unEdificio.toString();
-        String identificadorEdificio = ocupableVista.getInfo();
+        String identificadorEdificio = edificioVista.getInfo();
+        String requisitosEdificio = edificioVista.getEdificiosRequisitos();
         String costoMineral = obtenerAtributoDeString(informacionEdificio, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionEdificio, "costoGas");
+        String informacionDeCosto = String.format("%s\n%s Minerales necesarios: %s\n%s Gas necesario: %s",requisitosEdificio, emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas);
 
         try{
             imperioZerg.verificarConstruccionDeEdificio(unEdificio, coordenada);
-            boton.setTooltip(new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
-        } catch (ErrorCantidadDeRecursoInsuficiente exception){
+            boton.setTooltip(new Tooltip("EVOLUCIONAR EN " + identificadorEdificio.toUpperCase() + informacionDeCosto));
+
+        }catch (ErrorCantidadDeRecursoInsuficiente exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo hay suficientes recursos como para construir este edificio" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suficientes recursos como para construir este edificio";
+            Tooltip.install(wrapperBoton, new Tooltip("EVOLUCIONAR EN " + identificadorEdificio.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio en esta casilla ocupada" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No se puede construir este edificio en esta casilla ocupada";
+            Tooltip.install(wrapperBoton, new Tooltip("EVOLUCIONAR EN " + identificadorEdificio.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla exception) {
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio sobre esta casilla por sus características" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No se puede construir este edificio sobre esta casilla por sus características";
+            Tooltip.install(wrapperBoton, new Tooltip("EVOLUCIONAR EN " + identificadorEdificio.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorNoSeCumplenLosPreRequisitosDelEdificio exception) {
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio porque falta construir sus edificios requisito" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No se puede construir este edificio porque falta construir sus edificios requisito";
+            Tooltip.install(wrapperBoton, new Tooltip("EVOLUCIONAR EN " + identificadorEdificio.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
         }
     }
 }

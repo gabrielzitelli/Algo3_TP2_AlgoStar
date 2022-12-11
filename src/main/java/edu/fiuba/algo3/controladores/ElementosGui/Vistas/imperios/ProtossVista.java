@@ -83,9 +83,9 @@ public class ProtossVista {
         prepararHabilitacionDeBoton(botonCrearPuertoEstelar, new PuertoEstelar(), arrayWrappersBotonesConstruirEdificio[4], new PuertoEstelarVista(), imperioProtoss, coordenada);
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, Edificio unEdificio, Pane wrapperBoton, OcupableVista ocupableVista, Protoss imperioProtoss, Coordenada coordenada){
+    private void prepararHabilitacionDeBoton(Button boton, Edificio unEdificio, Pane wrapperBoton, EdificioVista edificioVista, Protoss imperioProtoss, Coordenada coordenada){
         String informacionEdificio = unEdificio.toString();
-        String identificadorEdificio = ocupableVista.getInfo();
+        String identificadorEdificio = edificioVista.getInfo();
         String costoMineral = obtenerAtributoDeString(informacionEdificio, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionEdificio, "costoGas");
 

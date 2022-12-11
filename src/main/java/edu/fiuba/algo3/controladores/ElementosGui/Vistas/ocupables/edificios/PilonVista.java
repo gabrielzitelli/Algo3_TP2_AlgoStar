@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
-public class PilonVista extends OcupableVista {
+public class PilonVista extends EdificioVista {
 
     public PilonVista() {
         this.tile = new Tile("edificios_protoss/32px/pilon.png");

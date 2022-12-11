@@ -18,13 +18,17 @@ import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
-public class ExtractorVista extends OcupableVista {
+public class ExtractorVista extends EdificioVista {
+
+    private Image imagenDescontratar = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/descontratar.png")));
+
     public ExtractorVista() {
         this.tile = new Tile("edificios_zerg/32px/extractor.png");
         this.identificador = "extractor";
         this.info = "Extractor";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/extractorRaw.png")));
-        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/construccion/extractorRawConstruir.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_zerg/original/evolucion/extractorRawEvolucion.png")));
+        this.edificiosRequisitos = "\n" + emojiInformacionUnicode + " Requiere: Moho, Volcán de gas";
     }
 
     public void manejarBotones(Button[] arrayBotones, Pane[] arrayWrappersBotonesEdificio, Coordenada coordenada, String imperioDeJugadorActual, MapaControlador mapaControlador){
@@ -35,32 +39,28 @@ public class ExtractorVista extends OcupableVista {
         JSONObject extractorJSON = ConvertidorJSON.convertirAJSON(esteExtractor);
 
         Button botonSacarZangano = arrayBotones[0];
+        Pane wrapperBotonSacarZangano = arrayWrappersBotonesEdificio[0];
 
         double anchoBoton = botonSacarZangano.getPrefWidth();
         double altoBoton = botonSacarZangano.getPrefWidth();
 
-        Image imagen = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/mover.png")));
+        crearBoton(botonSacarZangano, imagenDescontratar, anchoBoton, altoBoton);
 
-        crearBoton(botonSacarZangano, imagen, anchoBoton, altoBoton);
-
-        botonSacarZangano.setOnAction( event -> {
-            esteExtractor.descontratarZangano();
-        });
-
-        botonSacarZangano.setTooltip(new Tooltip("SACAR ZANGANO"));
+        botonSacarZangano.setOnAction( event -> esteExtractor.descontratarZangano());
+        botonSacarZangano.setTooltip(new Tooltip("DESCONTRATAR ZANGANO" + "\nQuitar un zángano que está extrayendo gas"));
 
         //Verificar que está construido
         if (extractorJSON.get(ConvertidorJSON.ESTADO).equals("en_construccion")) {
             botonSacarZangano.setDisable(true);
             botonSacarZangano.setVisible(false);
-            botonSacarZangano.setTooltip(new Tooltip(""));
+            botonSacarZangano.setTooltip(null);
         }
 
-        //verificar que tiene Zanganos
+        //Desactivar botón si no hay zánganos contratados
         int cantidadDeZanganos = Integer.parseInt(((String)extractorJSON.get(ConvertidorJSON.CANTIDAD_UNIDADES)));
         if (cantidadDeZanganos == 0) {
             botonSacarZangano.setDisable(true);
-            botonSacarZangano.setTooltip(new Tooltip("No hay Zanganos"));
+            Tooltip.install(wrapperBotonSacarZangano, new Tooltip("DESCONTRATAR ZANGANO" + "\n No hay ningún zángano contratado"));
         }
 
     }
@@ -74,8 +74,6 @@ public class ExtractorVista extends OcupableVista {
 
         imagen.setFitWidth(ancho);
         imagen.setFitHeight(alto);
-
-        imagen.rotateProperty().set(90.0);
 
         DropShadow efectorBordePNGBlanco = new DropShadow( 1, Color.WHITE );
         imagen.setEffect(efectorBordePNGBlanco);

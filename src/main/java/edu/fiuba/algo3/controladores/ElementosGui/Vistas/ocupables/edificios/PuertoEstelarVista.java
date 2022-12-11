@@ -23,7 +23,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
-public class PuertoEstelarVista extends OcupableVista {
+public class PuertoEstelarVista extends EdificioVista {
 
     public PuertoEstelarVista() {
         this.tile = new Tile("edificios_protoss/32px/puerto_estelar.png");
