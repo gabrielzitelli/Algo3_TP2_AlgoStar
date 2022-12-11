@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergia;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergiaEnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -8,11 +9,16 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SinMoho;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
+import java.util.ArrayList;
+
 public class Pilon extends EdificioProtoss {
 
     private EstadoGeneradorDeEnergia estadoGeneradorDeEnergia;
     private int turnoParaEstarConstruido = 5;
     private int valorVital = 300;
+
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+
 
     public Pilon(){
         this.costoGas = 0;
@@ -24,6 +30,11 @@ public class Pilon extends EdificioProtoss {
         this.superficieRequerida = new SuperficieTerrestre();
         estadoGeneradorDeEnergia = new EstadoGeneradorDeEnergiaEnConstruccion(turnoParaEstarConstruido);
         this.identificador = "pilon";
+    }
+
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     @Override

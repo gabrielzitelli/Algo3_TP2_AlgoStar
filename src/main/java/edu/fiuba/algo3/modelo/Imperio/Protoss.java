@@ -42,11 +42,13 @@ public class Protoss extends Imperio{
         this.construirEdificioSinVerificacionesMateriales(unAcceso, coordenadaAcceso);
         unAcceso.construirInmediatamente();
     }
+
     public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
         fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
 
         this.construirEdificio(fabricaEdificio.crear(), coordenada);
     }
+
     @Override
     public void prepararParaRevancha(){
         this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
@@ -56,36 +58,9 @@ public class Protoss extends Imperio{
         this.fabricasDisponibles = new FabricasDisponibles();
         this.unidades = new ArrayList<>();
     }
-/*
-    public void construirPuertoEstelar(Coordenada coordenada) {
-        PuertoEstelar puertoEstelar = new PuertoEstelar();
-        puertoEstelar.asignarListaDeUnidades(fabricasDisponibles);
-        puertoEstelar.asignarListaDeUnidadesImperio(unidades);
-        puertoEstelar.asignarRecursos(mineralesDelImperio, gasDelImperio);
-        this.construirEdificio(puertoEstelar, coordenada);
-    }
 
-    public void construirPilon(Coordenada coordenada) {
-        Pilon pilon = new Pilon();
-        this.construirEdificio(pilon, coordenada);
+    public void verificarConstruccionDeEdificio(Edificio unEdificio, Coordenada coordenada){
+        comprobarRequisitosMaterialesVerificacion(unEdificio);
+        Mapa.obtener().construirEdificioVerificacion(unEdificio, coordenada);
     }
-
-    public void construirAcceso(Coordenada coordenada) {
-        Acceso acceso = new Acceso();
-        acceso.asignarListaDeUnidades(fabricasDisponibles);
-        acceso.asignarListaDeUnidadesImperio(unidades);
-        acceso.asignarRecursos(mineralesDelImperio, gasDelImperio);
-        this.construirEdificio(acceso, coordenada);
-    }
-
-    public void construirNexoMineral(Coordenada coordenada) {
-        NexoMineral nexoMineral = new NexoMineral(this.mineralesDelImperio);
-        this.construirEdificio(nexoMineral, coordenada);
-    }
-
-    public void construirAsimilador(Coordenada coordenada) {
-        Asimilador asimilador = new Asimilador(this.gasDelImperio);
-        this.construirEdificio(asimilador, coordenada);
-    }
-*/
 }

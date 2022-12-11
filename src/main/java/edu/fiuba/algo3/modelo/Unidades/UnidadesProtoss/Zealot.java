@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visibilidad;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visible;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 public class Zealot extends UnidadProtoss {
@@ -69,5 +70,10 @@ public class Zealot extends UnidadProtoss {
 
     public void disminuirPoblacion(Suministro suministroImperio){
         suministroImperio.disminuirPoblacion(FabricaZealot.obtenerPoblacionNecesaria());
+    }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return Zealot.class.equals(claseAAverificar);
     }
 }

@@ -10,7 +10,7 @@ public abstract class UnidadProtossVista extends UnidadVista{
     public void manejarBotones(Button[] arrayBotones, Pane[] arrayWrappersBotonesEdificio, Coordenada coordenada, String imperioDeJugadorActual, MapaControlador mapaControlador){
         if (!imperioDeJugadorActual.equalsIgnoreCase("protoss"))
             return;
-        super.manejarBotones(arrayBotones, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual, mapaControlador);
 
+        super.manejarBotones(arrayBotones, arrayWrappersBotonesEdificio, coordenada, imperioDeJugadorActual, mapaControlador);
     }
 }
