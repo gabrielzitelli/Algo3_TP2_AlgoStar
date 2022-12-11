@@ -11,6 +11,6 @@ public class GuardianVista extends UnidadZergVista {
         this.identificador = "guardian";
         this.info = "Guardian";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/guardianRaw.png")));
-        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/guardianRawCrear.png")));
+        this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/guardianRawEvolucionar.png")));
     }
 }

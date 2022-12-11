@@ -47,7 +47,7 @@ public class ExtractorVista extends EdificioVista {
         crearBoton(botonSacarZangano, imagenDescontratar, anchoBoton, altoBoton);
 
         botonSacarZangano.setOnAction( event -> esteExtractor.descontratarZangano());
-        botonSacarZangano.setTooltip(new Tooltip("DESCONTRATAR ZANGANO" + "\nQuitar un zángano que está extrayendo gas"));
+        botonSacarZangano.setTooltip(new Tooltip("DESCONTRATAR ZANGANO\n" + emojiInformacionUnicode + " Quitar un zángano que está extrayendo gas"));
 
         //Verificar que está construido
         if (extractorJSON.get(ConvertidorJSON.ESTADO).equals("en_construccion")) {
@@ -60,7 +60,7 @@ public class ExtractorVista extends EdificioVista {
         int cantidadDeZanganos = Integer.parseInt(((String)extractorJSON.get(ConvertidorJSON.CANTIDAD_UNIDADES)));
         if (cantidadDeZanganos == 0) {
             botonSacarZangano.setDisable(true);
-            Tooltip.install(wrapperBotonSacarZangano, new Tooltip("DESCONTRATAR ZANGANO" + "\n No hay ningún zángano contratado"));
+            Tooltip.install(wrapperBotonSacarZangano, new Tooltip("DESCONTRATAR ZANGANO\n" + emojiAdvertenciaUnidode + " No hay ningún zángano contratado"));
         }
 
     }

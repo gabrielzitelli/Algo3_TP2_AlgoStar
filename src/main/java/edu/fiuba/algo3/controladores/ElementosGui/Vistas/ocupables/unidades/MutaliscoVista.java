@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
@@ -14,14 +15,16 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import org.json.simple.JSONObject;
 
 import java.util.Objects;
 
 public class MutaliscoVista extends UnidadZergVista {
-
 
     public MutaliscoVista() {
         this.tile = new Tile("unidades_zerg/32px/mutalisco.png");
