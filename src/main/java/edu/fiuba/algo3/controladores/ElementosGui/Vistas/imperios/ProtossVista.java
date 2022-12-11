@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -100,9 +101,9 @@ public class ProtossVista {
         } catch (ErrorCantidadDeRecursoInsuficiente exception){
             boton.setDisable(true);
             Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo hay suficientes recursos como para construir este edificio" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
-        } catch (ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada exception){
+        } catch (ErrorNoSeCumplenLosPreRequisitosDelEdificio exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio en esta casilla ocupada" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio porque no se cumplen los prerequisitos" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
         } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla exception) {
             boton.setDisable(true);
             Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio sobre esta casilla por sus características" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));

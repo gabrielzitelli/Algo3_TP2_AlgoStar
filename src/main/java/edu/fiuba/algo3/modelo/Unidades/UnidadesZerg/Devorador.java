@@ -8,15 +8,14 @@ import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Devorador extends UnidadZerg {
-    private final int turnosDeContruccion = 4;
-    private final int danioAereo = 15;
-    private final int cantidadDeVida = 200;
 
     public Devorador() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 4;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.rangoDeAtaque = 5;
+        int danioAereo = 15;
         this.danio = new DanioAereo(danioAereo);
+        int cantidadDeVida = 200;
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 50;

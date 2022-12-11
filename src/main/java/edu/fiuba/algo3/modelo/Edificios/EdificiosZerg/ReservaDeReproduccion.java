@@ -17,11 +17,9 @@ import java.util.Arrays;
 public class ReservaDeReproduccion extends EdificioZerg {
 
     private EstadoHabilitador estadoHabilitador;
-    private int turnoParaEstarConstruido = 12;
-    private int valorVital = 1000;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
 
     private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
@@ -32,9 +30,11 @@ public class ReservaDeReproduccion extends EdificioZerg {
         this.costoGas = 0;
         this.estadoMohoRequerido = new ConMoho();
         this.estadoRecolectable = new NoRecolectable();
+        int valorVital = 1000;
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 
+        int turnoParaEstarConstruido = 12;
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaZerling());

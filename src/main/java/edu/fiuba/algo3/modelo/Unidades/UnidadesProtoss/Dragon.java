@@ -10,17 +10,15 @@ import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 public class Dragon extends UnidadProtoss {
 
-    private final int turnosDeContruccion = 6;
-    private final int danioTerrestre = 20;
-    private final int danioAereo = 20;
-    private final int cantidadDeVida = 100;
-    private final int cantidadDeEscudo = 80;
-
     public Dragon() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 6;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.rangoDeAtaque = 4;
+        int danioTerrestre = 20;
+        int danioAereo = 20;
         this.danio = new DanioMixto(danioTerrestre, danioAereo);
+        int cantidadDeVida = 100;
+        int cantidadDeEscudo = 80;
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 50;

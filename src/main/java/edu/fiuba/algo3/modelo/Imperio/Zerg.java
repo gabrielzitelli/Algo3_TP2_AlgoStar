@@ -8,11 +8,14 @@ import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadYaEstaEvolucionando;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadEnEvolucion;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
@@ -25,7 +28,7 @@ import java.util.LinkedList;
 public class Zerg extends Imperio {
 
     LinkedList<GestorDeCrianza> gestoresDeEvoluciones = new LinkedList<>();
-    //GestorDeCrianza gestorDeEvoluciones = new GestorDeCrianza();
+    LinkedList<UnidadEnEvolucion> unidadesAEvolucionar = new LinkedList<>();
 
     public Zerg() {
         mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
@@ -58,45 +61,41 @@ public class Zerg extends Imperio {
         this.construirEdificio(fabricaEdificio.crear(), coordenada);
     }
 
-    private void validarPreRequisitosDeEvolucionDeMutalisco(Unidad unaUnidad){
-        //revisamos que tengamos al mutalisco
-        if (!this.tieneUnidad(new Mutalisco())) {
+    private void validarPreRequisitosDeEvolucionDeMutalisco(Unidad unidadEvolucionada, Unidad unidadAEvolucionar){
+        if (!unidadAEvolucionar.esIgualA(new Mutalisco())) {
             throw new ErrorNoHayMutaliscoParaEvolucionar();
         }
         //comprobamos los materiales
-        this.comprobarRequisitosMateriales(unaUnidad);
+        this.comprobarRequisitosMateriales(unidadEvolucionada);
 
-        //sacamos el mutalisco
-        Mutalisco mutalisco = new Mutalisco();
-        for (Unidad unidad : unidades) {
-            if (unidad.esIgualA(mutalisco)){
-                Mapa.obtener().quitarOcupable(unidad.obtenerCoordenada());
-                unidades.remove(unidad);
-
-                GestorDeCrianza nuevoGestorEvoluciones = new GestorDeCrianza(unidad.obtenerCoordenada());
-                nuevoGestorEvoluciones.agregarUnidad(unaUnidad, unidades, mineralesDelImperio);
-                gestoresDeEvoluciones.add(nuevoGestorEvoluciones);
-
-                break;
-            }
-        }
+        ((Mutalisco) unidadAEvolucionar).evolucionar();
+        unidadesAEvolucionar.add(new UnidadEnEvolucion(unidadAEvolucionar, unidadEvolucionada));
     }
 
-    public void evolucionarMutaliscoAGuardian(){
+    public void evolucionarMutaliscoAGuardian(Unidad unidad){
         Unidad guardian = new Guardian();
-        validarPreRequisitosDeEvolucionDeMutalisco(guardian);
+        validarPreRequisitosDeEvolucionDeMutalisco(guardian, unidad);
     }
 
-    public void evolucionarMutaliscoADevorador() {
+    public void evolucionarMutaliscoADevorador(Unidad unidad) {
         Unidad devorador = new Devorador();
-        validarPreRequisitosDeEvolucionDeMutalisco(devorador);
+        validarPreRequisitosDeEvolucionDeMutalisco(devorador, unidad);
     }
 
     @Override
     public void terminarTurno(){
         super.terminarTurno();
-        for(GestorDeCrianza gestorDeEvoluciones : gestoresDeEvoluciones)
+        for(GestorDeCrianza gestorDeEvoluciones : gestoresDeEvoluciones) {
             gestorDeEvoluciones.actualizar();
+        }
+        for(UnidadEnEvolucion unidadEnEvolucion: unidadesAEvolucionar) {
+            unidadEnEvolucion.pasarTurno();
+
+            if (unidadEnEvolucion.unidadYaEvoluciono()) {
+                unidades.add(unidadEnEvolucion.obtenerUnidad());
+                unidadesAEvolucionar.remove(unidadEnEvolucion);
+            }
+        }
     }
 
     private void verificarZangano(Coordenada coordenada) {
@@ -116,6 +115,18 @@ public class Zerg extends Imperio {
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         unidades = new ArrayList<>();
+    }
+
+    public void estaAptoParaEvolucionarA(Unidad unidadEvolucionada, Unidad unidadAEvolucionar) {
+        if (((Mutalisco) unidadAEvolucionar).yaEvoluciono())
+            throw new ErrorEstaUnidadYaEstaEvolucionando();
+
+        ArrayList<Recurso> listaDeRequisitos = unidadEvolucionada.requisitosMateriales();
+        Recurso mineralAConsumir = listaDeRequisitos.get(0);
+        Recurso gasAconsumir = listaDeRequisitos.get(1);
+
+        if (!mineralesDelImperio.tienesMasQue(mineralAConsumir) || !gasDelImperio.tienesMasQue(gasAconsumir))
+            throw new ErrorCantidadDeRecursoInsuficiente();
     }
 
     private void verificarZanganoSoloComprobacion(Coordenada coordenada){

@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;

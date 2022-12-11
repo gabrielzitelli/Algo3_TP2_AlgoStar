@@ -10,17 +10,15 @@ import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 public class Scout extends UnidadProtoss {
 
-    private final int turnosDeContruccion = 9;
-    private final int danioTerrestre = 8;
-    private final int danioAereo = 14;
-    private final int cantidadDeVida = 100;
-    private final int cantidadDeEscudo = 80;
-
     public Scout(){
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 9;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.rangoDeAtaque = 4;
+        int danioTerrestre = 8;
+        int danioAereo = 14;
         this.danio = new DanioMixto(danioTerrestre, danioAereo);
+        int cantidadDeVida = 100;
+        int cantidadDeEscudo = 80;
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 150;

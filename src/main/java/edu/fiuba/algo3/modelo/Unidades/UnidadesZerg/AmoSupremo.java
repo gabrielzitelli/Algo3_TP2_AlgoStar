@@ -12,13 +12,12 @@ import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class AmoSupremo extends UnidadZerg {
 
-    private final int turnosDeContruccion = 5;
-    private final int cantidadDeVida = 200;
     private final int radioDeRevelacion = 4;
 
     public AmoSupremo() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 5;
         this.superficieDondeSeMueve = new SuperficieAerea();
+        int cantidadDeVida = 200;
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 0;

@@ -16,20 +16,19 @@ import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 public class Zealot extends UnidadProtoss {
 
-    private final int turnosDeContruccion = 4;
-    private final int danioTerrestre = 8;
-    private final int cantidadDeVida = 100;
-    private final int cantidadDeEscudo = 60;
     private Visibilidad estado;
-    private final int muertesParaInvisibilidad = 3;
 
     public Zealot(){
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 4;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.rangoDeAtaque = 1;
+        int danioTerrestre = 8;
         this.danio = new DanioTerrestre(danioTerrestre);
+        int cantidadDeVida = 100;
+        int cantidadDeEscudo = 60;
         this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.estadoPelea = new Atacante(rangoDeAtaque);
+        int muertesParaInvisibilidad = 3;
         estado = new Visible(this, muertesParaInvisibilidad);
         this.costoGas = 0;
         this.costoMineral = 100;

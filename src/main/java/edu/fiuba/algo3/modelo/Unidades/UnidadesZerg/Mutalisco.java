@@ -9,16 +9,16 @@ import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Mutalisco extends UnidadZerg {
 
-    private final int turnosDeContruccion = 7;
-    private final int danioTerrestre = 9;
-    private final int danioAereo = 9;
-    private final int cantidadDeVida = 120;
+    private boolean estadoEvolucion = false;
 
     public Mutalisco() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 7;
         this.superficieDondeSeMueve = new SuperficieAerea();
         this.rangoDeAtaque = 3;
+        int danioTerrestre = 9;
+        int danioAereo = 9;
         this.danio = new DanioMixto(danioTerrestre, danioAereo);
+        int cantidadDeVida = 120;
         this.vida = new VidaSimple(cantidadDeVida);
         this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 100;
@@ -30,6 +30,13 @@ public class Mutalisco extends UnidadZerg {
         suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
     }
 
+    public void evolucionar(){
+        estadoEvolucion = true;
+    }
+
+    public boolean yaEvoluciono() {
+        return estadoEvolucion;
+    }
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
         return Mutalisco.class.equals(claseAAverificar);

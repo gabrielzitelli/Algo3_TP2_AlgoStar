@@ -17,11 +17,9 @@ import java.util.Arrays;
 public class Espiral extends EdificioZerg {
 
     private EstadoHabilitador estadoHabilitador;
-    private int turnoParaEstarConstruido = 10;
-    private int valorVital = 1300;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>(Arrays.asList(new Guarida()));
 
@@ -30,9 +28,11 @@ public class Espiral extends EdificioZerg {
         this.costoMineral = 150;
         this.estadoRecolectable = new NoRecolectable();
         this.estadoMohoRequerido = new ConMoho();
+        int valorVital = 1300;
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 
+        int turnoParaEstarConstruido = 10;
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 
         listaFabricasAHabilitar.add(new FabricaMutalisco());
