@@ -15,6 +15,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,35 +38,47 @@ public class CasoDeUso27Test {
 
     @Test
     public void test02PuedoEvolucionarAUnMutaliscoADevoradorSiTengoLosRecursosSuficientes() {
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        Coordenada coordenadaReserva = new Coordenada(1,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        Coordenada coordenadaGuarida = new Coordenada(0,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
+        Coordenada coordenadaEspiral = new Coordenada(1,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaEspiral);
+
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(5000), new Gas(1000));
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,1));
+
+        imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
 
         //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1));
+        imperioZerg.construirEdificio(new FabricaEspiral(), coordenadaEspiral);
 
         //Espero a que se construya el espiral
         for (int i = 0; i < 10; i++)
             imperioZerg.terminarTurno();
 
         //obtenemos el edificio
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+        Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
         assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaMutalisco()));
 
@@ -87,35 +100,46 @@ public class CasoDeUso27Test {
 
     @Test
     public void test03NoPuedoEvolucionarAUnMutaliscoNoTengoLosRecursosSuficientes() {
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        Coordenada coordenadaReserva = new Coordenada(1,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        Coordenada coordenadaGuarida = new Coordenada(0,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
+        Coordenada coordenadaEspiral = new Coordenada(1,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaEspiral);
+
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(800), new Gas(300));
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
         //esperamos a que se construya la reserva
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,1));
+        imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
 
         //Esperamos a que se construya la guarida
         for (int i = 0; i < 12; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,1));
+        imperioZerg.construirEdificio(new FabricaEspiral(), coordenadaEspiral);
 
         //Espero a que se construya el espiral
         for (int i = 0; i < 10; i++)
             imperioZerg.terminarTurno();
 
         //obtenemos el edificio
-        Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
+        Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
         assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaMutalisco()));
 

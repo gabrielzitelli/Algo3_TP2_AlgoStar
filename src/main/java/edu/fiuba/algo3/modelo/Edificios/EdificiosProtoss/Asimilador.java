@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
@@ -10,6 +11,8 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
+import java.util.ArrayList;
+
 public class Asimilador extends EdificioProtoss {
 
     private EstadoRecolector estado;
@@ -18,6 +21,9 @@ public class Asimilador extends EdificioProtoss {
     private MaterialBruto volcanDeGas = null;
     private int cantidadDeExtraccionUnitaria = 20;
     private int valorVital = 450;
+
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+
 
     public Asimilador(Recurso gasDelImperio){
         this.costoGas = 0;
@@ -29,6 +35,10 @@ public class Asimilador extends EdificioProtoss {
         this.gasDelImperio = gasDelImperio;
         this.estado = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.identificador = "asimilador";
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     public void pasarTurno(){

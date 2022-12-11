@@ -29,4 +29,9 @@ public class Hidralisco extends UnidadZerg {
     public void disminuirPoblacion(Suministro suministroImperio){
         suministroImperio.disminuirPoblacion(FabricaHidralisco.obtenerPoblacionNecesaria());
     }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return Hidralisco.class.equals(claseAAverificar);
+    }
 }

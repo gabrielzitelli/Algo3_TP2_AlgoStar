@@ -13,6 +13,7 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,8 @@ public class CasoDeUso31Test {
         Coordenada coordenadaDragon = new Coordenada(1,0);
 
         imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
+
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
         imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
@@ -94,7 +97,10 @@ public class CasoDeUso31Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -122,7 +128,6 @@ public class CasoDeUso31Test {
             elMapa.atacar(coordenadaDragon, coordenadaAmoSupremo);
             unDragon.pasarTurno();
         }
-
 
         imperioZerg.terminarTurno();
 

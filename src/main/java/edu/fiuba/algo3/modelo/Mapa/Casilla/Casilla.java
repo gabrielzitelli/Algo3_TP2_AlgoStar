@@ -17,6 +17,8 @@ public abstract class Casilla {
     protected Superficie superficie;
     protected Ocupable ocupable;
     protected Coordenada coordenada;
+    public abstract boolean tieneEsteOcupable(Ocupable ocupable);
+    public abstract Casilla quitarUnidad();
 
     public abstract Casilla colocarOcupable(Ocupable unOcupable);
     public abstract void construirEdificioVerificacion(Edificio unEdificio);

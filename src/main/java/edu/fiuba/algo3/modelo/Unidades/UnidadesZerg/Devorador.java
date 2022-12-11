@@ -27,4 +27,9 @@ public class Devorador extends UnidadZerg {
     public void disminuirPoblacion(Suministro suministroImperio){
         suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
     }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return Devorador.class.equals(claseAAverificar);
+    }
 }

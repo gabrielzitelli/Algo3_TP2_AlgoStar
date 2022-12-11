@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Imperio.Protoss;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +28,7 @@ public class CasoDeUso29Test {
         imperioZerg.abastecerDeRecursos(new Mineral(9000), new Gas(9000));
         for ( int i = 1; i <41; i++){
             Coordenada unaCoordenada = new Coordenada(i,0);
+            elMapa.colocarOcupable(new Zangano(), unaCoordenada);
             imperioZerg.construirEdificio(new FabricaCriadero(), unaCoordenada);
         }
 
@@ -46,6 +48,7 @@ public class CasoDeUso29Test {
         imperioZerg.abastecerDeRecursos(new Mineral(15000), new Gas(15000));
         for ( int i = 1; i <50; i++){
             Coordenada unaCoordenada = new Coordenada(i,0);
+            elMapa.colocarOcupable(new Zangano(), unaCoordenada);
             imperioZerg.construirEdificio(new FabricaCriadero(), unaCoordenada);
         }
 
@@ -65,6 +68,7 @@ public class CasoDeUso29Test {
         imperioZerg.abastecerDeRecursos(new Mineral(9000), new Gas(9000));
         for ( int i = 1; i <40; i++){
             Coordenada unaCoordenada = new Coordenada(i,0);
+            elMapa.colocarOcupable(new Zangano(), unaCoordenada);
             imperioZerg.construirEdificio(new FabricaCriadero(), unaCoordenada);
 
         }
@@ -74,12 +78,16 @@ public class CasoDeUso29Test {
         }
 
         Coordenada unaCoordenada = new Coordenada(1,1);
+
+        elMapa.colocarOcupable(new Zangano(), unaCoordenada);
         imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), unaCoordenada);
 
         unaCoordenada = new Coordenada(2,1);
+        elMapa.colocarOcupable(new Zangano(), unaCoordenada);
         imperioZerg.construirEdificio(new FabricaGuarida(), unaCoordenada);
 
         unaCoordenada = new Coordenada(3,1);
+        elMapa.colocarOcupable(new Zangano(), unaCoordenada);
         imperioZerg.construirEdificio(new FabricaEspiral(), unaCoordenada);
 
         for ( int j = 1; j < 16 ; j++ ){
@@ -87,7 +95,6 @@ public class CasoDeUso29Test {
         }
 
         assertTrue(imperioZerg.tenesEsteSuministro(195));
-
     }
 
     @Test

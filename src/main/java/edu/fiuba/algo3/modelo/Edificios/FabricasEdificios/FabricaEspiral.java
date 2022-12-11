@@ -7,7 +7,7 @@ public class FabricaEspiral extends FabricaEdificio {
 
     @Override
     public Edificio crear() {
-        this.comprobarRequisitos(Espiral.requisitos());
+        this.comprobarRequisitos(Espiral.requisitosEdilicios());
         Espiral espiral = new Espiral();
         espiral.asignarListaDeUnidades(fabricasDisponibles);
         return espiral;

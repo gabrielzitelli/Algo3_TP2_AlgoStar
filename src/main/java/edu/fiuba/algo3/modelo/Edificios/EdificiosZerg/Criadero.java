@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.*;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
@@ -16,6 +17,7 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Criadero extends EdificioZerg {
 
@@ -31,6 +33,7 @@ public class Criadero extends EdificioZerg {
     private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
 
     public Criadero(){
         this.costoGas = 0;
@@ -51,6 +54,10 @@ public class Criadero extends EdificioZerg {
         listaFabricasAHabilitar.add(new FabricaZangano());
         listaFabricasAHabilitar.add(new FabricaAmoSupremo());
         this.identificador = "criadero";
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     public void crearUnidad(Fabrica unaFabrica) {

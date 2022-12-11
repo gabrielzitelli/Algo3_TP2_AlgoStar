@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PuertoEstelar extends EdificioProtoss {
 
@@ -28,6 +29,8 @@ public class PuertoEstelar extends EdificioProtoss {
     private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
+
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>(Arrays.asList(new Acceso()));
 
     public PuertoEstelar() {
         this.costoGas = 150;
@@ -45,13 +48,15 @@ public class PuertoEstelar extends EdificioProtoss {
         this.identificador = "puerto_estelar";
     }
 
-    public static ArrayList<Edificio> requisitos() {
-        ArrayList<Edificio> requisitos = new ArrayList<>();
-        requisitos.add(new Acceso());
-        return requisitos;
+    public static ArrayList<Edificio> requisitosEdilicios() {
+        return requisitosEdilicios;
     }
 
-    public void verificarCarga() throws ErrorElEdificioNoTieneCarga {
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
+    }
+
+    public void verificarCarga() {
         Mapa elMapa = Mapa.obtener();
         if (coordenada == null){
             return;

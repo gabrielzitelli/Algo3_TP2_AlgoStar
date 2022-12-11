@@ -29,7 +29,7 @@ public abstract class FabricaEdificio {
 
     public abstract Edificio crear();
 
-    protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
+    public void comprobarRequisitos(ArrayList<Edificio> requisitos) {
         //Digase de los edificios que son prerequisitos de otro edificio
         int requisitosCumplidos = 0;
         for(Edificio requisito: requisitos){

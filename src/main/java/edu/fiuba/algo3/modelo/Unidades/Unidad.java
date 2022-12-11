@@ -77,7 +77,7 @@ public abstract class Unidad implements Ocupable {
           }
      }
 
-     protected void destruirUnidad() {
+     public void destruirUnidad() {
           Mapa elMapa = Mapa.obtener();
           elMapa.quitarOcupable(coordenada);
           this.estadoMuerta = true;
@@ -117,7 +117,5 @@ public abstract class Unidad implements Ocupable {
           return info;
      }
 
-     public boolean esDeEsteTipo(Class claseAAverificar){
-          return Unidad.class.equals(claseAAverificar);
-     }
+     public abstract boolean esDeEsteTipo(Class claseAAverificar);
 }

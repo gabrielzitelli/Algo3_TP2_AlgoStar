@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdi
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.*;
 
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -20,9 +21,12 @@ public class CasoDeUso17Test {
     @Test
     public void test01NoPuedoConstruirUnaGuaridaSinTenerAntesUnaReservaDeReproduccion() {
         Zerg zerg = new Zerg();
-
         zerg.abastecerDeRecursos(new Mineral(250), new Gas(100));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
         for (int i = 0; i < 4; i++)
@@ -30,6 +34,9 @@ public class CasoDeUso17Test {
 
         //Esperamos un turno para la expansión del criadero
         zerg.terminarTurno();
+
+        Coordenada coordenadaGuarida = new Coordenada(2,2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
 
         //IntentamosConstruirGuarida
         assertThrows(ErrorNoSeCumplenLosPreRequisitosDelEdificio.class, () ->
@@ -39,9 +46,12 @@ public class CasoDeUso17Test {
     @Test
     public void test02PuedoConstruirUnaGuaridaTeniendoAntesUnaReservaDeReproduccion() {
         Zerg zerg = new Zerg();
-
         zerg.abastecerDeRecursos(new Mineral(550), new Gas(100));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
         for (int i = 0; i < 4; i++)
@@ -51,18 +61,25 @@ public class CasoDeUso17Test {
         zerg.terminarTurno();
 
         //Construimos una reserva
-        zerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,2));
+        Coordenada coordenadaReserva = new Coordenada(1,2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        zerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
+        Coordenada coordenadaGuarida = new Coordenada(2,2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
         //IntentamosConstruirGuarida
-        assertDoesNotThrow( () -> zerg.construirEdificio(new FabricaGuarida(), new Coordenada(2,2)));
+        assertDoesNotThrow( () -> zerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida));
     }
 
     @Test
     public void test03NoPuedoConstruirUnEspiralSinTenerAntesUnaGuarida() {
         Zerg zerg = new Zerg();
-
         zerg.abastecerDeRecursos(new Mineral(200), new Gas(100));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
         for (int i = 0; i < 4; i++)
@@ -70,6 +87,9 @@ public class CasoDeUso17Test {
 
         //Esperamos un turno para la expansión del criadero
         zerg.terminarTurno();
+
+        Coordenada coordenadaEspiral = new Coordenada(2,2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaEspiral);
 
         //IntentamosConstruirGuarida
         assertThrows(ErrorNoSeCumplenLosPreRequisitosDelEdificio.class, () ->
@@ -79,8 +99,11 @@ public class CasoDeUso17Test {
     @Test
     public void test04PuedoConstruirUnEspiralTeniendoAntesUnaGuarida() {
         Zerg zerg = new Zerg();
-
         zerg.abastecerDeRecursos(new Mineral(700), new Gas(200));
+
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
         zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
 
         //Esperamos Cuatro Turnos Para La Construccion Del Criadero
@@ -91,12 +114,19 @@ public class CasoDeUso17Test {
         zerg.terminarTurno();
 
         //Construimos una reserva y una guarida
-        zerg.construirEdificio(new FabricaReservaDeReproduccion(),new Coordenada(1,2));
-        zerg.construirEdificio(new FabricaGuarida(),new Coordenada(2,1));
+        Coordenada coordenadaReserva = new Coordenada(1,2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        zerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
+
+        Coordenada coordenadaGuarida = new Coordenada(2,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
+        zerg.construirEdificio(new FabricaGuarida(),coordenadaGuarida);
 
         //IntentamosConstruirEspiral
+        Coordenada coordenadaEspiral = new Coordenada(2,2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaEspiral);
         assertDoesNotThrow(
-                () -> zerg.construirEdificio(new FabricaEspiral(),new Coordenada(2,2)));
+                () -> zerg.construirEdificio(new FabricaEspiral(),coordenadaEspiral));
     }
 
     @Test

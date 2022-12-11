@@ -29,11 +29,15 @@ public class CasoDeUso4Test {
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Coordenada coordenadasCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(),coordenadasCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadasCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(),coordenadasGas);
         zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
@@ -55,11 +59,15 @@ public class CasoDeUso4Test {
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Coordenada coordenadasCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(),coordenadasCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadasCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(),coordenadasGas);
         zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
@@ -81,13 +89,16 @@ public class CasoDeUso4Test {
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Coordenada coordenadasCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(),coordenadasCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadasCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(),coordenadasGas);
         zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
-
         //Construimos el extractor
         for (int i = 0; i < 6; i++)
             zerg.terminarTurno();
@@ -108,11 +119,15 @@ public class CasoDeUso4Test {
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Coordenada coordenadasCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(),coordenadasCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadasCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(),coordenadasGas);
         zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
@@ -136,11 +151,15 @@ public class CasoDeUso4Test {
 
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
-        zerg.construirEdificio(new FabricaCriadero(), new Coordenada(1,1));
+
+        Coordenada coordenadasCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(),coordenadasCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadasCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
+        mapa.colocarOcupable(new Zangano(),coordenadasGas);
         zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor

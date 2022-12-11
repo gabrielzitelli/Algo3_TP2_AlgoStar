@@ -1,9 +1,13 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -12,17 +16,18 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Devorador;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 
-public class Zerg extends Imperio{
+public class Zerg extends Imperio {
 
     LinkedList<GestorDeCrianza> gestoresDeEvoluciones = new LinkedList<>();
     //GestorDeCrianza gestorDeEvoluciones = new GestorDeCrianza();
 
-    public Zerg(){
+    public Zerg() {
         mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
         gasDelImperio = new Gas(0);
         this.poblacion = new Suministro(0);
@@ -32,12 +37,12 @@ public class Zerg extends Imperio{
         this.identificador = "zerg";
     }
 
-    public void inicializarAsentamientoPrimerTurno(){
+    public void inicializarAsentamientoPrimerTurno() {
         Mapa elMapa = Mapa.obtener();
 
         Casilla casillaBase = elMapa.obtenerVolcanBaseLejanaPrimeraMitad();
         Coordenada coordenadaBase = casillaBase.obtenerCoordenada();
-        Coordenada coordenadaCriadero = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
+        Coordenada coordenadaCriadero = new Coordenada(coordenadaBase.getCoordenadaX() - 2, coordenadaBase.getCoordenadaY());
 
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
@@ -49,7 +54,7 @@ public class Zerg extends Imperio{
 
     public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
         fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
-
+        this.verificarZangano(coordenada);
         this.construirEdificio(fabricaEdificio.crear(), coordenada);
     }
 
@@ -94,6 +99,15 @@ public class Zerg extends Imperio{
             gestorDeEvoluciones.actualizar();
     }
 
+    private void verificarZangano(Coordenada coordenada) {
+        Mapa elMapa = Mapa.obtener();
+        if (!elMapa.tieneEsteOcupable(new Zangano(), coordenada))
+            throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
+
+        ((Unidad) elMapa.obtenerOcupable(coordenada)).destruirUnidad();
+        this.revisarDestruccionDeUnidades();
+    }
+
     @Override
     public void prepararParaRevancha(){
         mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
@@ -102,5 +116,18 @@ public class Zerg extends Imperio{
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         unidades = new ArrayList<>();
+    }
+
+    private void verificarZanganoSoloComprobacion(Coordenada coordenada){
+        Mapa elMapa = Mapa.obtener();
+        if (!elMapa.tieneEsteOcupable(new Zangano(), coordenada))
+            throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
+    }
+
+    public void verificarConstruccionDeEdificio(Edificio unEdificio, Coordenada coordenada){
+        comprobarRequisitosMaterialesVerificacion(unEdificio);
+        verificarZanganoSoloComprobacion(coordenada);
+        Mapa.obtener().construirEdificioVerificacion(unEdificio, coordenada);
+        this.comprobarRequisitos(unEdificio.obtenerRequisitosEdilicios());
     }
 }

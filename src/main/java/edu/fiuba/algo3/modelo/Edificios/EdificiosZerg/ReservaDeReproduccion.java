@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
@@ -11,6 +12,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ReservaDeReproduccion extends EdificioZerg {
 
@@ -21,6 +23,9 @@ public class ReservaDeReproduccion extends EdificioZerg {
     // Fabricas que el edificio habilita
     private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
     private FabricasDisponibles fabricasDisponibles;
+
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+
 
     public ReservaDeReproduccion(){
         this.costoMineral = 150;
@@ -34,6 +39,10 @@ public class ReservaDeReproduccion extends EdificioZerg {
 
         listaFabricasAHabilitar.add(new FabricaZerling());
         this.identificador = "reserva_reproduccion";
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     protected void destruirEdificio() {

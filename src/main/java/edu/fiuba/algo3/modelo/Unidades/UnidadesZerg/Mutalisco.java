@@ -30,4 +30,8 @@ public class Mutalisco extends UnidadZerg {
         suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
     }
 
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return Mutalisco.class.equals(claseAAverificar);
+    }
 }

@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,25 +25,33 @@ public class MovimientoUnidadesTest {
         Mapa.obtener().reiniciarMapa();
     }
     @Test
-    public void test01MuevoUnZanganoAUnExtractorYMeExtre(){
+    public void test01MuevoUnZanganoAUnExtractorYMeExtre() {
         Zerg imperio = new Zerg();
         imperio.abastecerDeRecursos(new Mineral(500), new Gas(0));
 
-        imperio.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Mapa elMapa = Mapa.obtener();
+        Coordenada coordenadaCriadero = new Coordenada(0, 0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperio.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         for (int i = 0; i < 5; i++) {
             imperio.terminarTurno();
         }
-        Criadero criadero = (Criadero) Mapa.obtener().obtenerOcupable(new Coordenada(0,0));
-        Mapa.obtener().colocarMaterial(new GasRecolectable(), new Coordenada(1,1));
-        imperio.construirEdificio(new FabricaExtractor(), new Coordenada(1,1));
+
+        Criadero criadero = (Criadero) elMapa.obtenerOcupable(new Coordenada(0, 0));
+        elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1, 1));
+
+        Coordenada coordenadaExtractor = new Coordenada(1,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaExtractor);
+        imperio.construirEdificio(new FabricaExtractor(), coordenadaExtractor);
+
         criadero.crearUnidad(new FabricaZangano());
 
         for (int i = 0; i < 6; i++) {
             imperio.terminarTurno();
         }
 
-        Unidad zangano = (Unidad) Mapa.obtener().obtenerOcupable(new Coordenada(0, 1));
+        Unidad zangano = (Unidad) elMapa.obtenerOcupable(new Coordenada(0, 1));
 
         assertTrue(imperio.tienesEstaCantidadDeGas(0));
 
@@ -51,6 +60,5 @@ public class MovimientoUnidadesTest {
         imperio.terminarTurno();
 
         assertTrue(imperio.tienesEstaCantidadDeGas(10));
-
     }
 }

@@ -23,7 +23,8 @@ public class CasillaOcupada extends Casilla {
     }
 
     public void construirEdificioVerificacion(Edificio unEdificio){
-        throw new ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada();
+        CasillaVacia copiaVaciaDeEstaCasilla = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
+        unEdificio.construirSobreCasillaOcupadaVerificacion(this.ocupable, copiaVaciaDeEstaCasilla);
     }
 
     public Casilla colocarOcupable(Ocupable unOcupable) {
@@ -51,6 +52,14 @@ public class CasillaOcupada extends Casilla {
     @Override
     public Ocupable obtenerOcupable() {
         return ocupable;
+    }
+
+    public boolean tieneEsteOcupable(Ocupable ocupable) {
+        return this.ocupable.getClass().equals(ocupable.getClass());
+    }
+
+    public Casilla quitarUnidad() {
+        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
     }
 
     public void atacar(Casilla casillaAtacada) {

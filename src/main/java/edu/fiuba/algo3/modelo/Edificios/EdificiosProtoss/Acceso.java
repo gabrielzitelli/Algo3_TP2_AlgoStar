@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
@@ -29,6 +30,10 @@ public class Acceso extends EdificioProtoss {
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
 
+    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+
+
+
     public Acceso(){
         this.costoGas = 0;
         this.costoMineral = 150;
@@ -45,6 +50,10 @@ public class Acceso extends EdificioProtoss {
         listaFabricasAHabilitar.add(new FabricaZealot());
 
         this.identificador = "acceso";
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     public void verificarCarga() throws ErrorElEdificioNoTieneCarga {

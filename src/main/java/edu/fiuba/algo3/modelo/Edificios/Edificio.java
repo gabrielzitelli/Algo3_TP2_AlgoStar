@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidades;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.*;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -34,6 +35,7 @@ public abstract class Edificio implements Ocupable {
     public abstract void pasarTurno();
 
     public abstract boolean perteneceAImperio(Imperio imperio);
+    public abstract ArrayList<Edificio> obtenerRequisitosEdilicios();
 
     public void verificarColocable(Casilla unaCasilla){
         if (estadoRecolectable != null)
@@ -104,5 +106,9 @@ public abstract class Edificio implements Ocupable {
     
     public boolean esDeEsteTipo(Class claseAAverificar){
         return Edificio.class.equals(claseAAverificar);
+    }
+
+    public void construirSobreCasillaOcupadaVerificacion(Ocupable ocupable, CasillaVacia copiaVaciaDeUnaCasilla){
+        throw new ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada();
     }
 }

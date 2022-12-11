@@ -29,4 +29,9 @@ public class Zerling extends UnidadZerg {
     public void disminuirPoblacion(Suministro suministroImperio){
         suministroImperio.disminuirPoblacion(FabricaZerling.obtenerPoblacionNecesaria());
     }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return Zerling.class.equals(claseAAverificar);
+    }
 }

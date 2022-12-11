@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Imperio;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosPreRequisitosDelEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
@@ -60,7 +61,7 @@ public abstract class Imperio {
     }
 
 
-    private void revisarDestruccionDeUnidades() {
+    protected void revisarDestruccionDeUnidades() {
         LinkedList<Unidad> unidadesAsesinadas = new LinkedList<>();
 
         for (Unidad unidad : unidades) {
@@ -99,12 +100,7 @@ public abstract class Imperio {
         }
     }
 
-    public void verificarConstruccionDeEdificio(Edificio unEdificio, Coordenada coordenada){
-        comprobarRequisitosMaterialesVerificacion(unEdificio);
-        Mapa.obtener().construirEdificioVerificacion(unEdificio, coordenada);
-    }
-
-    private void  comprobarRequisitosMaterialesVerificacion(Ocupable ocupable){
+    protected void  comprobarRequisitosMaterialesVerificacion(Ocupable ocupable){
         ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
         Recurso gasAconsumir = listaDeRequisitos.get(1);
@@ -176,4 +172,20 @@ public abstract class Imperio {
     }
 
     public abstract void prepararParaRevancha();
+
+    protected void comprobarRequisitos(ArrayList<Edificio> requisitos) {
+        //Digase de los edificios que son prerequisitos de otro edificio
+        int requisitosCumplidos = 0;
+        for(Edificio requisito: requisitos){
+            for(Edificio edificio: edificios) {
+                if (edificio.getClass().equals(requisito.getClass())){
+                    requisitosCumplidos++;
+                    break;
+                }
+            }
+        }
+
+        if (requisitosCumplidos != requisitos.size())
+            throw new ErrorNoSeCumplenLosPreRequisitosDelEdificio();
+    }
 }

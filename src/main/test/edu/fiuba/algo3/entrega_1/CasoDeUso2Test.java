@@ -32,7 +32,10 @@ public class CasoDeUso2Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
-        imperioZerg.construirEdificio(new FabricaCriadero(),new Coordenada(0,0));
+
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        Mapa.obtener().colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(),coordenadaCriadero);
 
         int turnosParaConstruir = 3;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -49,7 +52,10 @@ public class CasoDeUso2Test {
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(200), new Gas(0));
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        Mapa.obtener().colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         int turnosParaConstruir = 4;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -67,11 +73,17 @@ public class CasoDeUso2Test {
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
+
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaExtractor(), new Coordenada(1,0));
+
+        Coordenada coordenadaExtractor = new Coordenada(1,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaExtractor);
+        imperioZerg.construirEdificio(new FabricaExtractor(), coordenadaExtractor);
 
         int turnosParaConstruir = 5;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -92,11 +104,15 @@ public class CasoDeUso2Test {
         elMapa.colocarMaterial(new GasRecolectable(), new Coordenada(1,0));
 
         // Construyo criadero para generar moho
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaExtractor(), new Coordenada(1,0));
+        Coordenada coordenadaExtractor = new Coordenada(1,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaExtractor);
+        imperioZerg.construirEdificio(new FabricaExtractor(), coordenadaExtractor);
 
         int turnosParaConstruir = 6;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -109,13 +125,18 @@ public class CasoDeUso2Test {
     public void test05UnaReservaDeReproduccionNoEstaConstruidaEn11Turnos(){
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
+        Mapa elMapa = Mapa.obtener();
 
         // Construyo criadero para generar moho
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
+        Coordenada coordenadaReserva = new Coordenada(1,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
         int turnosParaConstruir = 11;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -131,13 +152,18 @@ public class CasoDeUso2Test {
      public void test06UnaReservaDeReproduccionEstaConstruidaEn12Turnos() {
          Zerg imperioZerg = new Zerg();
          imperioZerg.abastecerDeRecursos(new Mineral(500), new Gas(0));
+         Mapa elMapa = Mapa.obtener();
 
          // Construyo criadero para generar moho
-         imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+         Coordenada coordenadaCriadero = new Coordenada(0,0);
+         elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+         imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
          for(int i = 0; i < 4; i++)
              imperioZerg.terminarTurno();
 
-         imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(1,0));
+         Coordenada coordenadaReserva = new Coordenada(1,0);
+         elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+         imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
          int turnosParaConstruir = 11;
          for(int i = 0; i < turnosParaConstruir; i++)
@@ -153,16 +179,24 @@ public class CasoDeUso2Test {
     public void test07UnaGuaridaNoEstaConstruidaEn11Turnos(){
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
+        Mapa elMapa = Mapa.obtener();
 
         // Construyo criadero para generar moho
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
+
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
         // Construyo una reserva de reproduccion para el prerequisito
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
+        Coordenada coordenadaReserva = new Coordenada(0,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,0));
+        Coordenada coordenadaGuarida = new Coordenada(1, 0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
+        imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
 
         int turnosParaConstruir = 11;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -178,16 +212,24 @@ public class CasoDeUso2Test {
     public void test08UnaGuaridaEstaConstruidaEn12Turnos() {
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
+        Mapa elMapa = Mapa.obtener();
 
         // Construyo criadero para generar moho
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
+
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
         // Construyo una reserva de reproduccion para el prerequisito
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
+        Coordenada coordenadaReserva = new Coordenada(0,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(1,0));
+        Coordenada coordenadaGuarida = new Coordenada(1, 0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
+        imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
 
         int turnosParaConstruir = 12;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -200,17 +242,27 @@ public class CasoDeUso2Test {
     public void test09UnEspiralNoEstaConstruidoEn9Turnos() {
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
+        Mapa elMapa = Mapa.obtener();
 
         // Construyo criadero para generar moho
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
-        // Construyo una reserva de reproduccion y guarida para el prerequisito
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,2));
+        // Construyo una reserva de reproduccion para el prerequisito
+        Coordenada coordenadaReserva = new Coordenada(0,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
-        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,0));
+        Coordenada coordenadaGuarida = new Coordenada(1, 0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
+        imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
+
+        Coordenada coordenadaEspiral = new Coordenada(0, 2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaEspiral);
+        imperioZerg.construirEdificio(new FabricaEspiral(), coordenadaEspiral);
 
         int turnosParaConstruir = 9;
         for(int i = 0; i < turnosParaConstruir; i++)
@@ -226,17 +278,28 @@ public class CasoDeUso2Test {
     public void test10UnEspiralEstaConstruidoEn10Turnos() {
         Zerg imperioZerg = new Zerg();
         imperioZerg.abastecerDeRecursos(new Mineral(1000), new Gas(1000));
+        Mapa elMapa = Mapa.obtener();
 
         // Construyo criadero para generar moho
-        imperioZerg.construirEdificio(new FabricaCriadero(), new Coordenada(0,0));
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
+
         for(int i = 0; i < 4; i++)
             imperioZerg.terminarTurno();
 
         // Construyo una reserva de reproduccion para el prerequisito
-        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), new Coordenada(0,1));
-        imperioZerg.construirEdificio(new FabricaGuarida(), new Coordenada(0,2));
+        Coordenada coordenadaReserva = new Coordenada(0,1);
+        elMapa.colocarOcupable(new Zangano(), coordenadaReserva);
+        imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenadaReserva);
 
-        imperioZerg.construirEdificio(new FabricaEspiral(), new Coordenada(1,0));
+        Coordenada coordenadaGuarida = new Coordenada(1, 0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaGuarida);
+        imperioZerg.construirEdificio(new FabricaGuarida(), coordenadaGuarida);
+
+        Coordenada coordenadaEspiral = new Coordenada(0, 2);
+        elMapa.colocarOcupable(new Zangano(), coordenadaEspiral);
+        imperioZerg.construirEdificio(new FabricaEspiral(), coordenadaEspiral);
 
         int turnosParaConstruir = 10;
         for(int i = 0; i < turnosParaConstruir; i++)

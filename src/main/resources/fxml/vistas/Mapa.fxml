@@ -150,7 +150,7 @@
                   </Pane>
                   <Pane id="paneInfoImperio" fx:id="paneInfoImperio" prefHeight="362.0" prefWidth="257.0" styleClass="paneInfoEdificio">
                      <children>
-                        <Text id="textoNombreEdificio" fx:id="textoNombreEdificio1" fill="WHITE" layoutX="11.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio" text="CONSTRUCCIÓN DE EDIFICIOS" textAlignment="CENTER" wrappingWidth="234.8125343322754">
+                        <Text id="textoConstruccionImperio" fx:id="textoConstruccionImperio" fill="WHITE" layoutX="11.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio" text="CONSTRUCCIÓN DE EDIFICIOS" textAlignment="CENTER" wrappingWidth="234.8125343322754">
                            <font>
                               <Font name="Century Gothic" size="20.0" />
                            </font>
