@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
+import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.DragonVista;
@@ -51,11 +52,19 @@ public class AccesoVista extends OcupableVista {
         double anchoBoton = botonCrearZealot.getPrefWidth();
         double altoBoton = botonCrearZealot.getPrefWidth();
 
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+
         crearBotonDeUnidad(botonCrearZealot, new ZealotVista(), anchoBoton, altoBoton);
         crearBotonDeUnidad(botonCrearDragon, new DragonVista(), anchoBoton, altoBoton);
 
-        botonCrearZealot.setOnAction( event -> esteAcceso.crearUnidad(new FabricaZealot()));
-        botonCrearDragon.setOnAction( event -> esteAcceso.crearUnidad(new FabricaDragon()));
+        botonCrearZealot.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            esteAcceso.crearUnidad(new FabricaZealot());
+        });
+        botonCrearDragon.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            esteAcceso.crearUnidad(new FabricaDragon());
+        });
 
         prepararHabilitacionDeBoton(botonCrearZealot, new FabricaZealot(), esteAcceso, arrayWrappersBotonesEdificio[0], new ZealotVista());
         prepararHabilitacionDeBoton(botonCrearDragon, new FabricaDragon(), esteAcceso, arrayWrappersBotonesEdificio[1], new DragonVista());

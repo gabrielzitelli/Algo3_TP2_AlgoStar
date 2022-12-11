@@ -34,6 +34,8 @@ public class DatosJugador1Controlador extends DatosJugadorControlador{
 
     @FXML
     public void empezarCreacionJugador2(ActionEvent event) throws IOException {
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.reproducirFX("boton");
         guardarDatosJugador1();
 
         if (this.datosValidos) {

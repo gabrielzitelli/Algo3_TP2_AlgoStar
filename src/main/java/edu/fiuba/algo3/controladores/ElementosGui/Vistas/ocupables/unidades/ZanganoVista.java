@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades;
 
 import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.controladores.MapaControlador;
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
@@ -33,6 +33,7 @@ public class ZanganoVista extends UnidadZergVista {
         this.info = "Zangano";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/zanganoRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/zanganoRawCrear.png")));
+        this.archivoDeSonido = "zangano";
     }
 
     @Override
@@ -71,11 +72,28 @@ public class ZanganoVista extends UnidadZergVista {
         crearBotonDeEdificio(botonCrearGuarida, new GuaridaVista(), anchoBoton, altoBoton);
         crearBotonDeEdificio(botonCrearEspiral, new EspiralVista(), anchoBoton, altoBoton);
 
-        botonCrearCriadero.setOnAction( event -> imperioZerg.construirEdificio(new FabricaCriadero(),coordenada));
-        botonCrearReserva.setOnAction( event ->imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenada));
-        botonCrearExtractor.setOnAction( event -> imperioZerg.construirEdificio(new FabricaExtractor(), coordenada));
-        botonCrearGuarida.setOnAction( event -> imperioZerg.construirEdificio(new FabricaGuarida(), coordenada));
-        botonCrearEspiral.setOnAction( event -> imperioZerg.construirEdificio(new FabricaEspiral(), coordenada));
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+
+        botonCrearCriadero.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioZerg.construirEdificio(new FabricaCriadero(), coordenada);
+        });
+        botonCrearReserva.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenada);
+        });
+        botonCrearExtractor.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioZerg.construirEdificio(new FabricaExtractor(), coordenada);
+        });
+        botonCrearGuarida.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioZerg.construirEdificio(new FabricaGuarida(), coordenada);
+        });
+        botonCrearEspiral.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioZerg.construirEdificio(new FabricaEspiral(), coordenada);
+        });
 
         prepararHabilitacionDeBoton(botonCrearCriadero, new Criadero(), arrayWrappersBotonesEdificio[1], new CriaderoVista(), imperioZerg, coordenada);
         prepararHabilitacionDeBoton(botonCrearReserva, new ReservaDeReproduccion(), arrayWrappersBotonesEdificio[2], new ReservaVista(), imperioZerg, coordenada);

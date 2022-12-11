@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
+import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ScoutVista;
@@ -51,7 +52,11 @@ public class PuertoEstelarVista extends OcupableVista {
 
         crearBotonDeUnidad(botonCrearScout, new ScoutVista(), anchoBoton, altoBoton);
 
-        botonCrearScout.setOnAction( event -> estePuerto.crearUnidad(new FabricaScout()));
+        botonCrearScout.setOnAction( event -> {
+            ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+            sonido.reproducirFX("boton");
+            estePuerto.crearUnidad(new FabricaScout());
+        });
 
         prepararHabilitacionDeBoton(botonCrearScout, new FabricaScout(), estePuerto, arrayWrappersBotonesEdificio[0], new ScoutVista());
     }

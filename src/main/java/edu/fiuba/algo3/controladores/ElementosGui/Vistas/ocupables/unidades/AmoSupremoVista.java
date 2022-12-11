@@ -17,6 +17,7 @@ public class AmoSupremoVista extends UnidadZergVista {
         this.info = "Amo Supremo";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/amo_supremoRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/amo_supremoRawCrear.png")));
+        this.archivoDeSonido = "amoSupremo";
     }
 
     @Override

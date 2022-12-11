@@ -13,5 +13,6 @@ public class ScoutVista extends UnidadProtossVista {
         this.info = "Scout";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_protoss/original/scoutRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_protoss/original/creacion/scoutRawCrear.png")));
+        this.archivoDeSonido = "scout";
     }
 }

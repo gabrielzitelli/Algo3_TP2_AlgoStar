@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades;
 
 import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
@@ -29,6 +30,7 @@ public class MutaliscoVista extends UnidadZergVista {
         this.info = "Mutalisco";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/mutaliscoRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/unidades_zerg/original/creacion/mutaliscoRawCrear.png")));
+        this.archivoDeSonido = "mutalisco";
     }
 
     @Override
@@ -49,8 +51,16 @@ public class MutaliscoVista extends UnidadZergVista {
         crearBotonDeUnidad(botonCrearGuardian, new GuardianVista(), anchoBoton, altoBoton);
         crearBotonDeUnidad(botonCrearDevorador, new DevoradorVista(), anchoBoton, altoBoton);
 
-        botonCrearGuardian.setOnAction( event -> imperioZerg.evolucionarMutaliscoAGuardian(mutalisco));
-        botonCrearDevorador.setOnAction( event -> imperioZerg.evolucionarMutaliscoADevorador(mutalisco));
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+
+        botonCrearGuardian.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioZerg.evolucionarMutaliscoAGuardian(mutalisco);
+        });
+        botonCrearDevorador.setOnAction( event -> {
+            sonido.reproducirFX("boton");
+            imperioZerg.evolucionarMutaliscoADevorador(mutalisco);
+        });
 
         //verificamos que se puede evolucionar
 

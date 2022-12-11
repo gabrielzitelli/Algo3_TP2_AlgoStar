@@ -7,7 +7,6 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.cargas.CargaVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.especial.EspecialVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios.ProtossVista;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios.ZergVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.moho.MohoVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.recursos.RecursoVista;
@@ -15,7 +14,6 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.superficie.SuperficieVi
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
-import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -519,6 +517,8 @@ public class MapaControlador extends Controlador {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                    ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+                    sonido.reproducirFX("click");
                     double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
                     double posMouseY = mouseEvent.getY();
                     if (canvasPrincipal.contains(posMouseX, posMouseY)) {
@@ -553,6 +553,8 @@ public class MapaControlador extends Controlador {
         if (distancia <= rango) {
             //Puede atacar
             try {
+                ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+                sonido.reproducirFX("atacar");
                 mapa.atacar(coordenadaAtacar, coordenadaClickeada);
             } catch (RuntimeException e) {
                 //todo agregar feedback
@@ -571,7 +573,11 @@ public class MapaControlador extends Controlador {
             Unidad unidad = (Unidad) algoStar.conseguirOcupableEn(coordenadaMover);
 
             try {
+                JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidad);
+                Vista unidadVista = OcupableVista.obtenerOcupable(unidadJSON.get(ConvertidorJSON.OCUPABLE));
                 unidad.moverA(coordenadaClickeada);
+                ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+                sonido.reproducirFX(unidadVista.obtenerAudio());
             } catch (RuntimeException error){
                 //Todo poner algun sonido o algo para indicar que no se puede
             }
@@ -678,6 +684,8 @@ public class MapaControlador extends Controlador {
 
     @FXML
     public void pasarTurno(ActionEvent event){
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.reproducirFX("boton");
         algoStar.terminarTurno();
         actualizarColorJugador();
         actualizarInfoBordeDerecho();
@@ -762,11 +770,15 @@ public class MapaControlador extends Controlador {
     }
 
     public void guardarCasillaMovimiento(Coordenada coordenadaAGuardar) {
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.reproducirFX("boton");
         coordenadaAtacar = null;
         coordenadaMover = coordenadaAGuardar;
     }
 
     public void guardarCasillaAtacar(Coordenada coordenadaAGuardar) {
+        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+        sonido.reproducirFX("boton");
         coordenadaMover = null;
         coordenadaAtacar = coordenadaAGuardar;
     }

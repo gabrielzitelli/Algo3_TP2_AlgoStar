@@ -14,6 +14,7 @@ public abstract class Vista {
     protected Tile tile;
     protected String info;
     protected Image imagenParaDisplay;
+    protected String archivoDeSonido;
     private static final Vista sinVista = new SinVista();
 
     protected static Vista obtenerVista(String obtenerElemento, ArrayList<Vista> elementosVista) {
@@ -48,5 +49,9 @@ public abstract class Vista {
 
     public String getInfo() {
         return info;
+    }
+
+    public String obtenerAudio() {
+        return archivoDeSonido;
     }
 }
