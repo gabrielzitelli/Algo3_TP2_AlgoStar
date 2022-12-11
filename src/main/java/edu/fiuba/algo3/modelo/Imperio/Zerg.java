@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadYaEstaEvolucionando;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -61,6 +63,7 @@ public class Zerg extends Imperio{
         //comprobamos los materiales
         this.comprobarRequisitosMateriales(unidadEvolucionada);
 
+        ((Mutalisco) unidadAEvolucionar).evolucionar();
         unidadesAEvolucionar.add(new UnidadEnEvolucion(unidadAEvolucionar, unidadEvolucionada));
     }
 
@@ -98,5 +101,17 @@ public class Zerg extends Imperio{
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();
         unidades = new ArrayList<>();
+    }
+
+    public void estaAptoParaEvolucionarA(Unidad unidadEvolucionada, Unidad unidadAEvolucionar) {
+        if (((Mutalisco) unidadAEvolucionar).yaEvoluciono())
+            throw new ErrorEstaUnidadYaEstaEvolucionando();
+
+        ArrayList<Recurso> listaDeRequisitos = unidadEvolucionada.requisitosMateriales();
+        Recurso mineralAConsumir = listaDeRequisitos.get(0);
+        Recurso gasAconsumir = listaDeRequisitos.get(1);
+
+        if (!mineralesDelImperio.tienesMasQue(mineralAConsumir) || !gasDelImperio.tienesMasQue(gasAconsumir))
+            throw new ErrorCantidadDeRecursoInsuficiente();
     }
 }

@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.Vida.VidaSimple;
 
 public class Mutalisco extends UnidadZerg {
 
+    private boolean estadoEvolucion = false;
+
     public Mutalisco() {
         this.turnosDeConstruccion = 7;
         this.superficieDondeSeMueve = new SuperficieAerea();
@@ -28,4 +30,11 @@ public class Mutalisco extends UnidadZerg {
         suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
     }
 
+    public void evolucionar(){
+        estadoEvolucion = true;
+    }
+
+    public boolean yaEvoluciono() {
+        return estadoEvolucion;
+    }
 }

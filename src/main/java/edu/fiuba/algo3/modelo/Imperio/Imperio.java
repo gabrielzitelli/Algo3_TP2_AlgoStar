@@ -100,6 +100,7 @@ public abstract class Imperio {
     }
 
     public void verificarConstruccionDeEdificio(Edificio unEdificio, Coordenada coordenada){
+
         comprobarRequisitosMaterialesVerificacion(unEdificio);
         Mapa.obtener().construirEdificioVerificacion(unEdificio, coordenada);
     }
