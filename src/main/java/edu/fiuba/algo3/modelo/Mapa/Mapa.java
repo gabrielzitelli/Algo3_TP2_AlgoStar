@@ -188,7 +188,7 @@ public class Mapa {
         this.inicializarTerrenoEspacial();
     }
 
-    public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
+    public void colocarMaterial(Recolectable materialAColocar, Coordenada coordenada){
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarMaterial(materialAColocar);
     }
