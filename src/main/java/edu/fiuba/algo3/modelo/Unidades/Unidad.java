@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo.Unidades;
 
+import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.TipoDanio;
+import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.Vida.Vida;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
@@ -13,8 +15,11 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacar;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminadora;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Caminar;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+
+import static java.lang.Integer.parseInt;
 
 public abstract class Unidad implements Ocupable {
 
@@ -70,7 +75,20 @@ public abstract class Unidad implements Ocupable {
 
      public void recibirAtaque(Ataque unAtaque) {
           try {
+               JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(this);
+
+               String nombreUnidad = (String) unidadJSON.get(ConvertidorJSON.OCUPABLE);
+               int vidaAntes = parseInt((String)unidadJSON.get(ConvertidorJSON.VIDA));
                vida.aplicarAtaque(superficieDondeSeMueve.conseguirTipoDeAtaque(unAtaque));
+
+               unidadJSON = ConvertidorJSON.convertirAJSON(this);
+
+               int vidaActual = parseInt((String) unidadJSON.get(ConvertidorJSON.VIDA));
+               int daño = vidaAntes - vidaActual;
+
+               Logger.obtener().log("La unidad '" + nombreUnidad + "' [X: " +
+                       coordenada.getCoordenadaX() + ", Y: " + coordenada.getCoordenadaY() + "] " +
+                       "recibió " + daño + "de daño. Su vida restante es: " + vidaActual);
           }
           catch (ErrorVidaLlegoACero e) {
                destruirUnidad();

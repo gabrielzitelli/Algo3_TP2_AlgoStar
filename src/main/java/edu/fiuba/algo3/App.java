@@ -2,6 +2,7 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controladores.InicioControlador;
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
+import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +27,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Logger.obtener().toggle(false);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/inicioVista.fxml"));
         loader.setRoot(new BorderPane());
 

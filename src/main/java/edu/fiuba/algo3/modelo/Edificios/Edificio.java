@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Edificios;
 
 import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Vida.Vida;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidades;
@@ -15,8 +16,11 @@ import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+
+import static java.lang.Integer.parseInt;
 
 public abstract class Edificio implements Ocupable {
 
@@ -66,10 +70,26 @@ public abstract class Edificio implements Ocupable {
 
     public void recibirAtaque(Ataque unAtaque) {
         try {
+
+            JSONObject edificioJSON = ConvertidorJSON.convertirAJSON(this);
+
+            String nombreEdificio = (String) edificioJSON.get(ConvertidorJSON.OCUPABLE);
+            int vidaAntes = parseInt((String)edificioJSON.get(ConvertidorJSON.VIDA));
+
             this.vida.aplicarAtaque(unAtaque.ataqueTerrestre());
+
+            edificioJSON = ConvertidorJSON.convertirAJSON(this);
+
+            int vidaActual = parseInt((String) edificioJSON.get(ConvertidorJSON.VIDA));
+            int daño = vidaAntes - vidaActual;
+
+            Logger.obtener().log("el Edificio '" + nombreEdificio + "' [X: " +
+                    coordenada.getCoordenadaX() + ", Y: " + coordenada.getCoordenadaY() + "] " +
+                    "recibió " + daño + " de daño. Su vida restante es: " + vidaActual);
         }
         catch (Exception ErrorVidaLlegoACero){
-            this.destruirEdificio();
+            if (coordenada != null)
+                this.destruirEdificio();
         }
     }
 
