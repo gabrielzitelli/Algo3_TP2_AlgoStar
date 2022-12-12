@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
@@ -14,8 +15,8 @@ import java.util.LinkedList;
 public class Protoss extends Imperio{
 
     public Protoss() {
-        this.mineralesDelImperio = new Mineral(2000);
-        this.gasDelImperio = new Gas(2000);
+        this.mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        this.gasDelImperio = new Gas(0);
         this.poblacion = new Suministro(0);
         this.edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();

@@ -2,7 +2,6 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.DragonVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.UnidadVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ZealotVista;
@@ -35,6 +34,7 @@ public class AccesoVista extends EdificioVista {
         this.info = "Acceso";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/accesoRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/construccion/accesoRawConstruir.png")));
+        this.edificiosRequisitos = "\n" + emojiInformacionUnicode + " Requiere: Suelo Cargado y sin Moho";
     }
 
     @Override

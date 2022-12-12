@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.imperios;
 
 import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
+import edu.fiuba.algo3.controladores.ElementosGui.Vistas.Vista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios.*;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
@@ -22,7 +23,7 @@ import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
-public class ProtossVista {
+public class ProtossVista extends Vista {
     protected String obtenerAtributoDeString(String stringFormateado, String tipoAtributo){
         String[] tokensJugador = stringFormateado.split(" ");
         String atributoDeseado = null;
@@ -106,6 +107,8 @@ public class ProtossVista {
         String identificadorEdificio = edificioVista.getInfo();
         String costoMineral = obtenerAtributoDeString(informacionEdificio, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionEdificio, "costoGas");
+        String requisitosEdificio = edificioVista.getEdificiosRequisitos();
+        String informacionDeCosto = String.format("%s\n%s Minerales necesarios: %s\n%s Gas necesario: %s",requisitosEdificio, emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas);
 
         if(coordenada == null){
             boton.setDisable(true);
@@ -115,16 +118,22 @@ public class ProtossVista {
 
         try{
             imperioProtoss.verificarConstruccionDeEdificio(unEdificio, coordenada);
-            boton.setTooltip(new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            boton.setTooltip(new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + informacionDeCosto));
+
         } catch (ErrorCantidadDeRecursoInsuficiente exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo hay suficientes recursos como para construir este edificio" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suficientes recursos como para construir este edificio";
+            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorNoSeCumplenLosPreRequisitosDelEdificio exception){
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio porque no se cumplen los prerequisitos" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No se puede construir este edificio porque no se cumplen los prerequisitos";
+            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
+
         } catch (ErrorEdificioNoSePuedeConstruirEnEstaCasilla exception) {
             boton.setDisable(true);
-            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + "\nNo se puede construir este edificio sobre esta casilla por sus características" + "\n Minerales necesarios: " + costoMineral + "\n Gas necesario: " + costoGas));
+            String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No se puede construir este edificio sobre esta casilla por sus características";
+            Tooltip.install(wrapperBoton, new Tooltip("CONSTRUIR " + identificadorEdificio.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
         }
     }
 }

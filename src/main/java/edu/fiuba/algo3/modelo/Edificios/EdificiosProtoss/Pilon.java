@@ -3,11 +3,11 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergia;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoGeneradorDeEnergiaEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SinMoho;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
-import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 

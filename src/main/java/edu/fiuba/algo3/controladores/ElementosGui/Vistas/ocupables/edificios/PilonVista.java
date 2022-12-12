@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
@@ -17,6 +16,7 @@ public class PilonVista extends EdificioVista {
         this.info = "Pilon";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/pilonRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/construccion/pilonRawConstruir.png")));
+        this.edificiosRequisitos = "\n" + emojiInformacionUnicode + " Requiere: Suelo sin Moho";
     }
 
     @Override

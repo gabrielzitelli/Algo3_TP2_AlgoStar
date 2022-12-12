@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -12,7 +13,6 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Mapa.MineralBruto;
 import edu.fiuba.algo3.modelo.Mapa.SinMaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
-import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 
 public class Zangano extends UnidadZerg {
 

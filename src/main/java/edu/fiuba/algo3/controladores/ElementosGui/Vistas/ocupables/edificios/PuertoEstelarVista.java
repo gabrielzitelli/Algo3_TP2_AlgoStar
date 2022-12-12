@@ -2,7 +2,6 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.controladores.ControladorEfectosSonido;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.ScoutVista;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.UnidadVista;
 import edu.fiuba.algo3.controladores.MapaControlador;
@@ -33,6 +32,7 @@ public class PuertoEstelarVista extends EdificioVista {
         this.info = "Puerto estelar";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/puerto_estelarRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/construccion/puerto_estelarRawConstruir.png")));
+        this.edificiosRequisitos = "\n" + emojiInformacionUnicode + " Requiere: Suelo Cargado y sin Moho, Acceso";
     }
 
     @Override

@@ -6,10 +6,10 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
-import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 

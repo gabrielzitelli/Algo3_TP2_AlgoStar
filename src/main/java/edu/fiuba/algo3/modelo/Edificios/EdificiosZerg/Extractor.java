@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNoSePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -14,7 +15,6 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
-import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
-import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEdificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadYaEstaEvolucionando;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMutaliscoParaEvolucionar;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
@@ -31,8 +29,8 @@ public class Zerg extends Imperio {
     LinkedList<UnidadEnEvolucion> unidadesAEvolucionar = new LinkedList<>();
 
     public Zerg() {
-        mineralesDelImperio = new Mineral(2000);
-        gasDelImperio = new Gas(2000);
+        mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        gasDelImperio = new Gas(0);
         this.poblacion = new Suministro(0);
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();

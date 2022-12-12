@@ -9,12 +9,12 @@ import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
 

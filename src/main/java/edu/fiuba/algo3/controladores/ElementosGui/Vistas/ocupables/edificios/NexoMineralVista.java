@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.OcupableVista;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
@@ -17,6 +16,7 @@ public class NexoMineralVista extends EdificioVista {
         this.info = "Nexo Mineral";
         this.imagenParaDisplay = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/nexo_mineralRaw.png")));
         this.imagenParaBoton = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/edificios_protoss/original/construccion/nexo_mineralRawConstruir.png")));
+        this.edificiosRequisitos = "\n" + emojiInformacionUnicode + " Requiere: Nodo Mineral, suelo sin Moho";
     }
 
     @Override

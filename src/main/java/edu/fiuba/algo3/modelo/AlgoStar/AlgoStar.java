@@ -12,6 +12,7 @@ public class AlgoStar {
     private Turno turno;
 
     private int cantidadDeTurnos = 0;
+    private int interTurnoContador = 0;
 
     public void asignarJugador(String nombre, String color, Imperio imperio) {
         jugadores.agregarJugador(new Jugador(nombre, color, imperio));
@@ -32,7 +33,12 @@ public class AlgoStar {
 
     public void terminarTurno() {
         turno = turno.terminarTurno();
-        cantidadDeTurnos++;
+        interTurnoContador++;
+
+        if(interTurnoContador == 2){
+            interTurnoContador = 0;
+            cantidadDeTurnos++;
+        }
     }
 
     public boolean partidaTerminada() {
