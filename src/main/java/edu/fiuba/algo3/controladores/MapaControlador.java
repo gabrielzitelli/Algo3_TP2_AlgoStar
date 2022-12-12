@@ -19,20 +19,19 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -40,6 +39,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -59,6 +59,9 @@ public class MapaControlador extends Controlador {
     protected VBox bordeDerecha;
     @FXML
     protected VBox bordeIzquierda;
+
+    @FXML
+    protected SubScene opciones;
 
 
     /*=====================================================================================
@@ -96,7 +99,7 @@ public class MapaControlador extends Controlador {
     private double frameRate;
     private boolean mostrarFPS = false;
 
-    private ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+    private final ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
 
     /*=====================================================================================
      * AlgoStar
@@ -284,6 +287,8 @@ public class MapaControlador extends Controlador {
         int bordeVertical = ((tileWidth * tamanioMapa) - largoMapa);
         camara = new Camara(bordeHorizontal, bordeVertical);
 
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+
         menejarRedimension(stage);
 
         sonido.reproducirMusica("ambiente");
@@ -356,13 +361,6 @@ public class MapaControlador extends Controlador {
                 renderizarCasilla(xInicial, yInicial);
             }
         }
-
-        //Renderizado de seleccion
-        renderizarSeleccion();
-
-        //renderizado de posicion de Mouse
-        renderizarPosicionMouse();
-
     }
 
     private void renderizarPosicionMouse() {
@@ -472,7 +470,13 @@ public class MapaControlador extends Controlador {
 
     private void render() {
         graphicsContext.clearRect(0, 0, 1124,600);
+
         renderizarMapa();
+        //Renderizado de seleccion
+        renderizarSeleccion();
+
+        //renderizado de posicion de Mouse
+        renderizarPosicionMouse();
         if (mostrarFPS) {
             graphicsContext.fillText("FPS: " + frameRate, 10, 10);
         }
@@ -523,7 +527,6 @@ public class MapaControlador extends Controlador {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
-                    ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
                     sonido.reproducirFX("click");
                     double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
                     double posMouseY = mouseEvent.getY();
@@ -677,23 +680,21 @@ public class MapaControlador extends Controlador {
                 input.remove(tecla);
 
                 //Para fps
-                if (Objects.equals(tecla, KeyCode.TAB.toString()))
+                if (Objects.equals(tecla, KeyCode.TAB.toString())) {
                     mostrarFPS = !mostrarFPS;
+                }
 
                 //Pantalla completa
                 if (Objects.equals(tecla, KeyCode.F11.toString())){
                     setPantallaCompleta();
-                } else if (Objects.equals(tecla, KeyCode.ESCAPE.toString()) &&
-                        obtenerStageActual(canvasPrincipal).isFullScreen()) {
-                    canvasPrincipal.setWidth(788.0);
-                    canvasPrincipal.setHeight(600.0);
                 }
+
             }
         };
     }
 
     @FXML
-    public void pasarTurno(ActionEvent event){
+    public void pasarTurno(){
         ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
         sonido.reproducirFX("boton");
         algoStar.terminarTurno();
@@ -784,14 +785,12 @@ public class MapaControlador extends Controlador {
     }
 
     public void guardarCasillaMovimiento(Coordenada coordenadaAGuardar) {
-        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
         sonido.reproducirFX("boton");
         coordenadaAtacar = null;
         coordenadaMover = coordenadaAGuardar;
     }
 
     public void guardarCasillaAtacar(Coordenada coordenadaAGuardar) {
-        ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
         sonido.reproducirFX("boton");
         coordenadaMover = null;
         coordenadaAtacar = coordenadaAGuardar;

@@ -25,6 +25,50 @@
     -fx-background-color: rgb(229, 229, 229);
 }
 
+.abrirOpcionesBoton {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 14px;
+    -fx-border-width: 0px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
+}
+.abrirOpcionesBoton:hover {
+    -fx-border-width: 0px;
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.74), 5, 0, 0, 0);
+}
+
+.abrirOpcionesBoton:armed {
+    -fx-background-color: rgba(38, 38, 38, 0.65);
+}
+
+.cajaOpciones {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 14px;
+    -fx-border-width: 0px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
+}
+
 .pasarTurnoBoton {
     -fx-background-color: rgb(255, 255, 255);
     -fx-text-alignment: center;

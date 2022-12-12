@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.Excepciones.ErrorIdentificadorNoCorrespondeConNingunaCancionCargada;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -14,12 +15,15 @@ public class ControladorEfectosSonido {
     private MediaPlayer efecto;
     private final HashMap<String, MediaPlayer> archivosMusica = new HashMap<>();
     private MediaPlayer reproduccionActual;
-    private double volumenMusica = 0.6;
-    private double volumenEfectos = 0.6;
+    private final double volumenDefault = 0.6;
+
+    private final SimpleDoubleProperty volumenMusicaProperty = new SimpleDoubleProperty(volumenDefault);
+    private final SimpleDoubleProperty volumenFx = new SimpleDoubleProperty(volumenDefault);
 
     private static ControladorEfectosSonido instanciaUnica;
 
-    private ControladorEfectosSonido(){}
+    private ControladorEfectosSonido(){
+    }
 
     public static ControladorEfectosSonido obtenerControlador() {
         if (instanciaUnica != null)
@@ -36,24 +40,8 @@ public class ControladorEfectosSonido {
             efecto.stop();
 
         efecto = archivosEfectosSonido.get(identificador);
-        efecto.setVolume(volumenEfectos);
         efecto.play();
     }
-
-    /*** Llamarse al principio de la ejecucion del programa, o entre escenas
-     * para asi no bajar el rendimiento, cargar las canciones que se vayan a usar
-     * Toma una direccion del archivo en Resources y un identificador, este ultimo para
-     * poder acceder al archivo de sonido luego***/
-    public void cargarMusica(String direccion, String identificador) {
-        Media media = new Media(Objects.requireNonNull(getClass().getResource("/sound/" + direccion).toExternalForm()));
-        archivosMusica.put(identificador, new MediaPlayer(media));
-    }
-
-    public void cargarSonido(String direccion, String identificador) {
-        Media audio = new Media(Objects.requireNonNull(getClass().getResource("/sound/" + direccion).toExternalForm()));
-        archivosEfectosSonido.put(identificador, new MediaPlayer(audio));
-    }
-
     public void reproducirMusica(String identificador) {
         if (!archivosMusica.containsKey(identificador))
             throw new ErrorIdentificadorNoCorrespondeConNingunaCancionCargada();
@@ -62,7 +50,6 @@ public class ControladorEfectosSonido {
             reproduccionActual.stop();
 
         reproduccionActual = archivosMusica.get(identificador);
-        reproduccionActual.setVolume(volumenMusica);
         reproduccionActual.setOnEndOfMedia(new Runnable() {
             @Override
             public void run() {
@@ -72,15 +59,36 @@ public class ControladorEfectosSonido {
         reproduccionActual.play();
     }
 
+
+    /*** Llamarse al principio de la ejecucion del programa, o entre escenas
+     * para asi no bajar el rendimiento, cargar las canciones que se vayan a usar
+     * Toma una direccion del archivo en Resources y un identificador, este ultimo para
+     * poder acceder al archivo de sonido luego***/
+    public void cargarMusica(String direccion, String identificador) {
+        cargarArchivo(direccion, identificador, archivosMusica, volumenMusicaProperty);
+    }
+
+    public void cargarSonido(String direccion, String identificador) {
+        cargarArchivo(direccion, identificador, archivosEfectosSonido, volumenFx);
+    }
+
+    private void cargarArchivo(String direccion, String identificador, HashMap<String, MediaPlayer> contenedor, SimpleDoubleProperty volumen){
+        Media media = new Media(Objects.requireNonNull(getClass().getResource("/sound/" + direccion).toExternalForm()));
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.volumeProperty().bindBidirectional(volumen);
+        contenedor.put(identificador, mediaPlayer);
+    }
+
     public void modificarVolumenMusica(double valor) {
-        if (valor >= 0 && valor <= 100) {
-            volumenMusica = valor / 100;
-            reproduccionActual.setVolume(volumenMusica);
-        }
+        modificarVolumen(valor, volumenMusicaProperty);
     }
     public void modificarVolumenEfectos(double valor) {
-        if (valor >= 0 && valor <= 100) {
-            volumenEfectos = valor / 100;
+        modificarVolumen(valor, volumenFx);
+    }
+
+    private void modificarVolumen(double valor, SimpleDoubleProperty volumen) {
+        if (valor >= 0 && valor <= 100){
+            volumen.set(valor / 100);
         }
     }
     public void detenerMusica() {

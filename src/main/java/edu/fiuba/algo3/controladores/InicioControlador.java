@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -83,6 +84,7 @@ public class InicioControlador extends Controlador {
     }
     public void inicializar() {
         manejarRedimensionDelStage();
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
 
     private void manejarRedimensionDelStage(){
