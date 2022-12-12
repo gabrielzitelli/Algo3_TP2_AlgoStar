@@ -698,7 +698,7 @@ public class MapaControlador extends Controlador {
     }
 
     @FXML
-    public void pasarTurno(ActionEvent event) throws IOException {
+    public void pasarTurno() throws IOException {
         ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
         sonido.reproducirFX("boton");
         algoStar.terminarTurno();
