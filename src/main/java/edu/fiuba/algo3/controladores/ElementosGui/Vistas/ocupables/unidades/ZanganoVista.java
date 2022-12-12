@@ -75,22 +75,27 @@ public class ZanganoVista extends UnidadZergVista {
         ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
 
         botonCrearCriadero.setOnAction( event -> {
+            mapaControlador.desactivarAccionesDeAtaqueYMovimiento();
             sonido.reproducirFX("boton");
             imperioZerg.construirEdificio(new FabricaCriadero(), coordenada);
         });
         botonCrearReserva.setOnAction( event -> {
+            mapaControlador.desactivarAccionesDeAtaqueYMovimiento();
             sonido.reproducirFX("boton");
             imperioZerg.construirEdificio(new FabricaReservaDeReproduccion(), coordenada);
         });
         botonCrearExtractor.setOnAction( event -> {
+            mapaControlador.desactivarAccionesDeAtaqueYMovimiento();
             sonido.reproducirFX("boton");
             imperioZerg.construirEdificio(new FabricaExtractor(), coordenada);
         });
         botonCrearGuarida.setOnAction( event -> {
+            mapaControlador.desactivarAccionesDeAtaqueYMovimiento();
             sonido.reproducirFX("boton");
             imperioZerg.construirEdificio(new FabricaGuarida(), coordenada);
         });
         botonCrearEspiral.setOnAction( event -> {
+            mapaControlador.desactivarAccionesDeAtaqueYMovimiento();
             sonido.reproducirFX("boton");
             imperioZerg.construirEdificio(new FabricaEspiral(), coordenada);
         });
