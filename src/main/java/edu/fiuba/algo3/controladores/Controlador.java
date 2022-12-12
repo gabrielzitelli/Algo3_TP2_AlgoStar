@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 public abstract class Controlador implements Initializable {
 
+    protected boolean opcionesAbiertas = false;
     public abstract void initialize(URL url, ResourceBundle resourceBundle);
 
     public Stage obtenerStageActual(ActionEvent event){
@@ -23,5 +24,9 @@ public abstract class Controlador implements Initializable {
 
     public Stage obtenerStageActual(Node nodo){
         return (Stage)(nodo.getScene().getWindow());
+    }
+
+    protected void cerrarOpciones() {
+        opcionesAbiertas = false;
     }
 }

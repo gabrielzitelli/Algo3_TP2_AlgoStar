@@ -487,14 +487,16 @@ public class MapaControlador extends Controlador {
     }
 
     private void manejarInput() {
-        if (input.contains(("LEFT")))
-            camara.irAIzquierda();
-        else if(input.contains("RIGHT"))
-            camara.irAderecha();
-        if(input.contains("UP"))
-            camara.subir();
-        else if (input.contains("DOWN"))
-            camara.bajar();
+        if (!opcionesAbiertas) {
+            if (input.contains(("LEFT")))
+                camara.irAIzquierda();
+            else if (input.contains("RIGHT"))
+                camara.irAderecha();
+            if (input.contains("UP"))
+                camara.subir();
+            else if (input.contains("DOWN"))
+                camara.bajar();
+        }
     }
 
     private void calcularFps(long currentTime) {
@@ -530,7 +532,7 @@ public class MapaControlador extends Controlador {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                if(mouseEvent.getButton().equals(MouseButton.PRIMARY) && !opcionesAbiertas){
                     sonido.reproducirFX("click");
                     double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
                     double posMouseY = mouseEvent.getY();
@@ -835,5 +837,25 @@ public class MapaControlador extends Controlador {
     public void setDecorators(double decoratorWidth, double decoratorHeight){
         this.decoratorWidth = decoratorWidth;
         this.decoratorHeight = decoratorHeight;
+    }
+
+    @FXML
+    public void abrirOpciones() throws IOException {
+        sonido.reproducirFX("boton");
+        this.opcionesAbiertas = true;
+        cargarOpciones();
+    }
+    private void cargarOpciones() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/opciones.fxml"));
+        Parent root = loader.load();
+
+        SubScene subScene = new SubScene(root, 400, 400);
+        subScene.setTranslateX((App.INITIAL_WIDTH - subScene.getWidth()) / 2);
+        subScene.setTranslateY((App.INITIAL_HEIGHT - subScene.getHeight()) / 2);
+
+        borderPaneMain.getChildren().add(subScene);
+
+        OpcionesControlador controlador = loader.getController();
+        controlador.inicializar(borderPaneMain, subScene, this);
     }
 }

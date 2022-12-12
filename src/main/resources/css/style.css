@@ -55,18 +55,22 @@
 }
 
 .cajaOpciones {
-    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-color: rgba(28, 28, 28, 0.84);
+    -fx-border-color: white;
+    -fx-border-width: 1px;
     -fx-text-alignment: center;
     -fx-alignment: center;
     -fx-background-radius: 6px;
     -fx-border-radius: 10px;
-    -fx-text-fill: #000000;
     -fx-font-family: "Century Gothic";
     -fx-font-size: 14px;
     -fx-border-width: 0px;
     -fx-padding: 5 5 5 5;
     -fx-border-color: rgb(0, 0, 0);
     -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
+}
+.cajaOpcionesTexto {
+    -fx-text-fill: white;
 }
 
 .pasarTurnoBoton {

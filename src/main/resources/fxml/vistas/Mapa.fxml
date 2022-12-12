@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -14,7 +15,16 @@
 
 <BorderPane id="borderPaneMain" fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#actualizarCoordenadaMouse" prefHeight="600.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.MapaControlador">
    <center>
-      <Canvas fx:id="canvasPrincipal" />
+      <StackPane>
+         <children>
+            <Canvas fx:id="canvasPrincipal" />
+            <AnchorPane>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#abrirOpciones" styleClass="abrirOpcionesBoton" stylesheets="@../../css/style.css" text="Opciones" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </center>
    <right>
       <VBox id="bordeDerecha" fx:id="bordeDerecha" alignment="TOP_CENTER" prefWidth="256.0" styleClass="bordeDerecha" stylesheets="@../../css/style.css">
