@@ -90,12 +90,12 @@
                   </Text>
                   <Pane id="paneInfoEdificio" fx:id="paneInfoEdificio" prefHeight="362.0" prefWidth="257.0" styleClass="paneInfoEdificio" visible="false">
                      <children>
-                        <Text id="textoNombreEdificio" fx:id="textoNombreEdificio" fill="WHITE" layoutX="11.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio" textAlignment="CENTER" wrappingWidth="234.8125343322754">
+                        <Text id="textoNombreEdificio" fx:id="textoNombreEdificio" fill="WHITE" layoutX="11.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio" textAlignment="CENTER" wrappingWidth="234.8125343322754">
                            <font>
-                              <Font name="Century Gothic" size="20.0" />
+                              <Font name="Century Gothic" size="18.0" />
                            </font>
                         </Text>
-                        <ImageView id="imageviewEdificio" fx:id="imageviewEdificio" fitHeight="139.0" fitWidth="172.0" layoutX="43.0" layoutY="55.0" pickOnBounds="true" />
+                        <ImageView id="imageviewEdificio" fx:id="imageviewEdificio" fitHeight="139.0" fitWidth="172.0" layoutX="46.0" layoutY="58.0" pickOnBounds="true" />
                         <Text id="textoVida" fx:id="textoVida" fill="#00e41b" layoutX="11.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoVida" textAlignment="CENTER" wrappingWidth="235.64011001586914">
                            <font>
                               <Font name="Century Gothic" size="17.0" />
