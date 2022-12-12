@@ -24,6 +24,7 @@ public class AlgoStar {
 
     public void empezarJuego() {
         inicializarBases();
+        Logger.obtener().log("\nComienzo del juego, turno " + cantidadDeTurnos);
         turno = new TurnoJugador(jugadores.conseguirSiguienteJugador(), jugadores);
     }
 
@@ -38,6 +39,7 @@ public class AlgoStar {
         if(interTurnoContador == 2){
             interTurnoContador = 0;
             cantidadDeTurnos++;
+            Logger.obtener().log("\nComienzo del turno " + cantidadDeTurnos);
         }
     }
 

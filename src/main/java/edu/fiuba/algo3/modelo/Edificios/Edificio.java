@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios;
 
+import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Vida.Vida;
@@ -76,6 +77,8 @@ public abstract class Edificio implements Ocupable {
         Mapa elMapa = Mapa.obtener();
         elMapa.quitarOcupable(coordenada);
         this.estaDestruido = true;
+        Logger.obtener().log("Ha sido destruido el edificio " + this.getClass().getSimpleName() +
+                " que estaba ubicado en la casilla [X: " + coordenada.getCoordenadaX() + ", Y: " + coordenada.getCoordenadaY() + "].");
     }
 
     public boolean esIgualA(Edificio edificio) {

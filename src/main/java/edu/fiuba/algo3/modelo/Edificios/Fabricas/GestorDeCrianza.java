@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.Fabricas;
 
+import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -42,6 +43,11 @@ public class GestorDeCrianza {
                     ((UnidadZerg) unidad).setDepositoRecurso(mineralDelImperio);
                 unidadesDelImperio.add(unidad);
                 elMapa.colocarUnidadEnCasillaLibreMasCercana(coordenadaEdificioCreador, unidad);
+
+                Logger.obtener().log("Se ha creado un nuevo " + unidad.getClass().getSimpleName() +
+                        ", ubicado en la casilla [X: " + unidad.obtenerCoordenada().getCoordenadaX() +
+                        ", Y: " + unidad.obtenerCoordenada().getCoordenadaY() + "].");
+
                 unidadesARemover.add(unidad);
             }
         }

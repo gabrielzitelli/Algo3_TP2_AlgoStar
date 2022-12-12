@@ -10,8 +10,6 @@ public class EstadoHabilitadorConstruido implements EstadoHabilitador {
 
     private Suministro poblacionImperio;
 
-    private int aumentoSuministro; // PUEDE SERVIR PARA DESTRUIR SINO SACARLO
-
     @Override
     public EstadoHabilitador actualizar(ArrayList<Fabrica> fabricasAHabilitar, FabricasDisponibles fabricasDisponibles) {
         return this;
@@ -20,7 +18,6 @@ public class EstadoHabilitadorConstruido implements EstadoHabilitador {
     @Override
     public void marcarSuministro(Suministro suministroImperio, int cantidadAumentoSuministro){
         poblacionImperio = suministroImperio;
-        aumentoSuministro = cantidadAumentoSuministro;
     }
 
     @Override

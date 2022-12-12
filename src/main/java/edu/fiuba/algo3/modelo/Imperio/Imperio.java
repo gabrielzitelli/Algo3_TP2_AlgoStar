@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
@@ -55,6 +56,7 @@ public abstract class Imperio {
             if (edificio.estaDestruido())
                 edificiosDestruidos.add(edificio);
         }
+
         for (Edificio edificioDestruido : edificiosDestruidos) {
             this.edificios.remove(edificioDestruido);
         }
@@ -68,7 +70,11 @@ public abstract class Imperio {
             if (unidad.estaMuerta())
                 unidadesAsesinadas.add(unidad);
         }
+
         for (Unidad unidadAsesinada : unidadesAsesinadas) {
+            Logger.obtener().log("Ha sido eliminado el " + unidadAsesinada.getClass().getSimpleName() +
+                    " que estaba ubicado en la casilla [X: " + unidadAsesinada.obtenerCoordenada().getCoordenadaX() +
+                    ", Y: " + unidadAsesinada.obtenerCoordenada().getCoordenadaY() + "].");
             unidadAsesinada.disminuirPoblacion(poblacion);
             this.unidades.remove(unidadAsesinada);
         }

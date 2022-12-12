@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
+import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
@@ -47,7 +48,10 @@ public class Protoss extends Imperio{
     public void construirEdificio(FabricaEdificio fabricaEdificio, Coordenada coordenada) {
         fabricaEdificio.asignar(fabricasDisponibles, unidades, mineralesDelImperio, gasDelImperio, edificios);
 
-        this.construirEdificio(fabricaEdificio.crear(), coordenada);
+        Edificio edificioACrear = fabricaEdificio.crear();
+        this.construirEdificio(edificioACrear, coordenada);
+        Logger.obtener().log("Se ha iniciado la construcción de un edificio " + edificioACrear.getClass().getSimpleName() +
+                " en la casilla [X: " + coordenada.getCoordenadaX() + ", Y: " + coordenada.getCoordenadaY() + "].");
     }
 
     @Override
