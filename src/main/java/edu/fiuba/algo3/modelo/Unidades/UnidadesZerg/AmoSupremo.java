@@ -2,10 +2,10 @@ package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 
@@ -26,19 +26,24 @@ public class AmoSupremo extends UnidadZerg {
 
     @Override
     public void verificarColocable(Casilla unaCasilla) {
-        super.verificarColocable(unaCasilla);
-        Mapa.obtener().revelar(coordenada, radioDeRevelacion);
+        if (!unaCasilla.puedeMoverse(superficieDondeSeMueve))
+            throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
+
+        Mapa elMapa = Mapa.obtener();
+        if (coordenada != null)
+            elMapa.desRevelar(coordenada, radioDeRevelacion);
+
+        this.coordenada = unaCasilla.obtenerCoordenada();
+        elMapa.revelar(coordenada, radioDeRevelacion);
     }
 
     @Override
-    public void actualizarColocable(Casilla unaCasilla) {
-        super.verificarColocable(unaCasilla);
-     }
+    public void actualizarColocable(Casilla unaCasilla) {}
 
     @Override
-    public void moverA(Coordenada coordenadaDestino) {
+    public void destruirUnidad() {
+        super.destruirUnidad();
         Mapa.obtener().desRevelar(coordenada, radioDeRevelacion);
-        super.moverA(coordenadaDestino);
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
