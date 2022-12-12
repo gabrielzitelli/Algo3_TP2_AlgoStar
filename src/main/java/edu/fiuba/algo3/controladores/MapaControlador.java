@@ -66,6 +66,8 @@ public class MapaControlador extends Controlador {
     protected VBox bordeIzquierda;
     @FXML
     protected BorderPane borderPaneMain;
+    @FXML
+    protected Button opcionesBoton;
 
 
     /*=====================================================================================
@@ -717,7 +719,7 @@ public class MapaControlador extends Controlador {
     }
 
     private void cargarRevanchaDePartida() throws IOException {
-
+        opcionesBoton.setDisable(true);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/finDePartidaVista.fxml"));
         Parent root = loader.load();
 

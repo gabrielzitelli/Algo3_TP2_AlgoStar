@@ -20,7 +20,7 @@
             <Canvas fx:id="canvasPrincipal" />
             <AnchorPane>
                <children>
-                  <Button mnemonicParsing="false" onAction="#abrirOpciones" styleClass="abrirOpcionesBoton" stylesheets="@../../css/style.css" text="Opciones" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="opcionesBoton" mnemonicParsing="false" onAction="#abrirOpciones" styleClass="abrirOpcionesBoton" stylesheets="@../../css/style.css" text="Opciones" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
          </children>
