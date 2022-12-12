@@ -12,7 +12,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 4** - [Walter Gabriel Diem](https://github.com/walgab)
 * **Integrante 5** - [Benzaquen Ezequiel](https://github.com/ezebenza2000)
 
-**Corrector:** - [Pablo Rodríguez Massuh](https://github.com/xpitr256)
+**Corrector:** [Pablo Rodríguez Massuh](https://github.com/xpitr256)
 
 ## Aplicación
 
