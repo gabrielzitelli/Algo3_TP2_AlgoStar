@@ -6,6 +6,8 @@ public class PartidaTerminada implements Turno {
 
     public PartidaTerminada(Jugador ganador) {
         this.ganador = ganador;
+
+        Logger.obtener().log("Ha ganado la partida el jugador " + ganador.conseguirNombre() + ".");
     }
 
     @Override
