@@ -3,7 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaExtractor;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorExtractorNoPuedeTenerMasDe3ZanganosAlMismoTiempo;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Zerg;
@@ -174,6 +174,6 @@ public class CasoDeUso4Test {
         extractor.contratarUnidad(new Zangano());
         extractor.contratarUnidad(new Zangano());
 
-        assertThrows(ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo.class, () -> extractor.contratarUnidad(new Zangano()));
+        assertThrows(ErrorExtractorNoPuedeTenerMasDe3ZanganosAlMismoTiempo.class, () -> extractor.contratarUnidad(new Zangano()));
     }
 }

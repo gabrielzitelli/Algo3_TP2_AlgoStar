@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
 import edu.fiuba.algo3.modelo.Excepciones.ErrorExtractorNoPuedeDescontratarUnidadesSiNoContrataPrimero;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorExtractorNoPuedeTenerMasDe3ZanganosAlMismoTiempo;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
@@ -17,7 +17,7 @@ public class EstadoContratadorConstruido implements EstadoContratador {
     @Override
     public void contratar(Unidad unidadAContratar, LinkedList<Unidad> unidadesEmpleados) {
         if (unidadesEmpleados.size() >= 3)
-            throw new ErrorExtratorNoPuedeTenerMasDe3ZanganosAlMismoTiempo();
+            throw new ErrorExtractorNoPuedeTenerMasDe3ZanganosAlMismoTiempo();
 
         unidadesEmpleados.add(unidadAContratar);
     }

@@ -87,6 +87,22 @@ public class InicioControlador extends Controlador {
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
 
+    public void inicializar(Stage stage) {
+        manejarRedimensionDelStage(stage);
+    }
+
+    private void manejarRedimensionDelStage(Stage stage){
+        this.stage = stage;
+        Scene scene = obtenerSceneActual(labelBienvenida);
+        tamanioHorizontal = this.stage.getWidth();
+        tamanioVertical = this.stage.getHeight();
+        decoratorHeight = tamanioVertical - scene.getHeight();
+        decoratorWidth = tamanioHorizontal - scene.getWidth();
+
+        manejarRedimensionDelStageEnAncho();
+        manejarRedimensionDelStageEnAlto();
+    }
+
     private void manejarRedimensionDelStage(){
         stage = obtenerStageActual(labelBienvenida);
         Scene scene = obtenerSceneActual(labelBienvenida);

@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 
 public class AlgoStar {
 
-    private final AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
+    private AdministradorDeJugadores jugadores = new AdministradorDeJugadores();
     private Turno turno;
 
     private int cantidadDeTurnos = 0;
@@ -63,13 +63,27 @@ public class AlgoStar {
     public int turnoActual() {
         return cantidadDeTurnos;
     }
+
     public void revancha(){
         if(this.partidaTerminada()){
+            Logger.obtener().log("Se ha comenzado una revancha entre los mismos jugadores." +
+                    " Se reinicia el juego de los jugadores anteriores.");
             this.prepararJugadores();
-            Mapa elMapa = Mapa.obtener();
-            elMapa.prepararMapaParaRevancha();
+            Mapa.obtener().prepararMapaParaRevancha();
+            cantidadDeTurnos = 0;
             this.empezarJuego();
         }
+    }
+
+    public void reiniciar(){
+        Logger.obtener().log("Se ha vuelto al menu principal. Se ha reiniciado el juego sin jugadores.");
+        this.reiniciarDatosJugadores();
+        Mapa.obtener().prepararMapaParaRevancha();
+        cantidadDeTurnos = 0;
+    }
+
+    private void reiniciarDatosJugadores(){
+        jugadores = new AdministradorDeJugadores();
     }
 
     private void prepararJugadores() {

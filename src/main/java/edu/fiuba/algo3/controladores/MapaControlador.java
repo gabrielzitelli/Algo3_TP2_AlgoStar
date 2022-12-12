@@ -31,6 +31,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -59,9 +64,8 @@ public class MapaControlador extends Controlador {
     protected VBox bordeDerecha;
     @FXML
     protected VBox bordeIzquierda;
-
     @FXML
-    protected SubScene opciones;
+    protected BorderPane borderPaneMain;
 
 
     /*=====================================================================================
@@ -694,7 +698,7 @@ public class MapaControlador extends Controlador {
     }
 
     @FXML
-    public void pasarTurno(){
+    public void pasarTurno(ActionEvent event) throws IOException {
         ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
         sonido.reproducirFX("boton");
         algoStar.terminarTurno();
@@ -705,6 +709,24 @@ public class MapaControlador extends Controlador {
             actualizarPaneOcupable(coordenadaSeleccion);
 
         desactivarAccionesDeAtaqueYMovimiento();
+
+        if(algoStar.partidaTerminada())
+            cargarRevanchaDePartida();
+    }
+
+    private void cargarRevanchaDePartida() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/finDePartidaVista.fxml"));
+        Parent root = loader.load();
+
+        SubScene subScene = new SubScene(root, 400, 400);
+        subScene.setTranslateX((App.INITIAL_WIDTH - subScene.getWidth()) / 2);
+        subScene.setTranslateY((App.INITIAL_HEIGHT - subScene.getHeight()) / 2);
+
+        borderPaneMain.getChildren().add(subScene);
+
+        RevanchaControlador controlador = loader.getController();
+        controlador.incializar(borderPaneMain, subScene, App.algoStar.conseguirJugadorActual().conseguirNombre());
     }
 
     public void desactivarAccionesDeAtaqueYMovimiento() {
