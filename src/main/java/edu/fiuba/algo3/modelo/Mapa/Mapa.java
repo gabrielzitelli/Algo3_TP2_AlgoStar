@@ -188,7 +188,7 @@ public class Mapa {
         this.inicializarTerrenoEspacial();
     }
 
-    public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
+    public void colocarMaterial(Recolectable materialAColocar, Coordenada coordenada){
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarMaterial(materialAColocar);
     }
@@ -315,10 +315,6 @@ public class Mapa {
     public void moverUnidad(Coordenada coordenadaInicial, Coordenada coordenadaFinal){
         Casilla casillaInicial = this.encontrarCasillaPorCoordenada(coordenadaInicial);
         Casilla casillaFinal = this.encontrarCasillaPorCoordenada(coordenadaFinal);
-
-        if (casillaInicial.obtenerOcupable().getClass().equals(SinOcupar.class)){
-            throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
-        }
 
         //Actualizo la casillaFinal con una casilla que ahora tiene la Unidad de casillaInicial
         casillaFinal = casillaInicial.moverUnidadHacia(casillaFinal);

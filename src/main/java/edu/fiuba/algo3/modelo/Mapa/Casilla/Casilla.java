@@ -28,7 +28,7 @@ public abstract class Casilla {
     public abstract void recibirAtaque(Ataque unAtaque);
     public abstract Casilla moverUnidadHacia(Casilla destino);
 
-    public void colocarMaterial(SiRecolectable materialAColocar){
+    public void colocarMaterial(Recolectable materialAColocar){
         estadoRecolectable = materialAColocar;
     }
 
