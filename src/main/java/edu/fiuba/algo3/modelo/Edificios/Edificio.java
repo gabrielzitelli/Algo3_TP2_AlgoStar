@@ -12,6 +12,8 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 

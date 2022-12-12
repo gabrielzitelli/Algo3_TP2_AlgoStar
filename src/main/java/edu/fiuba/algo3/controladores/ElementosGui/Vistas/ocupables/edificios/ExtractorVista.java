@@ -3,11 +3,13 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Espiral;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -80,5 +82,12 @@ public class ExtractorVista extends EdificioVista {
         boton.setVisible(true);
         boton.setDisable(false);
         boton.setGraphic(imagen);
+    }
+
+    public void actualizarEfectoSiEstaEnConstruccion(ImageView imageView, Coordenada coordenada){
+        Extractor esteExtractor = (Extractor) Mapa.obtener().obtenerOcupable(coordenada);
+
+        if(esteExtractor.toString().contains(" estado en_construccion"))
+            aplicarEfectoBlancoYNegroImageView(imageView);
     }
 }

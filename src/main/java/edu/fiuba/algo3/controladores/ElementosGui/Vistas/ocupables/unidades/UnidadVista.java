@@ -76,4 +76,7 @@ public abstract class UnidadVista extends OcupableVista {
             Tooltip.install(wrapperBotonAtacar, new Tooltip("ATACAR\n" + emojiAdvertenciaUnidode + " Esta movida ya ha atacado"));
         }
     }
+
+    public void actualizarEfectoSiEstaEnConstruccion(ImageView imageView, Coordenada coordenada){
+    }
 }

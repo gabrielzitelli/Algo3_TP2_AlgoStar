@@ -29,8 +29,8 @@ public class Zerg extends Imperio {
     LinkedList<UnidadEnEvolucion> unidadesAEvolucionar = new LinkedList<>();
 
     public Zerg() {
-        mineralesDelImperio = new Mineral(2000);
-        gasDelImperio = new Gas(2000);
+        mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
+        gasDelImperio = new Gas(0);
         this.poblacion = new Suministro(0);
         edificios = new LinkedList<>();
         this.fabricasDisponibles = new FabricasDisponibles();

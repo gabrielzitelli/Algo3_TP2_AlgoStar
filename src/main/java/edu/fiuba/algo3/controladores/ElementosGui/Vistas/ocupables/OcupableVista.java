@@ -6,6 +6,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.*;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -62,6 +63,8 @@ public abstract class OcupableVista extends Vista {
         ocupable.add(new PilonVista());
         ocupable.add(new PuertoEstelarVista());
     }
+
+    public abstract void actualizarEfectoSiEstaEnConstruccion(ImageView imageView, Coordenada coordenada);
 
     public static Vista obtenerOcupable(Object obtenerOcupable) {
         return obtenerVista((String)obtenerOcupable, ocupables);

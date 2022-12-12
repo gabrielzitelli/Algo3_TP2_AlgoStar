@@ -2,7 +2,13 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.NexoMineral;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Guarida;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import org.json.simple.JSONObject;
 
@@ -22,5 +28,12 @@ public class NexoMineralVista extends EdificioVista {
     @Override
     public void aplicarTextoEscudo(Text textoEscudo, JSONObject ocupableJson){
         textoEscudo.setText(ocupableJson.get(ConvertidorJSON.ESCUDO) + "/" + ocupableJson.get(ConvertidorJSON.ESCUDOMAX));
+    }
+
+    public void actualizarEfectoSiEstaEnConstruccion(ImageView imageView, Coordenada coordenada){
+        NexoMineral esteNexoMineral = (NexoMineral) Mapa.obtener().obtenerOcupable(coordenada);
+
+        if(esteNexoMineral.toString().contains(" estado en_construccion"))
+            aplicarEfectoBlancoYNegroImageView(imageView);
     }
 }

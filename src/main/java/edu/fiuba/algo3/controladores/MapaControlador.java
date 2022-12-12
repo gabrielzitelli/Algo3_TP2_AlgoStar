@@ -26,7 +26,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -38,7 +37,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
@@ -269,6 +267,8 @@ public class MapaControlador extends Controlador {
             Tooltip.install(wrapper, null);
 
         textoConstruccionImperio.setVisible(false);
+
+        limpiarEfectosDeImageView(imageviewEdificio);
     }
 
     public void inicializar() {
@@ -596,6 +596,12 @@ public class MapaControlador extends Controlador {
         actualizarPaneOcupable(coordenadaSeleccion);
     }
 
+    public void limpiarEfectosDeImageView(ImageView imageView){
+        imageView.setEffect(null);
+        DropShadow efectorBordePNGBlanco = new DropShadow( 10, Color.WHITE );
+        imageviewEdificio.setEffect(efectorBordePNGBlanco);
+    }
+
     private void actualizarPaneOcupable(Coordenada coordenada){
         deshabilitarBotonesYPanes();
 
@@ -618,6 +624,7 @@ public class MapaControlador extends Controlador {
 
         textoNombreEdificio.setText(ocupableView.getInfo());
         ocupableView.renderAdentroDeImageView(imageviewEdificio);
+        ocupableView.actualizarEfectoSiEstaEnConstruccion(imageviewEdificio, coordenada);
 
         textoVida.setText(ocupableJSON.get(ConvertidorJSON.VIDA) + "/" + ocupableJSON.get(ConvertidorJSON.VIDAMAX));
         ocupableView.aplicarTextoEscudo(textoEscudo, ocupableJSON);

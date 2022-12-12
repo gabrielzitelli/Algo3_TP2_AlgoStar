@@ -6,6 +6,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.Scou
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.UnidadVista;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
@@ -17,7 +18,9 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.json.simple.JSONObject;
@@ -98,5 +101,12 @@ public class PuertoEstelarVista extends EdificioVista {
             String informacionNoSePuedeConstruir = "\n" + emojiAdvertenciaUnidode + " No hay suministro de población suficiente para crear a esta unidad";
             Tooltip.install(wrapperBoton, new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionNoSePuedeConstruir + informacionDeCosto));
         }
+    }
+
+    public void actualizarEfectoSiEstaEnConstruccion(ImageView imageView, Coordenada coordenada){
+        PuertoEstelar estePuertoEstelar = (PuertoEstelar) Mapa.obtener().obtenerOcupable(coordenada);
+
+        if(estePuertoEstelar.toString().contains(" estado en_construccion"))
+            aplicarEfectoBlancoYNegroImageView(imageView);
     }
 }
