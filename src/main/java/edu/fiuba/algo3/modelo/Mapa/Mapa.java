@@ -316,10 +316,6 @@ public class Mapa {
         Casilla casillaInicial = this.encontrarCasillaPorCoordenada(coordenadaInicial);
         Casilla casillaFinal = this.encontrarCasillaPorCoordenada(coordenadaFinal);
 
-        if (casillaInicial.obtenerOcupable().getClass().equals(SinOcupar.class)){
-            throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
-        }
-
         //Actualizo la casillaFinal con una casilla que ahora tiene la Unidad de casillaInicial
         casillaFinal = casillaInicial.moverUnidadHacia(casillaFinal);
         this.actualizarCasillaPorCoordenada(coordenadaFinal, casillaFinal);

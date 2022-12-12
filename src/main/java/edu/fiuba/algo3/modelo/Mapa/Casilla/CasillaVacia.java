@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque;
 import edu.fiuba.algo3.modelo.Imperio.Imperio;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
@@ -76,6 +77,6 @@ public class CasillaVacia extends Casilla{
     }
 
     public Casilla moverUnidadHacia(Casilla destino){
-        return destino;
+        throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
     }
 }
