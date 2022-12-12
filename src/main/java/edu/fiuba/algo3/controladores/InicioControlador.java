@@ -61,6 +61,7 @@ public class InicioControlador extends Controlador {
         sonido.cargarSonido("atacar.wav", "atacar");
         sonido.cargarSonido("clickBoton.mp3", "boton");
         sonido.cargarSonido("colocarEdificio.mp3", "click");
+        sonido.cargarSonido("cancelar.wav", "cancelar");
 
         sonido.cargarSonido("protoss/Dragon.wav", "dragon");
         sonido.cargarSonido("protoss/scout.wav", "scout");

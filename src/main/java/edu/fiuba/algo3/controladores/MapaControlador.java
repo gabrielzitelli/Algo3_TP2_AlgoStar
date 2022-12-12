@@ -559,13 +559,10 @@ public class MapaControlador extends Controlador {
         if (distancia <= rango) {
             //Puede atacar
             try {
-                ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
-                sonido.reproducirFX("atacar");
                 mapa.atacar(coordenadaAtacar, coordenadaClickeada);
-
+                sonido.reproducirFX("atacar");
             } catch (RuntimeException e) {
-                //todo agregar feedback
-                e.printStackTrace();
+                sonido.reproducirFX("cancelar");
             }
         }
 
@@ -584,11 +581,9 @@ public class MapaControlador extends Controlador {
                 JSONObject unidadJSON = ConvertidorJSON.convertirAJSON(unidad);
                 Vista unidadVista = OcupableVista.obtenerOcupable(unidadJSON.get(ConvertidorJSON.OCUPABLE));
                 unidad.moverA(coordenadaClickeada);
-                ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
                 sonido.reproducirFX(unidadVista.obtenerAudio());
             } catch (RuntimeException error){
-                //Todo poner algun sonido o algo para indicar que no se puede
-                error.printStackTrace();
+                sonido.reproducirFX("cancelar");
             }
         }
         coordenadaMover = null;
@@ -701,6 +696,10 @@ public class MapaControlador extends Controlador {
         if(coordenadaSeleccion != null)
             actualizarPaneOcupable(coordenadaSeleccion);
 
+        desactivarAccionesDeAtaqueYMovimiento();
+    }
+
+    public void desactivarAccionesDeAtaqueYMovimiento() {
         coordenadaAtacar = null;
         coordenadaMover = null;
     }
