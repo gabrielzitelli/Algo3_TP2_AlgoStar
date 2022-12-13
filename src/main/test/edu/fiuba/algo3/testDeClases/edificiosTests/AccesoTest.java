@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZealot;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -30,7 +30,7 @@ public class AccesoTest {
         for (int i = 0; i < 7; i++)
             unAcceso.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricaDragon()));
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricasUnidadesDragon()));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class AccesoTest {
         for (int i = 0; i < 7; i++)
             unAcceso.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricaZealot()));
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricasUnidadesZealot()));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class AccesoTest {
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaDragon()));
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricasUnidadesDragon()));
     }
 
     @Test
@@ -70,6 +70,6 @@ public class AccesoTest {
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaZealot()));
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricasUnidadesZealot()));
     }
 }

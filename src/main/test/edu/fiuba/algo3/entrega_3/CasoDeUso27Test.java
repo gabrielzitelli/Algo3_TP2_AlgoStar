@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesMutalisco;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
@@ -66,7 +66,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test01NoPuedoEvolucionarAUnMutaliscoADevoradadorSinTenerRecursos() {
-        criadero.crearUnidad(new FabricaMutalisco());
+        criadero.crearUnidad(new FabricasUnidadesMutalisco());
 
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
@@ -82,7 +82,7 @@ public class CasoDeUso27Test {
 
     @Test
     public void test02PuedoEvolucionarAUnMutaliscoADevoradorTeniendoRecursos() {
-        criadero.crearUnidad(new FabricaMutalisco());
+        criadero.crearUnidad(new FabricasUnidadesMutalisco());
 
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();

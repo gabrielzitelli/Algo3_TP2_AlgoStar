@@ -2,9 +2,9 @@ package edu.fiuba.algo3.testDeClases.SuministroTest;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZerling;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaEspiral;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaGuarida;
@@ -59,7 +59,7 @@ public class SuministroYUnidadesTest {
 
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
-        criadero.crearUnidad(new FabricaZerling());
+        criadero.crearUnidad(new FabricasUnidadesZerling());
 
             //Pasan dos turnos y lo tenemos
         imperioZerg.terminarTurno();
@@ -127,7 +127,7 @@ public class SuministroYUnidadesTest {
             imperioZerg.terminarTurno();
 
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
-        criadero.crearUnidad(new FabricaMutalisco());
+        criadero.crearUnidad(new FabricasUnidadesMutalisco());
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
         assertTrue(imperioZerg.tenesEstaPoblacion(4));
@@ -191,7 +191,7 @@ public class SuministroYUnidadesTest {
             imperioZerg.terminarTurno();
 
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
-        criadero.crearUnidad(new FabricaMutalisco());
+        criadero.crearUnidad(new FabricasUnidadesMutalisco());
         for (int i = 0; i < 7; i++)
             imperioZerg.terminarTurno();
 
@@ -231,9 +231,9 @@ public class SuministroYUnidadesTest {
         }
 
         Criadero criadero = (Criadero) Mapa.obtener().obtenerOcupable(new Coordenada(0,0));
-        criadero.crearUnidad(new FabricaZangano());
-        criadero.crearUnidad(new FabricaZangano());
-        criadero.crearUnidad(new FabricaZangano());
+        criadero.crearUnidad(new FabricasUnidadesZangano());
+        criadero.crearUnidad(new FabricasUnidadesZangano());
+        criadero.crearUnidad(new FabricasUnidadesZangano());
 
         imperio.terminarTurno();
 

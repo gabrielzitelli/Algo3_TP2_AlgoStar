@@ -155,7 +155,7 @@ public class CasoDeUso29Test {
         imperioProto.construirEdificio(new FabricaAcceso(), unaCoordenada);
 
         unaCoordenada = new Coordenada(2,1);
-        imperioProto.construirEdificio(new FabricaPuertaEstelar(), unaCoordenada);
+        imperioProto.construirEdificio(new FabricaPuertoEstelar(), unaCoordenada);
 
         for ( int j = 1; j < 16 ; j++ ){
             imperioProto.terminarTurno();

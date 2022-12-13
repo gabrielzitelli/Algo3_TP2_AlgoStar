@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesAmoSupremo;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
@@ -108,7 +108,7 @@ public class CasoDeUso31Test {
 
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
-        criadero.crearUnidad(new FabricaAmoSupremo());
+        criadero.crearUnidad(new FabricasUnidadesAmoSupremo());
 
         //Pasan 5 turnos y lo tenemos
         for(int i = 0; i < 5; i++)

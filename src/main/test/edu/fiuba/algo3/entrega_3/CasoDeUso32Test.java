@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.AlgoStar.AlgoStar;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -62,7 +62,7 @@ public class CasoDeUso32Test {
 
         Acceso accesoInicial = (Acceso) algoStar.conseguirOcupableEn(coordenadaAsentamientoProtoss);
         accesoInicial.asignarRecursos(mineralesNuevos, gasesNuevos);
-        accesoInicial.crearUnidad(new FabricaDragon());
+        accesoInicial.crearUnidad(new FabricasUnidadesDragon());
 
         for (int i = 0; i < 12; i++){
             algoStar.terminarTurno();

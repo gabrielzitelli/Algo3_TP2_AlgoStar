@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
 
 
     @Override
-    public EstadoHabilitador actualizar(ArrayList<Fabrica> fabricasAHabilitar, FabricasDisponibles fabricasDisponibles) {
+    public EstadoHabilitador actualizar(ArrayList<FabricasUnidades> fabricasAHabilitar, FabricasDisponibles fabricasDisponibles) {
         turnoParaEstarConstruido--;
         if(turnoParaEstarConstruido == 0) {
             if (fabricasDisponibles != null)
@@ -48,10 +48,10 @@ public class EstadoHabilitadorEnConstruccion implements EstadoHabilitador {
     }
 
     @Override
-    public void estaAptoParaCrearse(Fabrica unaFabrica){
+    public void estaAptoParaCrearse(FabricasUnidades unaFabricasUnidades){
     }
 
-    public void estaAptoParaCrearseVerificacion(Fabrica unaFabrica){
+    public void estaAptoParaCrearseVerificacion(FabricasUnidades unaFabricasUnidades){
     }
 
     @Override

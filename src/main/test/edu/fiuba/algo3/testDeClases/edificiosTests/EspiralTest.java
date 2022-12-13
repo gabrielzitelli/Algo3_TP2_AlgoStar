@@ -4,8 +4,8 @@ import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Espiral;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -36,7 +36,7 @@ public class EspiralTest {
             unCriadero.pasarTurno();
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaMutalisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class EspiralTest {
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaMutalisco()));
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 
     @Test
@@ -83,6 +83,6 @@ public class EspiralTest {
         unEspiral.recibirAtaque(new Ataque(new DanioTerrestre(1300)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaMutalisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 }

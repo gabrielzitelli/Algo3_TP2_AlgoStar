@@ -7,8 +7,8 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.Unid
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesScout;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
@@ -57,20 +57,20 @@ public class PuertoEstelarVista extends EdificioVista {
         botonCrearScout.setOnAction( event -> {
             ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
             sonido.reproducirFX("boton");
-            estePuerto.crearUnidad(new FabricaScout());
+            estePuerto.crearUnidad(new FabricasUnidadesScout());
         });
 
-        prepararHabilitacionDeBoton(botonCrearScout, new FabricaScout(), estePuerto, arrayWrappersBotonesEdificio[0], new ScoutVista());
+        prepararHabilitacionDeBoton(botonCrearScout, new FabricasUnidadesScout(), estePuerto, arrayWrappersBotonesEdificio[0], new ScoutVista());
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, PuertoEstelar unPuerto, Pane wrapperBoton, UnidadVista unidadVista){
-        Unidad unidadACrear = unaFabrica.crearUnidad();
+    private void prepararHabilitacionDeBoton(Button boton, FabricasUnidades unaFabricasUnidades, PuertoEstelar unPuerto, Pane wrapperBoton, UnidadVista unidadVista){
+        Unidad unidadACrear = unaFabricasUnidades.crearUnidad();
 
         String informacionUnidad = unidadACrear.toString();
         String identificadorUnidad = unidadVista.getInfo();
         String costoMineral = obtenerAtributoDeString(informacionUnidad, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionUnidad, "costoGas");
-        String poblacionNecesaria = Integer.toString( unaFabrica.obtenerPoblacionNecesariaInstancia() ) ;
+        String poblacionNecesaria = Integer.toString( unaFabricasUnidades.obtenerPoblacionNecesariaInstancia() ) ;
         String requisitosUnidad = unidadVista.getRequisitosUnidad();
         String informacionDeCosto = String.format("%s\n%s Minerales necesarios: %s\n%s Gas necesario: %s\n%s Ocupa: %s de población", requisitosUnidad, emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas, emojiBulletPoint, poblacionNecesaria);
 
@@ -81,7 +81,7 @@ public class PuertoEstelarVista extends EdificioVista {
         }
 
         try{
-            unPuerto.estaAptaUnidadParaConstruir(unaFabrica);
+            unPuerto.estaAptaUnidadParaConstruir(unaFabricasUnidades);
             boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionDeCosto));
 
         } catch (ErrorNoSeCumplenLosRequisitosDeEstaUnidad exception){

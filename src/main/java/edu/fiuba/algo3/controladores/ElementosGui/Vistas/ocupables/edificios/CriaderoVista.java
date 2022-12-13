@@ -5,7 +5,7 @@ import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.*;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
@@ -65,40 +65,40 @@ public class CriaderoVista extends EdificioVista {
 
         botonCrearZangano.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            esteCriadero.crearUnidad(new FabricaZangano());
+            esteCriadero.crearUnidad(new FabricasUnidadesZangano());
         });
         botonCrearZerling.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            esteCriadero.crearUnidad(new FabricaZerling());
+            esteCriadero.crearUnidad(new FabricasUnidadesZerling());
         });
         botonCrearHidralisco.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            esteCriadero.crearUnidad(new FabricaHidralisco());
+            esteCriadero.crearUnidad(new FabricasUnidadesHidralisco());
         });
         botonCrearMutalisco.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            esteCriadero.crearUnidad(new FabricaMutalisco());
+            esteCriadero.crearUnidad(new FabricasUnidadesMutalisco());
         });
         botonCrearAmoSupremo.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            esteCriadero.crearUnidad(new FabricaAmoSupremo());
+            esteCriadero.crearUnidad(new FabricasUnidadesAmoSupremo());
         });
 
-        prepararHabilitacionDeBoton(botonCrearZangano, new FabricaZangano(), esteCriadero, arrayWrappersBotonesEdificio[0], new ZanganoVista());
-        prepararHabilitacionDeBoton(botonCrearZerling, new FabricaZerling(), esteCriadero, arrayWrappersBotonesEdificio[1], new ZerlingVista());
-        prepararHabilitacionDeBoton(botonCrearHidralisco, new FabricaHidralisco(), esteCriadero, arrayWrappersBotonesEdificio[2], new HidraliscoVista());
-        prepararHabilitacionDeBoton(botonCrearMutalisco, new FabricaMutalisco(), esteCriadero, arrayWrappersBotonesEdificio[3], new MutaliscoVista());
-        prepararHabilitacionDeBoton(botonCrearAmoSupremo, new FabricaAmoSupremo(), esteCriadero, arrayWrappersBotonesEdificio[4], new AmoSupremoVista());
+        prepararHabilitacionDeBoton(botonCrearZangano, new FabricasUnidadesZangano(), esteCriadero, arrayWrappersBotonesEdificio[0], new ZanganoVista());
+        prepararHabilitacionDeBoton(botonCrearZerling, new FabricasUnidadesZerling(), esteCriadero, arrayWrappersBotonesEdificio[1], new ZerlingVista());
+        prepararHabilitacionDeBoton(botonCrearHidralisco, new FabricasUnidadesHidralisco(), esteCriadero, arrayWrappersBotonesEdificio[2], new HidraliscoVista());
+        prepararHabilitacionDeBoton(botonCrearMutalisco, new FabricasUnidadesMutalisco(), esteCriadero, arrayWrappersBotonesEdificio[3], new MutaliscoVista());
+        prepararHabilitacionDeBoton(botonCrearAmoSupremo, new FabricasUnidadesAmoSupremo(), esteCriadero, arrayWrappersBotonesEdificio[4], new AmoSupremoVista());
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, Criadero unCriadero, Pane wrapperBoton, UnidadVista unidadVista){
-        Unidad unidadACrear = unaFabrica.crearUnidad();
+    private void prepararHabilitacionDeBoton(Button boton, FabricasUnidades unaFabricasUnidades, Criadero unCriadero, Pane wrapperBoton, UnidadVista unidadVista){
+        Unidad unidadACrear = unaFabricasUnidades.crearUnidad();
 
         String informacionUnidad = unidadACrear.toString();
         String identificadorUnidad = unidadVista.getInfo();
         String costoMineral = obtenerAtributoDeString(informacionUnidad, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionUnidad, "costoGas");
-        String poblacionNecesaria = Integer.toString( unaFabrica.obtenerPoblacionNecesariaInstancia() );
+        String poblacionNecesaria = Integer.toString( unaFabricasUnidades.obtenerPoblacionNecesariaInstancia() );
         String requisitosUnidad = unidadVista.getRequisitosUnidad();
         String informacionDeCosto = String.format("%s\n%s Minerales necesarios: %s\n%s Gas necesario: %s\n%s Ocupa: %s de población", requisitosUnidad, emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas, emojiBulletPoint, poblacionNecesaria);
 
@@ -109,7 +109,7 @@ public class CriaderoVista extends EdificioVista {
         }
 
         try{
-            unCriadero.estaAptaUnidadParaConstruir(unaFabrica);
+            unCriadero.estaAptaUnidadParaConstruir(unaFabricasUnidades);
             boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionDeCosto));
             
         }catch (ErrorNoSeCumplenLosRequisitosDeEstaUnidad exception){

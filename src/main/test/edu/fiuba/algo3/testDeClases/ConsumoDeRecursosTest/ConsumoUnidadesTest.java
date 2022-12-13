@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.testDeClases.ConsumoDeRecursosTest;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
@@ -42,7 +42,7 @@ public class ConsumoUnidadesTest {
 
         //No podemos crear la unidad porque no tenemos más recursos
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class, () ->
-                criadero.crearUnidad(new FabricaZangano()));
+                criadero.crearUnidad(new FabricasUnidadesZangano()));
     }
     @Test
     public void test02PuedoCrearUnZanganoConLosRecursosNecesarios() {
@@ -64,6 +64,6 @@ public class ConsumoUnidadesTest {
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
         //Podemos crear la unidad porque tenemos los recursos
-        assertDoesNotThrow( () -> criadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow( () -> criadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 }

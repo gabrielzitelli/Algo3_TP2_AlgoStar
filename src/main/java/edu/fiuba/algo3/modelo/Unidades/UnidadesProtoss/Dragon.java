@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
 import edu.fiuba.algo3.modelo.Ataque.DanioMixto;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
@@ -26,7 +26,7 @@ public class Dragon extends UnidadProtoss {
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
-        suministroImperio.disminuirPoblacion(FabricaDragon.obtenerPoblacionNecesaria());
+        suministroImperio.disminuirPoblacion(FabricasUnidadesDragon.obtenerPoblacionNecesaria());
     }
 
     @Override

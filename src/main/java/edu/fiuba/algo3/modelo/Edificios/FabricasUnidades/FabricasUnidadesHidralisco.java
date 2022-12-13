@@ -1,12 +1,12 @@
-package edu.fiuba.algo3.modelo.Edificios.Fabricas;
+package edu.fiuba.algo3.modelo.Edificios.FabricasUnidades;
 
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
 
-public class FabricaHidralisco extends Fabrica {
+public class FabricasUnidadesHidralisco extends FabricasUnidades {
 
     private static final int poblacionQueOcupa = 2;
 
-    public FabricaHidralisco(){
+    public FabricasUnidadesHidralisco(){
         this.poblacionNecesaria = poblacionQueOcupa;
     }
 

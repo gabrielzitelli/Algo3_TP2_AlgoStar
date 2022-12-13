@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
 import edu.fiuba.algo3.modelo.Ataque.DanioAereo;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesMutalisco;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
@@ -24,7 +24,7 @@ public class Devorador extends UnidadZerg {
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
-        suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
+        suministroImperio.disminuirPoblacion(FabricasUnidadesMutalisco.obtenerPoblacionNecesaria());
     }
 
     @Override

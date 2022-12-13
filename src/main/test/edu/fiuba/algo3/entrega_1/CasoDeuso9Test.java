@@ -4,9 +4,9 @@ import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -27,8 +27,8 @@ public class CasoDeuso9Test {
 
     @BeforeEach
     public void setupFabricasDisponibles() {
-        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<>();
-        fabricasHabilitada.add(new FabricaDragon());
+        ArrayList<FabricasUnidades> fabricasHabilitada = new ArrayList<>();
+        fabricasHabilitada.add(new FabricasUnidadesDragon());
         fabricasDisponibles.aumentar(fabricasHabilitada);
     }
 
@@ -66,7 +66,7 @@ public class CasoDeuso9Test {
         for (int i = 0; i < 8; i++)
             unAcceso.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaDragon()));
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricasUnidadesDragon()));
     }
 
     @Test
@@ -105,7 +105,7 @@ public class CasoDeuso9Test {
         pilon1.pasarTurno();
         pilon2.pasarTurno();
 
-        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricaDragon()));
+        assertDoesNotThrow(() -> unAcceso.crearUnidad(new FabricasUnidadesDragon()));
     }
     @Test
     public void test03UnEdificioNoSigueEnergizadoSiSeDestruyenTodosLosPilonesQueLeDanEnergia(){
@@ -142,6 +142,6 @@ public class CasoDeuso9Test {
         pilon1.pasarTurno();
         pilon2.pasarTurno();
 
-        assertThrows(ErrorElEdificioNoTieneCarga.class, () -> unAcceso.crearUnidad(new FabricaDragon()));
+        assertThrows(ErrorElEdificioNoTieneCarga.class, () -> unAcceso.crearUnidad(new FabricasUnidadesDragon()));
     }
 }

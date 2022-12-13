@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -29,7 +29,7 @@ public class EstadoCreadorEnConstruccion extends EstadoCreador {
         return this;
     }
 
-    public void verificarQueSePuedeFabricar(Fabrica unaFabrica){
+    public void verificarQueSePuedeFabricar(FabricasUnidades unaFabricasUnidades){
     }
 
     public void comprobarRequisitosMaterialesVerificacion(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio){
@@ -40,7 +40,7 @@ public class EstadoCreadorEnConstruccion extends EstadoCreador {
     }
 
     @Override
-    public void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
         throw new ErrorEdificioNoEstaConstruido();
     }
 }

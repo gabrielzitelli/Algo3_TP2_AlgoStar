@@ -5,10 +5,10 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZealot;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -25,7 +25,7 @@ public class Acceso extends EdificioProtoss {
     private final int turnoParaEstarConstruido = 8;
 
     // Fabricas que el edificio habilita
-    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
+    private final ArrayList<FabricasUnidades> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
 
@@ -46,8 +46,8 @@ public class Acceso extends EdificioProtoss {
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
 
-        listaFabricasAHabilitar.add(new FabricaDragon());
-        listaFabricasAHabilitar.add(new FabricaZealot());
+        listaFabricasAHabilitar.add(new FabricasUnidadesDragon());
+        listaFabricasAHabilitar.add(new FabricasUnidadesZealot());
 
         this.identificador = "acceso";
     }
@@ -66,10 +66,10 @@ public class Acceso extends EdificioProtoss {
         }
     }
 
-    public void crearUnidad(Fabrica unaFabrica) {
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades) {
         this.verificarCarga();
-        estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-        estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
+        estadoHabilitador.estaAptoParaCrearse(unaFabricasUnidades);
+        estadoCreador.crearUnidad(unaFabricasUnidades, unidades, mineralDelImperio, gasDelImperio);
     }
 
     public void pasarTurno(){
@@ -112,9 +112,9 @@ public class Acceso extends EdificioProtoss {
         return estadoHabilitador.getEstado();
     }
 
-    public void estaAptaUnidadParaConstruir(Fabrica unaFabrica){
-        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabrica);
-        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabrica.crearUnidad(), mineralDelImperio, gasDelImperio);
-        estadoCreador.verificarQueSePuedeFabricar(unaFabrica);
+    public void estaAptaUnidadParaConstruir(FabricasUnidades unaFabricasUnidades){
+        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabricasUnidades);
+        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabricasUnidades.crearUnidad(), mineralDelImperio, gasDelImperio);
+        estadoCreador.verificarQueSePuedeFabricar(unaFabricasUnidades);
     }
 }

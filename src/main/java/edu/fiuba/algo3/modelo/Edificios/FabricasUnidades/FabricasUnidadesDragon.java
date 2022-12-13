@@ -1,13 +1,13 @@
-package edu.fiuba.algo3.modelo.Edificios.Fabricas;
+package edu.fiuba.algo3.modelo.Edificios.FabricasUnidades;
 
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.UnidadProtoss;
 
-public class FabricaDragon extends Fabrica {
+public class FabricasUnidadesDragon extends FabricasUnidades {
 
     private static final int poblacionQueOcupa = 3;
 
-    public FabricaDragon(){
+    public FabricasUnidadesDragon(){
         this.poblacionNecesaria = poblacionQueOcupa;
     }
 

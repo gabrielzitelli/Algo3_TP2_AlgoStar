@@ -1,12 +1,12 @@
-package edu.fiuba.algo3.modelo.Edificios.Fabricas;
+package edu.fiuba.algo3.modelo.Edificios.FabricasUnidades;
 
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 
-public class FabricaMutalisco extends Fabrica {
+public class FabricasUnidadesMutalisco extends FabricasUnidades {
 
     private static final int poblacionQueOcupa = 4;
 
-    public FabricaMutalisco(){
+    public FabricasUnidadesMutalisco(){
         this.poblacionNecesaria = poblacionQueOcupa;
     }
 

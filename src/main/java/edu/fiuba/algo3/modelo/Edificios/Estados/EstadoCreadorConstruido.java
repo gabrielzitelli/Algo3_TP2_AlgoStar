@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.GestorDeCrianza;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
@@ -56,15 +56,15 @@ public class EstadoCreadorConstruido extends EstadoCreador {
     }
 
     @Override
-    public void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
-        verificarQueSePuedeFabricar(unaFabrica);
-        Unidad unidad = unaFabrica.crearUnidad();
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
+        verificarQueSePuedeFabricar(unaFabricasUnidades);
+        Unidad unidad = unaFabricasUnidades.crearUnidad();
         comprobarRequisitosMateriales(unidad, mineralDelImperio, gasDelImperio);
         gestorDeCrianza.agregarUnidad(unidad, unidades, mineralDelImperio);
     }
 
-    public void verificarQueSePuedeFabricar(Fabrica unaFabrica) {
-        if (!this.fabricasDisponibles.verificar(unaFabrica))
+    public void verificarQueSePuedeFabricar(FabricasUnidades unaFabricasUnidades) {
+        if (!this.fabricasDisponibles.verificar(unaFabricasUnidades))
             throw new ErrorNoSeCumplenLosRequisitosDeEstaUnidad();
     }
 

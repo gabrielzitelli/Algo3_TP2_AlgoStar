@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.Edificios;
 import edu.fiuba.algo3.modelo.AlgoStar.Logger;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
 import edu.fiuba.algo3.modelo.Edificios.Vida.Vida;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeContratarUnidades;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoPuedeCrearUnidades;
@@ -103,7 +103,7 @@ public abstract class Edificio implements Ocupable {
         return this.getClass().equals(edificio.getClass());
     }
 
-    public void crearUnidad(Fabrica unaFabrica) {
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades) {
         throw new ErrorElEdificioNoPuedeCrearUnidades();
     }
 

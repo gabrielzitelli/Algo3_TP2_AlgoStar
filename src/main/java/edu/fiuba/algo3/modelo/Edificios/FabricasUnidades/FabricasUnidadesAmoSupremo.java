@@ -1,17 +1,17 @@
-package edu.fiuba.algo3.modelo.Edificios.Fabricas;
+package edu.fiuba.algo3.modelo.Edificios.FabricasUnidades;
 
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 
-public class FabricaAmoSupremo extends Fabrica {
+public class FabricasUnidadesAmoSupremo extends FabricasUnidades {
 
     //private Suministro poblacionDelImperio;
     private static final int suministroAportado = 5;
 
     private static final int poblacionQueOcupa = 0;
 
-    public FabricaAmoSupremo(){
+    public FabricasUnidadesAmoSupremo(){
         this.poblacionNecesaria = poblacionQueOcupa;
     }
 

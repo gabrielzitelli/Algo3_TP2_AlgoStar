@@ -92,7 +92,7 @@ public class ProtossVista extends Vista {
         });
         botonCrearPuertoEstelar.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), coordenada);
+            imperioProtoss.construirEdificio(new FabricaPuertoEstelar(), coordenada);
         });
 
         prepararHabilitacionDeBoton(botonCrearNexoMineral, new NexoMineral(new Mineral(0)), arrayWrappersBotonesConstruirEdificio[0], new NexoMineralVista(), imperioProtoss, coordenada);

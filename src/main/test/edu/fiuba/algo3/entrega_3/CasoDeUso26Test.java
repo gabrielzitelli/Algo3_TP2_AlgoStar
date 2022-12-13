@@ -2,9 +2,9 @@ package edu.fiuba.algo3.entrega_3;
 
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZerling;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaAcceso;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;
@@ -58,7 +58,7 @@ public class CasoDeUso26Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaZerling()));
+        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricasUnidadesZerling()));
 
         //No pasan los turnos, aun no tengo al Zerlign
         assertFalse(imperioZerg.tieneUnidad(new Zerling()));
@@ -95,7 +95,7 @@ public class CasoDeUso26Test {
         //obtenemos el edificio
         Edificio acceso = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
 
-        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricaDragon()));
+        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricasUnidadesDragon()));
 
         //No pasan los turnos, aun no tengo al Dragon
         assertFalse(imperioProtoss.tieneUnidad(new Dragon()));
@@ -130,7 +130,7 @@ public class CasoDeUso26Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaAmoSupremo()));
+        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricasUnidadesAmoSupremo()));
 
         //No pasan los turnos, aun no tengo al amo supremo
         assertFalse(imperioZerg.tieneUnidad(new AmoSupremo()));

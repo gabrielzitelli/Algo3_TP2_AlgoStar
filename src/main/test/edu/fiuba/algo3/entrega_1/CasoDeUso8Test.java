@@ -317,7 +317,7 @@ public class CasoDeUso8Test {
         protoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
 
         assertThrows(ErrorCantidadDeRecursoInsuficiente.class,
-                () -> protoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(1,1)));
+                () -> protoss.construirEdificio(new FabricaPuertoEstelar(), new Coordenada(1,1)));
     }
 
     @Test
@@ -334,6 +334,6 @@ public class CasoDeUso8Test {
 
         protoss.construirEdificio(new FabricaAcceso(), new Coordenada(1,0));
 
-        assertDoesNotThrow(() -> protoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(0,1)));
+        assertDoesNotThrow(() -> protoss.construirEdificio(new FabricaPuertoEstelar(), new Coordenada(0,1)));
     }
 }

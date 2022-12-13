@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesScout;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -22,8 +22,8 @@ public class PuertoEstelarTest {
 
     @BeforeEach
     public void setupFabricasDisponibles() {
-        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<>();
-        fabricasHabilitada.add(new FabricaScout());
+        ArrayList<FabricasUnidades> fabricasHabilitada = new ArrayList<>();
+        fabricasHabilitada.add(new FabricasUnidadesScout());
         fabricasDisponibles.aumentar(fabricasHabilitada);
     }
 
@@ -35,7 +35,7 @@ public class PuertoEstelarTest {
         for(int i = 0; i < 9; i++)
             puertoEstelar.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> puertoEstelar.crearUnidad(new FabricaScout()));
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> puertoEstelar.crearUnidad(new FabricasUnidadesScout()));
     }
 
     @Test
@@ -49,6 +49,6 @@ public class PuertoEstelarTest {
         for(int i = 0; i < 10; i++)
             puertoEstelar.pasarTurno();
 
-        assertDoesNotThrow(() -> puertoEstelar.crearUnidad(new FabricaScout()));
+        assertDoesNotThrow(() -> puertoEstelar.crearUnidad(new FabricasUnidadesScout()));
     }
 }

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.testDeClases.unidadesTest;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaExtractor;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
@@ -44,7 +44,7 @@ public class MovimientoUnidadesTest {
         elMapa.colocarOcupable(new Zangano(), coordenadaExtractor);
         imperio.construirEdificio(new FabricaExtractor(), coordenadaExtractor);
 
-        criadero.crearUnidad(new FabricaZangano());
+        criadero.crearUnidad(new FabricasUnidadesZangano());
 
         for (int i = 0; i < 6; i++) {
             imperio.terminarTurno();

@@ -8,9 +8,9 @@ import edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.unidades.Zeal
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZealot;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZealot;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
@@ -61,25 +61,25 @@ public class AccesoVista extends EdificioVista {
 
         botonCrearZealot.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            esteAcceso.crearUnidad(new FabricaZealot());
+            esteAcceso.crearUnidad(new FabricasUnidadesZealot());
         });
         botonCrearDragon.setOnAction( event -> {
             sonido.reproducirFX("boton");
-            esteAcceso.crearUnidad(new FabricaDragon());
+            esteAcceso.crearUnidad(new FabricasUnidadesDragon());
         });
 
-        prepararHabilitacionDeBoton(botonCrearZealot, new FabricaZealot(), esteAcceso, arrayWrappersBotonesEdificio[0], new ZealotVista());
-        prepararHabilitacionDeBoton(botonCrearDragon, new FabricaDragon(), esteAcceso, arrayWrappersBotonesEdificio[1], new DragonVista());
+        prepararHabilitacionDeBoton(botonCrearZealot, new FabricasUnidadesZealot(), esteAcceso, arrayWrappersBotonesEdificio[0], new ZealotVista());
+        prepararHabilitacionDeBoton(botonCrearDragon, new FabricasUnidadesDragon(), esteAcceso, arrayWrappersBotonesEdificio[1], new DragonVista());
     }
 
-    private void prepararHabilitacionDeBoton(Button boton, Fabrica unaFabrica, Acceso unAcceso, Pane wrapperBoton, UnidadVista unidadVista){
-        Unidad unidadACrear = unaFabrica.crearUnidad();
+    private void prepararHabilitacionDeBoton(Button boton, FabricasUnidades unaFabricasUnidades, Acceso unAcceso, Pane wrapperBoton, UnidadVista unidadVista){
+        Unidad unidadACrear = unaFabricasUnidades.crearUnidad();
 
         String informacionUnidad = unidadACrear.toString();
         String identificadorUnidad = unidadVista.getInfo();
         String costoMineral = obtenerAtributoDeString(informacionUnidad, "costoMineral");
         String costoGas = obtenerAtributoDeString(informacionUnidad, "costoGas");
-        String poblacionNecesaria = Integer.toString( unaFabrica.obtenerPoblacionNecesariaInstancia() ) ;
+        String poblacionNecesaria = Integer.toString( unaFabricasUnidades.obtenerPoblacionNecesariaInstancia() ) ;
         String requisitosUnidad = unidadVista.getRequisitosUnidad();
         String informacionDeCosto = String.format("%s\n%s Minerales necesarios: %s\n%s Gas necesario: %s\n%s Ocupa: %s de población", requisitosUnidad, emojiBulletPoint, costoMineral, emojiBulletPoint, costoGas, emojiBulletPoint, poblacionNecesaria);
 
@@ -90,7 +90,7 @@ public class AccesoVista extends EdificioVista {
         }
 
         try{
-            unAcceso.estaAptaUnidadParaConstruir(unaFabrica);
+            unAcceso.estaAptaUnidadParaConstruir(unaFabricasUnidades);
             boton.setTooltip(new Tooltip("CREAR " + identificadorUnidad.toUpperCase() + informacionDeCosto));
 
         } catch (ErrorNoSeCumplenLosRequisitosDeEstaUnidad exception){

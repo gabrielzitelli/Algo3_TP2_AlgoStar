@@ -1,12 +1,12 @@
-package edu.fiuba.algo3.modelo.Edificios.Fabricas;
+package edu.fiuba.algo3.modelo.Edificios.FabricasUnidades;
 
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 
-public class FabricaZealot extends Fabrica {
+public class FabricasUnidadesZealot extends FabricasUnidades {
 
     private static final int poblacionQueOcupa = 2;
 
-    public FabricaZealot(){
+    public FabricasUnidadesZealot(){
         this.poblacionNecesaria = poblacionQueOcupa;
     }
 

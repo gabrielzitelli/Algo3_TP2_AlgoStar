@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
@@ -48,7 +48,7 @@ public class CasoDeUso22Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricasUnidadesZangano()));
 
         //pasa un turno y tengo un zangano
         imperioZerg.terminarTurno();
@@ -76,7 +76,7 @@ public class CasoDeUso22Test {
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> criadero.crearUnidad(new FabricaZerling()));
+                () -> criadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class CasoDeUso22Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaZerling()));
+        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricasUnidadesZerling()));
 
         //No pasan los turnos, aun no tengo al Zerlign
         assertFalse(imperioZerg.tieneUnidad(new Zerling()));
@@ -139,7 +139,7 @@ public class CasoDeUso22Test {
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> criadero.crearUnidad(new FabricaHidralisco()));
+                () -> criadero.crearUnidad(new FabricasUnidadesHidralisco()));
     }
 
     @Test
@@ -177,7 +177,7 @@ public class CasoDeUso22Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaHidralisco()));
+        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricasUnidadesHidralisco()));
         //No pasan los turnos, aun no tengo al Hidralisco
         assertFalse(imperioZerg.tieneUnidad(new Hidralisco()));
 
@@ -208,7 +208,7 @@ public class CasoDeUso22Test {
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> criadero.crearUnidad(new FabricaMutalisco()));
+                () -> criadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 
     @Test
@@ -254,7 +254,7 @@ public class CasoDeUso22Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(coordenadaCriadero);
 
-        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricaMutalisco()));
+        assertDoesNotThrow(() -> criadero.crearUnidad(new FabricasUnidadesMutalisco()));
         //No pasan los turnos, aun no tengo al Hidralisco
         assertFalse(imperioZerg.tieneUnidad(new Mutalisco()));
 
@@ -284,7 +284,7 @@ public class CasoDeUso22Test {
 
         Edificio acceso = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
 
-        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricaZealot()));
+        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricasUnidadesZealot()));
         //No pasan los turnos, aun no tengo al Zealot
         assertFalse(imperioProtoss.tieneUnidad(new Zealot()));
 
@@ -314,7 +314,7 @@ public class CasoDeUso22Test {
 
         Edificio acceso = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
 
-        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricaDragon()));
+        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricasUnidadesDragon()));
         //No pasan los turnos, aun no tengo al Zealot
         assertFalse(imperioProtoss.tieneUnidad(new Dragon()));
 
@@ -345,7 +345,7 @@ public class CasoDeUso22Test {
         Edificio acceso = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> acceso.crearUnidad((new FabricaScout())));
+                () -> acceso.crearUnidad((new FabricasUnidadesScout())));
     }
 
     @Test
@@ -365,7 +365,7 @@ public class CasoDeUso22Test {
         for (int i = 0; i < 8; i++)
             imperioProtoss.terminarTurno();
 
-        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(0,1));
+        imperioProtoss.construirEdificio(new FabricaPuertoEstelar(), new Coordenada(0,1));
 
         //construimos el puerto estelar
         for (int i = 0; i < 10; i++)
@@ -373,7 +373,7 @@ public class CasoDeUso22Test {
 
         Edificio acceso = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
 
-        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricaScout()));
+        assertDoesNotThrow(() -> acceso.crearUnidad(new FabricasUnidadesScout()));
         //No pasan los turnos, aun no tengo al Zealot
         assertFalse(imperioProtoss.tieneUnidad(new Scout()));
 

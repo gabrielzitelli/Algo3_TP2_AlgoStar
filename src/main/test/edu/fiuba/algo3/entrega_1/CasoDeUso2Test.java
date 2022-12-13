@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Guarida;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.*;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.*;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
@@ -51,7 +51,7 @@ public class CasoDeUso2Test {
         //obtenemos el edificio
         Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 
     @Test
@@ -152,7 +152,7 @@ public class CasoDeUso2Test {
         Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaZerling()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 
      @Test
@@ -179,7 +179,7 @@ public class CasoDeUso2Test {
          Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
          assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                 () -> unCriadero.crearUnidad(new FabricaZerling()));
+                 () -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
      }
 
     @Test
@@ -212,7 +212,7 @@ public class CasoDeUso2Test {
         Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaHidralisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesHidralisco()));
     }
 
     @Test
@@ -278,7 +278,7 @@ public class CasoDeUso2Test {
         Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaMutalisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 
     @Test
@@ -433,7 +433,7 @@ public class CasoDeUso2Test {
 
         Edificio unAcceso = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricaDragon()));
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unAcceso.crearUnidad(new FabricasUnidadesDragon()));
     }
 
     @Test
@@ -467,14 +467,14 @@ public class CasoDeUso2Test {
         // construyo un acceso para el prerequisito
         imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
-        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPuertoEstelar(), new Coordenada(1,0));
         int turnosParaConstruir = 9;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();
 
         Edificio puertoEstelar = imperioProtoss.conseguirEdificio(new Coordenada(1,0));
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> puertoEstelar.crearUnidad(new FabricaScout()));
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> puertoEstelar.crearUnidad(new FabricasUnidadesScout()));
     }
 
     @Test
@@ -490,7 +490,7 @@ public class CasoDeUso2Test {
         // construyo un acceso para el prerequisito
         imperioProtoss.construirEdificio(new FabricaAcceso(), new Coordenada(0,1));
 
-        imperioProtoss.construirEdificio(new FabricaPuertaEstelar(), new Coordenada(1,0));
+        imperioProtoss.construirEdificio(new FabricaPuertoEstelar(), new Coordenada(1,0));
         int turnosParaConstruir = 10;
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioProtoss.terminarTurno();

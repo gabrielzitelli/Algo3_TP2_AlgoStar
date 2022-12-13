@@ -4,8 +4,8 @@ import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Guarida;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaHidralisco;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesHidralisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -36,7 +36,7 @@ public class GuaridaTest {
             unCriadero.pasarTurno();
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaHidralisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesHidralisco()));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class GuaridaTest {
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaHidralisco()));
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricasUnidadesHidralisco()));
     }
 
     @Test
@@ -83,6 +83,6 @@ public class GuaridaTest {
         unaGuarida.recibirAtaque(new Ataque(new DanioTerrestre(1250)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaHidralisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesHidralisco()));
     }
 }

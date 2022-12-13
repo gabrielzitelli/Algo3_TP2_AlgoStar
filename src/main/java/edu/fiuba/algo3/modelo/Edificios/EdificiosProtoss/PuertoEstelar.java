@@ -5,9 +5,9 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaScout;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesScout;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -16,7 +16,6 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PuertoEstelar extends EdificioProtoss {
@@ -25,7 +24,7 @@ public class PuertoEstelar extends EdificioProtoss {
     private EstadoCreador estadoCreador;
 
     // Fabricas que el edificio habilita
-    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
+    private final ArrayList<FabricasUnidades> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
 
@@ -45,7 +44,7 @@ public class PuertoEstelar extends EdificioProtoss {
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
 
-        listaFabricasAHabilitar.add(new FabricaScout());
+        listaFabricasAHabilitar.add(new FabricasUnidadesScout());
         this.identificador = "puerto_estelar";
     }
 
@@ -67,10 +66,10 @@ public class PuertoEstelar extends EdificioProtoss {
         }
     }
 
-    public void crearUnidad(Fabrica unaFabrica) {
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades) {
         this.verificarCarga();
-        estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-        estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
+        estadoHabilitador.estaAptoParaCrearse(unaFabricasUnidades);
+        estadoCreador.crearUnidad(unaFabricasUnidades, unidades, mineralDelImperio, gasDelImperio);
     }
 
     public void pasarTurno() {
@@ -108,9 +107,9 @@ public class PuertoEstelar extends EdificioProtoss {
         return estadoHabilitador.getEstado();
     }
 
-    public void estaAptaUnidadParaConstruir(Fabrica unaFabrica){
-        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabrica);
-        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabrica.crearUnidad(), mineralDelImperio, gasDelImperio);
-        estadoCreador.verificarQueSePuedeFabricar(unaFabrica);
+    public void estaAptaUnidadParaConstruir(FabricasUnidades unaFabricasUnidades){
+        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabricasUnidades);
+        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabricasUnidades.crearUnidad(), mineralDelImperio, gasDelImperio);
+        estadoCreador.verificarQueSePuedeFabricar(unaFabricasUnidades);
     }
 }

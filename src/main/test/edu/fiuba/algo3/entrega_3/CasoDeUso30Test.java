@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZerling;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
 import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
@@ -52,7 +52,7 @@ public class CasoDeUso30Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
         for (int i = 0; i < 5 ; i++){
-            criadero.crearUnidad(new FabricaZerling());
+            criadero.crearUnidad(new FabricasUnidadesZerling());
 
             //Pasan dos turnos y lo tenemos
             imperioZerg.terminarTurno();
@@ -94,7 +94,7 @@ public class CasoDeUso30Test {
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
         for (int i = 0; i < 5 ; i++){
-            criadero.crearUnidad(new FabricaZerling());
+            criadero.crearUnidad(new FabricasUnidadesZerling());
 
             //Pasan dos turnos y lo tenemos
             imperioZerg.terminarTurno();
@@ -107,6 +107,6 @@ public class CasoDeUso30Test {
         assertTrue(imperioZerg.tenesEstaPoblacion(5));
 
         assertThrows(ErrorSuperaMaximoDePoblacionActual.class,
-                () -> criadero.crearUnidad(new FabricaZerling()));
+                () -> criadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 }

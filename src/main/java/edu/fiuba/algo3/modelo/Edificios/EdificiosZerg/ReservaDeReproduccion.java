@@ -3,9 +3,9 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
@@ -18,7 +18,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     private EstadoHabilitador estadoHabilitador;
 
     // Fabricas que el edificio habilita
-    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
+    private final ArrayList<FabricasUnidades> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
 
     private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
@@ -36,7 +36,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
         int turnoParaEstarConstruido = 12;
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 
-        listaFabricasAHabilitar.add(new FabricaZerling());
+        listaFabricasAHabilitar.add(new FabricasUnidadesZerling());
         this.identificador = "reserva_reproduccion";
     }
 

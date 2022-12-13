@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesAmoSupremo;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -47,8 +47,8 @@ public class AmoSupremo extends UnidadZerg {
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
-        suministroImperio.disminuirPoblacion(FabricaAmoSupremo.obtenerPoblacionNecesaria());
-        suministroImperio.disminuirSuministro(FabricaAmoSupremo.obtenerSuministroAportado());
+        suministroImperio.disminuirPoblacion(FabricasUnidadesAmoSupremo.obtenerPoblacionNecesaria());
+        suministroImperio.disminuirSuministro(FabricasUnidadesAmoSupremo.obtenerSuministroAportado());
     }
 
     @Override

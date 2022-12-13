@@ -4,8 +4,8 @@ import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZerling;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -36,7 +36,7 @@ public class ReservaDeReproduccionTest {
             unCriadero.pasarTurno();
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaZerling()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ReservaDeReproduccionTest {
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZerling()));
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 
     @Test
@@ -83,6 +83,6 @@ public class ReservaDeReproduccionTest {
         unaReserva.recibirAtaque(new Ataque(new DanioTerrestre(1000)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaZerling()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 }

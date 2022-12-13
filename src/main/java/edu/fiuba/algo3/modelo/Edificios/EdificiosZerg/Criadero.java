@@ -2,10 +2,10 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.*;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaAmoSupremo;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricaZangano;
-import edu.fiuba.algo3.modelo.Edificios.Fabricas.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
@@ -28,7 +28,7 @@ public class Criadero extends EdificioZerg {
     private int cantidadLarvas;
 
     // Fabricas que el edificio habilita
-    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
+    private final ArrayList<FabricasUnidades> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
     private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
@@ -50,8 +50,8 @@ public class Criadero extends EdificioZerg {
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
         estadoGeneradorDeMoho = new EstadoGeneradorDeMohoEnConstruccion(turnoParaEstarConstruido);
 
-        listaFabricasAHabilitar.add(new FabricaZangano());
-        listaFabricasAHabilitar.add(new FabricaAmoSupremo());
+        listaFabricasAHabilitar.add(new FabricasUnidadesZangano());
+        listaFabricasAHabilitar.add(new FabricasUnidadesAmoSupremo());
         this.identificador = "criadero";
     }
 
@@ -59,11 +59,11 @@ public class Criadero extends EdificioZerg {
         return requisitosEdilicios;
     }
 
-    public void crearUnidad(Fabrica unaFabrica) {
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades) {
 
         if (cantidadLarvas > 0) {
-            estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-            estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
+            estadoHabilitador.estaAptoParaCrearse(unaFabricasUnidades);
+            estadoCreador.crearUnidad(unaFabricasUnidades, unidades, mineralDelImperio, gasDelImperio);
             cantidadLarvas--;
         }else
             throw new ErrorCriaderoNoTieneMasLarvas();
@@ -124,12 +124,12 @@ public class Criadero extends EdificioZerg {
         return estadoHabilitador.getEstado();
     }
 
-    public void estaAptaUnidadParaConstruir(Fabrica unaFabrica){
+    public void estaAptaUnidadParaConstruir(FabricasUnidades unaFabricasUnidades){
         if(cantidadLarvas <= 0)
             throw new ErrorCriaderoNoTieneMasLarvas();
 
-        estadoCreador.verificarQueSePuedeFabricar(unaFabrica);
-        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabrica.crearUnidad(), mineralDelImperio, gasDelImperio);
-        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabrica);
+        estadoCreador.verificarQueSePuedeFabricar(unaFabricasUnidades);
+        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabricasUnidades.crearUnidad(), mineralDelImperio, gasDelImperio);
+        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabricasUnidades);
     }
 }

@@ -1,12 +1,12 @@
-package edu.fiuba.algo3.modelo.Edificios.Fabricas;
+package edu.fiuba.algo3.modelo.Edificios.FabricasUnidades;
 
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 
-public class FabricaZerling extends Fabrica {
+public class FabricasUnidadesZerling extends FabricasUnidades {
 
     private static final int poblacionQueOcupa = 1;
 
-    public FabricaZerling(){
+    public FabricasUnidadesZerling(){
         this.poblacionNecesaria = poblacionQueOcupa;
     }
 
