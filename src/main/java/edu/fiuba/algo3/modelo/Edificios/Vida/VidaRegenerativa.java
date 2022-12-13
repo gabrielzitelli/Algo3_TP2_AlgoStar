@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo.Edificios.Vida;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 
+import static java.lang.Math.round;
+
 public class VidaRegenerativa implements Vida{
     private int cantidad;
     private final int capacidad;
@@ -27,8 +29,8 @@ public class VidaRegenerativa implements Vida{
         this.validarVidaLlegoACero();
 
         //supuesto
-        double porcentajeDeRegeneracion = 0.15;
-        int cantidadARegenerar = (int)(this.capacidad * porcentajeDeRegeneracion);
+        double porcentajeDeRegeneracion = 0.005;
+        int cantidadARegenerar = (int) round(this.capacidad * porcentajeDeRegeneracion);
 
         if((cantidad + cantidadARegenerar) >= this.capacidad)
             this.cantidad = this.capacidad;

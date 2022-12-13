@@ -37,7 +37,7 @@ public class VidaConEscudo implements Vida{
         // Se regenera el escudo, si con la suma de la regeneracion sobrepasa el maximo
         // inicial, entonces se regenera hasta el tope inicial
         //supuesto
-        double porcentajeDeRegeneracion = 0.15;
+        double porcentajeDeRegeneracion = 0.05;
         int escudoRegenerado = (int)(this.capacidadEscudo * porcentajeDeRegeneracion);
 
         if ((this.cantidadEscudo + escudoRegenerado) >= this.capacidadEscudo){
