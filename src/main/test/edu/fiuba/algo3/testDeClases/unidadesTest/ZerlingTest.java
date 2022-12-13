@@ -39,20 +39,4 @@ public class ZerlingTest {
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
 
-    /*@Test
-    public void test03UnZerlingPuedeDaniarAUnPilon(){
-        Zerling unZerling = new Zerling();
-        Pilon pilon = new Pilon();
-
-        Coordenada unaCoordenada = new Coordenada(0,0);
-        Coordenada otraCoordenada = new Coordenada(0,1);
-
-        Mapa elMapa = Mapa.obtener();
-        elMapa.reiniciarMapa();
-
-        elMapa.colocarUnaUnidad(unZerling, unaCoordenada);
-        elMapa.construirEdificio(pilon, otraCoordenada);
-
-        assertDoesNotThrow(() -> elMapa.atacar(unaCoordenada, otraCoordenada));
-    }*/
 }

@@ -31,6 +31,6 @@ public class Dragon extends UnidadProtoss {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Dragon.class.equals(claseAAverificar);
+        return !Dragon.class.equals(claseAAverificar);
     }
 }

@@ -6,7 +6,6 @@ import static java.lang.Math.min;
 
 public class Suministro{
 
-    private final int cantidadLimite = 200;
     private int cantidad;
     private int poblacion ;
 
@@ -29,6 +28,7 @@ public class Suministro{
     }
 
     public int obtenerSuministro() {
+        int cantidadLimite = 200;
         return min(cantidadLimite, cantidad);
     }
 

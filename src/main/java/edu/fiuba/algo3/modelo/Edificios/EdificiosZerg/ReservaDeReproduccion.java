@@ -21,7 +21,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
 
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
 
     public ReservaDeReproduccion(){

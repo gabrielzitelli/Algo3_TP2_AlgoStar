@@ -13,6 +13,7 @@ import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Guarida extends EdificioZerg {
 
@@ -21,7 +22,7 @@ public class Guarida extends EdificioZerg {
     // Fabricas que el edificio habilita
     private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>(Arrays.asList(new ReservaDeReproduccion()));
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>(List.of(new ReservaDeReproduccion()));
 
     public Guarida(){
         this.costoMineral = 200;

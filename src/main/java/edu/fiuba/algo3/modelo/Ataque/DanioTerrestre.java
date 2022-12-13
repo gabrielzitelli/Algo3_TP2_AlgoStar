@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 
 public class DanioTerrestre implements TipoDanio {
 
-    private Danio danioTerrestre;
+    private final Danio danioTerrestre;
 
     public DanioTerrestre(int danioTerrestre) {
         this.danioTerrestre = new Danio(danioTerrestre);

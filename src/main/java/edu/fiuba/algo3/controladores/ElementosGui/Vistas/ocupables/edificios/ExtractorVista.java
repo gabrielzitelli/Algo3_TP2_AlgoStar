@@ -3,13 +3,11 @@ package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
 import edu.fiuba.algo3.controladores.MapaControlador;
 import edu.fiuba.algo3.modelo.ConvertidorJson.ConvertidorJSON;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Espiral;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,7 +19,7 @@ import java.util.Objects;
 
 public class ExtractorVista extends EdificioVista {
 
-    private Image imagenDescontratar = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/descontratar.png")));
+    private final Image imagenDescontratar = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/descontratar.png")));
 
     public ExtractorVista() {
         this.tile = new Tile("edificios_zerg/32px/extractor.png");

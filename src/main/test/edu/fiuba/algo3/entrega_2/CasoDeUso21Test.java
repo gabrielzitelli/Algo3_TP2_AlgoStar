@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CasoDeUso21Test {
 
-    Mapa mapa = Mapa.obtener();
+    final Mapa mapa = Mapa.obtener();
     Zerg imperioZerg;
 
     Criadero criadero;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class SuperficieVista extends Vista {
 
-    private static ArrayList<Vista> superficies = inicializarLista();
+    private static final ArrayList<Vista> superficies = inicializarLista();
 
     private static ArrayList<Vista> inicializarLista(){
         ArrayList<Vista> superficies = new ArrayList<>();

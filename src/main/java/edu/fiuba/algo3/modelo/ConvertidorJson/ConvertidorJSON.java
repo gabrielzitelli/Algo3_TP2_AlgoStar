@@ -9,30 +9,30 @@ import org.json.simple.JSONObject;
 public class ConvertidorJSON {
 
     //Para casilla
-    public static String SUPERFICIE = "superficie";
-    public static String RECURSO = "recurso";
-    public static String CARGA = "carga";
-    public static String MOHO = "moho";
-    public static String OCUPABLE = "ocupable";
-    public static String ESTADO = "estado";
-    public static String VIDA = "vidaActual";
-    public static String VIDAMAX = "vidaMaxima";
-    public static String ESCUDO = "escudoActual";
-    public static String ESCUDOMAX = "escudoMaximo";
-    public static String CANTIDAD_UNIDADES = "cantidad_unidades";
+    public static final String SUPERFICIE = "superficie";
+    public static final String RECURSO = "recurso";
+    public static final String CARGA = "carga";
+    public static final String MOHO = "moho";
+    public static final String OCUPABLE = "ocupable";
+    public static final String ESTADO = "estado";
+    public static final String VIDA = "vidaActual";
+    public static final String VIDAMAX = "vidaMaxima";
+    public static final String ESCUDO = "escudoActual";
+    public static final String ESCUDOMAX = "escudoMaximo";
+    public static final String CANTIDAD_UNIDADES = "cantidad_unidades";
 
-    public static String IMPERIO = "imperio";
-    public static String NOMBRE = "nombre";
-    public static String COLOR = "color";
+    public static final String IMPERIO = "imperio";
+    public static final String NOMBRE = "nombre";
+    public static final String COLOR = "color";
 
-    public static String MINERAL = "mineral";
-    public static String GAS = "gas";
-    public static String POBLACION = "poblacion";
-    public static String SUMINISTRO = "suministro";
-    public static String CAMINAR = "estado_caminar";
-    public static String ATACAR = "estado_atacar";
+    public static final String MINERAL = "mineral";
+    public static final String GAS = "gas";
+    public static final String POBLACION = "poblacion";
+    public static final String SUMINISTRO = "suministro";
+    public static final String CAMINAR = "estado_caminar";
+    public static final String ATACAR = "estado_atacar";
 
-    public static String RANGO_ATAQUE = "rango_ataque";
+    public static final String RANGO_ATAQUE = "rango_ataque";
 
 
     public static JSONObject convertirAJSON(Object objeto){

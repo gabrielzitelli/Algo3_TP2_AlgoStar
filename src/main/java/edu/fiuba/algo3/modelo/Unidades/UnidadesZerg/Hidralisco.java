@@ -30,6 +30,6 @@ public class Hidralisco extends UnidadZerg {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Hidralisco.class.equals(claseAAverificar);
+        return !Hidralisco.class.equals(claseAAverificar);
     }
 }

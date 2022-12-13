@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 public class FabricaZangano extends Fabrica {
 
-    private static int poblacionQueOcupa = 1;
+    private static final int poblacionQueOcupa = 1;
 
     public FabricaZangano(){
         this.poblacionNecesaria = poblacionQueOcupa;

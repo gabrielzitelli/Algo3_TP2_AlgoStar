@@ -6,8 +6,8 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 
 public class Visible implements Visibilidad {
 
-    private Zealot unZealot;
-    private int cantidadRequerida;
+    private final Zealot unZealot;
+    private final int cantidadRequerida;
     private int contador = 0;
 
     public Visible(Zealot unZealot, int cantidadRequerida) {

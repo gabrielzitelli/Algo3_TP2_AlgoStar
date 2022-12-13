@@ -17,66 +17,65 @@
 
 <fx:root cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1124.0" onKeyReleased="#manejarInput" pickOnBounds="false" style="-fx-background-color: black;" type="BorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.InicioControlador">
    <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <MediaView id="mediaviewVideoFondo" fx:id="mediaviewVideoFondo" fitHeight="600.0" fitWidth="1124.0" preserveRatio="false" StackPane.alignment="CENTER">
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </MediaView>
-            <StackPane>
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label id="labelBienvenida" fx:id="labelBienvenida" alignment="CENTER" contentDisplay="CENTER" text="Bienvenido a" textAlignment="CENTER" textFill="#c8bfbf">
-                           <font>
-                              <Font name="Century Gothic" size="61.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="30.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ImageView id="imagenAlgostar" fx:id="imagenAlgostar" fitHeight="134.0" fitWidth="894.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../img/brand/AlgoStar_banner.png" />
-                           </image>
-                           <effect>
-                              <Glow />
-                           </effect>
-                           <VBox.margin>
-                              <Insets top="40.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <StackPane />
-                        <Button id="botonComenzar" fx:id="botonComenzar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#empezarCreacionJugadores" styleClass="botonComenzar" stylesheets="@../../css/style.css" text="COMENZAR" textAlignment="CENTER">
-                           <font>
-                              <Font name="Calibri" size="46.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="120.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <SubScene id="subsceneFormJugador1" fx:id="subsceneFormJugador1" height="370.0" visible="false" width="450.0">
-                    <root>
-                      <Region />
-                    </root>
-                     <StackPane.margin>
-                        <Insets top="180.0" />
-                     </StackPane.margin>
-                  </SubScene>
-                  <SubScene id="subsceneFormJugador1" fx:id="subsceneFormJugador2" height="370.0" visible="false" width="450.0">
-                     <root>
-                        <Region />
-                     </root>
-                     <StackPane.margin>
-                        <Insets top="180.0" />
-                     </StackPane.margin>
-                  </SubScene>
-               </children>
-            </StackPane>
-         </children>
-      </StackPane>
+       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+           <MediaView id="mediaviewVideoFondo" fx:id="mediaviewVideoFondo" fitHeight="600.0" fitWidth="1124.0"
+                      preserveRatio="false" StackPane.alignment="CENTER">
+              <viewport>
+                  <Rectangle2D/>
+              </viewport>
+           </MediaView>
+           <StackPane>
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                   <Label id="labelBienvenida" fx:id="labelBienvenida" alignment="CENTER" contentDisplay="CENTER"
+                          text="Bienvenido a" textAlignment="CENTER" textFill="#c8bfbf">
+                       <font>
+                           <Font name="Century Gothic" size="61.0"/>
+                       </font>
+                       <VBox.margin>
+                           <Insets bottom="20.0" top="30.0"/>
+                       </VBox.margin>
+                   </Label>
+                   <ImageView id="imagenAlgostar" fx:id="imagenAlgostar" fitHeight="134.0" fitWidth="894.0"
+                              pickOnBounds="true" preserveRatio="true">
+                       <effect>
+                           <Glow/>
+                       </effect>
+                       <VBox.margin>
+                           <Insets top="40.0"/>
+                       </VBox.margin>
+                       <Image url="@../../img/brand/AlgoStar_banner.png"/>
+                   </ImageView>
+                   <StackPane/>
+                   <Button id="botonComenzar" fx:id="botonComenzar" alignment="CENTER" contentDisplay="CENTER"
+                           mnemonicParsing="false" onAction="#empezarCreacionJugadores" styleClass="botonComenzar"
+                           stylesheets="@../../css/style.css" text="COMENZAR" textAlignment="CENTER">
+                       <font>
+                           <Font name="Calibri" size="46.0"/>
+                       </font>
+                       <VBox.margin>
+                           <Insets top="120.0"/>
+                       </VBox.margin>
+                   </Button>
+               </VBox>
+               <SubScene id="subsceneFormJugador1" fx:id="subsceneFormJugador1" height="370.0" visible="false"
+                         width="450.0">
+                   <root>
+                       <Region/>
+                   </root>
+                   <StackPane.margin>
+                       <Insets top="180.0"/>
+                   </StackPane.margin>
+               </SubScene>
+               <SubScene id="subsceneFormJugador1" fx:id="subsceneFormJugador2" height="370.0" visible="false"
+                         width="450.0">
+                   <root>
+                       <Region/>
+                   </root>
+                   <StackPane.margin>
+                       <Insets top="180.0"/>
+                   </StackPane.margin>
+               </SubScene>
+           </StackPane>
+       </StackPane>
    </center>
 </fx:root>

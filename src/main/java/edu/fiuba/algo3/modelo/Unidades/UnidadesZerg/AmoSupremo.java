@@ -26,7 +26,7 @@ public class AmoSupremo extends UnidadZerg {
 
     @Override
     public void verificarColocable(Casilla unaCasilla) {
-        if (!unaCasilla.puedeMoverse(superficieDondeSeMueve))
+        if (unaCasilla.puedeMoverse(superficieDondeSeMueve))
             throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
 
         Mapa elMapa = Mapa.obtener();
@@ -53,6 +53,6 @@ public class AmoSupremo extends UnidadZerg {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return AmoSupremo.class.equals(claseAAverificar);
+        return !AmoSupremo.class.equals(claseAAverificar);
     }
 }

@@ -23,23 +23,22 @@ public class Extractor extends EdificioZerg {
 
     private EstadoRecolector estadoRecolector;
     private EstadoContratador estadoContratador;
-    private final int turnoParaEstarConstruido = 6;
     private final Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
     private final LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
-    private final int cantidadDeExtraccionUnitaria = 10;
-    private final int valorVital = 750;
 
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
     public Extractor(Recurso gasDelImperio){
         this.costoGas = 0;
         this.costoMineral = 100;
         this.estadoRecolectable = new GasRecolectable();
         this.estadoMohoRequerido = new ConMoho();
+        int valorVital = 750;
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;
+        int turnoParaEstarConstruido = 6;
         this.estadoRecolector = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.estadoContratador = new EstadoContratadorEnConstruccion(turnoParaEstarConstruido);
         this.identificador = "extractor";
@@ -57,6 +56,7 @@ public class Extractor extends EdificioZerg {
     }
 
     private void extraer(){
+        int cantidadDeExtraccionUnitaria = 10;
         int cantidadAExtraer = zanganosEmpleados.size() * cantidadDeExtraccionUnitaria;
         estadoRecolector.extraer(gasDelImperio, volcanDeGas, cantidadAExtraer);
     }

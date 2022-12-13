@@ -179,7 +179,7 @@ public class InicioControlador extends Controlador {
     }
 
     @FXML
-    public void manejarInput(KeyEvent keyEvent) throws IOException {
+    public void manejarInput(KeyEvent keyEvent) {
         KeyCode tecla = keyEvent.getCode();
         if (Objects.equals(tecla, KeyCode.F11)){
             setPantallaCompleta();

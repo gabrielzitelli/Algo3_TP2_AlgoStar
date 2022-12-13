@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Ataque;
 
 public class Danio {
 
-    private int danio;
+    private final int danio;
 
     public Danio(int danio){
         this.danio = danio;

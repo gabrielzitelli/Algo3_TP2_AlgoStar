@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 
 public class EstadoGeneradorDeEnergiaConstruido implements EstadoGeneradorDeEnergia {
 
-    private Energia energia = new Energia();
+    private final Energia energia = new Energia();
     private Suministro poblacionImperio;
 
     public EstadoGeneradorDeEnergiaConstruido(Coordenada coordenada) {

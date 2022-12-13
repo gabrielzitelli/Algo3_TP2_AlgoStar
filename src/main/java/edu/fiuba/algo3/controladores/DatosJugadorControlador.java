@@ -26,7 +26,7 @@ public abstract class DatosJugadorControlador extends Controlador{
 
     protected InicioControlador inicioControlador;
     protected boolean datosValidos = false;
-    protected AlgoStar algoStar = App.algoStar;
+    protected final AlgoStar algoStar = App.algoStar;
 
     @FXML
     protected AnchorPane anchorPaneForm;
@@ -43,14 +43,14 @@ public abstract class DatosJugadorControlador extends Controlador{
 
     //Colores
     //Conversor de RGB 0-255 a RGB 0-1: https://giancr.com/calculadora-rgb-escala-0-255-0-1-hexadecimal/
-    protected ColorItem colorAzul = new ColorItem("Azul", new Color(0.1216, 0.3843, 0.8118, 1));
-    protected ColorItem colorRojo = new ColorItem("Rojo", new Color(0.8118, 0.1216, 0.1216, 1));
-    protected ColorItem colorVerde = new ColorItem("Verde",  new Color(0.0824, 0.749, 0.2392, 1));
-    protected ColorItem colorRosa = new ColorItem("Rosa", new Color(0.749, 0.0824, 0.5608, 1));
-    protected ColorItem colorAmarillo =  new ColorItem("Amarillo", new Color(0.898, 0.9098, 0.2, 1));
-    LinkedList<ColorItem> listaColorItems = new LinkedList<ColorItem>( Arrays.asList(colorAzul, colorRojo,
-                                                            colorVerde, colorRosa, colorAmarillo) );
-    protected Paint paintRojoError = Color.web("#940a00");
+    protected final ColorItem colorAzul = new ColorItem("Azul", new Color(0.1216, 0.3843, 0.8118, 1));
+    protected final ColorItem colorRojo = new ColorItem("Rojo", new Color(0.8118, 0.1216, 0.1216, 1));
+    protected final ColorItem colorVerde = new ColorItem("Verde",  new Color(0.0824, 0.749, 0.2392, 1));
+    protected final ColorItem colorRosa = new ColorItem("Rosa", new Color(0.749, 0.0824, 0.5608, 1));
+    protected final ColorItem colorAmarillo =  new ColorItem("Amarillo", new Color(0.898, 0.9098, 0.2, 1));
+    final LinkedList<ColorItem> listaColorItems = new LinkedList<>(Arrays.asList(colorAzul, colorRojo,
+            colorVerde, colorRosa, colorAmarillo));
+    protected final Paint paintRojoError = Color.web("#940a00");
 
     protected abstract void inicializarComboBoxRaza();
     protected abstract void inicializarComboBoxColores();

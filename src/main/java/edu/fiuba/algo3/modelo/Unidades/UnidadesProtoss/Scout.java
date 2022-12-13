@@ -31,6 +31,6 @@ public class Scout extends UnidadProtoss {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Scout.class.equals(claseAAverificar);
+        return !Scout.class.equals(claseAAverificar);
     }
 }

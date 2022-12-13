@@ -17,9 +17,9 @@ import java.util.Objects;
  */
 public class App extends Application {
 
-    public static int INITIAL_WIDTH = 1124;
-    public static int INITIAL_HEIGHT = 600;
-    public static AlgoStar algoStar = new AlgoStar();
+    public static final int INITIAL_WIDTH = 1124;
+    public static final int INITIAL_HEIGHT = 600;
+    public static final AlgoStar algoStar = new AlgoStar();
 
     public static void run(String[] args) {
         launch();

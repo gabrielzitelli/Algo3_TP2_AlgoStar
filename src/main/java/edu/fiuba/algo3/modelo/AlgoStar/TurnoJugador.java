@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class TurnoJugador implements Turno {
 
-    private Jugador jugadorDeTurno;
-    private AdministradorDeJugadores jugadores;
+    private final Jugador jugadorDeTurno;
+    private final AdministradorDeJugadores jugadores;
 
     public TurnoJugador(Jugador jugadorDeTurno, AdministradorDeJugadores jugadores) {
         this.jugadorDeTurno = jugadorDeTurno;

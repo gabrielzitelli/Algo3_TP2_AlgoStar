@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class GestorDeCrianza {
 
     private Coordenada coordenadaEdificioCreador;
-    private ArrayList<Unidad> listaDeCrianza = new ArrayList<>();
+    private final ArrayList<Unidad> listaDeCrianza = new ArrayList<>();
     private ArrayList<Unidad> unidadesDelImperio;
 
     private Mineral mineralDelImperio;

@@ -31,10 +31,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
@@ -531,10 +527,10 @@ public class MapaControlador extends Controlador {
     }
 
     public EventHandler<? super MouseEvent> pintarCasilla() {
-        return new EventHandler<MouseEvent>() {
+        return new EventHandler<>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(mouseEvent.getButton().equals(MouseButton.PRIMARY) && !opcionesAbiertas){
+                if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && !opcionesAbiertas) {
                     sonido.reproducirFX("click");
                     double posMouseX = mouseEvent.getX() - bordeIzquierda.getWidth();
                     double posMouseY = mouseEvent.getY();
@@ -670,7 +666,7 @@ public class MapaControlador extends Controlador {
     }
 
     public EventHandler<? super KeyEvent> pressKey() {
-        return new EventHandler<KeyEvent>() {
+        return new EventHandler<>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 String tecla = keyEvent.getCode().toString();
@@ -681,7 +677,7 @@ public class MapaControlador extends Controlador {
     }
 
     public EventHandler<? super KeyEvent> releaseKey() {
-        return new EventHandler<KeyEvent>() {
+        return new EventHandler<>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 String tecla = keyEvent.getCode().toString();
@@ -693,7 +689,7 @@ public class MapaControlador extends Controlador {
                 }
 
                 //Pantalla completa
-                if (Objects.equals(tecla, KeyCode.F11.toString())){
+                if (Objects.equals(tecla, KeyCode.F11.toString())) {
                     setPantallaCompleta();
                 }
 

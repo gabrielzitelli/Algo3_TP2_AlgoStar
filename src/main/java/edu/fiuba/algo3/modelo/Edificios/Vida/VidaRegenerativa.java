@@ -5,8 +5,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 
 public class VidaRegenerativa implements Vida{
     private int cantidad;
-    private int capacidad;
-    private double porcentajeDeRegeneracion = 0.15; //supuesto
+    private final int capacidad;
 
 
     public VidaRegenerativa(int cantidad){
@@ -27,7 +26,9 @@ public class VidaRegenerativa implements Vida{
         // inicial, entonces se regenera hasta el tope inicial
         this.validarVidaLlegoACero();
 
-        int cantidadARegenerar = (int)(this.capacidad * this.porcentajeDeRegeneracion);
+        //supuesto
+        double porcentajeDeRegeneracion = 0.15;
+        int cantidadARegenerar = (int)(this.capacidad * porcentajeDeRegeneracion);
 
         if((cantidad + cantidadARegenerar) >= this.capacidad)
             this.cantidad = this.capacidad;

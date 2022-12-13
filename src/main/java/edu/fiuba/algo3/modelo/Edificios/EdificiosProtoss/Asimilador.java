@@ -16,13 +16,10 @@ import java.util.ArrayList;
 public class Asimilador extends EdificioProtoss {
 
     private EstadoRecolector estado;
-    private int turnoParaEstarConstruido = 6;
-    private Recurso gasDelImperio;
+    private final Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
-    private int cantidadDeExtraccionUnitaria = 20;
-    private int valorVital = 450;
 
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
 
     public Asimilador(Recurso gasDelImperio){
@@ -30,9 +27,11 @@ public class Asimilador extends EdificioProtoss {
         this.costoMineral = 100;
         this.estadoRecolectable = new GasRecolectable();
         this.estadoMohoRequerido = new SinMoho();
+        int valorVital = 450;
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;
+        int turnoParaEstarConstruido = 6;
         this.estado = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.identificador = "asimilador";
     }
@@ -48,6 +47,7 @@ public class Asimilador extends EdificioProtoss {
     }
 
     private void extraer(){
+        int cantidadDeExtraccionUnitaria = 20;
         estado.extraer(gasDelImperio, volcanDeGas, cantidadDeExtraccionUnitaria);
     }
 

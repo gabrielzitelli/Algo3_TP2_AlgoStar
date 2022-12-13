@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.UnidadProtoss;
 
 public class FabricaScout extends Fabrica {
 
-    private static int poblacionQueOcupa = 4;
+    private static final int poblacionQueOcupa = 4;
 
     public FabricaScout(){
         this.poblacionNecesaria = poblacionQueOcupa;

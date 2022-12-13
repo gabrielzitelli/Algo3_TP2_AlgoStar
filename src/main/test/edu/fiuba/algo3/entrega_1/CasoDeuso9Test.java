@@ -23,11 +23,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeuso9Test {
 
-    FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
+    final FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
 
     @BeforeEach
     public void setupFabricasDisponibles() {
-        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<Fabrica>();
+        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<>();
         fabricasHabilitada.add(new FabricaDragon());
         fabricasDisponibles.aumentar(fabricasHabilitada);
     }

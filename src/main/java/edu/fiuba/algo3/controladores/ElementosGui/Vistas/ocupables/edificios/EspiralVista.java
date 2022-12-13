@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.controladores.ElementosGui.Vistas.ocupables.edificios;
 
 import edu.fiuba.algo3.controladores.ElementosGui.Tile;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Espiral;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

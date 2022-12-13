@@ -16,13 +16,10 @@ import java.util.ArrayList;
 public class NexoMineral extends EdificioProtoss {
 
     private EstadoRecolector estado;
-    private int turnoParaEstarConstruido = 4;
-    private Recurso mineralesDelImperio;
+    private final Recurso mineralesDelImperio;
     private MaterialBruto nodoMineral = null;
-    private int cantidadDeExtraccionUnitaria = 10;
-    private int valorVital = 250;
 
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
 
 
@@ -31,9 +28,11 @@ public class NexoMineral extends EdificioProtoss {
         this.costoGas = 0;
         this.estadoRecolectable = new MineralRecolectable();
         this.estadoMohoRequerido = new SinMoho();
+        int valorVital = 250;
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.mineralesDelImperio = mineralesDelImperio;
+        int turnoParaEstarConstruido = 4;
         estado = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.identificador = "nexo_mineral";
     }
@@ -49,6 +48,7 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     private void extraer() {
+        int cantidadDeExtraccionUnitaria = 10;
         estado.extraer(mineralesDelImperio, nodoMineral, cantidadDeExtraccionUnitaria);
     }
 

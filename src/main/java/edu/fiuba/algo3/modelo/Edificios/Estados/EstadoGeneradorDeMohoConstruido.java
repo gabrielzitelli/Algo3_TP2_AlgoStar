@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 
 public class EstadoGeneradorDeMohoConstruido implements EstadoGeneradorDeMoho {
 
-    Moho moho = new Moho();
+    final Moho moho = new Moho();
 
     public EstadoGeneradorDeMohoConstruido(Coordenada coordenada) {
         moho.expandir(coordenada);

@@ -29,6 +29,6 @@ public class Zerling extends UnidadZerg {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Zerling.class.equals(claseAAverificar);
+        return !Zerling.class.equals(claseAAverificar);
     }
 }

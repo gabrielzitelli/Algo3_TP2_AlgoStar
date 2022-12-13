@@ -41,6 +41,6 @@ public class SinOcupar implements Ocupable {
     }
 
     public boolean esDeEsteTipo(Class claseAAverificar){
-        return this.getClass().equals(claseAAverificar);
+        return !this.getClass().equals(claseAAverificar);
     }
 }

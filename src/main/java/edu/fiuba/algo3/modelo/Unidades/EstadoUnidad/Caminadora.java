@@ -18,7 +18,7 @@ public class Caminadora implements Caminar{
     public Caminar caminar(Coordenada coordenadaInicial, Coordenada coordenadaDestino){
         Mapa elMapa = Mapa.obtener();
 
-        if (!elMapa.estaDentroDeRango(coordenadaInicial, elMapa.obtenerCasilla(coordenadaDestino), rangoDeCaminata))
+        if (elMapa.estaDentroDeRango(coordenadaInicial, elMapa.obtenerCasilla(coordenadaDestino), rangoDeCaminata))
             throw new ErrorNoSePuedeCaminarHastaEsaDistancia();
 
         elMapa.moverUnidad(coordenadaInicial, coordenadaDestino);

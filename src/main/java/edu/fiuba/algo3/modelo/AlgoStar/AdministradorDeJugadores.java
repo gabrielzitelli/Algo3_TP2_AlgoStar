@@ -8,10 +8,10 @@ import java.util.Queue;
 public class AdministradorDeJugadores {
 
     private Queue<Jugador> jugadores = new LinkedList<>();
-    private LinkedList<Jugador> todosLosJugadores =  new LinkedList<>();
-    private final int MAXIMO_JUGADORES = 2;
+    private final LinkedList<Jugador> todosLosJugadores =  new LinkedList<>();
 
     public void agregarJugador(Jugador jugadorNuevo) {
+        int MAXIMO_JUGADORES = 2;
         if (jugadores.size() >= MAXIMO_JUGADORES)
             throw new ErrorNoPuedenJugarMasPersonasEnLaMismaPartida();
 

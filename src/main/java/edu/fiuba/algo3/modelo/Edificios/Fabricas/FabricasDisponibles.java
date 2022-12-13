@@ -5,10 +5,10 @@ import java.util.HashMap;
 
 public class FabricasDisponibles {
 
-    private HashMap<String, Integer> disponibles = new HashMap<>();
+    private final HashMap<String, Integer> disponibles = new HashMap<>();
 
-    private int valorInicial = 0;
-    private int valorModificador = 1;
+    private final int valorInicial = 0;
+    private final int valorModificador = 1;
 
     // Verifica que la fabrica se encuentre
     public boolean verificar(Fabrica fabrica) {

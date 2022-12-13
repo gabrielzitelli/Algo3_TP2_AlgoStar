@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 
 public class VidaSimple implements Vida{
     private int cantidad;
-    private int capacidad;
+    private final int capacidad;
 
     public VidaSimple(int cantidad){
         // Se settea la cantidad de vida deseada

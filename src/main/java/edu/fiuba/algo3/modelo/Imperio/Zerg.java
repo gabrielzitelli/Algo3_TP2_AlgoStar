@@ -26,8 +26,8 @@ import java.util.LinkedList;
 
 public class Zerg extends Imperio {
 
-    LinkedList<GestorDeCrianza> gestoresDeEvoluciones = new LinkedList<>();
-    LinkedList<UnidadEnEvolucion> unidadesAEvolucionar = new LinkedList<>();
+    final LinkedList<GestorDeCrianza> gestoresDeEvoluciones = new LinkedList<>();
+    final LinkedList<UnidadEnEvolucion> unidadesAEvolucionar = new LinkedList<>();
 
     public Zerg() {
         mineralesDelImperio = new Mineral(cantidadInicialDeMineral);
@@ -102,7 +102,7 @@ public class Zerg extends Imperio {
 
     private void verificarZangano(Coordenada coordenada) {
         Mapa elMapa = Mapa.obtener();
-        if (!elMapa.tieneEsteOcupable(new Zangano(), coordenada))
+        if (elMapa.tieneEsteOcupable(new Zangano(), coordenada))
             throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
 
         ((Unidad) elMapa.obtenerOcupable(coordenada)).destruirUnidad();
@@ -133,7 +133,7 @@ public class Zerg extends Imperio {
 
     private void verificarZanganoSoloComprobacion(Coordenada coordenada){
         Mapa elMapa = Mapa.obtener();
-        if (!elMapa.tieneEsteOcupable(new Zangano(), coordenada))
+        if (elMapa.tieneEsteOcupable(new Zangano(), coordenada))
             throw new ErrorEdificioNoSePuedeConstruirEnEstaCasilla();
     }
 

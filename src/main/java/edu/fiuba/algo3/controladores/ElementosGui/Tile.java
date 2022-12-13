@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Tile {
 
-    Image textura;
+    final Image textura;
     public Tile(String fileName) {
         textura = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/" + fileName)));
     }

@@ -20,9 +20,9 @@ public abstract class Imperio {
     protected LinkedList<Edificio> edificios;
     protected FabricasDisponibles fabricasDisponibles;
     protected ArrayList<Unidad> unidades;
-    protected int cantidadInicialDeMineral = 200;
+    protected final int cantidadInicialDeMineral = 200;
     protected String identificador;
-    private Mapa mapa = Mapa.obtener();
+    private final Mapa mapa = Mapa.obtener();
 
     public String toString() {
         String info = identificador;

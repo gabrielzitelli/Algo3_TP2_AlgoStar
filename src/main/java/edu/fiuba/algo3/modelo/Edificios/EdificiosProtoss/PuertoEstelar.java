@@ -17,20 +17,19 @@ import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class PuertoEstelar extends EdificioProtoss {
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
-    private int turnoParaEstarConstruido = 10;
-    private int valorVital = 600;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
 
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>(Arrays.asList(new Acceso()));
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>(List.of(new Acceso()));
 
     public PuertoEstelar() {
         this.costoGas = 150;
@@ -38,9 +37,11 @@ public class PuertoEstelar extends EdificioProtoss {
         this.estadoRecolectable = new NoRecolectable();
         this.estadoCargaRequerido = new ConCarga();
         this.estadoMohoRequerido = new SinMoho();
+        int valorVital = 600;
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 
+        int turnoParaEstarConstruido = 10;
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
         estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
 
@@ -61,7 +62,7 @@ public class PuertoEstelar extends EdificioProtoss {
         if (coordenada == null){
             return;
         }
-        if (!elMapa.estaEnergizado(coordenada)){
+        if (elMapa.estaEnergizado(coordenada)){
             throw new ErrorElEdificioNoTieneCarga();
         }
     }

@@ -29,6 +29,6 @@ public class Devorador extends UnidadZerg {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Devorador.class.equals(claseAAverificar);
+        return !Devorador.class.equals(claseAAverificar);
     }
 }

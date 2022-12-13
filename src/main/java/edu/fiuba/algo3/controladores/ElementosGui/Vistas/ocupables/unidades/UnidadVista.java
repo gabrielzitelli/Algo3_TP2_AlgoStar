@@ -20,8 +20,8 @@ import java.util.Objects;
 public abstract class UnidadVista extends OcupableVista {
 
     protected String requisitosUnidad = "";
-    protected Image imagenDeMover = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/mover.png")));
-    protected Image imagenDeAtacar = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/atacar.png")));
+    protected final Image imagenDeMover = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/mover.png")));
+    protected final Image imagenDeAtacar = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/especial/atacar.png")));
 
     public String getRequisitosUnidad(){
         return requisitosUnidad;

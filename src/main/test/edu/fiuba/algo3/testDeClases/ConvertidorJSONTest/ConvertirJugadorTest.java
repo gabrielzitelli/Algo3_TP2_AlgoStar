@@ -13,7 +13,7 @@ public class ConvertirJugadorTest {
     public void test01ConviertoUnJugadorAJson() {
         Jugador jugador = new Jugador("Miguelangel", "Rojo", new Zerg());
         ConvertidorJSON convertidor = new ConvertidorJSON();
-        JSONObject obj =convertidor.convertirAJSON(jugador);
+        JSONObject obj = ConvertidorJSON.convertirAJSON(jugador);
 
         assertEquals("Miguelangel", obj.get(ConvertidorJSON.NOMBRE));
         assertEquals("Rojo", obj.get(ConvertidorJSON.COLOR));

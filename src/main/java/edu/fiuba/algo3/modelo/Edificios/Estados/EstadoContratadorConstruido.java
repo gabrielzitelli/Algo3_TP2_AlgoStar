@@ -24,7 +24,7 @@ public class EstadoContratadorConstruido implements EstadoContratador {
 
     @Override
     public void desContratar(LinkedList<Unidad> unidadesEmpleados) {
-        if (unidadesEmpleados.size() <= 0)
+        if (unidadesEmpleados.size() == 0)
             throw new ErrorExtractorNoPuedeDescontratarUnidadesSiNoContrataPrimero();
 
         Unidad zangano = unidadesEmpleados.removeLast();

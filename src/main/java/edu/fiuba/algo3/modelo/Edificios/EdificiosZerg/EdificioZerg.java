@@ -27,7 +27,7 @@ public abstract class EdificioZerg extends Edificio {
 
     @Override
     public void construirSobreCasillaOcupadaVerificacion(Ocupable ocupable, CasillaVacia copiaVaciaDeUnaCasilla){
-        if(!ocupable.esDeEsteTipo(Zangano.class))
+        if(ocupable.esDeEsteTipo(Zangano.class))
             throw new ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada();
 
         copiaVaciaDeUnaCasilla.construirEdificioVerificacion(this);

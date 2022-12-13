@@ -11,7 +11,6 @@ public class Jugador {
     private final String nombre;
     private final String color;
     private final Imperio imperio;
-    private final int largoMinimoNombre = 6;
 
     public Jugador(String nombre, String color, Imperio imperio) {
         verificarLargoDeNombre(nombre);
@@ -21,6 +20,7 @@ public class Jugador {
     }
 
     private void verificarLargoDeNombre(String nombre) {
+        int largoMinimoNombre = 6;
         if (nombre.length() < largoMinimoNombre)
             throw new ErrorElNombreDelJugadorDebeSerMayorA6Caracteres();
     }

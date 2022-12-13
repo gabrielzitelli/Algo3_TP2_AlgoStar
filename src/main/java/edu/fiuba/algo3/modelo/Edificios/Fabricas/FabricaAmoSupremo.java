@@ -7,9 +7,9 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 public class FabricaAmoSupremo extends Fabrica {
 
     //private Suministro poblacionDelImperio;
-    private static int suministroAportado = 5;
+    private static final int suministroAportado = 5;
 
-    private static int poblacionQueOcupa = 0;
+    private static final int poblacionQueOcupa = 0;
 
     public FabricaAmoSupremo(){
         this.poblacionNecesaria = poblacionQueOcupa;

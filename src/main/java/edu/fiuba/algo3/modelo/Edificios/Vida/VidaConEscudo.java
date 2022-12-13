@@ -6,10 +6,9 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 public class VidaConEscudo implements Vida{
 
     private int cantidadVida;
-    private double porcentajeDeRegeneracion = 0.15; //supuesto
     private int cantidadEscudo;
-    private int capacidadEscudo;
-    private int capacidadVida;
+    private final int capacidadEscudo;
+    private final int capacidadVida;
 
     public VidaConEscudo(int cantidadVida, int cantidadEscudo){
         // Se settea la cantidad de vida y esucdo deseada
@@ -37,7 +36,9 @@ public class VidaConEscudo implements Vida{
     public void pasarTurno(){
         // Se regenera el escudo, si con la suma de la regeneracion sobrepasa el maximo
         // inicial, entonces se regenera hasta el tope inicial
-        int escudoRegenerado = (int)(this.capacidadEscudo * this.porcentajeDeRegeneracion);
+        //supuesto
+        double porcentajeDeRegeneracion = 0.15;
+        int escudoRegenerado = (int)(this.capacidadEscudo * porcentajeDeRegeneracion);
 
         if ((this.cantidadEscudo + escudoRegenerado) >= this.capacidadEscudo){
             this.cantidadEscudo = this.capacidadEscudo;

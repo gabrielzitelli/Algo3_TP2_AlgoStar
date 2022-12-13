@@ -22,15 +22,14 @@ public class Acceso extends EdificioProtoss {
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
-    private int turnoParaEstarConstruido = 8;
-    private int valorVital = 500;
+    private final int turnoParaEstarConstruido = 8;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
 
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
 
 
@@ -40,6 +39,7 @@ public class Acceso extends EdificioProtoss {
         this.estadoCargaRequerido = new ConCarga();
         this.estadoMohoRequerido = new SinMoho();
         this.estadoRecolectable = new NoRecolectable();
+        int valorVital = 500;
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 
@@ -61,7 +61,7 @@ public class Acceso extends EdificioProtoss {
         if (coordenada == null){
             return;
         }
-        if (!elMapa.estaEnergizado(coordenada)){
+        if (elMapa.estaEnergizado(coordenada)){
             throw new ErrorElEdificioNoTieneCarga();
         }
     }

@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.AlgoStar;
 
 public class PartidaTerminada implements Turno {
 
-    private Jugador ganador;
+    private final Jugador ganador;
 
     public PartidaTerminada(Jugador ganador) {
         this.ganador = ganador;

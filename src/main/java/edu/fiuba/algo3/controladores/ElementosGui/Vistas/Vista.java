@@ -16,9 +16,9 @@ public abstract class Vista {
     protected Image imagenParaDisplay;
     protected String archivoDeSonido;
     private static final Vista sinVista = new SinVista();
-    protected String emojiInformacionUnicode = "ⓘ";
-    protected String emojiAdvertenciaUnidode = "⚠";
-    protected String emojiBulletPoint = "•";
+    protected final String emojiInformacionUnicode = "ⓘ";
+    protected final String emojiAdvertenciaUnidode = "⚠";
+    protected final String emojiBulletPoint = "•";
 
     protected static Vista obtenerVista(String obtenerElemento, ArrayList<Vista> elementosVista) {
         for (Vista vista : elementosVista){

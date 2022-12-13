@@ -4,8 +4,8 @@ import javafx.scene.paint.Color;
 
 public class ColorItem {
 
-    private String valor;
-    private Color color;
+    private final String valor;
+    private final Color color;
 
     public ColorItem(String valor, Color color){
         this.valor = valor;

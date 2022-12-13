@@ -3,8 +3,8 @@ package edu.fiuba.algo3.modelo.Unidades;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class UnidadEnEvolucion {
-    Unidad unidadAEvolucionar;
-    Unidad unidadEvolucionada;
+    final Unidad unidadAEvolucionar;
+    final Unidad unidadEvolucionada;
 
     public UnidadEnEvolucion(Unidad unidadAEvolucionar, Unidad unidadEvolucionada){
         this.unidadAEvolucionar = unidadAEvolucionar;

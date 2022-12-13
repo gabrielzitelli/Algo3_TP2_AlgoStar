@@ -14,10 +14,9 @@ import java.util.ArrayList;
 public class Pilon extends EdificioProtoss {
 
     private EstadoGeneradorDeEnergia estadoGeneradorDeEnergia;
-    private int turnoParaEstarConstruido = 5;
-    private int valorVital = 300;
+    private final int turnoParaEstarConstruido = 5;
 
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
 
     public Pilon(){
@@ -25,6 +24,7 @@ public class Pilon extends EdificioProtoss {
         this.costoMineral = 100;
         this.estadoRecolectable = new NoRecolectable();
         this.estadoMohoRequerido = new SinMoho();
+        int valorVital = 300;
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.suministroAportado = 5;
         this.superficieRequerida = new SuperficieTerrestre();

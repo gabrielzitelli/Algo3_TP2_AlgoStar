@@ -73,6 +73,6 @@ public class Zangano extends UnidadZerg {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Zangano.class.equals(claseAAverificar);
+        return !Zangano.class.equals(claseAAverificar);
     }
 }

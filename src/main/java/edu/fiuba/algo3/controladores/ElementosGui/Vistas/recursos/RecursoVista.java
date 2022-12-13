@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class RecursoVista extends Vista {
 
-    private static ArrayList<Vista> recursos = inicializarLista();
+    private static final ArrayList<Vista> recursos = inicializarLista();
 
     private static ArrayList<Vista> inicializarLista(){
         ArrayList<Vista> recursos = new ArrayList<>();

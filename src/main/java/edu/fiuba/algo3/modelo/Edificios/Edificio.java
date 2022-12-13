@@ -14,8 +14,6 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.ImageView;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -81,11 +79,11 @@ public abstract class Edificio implements Ocupable {
             edificioJSON = ConvertidorJSON.convertirAJSON(this);
 
             int vidaActual = parseInt((String) edificioJSON.get(ConvertidorJSON.VIDA));
-            int daño = vidaAntes - vidaActual;
+            int danio = vidaAntes - vidaActual;
 
             Logger.obtener().log("el Edificio '" + nombreEdificio + "' [X: " +
                     coordenada.getCoordenadaX() + ", Y: " + coordenada.getCoordenadaY() + "] " +
-                    "recibió " + daño + " de daño. Su vida restante es: " + vidaActual);
+                    "recibió " + danio + " de daño. Su vida restante es: " + vidaActual);
         }
         catch (Exception ErrorVidaLlegoACero){
             if (coordenada != null)
@@ -130,7 +128,7 @@ public abstract class Edificio implements Ocupable {
     }
     
     public boolean esDeEsteTipo(Class claseAAverificar){
-        return Edificio.class.equals(claseAAverificar);
+        return !Edificio.class.equals(claseAAverificar);
     }
 
     public void construirSobreCasillaOcupadaVerificacion(Ocupable ocupable, CasillaVacia copiaVaciaDeUnaCasilla){

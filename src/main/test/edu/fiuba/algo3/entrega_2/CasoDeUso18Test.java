@@ -67,7 +67,7 @@ public class CasoDeUso18Test {
 
     @Test
     public void test03VerificoQueSiAtacoUnDragonConUnMutalisco20VecesEsteMuere(){
-        Mapa elMapa = Mapa.obtener();;
+        Mapa elMapa = Mapa.obtener();
         Dragon unDragon = new Dragon();
         Mutalisco unMutalisco = new Mutalisco();
         Coordenada coordenadaAtacante = new Coordenada(0,0);

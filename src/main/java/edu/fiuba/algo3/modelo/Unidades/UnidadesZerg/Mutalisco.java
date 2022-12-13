@@ -39,6 +39,6 @@ public class Mutalisco extends UnidadZerg {
     }
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Mutalisco.class.equals(claseAAverificar);
+        return !Mutalisco.class.equals(claseAAverificar);
     }
 }

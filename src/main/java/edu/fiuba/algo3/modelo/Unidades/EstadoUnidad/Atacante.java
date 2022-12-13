@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Excepciones.ErrorLaUnidadNoPuedeAtacarFueraDeSuRan
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import org.json.simple.JSONObject;
 
 public class Atacante implements Atacar{
@@ -21,7 +20,7 @@ public class Atacante implements Atacar{
 
     @Override
     public Atacar atacar(Coordenada coordenada, Casilla casillaAAtacar, TipoDanio unDanio) {
-        if (!Mapa.obtener().estaDentroDeRango(coordenada, casillaAAtacar, rangoDeAtaque))
+        if (Mapa.obtener().estaDentroDeRango(coordenada, casillaAAtacar, rangoDeAtaque))
             throw new ErrorLaUnidadNoPuedeAtacarFueraDeSuRango();
 
         casillaAAtacar.recibirAtaque(new Ataque(unDanio));

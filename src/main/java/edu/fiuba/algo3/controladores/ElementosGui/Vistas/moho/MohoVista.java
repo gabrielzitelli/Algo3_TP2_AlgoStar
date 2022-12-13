@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class MohoVista extends Vista {
 
-    private static ArrayList<Vista> mohos = inicializarLista();
+    private static final ArrayList<Vista> mohos = inicializarLista();
 
     private static ArrayList<Vista> inicializarLista(){
         ArrayList<Vista> moho = new ArrayList<>();

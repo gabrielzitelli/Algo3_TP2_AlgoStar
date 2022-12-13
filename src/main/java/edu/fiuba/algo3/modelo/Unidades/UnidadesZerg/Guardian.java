@@ -29,6 +29,6 @@ public class Guardian extends UnidadZerg {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Guardian.class.equals(claseAAverificar);
+        return !Guardian.class.equals(claseAAverificar);
     }
 }

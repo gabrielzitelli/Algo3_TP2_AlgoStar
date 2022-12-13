@@ -3,10 +3,8 @@ package edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasCasillasLibresEnElMapa;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
-import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.LinkedList;
@@ -14,10 +12,9 @@ import java.util.LinkedList;
 import static java.lang.Math.*;
 
 public class Mapa {
-    static private Mapa mapaInstanciaUnica = new Mapa();
-    private int tamanio = 100;
+    static private final Mapa mapaInstanciaUnica = new Mapa();
+    private final int tamanio = 100;
     private Casilla[][] matriz;
-    private double coeficienteBases = 0.12; //Relacion entre bases y tamanio del mapa
 
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
@@ -66,6 +63,8 @@ public class Mapa {
 
     private void inicializarBases(){
 
+        //Relacion entre bases y tamanio del mapa
+        double coeficienteBases = 0.12;
         int cantidadBases = (int) round(tamanio * coeficienteBases);
         int cantLadoDerecho = cantidadBases - (int) ceil(cantidadBases / 2.0);
         int cantLadoIzquierdo = cantidadBases - (int) floor(cantidadBases / 2.0);
@@ -374,12 +373,12 @@ public class Mapa {
             carga = false;
         }
 
-        return carga;
+        return !carga;
     }
 
     public boolean estaDentroDeRango(Coordenada coordenadaOrigen, Casilla casillaDestino, int rango) {
         LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenadaOrigen, rango);
-        return casillas.contains(casillaDestino);
+        return !casillas.contains(casillaDestino);
     }
 
     public int obtenerTamanioMapa() {
@@ -391,6 +390,6 @@ public class Mapa {
     }
 
     public boolean tieneEsteOcupable(Ocupable ocupable, Coordenada coordenada) {
-        return this.encontrarCasillaPorCoordenada(coordenada).tieneEsteOcupable(ocupable);
+        return !this.encontrarCasillaPorCoordenada(coordenada).tieneEsteOcupable(ocupable);
     }
 }

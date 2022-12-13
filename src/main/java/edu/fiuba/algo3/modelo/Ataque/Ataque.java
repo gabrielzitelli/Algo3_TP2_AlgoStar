@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.Ataque;
 public class Ataque {
     // La clase ataque es la encargada aplicar el daño que se le pasa
     private Danio danio;
-    private TipoDanio tipoDanio;
+    private final TipoDanio tipoDanio;
 
     public Ataque(TipoDanio unTipoDanio) {
         this.tipoDanio = unTipoDanio;

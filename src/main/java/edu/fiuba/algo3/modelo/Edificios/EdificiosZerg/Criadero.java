@@ -23,22 +23,22 @@ public class Criadero extends EdificioZerg {
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
     private EstadoGeneradorDeMoho estadoGeneradorDeMoho;
-    private int turnoParaEstarConstruido = 4;
-    private int maxLarvas = 3;
+    private final int turnoParaEstarConstruido = 4;
+    private final int maxLarvas = 3;
     private int cantidadLarvas;
-    private int valorVital = 500;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
-    private static ArrayList<Edificio> requisitosEdilicios = new ArrayList<Edificio>();
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
     public Criadero(){
         this.costoGas = 0;
         this.costoMineral = 200;
         this.estadoRecolectable = new NoRecolectable();
         this.estadoCargaRequerido = new SinCarga();
+        int valorVital = 500;
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         cantidadLarvas = maxLarvas;

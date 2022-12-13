@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo.Ataque;
 
 public class DanioMixto implements TipoDanio {
 
-    private Danio danioTerrestre;
-    private Danio danioAereo;
+    private final Danio danioTerrestre;
+    private final Danio danioAereo;
 
     public DanioMixto(int danioTerretre, int danioAereo) {
         this.danioTerrestre = new Danio(danioTerretre);

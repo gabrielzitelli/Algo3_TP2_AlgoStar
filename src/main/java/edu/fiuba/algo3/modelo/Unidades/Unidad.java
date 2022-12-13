@@ -32,7 +32,7 @@ public abstract class Unidad implements Ocupable {
      protected int costoMineral = 0;
      protected int costoGas = 0;
      protected String identificador;
-     protected int radioQuePuedeCaminar = 5;
+     protected final int radioQuePuedeCaminar = 5;
 
      protected boolean estadoMuerta = false;
 
@@ -46,7 +46,7 @@ public abstract class Unidad implements Ocupable {
      protected abstract void verificarFuegoAliado(Casilla casillaAAtacar);
 
      public void verificarColocable(Casilla unaCasilla) {
-          if (!unaCasilla.puedeMoverse(this.superficieDondeSeMueve))
+          if (unaCasilla.puedeMoverse(this.superficieDondeSeMueve))
                throw new ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible();
 
           this.coordenada = unaCasilla.obtenerCoordenada();
@@ -84,11 +84,11 @@ public abstract class Unidad implements Ocupable {
                unidadJSON = ConvertidorJSON.convertirAJSON(this);
 
                int vidaActual = parseInt((String) unidadJSON.get(ConvertidorJSON.VIDA));
-               int daño = vidaAntes - vidaActual;
+               int danio = vidaAntes - vidaActual;
 
                Logger.obtener().log("La unidad '" + nombreUnidad + "' [X: " +
                        coordenada.getCoordenadaX() + ", Y: " + coordenada.getCoordenadaY() + "] " +
-                       "recibió " + daño + "de daño. Su vida restante es: " + vidaActual);
+                       "recibió " + danio + "de daño. Su vida restante es: " + vidaActual);
           }
           catch (ErrorVidaLlegoACero e) {
                destruirUnidad();

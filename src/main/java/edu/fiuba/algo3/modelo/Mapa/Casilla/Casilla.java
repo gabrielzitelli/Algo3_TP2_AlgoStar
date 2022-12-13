@@ -61,7 +61,7 @@ public abstract class Casilla {
     }
 
     public boolean puedeMoverse(Superficie superficieAComparar) {
-        return superficie.puedeMoverse(superficieAComparar);
+        return !superficie.puedeMoverse(superficieAComparar);
     }
 
     public Coordenada obtenerCoordenada(){

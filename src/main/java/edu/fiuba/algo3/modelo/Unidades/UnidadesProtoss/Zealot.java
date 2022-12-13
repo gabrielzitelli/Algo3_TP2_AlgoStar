@@ -78,6 +78,6 @@ public class Zealot extends UnidadProtoss {
 
     @Override
     public boolean esDeEsteTipo(Class claseAAverificar) {
-        return Zealot.class.equals(claseAAverificar);
+        return !Zealot.class.equals(claseAAverificar);
     }
 }

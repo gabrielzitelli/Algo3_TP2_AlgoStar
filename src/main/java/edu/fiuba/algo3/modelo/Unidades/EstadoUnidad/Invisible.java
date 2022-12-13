@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 
 public class Invisible implements Visibilidad {
 
-    private Zealot unidadInvisible;
+    private final Zealot unidadInvisible;
 
     public Invisible(Zealot unidadInvisible) {
         this.unidadInvisible = unidadInvisible;

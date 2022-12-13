@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class EstadoCreadorConstruido extends EstadoCreador {
 
-    private GestorDeCrianza gestorDeCrianza;
+    private final GestorDeCrianza gestorDeCrianza;
 
     public EstadoCreadorConstruido(FabricasDisponibles fabricasDisponibles, Coordenada coordenadaEdificioCreador) {
         this.fabricasDisponibles = fabricasDisponibles;
