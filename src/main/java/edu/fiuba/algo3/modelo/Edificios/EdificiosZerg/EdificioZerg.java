@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.CasillaVacia;
 import edu.fiuba.algo3.modelo.Unidades.Ocupable;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 public abstract class EdificioZerg extends Edificio {
@@ -19,10 +18,6 @@ public abstract class EdificioZerg extends Edificio {
     @Override
     public void verificarColocable(Casilla unaCasilla){
         super.verificarColocable(unaCasilla);
-    }
-
-    public boolean somosAliados(Unidad unaUnidad){
-        return unaUnidad.perteneceAImperio(new Zerg());
     }
 
     @Override
