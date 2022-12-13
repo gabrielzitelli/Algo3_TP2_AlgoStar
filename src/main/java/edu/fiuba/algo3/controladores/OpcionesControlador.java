@@ -8,6 +8,8 @@ import javafx.scene.layout.BorderPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.lang.Double.min;
+
 public class OpcionesControlador extends Controlador {
 
     @FXML
@@ -34,6 +36,11 @@ public class OpcionesControlador extends Controlador {
         this.controlador = controlador;
 
         ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
+
+        sliderMusica.setValue(sonido.obtenerVolumenMusica().getValue()*100);
+        sliderEfectos.setValue(sonido.obtenerVolumenFx().getValue()*100);
+        sliderMaestro.setValue( min(sonido.obtenerVolumenMusica().getValue(), sonido.obtenerVolumenFx().getValue())*100);
+
         sliderMusica.valueProperty().addListener((o, oldValue, newValue) -> {
             sonido.modificarVolumenMusica(newValue.doubleValue());
         });

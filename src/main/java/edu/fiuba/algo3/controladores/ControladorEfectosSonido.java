@@ -94,4 +94,12 @@ public class ControladorEfectosSonido {
     public void detenerMusica() {
         reproduccionActual.stop();
     }
+
+    public SimpleDoubleProperty obtenerVolumenMusica(){
+        return volumenMusicaProperty;
+    }
+
+    public SimpleDoubleProperty obtenerVolumenFx(){
+        return volumenFx;
+    }
 }

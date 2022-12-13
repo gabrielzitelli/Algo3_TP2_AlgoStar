@@ -415,3 +415,57 @@
     -fx-border-color: white;
     -fx-border-width: 1px;
 }
+
+.botonTutorial {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 35px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 30, 0, 0, 0);
+}
+
+.botonTutorial:hover {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+    -fx-border-radius: 10px;
+}
+
+.botonTutorial:armed {
+    -fx-background-color: rgb(229, 229, 229);
+}
+
+.botonVolverAlMenu {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 20px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 30, 0, 0, 0);
+}
+
+.botonVolverAlMenu:hover {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 10px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+    -fx-border-radius: 10px;
+}
+
+.botonVolverAlMenu:armed {
+    -fx-background-color: rgb(229, 229, 229);
+}

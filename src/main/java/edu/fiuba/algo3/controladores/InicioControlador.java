@@ -38,6 +38,8 @@ public class InicioControlador extends Controlador {
     @FXML
     protected Button botonComenzar;
     @FXML
+    protected Button botonTutorial;
+    @FXML
     protected MediaView mediaviewVideoFondo;
     @FXML
     protected ImageView imagenAlgostar;
@@ -152,6 +154,19 @@ public class InicioControlador extends Controlador {
     }
 
     @FXML
+    public void empezarTutorial() throws IOException {
+        ControladorEfectosSonido.obtenerControlador().reproducirFX("boton");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/tutorialVista.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        stage = obtenerStageActual(botonComenzar);
+        stage.setScene(scene);
+    }
+
+    @FXML
     public void empezarCreacionJugadores(ActionEvent event) throws IOException {
         ControladorEfectosSonido sonido = ControladorEfectosSonido.obtenerControlador();
         sonido.reproducirFX("boton");
@@ -175,6 +190,12 @@ public class InicioControlador extends Controlador {
         FadeTransition animacionFadeOutBotonComenzar = new FadeTransition(Duration.millis(400), botonComenzar);
         animacionFadeOutBotonComenzar.setToValue(0);
         animacionFadeOutBotonComenzar.play();
+        botonComenzar.setDisable(true);
+
+        //Desaparece el boton de comenzar y lo desactivo
+        FadeTransition animacionFadeOutBotonTurorial = new FadeTransition(Duration.millis(400), botonTutorial);
+        animacionFadeOutBotonTurorial.setToValue(0);
+        animacionFadeOutBotonTurorial.play();
         botonComenzar.setDisable(true);
     }
 
