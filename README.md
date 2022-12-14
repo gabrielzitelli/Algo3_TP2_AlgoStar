@@ -28,7 +28,7 @@ Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desa
 
 ## Informe
 
-El informe se puede encontrar en el siguiente [enlace](./docs/Informe_TP2_AlgoStar_Algoritmos_III Suárez.pdf).
+El informe se puede encontrar en el siguiente [enlace](./docs/Informe_TP2_AlgoStar_Algoritmos_III_Suarez.pdf).
 
 ## Licencia
 
