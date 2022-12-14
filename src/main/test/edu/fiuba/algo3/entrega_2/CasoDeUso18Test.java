@@ -1,16 +1,19 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorVidaLlegoACero;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
-import edu.fiuba.algo3.modelo.Mapa.*;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.*;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
-
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso18Test {
 
@@ -20,80 +23,88 @@ public class CasoDeUso18Test {
     }
 
     @Test
-    public void test01VerificoQueSiAtacoUnoZerlingConOtroZerlingNueveVecesEsteMuere(){
+    public void test01VerificoQueSiAtacoUnoDragonConOtroZerlingNueveVecesEsteMuere() {
         Mapa elMapa = Mapa.obtener();
         Zerling unZerling = new Zerling();
-        Zerling ZerlingADaniar = new Zerling();
-        Coordenada coordenadaAtacante = new Coordenada(0,0);
-        Coordenada coordenadaAtacado = new Coordenada(0,1);
+        Dragon unDragon = new Dragon();
+        Coordenada coordenadaAtacante = new Coordenada(0, 0);
+        Coordenada coordenadaAtacado = new Coordenada(0, 1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(ZerlingADaniar, coordenadaAtacado);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
 
         // El zerling mata al otro zerling
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 45; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unZerling.pasarTurno();
+        }
+
 
         // La casilla esta vacia
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
-    public void test02VerificoQueSiAtacoUnZerlingConUnHidraliscoCuatroVecesEsteMuere(){
+    public void test02VerificoQueSiAtacoUnDragonConUnHidraliscoCuatroVecesEsteMuere(){
         Mapa elMapa = Mapa.obtener();
-        Zerling unZerling = new Zerling();
+        Dragon unDragon = new Dragon();
         Hidralisco unHidralisco = new Hidralisco();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unHidralisco, coordenadaAtacante);
 
-        // El zerling mata al hidralisco
-        for (int i = 0; i < 4; i++)
+
+        for (int i = 0; i < 18; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unHidralisco.pasarTurno();
+        }
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
-    public void test03VerificoQueSiAtacoUnZerlingConUnMutaliscoCuatroVecesEsteMuere(){
-        Mapa elMapa = Mapa.obtener();;
-        Zerling unZerling = new Zerling();
+    public void test03VerificoQueSiAtacoUnDragonConUnMutalisco20VecesEsteMuere(){
+        Mapa elMapa = Mapa.obtener();
+        Dragon unDragon = new Dragon();
         Mutalisco unMutalisco = new Mutalisco();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaAtacante);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unMutalisco, coordenadaAtacante);
 
-        // El zerling mata al mutalisco
-        for (int i = 0; i < 4; i++)
+
+        for (int i = 0; i < 20; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
-
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+            unMutalisco.pasarTurno();
+        }
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
-    public void test04VerificoQueSiAtacoUnZerlingConUnGuardianDosVecesEsteMuere(){
+    public void test04VerificoQueSiAtacoUnDragonConUnGuardian8VecesEsteMuere(){
         Mapa elMapa = Mapa.obtener();
-        Zerling unZerling = new Zerling();
+        Dragon unDragon = new Dragon();
         Guardian unGuardian = new Guardian();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaAtacante);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacante);
 
-        // El zerling mata al guardian
-        elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
-        elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        for ( int i = 0; i < 8 ; i++){
+            elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unGuardian.pasarTurno();
+        }
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -104,14 +115,16 @@ public class CasoDeUso18Test {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unZealot, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unZealot, coordenadaAtacante);
 
-        // El zerling mata al zealot
-        for (int i = 0; i < 5; i++)
+
+        for (int i = 0; i < 5; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unZealot.pasarTurno();
+        }
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacante));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacante));
     }
 
     @Test
@@ -122,14 +135,15 @@ public class CasoDeUso18Test {
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacante);
 
-        // El zerling mata al dragon
+
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+        unDragon.pasarTurno();
         elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 
     @Test
@@ -142,13 +156,16 @@ public class CasoDeUso18Test {
 
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaAtacante);
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unScout, coordenadaAtacante);
 
-        // El zerling mata al scout
-        for (int i = 0; i < 5; i++)
+
+        for (int i = 0; i < 5; i++){
             elMapa.atacar(coordenadaAtacante, coordenadaAtacado);
+            unScout.pasarTurno();
+        }
 
-        assertDoesNotThrow(() -> elMapa.colocarUnaUnidad(new Zerling(), coordenadaAtacado));
+
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(new Zerling(), coordenadaAtacado));
     }
 }

@@ -6,4 +6,9 @@ public class SinRevelar extends Revelable {
     public Revelable revelar() {
         return new ConRevelar();
     }
+
+    @Override
+    public Revelable desRevelar() {
+        return this;
+    }
 }

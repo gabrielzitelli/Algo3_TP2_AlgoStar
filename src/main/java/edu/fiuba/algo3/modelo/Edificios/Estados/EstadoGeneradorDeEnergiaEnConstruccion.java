@@ -41,6 +41,11 @@ public class EstadoGeneradorDeEnergiaEnConstruccion implements EstadoGeneradorDe
     public void desenergizar(Coordenada coordenada) {
     }
 
+    @Override
+    public String getEstado() {
+        return " estado en_construccion";
+    }
+
     public void disminuirSuministro(int cantidadDisminucionSuministro){
     }
 }

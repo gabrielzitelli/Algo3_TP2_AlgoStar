@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane id="borderPaneMain" fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#actualizarCoordenadaMouse" prefHeight="600.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.MapaControlador">
+   <center>
+       <StackPane>
+           <Canvas fx:id="canvasPrincipal"/>
+           <AnchorPane>
+               <Button fx:id="opcionesBoton" mnemonicParsing="false" onAction="#abrirOpciones"
+                       styleClass="abrirOpcionesBoton" stylesheets="@../../css/style.css" text="Opciones"
+                       AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
+           </AnchorPane>
+       </StackPane>
+   </center>
+   <right>
+       <VBox id="bordeDerecha" fx:id="bordeDerecha" alignment="TOP_CENTER" prefWidth="256.0" styleClass="bordeDerecha"
+             stylesheets="@../../css/style.css">
+           <Pane prefHeight="164.0" prefWidth="257.0">
+               <opaqueInsets>
+                   <Insets/>
+               </opaqueInsets>
+               <VBox.margin>
+                   <Insets/>
+               </VBox.margin>
+               <Text id="textoJugadorRaza" fx:id="textoJugadorRaza" fill="WHITE" layoutX="9.0" layoutY="25.0"
+                     strokeType="OUTSIDE" strokeWidth="0.0" text="IMPERIO" textAlignment="CENTER"
+                     wrappingWidth="238.48596169054508">
+                   <font>
+                       <Font name="Century Gothic" size="14.0"/>
+                   </font>
+               </Text>
+               <Text id="textoNombreJugador" fx:id="textoNombreJugador" fill="WHITE" layoutX="10.0" layoutY="58.0"
+                     strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Jugador" textAlignment="CENTER"
+                     textOrigin="BOTTOM" wrappingWidth="238.48596169054508">
+                   <font>
+                       <Font name="Century Gothic" size="23.0"/>
+                   </font>
+               </Text>
+               <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="12.0" layoutY="78.0" pickOnBounds="true"
+                          preserveRatio="true">
+                   <Image url="@../../img/recursos/32px/mineral.png"/>
+               </ImageView>
+               <Text fill="WHITE" layoutX="35.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     text="Minerales" wrappingWidth="124.56909942626953">
+                   <font>
+                       <Font name="Century Gothic" size="18.8"/>
+                   </font>
+               </Text>
+               <Text fill="WHITE" layoutX="35.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     text="Gas Vespeno">
+                   <font>
+                       <Font name="Century Gothic" size="18.8"/>
+                   </font>
+               </Text>
+               <Text fill="WHITE" layoutX="35.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     text="Población" wrappingWidth="123.4645767211914">
+                   <font>
+                       <Font name="Century Gothic" size="18.8"/>
+                   </font>
+               </Text>
+               <ImageView fitHeight="19.0" fitWidth="25.0" layoutX="11.0" layoutY="106.0" pickOnBounds="true"
+                          preserveRatio="true">
+                   <Image url="@../../img/recursos/original/gas_nubeRaw.png"/>
+               </ImageView>
+               <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="12.0" layoutY="133.0" pickOnBounds="true"
+                          preserveRatio="true">
+                   <Image url="@../../img/recursos/original/poblacion.png"/>
+               </ImageView>
+               <Text id="textoCantPoblacion" fx:id="textoCantPoblacion" fill="WHITE" layoutX="168.0" layoutY="150.0"
+                     strokeType="OUTSIDE" strokeWidth="0.0" text="0/0" textAlignment="CENTER"
+                     wrappingWidth="76.5020751953125">
+                   <font>
+                       <Font name="Century Gothic" size="18.8"/>
+                   </font>
+               </Text>
+               <Text id="textoCantGas" fx:id="textoCantGas" fill="WHITE" layoutX="168.0" layoutY="122.0"
+                     strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER"
+                     wrappingWidth="76.5020751953125">
+                   <font>
+                       <Font name="Century Gothic" size="18.8"/>
+                   </font>
+               </Text>
+               <Text id="textoCantMinerales" fx:id="textoCantMinerales" fill="WHITE" layoutX="168.0" layoutY="96.0"
+                     strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER"
+                     wrappingWidth="76.5020751953125">
+                   <font>
+                       <Font name="Century Gothic" size="18.8"/>
+                   </font>
+               </Text>
+           </Pane>
+           <Pane prefHeight="362.0" prefWidth="257.0">
+               <Text fx:id="debugCoordenadas" fill="WHITE" layoutX="11.0" layoutY="10.0" strokeType="OUTSIDE"
+                     strokeWidth="0.0" style="-fx-text-alignment: center;" textOrigin="CENTER"
+                     wrappingWidth="235.2061061859131">
+                   <font>
+                       <Font name="Century Gothic" size="12.413793563842773"/>
+                   </font>
+               </Text>
+               <Pane id="paneInfoEdificio" fx:id="paneInfoEdificio" prefHeight="362.0" prefWidth="257.0"
+                     styleClass="paneInfoEdificio" visible="false">
+                   <Text id="textoNombreEdificio" fx:id="textoNombreEdificio" fill="WHITE" layoutX="11.0"
+                         layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio"
+                         textAlignment="CENTER" wrappingWidth="234.8125343322754">
+                       <font>
+                           <Font name="Century Gothic" size="18.0"/>
+                       </font>
+                   </Text>
+                   <ImageView id="imageviewEdificio" fx:id="imageviewEdificio" fitHeight="139.0" fitWidth="172.0"
+                              layoutX="46.0" layoutY="58.0" pickOnBounds="true"/>
+                   <Text id="textoVida" fx:id="textoVida" fill="#00e41b" layoutX="11.0" layoutY="217.0"
+                         strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoVida" textAlignment="CENTER"
+                         wrappingWidth="235.64011001586914">
+                       <font>
+                           <Font name="Century Gothic" size="17.0"/>
+                       </font>
+                   </Text>
+                   <Text id="textoEscudo" fx:id="textoEscudo" fill="#2acdff" layoutX="11.0" layoutY="235.0"
+                         strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoEscudo" textAlignment="CENTER"
+                         wrappingWidth="235.64011001586914">
+                       <font>
+                           <Font name="Century Gothic" size="17.0"/>
+                       </font>
+                   </Text>
+                   <Pane id="wrapperBotonEdificio1" fx:id="wrapperBotonEdificio1" layoutX="19.0" layoutY="252.0">
+                       <Button id="botonEdificio1" fx:id="botonEdificio1" mnemonicParsing="false"
+                               onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0"
+                               styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonEdificio2" fx:id="wrapperBotonEdificio2" layoutX="77.0" layoutY="252.0">
+                       <Button id="botonEdificio2" fx:id="botonEdificio2" mnemonicParsing="false"
+                               onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0"
+                               styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonEdificio3" fx:id="wrapperBotonEdificio3" layoutX="135.0" layoutY="252.0">
+                       <Button id="botonEdificio3" fx:id="botonEdificio3" mnemonicParsing="false"
+                               onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0"
+                               styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonEdificio4" fx:id="wrapperBotonEdificio4" layoutX="193.0" layoutY="252.0">
+                       <Button id="botonEdificio4" fx:id="botonEdificio4" mnemonicParsing="false"
+                               onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0"
+                               styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonEdificio5" fx:id="wrapperBotonEdificio5" layoutX="19.0" layoutY="309.0">
+                       <Button id="botonEdificio5" fx:id="botonEdificio5" mnemonicParsing="false"
+                               onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0"
+                               styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonEdificio6" fx:id="wrapperBotonEdificio6" layoutX="77.0" layoutY="309.0">
+                       <Button id="botonEdificio6" fx:id="botonEdificio6" mnemonicParsing="false"
+                               onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0"
+                               styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonEdificio7" fx:id="wrapperBotonEdificio7" layoutX="135.0" layoutY="309.0">
+                       <Button id="botonEdificio7" fx:id="botonEdificio7" mnemonicParsing="false"
+                               onMouseClicked="#actualizarUI" prefHeight="45.0" prefWidth="45.0"
+                               styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonEdificio8" fx:id="wrapperBotonEdificio8" layoutX="193.0" layoutY="309.0">
+                       <Button fx:id="botonEdificio8" mnemonicParsing="false" onMouseClicked="#actualizarUI"
+                               prefHeight="45.0" prefWidth="45.0" styleClass="botonAdd"
+                               stylesheets="@../../css/style.css"/>
+                   </Pane>
+               </Pane>
+               <Pane id="paneInfoImperio" fx:id="paneInfoImperio" prefHeight="362.0" prefWidth="257.0"
+                     styleClass="paneInfoEdificio">
+                   <Text id="textoConstruccionImperio" fx:id="textoConstruccionImperio" fill="WHITE" layoutX="11.0"
+                         layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoNombreEdificio"
+                         text="CONSTRUCCIÓN DE EDIFICIOS" textAlignment="CENTER" wrappingWidth="234.8125343322754">
+                       <font>
+                           <Font name="Century Gothic" size="20.0"/>
+                       </font>
+                   </Text>
+                   <Pane id="wrapperBotonConstruirEdificio1" fx:id="wrapperBotonConstruirEdificio1" layoutX="42.0"
+                         layoutY="102.0">
+                       <Button id="botonConstruirEdificio1" fx:id="botonConstruirEdificio1"
+                               mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0"
+                               prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonConstruirEdificio2" fx:id="wrapperBotonConstruirEdificio2"
+                         layoutX="143.0" layoutY="102.0">
+                       <Button id="botonConstruirEdificio2" fx:id="botonConstruirEdificio2"
+                               mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0"
+                               prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonConstruirEdificio3" fx:id="wrapperBotonConstruirEdificio3" layoutX="42.0"
+                         layoutY="189.0">
+                       <Button id="botonConstruirEdificio3" fx:id="botonConstruirEdificio3"
+                               mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0"
+                               prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonConstruirEdificio4" fx:id="wrapperBotonConstruirEdificio4"
+                         layoutX="143.0" layoutY="189.0">
+                       <Button id="botonConstruirEdificio4" fx:id="botonConstruirEdificio4"
+                               mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0"
+                               prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+                   <Pane id="wrapperBotonConstruirEdificio5" fx:id="wrapperBotonConstruirEdificio5" layoutX="42.0"
+                         layoutY="274.0">
+                       <Button id="botonConstruirEdificio5" fx:id="botonConstruirEdificio5"
+                               mnemonicParsing="false" onMouseClicked="#actualizarUI" prefHeight="70.0"
+                               prefWidth="70.0" styleClass="botonAdd" stylesheets="@../../css/style.css"/>
+                   </Pane>
+               </Pane>
+           </Pane>
+           <Pane prefHeight="72.0" prefWidth="257.0">
+               <Button id="pasarTurnoBoton" fx:id="pasarTurnoBoton" alignment="CENTER" contentDisplay="CENTER"
+                       layoutX="42.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity"
+                       mnemonicParsing="false" onAction="#pasarTurno" prefHeight="32.0" prefWidth="175.0"
+                       styleClass="pasarTurnoBoton" stylesheets="@../../css/style.css" text="PASAR TURNO"
+                       textAlignment="CENTER">
+                   <opaqueInsets>
+                       <Insets/>
+                   </opaqueInsets>
+               </Button>
+               <Text id="textTurno" fx:id="textTurno" fill="WHITE" layoutX="42.0" layoutY="16.0" strokeType="OUTSIDE"
+                     strokeWidth="0.0" text="Turno: 0" textAlignment="CENTER" wrappingWidth="175.63970947265625">
+                   <font>
+                       <Font name="Century Gothic" size="13.0"/>
+                   </font>
+               </Text>
+           </Pane>
+       </VBox>
+   </right>
+   <left>
+       <VBox id="bordeIzquierda" fx:id="bordeIzquierda" prefWidth="100.0" styleClass="bordeIzquierda"
+             stylesheets="@../../css/style.css">
+           <Pane prefHeight="145.0" prefWidth="100.0" stylesheets="@../../css/style.css">
+               <Text fill="WHITE" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     style="-fx-font-style: italic;" text="Terreno" textAlignment="CENTER"
+                     wrappingWidth="80.18115711212158">
+                   <font>
+                       <Font name="Century Gothic" size="17.6"/>
+                   </font>
+               </Text>
+               <StackPane layoutX="21.0" layoutY="47.0" styleClass="stackpaneTerrenoSeleccionado"
+                          stylesheets="@../../css/style.css">
+                   <ImageView id="imagenTerrenoSeleccionado" fx:id="imagenTerrenoSeleccionado" fitHeight="57.0"
+                              fitWidth="57.0" pickOnBounds="true"/>
+               </StackPane>
+               <Text id="textoTerrenoSeleccionado" fx:id="textoTerrenoSeleccionado" fill="WHITE" layoutX="11.0"
+                     layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;"
+                     textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                   <font>
+                       <Font name="Century Gothic" size="17.6"/>
+                   </font>
+               </Text>
+           </Pane>
+           <Pane prefHeight="154.0" prefWidth="100.0">
+               <Text fill="WHITE" layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     style="-fx-font-style: italic;" text="Recurso" textAlignment="CENTER"
+                     wrappingWidth="81.09762668609619">
+                   <font>
+                       <Font name="Century Gothic" size="17.6"/>
+                   </font>
+               </Text>
+               <StackPane layoutX="21.0" layoutY="49.0" styleClass="stackpaneTerrenoSeleccionado"
+                          stylesheets="@../../css/style.css">
+                   <ImageView id="imagenRecursoSeleccionado" fx:id="imagenRecursoSeleccionado" fitHeight="57.0"
+                              fitWidth="57.0" pickOnBounds="true"/>
+               </StackPane>
+               <Text id="textoRecursoSeleccionado" fx:id="textoRecursoSeleccionado" fill="WHITE" layoutX="11.0"
+                     layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;"
+                     textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                   <font>
+                       <Font name="Century Gothic" size="17.6"/>
+                   </font>
+               </Text>
+           </Pane>
+           <Pane prefHeight="148.0" prefWidth="100.0">
+               <Text fill="WHITE" layoutX="9.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     style="-fx-font-style: italic;" text="Carga" textAlignment="CENTER"
+                     wrappingWidth="81.09762668609619">
+                   <font>
+                       <Font name="Century Gothic" size="17.6"/>
+                   </font>
+               </Text>
+               <StackPane layoutX="20.0" layoutY="45.0" styleClass="stackpaneTerrenoSeleccionado"
+                          stylesheets="@../../css/style.css">
+                   <ImageView id="imagenCargaSeleccionado" fx:id="imagenCargaSeleccionado" fitHeight="57.0"
+                              fitWidth="57.0" pickOnBounds="true"/>
+               </StackPane>
+               <Text id="textoCargaSeleccionado" fx:id="textoCargaSeleccionado" fill="WHITE" layoutX="11.0"
+                     layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;"
+                     textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                   <font>
+                       <Font name="Century Gothic" size="17.0"/>
+                   </font>
+               </Text>
+           </Pane>
+           <Pane prefHeight="155.0" prefWidth="100.0">
+               <Text fill="WHITE" layoutX="10.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     style="-fx-font-style: italic;" text="Contagio" textAlignment="CENTER"
+                     wrappingWidth="81.09762668609619">
+                   <font>
+                       <Font name="Century Gothic" size="17.0"/>
+                   </font>
+               </Text>
+               <StackPane layoutX="20.0" layoutY="49.0" styleClass="stackpaneTerrenoSeleccionado"
+                          stylesheets="@../../css/style.css">
+                   <ImageView id="imagenContagioSeleccionado" fx:id="imagenContagioSeleccionado" fitHeight="57.0"
+                              fitWidth="57.0" pickOnBounds="true"/>
+               </StackPane>
+               <Text id="textoContagioSeleccionado" fx:id="textoContagioSeleccionado" fill="WHITE" layoutX="11.0"
+                     layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;"
+                     textAlignment="CENTER" wrappingWidth="79.65031051635742">
+                   <font>
+                       <Font name="Century Gothic" size="17.0"/>
+                   </font>
+               </Text>
+           </Pane>
+       </VBox>
+   </left>
+</BorderPane>

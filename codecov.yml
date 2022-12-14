@@ -1,6 +1,8 @@
 ignore:
-  - "src/main/java/edu/fiuba/algo3/controlador"
+  - "src/main/java/edu/fiuba/algo3/controladores"
   - "src/main/java/edu/fiuba/algo3/vista"
   - "src/main/java/edu/fiuba/algo3/App.java"
   - "src/main/java/edu/fiuba/algo3/Main.java"
   - "src/main/java/edu/fiuba/algo3/SystemInfo.java"
+  - "src/main/java/edu/fiuba/algo3/module-info.java"
+  - "src/main/resources"

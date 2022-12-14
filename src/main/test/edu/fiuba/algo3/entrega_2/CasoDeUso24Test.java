@@ -2,15 +2,15 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeConstruirEdificioSobreOtroEdificio;
-import edu.fiuba.algo3.modelo.Imperio.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
+import edu.fiuba.algo3.modelo.Imperio.Protoss;
+import edu.fiuba.algo3.modelo.Imperio.Zerg;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso24Test {
@@ -32,8 +32,8 @@ public class CasoDeUso24Test {
         Coordenada coordenadaAsentamientoZerg = new Coordenada(coordenadaBase.getCoordenadaX() -2, coordenadaBase.getCoordenadaY());
 
         //Se tira la excepcion porque en esa casilla ya hay un criadero, el asentamiento inicial zerg
-        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
-                () -> elMapa.construirEdificio(new Criadero(), coordenadaAsentamientoZerg));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarOcupable(new Criadero(), coordenadaAsentamientoZerg));
     }
 
     //El Imperio Protoss asienta una base en el lado inferior del mapa porque los cristales Khaydarin resuenan mejor en el sur
@@ -49,12 +49,12 @@ public class CasoDeUso24Test {
         Coordenada coordenadaPilon = new Coordenada(coordenadaBase.getCoordenadaX() -3, coordenadaBase.getCoordenadaY()-1);
 
         //Se tira la excepcion porque en esa casilla ya hay un edificio (un acceso),  parte del asentamiento inicial protoss
-        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
-                () -> elMapa.construirEdificio(new Pilon(), coordenadaAcceso));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarOcupable(new Pilon(), coordenadaAcceso));
 
         //Se tira la excepcion porque en esa casilla ya hay un edificio (un pilon),  parte del asentamiento inicial protoss
-        assertThrows(ErrorNoSePuedeConstruirEdificioSobreOtroEdificio.class,
-                () -> elMapa.construirEdificio(new Pilon(), coordenadaPilon));
+        assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
+                () -> elMapa.colocarOcupable(new Pilon(), coordenadaPilon));
     }
 
 }

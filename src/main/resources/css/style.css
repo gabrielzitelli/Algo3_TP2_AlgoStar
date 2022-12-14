@@ -1,0 +1,471 @@
+.botonComenzar {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 50px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 30, 0, 0, 0);
+}
+
+.botonComenzar:hover {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+    -fx-border-radius: 10px;
+}
+
+.botonComenzar:armed {
+    -fx-background-color: rgb(229, 229, 229);
+}
+
+.abrirOpcionesBoton {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 14px;
+    -fx-border-width: 0px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
+}
+.abrirOpcionesBoton:hover {
+    -fx-border-width: 0px;
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.74), 5, 0, 0, 0);
+}
+
+.abrirOpcionesBoton:armed {
+    -fx-background-color: rgba(38, 38, 38, 0.65);
+}
+
+.cajaOpciones {
+    -fx-background-color: rgba(28, 28, 28, 0.84);
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 10px;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 14px;
+    -fx-border-width: 0px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
+}
+.cajaOpcionesTexto {
+    -fx-text-fill: white;
+}
+
+.pasarTurnoBoton {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 20px;
+    -fx-border-width: 0px;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
+}
+
+.pasarTurnoBoton:hover {
+    -fx-border-width: 0px;
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.74), 5, 0, 0, 0);
+}
+
+.pasarTurnoBoton:armed {
+    -fx-background-color: rgba(38, 38, 38, 0.65);
+}
+
+.hboxCostadoDerecha {
+    -fx-border-color: black;
+    -fx-background-color: black;
+}
+
+.coordenadasText Text {
+    -fx-text-alignment: center;
+}
+
+.labelCampoParaRellenar {
+}
+
+.textfieldNombreJugador {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-accent: rgba(136, 197, 203, 0.6);
+    -fx-font-size: 20px;
+}
+
+.textfieldNombreJugador:selected {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-accent: rgba(136, 197, 203, 0.6);
+    -fx-font-size: 20px;
+}
+
+.anchorPaneForm {
+    -fx-background-color: rgba(52, 52, 52, 0.44);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.anchorPaneError {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-border-width: 3px;
+    -fx-border-color: rgb(121, 121, 121);
+    -fx-accent: rgb(136, 197, 203);
+    -fx-font-size: 22px;
+}
+
+.mensajeError {
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.botonEntiendo {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 22px;
+    -fx-padding: 0 0 0 0;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgb(155, 155, 155), 20, 0, 0, 0);
+}
+
+.botonEntiendo:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+    -fx-text-fill: white;
+    -fx-border-width: 1px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.74), 10, 0, 0, 0);
+}
+
+.botonEntiendo:armed {
+    -fx-background-color: rgba(38, 38, 38, 0.65);
+}
+
+.comboBoxColores {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.comboBoxColores:focused {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.comboBoxColores:hover {
+    -fx-background-color: rgba(187, 70, 70, 0);
+}
+
+.comboBoxColores .list-view{
+    -fx-background-color: rgb(52, 52, 52);
+    -fx-border-color: white;
+}
+
+.comboBoxColores .list-cell {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent;
+}
+
+.comboBoxColores .arrow {
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+.comboBoxColores .list-cell:filled:selected {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.comboBoxColores .list-cell:filled:hover {
+    -fx-background-color: rgba(136, 197, 203, 0.6);
+}
+
+
+
+.razaBox {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.razaBox:focused {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+}
+
+.razaBox:hover {
+    -fx-background-color: rgba(187, 70, 70, 0);
+}
+
+.razaBox:disabled {
+    -fx-opacity: 1;
+    -fx-border-color: rgb(154, 154, 154);
+}
+
+.razaBox:disabled .list-cell:disabled {
+    -fx-opacity: 1;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-style: italic;
+}
+
+
+.razaBox:disabled .arrow {
+    -fx-opacity: 1;
+    -fx-background-color: rgb(154, 154, 154);
+}
+
+.razaBox .list-view{
+    -fx-background-color: rgb(52, 52, 52);
+    -fx-border-color: white;
+}
+
+.razaBox .list-cell {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 0 10;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent;
+}
+
+.razaBox .arrow {
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+
+.razaBox .list-cell:filled:selected {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.razaBox .list-cell:filled:hover {
+    -fx-background-color: rgba(136, 197, 203, 0.6);
+}
+
+.botonCrearJugador {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 22px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+}
+
+.botonCrearJugador:hover {
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 22px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 10, 0, 0, 0);
+    -fx-border-radius: 5px;
+}
+
+.botonCrearJugador:armed {
+    -fx-background-color: rgb(229, 229, 229);
+}
+
+.bordeDerecha {
+    -fx-background-color: #ffffff;
+    -fx-background-image: url("../img/marcos/marcoBordeDerecho.png");
+    -fx-background-size: auto;
+}
+
+.bordeIzquierda {
+    -fx-background-color: #ffffff;
+    -fx-background-image: url("../img/marcos/marcoBordeIzquierdo.png");
+    -fx-background-size: auto;
+}
+
+.stackpaneTerrenoSeleccionado {
+    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-width: 1px;
+}
+
+.botonAdd {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 5px;
+    -fx-padding: 0 0 0 0;
+}
+
+.botonAdd:hover {
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 255), 10, 0, 0, 0);
+    -fx-border-radius: 5px;
+    -fx-padding: 0 0 0 0;
+}
+
+.botonRevancha {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 30px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+}
+
+.botonRevancha:hover {
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 30px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 10, 0, 0, 0);
+    -fx-border-radius: 5px;
+}
+
+.anchorPaneRevancha {
+    -fx-background-color: rgba(28, 28, 28, 0.84);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 15px;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+}
+
+.botonTutorial {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 35px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 30, 0, 0, 0);
+}
+
+.botonTutorial:hover {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+    -fx-border-radius: 10px;
+}
+
+.botonTutorial:armed {
+    -fx-background-color: rgb(229, 229, 229);
+}
+
+.botonVolverAlMenu {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 20px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 30, 0, 0, 0);
+}
+
+.botonVolverAlMenu:hover {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 10px;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 20, 0, 0, 0);
+    -fx-border-radius: 10px;
+}
+
+.botonVolverAlMenu:armed {
+    -fx-background-color: rgb(229, 229, 229);
+}

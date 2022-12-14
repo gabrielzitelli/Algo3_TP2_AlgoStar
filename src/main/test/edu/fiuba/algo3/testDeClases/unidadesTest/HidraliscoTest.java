@@ -2,8 +2,9 @@ package edu.fiuba.algo3.testDeClases.unidadesTest;
 
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,12 +30,12 @@ public class HidraliscoTest {
         Mapa elMapa = Mapa.obtener();
 
         Hidralisco unHidralisco = new Hidralisco();
-        Hidralisco otroHidralisco = new Hidralisco();
+        Dragon unDragon = new Dragon();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(otroHidralisco, coordenadaAtacado);
+        elMapa.colocarOcupable(unHidralisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
@@ -44,12 +45,12 @@ public class HidraliscoTest {
         Mapa elMapa = Mapa.obtener();
 
         Hidralisco unHidralisco = new Hidralisco();
-        Mutalisco unMutalisco = new Mutalisco();
+        Scout unScout = new Scout();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacado);
+        elMapa.colocarOcupable(unHidralisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unScout, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

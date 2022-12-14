@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
+import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -36,7 +36,7 @@ public class ReservaDeReproduccionTest {
             unCriadero.pasarTurno();
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaZerling()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ReservaDeReproduccionTest {
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZerling()));
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 
     @Test
@@ -69,20 +69,20 @@ public class ReservaDeReproduccionTest {
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         unCriadero.asignarSuministro(new Suministro(1));
-        elMapa.construirEdificio(unCriadero, new Coordenada(0,0));
+        elMapa.colocarOcupable(unCriadero, new Coordenada(0,0));
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
         // Construyo reserva de reproduccion
         ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
-        elMapa.construirEdificio(unaReserva, new Coordenada(1,0));
+        elMapa.colocarOcupable(unaReserva, new Coordenada(1,0));
         unaReserva.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 12; i++)
             unaReserva.pasarTurno();
 
-        unaReserva.recibirAtaque(new Ataque(new Danio(1000)));
+        unaReserva.recibirAtaque(new Ataque(new DanioTerrestre(1000)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaZerling()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesZerling()));
     }
 }

@@ -1,24 +1,26 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Ataque.Ocupable;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
-import edu.fiuba.algo3.modelo.Edificios.GestorDeCrianza;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.GestorDeCrianza;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCantidadDeRecursoInsuficiente;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
 
 public class EstadoCreadorConstruido extends EstadoCreador {
 
-    GestorDeCrianza gestorDeCrianza = new GestorDeCrianza();
+    private final GestorDeCrianza gestorDeCrianza;
 
-    public EstadoCreadorConstruido(FabricasDisponibles fabricasDisponibles) {
+    public EstadoCreadorConstruido(FabricasDisponibles fabricasDisponibles, Coordenada coordenadaEdificioCreador) {
         this.fabricasDisponibles = fabricasDisponibles;
+        this.gestorDeCrianza = new GestorDeCrianza(coordenadaEdificioCreador);
     }
 
     @Override
@@ -26,6 +28,16 @@ public class EstadoCreadorConstruido extends EstadoCreador {
         gestorDeCrianza.actualizar();
         return this;
     }
+
+    public void comprobarRequisitosMaterialesVerificacion(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio){
+        ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
+        Recurso mineralAConsumir = listaDeRequisitos.get(0);
+        Recurso gasAconsumir = listaDeRequisitos.get(1);
+
+        if (!mineralDelImperio.tienesMasQue(mineralAConsumir) || !gasDelImperio.tienesMasQue(gasAconsumir))
+            throw new ErrorCantidadDeRecursoInsuficiente();
+    }
+
     private void comprobarRequisitosMateriales(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio){
         ArrayList<Recurso> listaDeRequisitos = ocupable.requisitosMateriales();
         Recurso mineralAConsumir = listaDeRequisitos.get(0);
@@ -38,16 +50,21 @@ public class EstadoCreadorConstruido extends EstadoCreador {
             throw new ErrorCantidadDeRecursoInsuficiente();
         }
     }
-    @Override
-    public void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
-        verificarQueSePuedeFabricar(unaFabrica);
-        Unidad unidad = unaFabrica.crearUnidad();
-        comprobarRequisitosMateriales(unidad, mineralDelImperio, gasDelImperio);
-        gestorDeCrianza.agregarUnidad(unidad, unidades);
+
+    public void colocarCoordenadaAlGestorDeCrianza(Coordenada coordenadaEdificioCreador){
+        gestorDeCrianza.actualizarCoordenada(coordenadaEdificioCreador);
     }
 
-    private void verificarQueSePuedeFabricar(Fabrica unaFabrica) {
-        if (!this.fabricasDisponibles.verificar(unaFabrica))
+    @Override
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio) {
+        verificarQueSePuedeFabricar(unaFabricasUnidades);
+        Unidad unidad = unaFabricasUnidades.crearUnidad();
+        comprobarRequisitosMateriales(unidad, mineralDelImperio, gasDelImperio);
+        gestorDeCrianza.agregarUnidad(unidad, unidades, mineralDelImperio);
+    }
+
+    public void verificarQueSePuedeFabricar(FabricasUnidades unaFabricasUnidades) {
+        if (!this.fabricasDisponibles.verificar(unaFabricasUnidades))
             throw new ErrorNoSeCumplenLosRequisitosDeEstaUnidad();
     }
 

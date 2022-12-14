@@ -1,69 +1,67 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Excepciones.*;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
+import edu.fiuba.algo3.modelo.Imperio.Imperio;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 
 public class CasillaOcupada extends Casilla {
 
-    public CasillaOcupada(Coordenada coordenada) {
-        this.coordenada = coordenada;
-    }
-
-    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie, Revelable estadoRevelable) {
+    public CasillaOcupada(Coordenada coordenada, Cargable estadoCarga, EstadoMoho estadoMoho, Recolectable estadoRecolectable, Superficie superficie, Revelable estadoRevelable, Ocupable unOcupable) {
         this.estadoRecolectable = estadoRecolectable;
         this.estadoMoho = estadoMoho;
         this.estadoCarga = estadoCarga;
         this.coordenada = coordenada;
         this.superficie = superficie;
         this.estadoRevelable = estadoRevelable;
+        this.ocupable = unOcupable;
     }
 
-    public Casilla construirEdificio(Edificio unEdificio) {
-        throw new ErrorNoSePuedeConstruirEdificioSobreOtroEdificio();
+    public void construirEdificioVerificacion(Edificio unEdificio){
+        CasillaVacia copiaVaciaDeEstaCasilla = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
+        unEdificio.construirSobreCasillaOcupadaVerificacion(this.ocupable, copiaVaciaDeEstaCasilla);
+    }
+
+    public Casilla colocarOcupable(Ocupable unOcupable) {
+        //Verificamos que se trate de un zangano y un extractor
+        if (this.ocupable.getClass().equals(Extractor.class) &&
+                unOcupable.getClass().equals(Zangano.class)) {
+            ((Extractor) ocupable).contratarZangano((Zangano) unOcupable);
+            return this;
+        }
+
+        throw new ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada();
     }
 
     public void llenarDeMoho() {
-        estadoMoho = new SinMoho();
+        if(ocupable.esDeEsteTipo(Edificio.class) && this.superficie.soyDiferenteA(new SuperficieAerea()))
+            estadoMoho = new ConMoho();
     }
 
-    public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg) {
-        throw new ErrorPosicionOcupada();
+    public Casilla quitarOcupable() {
+        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
     }
 
-    public Casilla desconstruirEdificio(Coordenada coordenada) {
-        Casilla nuevaCasillaSinEdificio = new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-        return nuevaCasillaSinEdificio;
+    @Override
+    public Ocupable obtenerOcupable() {
+        return ocupable;
     }
 
-    public Edificio obtenerEdificio() {
-        Edificio edificio = (Edificio) this.ocupable;
-        return edificio;
-    }
-
-    public void establecerEdificio(Edificio unEdificio) {
-        this.ocupable = unEdificio;
-    }
-
-    public void settearUnidad(Unidad unaUnidad) {
-        this.ocupable = unaUnidad;
-    }
-
-    public Casilla colocarUnidad(Unidad unaUnidad) {
-        throw new ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada();
+    public boolean tieneEsteOcupable(Ocupable ocupable) {
+        return this.ocupable.getClass().equals(ocupable.getClass());
     }
 
     public void atacar(Casilla casillaAtacada) {
-        Unidad unidad = (Unidad) ocupable;
+        ((Unidad) ocupable).atacar(casillaAtacada);
+    }
 
-        if (Mapa.obtener().estaDentroDeRango(coordenada,casillaAtacada, unidad.rangoDeAtaque()))
-            unidad.atacar(casillaAtacada);
-        else
-            throw new ErrorLaUnidadNoPuedeAtacarFueraDeSuRango();
+    public boolean esFuegoAliado(Imperio unImperio) {
+        return ocupable.perteneceAImperio(unImperio);
     }
 
     public void recibirAtaque(Ataque unAtaque) {
@@ -71,13 +69,18 @@ public class CasillaOcupada extends Casilla {
     }
 
     public Casilla moverUnidadHacia(Casilla destino) {
-        if (this.ocupable == null)
-            throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
-
-        return destino.colocarUnidad((Unidad) this.ocupable);
+        return destino.colocarOcupable(this.ocupable);
     }
 
-    public Casilla quitarUnidad() {
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
+    @Override
+    public void revelar() {
+        super.revelar();
+        ocupable.actualizarColocable(this);
+    }
+
+    @Override
+    public void desRevelar() {
+        super.desRevelar();
+        ocupable.actualizarColocable(this);
     }
 }

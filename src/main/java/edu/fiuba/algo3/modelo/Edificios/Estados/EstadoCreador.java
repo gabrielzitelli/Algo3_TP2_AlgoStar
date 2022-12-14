@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo.Edificios.Estados;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 
 import java.util.ArrayList;
@@ -19,5 +21,10 @@ public abstract class EstadoCreador {
         this.fabricasDisponibles = fabricasDisponibles;
     }
 
-    public abstract void crearUnidad(Fabrica unaFabrica, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio);
+    public abstract void verificarQueSePuedeFabricar(FabricasUnidades unaFabricasUnidades);
+    public abstract void comprobarRequisitosMaterialesVerificacion(Ocupable ocupable, Mineral mineralDelImperio, Gas gasDelImperio);
+
+    public abstract void colocarCoordenadaAlGestorDeCrianza(Coordenada coordenadaEdificioCreador);
+
+    public abstract void crearUnidad(FabricasUnidades unaFabricasUnidades, ArrayList<Unidad> unidades, Mineral mineralDelImperio, Gas gasDelImperio);
 }

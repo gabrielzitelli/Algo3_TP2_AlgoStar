@@ -2,8 +2,10 @@ package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaExtractor;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNoSePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
@@ -65,12 +67,16 @@ public class ExtractorTest {
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1,1));
+
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
-        zerg.construirExtractor(coordenadasGas);
+        mapa.colocarOcupable(new Zangano(), coordenadasGas);
+        zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
         for (int i = 0; i < 6; i++)
@@ -81,19 +87,23 @@ public class ExtractorTest {
     }
 
     @Test
-    public void test05PuedoContratarUnZanganoEnUnExtractorYMextraeCadaTurno(){
+    public void test05PuedoContratarUnZanganoEnUnExtractorYExtraeCadaTurno(){
         Mapa mapa = Mapa.obtener();
         Zerg zerg = new Zerg();
         Coordenada coordenadasGas = new Coordenada(0,0);
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1,1));
+
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
-        zerg.construirExtractor(coordenadasGas);
+        mapa.colocarOcupable(new Zangano(), coordenadasGas);
+        zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
         for (int i = 0; i < 6; i++)
@@ -107,19 +117,23 @@ public class ExtractorTest {
     }
 
     @Test
-    public void test06PuedoContratarTresZanganosEnUnExtractorYMextraeCadaTurno() {
+    public void test06PuedoContratarTresZanganosEnUnExtractorYExtraeCadaTurno() {
         Mapa mapa = Mapa.obtener();
         Zerg zerg = new Zerg();
         Coordenada coordenadasGas = new Coordenada(0, 0);
 
         zerg.abastecerDeRecursos(new Mineral(300), new Gas(0));
         mapa.colocarMaterial(new GasRecolectable(), coordenadasGas);
-        zerg.construirCriadero(new Coordenada(1, 1));
+
+        Coordenada coordenadaCriadero = new Coordenada(1,1);
+        mapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        zerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         for (int i = 0; i < 5; i++)
             zerg.terminarTurno();
 
-        zerg.construirExtractor(coordenadasGas);
+        mapa.colocarOcupable(new Zangano(), coordenadasGas);
+        zerg.construirEdificio(new FabricaExtractor(), coordenadasGas);
 
         //Construimos el extractor
         for (int i = 0; i < 6; i++)
@@ -143,7 +157,7 @@ public class ExtractorTest {
         for(int i = 0; i < 6; i++)
             unExtractor.pasarTurno();
 
-        assertThrows(ErrorEstaUnidadNosePuedeContratar.class,
+        assertThrows(ErrorEstaUnidadNoSePuedeContratar.class,
                 () -> unExtractor.contratarZangano(new Zerling()));
     }
 }

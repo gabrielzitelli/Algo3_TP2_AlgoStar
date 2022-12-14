@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Mapa;
 
 public class Coordenada {
-    private int coordenadaX;
-    private int coordenadaY;
+    private final int coordenadaX;
+    private final int coordenadaY;
 
     public Coordenada(int coordenadaX, int coordenadaY){
         this.coordenadaX = coordenadaX;

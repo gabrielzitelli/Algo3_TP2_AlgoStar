@@ -1,21 +1,24 @@
 package edu.fiuba.algo3.modelo.Mapa.Casilla;
 
-import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Excepciones.*;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
-import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Edificios.Edificio;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque;
+import edu.fiuba.algo3.modelo.Imperio.Imperio;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
+import edu.fiuba.algo3.modelo.Unidades.SinOcupar;
 
 public class CasillaVacia extends Casilla{
 
     public CasillaVacia(Coordenada coordenada){
+        ocupable = new SinOcupar();
         estadoRecolectable = new NoRecolectable();
         estadoMoho = new SinMoho();
         estadoCarga = new SinCarga();
         this.estadoRevelable = new SinRevelar();
         this.coordenada = coordenada;
-        this.ocupable = null;
+        this.ocupable = new SinOcupar();
         this.superficie = new SuperficieTerrestre();
     }
 
@@ -25,14 +28,18 @@ public class CasillaVacia extends Casilla{
         this.estadoCarga = estadoCarga;
         this.coordenada = coordenada;
         this.superficie = superficie;
+        this.ocupable = new SinOcupar();
         this.estadoRevelable = estadoRevelable;
     }
 
-    public Casilla construirEdificio(Edificio unEdificio){
-        unEdificio.verificarConstruccion(this);
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-        casillaOcupada.establecerEdificio(unEdificio);
-        return casillaOcupada;
+    public void construirEdificioVerificacion(Edificio unEdificio){
+        unEdificio.verificarColocable(this);
+    }
+
+    public Casilla colocarOcupable(Ocupable unOcupable) {
+        unOcupable.verificarColocable(this);
+        return new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable,
+                this.superficie, this.estadoRevelable, unOcupable);
     }
 
     public Coordenada obtenerCoordenada(){
@@ -40,42 +47,36 @@ public class CasillaVacia extends Casilla{
     }
 
     public void llenarDeMoho() {
-        estadoMoho = new ConMoho();
+        if(this.superficie.soyDiferenteA(new SuperficieAerea()))
+            estadoMoho = new ConMoho();
     }
 
-    public Casilla colocarUnidadZerg(UnidadZerg unaUnidadZerg){
-        unaUnidadZerg.interaccionar(this);
-        return new CasillaOcupada(coordenada);
-    }
-    
-    public Casilla desconstruirEdificio(Coordenada coordenada){
-        throw new ErrorNoSePuedeDesconstruirUnEdificioNoCreado();
+    @Override
+    public Ocupable obtenerOcupable() {
+        return ocupable;
     }
 
-    public Edificio obtenerEdificio() {
-        throw new ErrorNoExisteNingunEdificioEnEstaCasilla();
-    }
-
-    public Casilla colocarUnidad(Unidad unaUnidad) {
-        unaUnidad.verificarColocable(this);
-        CasillaOcupada casillaOcupada = new CasillaOcupada(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
-        casillaOcupada.settearUnidad(unaUnidad);
-        return casillaOcupada;
+    public Casilla quitarOcupable() {
+        return this;
     }
 
     public void atacar(Casilla casillaAtacada){
         throw new ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque();
     }
 
+    public boolean esFuegoAliado(Imperio unImperio) {
+        return false;
+    }
+
+    public boolean tieneEsteOcupable(Ocupable ocupable) {
+        return false;
+    }
+
     public void recibirAtaque(Ataque unAtaque){
-        throw new ErrorUnaCasillaVaciaNoPuedeParticiparEnAtaque();
+        ocupable.recibirAtaque(unAtaque);
     }
 
     public Casilla moverUnidadHacia(Casilla destino){
         throw new ErrorNoSePuedeMoverUnaUnidadQueNoExiste();
-    }
-
-    public Casilla quitarUnidad(){
-        return new CasillaVacia(coordenada, this.estadoCarga, this.estadoMoho, this.estadoRecolectable, this.superficie, this.estadoRevelable);
     }
 }

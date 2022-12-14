@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Espiral;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSeCumplenLosRequisitosDeEstaUnidad;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
@@ -34,7 +36,7 @@ public class EspiralTest {
             unCriadero.pasarTurno();
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaMutalisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 
     @Test
@@ -54,7 +56,7 @@ public class EspiralTest {
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaMutalisco()));
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 
     @Test
@@ -67,20 +69,20 @@ public class EspiralTest {
         Criadero unCriadero = new Criadero();
         unCriadero.asignarListaDeUnidades(fabricasDisponibles);
         unCriadero.asignarSuministro(new Suministro(4));
-        elMapa.construirEdificio(unCriadero, new Coordenada(0,0));
+        elMapa.colocarOcupable(unCriadero, new Coordenada(0,0));
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
         // Construyo espiral
         Espiral unEspiral = new Espiral();
-        elMapa.construirEdificio(unEspiral, new Coordenada(1,0));
+        elMapa.colocarOcupable(unEspiral, new Coordenada(1,0));
         unEspiral.asignarListaDeUnidades(fabricasDisponibles);
         for (int i = 0; i < 10; i++)
             unEspiral.pasarTurno();
 
-        unEspiral.recibirAtaque(new Ataque(new Danio(1300)));
+        unEspiral.recibirAtaque(new Ataque(new DanioTerrestre(1300)));
 
         assertThrows(ErrorNoSeCumplenLosRequisitosDeEstaUnidad.class,
-                () -> unCriadero.crearUnidad(new FabricaMutalisco()));
+                () -> unCriadero.crearUnidad(new FabricasUnidadesMutalisco()));
     }
 }

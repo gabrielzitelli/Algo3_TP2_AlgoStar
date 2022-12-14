@@ -1,34 +1,36 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
+import edu.fiuba.algo3.modelo.Ataque.DanioMixto;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesDragon;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
-import edu.fiuba.algo3.modelo.Ataque.*;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
-
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 
 public class Dragon extends UnidadProtoss {
 
-    private final int turnosDeContruccion = 6;
-    private final int danioTerrestre = 20;
-    private final int danioAereo = 20;
-    private final int cantidadDeVida = 100;
-    private final int cantidadDeEscudo = 80;
-
     public Dragon() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 6;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
-        this.danio = new DanioDragon(danioTerrestre, danioAereo);
-        this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 4;
+        int danioTerrestre = 20;
+        int danioAereo = 20;
+        this.danio = new DanioMixto(danioTerrestre, danioAereo);
+        int cantidadDeVida = 100;
+        int cantidadDeEscudo = 80;
+        this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
+        this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 50;
         this.costoMineral = 125;
+        this.identificador = "dragon";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
-        suministroImperio.disminuirPoblacion(FabricaDragon.obtenerPoblacionNecesaria());
+        suministroImperio.disminuirPoblacion(FabricasUnidadesDragon.obtenerPoblacionNecesaria());
+    }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return !Dragon.class.equals(claseAAverificar);
     }
 }

@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.testDeClases.unidadesTest;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorLaUnidadNoPuedeAtacarFueraDeSuRango;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
+import edu.fiuba.algo3.modelo.Unidades.Unidad;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ZanganoTest {
 
@@ -30,30 +32,30 @@ public class ZanganoTest {
         Mapa elMapa = Mapa.obtener();
 
         Zangano unZangano = new Zangano();
-        Zangano otroZangano = new Zangano();
+        Unidad unaUnidadTerrestre = new Zealot();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZangano, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(otroZangano, coordenadaAtacado);
+        elMapa.colocarOcupable(unZangano, coordenadaAtacante);
+        elMapa.colocarOcupable(unaUnidadTerrestre, coordenadaAtacado);
 
-        assertThrows(ErrorUnidadNoPuedeAtacar.class,
+        assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
 
     @Test
-    public void test02UnZanganoAtacaAUnidadAereaLanzaExcepcion() {
+    public void test03UnZanganoAtacaAUnidadAereaLanzaExcepcion() {
         Mapa elMapa = Mapa.obtener();
 
         Zangano unZangano = new Zangano();
-        Mutalisco unMutalisco = new Mutalisco();
+        Unidad unaUnidadAerea = new Scout();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unZangano, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacado);
+        elMapa.colocarOcupable(unZangano, coordenadaAtacante);
+        elMapa.colocarOcupable(unaUnidadAerea, coordenadaAtacado);
 
-        assertThrows(ErrorUnidadNoPuedeAtacar.class,
+        assertThrows(ErrorLaUnidadNoPuedeAtacarFueraDeSuRango.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
 }

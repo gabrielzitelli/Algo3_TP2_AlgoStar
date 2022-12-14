@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="anchorPaneRevancha" fx:id="anchorPaneRevancha" prefHeight="400.0" prefWidth="400.0"
+            styleClass="anchorPaneRevancha" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.RevanchaControlador">
+    <Button layoutX="111.0" layoutY="231.0" mnemonicParsing="false" onAction="#empezarRevancha" prefHeight="49.0"
+            prefWidth="175.0" styleClass="botonRevancha" stylesheets="@../../css/style.css" text="Revancha"/>
+    <Text fill="WHITE" layoutX="43.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HA GANADO EL JUGADOR">
+        <font>
+          <Font name="Century Gothic" size="24.0"/>
+        </font>
+    </Text>
+    <Text id="textoJugadorGanador" fx:id="textoJugadorGanador" fill="WHITE" layoutX="1.0" layoutY="149.0"
+          strokeType="OUTSIDE" strokeWidth="0.0" text=" " textAlignment="CENTER" wrappingWidth="393.80535888671875">
+        <font>
+          <Font name="Century Gothic" size="26.0"/>
+        </font>
+        <effect>
+          <DropShadow/>
+        </effect>
+    </Text>
+    <Button id="botonMenuPrincipal" fx:id="botonMenuPrincipal" layoutX="79.0" layoutY="299.0" mnemonicParsing="false"
+            onAction="#cargarMenuPrincipal" prefHeight="50.0" prefWidth="242.0" styleClass="botonRevancha"
+            stylesheets="@../../css/style.css" text="Menú Principal"/>
+</AnchorPane>

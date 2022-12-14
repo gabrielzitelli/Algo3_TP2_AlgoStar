@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
 import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.NexoMineral;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaNexoMineral;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -11,7 +12,8 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NexoMineralTest {
 
@@ -36,7 +38,7 @@ public class NexoMineralTest {
 
         mapa.colocarMaterial(new MineralRecolectable(), coordenadasMIneral);
         protoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
-        protoss.construirNexoMineral(coordenadasMIneral);
+        protoss.construirEdificio(new FabricaNexoMineral(), coordenadasMIneral);
 
         for (int i = 0; i < 3; i++)
             protoss.terminarTurno();
@@ -52,7 +54,7 @@ public class NexoMineralTest {
 
         mapa.colocarMaterial(new MineralRecolectable(), coordenadaMineral);
         protoss.abastecerDeRecursos(new Mineral(50), new Gas(0));
-        protoss.construirNexoMineral(coordenadaMineral);
+        protoss.construirEdificio(new FabricaNexoMineral(), coordenadaMineral);
 
         for (int i = 0; i < 4; i++)
             protoss.terminarTurno();

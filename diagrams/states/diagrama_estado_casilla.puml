@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+hide empty description
+[*] --> CasillaVacia
+CasillaVacia --> CasillaOcupada : construirEdificio
+CasillaVacia --> CasillaOcupada : colocarUnidad
+
+@enduml

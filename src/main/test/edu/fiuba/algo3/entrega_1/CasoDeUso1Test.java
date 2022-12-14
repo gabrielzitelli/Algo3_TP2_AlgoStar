@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CasoDeUso1Test {
 
-    FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
+    final FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
 
     @BeforeEach
     public void setupFabricasDisponibles() {
-        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<Fabrica>();
-        fabricasHabilitada.add(new FabricaZangano());
+        ArrayList<FabricasUnidades> fabricasHabilitada = new ArrayList<>();
+        fabricasHabilitada.add(new FabricasUnidadesZangano());
         fabricasDisponibles.aumentar(fabricasHabilitada);
     }
 
@@ -36,17 +37,17 @@ public class CasoDeUso1Test {
             unCriadero.pasarTurno();
 
         // Consumo una larva
-        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
         // Paso un turno para tener 3 larvas de nuevo
         unCriadero.pasarTurno();
 
         // Consumo dos larvas
-        unCriadero.crearUnidad(new FabricaZangano());
-        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
         // Al consumir la tercera larva no me tira error
-        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 
     @Test
@@ -61,19 +62,19 @@ public class CasoDeUso1Test {
             unCriadero.pasarTurno();
 
         // Consumo dos larvas
-        unCriadero.crearUnidad(new FabricaZangano());
-        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
         // Paso dos turnos para tener 3 larvas de nuevo
         unCriadero.pasarTurno();
         unCriadero.pasarTurno();
 
         // Consumo dos larvas
-        unCriadero.crearUnidad(new FabricaZangano());
-        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
         // Al consumir la tercera larva no me tira error
-        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
 
     }
 
@@ -89,9 +90,9 @@ public class CasoDeUso1Test {
             unCriadero.pasarTurno();
 
         // Consumo tres larvas
-        unCriadero.crearUnidad(new FabricaZangano());
-        unCriadero.crearUnidad(new FabricaZangano());
-        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
         // Paso tres turnos para tener 3 larvas de nuevo
         unCriadero.pasarTurno();
@@ -99,11 +100,11 @@ public class CasoDeUso1Test {
         unCriadero.pasarTurno();
 
         // Consumo dos larvas
-        unCriadero.crearUnidad(new FabricaZangano());
-        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
         // Al consumir la tercera larva no me tira error
-        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
 
     }
 }

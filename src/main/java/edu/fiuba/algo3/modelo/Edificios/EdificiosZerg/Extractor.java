@@ -5,38 +5,47 @@ import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoContratadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolector;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoRecolectorEnConstruccion;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNosePuedeContratar;
-import edu.fiuba.algo3.modelo.Imperio.Gas;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorEstaUnidadNoSePuedeContratar;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.MaterialBruto;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
-import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Extractor extends Edificio {
+public class Extractor extends EdificioZerg {
 
     private EstadoRecolector estadoRecolector;
     private EstadoContratador estadoContratador;
-    private int turnoParaEstarConstruido = 6;
-    private Recurso gasDelImperio;
+    private final Recurso gasDelImperio;
     private MaterialBruto volcanDeGas = null;
-    private LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
-    private int cantidadDeExtraccionUnitaria = 10;
-    private int valorVital = 750;
+    private final LinkedList<Unidad> zanganosEmpleados = new LinkedList<>();
+
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
     public Extractor(Recurso gasDelImperio){
         this.costoGas = 0;
         this.costoMineral = 100;
         this.estadoRecolectable = new GasRecolectable();
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
+        int valorVital = 750;
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         this.gasDelImperio = gasDelImperio;
+        int turnoParaEstarConstruido = 6;
         this.estadoRecolector = new EstadoRecolectorEnConstruccion(turnoParaEstarConstruido);
         this.estadoContratador = new EstadoContratadorEnConstruccion(turnoParaEstarConstruido);
+        this.identificador = "extractor";
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     public void pasarTurno(){
@@ -47,19 +56,24 @@ public class Extractor extends Edificio {
     }
 
     private void extraer(){
+        int cantidadDeExtraccionUnitaria = 10;
         int cantidadAExtraer = zanganosEmpleados.size() * cantidadDeExtraccionUnitaria;
         estadoRecolector.extraer(gasDelImperio, volcanDeGas, cantidadAExtraer);
     }
 
     public void contratarZangano(Unidad zanganoAContratar){
         if (!zanganoAContratar.esIgualA(new Zangano()))
-            throw new ErrorEstaUnidadNosePuedeContratar();
+            throw new ErrorEstaUnidadNoSePuedeContratar();
 
         estadoContratador.contratar(zanganoAContratar, zanganosEmpleados);
     }
 
-    public void verificarConstruccion(Casilla unaCasilla){
-        super.verificarConstruccion(unaCasilla);
+    public void descontratarZangano() {
+        estadoContratador.desContratar(zanganosEmpleados);
+    }
+
+    public void verificarColocable(Casilla unaCasilla){
+        super.verificarColocable(unaCasilla);
         establecerSobreGas(unaCasilla.obtenerMaterial());
     }
 
@@ -70,5 +84,16 @@ public class Extractor extends Edificio {
     @Override
     public void contratarUnidad(Unidad unidad){
         contratarZangano(unidad);
+    }
+
+    @Override
+    protected String obtenerEstado() {
+        return estadoRecolector.getEstado();
+    }
+
+    public String toString() {
+        String info = super.toString();
+        info += " cantidad_unidades " + zanganosEmpleados.size();
+        return info;
     }
 }

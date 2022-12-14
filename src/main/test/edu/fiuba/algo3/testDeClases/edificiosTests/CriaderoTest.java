@@ -1,13 +1,9 @@
 package edu.fiuba.algo3.testDeClases.edificiosTests;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Criadero;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoEstaConstruido;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
@@ -18,14 +14,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class CriaderoTest {
 
-    FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
+    final FabricasDisponibles fabricasDisponibles = new FabricasDisponibles();
 
     @BeforeEach
     public void setup() {
-        ArrayList<Fabrica> fabricasHabilitada = new ArrayList<Fabrica>();
-        fabricasHabilitada.add(new FabricaZangano());
+        ArrayList<FabricasUnidades> fabricasHabilitada = new ArrayList<>();
+        fabricasHabilitada.add(new FabricasUnidadesZangano());
         fabricasDisponibles.aumentar(fabricasHabilitada);
     }
 
@@ -44,7 +42,7 @@ public class CriaderoTest {
         for (int i = 0; i < 3; i++)
             unCriadero.pasarTurno();
 
-        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 
     @Test
@@ -57,7 +55,7 @@ public class CriaderoTest {
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow(() -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 
     @Test
@@ -74,9 +72,9 @@ public class CriaderoTest {
 
         //Se consumen las 3 larvas creando unidades
         for(int i = 0; i < 3; i++)
-            unCriadero.crearUnidad(new FabricaZangano());
+            unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
-        assertThrows(ErrorCriaderoNoTieneMasLarvas.class, () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertThrows(ErrorCriaderoNoTieneMasLarvas.class, () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 
     @Test
@@ -91,10 +89,10 @@ public class CriaderoTest {
         for(int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        unCriadero.crearUnidad(new FabricaZangano());
-        unCriadero.crearUnidad(new FabricaZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
+        unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
-        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 
     @Test
@@ -111,11 +109,11 @@ public class CriaderoTest {
 
         //Se consumen las 3 larvas creando unidades
         for(int i = 0; i < 3; i++)
-            unCriadero.crearUnidad(new FabricaZangano());
+            unCriadero.crearUnidad(new FabricasUnidadesZangano());
 
         //Regenero una larva
         unCriadero.pasarTurno();
 
-        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricaZangano()));
+        assertDoesNotThrow( () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));
     }
 }

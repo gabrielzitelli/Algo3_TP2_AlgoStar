@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaDragon;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaAmoSupremo;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZerling;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaCriadero;
+import edu.fiuba.algo3.modelo.Edificios.FabricasEdificios.FabricaPilon;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Protoss;
@@ -12,15 +12,13 @@ import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Hidralisco;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zangano;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CasoDeUso31Test {
@@ -38,7 +36,9 @@ public class CasoDeUso31Test {
         Coordenada coordenadaDragon = new Coordenada(1,0);
 
         imperioZerg.abastecerDeRecursos(new Mineral(375), new Gas(0));
-        imperioZerg.construirCriadero(coordenadaCriadero);
+
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -47,11 +47,14 @@ public class CasoDeUso31Test {
         //Ahora tengo el criadero construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
         //Creo un Dragon para atacar al criadero
         Unidad unDragon = new Dragon();
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         //Destruyo el criadero
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 25; i++){
             elMapa.atacar(coordenadaDragon, coordenadaCriadero);
+            unDragon.pasarTurno();
+        }
+
 
         imperioZerg.terminarTurno();
 
@@ -62,24 +65,26 @@ public class CasoDeUso31Test {
     public void test02ConstruyoUnPilonYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
         Mapa elMapa = Mapa.obtener();
         Protoss imperioProtoss = new Protoss();
-        Coordenada coordenadaPilon = new Coordenada(0,0);
-        Coordenada coordenadaHidralisco = new Coordenada(1,0);
+        Coordenada coordenadaPilon = new Coordenada(0, 0);
+        Coordenada coordenadaHidralisco = new Coordenada(1, 0);
 
         imperioProtoss.abastecerDeRecursos(new Mineral(375), new Gas(50));
-        imperioProtoss.construirPilon(coordenadaPilon);
+        imperioProtoss.construirEdificio(new FabricaPilon(), coordenadaPilon);
 
         //Esperamos a que se construya el pilon
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
             imperioProtoss.terminarTurno();
 
         //Ahora tengo el pilon construido, tengo 5 de poblacion y quiero atacarlo hasta destruirlo
         //Creo un Dragon para atacar al pilon
         Unidad unHidralisco = new Hidralisco();
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaHidralisco);
+        elMapa.colocarOcupable(unHidralisco, coordenadaHidralisco);
 
         //Destruyo el pilon
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < 60; i++){
             elMapa.atacar(coordenadaHidralisco, coordenadaPilon);
+            unHidralisco.pasarTurno();
+        }
 
         imperioProtoss.terminarTurno();
 
@@ -87,12 +92,15 @@ public class CasoDeUso31Test {
     }
 
     @Test
-    public void test03ConstruyoUnAmoPilonYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
+    public void test03ConstruyoUnAmoSupremoYLuegoLoDestruyoYLaPoblacionVuelveASerCero() {
         Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos(new Mineral(3000), new Gas(3000));
-        imperioZerg.construirCriadero(new Coordenada(0,0));
+
+        Coordenada coordenadaCriadero = new Coordenada(0,0);
+        elMapa.colocarOcupable(new Zangano(), coordenadaCriadero);
+        imperioZerg.construirEdificio(new FabricaCriadero(), coordenadaCriadero);
 
         //Esperamos a que se construya el criadero
         for(int i = 0; i < 5; i++)
@@ -100,26 +108,26 @@ public class CasoDeUso31Test {
 
         //obtenemos el edificio
         Edificio criadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
-        criadero.crearUnidad(new FabricaAmoSupremo());
+        criadero.crearUnidad(new FabricasUnidadesAmoSupremo());
 
         //Pasan 5 turnos y lo tenemos
         for(int i = 0; i < 5; i++)
             imperioZerg.terminarTurno();
 
-        Coordenada coordenadaAmoSupremo = new Coordenada(1,1);
         Coordenada coordenadaDragon = new Coordenada(1,2);
 
         ArrayList<Unidad> listaZergUnidades = imperioZerg.dameLaListaUnidades();
         Unidad unAmoSupremo = listaZergUnidades.get(0);
-
-        elMapa.colocarUnaUnidad(unAmoSupremo, coordenadaAmoSupremo);
+        Coordenada coordenadaAmoSupremo = unAmoSupremo.obtenerCoordenada();
 
         Unidad unDragon = new Dragon();
-        elMapa.colocarUnaUnidad(unDragon, coordenadaDragon);
+        elMapa.colocarOcupable(unDragon, coordenadaDragon);
 
         //Mato al Amo Supremo
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++){
             elMapa.atacar(coordenadaDragon, coordenadaAmoSupremo);
+            unDragon.pasarTurno();
+        }
 
         imperioZerg.terminarTurno();
 

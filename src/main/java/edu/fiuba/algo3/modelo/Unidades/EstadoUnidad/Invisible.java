@@ -3,17 +3,14 @@ package edu.fiuba.algo3.modelo.Unidades.EstadoUnidad;
 import edu.fiuba.algo3.modelo.Ataque.Ataque;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.ConRevelar;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
-import edu.fiuba.algo3.modelo.Vida.Vida;
 
 public class Invisible implements Visibilidad {
 
-    private Zealot unZealot;
+    private final Zealot unidadInvisible;
 
-    public Invisible(Zealot unZealot) {
-        this.unZealot = unZealot;
+    public Invisible(Zealot unidadInvisible) {
+        this.unidadInvisible = unidadInvisible;
     }
 
     @Override
@@ -21,8 +18,10 @@ public class Invisible implements Visibilidad {
 
     @Override
     public Visibilidad verificarVisibilidadDe(Casilla unaCasilla) {
-        if (unaCasilla.tieneEsteRevelable(new ConRevelar()))
-            return new Detectado(unZealot);
+        if (unaCasilla.tieneEsteRevelable(new ConRevelar())){
+            unidadInvisible.actualizarIdentificador(false);
+            return new Detectado(unidadInvisible);
+        }
 
         return this;
     }
@@ -30,5 +29,10 @@ public class Invisible implements Visibilidad {
     @Override
     public Visibilidad aumentarContador() {
         return this;
+    }
+
+    @Override
+    public boolean esInvisible() {
+        return true;
     }
 }

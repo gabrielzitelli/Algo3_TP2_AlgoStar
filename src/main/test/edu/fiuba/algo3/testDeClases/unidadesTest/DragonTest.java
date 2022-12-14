@@ -3,7 +3,8 @@ package edu.fiuba.algo3.testDeClases.unidadesTest;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,12 +30,12 @@ public class DragonTest {
         Mapa elMapa = Mapa.obtener();
 
         Dragon unDragon = new Dragon();
-        Dragon otroDragon = new Dragon();
+        Zerling unZerling = new Zerling();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(otroDragon, coordenadaAtacado);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacante);
+        elMapa.colocarOcupable(unZerling, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
@@ -44,12 +45,12 @@ public class DragonTest {
         Mapa elMapa = Mapa.obtener();
 
         Dragon unDragon = new Dragon();
-        Scout unScout = new Scout();
+        Guardian unGuardian = new Guardian();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unScout, coordenadaAtacado);
+        elMapa.colocarOcupable(unDragon, coordenadaAtacante);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

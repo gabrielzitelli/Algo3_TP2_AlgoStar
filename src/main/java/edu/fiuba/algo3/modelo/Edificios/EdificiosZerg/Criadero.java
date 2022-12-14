@@ -2,39 +2,43 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.*;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesAmoSupremo;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SinCarga;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Excepciones.*;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.AmoSupremo;
-import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
 
 import java.util.ArrayList;
 
-public class Criadero extends Edificio {
-
-    //SUPUESTO: CRIADERO NO SE PUEDE PONER EN TERRENO CARGADO
+public class Criadero extends EdificioZerg {
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
     private EstadoGeneradorDeMoho estadoGeneradorDeMoho;
-    private int turnoParaEstarConstruido = 4;
-    private int maxLarvas = 3;
+    private final int turnoParaEstarConstruido = 4;
+    private final int maxLarvas = 3;
     private int cantidadLarvas;
-    private int valorVital = 500;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<FabricasUnidades> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>();
 
     public Criadero(){
         this.costoGas = 0;
         this.costoMineral = 200;
         this.estadoRecolectable = new NoRecolectable();
-        this.estadoCarga = new SinCarga();
+        this.estadoCargaRequerido = new SinCarga();
+        int valorVital = 500;
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
         cantidadLarvas = maxLarvas;
@@ -42,18 +46,24 @@ public class Criadero extends Edificio {
         this.suministroAportado = 5;
 
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
-        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);
+
+        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
         estadoGeneradorDeMoho = new EstadoGeneradorDeMohoEnConstruccion(turnoParaEstarConstruido);
 
-        listaFabricasAHabilitar.add(new FabricaZangano());
-        listaFabricasAHabilitar.add(new FabricaAmoSupremo());
+        listaFabricasAHabilitar.add(new FabricasUnidadesZangano());
+        listaFabricasAHabilitar.add(new FabricasUnidadesAmoSupremo());
+        this.identificador = "criadero";
     }
 
-    public void crearUnidad(Fabrica unaFabrica) {
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
+    }
+
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades) {
 
         if (cantidadLarvas > 0) {
-            estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-            estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
+            estadoHabilitador.estaAptoParaCrearse(unaFabricasUnidades);
+            estadoCreador.crearUnidad(unaFabricasUnidades, unidades, mineralDelImperio, gasDelImperio);
             cantidadLarvas--;
         }else
             throw new ErrorCriaderoNoTieneMasLarvas();
@@ -65,11 +75,11 @@ public class Criadero extends Edificio {
     }
 
     protected void destruirEdificio() {
+        super.destruirEdificio();
+
         Mapa elMapa = Mapa.obtener();
         estadoHabilitador.disminuirSuministro(suministroAportado);
-        elMapa.destruirEdificio(coordenada);
         elMapa.expandirMoho(coordenada, 0);
-        this.estaDestruido = true;
     }
 
     public void pasarTurno(){
@@ -101,5 +111,25 @@ public class Criadero extends Edificio {
 
     public void asignarSuministro(Suministro poblacionDelImperio){
         estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
+    }
+
+    @Override
+    public void verificarColocable(Casilla unaCasilla){
+        super.verificarColocable(unaCasilla);
+        estadoCreador.colocarCoordenadaAlGestorDeCrianza(unaCasilla.obtenerCoordenada());
+    }
+
+    @Override
+    protected String obtenerEstado() {
+        return estadoHabilitador.getEstado();
+    }
+
+    public void estaAptaUnidadParaConstruir(FabricasUnidades unaFabricasUnidades){
+        if(cantidadLarvas <= 0)
+            throw new ErrorCriaderoNoTieneMasLarvas();
+
+        estadoCreador.verificarQueSePuedeFabricar(unaFabricasUnidades);
+        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabricasUnidades.crearUnidad(), mineralDelImperio, gasDelImperio);
+        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabricasUnidades);
     }
 }

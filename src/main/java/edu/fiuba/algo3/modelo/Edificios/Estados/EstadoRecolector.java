@@ -9,4 +9,6 @@ public interface EstadoRecolector {
     EstadoRecolector actualizar();
 
     void extraer(Recurso recursoDelImperio, MaterialBruto materialBruto, int cantidadAExtraer);
+
+    String getEstado();
 }

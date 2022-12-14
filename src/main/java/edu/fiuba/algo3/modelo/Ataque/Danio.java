@@ -2,14 +2,13 @@ package edu.fiuba.algo3.modelo.Ataque;
 
 public class Danio {
 
-    private int danio;
+    private final int danio;
 
     public Danio(int danio){
         this.danio = danio;
     }
 
     public int aplicarDanio(int cantidadVida){
-        // Devuelve la cantidad de vida luego de aplicarle el daño
         return cantidadVida - danio;
     }
 }

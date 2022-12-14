@@ -5,12 +5,12 @@ import edu.fiuba.algo3.modelo.Mapa.Mapa;
 
 public class Moho {
 
-    private int radioInicial = 5;
     private int radioActual;
-    private int turnosParaExpandir = 2;
+    private final int turnosParaExpandir = 2;
     private int contadorTurnos;
 
     public Moho(){
+        int radioInicial = 5;
         radioActual = radioInicial;
         contadorTurnos = turnosParaExpandir;
     }

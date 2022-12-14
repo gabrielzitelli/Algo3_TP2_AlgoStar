@@ -1,13 +1,17 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Excepciones.*;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeMoverUnaUnidadQueNoExiste;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
-import edu.fiuba.algo3.modelo.Mapa.*;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Dragon;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.*;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -26,7 +30,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unZerling, coordenadaInicial);
+        elMapa.colocarOcupable(unZerling, coordenadaInicial);
         elMapa.moverUnidad(coordenadaInicial, coordenadaFinal);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
@@ -43,7 +47,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,2);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unZerling, coordenadaInicial);
+        elMapa.colocarOcupable(unZerling, coordenadaInicial);
         elMapa.moverUnidad(coordenadaInicial, coordenadaIntermedia);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
@@ -58,7 +62,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unZerling, coordenadaInicial);
+        elMapa.colocarOcupable(unZerling, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -74,7 +78,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unZerling, coordenadaInicial);
+        elMapa.colocarOcupable(unZerling, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertThrows(ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible.class,
@@ -89,7 +93,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unZangano, coordenadaInicial);
+        elMapa.colocarOcupable(unZangano, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -105,7 +109,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unZangano, coordenadaInicial);
+        elMapa.colocarOcupable(unZangano, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertThrows(ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible.class,
@@ -120,7 +124,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaInicial);
+        elMapa.colocarOcupable(unHidralisco, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -136,7 +140,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unHidralisco, coordenadaInicial);
+        elMapa.colocarOcupable(unHidralisco, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertThrows(ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible.class, () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -150,7 +154,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaInicial);
+        elMapa.colocarOcupable(unMutalisco, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -166,7 +170,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaInicial);
+        elMapa.colocarOcupable(unMutalisco, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -180,7 +184,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaInicial);
+        elMapa.colocarOcupable(unGuardian, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -196,7 +200,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaInicial);
+        elMapa.colocarOcupable(unGuardian, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -210,7 +214,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unZealot, coordenadaInicial);
+        elMapa.colocarOcupable(unZealot, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -226,7 +230,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unZealot, coordenadaInicial);
+        elMapa.colocarOcupable(unZealot, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertThrows(ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible.class, () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -240,7 +244,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unDragon, coordenadaInicial);
+        elMapa.colocarOcupable(unDragon, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -256,7 +260,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unDragon, coordenadaInicial);
+        elMapa.colocarOcupable(unDragon, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertThrows(ErrorNoSePuedeColocarUnidadSobreSuperficieIncompatible.class, () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -270,7 +274,7 @@ public class CasoDeUso20Test {
         Coordenada coordenadaFinal = new Coordenada(0,1);
 
         //Una unidad puede moverse sobre un material
-        elMapa.colocarUnaUnidad(unScout, coordenadaInicial);
+        elMapa.colocarOcupable(unScout, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );
@@ -286,7 +290,7 @@ public class CasoDeUso20Test {
         elMapa.colocarSuperficie(new SuperficieAerea(), coordenadaFinal);
         //Una unidad puede moverse sobre un material
 
-        elMapa.colocarUnaUnidad(unScout, coordenadaInicial);
+        elMapa.colocarOcupable(unScout, coordenadaInicial);
 
         //elMapa movera la unidad que este contenida en coordenadaInicial hacia coordenadaFinal
         assertDoesNotThrow( () -> elMapa.moverUnidad(coordenadaInicial, coordenadaFinal) );

@@ -1,17 +1,21 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Pilon;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
 import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Gas;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.Mapa.*;
-import edu.fiuba.algo3.modelo.Ataque.*;
-
+import edu.fiuba.algo3.modelo.Mapa.Casilla.GasRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -33,18 +37,18 @@ public class CasoDeUso14Test {
         Coordenada coordenadaAcceso = new Coordenada(1,0);
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
         //Se construye el pilon
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(unAcceso, coordenadaAcceso));
+                () -> elMapa.colocarOcupable(unAcceso, coordenadaAcceso));
     }
 
     @Test
@@ -58,18 +62,18 @@ public class CasoDeUso14Test {
         Coordenada coordenadaAcceso = new Coordenada(1,0);
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
         //Se construye el pilon
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(unPuertoEstelar, coordenadaAcceso));
+                () -> elMapa.colocarOcupable(unPuertoEstelar, coordenadaAcceso));
     }
 
     @Test
@@ -83,17 +87,17 @@ public class CasoDeUso14Test {
         Coordenada coordenadaReserva = new Coordenada(1,0);
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
         //Se construye el pilon
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(unaReserva, coordenadaReserva));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(unaReserva, coordenadaReserva));
     }
 
     @Test
@@ -107,18 +111,18 @@ public class CasoDeUso14Test {
         Coordenada coordenadaGuarida = new Coordenada(1,0);
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
         //Se construye el pilon
         for (int i = 0; i < 5; i++) {
             unPilon.pasarTurno();
         }
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(unaGuarida, coordenadaGuarida));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(unaGuarida, coordenadaGuarida));
     }
 
     @Test
@@ -132,17 +136,17 @@ public class CasoDeUso14Test {
         Coordenada coordenadaEspiral = new Coordenada(1,0);
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
         //Se construye el pilon
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(unEspiral, coordenadaEspiral));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(unEspiral, coordenadaEspiral));
     }
 
     @Test
@@ -157,19 +161,19 @@ public class CasoDeUso14Test {
         Coordenada coordenadaExtractor = new Coordenada(1,0);
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
         //Se construye el pilon
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
 
         elMapa.colocarMaterial(new GasRecolectable(),coordenadaExtractor);
 
-        assertDoesNotThrow(() -> elMapa.construirEdificio(unExtractor, coordenadaExtractor));
+        assertDoesNotThrow(() -> elMapa.colocarOcupable(unExtractor, coordenadaExtractor));
     }
 
     @Test
@@ -180,15 +184,15 @@ public class CasoDeUso14Test {
         ReservaDeReproduccion unaReserva = new ReservaDeReproduccion();
         Coordenada coordenadaPilon = new Coordenada(0,0);
         Coordenada coordenadaCriadero = new Coordenada(4,0);
-        Ataque unAtaque = new Ataque(new Danio(600));
+        Ataque unAtaque = new Ataque(new DanioTerrestre(600));
         unPilon.asignarSuministro(new Suministro(0));
 
-        elMapa.construirEdificio(unPilon, coordenadaPilon);
+        elMapa.colocarOcupable(unPilon, coordenadaPilon);
         //Se construye el pilon
         for (int i = 0; i < 5; i++)
             unPilon.pasarTurno();
 
-        elMapa.construirEdificio(unCriadero, coordenadaCriadero);
+        elMapa.colocarOcupable(unCriadero, coordenadaCriadero);
         //Se construye el criadero
         for (int i = 0; i < 4; i++)
             unCriadero.pasarTurno();
@@ -197,6 +201,6 @@ public class CasoDeUso14Test {
         unPilon.recibirAtaque(unAtaque);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(unaReserva, coordenadaPilon));
+                () -> elMapa.colocarOcupable(unaReserva, coordenadaPilon));
     }
 }

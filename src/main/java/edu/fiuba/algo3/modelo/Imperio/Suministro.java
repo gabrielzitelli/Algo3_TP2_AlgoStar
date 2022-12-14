@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.modelo.Imperio;
 
-import edu.fiuba.algo3.modelo.Excepciones.ErrorCriaderoNoTieneMasLarvas;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorSuperaMaximoDePoblacionActual;
 
 import static java.lang.Math.min;
 
 public class Suministro{
 
-    private final int cantidadLimite = 200;
     private int cantidad;
     private int poblacion ;
 
@@ -30,6 +28,7 @@ public class Suministro{
     }
 
     public int obtenerSuministro() {
+        int cantidadLimite = 200;
         return min(cantidadLimite, cantidad);
     }
 

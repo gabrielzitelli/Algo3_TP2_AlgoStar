@@ -1,59 +1,75 @@
 package edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Fabrica;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoCreadorEnConstruccion;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesScout;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorElEdificioNoTieneCarga;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class PuertoEstelar extends EdificioConCarga {
+public class PuertoEstelar extends EdificioProtoss {
 
     private EstadoHabilitador estadoHabilitador;
     private EstadoCreador estadoCreador;
-    private int turnoParaEstarConstruido = 10;
-    private int valorVital = 600;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<FabricasUnidades> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
     private ArrayList<Unidad> unidades;
+
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>(List.of(new Acceso()));
 
     public PuertoEstelar() {
         this.costoGas = 150;
         this.costoMineral = 150;
         this.estadoRecolectable = new NoRecolectable();
-        this.estadoCarga = new ConCarga();
-        this.estadoMoho = new SinMoho();
+        this.estadoCargaRequerido = new ConCarga();
+        this.estadoMohoRequerido = new SinMoho();
+        int valorVital = 600;
         this.vida = new VidaConEscudo(valorVital, valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 
+        int turnoParaEstarConstruido = 10;
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
-        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido);
+        estadoCreador = new EstadoCreadorEnConstruccion(turnoParaEstarConstruido, this.coordenada);
 
-        listaFabricasAHabilitar.add(new FabricaScout());
+        listaFabricasAHabilitar.add(new FabricasUnidadesScout());
+        this.identificador = "puerto_estelar";
     }
 
-    public static ArrayList<Edificio> requisitos() {
-        ArrayList<Edificio> requisitos = new ArrayList<>();
-        requisitos.add(new Acceso());
-        return requisitos;
+    public static ArrayList<Edificio> requisitosEdilicios() {
+        return requisitosEdilicios;
     }
 
-    public void crearUnidad(Fabrica unaFabrica) {
-        if (verificarCarga()) {
-            estadoHabilitador.estaAptoParaCrearse(unaFabrica);
-            estadoCreador.crearUnidad(unaFabrica, unidades, mineralDelImperio, gasDelImperio);
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
+    }
+
+    public void verificarCarga() {
+        Mapa elMapa = Mapa.obtener();
+        if (coordenada == null){
+            return;
         }
-        else throw new ErrorElEdificioNoTieneCarga();
+        if (elMapa.estaEnergizado(coordenada)){
+            throw new ErrorElEdificioNoTieneCarga();
+        }
+    }
+
+    public void crearUnidad(FabricasUnidades unaFabricasUnidades) {
+        this.verificarCarga();
+        estadoHabilitador.estaAptoParaCrearse(unaFabricasUnidades);
+        estadoCreador.crearUnidad(unaFabricasUnidades, unidades, mineralDelImperio, gasDelImperio);
     }
 
     public void pasarTurno() {
@@ -78,5 +94,22 @@ public class PuertoEstelar extends EdificioConCarga {
 
     public void asignarSuministro(Suministro poblacionDelImperio){
         estadoHabilitador.marcarSuministro(poblacionDelImperio, 0);
+    }
+
+    @Override
+    public void verificarColocable(Casilla unaCasilla){
+        super.verificarColocable(unaCasilla);
+        estadoCreador.colocarCoordenadaAlGestorDeCrianza(unaCasilla.obtenerCoordenada());
+    }
+
+    @Override
+    protected String obtenerEstado() {
+        return estadoHabilitador.getEstado();
+    }
+
+    public void estaAptaUnidadParaConstruir(FabricasUnidades unaFabricasUnidades){
+        estadoHabilitador.estaAptoParaCrearseVerificacion(unaFabricasUnidades);
+        estadoCreador.comprobarRequisitosMaterialesVerificacion(unaFabricasUnidades.crearUnidad(), mineralDelImperio, gasDelImperio);
+        estadoCreador.verificarQueSePuedeFabricar(unaFabricasUnidades);
     }
 }

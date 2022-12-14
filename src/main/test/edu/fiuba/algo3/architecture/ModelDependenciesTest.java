@@ -8,15 +8,16 @@ import org.junit.jupiter.api.Test;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 public class ModelDependenciesTest {
-    private final String MODEL = "..modelo..";
-    private final String JAVA_LANG = "java..";
-    private final String JUNIT = "org.junit..";
 
     @Test
     public void elModeloSoloPuedeReferenciarClasesDelModeloAdemasJavaAdemasJunit() {
         JavaClasses importedClasses = new ClassFileImporter().importPackages("edu.fiuba.algo3.modelo");
 
-        String[] listOfPackages = {MODEL, JAVA_LANG, JUNIT};
+        String JSON_SIMPLE = "org.json..";
+        String JUNIT = "org.junit..";
+        String JAVA_LANG = "java..";
+        String MODEL = "..modelo..";
+        String[] listOfPackages = {MODEL, JAVA_LANG, JUNIT, JSON_SIMPLE};
 
         ArchRule myRule = classes().that().resideInAPackage(MODEL)
                 .should().onlyDependOnClassesThat().resideInAnyPackage(listOfPackages);

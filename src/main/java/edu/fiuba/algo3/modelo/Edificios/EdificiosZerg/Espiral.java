@@ -3,39 +3,48 @@ package edu.fiuba.algo3.modelo.Edificios.EdificiosZerg;
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitador;
 import edu.fiuba.algo3.modelo.Edificios.Estados.EstadoHabilitadorEnConstruccion;
-import edu.fiuba.algo3.modelo.Edificios.FabricasDisponibles;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
-import edu.fiuba.algo3.modelo.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidades;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasDisponibles;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaRegenerativa;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.ConMoho;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.NoRecolectable;
+import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Espiral extends Edificio {
+public class Espiral extends EdificioZerg {
 
     private EstadoHabilitador estadoHabilitador;
-    private int turnoParaEstarConstruido = 10;
-    private int valorVital = 1300;
 
     // Fabricas que el edificio habilita
-    private ArrayList<Fabrica> listaFabricasAHabilitar = new ArrayList<Fabrica>();
+    private final ArrayList<FabricasUnidades> listaFabricasAHabilitar = new ArrayList<>();
     private FabricasDisponibles fabricasDisponibles;
+    private static final ArrayList<Edificio> requisitosEdilicios = new ArrayList<>(List.of(new Guarida()));
 
     public Espiral() {
         this.costoGas = 100;
         this.costoMineral = 150;
         this.estadoRecolectable = new NoRecolectable();
-        this.estadoMoho = new ConMoho();
+        this.estadoMohoRequerido = new ConMoho();
+        int valorVital = 1300;
         this.vida = new VidaRegenerativa(valorVital);
         this.superficieRequerida = new SuperficieTerrestre();
 
+        int turnoParaEstarConstruido = 10;
         estadoHabilitador = new EstadoHabilitadorEnConstruccion(turnoParaEstarConstruido);
 
-        listaFabricasAHabilitar.add(new FabricaMutalisco());
+        listaFabricasAHabilitar.add(new FabricasUnidadesMutalisco());
+        this.identificador = "espiral";
     }
 
-    public static ArrayList<Edificio> requisitos() {
-        ArrayList<Edificio> requisitos = new ArrayList<>();
-        requisitos.add(new Guarida());
-        return requisitos;
+    public static ArrayList<Edificio> requisitosEdilicios() {
+        return requisitosEdilicios;
+    }
+
+    public ArrayList<Edificio> obtenerRequisitosEdilicios(){
+        return requisitosEdilicios;
     }
 
     protected void destruirEdificio() {
@@ -50,5 +59,10 @@ public class Espiral extends Edificio {
 
     public void asignarListaDeUnidades(FabricasDisponibles fabricasDisponibles) {
         this.fabricasDisponibles = fabricasDisponibles;
+    }
+
+    @Override
+    protected String obtenerEstado() {
+        return estadoHabilitador.getEstado();
     }
 }

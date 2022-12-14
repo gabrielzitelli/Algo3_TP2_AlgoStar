@@ -23,4 +23,9 @@ public class EstadoRecolectorEnConstruccion implements EstadoRecolector {
     @Override
     public void extraer(Recurso recursoDelImperio, MaterialBruto materialBruto, int cantidadAExtraer) {
     }
+
+    @Override
+    public String getEstado() {
+        return " estado en_construccion";
+    }
 }

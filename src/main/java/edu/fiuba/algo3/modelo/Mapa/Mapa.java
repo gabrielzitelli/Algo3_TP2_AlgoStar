@@ -2,20 +2,19 @@ package edu.fiuba.algo3.modelo.Mapa;
 
 import edu.fiuba.algo3.modelo.Edificios.Edificio;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorUnidadNoPuedeAtacar;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoHayMasCasillasLibresEnElMapa;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.*;
+import edu.fiuba.algo3.modelo.Unidades.Ocupable;
 import edu.fiuba.algo3.modelo.Unidades.Unidad;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.UnidadZerg;
 
 import java.util.LinkedList;
 
 import static java.lang.Math.*;
 
 public class Mapa {
-    static private Mapa mapaInstanciaUnica = new Mapa();
-    private int tamanio = 100;
+    static private final Mapa mapaInstanciaUnica = new Mapa();
+    private final int tamanio = 100;
     private Casilla[][] matriz;
-    private double coeficienteBases = 0.12; //Relacion entre bases y tamanio del mapa
 
     private Mapa(){
         this.inicializarMapaConCasillasVacias();
@@ -64,6 +63,8 @@ public class Mapa {
 
     private void inicializarBases(){
 
+        //Relacion entre bases y tamanio del mapa
+        double coeficienteBases = 0.12;
         int cantidadBases = (int) round(tamanio * coeficienteBases);
         int cantLadoDerecho = cantidadBases - (int) ceil(cantidadBases / 2.0);
         int cantLadoIzquierdo = cantidadBases - (int) floor(cantidadBases / 2.0);
@@ -107,13 +108,13 @@ public class Mapa {
     }
 
     private void inicializarTerrenoEspacial(){
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio-1), 15);
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio/3, 5), 8);
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio, 15), 6);
-        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio/2), 5);
-        colocarTerrenoEspacialCircular(new Coordenada(3*tamanio/4, tamanio/2), 3);
-        colocarTerrenoEspacialCircular(new Coordenada(0, -5), 15);
-        colocarTerrenoEspacialCircular(new Coordenada(4*tamanio/5, (int)(tamanio*1.1)), 15);
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio-1), (int)(0.15*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/3, 5), (int)(0.08*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio, 15), (int)(0.06*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(tamanio/2, tamanio/2), (int)(0.05*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(3*tamanio/4, tamanio/2), (int)(0.05*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(0, -5), (int)(0.15*tamanio));
+        colocarTerrenoEspacialCircular(new Coordenada(4*tamanio/5, (int)(tamanio*1.1)), (int)(0.15*tamanio));
     }
 
     private void colocarTerrenoEspacialCircular(Coordenada coordenadaCentro, int radio){
@@ -132,16 +133,25 @@ public class Mapa {
         return mapaInstanciaUnica;
     }
 
-    public void construirEdificio(Edificio unEdificio, Coordenada coordenada){
+    public void construirEdificioVerificacion(Edificio unEdificio, Coordenada coordenada){
         Casilla casillaDondeConstruir = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDondeConstruir = casillaDondeConstruir.construirEdificio(unEdificio);
-        this.actualizarCasillaPorCoordenada(coordenada, casillaDondeConstruir);
+        casillaDondeConstruir.construirEdificioVerificacion(unEdificio);
     }
 
-    public void destruirEdificio(Coordenada coordenada){
-        Casilla casillaDestruir = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDestruir = casillaDestruir.desconstruirEdificio(coordenada);
-        this.actualizarCasillaPorCoordenada(coordenada, casillaDestruir);
+    public void colocarOcupable(Ocupable unOcupable, Coordenada coordenada) {
+        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaDestino = casillaDestino.colocarOcupable(unOcupable);
+        this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
+    }
+
+    public void quitarOcupable(Coordenada coordenada) {
+        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
+        casillaAQuitar = casillaAQuitar.quitarOcupable();
+        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
+    }
+
+    public Ocupable obtenerOcupable(Coordenada coordenada) {
+        return this.encontrarCasillaPorCoordenada(coordenada).obtenerOcupable();
     }
 
     private Casilla encontrarCasillaPorCoordenada(Coordenada coordenada){
@@ -162,6 +172,14 @@ public class Mapa {
     public void reiniciarMapa(){
         this.inicializarMapaConCasillasVacias();
     }
+    /**
+     * Reinicia todas las bases del mapa, y lo deja listo como para una revancha
+     */
+    public void prepararMapaParaRevancha(){
+        this.inicializarMapaConCasillasVacias();
+        this.inicializarBases();
+        this.inicializarTerrenoEspacial();
+    }
 
     public void recolocarBasesIniciales(){
         this.reiniciarMapa();
@@ -169,7 +187,7 @@ public class Mapa {
         this.inicializarTerrenoEspacial();
     }
 
-    public void colocarMaterial(SiRecolectable materialAColocar, Coordenada coordenada){
+    public void colocarMaterial(Recolectable materialAColocar, Coordenada coordenada){
         Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
         casillaDestino.colocarMaterial(materialAColocar);
     }
@@ -184,6 +202,62 @@ public class Mapa {
         int distanciaEnY = abs( coordenada1.getCoordenadaY() - coordenada2.getCoordenadaY() );
 
         return distanciaEnX + distanciaEnY;
+    }
+
+    private boolean estaCoordenadaEnAnilloParteCircunferencial(Coordenada coordenadaAVerificar, Coordenada coordenadaCentro, int distanciaDesdeElCentro ){
+        int xCoordenadaFinal = coordenadaAVerificar.getCoordenadaX();
+        int yCoordenadaFinal = coordenadaAVerificar.getCoordenadaY();
+        int xCoordenadaActual = coordenadaCentro.getCoordenadaX();
+        int yCoordenadaActual = coordenadaCentro.getCoordenadaY();
+
+        double hipotenusaAlCuadrado = (Math.pow((xCoordenadaFinal-xCoordenadaActual),2) + Math.pow((yCoordenadaFinal-yCoordenadaActual),2) );
+        double radio = Math.pow(distanciaDesdeElCentro,2);
+
+        return (hipotenusaAlCuadrado <= radio);
+    }
+
+    private LinkedList<Casilla> obtenerCasillasEnUnAnilloCentrado(Coordenada centroAnillo, int distanciaDesdeElCentro){
+
+        LinkedList<Casilla> casillasSobreElAnillo = new LinkedList<>();
+
+        for(int i = 0; i < tamanio; i++){
+            for(int j = 0; j < tamanio; j++) {
+                if( estaCoordenadaEnAnilloParteCircunferencial( matriz[i][j].obtenerCoordenada(), centroAnillo, distanciaDesdeElCentro ) )
+                    casillasSobreElAnillo.add(matriz[i][j]);
+            }
+        }
+
+        return casillasSobreElAnillo;
+    }
+
+    public void colocarUnidadEnCasillaLibreMasCercana(Coordenada coordenadaOrigen, Unidad unaUnidad){
+
+        boolean sePudoColocarUnidad = false;
+        LinkedList<Casilla> casillasSobreUnAnillo;
+        Casilla casillaOrigen = obtenerCasilla(coordenadaOrigen);
+
+        try{
+            colocarOcupable(unaUnidad, casillaOrigen.obtenerCoordenada());
+            sePudoColocarUnidad = true;
+        } catch(RuntimeException ignore) {}
+
+        int i = 1;
+        while ( i < tamanio && !sePudoColocarUnidad ){
+            casillasSobreUnAnillo = obtenerCasillasEnUnAnilloCentrado(coordenadaOrigen, i);
+
+            for(Casilla casillaCandidataParaColocar : casillasSobreUnAnillo){
+                try{
+                    casillaCandidataParaColocar.tieneEsteRecoletable(new NoRecolectable());
+                    colocarOcupable(unaUnidad, casillaCandidataParaColocar.obtenerCoordenada());
+                    sePudoColocarUnidad = true;
+                    break;
+                } catch(RuntimeException ignore) {}
+            }
+            i++;
+        }
+
+        if(!sePudoColocarUnidad)
+            throw new ErrorNoHayMasCasillasLibresEnElMapa();
     }
 
     private LinkedList<Casilla> obtenerCasillasDentroDelRadio(Coordenada origenDeExpansion, int radio){
@@ -202,7 +276,7 @@ public class Mapa {
     public void expandirMoho(Coordenada origenDeExpansion, int radio){
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radio);
         for(Casilla unaCasilla : casillasDentroDelRadio)
-            unaCasilla.llenarDeMoho();
+                unaCasilla.llenarDeMoho();
     }
 
     public void abastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
@@ -210,6 +284,7 @@ public class Mapa {
         for(Casilla unaCasilla : casillasDentroDelRadio)
             unaCasilla.cargarDeEnergia();
     }
+
     public void desabastecerEnergia(Coordenada origenDeExpansion, int radioDeEnergia) {
         LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(origenDeExpansion, radioDeEnergia);
         for(Casilla unaCasilla : casillasDentroDelRadio)
@@ -222,29 +297,10 @@ public class Mapa {
             unaCasilla.revelar();
     }
 
-    public void colocarUnidadZerg(UnidadZerg unaUnidadZerg, Coordenada unaCoordenada) {
-        Casilla casillaDondeColocar = this.encontrarCasillaPorCoordenada(unaCoordenada);
-
-        casillaDondeColocar = casillaDondeColocar.colocarUnidadZerg(unaUnidadZerg);
-
-        this.actualizarCasillaPorCoordenada(unaCoordenada, casillaDondeColocar);
-    }
-    public Edificio obtenerEdificio(Coordenada coordenada) {
-        Casilla casillaConEdificio = this.encontrarCasillaPorCoordenada(coordenada);
-        return casillaConEdificio.obtenerEdificio();
-    }
-
-    public void colocarUnaUnidad(Unidad unaUnidad, Coordenada coordenada){
-        // Busco la casilla de la coordenada y creo una nueva casilla ocupada por la unidad
-        Casilla casillaDestino = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaDestino = casillaDestino.colocarUnidad(unaUnidad);
-        this.actualizarCasillaPorCoordenada(coordenada, casillaDestino);
-    }
-
-    public void quitarUnidad(Coordenada coordenada) {
-        Casilla casillaAQuitar = this.encontrarCasillaPorCoordenada(coordenada);
-        casillaAQuitar = casillaAQuitar.quitarUnidad();
-        this.actualizarCasillaPorCoordenada(coordenada, casillaAQuitar);
+    public void desRevelar(Coordenada coordenadaOrigen, int radio) {
+        LinkedList<Casilla> casillasDentroDelRadio = obtenerCasillasDentroDelRadio(coordenadaOrigen, radio);
+        for (Casilla unaCasilla : casillasDentroDelRadio)
+            unaCasilla.desRevelar();
     }
 
     public void atacar(Coordenada atacante, Coordenada atacado){
@@ -265,7 +321,7 @@ public class Mapa {
 
         //Actualizo la casillaInicial con una casilla con los mismo atributos que tenia casillaInicial pero ahora
         //sin la unidad que contenia
-        casillaInicial = casillaInicial.quitarUnidad();
+        casillaInicial = casillaInicial.quitarOcupable();
         this.actualizarCasillaPorCoordenada(coordenadaInicial, casillaInicial);
     }
 
@@ -317,14 +373,23 @@ public class Mapa {
             carga = false;
         }
 
-        return carga;
+        return !carga;
     }
 
-    public boolean estaDentroDeRango(Coordenada coordenada, Casilla casillaAtacada, int rangoDeAtaque) {
-        if (rangoDeAtaque == 0)
-            throw new ErrorUnidadNoPuedeAtacar();
+    public boolean estaDentroDeRango(Coordenada coordenadaOrigen, Casilla casillaDestino, int rango) {
+        LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenadaOrigen, rango);
+        return !casillas.contains(casillaDestino);
+    }
 
-        LinkedList<Casilla> casillas = obtenerCasillasDentroDelRadio(coordenada, rangoDeAtaque);
-        return casillas.contains(casillaAtacada);
+    public int obtenerTamanioMapa() {
+        return tamanio;
+    }
+
+    public Casilla obtenerCasilla(Coordenada coordenada) {
+        return encontrarCasillaPorCoordenada(coordenada);
+    }
+
+    public boolean tieneEsteOcupable(Ocupable ocupable, Coordenada coordenada) {
+        return !this.encontrarCasillaPorCoordenada(coordenada).tieneEsteOcupable(ocupable);
     }
 }

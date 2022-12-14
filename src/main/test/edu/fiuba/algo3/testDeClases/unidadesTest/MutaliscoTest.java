@@ -2,8 +2,9 @@ package edu.fiuba.algo3.testDeClases.unidadesTest;
 
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,12 +30,12 @@ public class MutaliscoTest {
         Mapa elMapa = Mapa.obtener();
 
         Mutalisco unMutalisco = new Mutalisco();
-        Zerling unZerling = new Zerling();
+        Zealot unZealot = new Zealot();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unMutalisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unZealot, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
@@ -44,12 +45,12 @@ public class MutaliscoTest {
         Mapa elMapa = Mapa.obtener();
 
         Mutalisco unMutalisco = new Mutalisco();
-        Mutalisco otroMutalisco = new Mutalisco();
+        Scout unScout = new Scout();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(otroMutalisco, coordenadaAtacado);
+        elMapa.colocarOcupable(unMutalisco, coordenadaAtacante);
+        elMapa.colocarOcupable(unScout, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

@@ -1,17 +1,35 @@
 @startuml
 
-!include ../classes/herencia.plantuml!WITHOUTNOTES
-
-package JUnit {
-        class Test
+package "modelo" #DDDDDD {
+    class AlgoStar
 }
 
-package java.lang {
-        class String
+package "JUnit" #DDDDDD {
+    class Test
 }
 
-Test --> Localize: "<<instantiate>>"
-Localize -> String: " # esContent"
-Localize -> String: " # usContent"
+package "JSON.simple" << library >> #DDDDDD {
+}
+
+package "controladores" #DDDDDD {
+    class Controlador
+}
+
+package "javafx" << library >> #DDDDDD {
+    package "javafx-constrols"{}
+    package "javafx-fxml"{}
+    package "javafx-media" {}
+}
+
+note bottom of Controlador
+    Clases de la interfaz gráfica
+end note
+
+"JSON.simple" <. "modelo"
+Test ..> "modelo"
+"JSON.simple" <.."controladores"
+"modelo" <.. "controladores"
+"javafx" <.. "controladores"
+
 
 @enduml

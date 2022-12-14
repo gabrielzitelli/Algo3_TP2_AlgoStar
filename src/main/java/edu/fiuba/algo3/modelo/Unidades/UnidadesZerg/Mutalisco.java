@@ -1,37 +1,44 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
-import edu.fiuba.algo3.modelo.Imperio.Gas;
-import edu.fiuba.algo3.modelo.Imperio.Mineral;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Ataque.DanioMixto;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesMutalisco;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieAerea;
-import edu.fiuba.algo3.modelo.Ataque.*;
-import edu.fiuba.algo3.modelo.Vida.VidaSimple;
-
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 
 public class Mutalisco extends UnidadZerg {
 
-    private final int turnosDeContruccion = 7;
-    private final int danioTerrestre = 10;
-    private final int danioAereo = 10;
-    private final int cantidadDeVida = 120;
+    private boolean estadoEvolucion = false;
 
     public Mutalisco() {
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 7;
         this.superficieDondeSeMueve = new SuperficieAerea();
-        this.danio = new DanioMutalisco(danioTerrestre, danioAereo);
-        this.vida = new VidaSimple(cantidadDeVida);
-
         this.rangoDeAtaque = 3;
+        int danioTerrestre = 9;
+        int danioAereo = 9;
+        this.danio = new DanioMixto(danioTerrestre, danioAereo);
+        int cantidadDeVida = 120;
+        this.vida = new VidaSimple(cantidadDeVida);
+        this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 100;
         this.costoMineral = 100;
+        this.identificador = "mutalisco";
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
-        suministroImperio.disminuirPoblacion(FabricaMutalisco.obtenerPoblacionNecesaria());
+        suministroImperio.disminuirPoblacion(FabricasUnidadesMutalisco.obtenerPoblacionNecesaria());
     }
 
+    public void evolucionar(){
+        estadoEvolucion = true;
+    }
+
+    public boolean yaEvoluciono() {
+        return estadoEvolucion;
+    }
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return !Mutalisco.class.equals(claseAAverificar);
+    }
 }

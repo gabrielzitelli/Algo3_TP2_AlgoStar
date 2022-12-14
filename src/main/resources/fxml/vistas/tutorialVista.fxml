@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="mainPane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1124.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controladores.TutorialControlador">
+   <children>
+      <Pagination id="paginationTutorial" fx:id="paginationTutorial" maxPageIndicatorCount="15" pageCount="15" prefHeight="600.0" prefWidth="1124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button id="botonVolverAlMenu" fx:id="botonVolverAlMenu" layoutX="24.0" layoutY="550.0" mnemonicParsing="false" onAction="#volverAlMenu" styleClass="botonVolverAlMenu" stylesheets="@../../css/style.css" text="Volver al menú" />
+   </children>
+</AnchorPane>

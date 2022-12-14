@@ -3,9 +3,9 @@ package edu.fiuba.algo3.testDeClases.unidadesTest;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorNoPuedeAtacarUnidadVoladora;
 import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Scout;
+import edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss.Zealot;
 import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Guardian;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Mutalisco;
-import edu.fiuba.algo3.modelo.Unidades.UnidadesZerg.Zerling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,12 +30,12 @@ public class GuardianTest {
         Mapa elMapa = Mapa.obtener();
 
         Guardian unGuardian = new Guardian();
-        Zerling unZerling = new Zerling();
+        Zealot unZealot = new Zealot();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unZerling, coordenadaAtacado);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacante);
+        elMapa.colocarOcupable(unZealot, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }
@@ -45,12 +45,12 @@ public class GuardianTest {
         Mapa elMapa = Mapa.obtener();
 
         Guardian unGuardian = new Guardian();
-        Guardian otroGuardian = new Guardian();
+        Scout unScout = new Scout();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(otroGuardian, coordenadaAtacado);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacante);
+        elMapa.colocarOcupable(unScout, coordenadaAtacado);
 
         assertThrows(ErrorNoPuedeAtacarUnidadVoladora.class,
                 () -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
@@ -61,12 +61,12 @@ public class GuardianTest {
         Mapa elMapa = Mapa.obtener();
 
         Guardian unGuardian = new Guardian();
-        Mutalisco unMutalisco = new Mutalisco();
+        Scout unScout = new Scout();
         Coordenada coordenadaAtacante = new Coordenada(0,0);
         Coordenada coordenadaAtacado = new Coordenada(0,1);
 
-        elMapa.colocarUnaUnidad(unMutalisco, coordenadaAtacante);
-        elMapa.colocarUnaUnidad(unGuardian, coordenadaAtacado);
+        elMapa.colocarOcupable(unScout, coordenadaAtacante);
+        elMapa.colocarOcupable(unGuardian, coordenadaAtacado);
 
         assertDoesNotThrow(() -> elMapa.atacar(coordenadaAtacante, coordenadaAtacado));
     }

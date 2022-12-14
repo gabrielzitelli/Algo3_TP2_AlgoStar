@@ -1,13 +1,18 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.*;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.*;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.Acceso;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.PuertoEstelar;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Espiral;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Extractor;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.Guarida;
+import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.ReservaDeReproduccion;
 import edu.fiuba.algo3.modelo.Excepciones.ErrorEdificioNoSePuedeConstruirEnEstaCasilla;
 import edu.fiuba.algo3.modelo.Imperio.Recurso;
-import edu.fiuba.algo3.modelo.Mapa.*;
-
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CasoDeUso5Test {
@@ -24,7 +29,7 @@ public class CasoDeUso5Test {
         Recurso gasDelImperio = new Recurso(0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Extractor(gasDelImperio), coordenada));
+                () -> elMapa.colocarOcupable(new Extractor(gasDelImperio), coordenada));
     }
 
     @Test
@@ -33,7 +38,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new ReservaDeReproduccion(), coordenada));
+                () -> elMapa.colocarOcupable(new ReservaDeReproduccion(), coordenada));
     }
 
     @Test
@@ -42,7 +47,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Guarida(), coordenada));
+                () -> elMapa.colocarOcupable(new Guarida(), coordenada));
     }
 
     @Test
@@ -51,7 +56,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Espiral(), coordenada));
+                () -> elMapa.colocarOcupable(new Espiral(), coordenada));
     }
 
     @Test
@@ -60,7 +65,7 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new Acceso(), coordenada));
+                () -> elMapa.colocarOcupable(new Acceso(), coordenada));
     }
 
     @Test
@@ -69,6 +74,6 @@ public class CasoDeUso5Test {
         Coordenada coordenada = new Coordenada(0,0);
 
         assertThrows(ErrorEdificioNoSePuedeConstruirEnEstaCasilla.class,
-                () -> elMapa.construirEdificio(new PuertoEstelar(), coordenada));
+                () -> elMapa.colocarOcupable(new PuertoEstelar(), coordenada));
     }
 }

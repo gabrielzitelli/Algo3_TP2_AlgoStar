@@ -1,53 +1,78 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesZerg;
 
-import edu.fiuba.algo3.modelo.Ataque.DanioZangano;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaZangano;
-import edu.fiuba.algo3.modelo.Imperio.Recurso;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZangano;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaSimple;
+import edu.fiuba.algo3.modelo.Imperio.Mineral;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.MineralRecolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Recolectable;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
-import edu.fiuba.algo3.modelo.Ataque.Ataque;
-import edu.fiuba.algo3.modelo.Ataque.Danio;
-import edu.fiuba.algo3.modelo.Vida.Vida;
-import edu.fiuba.algo3.modelo.Vida.VidaSimple;
-
-import java.util.ArrayList;
+import edu.fiuba.algo3.modelo.Mapa.Coordenada;
+import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Mapa.MineralBruto;
+import edu.fiuba.algo3.modelo.Mapa.SinMaterialBruto;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 
 public class Zangano extends UnidadZerg {
 
-    private final int turnosDeContruccion = 1;
-    private final int cantidadDeVida = 25;
-    private Recolectable recolecta = new MineralRecolectable();
+    private final Recolectable recolecta = new MineralRecolectable();
 
-    public Zangano(){
-        this.turnosDeConstruccion = turnosDeContruccion;
+    public Zangano() {
+        this.turnosDeConstruccion = 1;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
         this.mineralDelImperio = null;
-        this.danio = new DanioZangano();
+        int cantidadDeVida = 25;
         this.vida = new VidaSimple(cantidadDeVida);
-        this.rangoDeAtaque = 0;
+        this.estadoPelea = new Atacante(rangoDeAtaque);
         this.costoGas = 0;
         this.costoMineral = 25;
+        this.identificador = "zangano";
+    }
+
+    private void interaccionar(Casilla unaCasilla) {
+        try {
+            unaCasilla.tieneEsteRecoletable(recolecta);
+            this.recursoARecolectar = unaCasilla.obtenerMaterial();
+        } catch (RuntimeException ignore) {
+            this.recursoARecolectar =  new SinMaterialBruto();
+        }
     }
 
     @Override
-    public void interaccionar(Casilla unaCasilla){
-        unaCasilla.tieneEsteRecoletable(recolecta);
-        this.recursoARecolectar = unaCasilla.obtenerMaterial();
+    public void verificarColocable(Casilla unaCasilla) {
+        super.verificarColocable(unaCasilla);
+        interaccionar(unaCasilla);
     }
 
     @Override
-    public void setDepositoRecurso( Recurso recursoImperio ) {
-        this.mineralDelImperio = recursoImperio;
+    public void moverA(Coordenada coordenadaDestino) {
+        super.moverA(coordenadaDestino);
+        interaccionar(Mapa.obtener().obtenerCasilla(coordenada));
     }
 
+    @Override
+    public void setDepositoRecurso( Mineral mineralImperio ) {
+        this.mineralDelImperio = mineralImperio;
+    }
+
+    public void pasarTurno() {
+        super.pasarTurno();
+        this.extraer();
+    }
     public void extraer(){
-        mineralDelImperio.depositar(recursoARecolectar.extraer(10));
+        if (recursoARecolectar != null) {
+            if (recursoARecolectar.getClass().equals(MineralBruto.class))
+                mineralDelImperio.depositar(recursoARecolectar.extraer(10));
+        }
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
-        suministroImperio.disminuirPoblacion(FabricaZangano.obtenerPoblacionNecesaria());
+        suministroImperio.disminuirPoblacion(FabricasUnidadesZangano.obtenerPoblacionNecesaria());
+    }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return !Zangano.class.equals(claseAAverificar);
     }
 }

@@ -1,37 +1,37 @@
 package edu.fiuba.algo3.modelo.Unidades.UnidadesProtoss;
 
-import edu.fiuba.algo3.modelo.Edificios.EdificiosProtoss.FabricaZealot;
-import edu.fiuba.algo3.modelo.Edificios.EdificiosZerg.FabricaMutalisco;
-import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada;
+import edu.fiuba.algo3.modelo.Ataque.Ataque;
+import edu.fiuba.algo3.modelo.Ataque.DanioTerrestre;
+import edu.fiuba.algo3.modelo.Edificios.FabricasUnidades.FabricasUnidadesZealot;
+import edu.fiuba.algo3.modelo.Edificios.Vida.VidaConEscudo;
+import edu.fiuba.algo3.modelo.Excepciones.ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada;
 import edu.fiuba.algo3.modelo.Imperio.Suministro;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.Casilla;
-import edu.fiuba.algo3.modelo.Mapa.Casilla.Superficie;
 import edu.fiuba.algo3.modelo.Mapa.Casilla.SuperficieTerrestre;
-import edu.fiuba.algo3.modelo.Ataque.*;
-import edu.fiuba.algo3.modelo.Mapa.Coordenada;
 import edu.fiuba.algo3.modelo.Mapa.Mapa;
+import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Atacante;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visibilidad;
 import edu.fiuba.algo3.modelo.Unidades.EstadoUnidad.Visible;
-import edu.fiuba.algo3.modelo.Vida.VidaConEscudo;
 
 public class Zealot extends UnidadProtoss {
 
-    private final int turnosDeContruccion = 4;
-    private final int danioTerrestre = 8;
-    private final int cantidadDeVida = 100;
-    private final int cantidadDeEscudo = 60;
     private Visibilidad estado;
-    private int muertesParaInvisibilidad = 3;
 
     public Zealot(){
-        this.turnosDeConstruccion = turnosDeContruccion;
+        this.turnosDeConstruccion = 4;
         this.superficieDondeSeMueve = new SuperficieTerrestre();
-        this.danio = new DanioZealot(danioTerrestre);
-        this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
         this.rangoDeAtaque = 1;
+        int danioTerrestre = 8;
+        this.danio = new DanioTerrestre(danioTerrestre);
+        int cantidadDeVida = 100;
+        int cantidadDeEscudo = 60;
+        this.vida = new VidaConEscudo(cantidadDeVida, cantidadDeEscudo);
+        this.estadoPelea = new Atacante(rangoDeAtaque);
+        int muertesParaInvisibilidad = 3;
         estado = new Visible(this, muertesParaInvisibilidad);
         this.costoGas = 0;
         this.costoMineral = 100;
+        this.identificador = "zealot";
     }
 
     @Override
@@ -47,11 +47,20 @@ public class Zealot extends UnidadProtoss {
         try {
             Mapa.obtener().moverUnidad(coordenada, casillaAAtacar.obtenerCoordenada());
         }
-        catch (ErrorNoSePuedeColocarUnidadEnUnaCasillaOcupada e) {
+        catch (ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada e) {
             return;
         }
 
         estado = estado.aumentarContador();
+
+        actualizarIdentificador(estado.esInvisible());
+    }
+
+    public void actualizarIdentificador(boolean esInvisible){
+        if (esInvisible)
+            this.identificador = "zealot_invisible";
+        else
+            this.identificador = "zealot";
     }
 
     @Override
@@ -64,6 +73,11 @@ public class Zealot extends UnidadProtoss {
     }
 
     public void disminuirPoblacion(Suministro suministroImperio){
-        suministroImperio.disminuirPoblacion(FabricaZealot.obtenerPoblacionNecesaria());
+        suministroImperio.disminuirPoblacion(FabricasUnidadesZealot.obtenerPoblacionNecesaria());
+    }
+
+    @Override
+    public boolean esDeEsteTipo(Class claseAAverificar) {
+        return !Zealot.class.equals(claseAAverificar);
     }
 }
