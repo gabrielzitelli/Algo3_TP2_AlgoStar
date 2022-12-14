@@ -65,7 +65,6 @@ Les recomendamos implementar esta herramienta para mitigar los errores de incons
 
 ## Paquetes
 
-![modelo_paquete](../diagrams/packages/paquete_modelo_dependencias.png)
 
 [external_vscode]: https://code.visualstudio.com/Download
 [external_idea]: https://www.jetbrains.com/idea/
