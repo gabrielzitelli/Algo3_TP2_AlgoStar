@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.Buffer;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -28,8 +27,8 @@ public class TutorialControlador extends Controlador{
     @FXML
     protected Button botonVolverAlMenu;
 
-    private Image[] imagenesTutorial = new Image[15];
-    private ImageView[] imageViewTutorial = new ImageView[15];
+    private final Image[] imagenesTutorial = new Image[15];
+    private final ImageView[] imageViewTutorial = new ImageView[15];
 
     public void initialize(URL url, ResourceBundle resourceBundle){
         inicializarImagenes();

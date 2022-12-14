@@ -10,8 +10,7 @@ public class Moho {
     private int contadorTurnos;
 
     public Moho(){
-        int radioInicial = 5;
-        radioActual = radioInicial;
+        radioActual = 5;
         contadorTurnos = turnosParaExpandir;
     }
 

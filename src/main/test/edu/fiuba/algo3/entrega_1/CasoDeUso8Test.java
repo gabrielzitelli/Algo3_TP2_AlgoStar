@@ -63,7 +63,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test04TengoLosRecursosNecesariosPuedoConstruirUnaReserva() {
-        Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos();
@@ -86,7 +85,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test06TengoLosRecursosNecesariosPuedoConstruirUnExtractor() {
-        Mapa elMapa = Mapa.obtener();
         Zerg imperioZerg = new Zerg();
 
         imperioZerg.abastecerDeRecursos();
@@ -251,7 +249,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test15NoTengoLosRecursosNecesariosNoPuedoConstruirUnPilon() {
-        Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
@@ -263,7 +260,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test16TengoLosRecursosNecesariosPuedoConstruirUnPilon() {
-        Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
@@ -274,7 +270,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test17NoTengoLosRecursosNecesariosNoPuedoConstruirUnAcceso() {
-        Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
@@ -290,7 +285,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test18TengoLosRecursosNecesariosPuedoConstruirUnPilon() {
-        Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
@@ -304,7 +298,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test19NoTengoLosRecursosNecesariosNoPuedoConstruirUnPuertoEstelar() {
-        Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 
@@ -322,7 +315,6 @@ public class CasoDeUso8Test {
 
     @Test
     public void test20TengoLosRecursosNecesariosPuedoConstruirUnPuertoEstelar() {
-        Mapa elMapa = Mapa.obtener();
         Protoss protoss = new Protoss();
         Coordenada coordenada = new Coordenada(0,0);
 

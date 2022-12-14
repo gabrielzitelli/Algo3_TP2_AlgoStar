@@ -99,7 +99,6 @@ public class CasoDeUso29Test {
 
     @Test
     public void test04InicioProtossCreoPilonesParaChequearQueAumenteBienElSuministro(){
-        Mapa elMapa = Mapa.obtener();
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos(new Mineral(9000), new Gas(9000));
@@ -118,7 +117,6 @@ public class CasoDeUso29Test {
 
     @Test
     public void test05InicioProtossCreoPilonesParaChequearQueNoAumenteMasDelLimite(){
-        Mapa elMapa = Mapa.obtener();
         Protoss imperioProtoss = new Protoss();
 
         imperioProtoss.abastecerDeRecursos(new Mineral(9000), new Gas(9000));
@@ -137,7 +135,6 @@ public class CasoDeUso29Test {
 
     @Test
     public void test06Creo39PilonesYMeFalta5ParaElMaximoYNoLlegoCreandoOtrasConstrucciones(){
-        Mapa elMapa = Mapa.obtener();
         Protoss imperioProto = new Protoss();
 
         imperioProto.abastecerDeRecursos(new Mineral(15000), new Gas(15000));

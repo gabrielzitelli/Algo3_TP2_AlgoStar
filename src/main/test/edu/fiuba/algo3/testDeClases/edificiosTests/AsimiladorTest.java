@@ -27,7 +27,6 @@ public class AsimiladorTest {
     @Test
     public void test01PuedoCrearUnExtractor(){
         Recurso gasDelImperio = new Recurso(0);
-        MaterialBruto volcanDeGas = new GasBruto();
 
         Asimilador unAsimilador = new Asimilador(gasDelImperio);
 
