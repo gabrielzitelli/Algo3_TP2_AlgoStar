@@ -27,7 +27,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Logger.obtener().toggle(false);
+        Logger.obtener().toggle(true);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vistas/inicioVista.fxml"));
         loader.setRoot(new BorderPane());
 
