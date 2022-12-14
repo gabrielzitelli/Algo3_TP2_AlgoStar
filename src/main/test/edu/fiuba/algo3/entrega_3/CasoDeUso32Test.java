@@ -68,9 +68,8 @@ public class CasoDeUso32Test {
             algoStar.terminarTurno();
         }
 
-        //9 33
         Dragon dragon = (Dragon) algoStar.conseguirOcupableEn(new Coordenada(9,33));
-        //85 66
+
         while (dragon.obtenerCoordenada().getCoordenadaX() < coordenadaAsentamientoZerg.getCoordenadaX() - 4){
             Coordenada coordenadaDestino = new Coordenada(dragon.obtenerCoordenada().getCoordenadaX() + 5, dragon.obtenerCoordenada().getCoordenadaY());
             dragon.moverA(coordenadaDestino);
