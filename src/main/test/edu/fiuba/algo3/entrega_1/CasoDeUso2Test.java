@@ -48,7 +48,6 @@ public class CasoDeUso2Test {
         for(int i = 0; i < turnosParaConstruir; i++)
             imperioZerg.terminarTurno();
 
-        //obtenemos el edificio
         Edificio unCriadero = imperioZerg.conseguirEdificio(new Coordenada(0,0));
 
         assertThrows(ErrorEdificioNoEstaConstruido.class, () -> unCriadero.crearUnidad(new FabricasUnidadesZangano()));

@@ -22,8 +22,6 @@ public class CasoDeUso28Test {
         Mapa.obtener().reiniciarMapa();
     }
 
-
-
     private Unidad crearUnidadInvisible() {
         Mapa elMapa = Mapa.obtener();
 
@@ -54,8 +52,6 @@ public class CasoDeUso28Test {
         return unaUnidad;
     }
 
-    //TODO Comente el test porque no se a quien pasarle el turno
-
     @Test
     public void test01UnZealotSeHaceInvisibleYNoPuedeSerAtacadoPorOtraUnidad() {
         Mapa elMapa = Mapa.obtener();
@@ -78,7 +74,6 @@ public class CasoDeUso28Test {
         assertThrows(ErrorNoSePuedeColocarOcupableEnUnaCasillaOcupada.class,
                 () -> elMapa.colocarOcupable(new Zealot(), coordenadaZealotInvisible));
     }
-
 
     @Test
     public void test02UnZealotSeHaceInvisiblePeroPuedeSerAtacadoPorEstarEnRangoDeUnAmoSupremo() {
