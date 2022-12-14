@@ -28,7 +28,7 @@ Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desa
 
 ## Informe
 
-El informe se puede encontrar en el siguiente [enlace](./docs/Informe TP2.pdf).
+El informe se puede encontrar en el siguiente [enlace](./docs/Informe_TP2.pdf).
 
 ## Licencia
 
